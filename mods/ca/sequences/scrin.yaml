@@ -1,0 +1,785 @@
+^ScrinCommonDeaths:
+	die5: scrininfdeaths
+		Length: 19
+		Tick: 80
+	die6: scrininfdeaths
+		Length: 14
+		Start: 19
+	die8: chronozap
+		Length: *
+		BlendMode: Alpha
+	die9: scrininfdeaths
+		Start: 33
+		Length: 15
+		Tick: 80
+	die10: scrininfdeaths
+		Start: 33
+		Length: 15
+		Tick: 80
+	die11: scrininfdeaths
+		Start: 48
+		Length: 13
+		Tick: 80
+	die-crushed: scrininfdeaths
+		Start: 61
+		Length: 6
+		Tick: 1600
+		ZOffset: -511
+
+s1:
+	Inherits: ^ScrinCommonDeaths
+	stand: s1
+		Facings: 8
+	stand2: s1
+		Facings: 8
+	run: s1
+		Start: 8
+		Length: 4
+		Facings: 8
+		Tick: 120
+	shoot: s1
+		Start: 40
+		Length: 4
+		Facings: 8
+	idle1: s1
+		Length: 1
+		Tick: 120
+	idle2: s1
+		Start: 2
+		Length: 1
+		Tick: 120
+	idle3: s1
+		Start: 3
+		Length: 1
+		Tick: 120
+	idle4: s1
+		Start: 4
+		Length: 1
+		Tick: 120
+	die1: s1
+		Start: 72
+		Length: 8
+		Tick: 80
+	die2: s1
+		Start: 80
+		Length: 8
+		Tick: 80
+	die3: s1
+		Start: 88
+		Length: 8
+		Tick: 80
+	die4: s1
+		Start: 88
+		Length: 8
+		Tick: 80
+	die7: s1
+		Start: 72
+		Length: 8
+		Tick: 80
+	muzzle: scrinmuzz1
+		Length: 4
+		Facings: 8
+		Tick: 80
+	garrison-muzzle: scrinmuzz1
+		Length: 4
+		Facings: 8
+		Tick: 80
+	chrono-overlay: chronofade_small
+		Length: *
+		BlendMode: Additive
+		Offset: 0, 0
+		UseTilesetCode: false
+		ZOffset: 512
+		Tick: 80
+	icon: s1icon
+
+s3:
+	Inherits: ^ScrinCommonDeaths
+	stand: s3
+		Facings: 8
+	stand2: s3
+		Facings: 8
+	run: s3
+		Start: 8
+		Length: 4
+		Facings: 8
+		Tick: 120
+	shoot: s3
+		Start: 40
+		Length: 4
+		Facings: 8
+	idle1: s3
+		Length: 1
+		Tick: 120
+	idle2: s3
+		Start: 2
+		Length: 1
+		Tick: 120
+	idle3: s3
+		Start: 3
+		Length: 1
+		Tick: 120
+	idle4: s3
+		Start: 4
+		Length: 1
+		Tick: 120
+	die1: s3
+		Start: 72
+		Length: 7
+		Tick: 80
+	die2: s3
+		Start: 79
+		Length: 8
+		Tick: 80
+	die3: s3
+		Start: 88
+		Length: 8
+		Tick: 80
+	die4: s3
+		Start: 88
+		Length: 8
+		Tick: 80
+	die7: s3
+		Start: 72
+		Length: 8
+		Tick: 80
+	chrono-overlay: chronofade_small
+		Length: *
+		BlendMode: Additive
+		Offset: 0, 0
+		UseTilesetCode: false
+		ZOffset: 512
+		Tick: 80
+	icon: s3icon
+
+s4:
+	Inherits: ^ScrinCommonDeaths
+	stand: s4
+		Facings: 8
+	stand2: s4
+		Facings: 8
+	run: s4
+		Start: 8
+		Length: 4
+		Facings: 8
+		Tick: 120
+	shoot: s4
+		Start: 40
+		Length: 4
+		Facings: 8
+	idle1: s4
+		Length: 1
+		Tick: 120
+	idle2: s4
+		Start: 2
+		Length: 1
+		Tick: 120
+	idle3: s4
+		Start: 3
+		Length: 1
+		Tick: 120
+	idle4: s4
+		Start: 4
+		Length: 1
+		Tick: 120
+	die1: s4
+		Start: 72
+		Length: 7
+		Tick: 80
+	die2: s4
+		Start: 79
+		Length: 8
+		Tick: 80
+	die3: s4
+		Start: 88
+		Length: 8
+		Tick: 80
+	die4: s4
+		Start: 88
+		Length: 8
+		Tick: 80
+	die7: s4
+		Start: 72
+		Length: 8
+		Tick: 80
+	chrono-overlay: chronofade_small
+		Length: *
+		BlendMode: Additive
+		Offset: 0, 0
+		UseTilesetCode: false
+		ZOffset: 512
+		Tick: 80
+	icon: s4icon
+
+s6:
+	Inherits: ^ScrinCommonDeaths
+	stand: s6
+		Facings: 8
+	stand2: s6
+		Facings: 8
+	run: s6
+		Start: 8
+		Length: 4
+		Facings: 8
+		Tick: 120
+	idle1: s6
+		Length: 1
+		Tick: 120
+	idle2: s6
+		Start: 2
+		Length: 1
+		Tick: 120
+	idle3: s6
+		Start: 3
+		Length: 1
+		Tick: 120
+	idle4: s6
+		Start: 4
+		Length: 1
+		Tick: 120
+	die1: s6
+		Start: 72
+		Length: 7
+		Tick: 80
+	die2: s6
+		Start: 79
+		Length: 8
+		Tick: 80
+	die3: s6
+		Start: 88
+		Length: 8
+		Tick: 80
+	die4: s6
+		Start: 88
+		Length: 8
+		Tick: 80
+	die7: s6
+		Start: 72
+		Length: 8
+		Tick: 80
+	chrono-overlay: chronofade_small
+		Length: *
+		BlendMode: Additive
+		Offset: 0, 0
+		UseTilesetCode: false
+		ZOffset: 512
+		Tick: 80
+	icon: s6icon
+
+mast:
+	Inherits: ^ScrinCommonDeaths
+	stand: mast
+		Facings: 8
+	stand2: mast
+		Facings: 8
+	run: mast
+		Start: 8
+		Length: 4
+		Facings: 8
+		Tick: 120
+	shoot: mast
+		Start: 40
+		Length: 4
+		Facings: 8
+	idle1: mast
+		Length: 1
+		Tick: 120
+	idle2: mast
+		Start: 2
+		Length: 1
+		Tick: 120
+	idle3: mast
+		Start: 3
+		Length: 1
+		Tick: 120
+	idle4: mast
+		Start: 4
+		Length: 1
+		Tick: 120
+	die1: mast
+		Start: 72
+		Length: 7
+		Tick: 80
+	die2: mast
+		Start: 79
+		Length: 8
+		Tick: 80
+	die3: mast
+		Start: 88
+		Length: 8
+		Tick: 80
+	die4: mast
+		Start: 88
+		Length: 8
+		Tick: 80
+	die7: mast
+		Start: 72
+		Length: 8
+		Tick: 80
+	chrono-overlay: chronofade_small
+		Length: *
+		BlendMode: Additive
+		Offset: 0, 0
+		UseTilesetCode: false
+		ZOffset: 512
+		Tick: 80
+	icon: masticon
+
+harv.scrin:
+	Inherits: ^VehicleOverlays
+	idle: harvscrin
+		Facings: 32
+		UseClassicFacingFudge: True
+	harvest: scrinharvest
+		Length: *
+		ZOffset: -128
+		BlendMode: Additive
+	icon: harvscrinicon
+
+harv.scrin.destroyed:
+	Inherits: ^VehicleOverlays
+	idle: harvscrin
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+
+gunw:
+	Inherits: ^VehicleOverlays
+	idle: gunw
+		Facings: 32
+		UseClassicFacingFudge: True
+	move: gunw
+		Start: 32
+		Facings: 32
+		Length: 2
+		Tick: 80
+		UseClassicFacingFudge: True
+	muzzle: scrinmuzz1
+		Length: 4
+		Facings: 8
+		Tick: 80
+	icon: gunwicon
+
+gunw.destroyed:
+	Inherits: ^VehicleOverlays
+	idle: gunw
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+
+seek:
+	Inherits: ^VehicleOverlays
+	idle: seek
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret: seek
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
+	muzzle: scrinmuzz1
+		Length: 4
+		Facings: 8
+		Tick: 80
+	icon: seekicon
+
+seek.destroyed:
+	Inherits: ^VehicleOverlays
+	idle: seek
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+	turret: seek
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+
+intl:
+	Inherits: ^VehicleOverlays
+	idle: intl
+		Facings: 32
+		UseClassicFacingFudge: True
+	muzzle: scrinmuzz3
+		Length: 2
+	icon: intlicon
+
+intl.destroyed:
+	Inherits: ^VehicleOverlays
+	idle: intl
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+
+corr:
+	Inherits: ^VehicleOverlays
+	idle: corr
+		Facings: 32
+		UseClassicFacingFudge: True
+	move: corr
+		Start: 32
+		Facings: 32
+		Length: 2
+		Tick: 150
+		UseClassicFacingFudge: True
+	icon: corricon
+
+corr.destroyed:
+	Inherits: ^VehicleOverlays
+	idle: corr
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+
+devo:
+	Inherits: ^VehicleOverlays
+	idle: devo
+		Facings: 1
+		Start: 32
+	turret: devo
+		Facings: 32
+		UseClassicFacingFudge: True
+	muzzle: scrinmuzz3
+		Length: 5
+	icon: devoicon
+
+devo.destroyed:
+	Inherits: ^VehicleOverlays
+	idle: devo
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+
+ruin:
+	Inherits: ^VehicleOverlays
+	idle: ruin
+		Facings: 32
+		UseClassicFacingFudge: True
+	muzzle: scrinmuzz3
+		Length: 5
+	icon: ruinicon
+
+ruin.destroyed:
+	Inherits: ^VehicleOverlays
+	idle: ruin
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+
+tpod:
+	Inherits: ^VehicleOverlays
+	idle: tpod
+		Facings: 1
+		Start: 32
+	turret: tpod
+		Facings: 32
+		UseClassicFacingFudge: True
+	move: tpod
+		Start: 33
+		Facings: 8
+		Length: 14
+		Tick: 60
+	muzzle: scrinmuzz2
+		Length: 5
+	icon: tpodicon
+
+tpod.destroyed:
+	Inherits: ^VehicleOverlays
+	idle: tpod
+		Facings: 1
+		Start: 32
+		ZOffset: -512
+	turret: tpod
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+
+stmr:
+	Inherits: ^VehicleOverlays
+	idle: stmr
+		Facings: 32
+		UseClassicFacingFudge: True
+	icon: stmricon
+
+deva:
+	Inherits: ^VehicleOverlays
+	idle: deva
+		Facings: 32
+		UseClassicFacingFudge: True
+	icon: devaicon
+
+pac:
+	Inherits: ^VehicleOverlays
+	idle: pac
+		Facings: 32
+		UseClassicFacingFudge: True
+	half-deployed: pac
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
+	fully-deployed: pac
+		Start: 64
+		Facings: 32
+		UseClassicFacingFudge: True
+	icon: pacicon
+
+inva:
+	Inherits: ^VehicleOverlays
+	idle: inva
+		Facings: 32
+		UseClassicFacingFudge: True
+	icon: wipicon
+
+#
+# ---- buildings
+#
+
+ptur:
+	Inherits: ^StructureOverlays
+	idle: ptur
+		Facings: 32
+		UseClassicFacingFudge: True
+		Offset: 1,-6
+	make: pturmake
+		Length: *
+		Offset: 1,-6
+	damaged-idle: ptur
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
+		Offset: 1,-6
+	muzzle: scrinmuzz1
+		Length: 4
+		Facings: 8
+		Tick: 80
+	bib: mbGUN
+		Length: *
+		Offset: -1,-1
+		UseTilesetExtension: true
+		TilesetOverrides:
+			BARREN: TEMPERAT
+	icon: pturicon
+
+shar:
+	Inherits: ^StructureOverlays
+	idle: shar
+		Facings: 32
+		UseClassicFacingFudge: True
+		Offset: 1,-11
+	make: sharmake
+		Length: *
+		Offset: 1,-11
+	damaged-idle: shar
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
+		Offset: 1,-11
+	bib: mbTSLA
+		Length: *
+		UseTilesetExtension: true
+		TilesetOverrides:
+			BARREN: TEMPERAT
+	icon: sharicon
+
+scol:
+	Inherits: ^StructureOverlays
+	idle: scol
+		Length: 1
+		Offset: 0,-12
+	damaged-idle: scol
+		Start: 1
+		Length: 1
+		Offset: 0,-12
+	make: scolmake
+		Length: *
+		Offset: 0,-12
+	bib: mbTSLA
+		Length: *
+		UseTilesetExtension: true
+		TilesetOverrides:
+			BARREN: TEMPERAT
+	icon: scolicon
+
+sign:
+	Inherits: ^StructureOverlays
+	idle: bio
+	damaged-idle: bio
+		Start: 1
+	dead: bio
+		Start: 2
+		Tick: 800
+	bib: bib3
+		Length: *
+		UseTilesetExtension: true
+		TilesetOverrides:
+			INTERIOR: TEMPERAT
+	make: biomake
+		Length: *
+	icon: signicon
+
+mani:
+	Inherits: ^StructureOverlays
+	idle: sgen
+		Offset: 0,-10
+	active: sgen
+		Length: 4
+		Offset: 0,-10
+	damaged-idle: sgen
+		Start: 4
+		Offset: 0,-10
+	damaged-active: sgen
+		Start: 4
+		Length: 4
+		Offset: 0,-10
+	make: sgenmake
+		Length: *
+		Offset: 0,-10
+	dead: sgen
+		Start: 4
+		Tick: 800
+		Offset: 0,-10
+	bib: bib2
+		Length: *
+		UseTilesetExtension: true
+		TilesetOverrides:
+			INTERIOR: TEMPERAT
+	icon: maniicon
+
+rift:
+	Inherits: ^StructureOverlays
+	idle: weat
+	damaged-idle: weat
+		Start: 1
+	active: weat
+		Start: 2
+		Length: 1
+		Tick: 10000
+	damaged-active: weat
+		Start: 3
+		Length: 1
+		Tick: 10000
+	make: weatmake
+		Length: *
+	active-overlay: DATA.R8
+		AddExtension: False
+		Start: 3947
+		Length: 17
+		Tick: 100
+		BlendMode: Additive
+		ZOffset: 511
+	bib: mbIRON
+		Length: *
+		Offset: 0,2
+		UseTilesetExtension: true
+		TilesetOverrides:
+			JUNGLE: TEMPERAT
+			BARREN: TEMPERAT
+	icon: rifticon
+
+#
+# ---- animations
+#
+
+plasdiscsm:
+	idle: plasdiscsm
+		BlendMode: Additive
+		Length: *
+		ZOffset: 1023
+		Tick: 50
+
+plasdiscmd:
+	idle: plasdiscmd
+		BlendMode: Additive
+		Length: *
+		ZOffset: 1023
+		Tick: 50
+
+plasdisclg:
+	idle: plasdisclg
+		BlendMode: Additive
+		Length: *
+		ZOffset: 1023
+		Tick: 50
+
+tibglob:
+	idle: tibglob
+		BlendMode: Additive
+		Length: *
+		ZOffset: 1023
+		Tick: 40
+
+tibexplode:
+	idle: tibexplode
+		Length: *
+		ZOffset: 2047
+
+scrinzap:
+	idle: scrinzap
+		ZOffset: 1023
+		Facings: 32
+
+scrinzapdown:
+	idle: scrinzapdown
+		ZOffset: 1023
+		Facings: 32
+
+scrinzapup:
+	idle: scrinzapup
+		ZOffset: 1023
+		Facings: 32
+
+scrinzaphit:
+	idle: scrinmuzz2
+		ZOffset: 1023
+		Length: 5
+
+scrinzaphitsm:
+	idle: scrinzaphitsm
+		ZOffset: 1023
+		Length: 3
+
+shardhit:
+	idle: shardhit
+		Length: 3
+		ZOffset: 1023
+	idle2: shardhit
+		Start: 3
+		Length: 3
+		ZOffset: 1023
+	idle3: shardhit
+		Start: 6
+		Length: 3
+		ZOffset: 1023
+	idle4: shardhit
+		Start: 9
+		Length: 3
+		ZOffset: 1023
+
+shard:
+	idle: shard
+		Facings: 32
+		ZOffset: 1023
+
+mindcontrol:
+	idle: mindcontrol
+		ZOffset: 1023
+		Length: 10
+
+riftanim:
+	idle: riftloop
+		Tick: 40
+		Length: *
+		ZOffset: 2048
+		BlendMode: Subtractive
+	spawn: riftstart
+		Tick: 40
+		Length: *
+		ZOffset: 2048
+		BlendMode: Subtractive
+	fade: riftend
+		Tick: 40
+		Length: *
+		ZOffset: 2048
+		BlendMode: Subtractive
+
+scrinwipicon:
+	icon: wipicon

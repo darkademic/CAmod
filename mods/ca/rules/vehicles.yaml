@@ -1976,7 +1976,7 @@ STNK.Nod:
 	RenderSprites:
 		Image: STNKTnod
 	Valued:
-		Cost: 900
+		Cost: 1100
 	Tooltip:
 		Name: Stealth Tank
 		GenericName: Tank

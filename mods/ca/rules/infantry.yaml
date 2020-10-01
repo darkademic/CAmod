@@ -1047,7 +1047,7 @@ N5:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 25000
+		HP: 22000
 	WithDeathAnimation:
 		DeathSequencePalette: playertd
 	Armament:
@@ -1084,10 +1084,13 @@ N5:
 	-GrantCondition@HAZMAT:
 	-ExternalCondition@HAZMAT:
 	-DamagedByTerrain:
-	DamagedByTerrain:
-		Terrain: Tiberium, BlueTiberium
-		Damage: -100
-		DamageInterval: 16
+	SelfHealing@THEAL:
+		Step: 0
+		PercentageStep: 1
+		Delay: 15
+		HealIfBelow: 100
+		DamageCooldown: 150
+		RequiresCondition: tibheal
 		DamageTypes: ToxinDeath
 	GrantConditionOnTerrain@THEAL:
 		Condition: tibheal
@@ -1577,10 +1580,13 @@ ACOL:
 	-GrantConditionOnPrerequisite@BIO:
 	-WithDecoration@HAZMAT:
 	-DamagedByTerrain:
-	DamagedByTerrain:
-		Terrain: Tiberium, BlueTiberium
-		Damage: -100
-		DamageInterval: 16
+	SelfHealing@THEAL:
+		Step: 0
+		PercentageStep: 1
+		Delay: 15
+		HealIfBelow: 100
+		DamageCooldown: 150
+		RequiresCondition: tibheal
 		DamageTypes: ToxinDeath
 	GrantConditionOnTerrain@THEAL:
 		Condition: tibheal
@@ -1611,12 +1617,12 @@ ACOL:
 		Modifier: 115
 		RequiresCondition: cyborg-upgrade && !cyborgspeed-upgrade
 	DamageMultiplier@CYBORG:
-		Modifier: 30
+		Modifier: 32
 		RequiresCondition: cyborg-upgrade && !cyborgarmor-upgrade
 	SpeedMultiplier@CYBORGSPEED:
 		Modifier: 130
 	DamageMultiplier@CYBORGARMOR:
-		Modifier: 24
+		Modifier: 25
 
 JJET:
 	Inherits: ^Infantry
@@ -1761,7 +1767,7 @@ E8:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 25000
+		HP: 20000
 	Mobile:
 		Voice: Move
 		PauseOnCondition: !undeployed && being-warped
@@ -1842,7 +1848,7 @@ N1C:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 35000
+		HP: 28000
 	Mobile:
 		Speed: 56
 		Voice: Move
@@ -1866,10 +1872,13 @@ N1C:
 	-GrantCondition@HAZMAT:
 	-ExternalCondition@HAZMAT:
 	-DamagedByTerrain:
-	DamagedByTerrain:
-		Terrain: Tiberium, BlueTiberium
-		Damage: -100
-		DamageInterval: 16
+	SelfHealing@THEAL:
+		Step: 0
+		PercentageStep: 1
+		Delay: 15
+		HealIfBelow: 100
+		DamageCooldown: 150
+		RequiresCondition: tibheal
 		DamageTypes: ToxinDeath
 	GrantConditionOnTerrain@THEAL:
 		Condition: tibheal
@@ -1906,7 +1915,7 @@ N3C:
 		AddToArmyValue: true
 	-TakeCover:
 	Health:
-		HP:  22000
+		HP:  18000
 	RevealsShroud:
 		Range: 4c768
 	Mobile:
@@ -1958,10 +1967,13 @@ N3C:
 	-GrantCondition@HAZMAT:
 	-ExternalCondition@HAZMAT:
 	-DamagedByTerrain:
-	DamagedByTerrain:
-		Terrain: Tiberium, BlueTiberium
-		Damage: -100
-		DamageInterval: 16
+	SelfHealing@THEAL:
+		Step: 0
+		PercentageStep: 1
+		Delay: 15
+		HealIfBelow: 100
+		DamageCooldown: 150
+		RequiresCondition: tibheal
 		DamageTypes: ToxinDeath
 	GrantConditionOnTerrain@THEAL:
 		Condition: tibheal
@@ -2050,10 +2062,13 @@ RMBC:
 	-WithDecoration@HAZMAT:
 	-ExternalCondition@HAZMAT:
 	-DamagedByTerrain:
-	DamagedByTerrain:
-		Terrain: Tiberium, BlueTiberium
-		Damage: -100
-		DamageInterval: 16
+	SelfHealing@THEAL:
+		Step: 0
+		PercentageStep: 1
+		Delay: 15
+		HealIfBelow: 100
+		DamageCooldown: 150
+		RequiresCondition: tibheal
 		DamageTypes: ToxinDeath
 	GrantConditionOnTerrain@THEAL:
 		Condition: tibheal
@@ -2076,3 +2091,5 @@ RMBC:
 		RequiresCondition: !being-warped || !empdisable
 	WithInfantryBody@Warped:
 		RequiresCondition: being-warped || empdisable
+	DamageMultiplier@CYBORGARMOR:
+		Modifier: 85

@@ -16,7 +16,7 @@ ParaBomb:
 			Wood: 30
 			Light: 65
 			Heavy: 80
-			Concrete: 50
+			Concrete: 80
 			Brick: 50
 		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@2Smu: LeaveSmudge
@@ -41,6 +41,8 @@ CarpetBomb:
 		Shadow: true
 	Warhead@1Dam: SpreadDamage
 		Damage: 30000
+		Versus:
+			Concrete: 60
 
 AtomBomb:
 	Inherits: CarpetBomb
@@ -114,7 +116,7 @@ InfernoBomb:
 			Wood: 60
 			Light: 85
 			Heavy: 70
-			Concrete: 35
+			Concrete: 80
 			Brick: 25
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
 	Warhead@2Smu: LeaveSmudge
@@ -285,24 +287,35 @@ Atomic:
 IonCannon:
 	ValidTargets: Ground, Water, Air
 	Warhead@1Dam_impact: SpreadDamage
-		Range: 0, 1c1, 2c1, 2c512
-		Damage: 3000
-		Falloff: 1000, 1000, 250, 100
-		ValidTargets: Ground, Air
+		Range: 0, 0c512, 1c512, 2c512
+		Damage: 10500
+		Falloff: 1000, 350, 100, 50
+		ValidTargets: Ground
+		Versus:
+			None: 50
+			Light: 65
+			Wood: 15
+			Heavy: 70
 		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
-	Warhead@2Eff: CreateEffect
+	Warhead@2Dam_impact: SpreadDamage
+		Range: 0, 0c682, 1c341, 2c682
+		Damage: 34000
+		Falloff: 100, 100, 35, 10
+		ValidTargets: Air
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@3Eff: CreateEffect
 		Explosions: ion_ring2
 		ExplosionPalette: tseffect
-	Warhead@3Smu_impact: LeaveSmudge
+	Warhead@4Smu_impact: LeaveSmudge
 		SmudgeType: Scorch
-	Warhead@4Smu_area: LeaveSmudge
+	Warhead@5Smu_area: LeaveSmudge
 		SmudgeType: Scorch
 		Size: 1
 		Delay: 3
-	Warhead@5Res_area2: DestroyResource
+	Warhead@6Res_area2: DestroyResource
 		Size: 2
 		Delay: 6
-	Warhead@6Smu_area2: LeaveSmudge
+	Warhead@7Smu_area2: LeaveSmudge
 		SmudgeType: Scorch
 		Size: 2,1
 		Delay: 6
@@ -784,7 +797,7 @@ DeathHandCluster:
 		Falloff: 1000, 500, 250, 100
 		Versus:
 			None: 90
-			Concrete: 30
+			Concrete: 50
 			Brick: 20
 			Wood: 30
 			Light: 60

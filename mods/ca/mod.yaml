@@ -131,9 +131,9 @@ ChromeLayout:
 	common|chrome/settings-hotkeys.yaml
 	common|chrome/settings-advanced.yaml
 	common|chrome/credits.yaml
-	common|chrome/lobby.yaml
+	ca|chrome/lobby.yaml
 	common|chrome/lobby-mappreview.yaml
-	common|chrome/lobby-players.yaml
+	ca|chrome/lobby-players.yaml
 	common|chrome/lobby-options.yaml
 	common|chrome/lobby-music.yaml
 	common|chrome/lobby-servers.yaml
@@ -349,6 +349,6 @@ ModContent:
 		ca|installer/ra2yr.yaml
 		ca|installer/firestorm.yaml
 		ca|installer/soviet95.yaml
-		
+
 DiscordService:
 	ApplicationId: 787647352399200277

@@ -1,8 +1,8 @@
 Background@SERVER_LOBBY:
-	Logic: LobbyLogic
+	Logic: LobbyLogicCA
 	X: (WINDOW_RIGHT - WIDTH) / 2
 	Y: (WINDOW_BOTTOM - HEIGHT) / 2
-	Width: 900
+	Width: 1010
 	Height: 600
 	Children:
 		ColorPreviewManager@COLOR_MANAGER:
@@ -84,7 +84,7 @@ Background@SERVER_LOBBY:
 		Container@TOP_PANELS_ROOT:
 			X: 20
 			Y: 67
-			Width: 675
+			Width: 785
 			Height: 219
 		Button@CHANGEMAP_BUTTON:
 			X: PARENT_RIGHT - WIDTH - 20

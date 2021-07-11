@@ -14,14 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using OpenRA.Graphics;
+using OpenRA.Mods.Common;
+using OpenRA.Mods.Common.Widgets;
+using OpenRA.Mods.Common.Widgets.Logic;
 using OpenRA.Network;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 using OpenRA.Widgets;
 
-namespace OpenRA.Mods.Common.Widgets.Logic
+namespace OpenRA.Mods.CA.Widgets.Logic
 {
-	public class LobbyLogic : ChromeLogic
+	public class LobbyLogicCA : ChromeLogic
 	{
 		static readonly Action DoNothing = () => { };
 
@@ -51,7 +54,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 		readonly ScrollPanelWidget players;
 
-		readonly Dictionary<string, LobbyFaction> factions = new Dictionary<string, LobbyFaction>();
+		readonly Dictionary<string, OpenRA.Mods.Common.Widgets.Logic.LobbyFaction> factions = new Dictionary<string, OpenRA.Mods.Common.Widgets.Logic.LobbyFaction>();
 
 		readonly ColorPreviewManagerWidget colorPreview;
 
@@ -98,7 +101,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		}
 
 		[ObjectCreator.UseCtor]
-		internal LobbyLogic(Widget widget, ModData modData, WorldRenderer worldRenderer, OrderManager orderManager,
+		internal LobbyLogicCA(Widget widget, ModData modData, WorldRenderer worldRenderer, OrderManager orderManager,
 			Action onExit, Action onStart, bool skirmishMode, Dictionary<string, MiniYaml> logicArgs)
 		{
 			map = MapCache.UnknownMap;
@@ -159,7 +162,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			colorPreview.Color = Game.Settings.Player.Color;
 
 			foreach (var f in modRules.Actors["world"].TraitInfos<FactionInfo>())
-				factions.Add(f.InternalName, new LobbyFaction { Selectable = f.Selectable, Name = f.Name, Side = f.Side, Description = f.Description });
+				factions.Add(f.InternalName, new OpenRA.Mods.Common.Widgets.Logic.LobbyFaction { Selectable = f.Selectable, Name = f.Name, Side = f.Side, Description = f.Description });
 
 			var gameStarting = false;
 			Func<bool> configurationDisabled = () => !Game.IsHost || gameStarting ||
@@ -617,9 +620,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					LobbyUtils.SetupLatencyWidget(template, client, orderManager);
 
 					if (client.Bot != null)
-						LobbyUtils.SetupEditableSlotWidget(template, slot, client, orderManager, worldRenderer, map);
+						LobbyUtilsCA.SetupEditableSlotWidget(template, slot, client, orderManager, worldRenderer, map);
 					else
-						LobbyUtils.SetupEditableNameWidget(template, slot, client, orderManager, worldRenderer);
+						LobbyUtilsCA.SetupEditableNameWidget(template, slot, client, orderManager, worldRenderer);
 
 					LobbyUtils.SetupEditableColorWidget(template, slot, client, orderManager, shellmapWorld, colorPreview);
 					LobbyUtils.SetupEditableFactionWidget(template, slot, client, orderManager, factions);

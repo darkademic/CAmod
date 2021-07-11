@@ -12,6 +12,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Widgets.Logic;
 using OpenRA.Network;
@@ -20,9 +21,9 @@ using OpenRA.Server;
 using OpenRA.Traits;
 using S = OpenRA.Server.Server;
 
-namespace OpenRA.Mods.Common.Server
+namespace OpenRA.Mods.CA.Server
 {
-	public class LobbyCommands : ServerTrait, IInterpretCommand, INotifyServerStart, INotifyServerEmpty, IClientJoined
+	public class LobbyCommandsCA : ServerTrait, IInterpretCommand, INotifyServerStart, INotifyServerEmpty, IClientJoined
 	{
 		readonly IDictionary<string, Func<S, Connection, Session.Client, string, bool>> commandHandlers = new Dictionary<string, Func<S, Connection, Session.Client, string, bool>>
 		{
@@ -755,13 +756,28 @@ namespace OpenRA.Mods.Common.Server
 		{
 			lock (server.LobbyInfo)
 			{
-				var sanitizedName = Settings.SanitizedPlayerName(s);
+                var separators = new char[] { ' ' };
+                var parts = s.Split(separators, 2);
+                var targetClient = client;
+                var newName = s;
+
+                if (parts.Length == 2)
+                {
+                    targetClient = server.LobbyInfo.ClientWithIndex(Exts.ParseIntegerInvariant(parts[0]));
+                    newName = parts[1];
+                }
+
+				// Only the host can change other client's info
+				if (targetClient.Index != client.Index && !client.IsAdmin)
+					return true;
+
+				var sanitizedName = Settings.SanitizedPlayerName(newName);
 				if (sanitizedName == client.Name)
 					return true;
 
 				Log.Write("server", "Player@{0} is now known as {1}.", conn.Socket.RemoteEndPoint, sanitizedName);
-				server.SendMessage("{0} is now known as {1}.".F(client.Name, sanitizedName));
-				client.Name = sanitizedName;
+				server.SendMessage("{0} is now known as {1}.".F(targetClient.Name, sanitizedName));
+				targetClient.Name = sanitizedName;
 				server.SyncLobbyClients();
 
 				return true;

@@ -14,13 +14,14 @@ using System.Collections.Generic;
 using System.Linq;
 using OpenRA.Graphics;
 using OpenRA.Network;
+using OpenRA.Mods.Common.Widgets;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 using OpenRA.Widgets;
 
-namespace OpenRA.Mods.Common.Widgets.Logic
+namespace OpenRA.Mods.CA.Widgets.Logic
 {
-	public static class LobbyUtils
+	public static class LobbyUtilsCA
 	{
 		class SlotDropDownOption
 		{
@@ -382,6 +383,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			}
 		}
 
+		// ---- player name
 		public static void SetupEditableNameWidget(Widget parent, Session.Slot s, Session.Client c, OrderManager orderManager, WorldRenderer worldRenderer)
 		{
 			var name = parent.Get<TextFieldWidget>("NAME");
@@ -422,6 +424,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			SetupProfileWidget(name, c, orderManager, worldRenderer);
 
 			HideChildWidget(parent, "SLOT_OPTIONS");
+			HideChildWidget(parent, "BOTNAME");
 		}
 
 		public static void SetupNameWidget(Widget parent, Session.Slot s, Session.Client c, OrderManager orderManager, WorldRenderer worldRenderer)
@@ -435,6 +438,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			SetupProfileWidget(parent, c, orderManager, worldRenderer);
 		}
 
+		// --- for bot players
 		public static void SetupEditableSlotWidget(Widget parent, Session.Slot s, Session.Client c,
 			OrderManager orderManager, WorldRenderer worldRenderer, MapPreview map)
 		{
@@ -446,8 +450,48 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				WidgetUtils.TruncateText(name, slot.Bounds.Width - slot.Bounds.Height - slot.LeftMargin - slot.RightMargin,
 				Game.Renderer.Fonts[slot.Font]));
 
-			slot.GetText = () => truncated.Update(c != null ? c.Name : s.Closed ? "Closed" : "Open");
+			slot.GetText = () => {
+				var bot = map.Rules.Actors["player"].TraitInfos<IBotInfo>().Where(b => b.Type == c.Bot).FirstOrDefault();
+				return truncated.Update(c != null ? bot != null ? bot.Name : c.Name : s.Closed ? "Closed" : "Open");
+			};
+
 			slot.OnMouseDown = _ => ShowSlotDropDown(slot, s, c, orderManager, map);
+
+			if (c.Bot != null)
+			{
+				var botName = parent.Get<TextFieldWidget>("BOTNAME");
+				botName.IsVisible = () => true;
+				botName.IsDisabled = () => orderManager.LocalClient.IsReady || !orderManager.LocalClient.IsAdmin;
+
+				botName.Text = c.Name;
+				var escPressed = false;
+				botName.OnLoseFocus = () =>
+				{
+					if (escPressed)
+					{
+						escPressed = false;
+						return;
+					}
+
+					botName.Text = botName.Text.Trim();
+					if (botName.Text.Length == 0)
+						botName.Text = c.Name;
+					else if (botName.Text != c.Name)
+					{
+						botName.Text = Settings.SanitizedPlayerName(botName.Text);
+						orderManager.IssueOrder(Order.Command("name {0} {1}".F(c.Index, botName.Text)));
+					}
+				};
+
+				botName.OnEnterKey = () => { botName.YieldKeyboardFocus(); return true; };
+				botName.OnEscKey = () =>
+				{
+					botName.Text = c.Name;
+					escPressed = true;
+					botName.YieldKeyboardFocus();
+					return true;
+				};
+			}
 
 			// Ensure Name selector (if present) is hidden
 			HideChildWidget(parent, "NAME");

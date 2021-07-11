@@ -9,48 +9,48 @@ Container@LOBBY_PLAYER_BIN:
 			Height: PARENT_BOTTOM
 			Children:
 				Label@LABEL_LOBBY_NAME:
-					Width: 180
+					Width: 295
 					Height: 25
 					Text: Name
 					Align: Center
 					Font: Bold
 				Label@LABEL_LOBBY_COLOR:
-					X: 190
-					Width: 70
+					X: 305
+					Width: 55
 					Height: 25
 					Text: Color
 					Align: Center
 					Font: Bold
 				Label@LABEL_LOBBY_FACTION:
-					X: 270
-					Width: 140
+					X: 370
+					Width: 150
 					Height: 25
 					Text: Faction
 					Align: Center
 					Font: Bold
 				Label@LABEL_LOBBY_TEAM:
-					X: 420
+					X: 530
 					Width: 48
 					Height: 25
 					Text: Team
 					Align: Center
 					Font: Bold
 				Label@LABEL_LOBBY_HANDICAP:
-					X: 478
+					X: 588
 					Width: 72
 					Height: 25
 					Text: Handicap
 					Align: Center
 					Font: Bold
 				Label@LABEL_LOBBY_SPAWN:
-					X: 560
+					X: 670
 					Width: 48
 					Height: 25
 					Text: Spawn
 					Align: Center
 					Font: Bold
 				Label@LABEL_LOBBY_STATUS:
-					X: 617
+					X: 727
 					Width: 20
 					Height: 25
 					Text: Ready
@@ -84,9 +84,16 @@ Container@LOBBY_PLAYER_BIN:
 							Height: 25
 							TooltipContainer: TOOLTIP_CONTAINER
 							Template: LATENCY_TOOLTIP
+						DropDownButton@SLOT_OPTIONS:
+							X: 15
+							Width: 135
+							Height: 25
+							Text: Name
+							Font: Regular
+							Visible: false
 						TextField@NAME:
 							X: 15
-							Width: 165
+							Width: 280
 							Height: 25
 							Text: Name
 							LeftMargin: 24
@@ -105,16 +112,16 @@ Container@LOBBY_PLAYER_BIN:
 									Height: 16
 									TooltipContainer: TOOLTIP_CONTAINER
 									Template: ANONYMOUS_PLAYER_TOOLTIP
-						DropDownButton@SLOT_OPTIONS:
-							X: 15
-							Width: 165
+						TextField@BOTNAME:
+							X: 160
+							Width: 135
 							Height: 25
-							Text: Name
-							Font: Regular
+							Text: Bot
+							MaxLength: 16
 							Visible: false
 						DropDownButton@COLOR:
-							X: 190
-							Width: 70
+							X: 305
+							Width: 55
 							Height: 25
 							IgnoreChildMouseOver: true
 							Children:
@@ -124,8 +131,8 @@ Container@LOBBY_PLAYER_BIN:
 									Width: PARENT_RIGHT - 35
 									Height: PARENT_BOTTOM - 12
 						DropDownButton@FACTION:
-							X: 270
-							Width: 140
+							X: 370
+							Width: 150
 							Height: 25
 							IgnoreChildMouseOver: true
 							TooltipContainer: TOOLTIP_CONTAINER
@@ -142,29 +149,29 @@ Container@LOBBY_PLAYER_BIN:
 									Height: 25
 									Text: Faction
 						DropDownButton@TEAM_DROPDOWN:
-							X: 420
+							X: 530
 							Width: 48
 							Height: 25
 							Text: Team
 						DropDownButton@HANDICAP_DROPDOWN:
-							X: 478
+							X: 588
 							Width: 72
 							Height: 25
 							TooltipContainer: TOOLTIP_CONTAINER
 							TooltipText: A handicap decreases the combat effectiveness of the player's forces
 						DropDownButton@SPAWN_DROPDOWN:
-							X: 560
+							X: 670
 							Width: 48
 							Height: 25
 							Text: Spawn
 						Checkbox@STATUS_CHECKBOX:
-							X: 617
+							X: 728
 							Y: 2
 							Width: 20
 							Height: 20
 							Visible: false
 						Image@STATUS_IMAGE:
-							X: 619
+							X: 728
 							Y: 4
 							Width: 20
 							Height: 20

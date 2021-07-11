@@ -194,7 +194,7 @@ LoadScreen: LogoStripeLoadScreen
 	Text: Loading...
 
 ServerTraits:
-	LobbyCommands
+	LobbyCommandsCA
 	PlayerPinger
 	MasterServerPinger
 	LobbySettingsNotification

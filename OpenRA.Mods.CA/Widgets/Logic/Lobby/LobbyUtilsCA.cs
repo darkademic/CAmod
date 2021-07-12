@@ -13,8 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using OpenRA.Graphics;
-using OpenRA.Network;
 using OpenRA.Mods.Common.Widgets;
+using OpenRA.Network;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 using OpenRA.Widgets;
@@ -450,7 +450,8 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 				WidgetUtils.TruncateText(name, slot.Bounds.Width - slot.Bounds.Height - slot.LeftMargin - slot.RightMargin,
 				Game.Renderer.Fonts[slot.Font]));
 
-			slot.GetText = () => {
+			slot.GetText = () =>
+			{
 				var bot = map.Rules.Actors["player"].TraitInfos<IBotInfo>().Where(b => b.Type == c.Bot).FirstOrDefault();
 				return truncated.Update(c != null ? bot != null ? bot.Name : c.Name : s.Closed ? "Closed" : "Open");
 			};

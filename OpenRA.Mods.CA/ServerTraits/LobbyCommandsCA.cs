@@ -756,16 +756,16 @@ namespace OpenRA.Mods.CA.Server
 		{
 			lock (server.LobbyInfo)
 			{
-                var separators = new char[] { ' ' };
-                var parts = s.Split(separators, 2);
-                var targetClient = client;
-                var newName = s;
+				var separators = new char[] { ' ' };
+				var parts = s.Split(separators, 2);
+				var targetClient = client;
+				var newName = s;
 
-                if (parts.Length == 2)
-                {
-                    targetClient = server.LobbyInfo.ClientWithIndex(Exts.ParseIntegerInvariant(parts[0]));
-                    newName = parts[1];
-                }
+				if (parts.Length == 2)
+				{
+					targetClient = server.LobbyInfo.ClientWithIndex(Exts.ParseIntegerInvariant(parts[0]));
+					newName = parts[1];
+				}
 
 				// Only the host can change other client's info
 				if (targetClient.Index != client.Index && !client.IsAdmin)

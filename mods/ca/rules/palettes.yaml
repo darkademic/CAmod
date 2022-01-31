@@ -466,7 +466,6 @@
 		G: 228
 		B: 0
 		A: 65
-	PlayerHighlightPalette:
 	MenuPaletteEffect:
 		MenuEffect: Desaturated
 	RotationPaletteEffect@defaultwater:

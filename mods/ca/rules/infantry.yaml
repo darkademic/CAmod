@@ -1795,12 +1795,7 @@ SNIP:
 	Armament@APROUND:
 		Name: secondary
 		Weapon: sniper.vehicle
-		RequiresCondition: apb-upgrade && rank-veteran < 3
-		PauseOnCondition: !ammo
-	Armament@APROUNDELITE:
-		Name: secondary
-		Weapon: sniper.vehicleElite
-		RequiresCondition: apb-upgrade && rank-veteran >= 3
+		RequiresCondition: apb-upgrade
 		PauseOnCondition: !ammo
 	Mobile:
 		Speed: 46
@@ -3368,7 +3363,7 @@ YURI:
 		RequiresCondition: deployed && !being-warped
 		KillSlaveTypes: Infantry
 		KillSlavesDamageTypes: BulletDeath
-		PostExplosionAction: Neutralize
+		PostExplosionAction: DoNothing
 	GrantTimedConditionOnDeploy:
 		DeployedTicks: 35
 		CooldownTicks: 200

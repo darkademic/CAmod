@@ -1671,18 +1671,8 @@ MicrowaveZap:
 
 MicrowaveZap.UPG:
 	Inherits: MicrowaveZap
-	Warhead@3: ChangeOwnerToNeutral
-		ValidTargets: DriverKill
-		InvalidTargets: Infantry, Ship, Structure, Wall, Husk, Air, DriverKillImmune
-		ValidRelationships: Enemy
-		Range: 0c511
 	Warhead@emp: GrantExternalCondition
-		ValidTargets: Vehicle
-	Warhead@emp2: GrantExternalCondition
-		Range: 0c511
-		Duration: 200
-		Condition: empdisable
-		ValidTargets: Defense
+		Duration: 250
 	Warhead@highlight: GrantExternalCondition
 		Range: 0c511
 		Duration: 2

@@ -616,7 +616,7 @@ MAST:
 		RequiresCondition: deployed && !being-warped
 		KillSlaveTypes: Infantry
 		KillSlavesDamageTypes: BulletDeath
-		PostExplosionAction: Neutralize
+		PostExplosionAction: DoNothing
 	GrantTimedConditionOnDeploy:
 		DeployedTicks: 35
 		CooldownTicks: 175

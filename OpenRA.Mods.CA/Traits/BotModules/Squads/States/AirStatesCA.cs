@@ -292,7 +292,7 @@ namespace OpenRA.Mods.CA.Traits.BotModules.Squads
 					// target switched or not attacking, attack the target
 					if ((newTarget || activityType != typeof(FlyAttack)) && CanAttackTarget(a, owner.TargetActor))
 					{
-						owner.Bot.QueueOrder(new Order("Attack", a, Target.FromActor(owner.TargetActor), false));
+						owner.Bot.QueueOrder(new Order("AttackMove", a, Target.FromCell(owner.World, owner.TargetActor.Location), false));
 						continue;
 					}
 					else if (activityType == typeof(FlyIdle))
@@ -309,7 +309,7 @@ namespace OpenRA.Mods.CA.Traits.BotModules.Squads
 			{
 				foreach (var a in owner.WaitingUnits)
 					if (CanAttackTarget(a, owner.TargetActor))
-						owner.Bot.QueueOrder(new Order("Attack", a, Target.FromActor(owner.TargetActor), false));
+						owner.Bot.QueueOrder(new Order("AttackMove", a, Target.FromCell(owner.World, owner.TargetActor.Location), false));
 
 				owner.WaitingUnits.Clear();
 			}

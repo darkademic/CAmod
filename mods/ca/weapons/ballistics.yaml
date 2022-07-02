@@ -70,6 +70,19 @@
 		Versus:
 			Heavy: 70
 
+76mm:
+	Inherits: 25mmFRAG
+	Projectile: Bullet
+		LaunchAngle: 62
+		Speed: 468
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			Wood: 125
+			Concrete: 125
+			None: 75
+			Light: 75
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath, FlakVestMitigated
+
 90mm:
 	Inherits: ^Cannon
 	Warhead@1Dam: SpreadDamage

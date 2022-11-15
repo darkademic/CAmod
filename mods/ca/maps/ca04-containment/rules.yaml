@@ -111,9 +111,6 @@ SEAL:
 	ReloadAmmoPoolCA:
 		Delay: 250
 
-FENC:
-	-BlocksProjectiles:
-
 LST:
 	RejectsOrders:
 	-Selectable:

@@ -40,53 +40,8 @@ Patrols = {
 
 -- Squads
 
-BasicUnits = {
-	easy = {
-		{ Infantry = {}, Vehicles = { "1tnk", "jeep" } },
-		{ Infantry = {}, Vehicles = { "2tnk", "ifv.ai" } },
-		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1" }, Vehicles = { "2tnk", "jeep" } },
-	},
-	normal = {
-		{ Infantry = {}, Vehicles = { "apc.ai", "1tnk", "jeep"  } },
-		{ Infantry = {}, Vehicles = { "2tnk", "ifv.ai", "1tnk" } },
-		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1" }, Vehicles = { "2tnk", "ifv.ai", "apc.ai" } },
-	},
-	hard = {
-		{ Infantry = {}, Vehicles = { "rapc.ai", "1tnk", "1tnk", "jeep" } },
-		{ Infantry = { "e3", "e1", "e1" }, Vehicles = { "2tnk", "2tnk", "arty", "ifv.ai", "rapc.ai"  } },
-		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1" }, Vehicles = { "2tnk", "ifv.ai", "rapc.ai" } },
-	}
-}
-
-AdvancedUnits = {
-	easy = {
-		{ Infantry = {}, Vehicles = { "1tnk", "1tnk", "jeep", "jeep" } },
-		{ Infantry = { "e3", "e1", "e1" }, Vehicles = { "2tnk", "ifv.ai", "arty" } },
-		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1" }, Vehicles = { "2tnk", "2tnk", "jeep" } },
-		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1" }, Vehicles = { "2tnk", "rapc", "ptnk" } },
-		{ Infantry = { "seal", "seal", "seal" }, Vehicles = { "ifv.ai", "ifv.ai" } },
-		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1" }, Vehicles = { "batf.ai" } },
-	},
-	normal = {
-		{ Infantry = {}, Vehicles = { "rapc.ai", "1tnk", "1tnk", "jeep"  } },
-		{ Infantry = {}, Vehicles = { "2tnk", "ifv.ai", "1tnk", "2tnk" } },
-		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3" }, Vehicles = { "2tnk", "ifv.ai", "apc.ai", "rapc.ai" } },
-		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3" }, Vehicles = { "2tnk", "ifv.ai", "apc.ai", "ptnk" } },
-		{ Infantry = { "seal", "seal", "seal", "seal" }, Vehicles = { "ifv.ai", "ifv.ai", "ifv.ai" } },
-		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1" }, Vehicles = { "batf.ai", "ifv.ai", "ifv.ai" } },
-	},
-	hard = {
-		{ Infantry = {}, Vehicles = { "rapc.ai", "1tnk", "1tnk", "jeep", "cryo" } },
-		{ Infantry = {}, Vehicles = { "2tnk", "2tnk", "ifv.ai", "rapc.ai", "pcan"  } },
-		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "snip", "e1", "e3" }, Vehicles = { "2tnk", "ifv.ai", "rapc.ai", "rapc.ai", "arty" } },
-		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "snip", "e1", "e3" }, Vehicles = { "ctnk", "ctnk", "ctnk", "ptnk", "ifv.ai" } },
-		{ Infantry = { "seal", "seal", "seal", "seal", "seal" }, Vehicles = { "ifv.ai", "ifv.ai", "ifv.ai", "ifv.ai" } },
-		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1" }, Vehicles = { "batf.ai", "batf.ai", "ifv.ai", "ifv.ai" } },
-	}
-}
-
 Squads = {
-	SouthBasic = {
+	South = {
 		Player = nil,
 		Delay = {
 			easy = DateTime.Minutes(6),
@@ -94,26 +49,18 @@ Squads = {
 			hard = DateTime.Minutes(2)
 		},
 		Interval = {
-			easy = DateTime.Seconds(50),
-			normal = DateTime.Seconds(35),
-			hard = DateTime.Seconds(20)
+			easy = DateTime.Seconds(55),
+			normal = DateTime.Seconds(40),
+			hard = DateTime.Seconds(25)
 		},
 		QueueProductionStatuses = { Infantry = false, Vehicles = false },
 		FollowLeader = true,
 		IdleUnits = { },
 		ProducerActors = { Infantry = { AlliedSouthBarracks }, Vehicles = { AlliedSouthFactory } },
-		Units = BasicUnits,
+		Units = UnitCompositions.Allied.Main,
 		AttackPaths = GreeceSouthAttackPaths,
-		TransitionTo = {
-			SquadType = "SouthAdvanced",
-			GameTime = {
-				easy = DateTime.Minutes(18),
-				normal = DateTime.Minutes(16),
-				hard = DateTime.Minutes(14)
-			}
-		}
 	},
-	NorthBasic = {
+	North = {
 		Player = nil,
 		Delay = {
 			easy = DateTime.Minutes(3),
@@ -122,50 +69,14 @@ Squads = {
 		},
 		Interval = {
 			easy = DateTime.Seconds(55),
-			normal = DateTime.Seconds(45),
-			hard = DateTime.Seconds(35)
+			normal = DateTime.Seconds(40),
+			hard = DateTime.Seconds(25)
 		},
 		QueueProductionStatuses = { Infantry = false, Vehicles = false },
 		FollowLeader = true,
 		IdleUnits = { },
 		ProducerActors = { Infantry = { AlliedNorthBarracks }, Vehicles = { AlliedNorthFactory } },
-		Units = BasicUnits,
-		AttackPaths = GreeceNorthAttackPaths,
-		TransitionTo = {
-			SquadType = "NorthAdvanced",
-			GameTime = {
-				easy = DateTime.Minutes(17),
-				normal = DateTime.Minutes(15),
-				hard = DateTime.Minutes(13)
-			}
-		}
-	},
-	SouthAdvanced = {
-		Player = nil,
-		Interval = {
-			easy = DateTime.Seconds(60),
-			normal = DateTime.Seconds(40),
-			hard = DateTime.Seconds(20)
-		},
-		QueueProductionStatuses = { Infantry = false, Vehicles = false },
-		FollowLeader = true,
-		IdleUnits = { },
-		ProducerActors = { Infantry = { AlliedSouthBarracks }, Vehicles = { AlliedSouthFactory } },
-		Units = AdvancedUnits,
-		AttackPaths = GreeceSouthAttackPaths
-	},
-	NorthAdvanced = {
-		Player = nil,
-		Interval = {
-			easy = DateTime.Seconds(60),
-			normal = DateTime.Seconds(40),
-			hard = DateTime.Seconds(20)
-		},
-		QueueProductionStatuses = { Infantry = false, Vehicles = false },
-		FollowLeader = true,
-		IdleUnits = { },
-		ProducerActors = { Infantry = { AlliedNorthBarracks }, Vehicles = { AlliedNorthFactory } },
-		Units = AdvancedUnits,
+		Units = UnitCompositions.Allied.Main,
 		AttackPaths = GreeceNorthAttackPaths,
 	},
 	Air = {
@@ -499,13 +410,11 @@ InitGreece = function()
 		CallForHelpOnDamagedOrKilled(a, WDist.New(5120), IsGreeceGroundHunterUnit)
 	end)
 
-	local upgradeCreationLocation = CPos.New(0, 0)
-
-	Actor.Create("hazmat.upgrade", true, { Owner = Greece, Location = upgradeCreationLocation })
-	Actor.Create("apb.upgrade", true, { Owner = Greece, Location = upgradeCreationLocation })
+	Actor.Create("hazmat.upgrade", true, { Owner = Greece, Location = UpgradeCreationLocation })
+	Actor.Create("apb.upgrade", true, { Owner = Greece, Location = UpgradeCreationLocation })
 
 	if Difficulty == "hard" then
-		Actor.Create("cryr.upgrade", true, { Owner = Greece, Location = upgradeCreationLocation })
+		Actor.Create("cryr.upgrade", true, { Owner = Greece, Location = UpgradeCreationLocation })
 	end
 end
 
@@ -513,12 +422,12 @@ InitAlliedAttacks = function()
 	if not AlliedAttacksInitialized then
 		AlliedAttacksInitialized = true
 
-		Trigger.AfterDelay(Squads.SouthBasic.Delay[Difficulty], function()
-			InitAttackSquad(Squads.SouthBasic, Greece)
+		Trigger.AfterDelay(Squads.South.Delay[Difficulty], function()
+			InitAttackSquad(Squads.South, Greece)
 		end)
 
-		Trigger.AfterDelay(Squads.NorthBasic.Delay[Difficulty], function()
-			InitAttackSquad(Squads.NorthBasic, Greece)
+		Trigger.AfterDelay(Squads.North.Delay[Difficulty], function()
+			InitAttackSquad(Squads.North, Greece)
 		end)
 
 		Trigger.AfterDelay(Squads.Air.Delay[Difficulty], function()
@@ -540,14 +449,6 @@ InitAlliedAttacks = function()
 			end)
 		end)
 	end
-end
-
-IsGDIGroundHunterUnit = function(actor)
-	return actor.Owner == GDI and actor.HasProperty("Move") and not actor.HasProperty("Land") and actor.HasProperty("Hunt")
-end
-
-IsGreeceGroundHunterUnit = function(actor)
-	return actor.Owner == Greece and actor.HasProperty("Move") and not actor.HasProperty("Land") and actor.HasProperty("Hunt") and actor.Type ~= "arty" and actor.Type ~= "cryo" and actor.Type ~= "mgg" and actor.Type ~= "mrj"
 end
 
 DoChinookDrop = function()

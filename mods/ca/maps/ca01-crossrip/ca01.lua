@@ -84,17 +84,17 @@ NavalDropInterval = {
 -- Squads
 
 Squads = {
-	Basic = {
+	Main = {
 		Player = nil,
 		Delay = {
-			easy = DateTime.Seconds(150),
-			normal = DateTime.Seconds(110),
-			hard = DateTime.Seconds(70)
+			easy = DateTime.Minutes(3),
+			normal = DateTime.Minutes(2),
+			hard = DateTime.Minutes(1)
 		},
-		Interval = {
-			easy = DateTime.Seconds(35),
-			normal = DateTime.Seconds(25),
-			hard = DateTime.Seconds(10)
+		AttackValuePerSecond = {
+			easy = { { MinTime = 0, Value = 32 }, { MinTime = DateTime.Minutes(12), Value = 64 } },
+			normal = { { MinTime = 0, Value = 55 } },
+			hard = { { MinTime = 0, Value = 80 } },
 		},
 		QueueProductionStatuses = {
 			Infantry = false,
@@ -107,69 +107,42 @@ Squads = {
 		Units = {
 			easy = {
 				{
-					Infantry = { "e3", "e1", "e1", "e1", "e2", "e4" },
-					Vehicles = { "3tnk", "btr" }
+					Infantry = { "e3", "e1", "e1", "e1", "e2", "e4" }, --960
+					Vehicles = { "3tnk", "btr" },  -- 1825
+					MaxTime = DateTime.Minutes(12)
+				},
+				{
+					Infantry = { "e3", "e1", "e1", "shok", "shok", "e1", "e2", "e3", "e4" }, -- 2110
+					Vehicles = { "4tnk", "btr.ai" }, -- 2375 (+800)
+					MinTime = DateTime.Minutes(12)
 				}
 			},
 			normal = {
 				{
-					Infantry = { "e3", "e1", "e1", "e1", "e1", "e2", "e4" },
-					Vehicles = { "3tnk", "btr.ai", "btr" }
+					Infantry = { "e3", "e1", "e1", "e1", "e1", "e2", "e4" }, -- 1060
+					Vehicles = { "3tnk", "btr.ai", "btr" }, -- 2500 (+800)
+					MaxTime = DateTime.Minutes(9)
+				},
+				{
+					Infantry = { "e3", "e1", "e1", "shok", "shok", "e1", "e2", "e3", "e4" }, -- 2110
+					Vehicles = { "3tnk", "4tnk", "katy" }, -- 3550
+					MinTime = DateTime.Minutes(9)
 				}
 			},
 			hard = {
 				{
-					Infantry = { "e3", "e1", "e1", "e1", "e1", "e1", "e2", "e3", "e4" },
-					Vehicles = { "3tnk", "btr.ai", "3tnk" }
+					Infantry = { "e3", "e1", "e1", "e1", "e1", "e1", "e2", "e3", "e4" }, -- 1460
+					Vehicles = { "3tnk", "btr.ai", "3tnk" }, -- 2975 (+800)
+					MaxTime = DateTime.Minutes(6)
+				},
+				{
+					Infantry = { "e3", "e1", "e1", "e3", "shok", "e1", "shok", "e1", "e2", "e3", "e4" }, -- 2510
+					Vehicles = { "3tnk", "4tnk", "btr.ai", "katy", "ttra" }, -- 5475 (+800)
+					MinTime = DateTime.Minutes(6)
 				}
 			}
 		},
 		AttackPaths = SovietAttackPaths,
-		TransitionTo = {
-			SquadType = "Advanced",
-			GameTime = {
-				easy = DateTime.Minutes(12),
-				normal = DateTime.Minutes(9),
-				hard = DateTime.Minutes(6)
-			}
-		}
-	},
-	Advanced = {
-		Player = nil,
-		Interval = {
-			easy = DateTime.Seconds(25),
-			normal = DateTime.Seconds(15),
-			hard = DateTime.Seconds(5)
-		},
-		QueueProductionStatuses = {
-			Infantry = false,
-			Vehicles = false
-		},
-		FollowLeader = true,
-		IdleUnits = { },
-		ProducerActors = { Infantry = { SovietBarracks }, Vehicles = { SovietWarFactory } },
-		ProducerTypes = { Infantry = { "barr" }, Vehicles = { "weap" } },
-		Units = {
-			easy = {
-				{
-					Infantry = { "e3", "e1", "e1", "shok", "shok", "e1", "e2", "e3", "e4" },
-					Vehicles = { "4tnk", "btr.ai" }
-				}
-			},
-			normal = {
-				{
-					Infantry = { "e3", "e1", "e1", "shok", "shok", "e1", "e2", "e3", "e4" },
-					Vehicles = { "3tnk", "4tnk", "katy" }
-				}
-			},
-			hard = {
-				{
-					Infantry = { "e3", "e1", "e1", "e3", "shok", "e1", "shok", "e1", "e2", "e3", "e4" },
-					Vehicles = { "3tnk", "4tnk", "btr.ai", "katy", "ttra" }
-				}
-			}
-		},
-		AttackPaths = SovietAttackPaths
 	},
 	Western = {
 		Player = nil,
@@ -346,8 +319,8 @@ InitUSSR = function()
 	end)
 
 	-- Begin main attacks after difficulty based delay
-	Trigger.AfterDelay(Squads.Basic.Delay[Difficulty], function()
-		InitAttackSquad(Squads.Basic, USSR)
+	Trigger.AfterDelay(Squads.Main.Delay[Difficulty], function()
+		InitAttackSquad(Squads.Main, USSR)
 	end)
 
 	-- Eastern Halo drops start at 10 mins
@@ -412,7 +385,7 @@ ScrinInvasion = function()
 		Utils.Do(units, function(unit)
 			unit.Scatter()
 			Trigger.AfterDelay(5, function()
-				AssaultPlayerBaseOrHunt(unit, assaultWaypoints)
+				AssaultPlayerBaseOrHunt(unit, MissionPlayer, assaultWaypoints)
 			end)
 		end)
 	end)
@@ -432,7 +405,7 @@ CreateScrinVehicles = function()
 		Utils.Do(units, function(unit)
 			unit.Scatter()
 			Trigger.AfterDelay(5, function()
-				AssaultPlayerBaseOrHunt(unit, assaultWaypoints)
+				AssaultPlayerBaseOrHunt(unit, MissionPlayer, assaultWaypoints)
 			end)
 		end)
 	end)

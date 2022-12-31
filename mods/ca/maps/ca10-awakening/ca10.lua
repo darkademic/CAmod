@@ -176,10 +176,9 @@ OncePerSecondChecks = function()
 			ObjectiveDestroySovietForces = Nod.AddObjective("Destroy all Soviet forces.")
 			Nod.MarkCompletedObjective(ObjectiveProtectTemple)
 
-			local upgradeCreationLocation = CPos.New(0, 0)
-			Actor.Create("advcyborg.upgrade", true, { Owner = Nod, Location = upgradeCreationLocation })
-			Actor.Create("cyborgspeed.upgrade", true, { Owner = Nod, Location = upgradeCreationLocation })
-			Actor.Create("cyborgarmor.upgrade", true, { Owner = Nod, Location = upgradeCreationLocation })
+			Actor.Create("advcyborg.upgrade", true, { Owner = Nod, Location = UpgradeCreationLocation })
+			Actor.Create("cyborgspeed.upgrade", true, { Owner = Nod, Location = UpgradeCreationLocation })
+			Actor.Create("cyborgarmor.upgrade", true, { Owner = Nod, Location = UpgradeCreationLocation })
 			DeployCyborgs()
 		end
 
@@ -201,8 +200,7 @@ InitUSSR = function()
 	AutoRepairAndRebuildBuildings(USSR, 15)
 	SetupRefAndSilosCaptureCredits(USSR)
 
-	local upgradeCreationLocation = CPos.New(0, 0)
-	Actor.Create("tarc.upgrade", true, { Owner = USSR, Location = upgradeCreationLocation })
+	Actor.Create("tarc.upgrade", true, { Owner = USSR, Location = UpgradeCreationLocation })
 
 	local ussrGroundAttackers = USSR.GetGroundAttackers()
 
@@ -217,10 +215,6 @@ InitUSSR = function()
 	Trigger.AfterDelay(HaloDropStart[Difficulty], function()
 		DoHaloDrop()
 	end)
-end
-
-IsUSSRGroundHunterUnit = function(actor)
-	return actor.Owner == USSR and actor.HasProperty("Move") and not actor.HasProperty("Land") and actor.HasProperty("Hunt")
 end
 
 DoGroundAttack = function(isAdditional)

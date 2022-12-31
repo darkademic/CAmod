@@ -2329,3 +2329,5 @@ Actors:
 		Location: 80,34
 
 Rules: ca|rules/campaign-rules.yaml, ca|rules/campaign-tooltips.yaml, ca|rules/campaign-palettes.yaml, rules.yaml
+
+Weapons: ca|weapons/campaign.yaml

@@ -529,9 +529,12 @@ M60mgXO:
 	Inherits: M60mgTD
 	Range: 5c768
 	Burst: 2
-	ReloadDelay: 50
+	ReloadDelay: 60
 	Warhead@1Dam: SpreadDamage
 		Damage: 2500
+		Versus:
+			Light: 65
+			Heavy: 25
 	-Report:
 	StartBurstReport: XOgun1.aud, XOgun2.aud
 

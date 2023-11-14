@@ -155,7 +155,7 @@ end
 -- Functions
 
 InitUSSR = function()
-	AutoRepairBuildings(USSR, 10)
+	AutoRepairBuildings(USSR)
 
 	local ussrGroundAttackers = USSR.GetGroundAttackers()
 

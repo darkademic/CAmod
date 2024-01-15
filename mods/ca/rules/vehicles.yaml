@@ -5699,12 +5699,14 @@ IFV:
 		Condition: cryr-upgrade
 		Prerequisites: cryr.upgrade
 	GuardsSelection@REPAIR:
-		ValidTargets: Vehicle
+		ValidTargetsToGuard: Vehicle
 		RequiresCondition: engturr && !stance-attackanything
 	GuardsSelection@MEDIC:
-		ValidTargets: Infantry
+		ValidTargetsToGuard: Infantry
 		RequiresCondition: medturr && !stance-attackanything
 	GuardsSelection@SPY:
+		ValidTargetsToGuard: Ground
+		InvalidTargetsToGuard: Air
 		RequiresCondition: spyturr && !stance-attackanything
 	WithDecoration@COMMANDOSKULL:
 		RequiresCondition: commturr || psyturr

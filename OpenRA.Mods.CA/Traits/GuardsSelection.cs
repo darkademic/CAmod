@@ -16,54 +16,66 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.CA.Traits
 {
-	[Desc("Attach to support unit so that when ordered as part of a group with combat units it will guard those units.")]
+	[Desc("Attach to support unit so that when ordered as part of a group with combat units it will guard those units when Attack and AttackMove.")]
 	class GuardsSelectionInfo : ConditionalTraitInfo
 	{
+		[CursorReference]
+		[Desc("Cursor to display when hovering over a valid target.")]
+		public readonly string Cursor = "guard";
+
+		public readonly PlayerRelationship TargetRelationships = PlayerRelationship.Enemy;
+		public readonly PlayerRelationship ForceTargetRelationships = PlayerRelationship.Enemy | PlayerRelationship.Neutral | PlayerRelationship.Ally;
+
 		[Desc("Will only guard units with these target types.")]
-		public readonly BitSet<TargetableType> ValidTargets = new BitSet<TargetableType>("Ground", "Water");
+		public readonly BitSet<TargetableType> ValidTargetsToGuard = new("Ground", "Water");
+
+		[Desc("Will not guard units with these target types.")]
+		public readonly BitSet<TargetableType> InvalidTargetsToGuard = default;
 
 		[Desc("Maximum number of guard orders to chain together.")]
-		public readonly int MaxTargets = 10;
+		public readonly int MaxGuardingTargets = 10;
 
-		[Desc("Color to use for the target line.")]
-		public readonly Color TargetLineColor = Color.OrangeRed;
+		[Desc("Orders to override to guard ally unit in selection. Use AttackGuards if you need override Attack/ForceAttack order.")]
+		public readonly HashSet<string> OverrideOrders = new() { "AttackMove", "AssaultMove", "AttackGuards" };
 
-		[Desc("Maximum range that guarding actors will maintain.")]
-		public readonly WDist Range = WDist.FromCells(2);
-
-		public override object Create(ActorInitializer init) { return new GuardsSelection(init, this); }
+		public override object Create(ActorInitializer init) { return new GuardsSelection(this); }
 	}
 
-	class GuardsSelection : ConditionalTrait<GuardsSelectionInfo>, IResolveOrder, INotifyCreated
+	class GuardsSelection : ConditionalTrait<GuardsSelectionInfo>, IResolveOrder, INotifyCreated, IIssueOrder
 	{
-		IMove move;
+		AttackBase[] attackBases;
 
-		public GuardsSelection(ActorInitializer init, GuardsSelectionInfo info)
+		public GuardsSelection(GuardsSelectionInfo info)
 			: base(info) { }
 
 		protected override void Created(Actor self)
 		{
-			move = self.Trait<IMove>();
+			attackBases = self.TraitsImplementing<AttackBase>().ToArray();
 			base.Created(self);
+		}
+
+		IEnumerable<IOrderTargeter> IIssueOrder.Orders
+		{
+			get
+			{
+				if (IsTraitDisabled || !Info.OverrideOrders.Contains("AttackGuards"))
+					yield break;
+
+				yield return new AttackGuardOrderTargeter(this, 6);
+			}
+		}
+
+		Order IIssueOrder.IssueOrder(Actor self, IOrderTargeter order, in Target target, bool queued)
+		{
+			if (order is AttackGuardOrderTargeter)
+				return new Order(order.OrderID, self, target, queued);
+
+			return null;
 		}
 
 		void IResolveOrder.ResolveOrder(Actor self, Order order)
 		{
-			if (IsTraitDisabled)
-				return;
-
-			if (order.Target.Type == TargetType.Invalid)
-				return;
-
-			if (order.Queued)
-				return;
-
-			var validOrders = new HashSet<string> { "AttackMove", "AssaultMove", "Attack", "ForceAttack", "KeepDistance" };
-
-			if (!validOrders.Contains(order.OrderString))
-				return;
-
-			if (self.Owner.IsBot)
+			if (IsTraitDisabled || order.Target.Type == TargetType.Invalid || order.Queued || self.Owner.IsBot || !Info.OverrideOrders.Contains(order.OrderString))
 				return;
 
 			var world = self.World;
@@ -77,7 +89,7 @@ namespace OpenRA.Mods.CA.Traits
 					&& !a.IsDead
 					&& a.IsInWorld
 					&& a != self
-					&& IsValidGuardTarget(a))
+					&& IsValidGuardableTarget(a))
 				.ToArray();
 
 			if (guardActors.Length == 0)
@@ -97,17 +109,18 @@ namespace OpenRA.Mods.CA.Traits
 				guardTargets++;
 				world.IssueOrder(new Order("Guard", self, Target.FromActor(guardActor), true, null, null));
 
-				if (guardTargets >= Info.MaxTargets)
+				if (guardTargets >= Info.MaxGuardingTargets)
 					break;
 			}
 		}
 
-		bool IsValidGuardTarget(Actor targetActor)
+		bool IsValidGuardableTarget(Actor targetActor)
 		{
-			if (!Info.ValidTargets.Overlaps(targetActor.GetEnabledTargetTypes()))
+			var targets = targetActor.GetEnabledTargetTypes();
+			if (!Info.ValidTargetsToGuard.Overlaps(targets) || Info.InvalidTargetsToGuard.Overlaps(targets))
 				return false;
 
-			if (!targetActor.Info.HasTraitInfo<AttackBaseInfo>())
+			if (!targetActor.Info.HasTraitInfo<GuardableInfo>())
 				return false;
 
 			var guardsSelection = targetActor.TraitsImplementing<GuardsSelection>();
@@ -116,5 +129,101 @@ namespace OpenRA.Mods.CA.Traits
 
 			return true;
 		}
+
+		public bool CanAttackGuard(Actor self, Target t, bool forceAttack)
+		{
+			// If force-fire is not used, and the target requires force-firing or the target is
+			// terrain or invalid, no armaments can be used
+			if (t.Type == TargetType.Invalid || (!forceAttack && (t.Type == TargetType.Terrain || t.RequiresForceFire)))
+				return false;
+
+			// Get target's owner; in case of terrain or invalid target there will be no problems
+			// with owner == null since forceFire will have to be true in this part of the method
+			// (short-circuiting in the logical expression below)
+			Player owner = null;
+			if (t.Type == TargetType.FrozenActor)
+				owner = t.FrozenActor.Owner;
+			else if (t.Type == TargetType.Actor)
+				owner = t.Actor.Owner;
+
+			return (owner == null || (forceAttack ? Info.ForceTargetRelationships : Info.TargetRelationships).HasRelationship(self.Owner.RelationshipWith(owner)))
+				&& !attackBases.Any(ab => !ab.IsTraitDisabled && !ab.IsTraitPaused && ab.Armaments.Any(a => !a.IsTraitDisabled && !a.IsTraitPaused && a.Weapon.IsValidAgainst(t, self.World, self)));
+		}
+	}
+
+	sealed class AttackGuardOrderTargeter : IOrderTargeter
+	{
+		readonly GuardsSelection gs;
+
+		public AttackGuardOrderTargeter(GuardsSelection gs, int priority)
+		{
+			this.gs = gs;
+			OrderID = "AttackGuards";
+			OrderPriority = priority;
+		}
+
+		public string OrderID { get; private set; }
+		public int OrderPriority { get; }
+		public bool TargetOverridesSelection(Actor self, in Target target, List<Actor> actorsAt, CPos xy, TargetModifiers modifiers) { return true; }
+
+		bool CanTargetActor(Actor self, in Target target, ref TargetModifiers modifiers, ref string cursor)
+		{
+			IsQueued = modifiers.HasModifier(TargetModifiers.ForceQueue);
+
+			if (modifiers.HasModifier(TargetModifiers.ForceMove))
+				return false;
+
+			// Disguised actors are revealed by the attack cursor
+			// HACK: works around limitations in the targeting code that force the
+			// targeting and attacking logic (which should be logically separate)
+			// to use the same code
+			if (target.Type == TargetType.Actor && target.Actor.EffectiveOwner != null &&
+					target.Actor.EffectiveOwner.Disguised && self.Owner.RelationshipWith(target.Actor.Owner) == PlayerRelationship.Enemy)
+				modifiers |= TargetModifiers.ForceAttack;
+
+			if (!gs.CanAttackGuard(self, target, modifiers.HasModifier(TargetModifiers.ForceAttack)))
+				return false;
+
+			cursor = gs.Info.Cursor;
+
+			return true;
+		}
+
+		bool CanTargetLocation(Actor self, CPos location, TargetModifiers modifiers, ref string cursor)
+		{
+			if (!self.World.Map.Contains(location))
+				return false;
+
+			IsQueued = modifiers.HasModifier(TargetModifiers.ForceQueue);
+
+			// Targeting the terrain is only possible with force-attack modifier
+			if (modifiers.HasModifier(TargetModifiers.ForceMove))
+				return false;
+
+			var target = Target.FromCell(self.World, location);
+
+			if (!gs.CanAttackGuard(self, target, modifiers.HasModifier(TargetModifiers.ForceAttack)))
+				return false;
+
+			cursor = gs.Info.Cursor;
+
+			return true;
+		}
+
+		public bool CanTarget(Actor self, in Target target, ref TargetModifiers modifiers, ref string cursor)
+		{
+			switch (target.Type)
+			{
+				case TargetType.Actor:
+				case TargetType.FrozenActor:
+					return CanTargetActor(self, target, ref modifiers, ref cursor);
+				case TargetType.Terrain:
+					return CanTargetLocation(self, self.World.Map.CellContaining(target.CenterPosition), modifiers, ref cursor);
+				default:
+					return false;
+			}
+		}
+
+		public bool IsQueued { get; private set; }
 	}
 }

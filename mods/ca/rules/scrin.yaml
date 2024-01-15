@@ -664,7 +664,7 @@ SMEDI:
 	Targetable:
 		TargetTypes: Ground, Infantry, ChaosImmune
 	GuardsSelection:
-		ValidTargets: Infantry
+		ValidTargetsToGuard: Infantry
 	KeepsDistance:
 
 GSCR:

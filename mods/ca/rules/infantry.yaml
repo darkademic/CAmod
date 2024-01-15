@@ -904,7 +904,7 @@ MEDI:
 	Targetable@ChaosImmune:
 		TargetTypes: ChaosImmune
 	GuardsSelection:
-		ValidTargets: Infantry
+		ValidTargetsToGuard: Infantry
 	KeepsDistance:
 
 MECH:
@@ -995,7 +995,7 @@ MECH:
 	Targetable@ChaosImmune:
 		TargetTypes: ChaosImmune
 	GuardsSelection:
-		ValidTargets: Vehicle
+		ValidTargetsToGuard: Vehicle
 	Convertible:
 		SpawnActors: CMEC
 	ReplacedInQueue:
@@ -1088,7 +1088,7 @@ CMEC:
 		Types: Veterancy
 		Prerequisites: barracks.upgraded
 	GuardsSelection:
-		ValidTargets: Vehicle
+		ValidTargetsToGuard: Vehicle
 	-TakeCover:
 	KeepsDistance:
 

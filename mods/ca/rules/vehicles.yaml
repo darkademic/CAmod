@@ -5700,14 +5700,22 @@ IFV:
 		Prerequisites: cryr.upgrade
 	GuardsSelection@REPAIR:
 		ValidTargetsToGuard: Vehicle
+		GuardsSelectionLevel: 2
 		RequiresCondition: engturr && !stance-attackanything
 	GuardsSelection@MEDIC:
 		ValidTargetsToGuard: Infantry
+		GuardsSelectionLevel: 2
 		RequiresCondition: medturr && !stance-attackanything
 	GuardsSelection@SPY:
 		ValidTargetsToGuard: Ground
 		InvalidTargetsToGuard: Air
+		GuardsSelectionLevel: 2
 		RequiresCondition: spyturr && !stance-attackanything
+	GuardsSelection@COMM:
+		ValidTargetsToGuard: Ground
+		InvalidTargetsToGuard: Air
+		OverrideOrders: AttackGuards
+		RequiresCondition: commturr && !stance-attackanything
 	WithDecoration@COMMANDOSKULL:
 		RequiresCondition: commturr || psyturr
 	WithDecoration@SEALSKULL:

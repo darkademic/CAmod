@@ -260,10 +260,11 @@ Dragon.CRYO:
 		Explosions: cryohit
 		ExplosionPalette: ra2effect-ignore-lighting-alpha75
 		ImpactSounds: cryohit.aud
-	Warhead@chill: GrantExternalCondition
+	Warhead@chill: SpreadDamageWithCondition
+		Spread: 0c341
+		Falloff: 100, 100
 		Condition: chilled
-		Duration: 60
-		Range: 0c341
+		ConditionDuration: 60
 		ValidRelationships: Enemy, Neutral
 
 Dragon.TibCore:
@@ -646,10 +647,11 @@ RedEye.CRYO:
 		Explosions: cryohit
 		ExplosionPalette: ra2effect-ignore-lighting-alpha75
 		ImpactSounds: cryoblast.aud
-	Warhead@chill: GrantExternalCondition
+	Warhead@chill: SpreadDamageWithCondition
+		Spread: 0c341
+		Falloff: 100, 100
 		Condition: chilled
-		Duration: 60
-		Range: 0c341
+		ConditionDuration: 60
 		ValidTargets: Air, AirSmall
 		ValidRelationships: Enemy, Neutral
 
@@ -1386,10 +1388,11 @@ IFVRocketsE.CRYO:
 		Explosions: cryohit
 		ExplosionPalette: ra2effect-ignore-lighting-alpha75
 		ImpactSounds: cryohit.aud
-	Warhead@chill: GrantExternalCondition
+	Warhead@chill: SpreadDamageWithCondition
+		Spread: 0c341
+		Falloff: 100, 100
 		Condition: chilled
-		Duration: 60
-		Range: 0c341
+		ConditionDuration: 60
 		ValidRelationships: Enemy, Neutral
 
 IFVRocketsAAE:
@@ -1414,10 +1417,11 @@ IFVRocketsAAE.CRYO:
 		Explosions: cryohit
 		ExplosionPalette: ra2effect-ignore-lighting-alpha75
 		ImpactSounds: cryoblast.aud
-	Warhead@chill: GrantExternalCondition
+	Warhead@chill: SpreadDamageWithCondition
+		Spread: 0c341
+		Falloff: 100, 100
 		Condition: chilled
-		Duration: 60
-		Range: 0c341
+		ConditionDuration: 60
 		ValidTargets: Air, AirSmall
 		ValidRelationships: Enemy, Neutral
 

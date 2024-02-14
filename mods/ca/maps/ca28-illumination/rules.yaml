@@ -102,7 +102,9 @@ KANE:
 	RenderDetectionCircle:
 		Color: ffffff20
 		BorderColor: 00000020
-	KeepsDistance:
+	GuardsSelection:
+		ValidTargetsToGuard: Ground
+		InvalidTargetsToGuard: Air
 	CaptureManager:
 	Captures:
 		CaptureTypes: building

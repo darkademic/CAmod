@@ -5725,8 +5725,6 @@ IFV:
 		Palette: effect
 		Position: TopLeft
 		ValidRelationships: Ally, Enemy, Neutral
-	KeepsDistance:
-		RequiresCondition: engturr || medturr || spyturr
 	DamageTypeDamageMultiplier@A2GPROTECTION:
 		RequiresCondition: !full || samturr || ggiturr
 	AmbientSoundCA:
@@ -7769,7 +7767,10 @@ MANT:
 		Range: 8c0
 		DetectionTypes: AirCloak
 		RequiresCondition: empdisable || being-warped
-	KeepsDistance:
+	GuardsSelection:
+		ValidTargetsToGuard: Ground
+		InvalidTargetsToGuard: Air
+		OverrideOrders: AttackGuards
 
 VIPR:
 	Inherits: ^VehicleTD

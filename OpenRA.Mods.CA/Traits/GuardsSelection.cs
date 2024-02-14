@@ -10,6 +10,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 using OpenRA.Traits;
@@ -25,6 +26,9 @@ namespace OpenRA.Mods.CA.Traits
 
 		public readonly PlayerRelationship TargetRelationships = PlayerRelationship.Enemy;
 		public readonly PlayerRelationship ForceTargetRelationships = PlayerRelationship.Enemy | PlayerRelationship.Neutral | PlayerRelationship.Ally;
+
+		[Desc("Cells to keep distance to target when there is no guardable.")]
+		public readonly WDist DistanceWhenNoGuardable = WDist.FromCells(7);
 
 		[Desc("Will only guard units with these target types.")]
 		public readonly BitSet<TargetableType> ValidTargetsToGuard = new("Ground", "Water");
@@ -50,6 +54,7 @@ namespace OpenRA.Mods.CA.Traits
 	class GuardsSelection : ConditionalTrait<GuardsSelectionInfo>, IResolveOrder, INotifyCreated, IIssueOrder
 	{
 		AttackBase[] attackBases;
+		IMoveInfo moveInfo;
 
 		public GuardsSelection(GuardsSelectionInfo info)
 			: base(info) { }
@@ -57,6 +62,7 @@ namespace OpenRA.Mods.CA.Traits
 		protected override void Created(Actor self)
 		{
 			attackBases = self.TraitsImplementing<AttackBase>().ToArray();
+			moveInfo = self.Info.TraitInfoOrDefault<IMoveInfo>();
 			base.Created(self);
 		}
 
@@ -81,12 +87,20 @@ namespace OpenRA.Mods.CA.Traits
 
 		void IResolveOrder.ResolveOrder(Actor self, Order order)
 		{
-			if (IsTraitDisabled || order.Target.Type == TargetType.Invalid || order.Queued || self.Owner.IsBot || !Info.OverrideOrders.Contains(order.OrderString))
+			if (IsTraitDisabled || order.Target.Type == TargetType.Invalid || order.Queued || self.Owner.IsBot)
 				return;
 
 			var world = self.World;
 
 			if (order.Target.Type == TargetType.Actor && (order.Target.Actor.Disposed || order.Target.Actor.Owner == self.Owner || !order.Target.Actor.IsInWorld || order.Target.Actor.IsDead))
+				return;
+
+			if (order.OrderString == "AttackGuardsWithinRange")
+			{
+				self.QueueActivity(order.Queued, new MoveWithinRange(self, order.Target, WDist.Zero, Info.DistanceWhenNoGuardable, targetLineColor: moveInfo.GetTargetLineColor()));
+				return;
+			}
+			else if (!Info.OverrideOrders.Contains(order.OrderString))
 				return;
 
 			var guardableActors = world.Selection.Actors
@@ -99,8 +113,14 @@ namespace OpenRA.Mods.CA.Traits
 				.OrderBy(a => (a.Location - self.Location).LengthSquared)
 				.ToArray();
 
+			// When no actor can be guarded in AttackGuards, move close to target
 			if (guardableActors.Length == 0)
+			{
+				if (order.OrderString == "AttackGuards")
+					world.IssueOrder(new Order("AttackGuardsWithinRange", self, order.Target, false, null, null));
+
 				return;
+			}
 
 			// We find candidates that within "ChooseClosestAllyRangeCells" to guard at highest priority.
 			var minDest = long.MaxValue;

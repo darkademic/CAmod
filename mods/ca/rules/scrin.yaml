@@ -666,7 +666,6 @@ SMEDI:
 	GuardsSelection:
 		ValidTargetsToGuard: Infantry
 		GuardsSelectionLevel: 2
-	KeepsDistance:
 
 GSCR:
 	Inherits: BRUT

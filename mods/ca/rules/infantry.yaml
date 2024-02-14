@@ -906,7 +906,6 @@ MEDI:
 	GuardsSelection:
 		ValidTargetsToGuard: Infantry
 		GuardsSelectionLevel: 2
-	KeepsDistance:
 
 MECH:
 	Inherits: ^Soldier
@@ -1002,7 +1001,6 @@ MECH:
 		SpawnActors: CMEC
 	ReplacedInQueue:
 		Actors: cmec
-	KeepsDistance:
 
 CMEC:
 	Inherits: ^Cyborg
@@ -1093,7 +1091,6 @@ CMEC:
 		ValidTargetsToGuard: Vehicle
 		GuardsSelectionLevel: 2
 	-TakeCover:
-	KeepsDistance:
 
 HACK:
 	Inherits: ^Soldier
@@ -3835,9 +3832,12 @@ YURI:
 		Range: 13c0
 		Color: cc00ff77
 		BorderColor: 00000044
-	KeepsDistance:
 	ChangesHealth@ELITE:
 		Delay: 50
+	GuardsSelection:
+		ValidTargetsToGuard: Ground
+		InvalidTargetsToGuard: Air
+		OverrideOrders: AttackGuards
 
 SEAL:
 	Inherits: ^Soldier

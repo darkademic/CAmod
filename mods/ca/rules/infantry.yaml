@@ -954,8 +954,8 @@ MEDI:
 	Targetable@ChaosImmune:
 		TargetTypes: ChaosImmune
 	GuardsSelection:
-		ValidTargets: Infantry
-	KeepsDistance:
+		ValidTargetsToGuard: Infantry
+		GuardsSelectionLevel: 2
 
 MECH:
 	Inherits: ^Soldier
@@ -1044,12 +1044,12 @@ MECH:
 	Targetable@ChaosImmune:
 		TargetTypes: ChaosImmune
 	GuardsSelection:
-		ValidTargets: Vehicle
+		ValidTargetsToGuard: Vehicle
+		GuardsSelectionLevel: 2
 	Convertible:
 		SpawnActors: CMEC
 	ReplacedInQueue:
 		Actors: cmec
-	KeepsDistance:
 
 CMEC:
 	Inherits: ^Cyborg
@@ -1136,9 +1136,9 @@ CMEC:
 		Types: Veterancy
 		Prerequisites: barracks.upgraded
 	GuardsSelection:
-		ValidTargets: Vehicle
+		ValidTargetsToGuard: Vehicle
+		GuardsSelectionLevel: 2
 	-TakeCover:
-	KeepsDistance:
 
 HACK:
 	Inherits: ^Soldier
@@ -3965,9 +3965,12 @@ YURI:
 		Range: 13c0
 		Color: cc00ff77
 		BorderColor: 00000044
-	KeepsDistance:
 	ChangesHealth@ELITE:
 		Delay: 50
+	GuardsSelection:
+		ValidTargetsToGuard: Ground
+		InvalidTargetsToGuard: Air
+		OverrideOrders: AttackGuards
 
 YURI.Clone:
 	Inherits: YURI

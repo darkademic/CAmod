@@ -6391,13 +6391,23 @@ IFV:
 		Condition: tibcore-upgrade
 		Prerequisites: tibcore.upgrade
 	GuardsSelection@REPAIR:
-		ValidTargets: Vehicle
+		ValidTargetsToGuard: Vehicle
+		GuardsSelectionLevel: 2
 		RequiresCondition: engturr && !stance-attackanything
 	GuardsSelection@MEDIC:
-		ValidTargets: Infantry
+		ValidTargetsToGuard: Infantry
+		GuardsSelectionLevel: 2
 		RequiresCondition: medturr && !stance-attackanything
 	GuardsSelection@SPY:
+		ValidTargetsToGuard: Ground
+		InvalidTargetsToGuard: Air
+		GuardsSelectionLevel: 2
 		RequiresCondition: spyturr && !stance-attackanything
+	GuardsSelection@COMM:
+		ValidTargetsToGuard: Ground
+		InvalidTargetsToGuard: Air
+		OverrideOrders: AttackGuards
+		RequiresCondition: commturr && !stance-attackanything
 	WithDecoration@COMMANDOSKULL:
 		RequiresCondition: commturr || psyturr
 	WithDecoration@SEALSKULL:
@@ -6407,8 +6417,6 @@ IFV:
 		Palette: effect
 		Position: TopLeft
 		ValidRelationships: Ally, Enemy, Neutral
-	KeepsDistance:
-		RequiresCondition: engturr || medturr || spyturr
 	DamageTypeDamageMultiplier@A2GPROTECTION:
 		RequiresCondition: !full || samturr || ggiturr
 	AmbientSoundCA@BlackHand:
@@ -8653,7 +8661,10 @@ MANT:
 		Range: 8c0
 		DetectionTypes: AirCloak
 		RequiresCondition: empdisable || being-warped
-	KeepsDistance:
+	GuardsSelection:
+		ValidTargetsToGuard: Ground
+		InvalidTargetsToGuard: Air
+		OverrideOrders: AttackGuards
 
 VIPR:
 	Inherits: ^VehicleTD

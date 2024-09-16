@@ -805,8 +805,8 @@ SMEDI:
 	Targetable@ChaosImmune:
 		TargetTypes: ChaosImmune
 	GuardsSelection:
-		ValidTargets: Infantry
-	KeepsDistance:
+		ValidTargetsToGuard: Infantry
+		GuardsSelectionLevel: 2
 
 ARTI:
 	Inherits@SCRININFANTRY: ^ScrinInfantry

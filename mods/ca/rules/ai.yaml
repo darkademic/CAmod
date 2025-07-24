@@ -83,6 +83,10 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 5c0
+			resourcescan:
+				OrderName: resourcescan
+				Consideration@1:
+					Against: Ally
 			gdiuav:
 				OrderName: gdiuav
 				MinimumAttractiveness: 1
@@ -101,15 +105,6 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 5c0
-			cashhack:
-				OrderName: cashhack
-				MinimumAttractiveness: 1
-				Consideration@1:
-					Against: Enemy
-					Types: ResourceDrainable
-					Attractiveness: 1
-					TargetMetric: None
-					CheckRadius: 8c0
 			substrike:
 				OrderName: substrike
 				MinimumAttractiveness: 5
@@ -269,6 +264,24 @@ Player:
 				OrderName: confessorcabalai
 				Consideration@1:
 					Against: Ally
+			ichorseed:
+				OrderName: ichorseed
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: ResourceDrainable
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+			ichorseedreaper:
+				OrderName: ichorseedreaper
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: ResourceDrainable
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
 			droppods:
 				OrderName: droppods
 				MinimumAttractiveness: 5
@@ -296,6 +309,21 @@ Player:
 				Consideration@2:
 					Against: Enemy
 					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			shadowteam:
+				OrderName: shadowteam
+				MinimumAttractiveness: 4
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: AntiAirDefense
 					Attractiveness: -5
 					TargetMetric: None
 					CheckRadius: 8c0
@@ -576,18 +604,18 @@ Player:
 					CheckRadius: 8c0
 			ironcurtainpower:
 				OrderName: ironcurtain
-				MinimumAttractiveness: 1000
+				MinimumAttractiveness: 5000
 				FineScanRadius: 2
 				Consideration@2:
-					Against: Enemy
-					Types: Infantry
-					Attractiveness: 2
+					Against: Ally
+					Types: Repair
+					Attractiveness: 4
 					TargetMetric: Value
 					CheckRadius: 2c0
 				Consideration@3:
 					Against: Ally
 					Types: Vehicle, Tank
-					Attractiveness: 5
+					Attractiveness: 1
 					TargetMetric: Value
 					CheckRadius: 3c0
 				Consideration@4:
@@ -596,6 +624,21 @@ Player:
 					Attractiveness: -2
 					TargetMetric: Value
 					CheckRadius: 2c0
+			fleetrecall:
+				OrderName: Recall
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: FleetRecallable
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 3c0
+				Consideration@2:
+					Against: Ally
+					Types: Shielded
+					Attractiveness: -1
+					TargetMetric: None
+					CheckRadius: 3c0
 			atomicammopower:
 				OrderName: atomicammo
 				MinimumAttractiveness: 2
@@ -614,11 +657,11 @@ Player:
 					CheckRadius: 2c0
 			nshieldpower:
 				OrderName: nshieldorder
-				MinimumAttractiveness: 1000
+				MinimumAttractiveness: 3000
 				Consideration@1:
 					Against: Ally
-					Types: Vehicle
-					Attractiveness: 2
+					Types: Repair
+					Attractiveness: 1
 					TargetMetric: Value
 					CheckRadius: 4c0
 			stealthgenpower:
@@ -663,8 +706,8 @@ Player:
 				MinimumAttractiveness: 2000
 				Consideration@1:
 					Against: Ally
-					Types: Vehicle
-					Attractiveness: 2
+					Types: Repair
+					Attractiveness: 1
 					TargetMetric: Value
 					CheckRadius: 4c0
 			veilofwarpower:
@@ -716,6 +759,15 @@ Player:
 				Consideration@1:
 					Against: Enemy
 					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+			voidspikepower:
+				OrderName: voidspike
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: StealCreditsInfiltrate
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 8c0

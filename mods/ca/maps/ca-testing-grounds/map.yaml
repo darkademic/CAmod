@@ -5546,6 +5546,9 @@ Actors:
 	Actor1576: grav
 		Owner: Dummy
 		Location: 116,76
+	Actor1572: bunk
+		Owner: Neutral
+		Location: 30,150
 
 Rules: ca|rules/custom/composition-tester.yaml, ca|rules/custom/composition-tester-powers.yaml, rules.yaml
 

@@ -808,22 +808,33 @@ Player:
 		McvTypes: mcv, amcv, smcv
 		ConstructionYardTypes: fact, afac, sfac
 		McvFactoryTypes: weap, weap.td, airs, wsph
+		ProductionTypes: barr,tent,hand,pyle,port,weap,airs,weap.td,wsph
+		RefineryTypes: proc,proc.td,proc.scrin
+		FirstMoveConyardTicks: -1, 4200, 4200, 2850, 2850
 		ScanForNewMcvInterval: 80
-		MaxBaseRadius: 25
 		MinimumConstructionYardCount: 3
+		ResourceCreatorTypes: mine, gmine, split2, split3, splitblue
+		ValidResourceTypes: Ore, Gems, Tiberium, BlueTiberium, BlackTiberium
 	McvManagerBotModuleCA@upper:
 		RequiresCondition: enable-vhard-ai || enable-hard-ai
 		McvTypes: mcv, amcv, smcv
 		ConstructionYardTypes: fact, afac, sfac
 		McvFactoryTypes: weap, weap.td, airs, wsph
+		ProductionTypes: barr,tent,hand,pyle,port,weap,airs,weap.td,wsph
+		RefineryTypes: proc,proc.td,proc.scrin
 		ScanForNewMcvInterval: 80
-		MaxBaseRadius: 25
 		MinimumConstructionYardCount: 2
+		ResourceCreatorTypes: mine, gmine, split2, split3, splitblue
+		ValidResourceTypes: Ore, Gems, Tiberium, BlueTiberium, BlackTiberium
 	McvManagerBotModuleCA@lower:
 		RequiresCondition: enable-normal-ai || enable-easy-ai || enable-naval-ai
 		McvTypes: mcv, amcv, smcv
 		ConstructionYardTypes: fact, afac, sfac
+		ProductionTypes: barr,tent,hand,pyle,port,weap,airs,weap.td,wsph
+		RefineryTypes: proc,proc.td,proc.scrin
 		McvFactoryTypes: weap, weap.td, airs, wsph
+		ResourceCreatorTypes: mine, gmine, split2, split3, splitblue
+		ValidResourceTypes: Ore, Gems, Tiberium, BlueTiberium, BlackTiberium
 	BaseBuilderBotModuleCA@brutal-vhard:
 		RequiresCondition: enable-brutal-ai || enable-vhard-ai
 		BuildingQueues: BuildingSQ, BuildingMQ, Upgrade

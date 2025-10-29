@@ -4985,7 +4985,7 @@ Actors:
 		TurretFacing: 0
 		Facing: 384
 		Location: 97,134
-	Actor1319: rapc
+	Actor1319: aapc
 		Owner: Multi0
 		Facing: 384
 		Location: 101,134
@@ -5507,6 +5507,45 @@ Actors:
 	Actor1563: syrf
 		Owner: Dummy
 		Location: 182,168
+	Actor1564: fcom
+		Owner: Neutral
+		Location: 27,153
+	Actor1565: hosp
+		Owner: Neutral
+		Location: 27,157
+	Actor1566: macs
+		Owner: Neutral
+		Location: 30,157
+	Actor1567: bio
+		Owner: Neutral
+		Location: 30,154
+	Actor1568: oilr
+		Owner: Neutral
+		Location: 21,154
+	Actor1569: oilb
+		Owner: Neutral
+		Location: 17,154
+	Actor1570: miss
+		Owner: Neutral
+		Location: 19,158
+	Actor1571: v01
+		Owner: Neutral
+		Location: 25,161
+	Actor1572: afld.gdi
+		Owner: Dummy
+		Location: 112,77
+	Actor1573: afld
+		Owner: Dummy
+		Location: 112,80
+	Actor1574: hpad
+		Owner: Dummy
+		Location: 109,79
+	Actor1575: hpad.td
+		Owner: Dummy
+		Location: 109,75
+	Actor1576: grav
+		Owner: Dummy
+		Location: 116,76
 
 Rules: ca|rules/custom/composition-tester.yaml, ca|rules/custom/composition-tester-powers.yaml, rules.yaml
 

@@ -40,7 +40,7 @@
 		Damage: 3100
 		Versus:
 			None: 25
-			Wood: 52
+			Wood: 60
 			Light: 116
 			Heavy: 75
 			Concrete: 30
@@ -69,6 +69,7 @@
 	Warhead@1Dam: SpreadDamage
 		Damage: 3500
 		Versus:
+			Wood: 52
 			Heavy: 70
 			Concrete: 35
 
@@ -557,7 +558,7 @@ TitanGun:
 	Range: 18c0
 	TargetActorCenter: true
 	Projectile: Bullet
-		Speed: 145
+		Speed: 180
 		Image: 280mma
 		LaunchAngle: 92
 		Inaccuracy: 768
@@ -656,7 +657,7 @@ JuggernautGun:
 	Inherits: ^Artillery
 	MinRange: 3c0
 	ReloadDelay: 110
-	Range: 13c0
+	Range: 9c0
 	Burst: 3
 	StartBurstReport: jugger1.aud
 	TargetActorCenter: true
@@ -907,18 +908,21 @@ SonicMortar:
 
 HallucinationGrenade:
 	Inherits: ^Mortar
+	ReloadDelay: 130
 	Projectile: Bullet
 		ContrailStartColor: dc289c
 		ContrailStartColorAlpha: 128
+	Warhead@1Dam: SpreadDamage
+		Damage: 2500
+	Warhead@chaos: GrantExternalConditionCA
+		Range: 0c768
+		Duration: 75
+		Condition: berserk
+		InvalidTargets: ChaosImmune
 	Warhead@3Eff: CreateEffect
 		Explosions: chaosexplosion
 		ExplosionPalette: caneon
 		ImpactSounds: firebl3.aud
-	Warhead@Cloud1: SpawnActor
-		Actors: chaoscloud2
-		Range: 2
-		ValidTargets: Ground, Water
-		ImpactActors: false
 
 DepthCharge:
 	Inherits: ^Artillery
@@ -926,7 +930,7 @@ DepthCharge:
 	Range: 5c0
 	ValidTargets: Submarine
 	Projectile: Bullet
-		Speed: 125
+		Speed: 180
 		Image: BOMB
 		Inaccuracy: 128
 	Warhead@1Dam: SpreadDamage
@@ -953,7 +957,7 @@ DoubleDepthCharge:
 	Burst: 2
 	BurstDelays: 5
 	Projectile: Bullet
-		Inaccuracy: 256
+		Inaccuracy: 192
 
 203mm:
 	ReloadDelay: 120
@@ -1012,7 +1016,7 @@ GuardianDroneGun:
 	Inherits: 25mm
 	ReloadDelay: 80
 	Burst: 3
-	BurstDelays: 3
+	BurstDelays: 2
 	Report: gdrn-fire1.aud, gdrn-fire2.aud
 	Projectile: Bullet
 		Speed: 1c0

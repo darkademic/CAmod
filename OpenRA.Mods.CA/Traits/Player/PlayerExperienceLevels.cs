@@ -18,6 +18,7 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.CA.Traits
 {
+	[TraitLocation(SystemActors.Player)]
 	[Desc("Tracks player experience and sets grants prerequisites based on it.")]
 	public class PlayerExperienceLevelsInfo : ConditionalTraitInfo, Requires<PlayerExperienceInfo>, Requires<TechTreeInfo>, ITechTreePrerequisiteInfo
 	{
@@ -59,7 +60,7 @@ namespace OpenRA.Mods.CA.Traits
 	{
 		PlayerExperience playerExperience;
 		TechTree techTree;
-		ProductionTracker productionTracker;
+		UpgradesManager upgradesManager;
 		readonly int maxLevel;
 		readonly bool validFaction;
 		int currentLevel;
@@ -89,16 +90,7 @@ namespace OpenRA.Mods.CA.Traits
 
 		public int? XpRequiredForNextLevel => currentLevel >= maxLevel ? null : nextLevelXpRequired;
 
-		public IEnumerable<string> ProvidesPrerequisites
-		{
-			get
-			{
-				if (currentLevel > 0)
-					return Info.LevelPrerequisites.Take(currentLevel);
-				else
-					return Enumerable.Empty<string>();
-			}
-		}
+		IEnumerable<string> ITechTreePrerequisite.ProvidesPrerequisites => currentLevel > 0 ? Info.LevelPrerequisites.Take(currentLevel) : Enumerable.Empty<string>();
 
 		protected override void Created(Actor self)
 		{
@@ -109,7 +101,7 @@ namespace OpenRA.Mods.CA.Traits
 			var playerActor = self.Info.Name == "player" ? self : self.Owner.PlayerActor;
 			playerExperience = playerActor.Trait<PlayerExperience>();
 			techTree = playerActor.Trait<TechTree>();
-			productionTracker = playerActor.Trait<ProductionTracker>();
+			upgradesManager = playerActor.Trait<UpgradesManager>();
 			base.Created(self);
 		}
 
@@ -126,7 +118,7 @@ namespace OpenRA.Mods.CA.Traits
 					Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", Info.LevelUpNotification, self.Owner.Faction.InternalName);
 
 				if (Info.LevelUpTextNotification != null)
-					TextNotificationsManager.AddTransientLine(string.Format(Info.LevelUpTextNotification, currentLevel), self.Owner);
+					TextNotificationsManager.AddTransientLine(self.Owner, string.Format(Info.LevelUpTextNotification, currentLevel));
 
 				notificationQueued = false;
 				ticksUntilNotification = Info.NotificationDelay;
@@ -164,7 +156,7 @@ namespace OpenRA.Mods.CA.Traits
 
 			// if there's an actor that represents the prerequisite, add it to the build order
 			if (self.World.Map.Rules.Actors.ContainsKey(Info.LevelPrerequisites[currentLevel - 1]))
-				productionTracker.BuildOrderItemCreated(Info.LevelPrerequisites[currentLevel - 1], 1, true);
+				upgradesManager.UpgradeProviderCreated(Info.LevelPrerequisites[currentLevel - 1]);
 
 			if (Info.DummyActor != null)
 			{

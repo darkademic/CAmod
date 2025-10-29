@@ -38,8 +38,9 @@ namespace OpenRA.Mods.CA.Activities
 		}
 
 		protected override void OnFirstRun(Actor self)
-		{
-		}
+        {
+			IsInterruptible = false;
+        }
 
 		public override bool Tick(Actor self)
 		{
@@ -57,9 +58,6 @@ namespace OpenRA.Mods.CA.Activities
 			var makeAnimation = self.TraitOrDefault<WithMakeAnimation>();
 			if (!SkipMakeAnims && makeAnimation != null)
 			{
-				// Once the make animation starts the activity must not be stopped anymore.
-				IsInterruptible = false;
-
 				// Wait forever
 				QueueChild(new WaitFor(() => false));
 				makeAnimation.Reverse(self, () => DoTransform(self));
@@ -96,7 +94,7 @@ namespace OpenRA.Mods.CA.Activities
 				var cell = self.Location + Offset;
 				WPos centerPos;
 
-				if (self.TraitOrDefault<Aircraft>() != null)
+				if (self.Info.TraitInfoOrDefault<AircraftInfo>() != null && self.World.Map.Rules.Actors[ToActor].TraitInfoOrDefault<AircraftInfo>() != null)
 					centerPos = self.CenterPosition;
 				else
 					centerPos = self.World.Map.CenterOfCell(cell) + new WVec(0, 0, self.CenterPosition.Z);

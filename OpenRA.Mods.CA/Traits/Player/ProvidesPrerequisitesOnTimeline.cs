@@ -19,16 +19,13 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.CA.Traits
 {
 	[TraitLocation(SystemActors.Player)]
-	public class ProvidesPrerequisitesOnTimelineInfo : TraitInfo, ITechTreePrerequisiteInfo
+	public class ProvidesPrerequisitesOnTimelineInfo : PausableConditionalTraitInfo, ITechTreePrerequisiteInfo
 	{
 		[Desc("Identifier.")]
 		[FieldLoader.Require]
 		public readonly string Type = null;
 
-		[Desc("Maximum number of ticks.")]
-		public readonly int MaxTicks = 30000;
-
-		[Desc("Prerequesities provided at percentage thresholds.")]
+		[Desc("Prerequisites provided at specific tick counts.")]
 		public readonly Dictionary<int, string> Prerequisites = null;
 
 		[Desc("List of factions that can affect this count. Leave blank for any faction.")]
@@ -51,9 +48,6 @@ namespace OpenRA.Mods.CA.Traits
 		[Desc("Sound notification to play when count is incremented.")]
 		public readonly string PrerequisiteGrantedSound = null;
 
-		[Desc("Ticks before playing notification.")]
-		public readonly int MaxBoostMultiplier = 1;
-
 		IEnumerable<string> ITechTreePrerequisiteInfo.Prerequisites(ActorInfo info)
 		{
 			return Prerequisites.Values;
@@ -62,14 +56,14 @@ namespace OpenRA.Mods.CA.Traits
 		public override object Create(ActorInitializer init) { return new ProvidesPrerequisitesOnTimeline(init, this); }
 	}
 
-	public class ProvidesPrerequisitesOnTimeline : ITechTreePrerequisite, INotifyCreated, ITick
+	public class ProvidesPrerequisitesOnTimeline : PausableConditionalTrait<ProvidesPrerequisitesOnTimelineInfo>, ITechTreePrerequisite, INotifyCreated, ITick
 	{
-		public readonly ProvidesPrerequisitesOnTimelineInfo Info;
+		public readonly ProvidesPrerequisitesOnTimelineInfo info;
 		readonly Actor self;
 		readonly HashSet<string> prerequisitesGranted;
 		readonly bool validFaction;
 		TechTree techTree;
-		ProductionTracker productionTracker;
+		UpgradesManager upgradesManager;
 
 		int ticksElapsed;
 		HashSet<int> thresholdsPassed;
@@ -78,11 +72,12 @@ namespace OpenRA.Mods.CA.Traits
 		bool dummyActorQueued;
 		int ticksUntilSpawnDummyActor;
 
-		public event Action<int> PercentageChanged;
+		public event Action<int> TicksChanged;
 
 		public ProvidesPrerequisitesOnTimeline(ActorInitializer init, ProvidesPrerequisitesOnTimelineInfo info)
+			: base(info)
 		{
-			Info = info;
+			this.info = info;
 			self = init.Self;
 			ticksElapsed = 0;
 			ticksUntilNotification = info.NotificationDelay;
@@ -93,36 +88,35 @@ namespace OpenRA.Mods.CA.Traits
 			validFaction = info.Factions.Length == 0 || info.Factions.Contains(player.Faction.InternalName);
 		}
 
-		public bool Enabled => validFaction;
+		public int MaxTicks => info.Prerequisites?.Keys.Max() ?? 0;
+		public bool Enabled => validFaction && !IsTraitDisabled;
 		public int TicksElapsed => ticksElapsed;
-		public int TicksRemaining => Info.MaxTicks - ticksElapsed;
-		public int PercentageComplete => ticksElapsed * 100 / Info.MaxTicks;
-		public int[] Thresholds => Info.Prerequisites?.Keys.ToArray() ?? Array.Empty<int>();
+		public int TicksRemaining => MaxTicks - ticksElapsed;
+		public int[] Thresholds => info.Prerequisites?.Keys.ToArray() ?? Array.Empty<int>();
 		public int ThresholdsPassed => thresholdsPassed.Count;
 
 		public int TicksUntilNextThreshold
 		{
 			get
 			{
-				if (Info.Prerequisites == null || !Info.Prerequisites.Any())
+				if (info.Prerequisites == null || !info.Prerequisites.Any())
 					return 0;
 
-				var nextThreshold = Info.Prerequisites.Keys
-					.Where(t => t > PercentageComplete)
+				var nextThreshold = info.Prerequisites.Keys
+					.Where(t => t > ticksElapsed)
 					.OrderBy(t => t)
 					.FirstOrDefault();
 
 				if (nextThreshold == 0)
 					return 0;
 
-				var ticksNeededForThreshold = Info.MaxTicks * nextThreshold / 100;
-				return ticksNeededForThreshold - ticksElapsed;
+				return nextThreshold - ticksElapsed;
 			}
 		}
 
-		public string[] Factions => Info.Factions;
+		public string[] Factions => info.Factions;
 
-		public IEnumerable<string> ProvidesPrerequisites => prerequisitesGranted;
+		IEnumerable<string> ITechTreePrerequisite.ProvidesPrerequisites => prerequisitesGranted;
 
 		void INotifyCreated.Created(Actor self)
 		{
@@ -133,34 +127,33 @@ namespace OpenRA.Mods.CA.Traits
 			var playerActor = self.Info.Name == "player" ? self : self.Owner.PlayerActor;
 			techTree = playerActor.Trait<TechTree>();
 			techTree.ActorChanged(self);
-			productionTracker = playerActor.Trait<ProductionTracker>();
+			upgradesManager = playerActor.Trait<UpgradesManager>();
 		}
 
-		void HandlePrerequisiteThreshold(int percentage)
+		void HandlePrerequisiteThreshold(int tick)
 		{
-			if (Info.Prerequisites == null || !Info.Prerequisites.ContainsKey(percentage) || thresholdsPassed.Contains(percentage))
+			if (info.Prerequisites == null || !info.Prerequisites.ContainsKey(tick) || thresholdsPassed.Contains(tick))
 				return;
 
-			thresholdsPassed.Add(percentage);
-			var prerequisite = Info.Prerequisites[percentage];
+			thresholdsPassed.Add(tick);
+			var prerequisite = info.Prerequisites[tick];
 
-			if (!prerequisitesGranted.Contains(prerequisite))
+			if (prerequisitesGranted.Add(prerequisite))
 			{
-				prerequisitesGranted.Add(prerequisite);
 				techTree.ActorChanged(self);
 
 				// if there's an actor that represents the prerequisite, add it to the build order
 				if (self.World.Map.Rules.Actors.ContainsKey(prerequisite))
-					productionTracker.BuildOrderItemCreated(prerequisite, 1, true);
+					upgradesManager.UpgradeProviderCreated(prerequisite);
 
-				if (Info.PrerequisiteGrantedSound != null)
+				if (info.PrerequisiteGrantedSound != null)
 					Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Sounds",
-						Info.PrerequisiteGrantedSound, self.Owner.Faction.InternalName);
+						info.PrerequisiteGrantedSound, self.Owner.Faction.InternalName);
 
-				if (Info.DummyActor != null)
+				if (info.DummyActor != null)
 				{
-					if (Info.PrerequisiteGrantedNotifications != null && Info.PrerequisiteGrantedNotifications.ContainsKey(percentage))
-						notificationQueued = Info.PrerequisiteGrantedNotifications[percentage];
+					if (info.PrerequisiteGrantedNotifications != null && info.PrerequisiteGrantedNotifications.TryGetValue(tick, out var value))
+						notificationQueued = value;
 
 					dummyActorQueued = true;
 					ticksUntilSpawnDummyActor = 1;
@@ -170,37 +163,37 @@ namespace OpenRA.Mods.CA.Traits
 
 		void ITick.Tick(Actor self)
 		{
-			if (!Enabled)
+			if (!Enabled || IsTraitDisabled || IsTraitPaused)
 				return;
 
-			var previousPercentage = PercentageComplete;
+			var previousTicks = ticksElapsed;
 
-			if (ticksElapsed < Info.MaxTicks)
+			if (ticksElapsed < MaxTicks)
 			{
 				ticksElapsed++;
 
-				if (previousPercentage != PercentageComplete)
-					PercentageChanged?.Invoke(PercentageComplete);
+				if (previousTicks != ticksElapsed)
+					TicksChanged?.Invoke(ticksElapsed);
 
-				HandlePrerequisiteThreshold(PercentageComplete);
+				HandlePrerequisiteThreshold(ticksElapsed);
 			}
 
 			if (notificationQueued != null && --ticksUntilNotification <= 0)
 			{
 				Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", notificationQueued, self.Owner.Faction.InternalName);
 
-				if (Info.PrerequisiteGrantedTextNotification != null)
-					TextNotificationsManager.AddTransientLine(Info.PrerequisiteGrantedTextNotification, self.Owner);
+				if (info.PrerequisiteGrantedTextNotification != null)
+					TextNotificationsManager.AddTransientLine(self.Owner, info.PrerequisiteGrantedTextNotification);
 
 				notificationQueued = null;
-				ticksUntilNotification = Info.NotificationDelay;
+				ticksUntilNotification = info.NotificationDelay;
 			}
 
 			if (dummyActorQueued && --ticksUntilSpawnDummyActor <= 0)
 			{
 				self.World.AddFrameEndTask(w =>
 				{
-					w.CreateActor(Info.DummyActor, new TypeDictionary
+					w.CreateActor(info.DummyActor, new TypeDictionary
 					{
 						new ParentActorInit(self),
 						new LocationInit(CPos.Zero),
@@ -216,27 +209,20 @@ namespace OpenRA.Mods.CA.Traits
 			if (!Enabled || ticks <= 0)
 				return;
 
-			var previousPercentage = PercentageComplete;
 			var initialTicks = ticksElapsed;
 
-			ticksElapsed = Math.Min(ticksElapsed + ticks, Info.MaxTicks);
+			ticksElapsed = Math.Min(ticksElapsed + ticks, MaxTicks);
 
 			if (initialTicks == ticksElapsed)
 				return;
 
-			if (previousPercentage != PercentageComplete)
-				PercentageChanged?.Invoke(PercentageComplete);
+			if (initialTicks != ticksElapsed)
+				TicksChanged?.Invoke(ticksElapsed);
 
-			if (Info.Prerequisites != null)
+			if (info.Prerequisites != null)
 			{
-				var startPercentage = initialTicks * 100 / Info.MaxTicks;
-				var endPercentage = PercentageComplete;
-
-				foreach (var threshold in Info.Prerequisites)
-				{
-					if (threshold.Key > startPercentage && threshold.Key <= endPercentage)
-						HandlePrerequisiteThreshold(threshold.Key);
-				}
+				for (int t = initialTicks + 1; t <= ticksElapsed; t++)
+					HandlePrerequisiteThreshold(t);
 			}
 		}
 	}

@@ -14,42 +14,51 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.CA.Traits
 {
-	[Desc("Simple counter for actors.")]
+	[TraitLocation(SystemActors.Player)]
+	[Desc("Allows arbitrary counts.")]
 	public class CountManagerInfo : TraitInfo
 	{
-		public override object Create(ActorInitializer init) { return new CountManager(); }
+		[Desc("Maximum count for specific count types.")]
+		public readonly Dictionary<string, int> MaxCounts = new();
+
+		public override object Create(ActorInitializer init) { return new CountManager(this); }
 	}
 
-	public class CountManager : INotifyCountChanged
+	public class CountManager
 	{
-		readonly Dictionary<string, int> counts;
+		public Dictionary<string, int> Counts { get; }
+		public CountManagerInfo Info { get; }
+		public event Action<string, int> Incremented;
+		public event Action<string, int> Decremented;
 
-		public Dictionary<string, int> Counts => counts;
-
-		public event Action Incremented;
-		public event Action Decremented;
-
-		public CountManager()
+		public CountManager(CountManagerInfo info)
 		{
-			counts = new Dictionary<string, int>();
+			Counts = new Dictionary<string, int>();
+			Info = info;
 		}
 
-		void INotifyCountChanged.Incremented(string type)
+		public void Increment(string type)
 		{
-			if (!counts.ContainsKey(type))
-				counts[type] = 0;
+			if (!Counts.ContainsKey(type))
+				Counts[type] = 0;
 
-			counts[type]++;
-			Incremented?.Invoke();
-		}
-
-		void INotifyCountChanged.Decremented(string type)
-		{
-			if (!counts.ContainsKey(type))
+			if (Info.MaxCounts.TryGetValue(type, out var maxCount) && Counts[type] >= maxCount)
 				return;
 
-			counts[type]--;
-			Decremented?.Invoke();
+			Counts[type]++;
+			Incremented?.Invoke(type, Counts[type]);
+		}
+
+		public void Decrement(string type)
+		{
+			if (!Counts.TryGetValue(type, out var value))
+				return;
+
+			if (value <= 0)
+				return;
+
+			Counts[type] = --value;
+			Decremented?.Invoke(type, value);
 		}
 	}
 }

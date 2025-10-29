@@ -201,10 +201,11 @@ dialog5:
 lobby-bits:
 	Inherits: ^Glyphs
 	Regions:
-		spawn-unclaimed: 91, 119, 22, 22
 		spawn-claimed: 68, 119, 22, 22
+		spawn-unclaimed: 91, 119, 22, 22
 		spawn-disabled: 114, 119, 22, 22
 		admin: 170, 0, 6, 5
+		bot: 170, 51, 16, 16
 		colorpicker: 68, 119, 22, 22
 		huepicker: 136, 0, 7, 15
 		kick: 153, 0, 11, 11
@@ -238,45 +239,45 @@ strategic:
 	Inherits: ^Glyphs
 	Regions:
 		unowned: 68, 119, 22, 22
-		critical_unowned: 114, 119, 22, 22
-		enemy_owned: 137, 119, 22, 22
-		player_owned: 183, 119, 22, 22
+		critical_unowned: 137, 119, 22, 22
+		enemy_owned: 160, 119, 22, 22
+		player_owned: 160, 142, 22, 22
 
 flags:
-	Inherits: ^Glyphs
+	Image: flags.png
 	Regions:
-		england: 226, 49, 30, 15
-		germany: 226, 65, 30, 15
-		france: 226, 81, 30, 15
-		usa: 226, 33, 30, 15
-		zocom: 226, 97, 30, 15
-		talon: 226, 113, 30, 15
-		eagle: 226, 129, 30, 15
-		arc: 226, 17, 30, 15
-		ukraine: 226, 145, 30, 15
-		russia: 226, 161, 30, 15
-		iraq: 195, 145, 30, 15
-		yuri: 164, 145, 30, 15
-		blackh: 195, 161, 30, 15
-		legion: 133, 161, 30, 15
-		marked: 164, 161, 30, 15
-		shadow: 102, 161, 30, 15
-		allies: 226, 177, 30, 15
-		soviet: 226, 193, 30, 15
-		gdi: 226, 97, 30, 15
-		nod: 195, 161, 30, 15
-		scrin: 164, 177, 30, 15
-		reaper: 133, 177, 30, 15
-		traveler: 102, 177, 30, 15
-		harbinger: 164, 177, 30, 15
-		collector: 71, 177, 30, 15
-		RandomSoviet: 226, 209, 30, 15
-		RandomAllies: 226, 225, 30, 15
-		RandomGDI: 195, 177, 30, 15
-		RandomNOD: 133, 145, 30, 15
-		RandomScrin: 102, 145, 30,15
-		Random: 226, 241, 30, 15
-		spectator: 226, 241, 30, 15
+		allies: 31, 16, 30, 15
+		england: 62, 16, 30, 15
+		germany: 93, 16, 30, 15
+		france: 124, 16, 30, 15
+		usa: 155, 16, 30, 15
+		soviet: 31, 32, 30, 15
+		russia: 62, 32, 30, 15
+		ukraine: 93, 32, 30, 15
+		iraq: 124, 32, 30, 15
+		yuri: 155, 32, 30, 15
+		gdi: 31, 48, 30, 15
+		talon: 62, 48, 30, 15
+		zocom: 93, 48, 30, 15
+		eagle: 124, 48, 30, 15
+		arc: 155, 48, 30, 15
+		nod: 31, 64, 30, 15
+		blackh: 62, 64, 30, 15
+		marked: 93, 64, 30, 15
+		legion: 124, 64, 30, 15
+		shadow: 155, 64, 30, 15
+		scrin: 31, 80, 30, 15
+		reaper: 62, 80, 30, 15
+		traveler: 93, 80, 30, 15
+		harbinger: 124, 80, 30, 15
+		collector: 155, 80, 30, 15
+		RandomAllies: 0, 16, 30, 15
+		RandomSoviet: 0, 32, 30, 15
+		RandomGDI: 0, 48, 30, 15
+		RandomNOD: 0, 64, 30, 15
+		RandomScrin: 0, 80, 30,15
+		Random: 0, 0, 30, 15
+		spectator: 0, 0, 30, 15
 
 music:
 	Inherits: ^Glyphs
@@ -395,7 +396,7 @@ scrollitem-pressed:
 	PanelRegion: 543, 452, 0, 0, 30, 30, 0, 0
 
 scrollitem-highlighted:
-	Inherits: button-pressed
+	Inherits: button-highlighted-pressed
 
 scrollitem-highlighted-hover:
 	Inherits: button-highlighted-pressed
@@ -518,9 +519,9 @@ mission-completion-tick:
 mission-completion-stars:
 	Inherits: ^Glyphs
 	Regions:
-		hard: 0, 256, 52, 16
-		normal: 0, 272, 52, 16
-		easy: 0, 288, 52, 16
+		bronze: 0, 256, 17, 16
+		silver: 17, 256, 17, 16
+		gold: 34, 256, 17, 16
 
 loading-artwork:
 	Image: ca-loading-artwork.png
@@ -575,6 +576,41 @@ dropdown-separators:
 
 separator:
 	Inherits: button
+
+editor:
+	Inherits: ^Glyphs
+	Regions:
+		select: 34, 187, 16, 16
+		tiles: 0, 187, 16, 16
+		overlays: 17, 187, 16, 16
+		actors: 34, 68, 16, 16
+		tools: 136, 68, 16, 16
+		history: 136, 51, 16, 16
+		erase: 50, 187, 16, 16
+
+tab-button:
+	Inherits: button
+
+tab-button-hover:
+	Inherits: button-hover
+
+tab-button-pressed:
+	Inherits: button-highlighted-pressed
+
+tab-button-disabled:
+	Inherits: button-disabled
+
+tab-button-highlighted:
+	Inherits: button-highlighted-pressed
+
+tab-button-highlighted-hover:
+	Inherits: button-highlighted-pressed
+
+tab-button-highlighted-pressed:
+	Inherits: button-highlighted-pressed
+
+tab-button-highlighted-disabled:
+	Inherits: button-highlighted-disabled
 
 # #### New UI
 
@@ -1571,64 +1607,70 @@ moddb-icon-pressed:
 # ---- Player Rank
 
 allied-coalition:
-	Image: player-ui-allies.png
+	Image: branch-indicators.png
 	Regions:
-		disabled: 0, 0, 1, 1
-		none: 0, 840, 43, 78
-		korea: 44, 840, 43, 78
-		sweden: 88, 840, 43, 78
-		greece: 132, 840, 43, 78
+		disabled: 512, 512, 1, 1
+		influence-empty: 0, 0, 29, 65
+		influence-full: 30, 0, 29, 65
+		none: 60, 0, 29, 65
+		greece: 90, 0, 29, 65
+		korea: 120, 0, 29, 65
+		sweden: 150, 0, 29, 65
+		level0: 512, 512, 1, 1
+		level1: 182, 29, 10, 9
+		level2: 212, 29, 10, 9
+		level3: 242, 29, 10, 9
 
 soviet-player-ranks:
-	Image: player-ui-soviet.png
+	Image: branch-indicators.png
 	Regions:
-		disabled: 80, 704, 39, 67
-		level0: 0, 0, 1, 1
-		level1: 0, 704, 39, 67
-		level2: 40, 704, 39, 67
-		level3: 80, 704, 39, 67
-		level0-glow: 0, 0, 1, 1
-		level1-glow: 0, 772, 39, 67
-		level2-glow: 40, 772, 39, 67
-		level3-glow: 80, 772, 39, 67
-		rank-up: 0, 646, 115, 54
+		disabled: 120, 66, 39, 67
+		level0: 0, 66, 39, 67
+		level1: 40, 66, 39, 67
+		level2: 80, 66, 39, 67
+		level3: 120, 66, 39, 67
+		level0-glow: 512, 512, 1, 1
+		level1-glow: 160, 66, 39, 67
+		level2-glow: 200, 66, 39, 67
+		level3-glow: 240, 66, 39, 67
+		rank-up: 397, 66, 115, 54
 
 gdi-strategy:
-	Image: player-ui-gdi.png
+	Image: branch-indicators.png
 	Regions:
-		disabled: 60, 649, 29, 65
-		level0: 0, 0, 1, 1
-		level1: 0, 649, 29, 65
-		level2: 30, 649, 29, 65
-		level3: 60, 649, 29, 65
+		disabled: 90, 134, 29, 65
+		level0: 0, 134, 29, 65
+		level1: 30, 134, 29, 65
+		level2: 60, 134, 29, 65
+		level3: 90, 134, 29, 65
 
 nod-covenant:
-	Image: player-ui-nod.png
+	Image: branch-indicators.png
 	Regions:
-		disabled: 60, 649, 29, 65
-		level0: 0, 0, 1, 1
-		level1: 0, 649, 29, 65
-		level2: 30, 649, 29, 65
-		level3: 60, 649, 29, 65
+		disabled: 90, 200, 29, 65
+		level0: 0, 200, 29, 65
+		level1: 30, 200, 29, 65
+		level2: 60, 200, 29, 65
+		level3: 90, 200, 29, 65
 
 scrin-allegiance:
-	Image: player-ui-scrin.png
+	Image: branch-indicators.png
 	Regions:
 		disabled: 114, 701, 37, 71
-		level0: 0, 0, 1, 1
-		level1: 0, 701, 37, 71
-		level2: 38, 701, 37, 71
-		level3: 76, 701, 37, 71
-		level4: 114, 701, 37, 71
-		loyalist: 152, 701, 37, 71
-		rebel: 190, 701, 37, 71
-		malefic: 228, 701, 37, 71
-		level0-glow: 0, 0, 1, 1
-		level1-glow: 0, 773, 37, 71
-		level2-glow: 38, 773, 37, 71
-		level3-glow: 76, 773, 37, 71
-		level4-glow: 114, 773, 37, 71
-		loyalist-glow: 152, 773, 37, 71
-		rebel-glow: 190, 773, 37, 71
-		malefic-glow: 228, 773, 37, 71
-		ref-added: 0, 646, 115, 54
+		level0: 0, 266, 37, 71
+		level1: 38, 266, 37, 71
+		level2: 76, 266, 37, 71
+		level3: 114, 266, 37, 71
+		level4: 152, 266, 37, 71
+		loyalist: 190, 266, 37, 71
+		rebel: 228, 266, 37, 71
+		malefic: 266, 266, 37, 71
+		level0-glow: 512, 512, 1, 1
+		level1-glow: 38, 338, 37, 71
+		level2-glow: 76, 338, 37, 71
+		level3-glow: 114, 338, 37, 71
+		level4-glow: 152, 338, 37, 71
+		loyalist-glow: 190, 338, 37, 71
+		rebel-glow: 228, 338, 37, 71
+		malefic-glow: 266, 338, 37, 71
+		ref-added: 397, 267, 115, 54

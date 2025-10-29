@@ -41,6 +41,14 @@ namespace OpenRA.Mods.CA
 				.Select(a => a.Trait);
 		}
 
+		public static ILookup<string, ProductionQueue> FindQueuesByCategory(Player player)
+		{
+			return player.World.ActorsWithTrait<ProductionQueue>()
+				.Where(a => a.Actor.Owner == player && a.Trait.Enabled)
+				.Select(a => a.Trait)
+				.ToLookup(pq => pq.Info.Type);
+		}
+
 		public static IEnumerable<Actor> GetActorsWithTrait<T>(World world)
 		{
 			return world.ActorsHavingTrait<T>();
@@ -55,6 +63,12 @@ namespace OpenRA.Mods.CA
 		{
 			return owner.World.Actors.Count(a => !a.IsDead && a.Owner == owner &&
 				commonNames.Contains(a.Info.Name));
+		}
+
+		public static int CountActorByCommonName<TTraitInfo>(
+			ActorIndex.OwnerAndNamesAndTrait<TTraitInfo> actorIndex) where TTraitInfo : ITraitInfoInterface
+		{
+			return actorIndex.Actors.Count(a => !a.IsDead);
 		}
 
 		public static int CountBuildingByCommonName(HashSet<string> buildings, Player owner)
@@ -78,6 +92,17 @@ namespace OpenRA.Mods.CA
 		{
 			if (Game.Settings.Debug.BotDebug)
 				TextNotificationsManager.Debug(s, args);
+		}
+
+		// temporarily added here (they were removed from WorldUtils)
+		public static Actor ClosestTo(this IEnumerable<Actor> actors, WPos pos)
+		{
+			return actors.MinByOrDefault(a => (a.CenterPosition - pos).LengthSquared);
+		}
+
+		public static WPos PositionClosestTo_Old(this IEnumerable<WPos> positions, WPos pos)
+		{
+			return positions.MinByOrDefault(p => (p - pos).LengthSquared);
 		}
 	}
 }

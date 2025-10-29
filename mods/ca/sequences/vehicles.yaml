@@ -569,13 +569,6 @@ apc:
 		Filename: minigun16.shp
 		Length: 6
 		Facings: 16
-	turret:
-		Filename: rapc.shp
-		Facings: 32
-		UseClassicFacings: True
-	muzzle2:
-		Filename: gunfire2.shp
-		Length: 5
 	open:
 		Filename: apc.shp
 		Start: 32
@@ -586,10 +579,14 @@ apc:
 	icon:
 		Filename: apcicon.shp
 
-rapc:
+aapc:
 	Inherits: apc
+	turret:
+		Filename: aapc.shp
+		Facings: 32
+		UseClassicFacings: True
 	icon:
-		Filename: rapcicon.shp
+		Filename: aapcicon.shp
 
 apc.destroyed:
 	Inherits: ^VehicleOverlays
@@ -1020,6 +1017,23 @@ bggy.destroyed:
 		UseClassicFacings: True
 		ZOffset: -512
 
+rbug:
+	Inherits: ^VehicleOverlays
+	idle:
+		Filename: rbug.shp
+		Facings: 32
+		UseClassicFacings: True
+	turret:
+		Filename: rbug.shp
+		Start: 32
+		Facings: 32
+		UseClassicFacings: True
+	muzzle:
+		Filename: lasermuzzle.shp
+		Length: *
+	icon:
+		Filename: rbugicnh.shp
+
 mtnk:
 	Inherits: ^VehicleOverlays
 	idle:
@@ -1392,6 +1406,9 @@ stnktnod:
 		Filename: stnktnod.shp
 		Start: 32
 		Facings: 32
+	turret-upg:
+		Filename: stnktupg.shp
+		Facings: 32
 	icon:
 		Filename: stnkicnh.shp
 
@@ -1412,6 +1429,9 @@ hstk:
 	turret:
 		Filename: hstk.shp
 		Start: 32
+		Facings: 32
+	turret-upg:
+		Filename: hstktupg.shp
 		Facings: 32
 	icon:
 		Filename: hstkicnh.shp
@@ -1434,6 +1454,10 @@ bike:
 	Inherits: ^VehicleOverlays
 	idle:
 		Filename: bike.shp
+		Facings: 32
+		UseClassicFacings: True
+	idle-upgrade:
+		Filename: bikeupg.shp
 		Facings: 32
 		UseClassicFacings: True
 	icon:
@@ -2852,7 +2876,8 @@ pbul:
 		Facings: 32
 		UseClassicFacings: True
 	turret:
-		Filename: hvrtur.shp
+		Filename: pbul.shp
+		Start: 32
 		Facings: 32
 		UseClassicFacings: True
 	icon:
@@ -3110,7 +3135,7 @@ avtr:
 		Filename: lasermuzzle.shp
 		Frames: 0,1,2,1,2,1,2,1,2
 		Length: *
-		Offset:	0, 0
+		Offset: 0, 0
 	muzzle-flame:
 		Combine:
 			0:
@@ -3147,15 +3172,15 @@ avtr:
 				Offset: -7,8
 		Facings: 8
 		Length: 13
-		Offset:	0, 0
+		Offset: 0, 0
 	muzzle-black:
 		Filename: flameblack.shp
 		Length: 13
 		Facings: 8
-		Offset:	0, 0
+		Offset: 0, 0
 	icon:
 		Filename: avtricnh.shp
-		Offset:	0, 0
+		Offset: 0, 0
 
 avtr.destroyed:
 	Inherits: ^VehicleOverlays
@@ -3164,3 +3189,25 @@ avtr.destroyed:
 		Facings: 32
 		ZOffset: -512
 		Offset: 0, -5
+
+cust:
+	Inherits: ^VehicleOverlays
+	idle:
+		Filename: cust.shp
+		Facings: 32
+		UseClassicFacings: True
+	spinner:
+		Filename: cust.shp
+		Start: 32
+		Length: 8
+		Tick: 80
+	icon:
+		Filename: custicon.shp
+
+cust.destroyed:
+	Inherits: ^VehicleOverlays
+	idle:
+		Filename: cust.shp
+		Facings: 32
+		UseClassicFacings: True
+		ZOffset: -512

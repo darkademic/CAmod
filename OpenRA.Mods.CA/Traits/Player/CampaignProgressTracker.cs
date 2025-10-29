@@ -20,6 +20,7 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.CA.Traits
 {
+	[TraitLocation(SystemActors.Player)]
 	[Desc("Stores campaign progress.")]
 	public class CampaignProgressTrackerInfo : TraitInfo
 	{
@@ -29,10 +30,9 @@ namespace OpenRA.Mods.CA.Traits
 	public class CampaignProgressTracker : INotifyWinStateChanged, IResolveOrder
 	{
 		private const string encryptionKey = "b14ca5898a4e4133bbce2ea2315a1916";
-		private static string campaignProgressFilePath = Path.Combine(Platform.SupportDir + "Logs", "ca-campaign.log");
+		private static string oldCampaignProgressFilePath = Path.Combine(Platform.SupportDir + "Logs", "ca-campaign.log");
+		private static string campaignProgressFilePath = Path.Combine(Platform.SupportDir + "Logs", "ca-progress.log");
 		private bool developerCommandUsed = false;
-
-		public CampaignProgressTracker() {}
 
 		void INotifyWinStateChanged.OnPlayerWon(Player player)
 		{
@@ -42,40 +42,63 @@ namespace OpenRA.Mods.CA.Traits
 			if (player != player.World.LocalPlayer)
 				return;
 
+			if (player.World.Players.Count(p => p.Playable) > 1)
+				return;
+
 			if (!player.World.Map.Categories.Contains("Campaign"))
 				return;
 
 			var missionTitle = GetMapTileWithoutNumber(player.World.Map.Title);
-			var difficulty = player.World.WorldActor.TraitsImplementing<ScriptLobbyDropdown>()
+			var worldActor = player.World.WorldActor;
+			var difficulty = worldActor.TraitsImplementing<ScriptLobbyDropdown>()
 				.FirstOrDefault(sld => sld.Info.ID == "difficulty");
+
+			var shroud = player.PlayerActor.TraitOrDefault<Shroud>();
+			bool? fogEnabled = shroud?.FogEnabled;
+
+			var mapBuildRadius = player.World.WorldActor.TraitOrDefault<MapBuildRadius>();
+			bool? buildRadiusEnabled = mapBuildRadius?.BuildRadiusEnabled;
+
+			var respawnDropdown = worldActor.TraitsImplementing<ScriptLobbyDropdown>()
+				.FirstOrDefault(sld => sld.Info.ID == "respawn");
+
+			bool? respawnEnabled = respawnDropdown != null ? respawnDropdown.Value == "enabled" : null;
 
 			var campaignProgress = GetCampaignProgress();
 			campaignProgress.TryGetValue(missionTitle, out var existingMissionResult);
 
 			if (existingMissionResult != null)
 			{
-				// If mission has difficulty settings, only store victory if mission is not already completed on same or higher difficulty.
 				if (difficulty != null)
 				{
-					var difficultyOptions = difficulty.Info.Values.Reverse();
-					foreach (var option in difficultyOptions)
-					{
-						// Mission beaten on a higher difficulty, store the new details.
-						if (option.Key == difficulty.Value && option.Key != existingMissionResult.Difficulty)
-							break;
+					var currentDifficultyIndex = -1;
+					var existingDifficultyIndex = -1;
 
-						// Mission beaten on same difficulty, only store the new details if the new time is better.
-						if (option.Key == existingMissionResult.Difficulty && existingMissionResult.Ticks <= player.World.WorldTick)
-							return;
+					var optionsList = difficulty.Info.Values.ToList();
+					for (int i = 0; i < optionsList.Count; i++)
+					{
+						if (optionsList[i].Key == difficulty.Value)
+							currentDifficultyIndex = i;
+
+						if (optionsList[i].Key == existingMissionResult.Difficulty)
+							existingDifficultyIndex = i;
 					}
+
+					// If existing result is on higher difficulty don't overwrite
+					if (existingDifficultyIndex >= 0 && existingDifficultyIndex > currentDifficultyIndex)
+						return;
+
+					// If same difficulty, only store if new time is better
+					if (currentDifficultyIndex == existingDifficultyIndex && existingMissionResult.Ticks <= player.World.WorldTick)
+						return;
 				}
 				else if (existingMissionResult.Ticks <= player.World.WorldTick)
 					return;
 			}
 
-			var speed = TranslationProvider.GetString(player.World.GameSpeed.Name);
+			var speed = FluentProvider.GetMessage(player.World.GameSpeed.Name);
 
-			var result = new MissionVictoryResult()
+			campaignProgress[missionTitle] = new MissionVictoryResult()
 			{
 				Uid = player.World.Map.Uid,
 				Version = Game.ModData.Manifest.Metadata.Version,
@@ -84,14 +107,16 @@ namespace OpenRA.Mods.CA.Traits
 				Time = WidgetUtils.FormatTime(player.World.WorldTick, player.World.Timestep),
 				Ticks = player.World.WorldTick,
 				DateCompleted = DateTime.Now,
-				Speed = speed
+				Speed = speed,
+				FogEnabled = fogEnabled,
+				BuildRadiusEnabled = buildRadiusEnabled,
+				RespawnEnabled = respawnEnabled
 			};
 
-			campaignProgress[missionTitle] = result;
 			SaveCampaignProgress(campaignProgress);
 		}
 
-		void INotifyWinStateChanged.OnPlayerLost(Player player)	{ }
+		void INotifyWinStateChanged.OnPlayerLost(Player player) { }
 
 		void IResolveOrder.ResolveOrder(Actor self, Order order)
 		{
@@ -121,6 +146,21 @@ namespace OpenRA.Mods.CA.Traits
 				{
 					var campaignProgressFileContents = File.ReadAllText(campaignProgressFilePath);
 					var decryptedJson = DecryptString(campaignProgressFileContents, encryptionKey);
+					campaignProgress = JsonConvert.DeserializeObject<Dictionary<string, MissionVictoryResult>>(decryptedJson);
+				}
+				catch
+				{
+					// do nothing
+				}
+			}
+			// backwards compatibility
+			else if (File.Exists(oldCampaignProgressFilePath))
+			{
+				try
+				{
+					var oldFileContents = File.ReadAllText(oldCampaignProgressFilePath);
+					File.WriteAllText(campaignProgressFilePath, oldFileContents);
+					var decryptedJson = DecryptString(oldFileContents, encryptionKey);
 					campaignProgress = JsonConvert.DeserializeObject<Dictionary<string, MissionVictoryResult>>(decryptedJson);
 				}
 				catch
@@ -210,5 +250,8 @@ namespace OpenRA.Mods.CA.Traits
 		public int Ticks;
 		public DateTime DateCompleted;
 		public string Speed;
+		public bool? FogEnabled;
+		public bool? BuildRadiusEnabled;
+		public bool? RespawnEnabled;
 	}
 }

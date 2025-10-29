@@ -62,9 +62,9 @@ vulcan.upgrade:
 	icon:
 		Filename: upg-vulcicon.shp
 
-rapc.upgrade:
+aapc.upgrade:
 	icon:
-		Filename: upg-rapcicon.shp
+		Filename: upg-aapcicon.shp
 
 empgren.upgrade:
 	icon:
@@ -137,10 +137,6 @@ sidewinders.upgrade:
 ceramic.upgrade:
 	icon:
 		Filename: upg-ceramicicnh.shp
-
-advcyber.upgrade:
-	icon:
-		Filename: upg-advcybericnh.shp
 
 cyborgarmor.upgrade:
 	icon:
@@ -421,3 +417,11 @@ development.policy:
 timeskip:
 	icon:
 		Filename: timeskipicon.shp
+
+cust.upgrade:
+	icon:
+		Filename: upg-custicon.shp
+
+rbug.upgrade:
+	icon:
+		Filename: upg-rbugicon.shp

@@ -47,10 +47,6 @@ namespace OpenRA.Mods.CA.Traits
 		[Desc("If true, targets must be owned by the player using the support power (overrides ValidRelationships).")]
 		public readonly bool OwnedTargetsOnly = false;
 
-		[CursorReference]
-		[Desc("Cursor to display when there are no units to apply the condition in range.")]
-		public readonly string BlockedCursor = "move-blocked";
-
 		[Desc("If true, targets must not be under shroud/fog.")]
 		public readonly bool TargetMustBeVisible = true;
 
@@ -104,6 +100,9 @@ namespace OpenRA.Mods.CA.Traits
 
 		[Desc("Range in which to apply condition.")]
 		public readonly WDist Range = WDist.Zero;
+
+		[Desc("If true, order by value, otherwise order by distance.")]
+		public readonly bool PrioritizeByValue = false;
 
 		// Footprint mode only
 
@@ -223,10 +222,9 @@ namespace OpenRA.Mods.CA.Traits
 			var centerPos = Self.World.Map.CenterOfCell(xy);
 
 			var actorsInRange = Self.World.FindActorsInCircle(centerPos, info.Range)
-				.Where(a => {
-					return IsValidTarget(a);
-				})
-				.OrderBy(a => (a.CenterPosition - centerPos).LengthSquared);
+				.Where(a => IsValidTarget(a))
+				.OrderByDescending(a => info.PrioritizeByValue ? a.Info.TraitInfoOrDefault<ValuedInfo>()?.Cost ?? 0 : 0)
+				.ThenBy(a => (a.CenterPosition - centerPos).LengthSquared);
 
 			if (info.MaxTargets > 0)
 				return actorsInRange.Take(info.MaxTargets);
@@ -237,14 +235,12 @@ namespace OpenRA.Mods.CA.Traits
 		private IEnumerable<Actor> GetTargetsInFootprint(CPos xy)
 		{
 			var tiles = CellsMatching(xy, footprint, info.Dimensions);
-			var units = new List<Actor>();
+			var units = new HashSet<Actor>();
 			foreach (var t in tiles)
-				units.AddRange(Self.World.ActorMap.GetActorsAt(t));
+				foreach (var a in Self.World.ActorMap.GetActorsAt(t))
+					units.Add(a);
 
-			return units.Distinct().Where(a =>
-			{
-				return IsValidTarget(a);
-			});
+			return units.Where(a => IsValidTarget(a));
 		}
 
 		bool IsValidTarget(Actor a)
@@ -403,7 +399,7 @@ namespace OpenRA.Mods.CA.Traits
 						world.Map.CenterOfCell(xy),
 						power.info.Range,
 						0,
-						power.info.TargetCircleUsePlayerColor ? power.Self.Owner.Color : power.info.TargetCircleColor,
+						power.info.TargetCircleUsePlayerColor ? power.Self.OwnerColor() : power.info.TargetCircleColor,
 						1,
 						Color.FromArgb(96, Color.Black),
 						3);

@@ -11,10 +11,10 @@ MINV:
 	GrantConditionOnFaction@Soviets:
 		Factions: soviet, russia, ukraine, iraq, yuri
 		Condition: soviet
-	Explodes@Allies:
+	FireWarheadsOnDeath@Allies:
 		Weapon: ATMine
 		RequiresCondition: !soviet && !defused
-	Explodes@Soviet:
+	FireWarheadsOnDeath@Soviet:
 		Weapon: APMine
 		RequiresCondition: soviet && !defused
 	ExternalCondition@DEFUSED:
@@ -32,12 +32,12 @@ MINVS:
 # Only kept for backwards-compatibility with existing and imported maps, use MINV instead
 MINP:
 	Inherits: MINV
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: APMine
 
 MINS:
 	Inherits: ^Mine
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: ATMine
 
 PROXYMINESPAWN:
@@ -338,6 +338,8 @@ camera.infiltrator:
 	KillsSelf:
 		RemoveInstead: true
 		Delay: 3000
+	UpdatesCount@NodCovenant:
+		Type: NodCovenant
 
 camera.paradrop:
 	Inherits: ^CameraBase
@@ -526,7 +528,7 @@ FLARE:
 		Type: CenterPosition
 	RenderSprites:
 		Image: smokland
-		PlayerPalette : player
+		PlayerPalette: player
 	WithSpriteBody:
 		StartSequence: open
 	BodyOrientation:
@@ -714,6 +716,7 @@ powerproxy.sonarpulse:
 		EffectImage: moveflsh
 		EffectPalette: moveflash
 		SupportPowerPaletteOrder: 70
+		BlockedCursor: move-blocked
 
 powerproxy.paratroopers:
 	Inherits@DUMMY: ^InvisibleDummy
@@ -724,7 +727,7 @@ powerproxy.paratroopers:
 		Name: Paratroopers (Single Use)
 		Description: A Halo transport drops a squad of infantry\nanywhere on the map.
 		OneShot: true
-		AllowMultiple: true
+		AllowMultiple: false
 		DropItems: E1,E1,E1,E3,E3,E1,E1,E1,E2,E2
 		SelectTargetSpeechNotification: SelectTarget
 		EndChargeSpeechNotification: Reinforce
@@ -749,7 +752,7 @@ powerproxy.paratroopers.allies:
 		Name: Paratroopers (Single Use)
 		Description: A Chinook drops a squad of infantry\nanywhere on the map.
 		OneShot: true
-		AllowMultiple: true
+		AllowMultiple: false
 		DropItems: E1,E1,E1,E1,E3,E3,E3,MEDI
 		SelectTargetSpeechNotification: SelectTarget
 		EndChargeSpeechNotification: Reinforce
@@ -837,11 +840,13 @@ powerproxy.airstrike:
 	Inherits@DUMMY: ^InvisibleDummy
 	ClassicAirstrikePower:
 		Squad:
-			a10.bomber:
+			1:
+				UnitType: a10.bomber
 				SpawnDelay: 20
 				SpawnOffset: -1536,1024,0
 				TargetOffset: -536,0,0
-			a10.bomber:
+			2:
+				UnitType: a10.bomber
 				SpawnDelay: 0
 				SpawnOffset: 0,0,0
 				TargetOffset: 0,0,0
@@ -849,7 +854,7 @@ powerproxy.airstrike:
 		Name: Air Strike (Single Use)
 		Description: A10 strike planes drop napalm\nbombs on your target.
 		OneShot: true
-		AllowMultiple: true
+		AllowMultiple: false
 		SelectTargetSpeechNotification: SelectTarget
 		EndChargeSpeechNotification: Reinforce
 		LaunchSpeechNotification: ReinforcementsArrived
@@ -1061,6 +1066,7 @@ fact.colorpicker:
 	RenderSprites:
 		Image: fact
 		Palette: colorpicker
+	-Encyclopedia:
 
 afac.colorpicker:
 	Inherits: AFAC
@@ -1069,6 +1075,7 @@ afac.colorpicker:
 	RenderSprites:
 		Image: afac
 		Palette: colorpickertd
+	-Encyclopedia:
 
 sfac.colorpicker:
 	Inherits: SFAC
@@ -1077,6 +1084,7 @@ sfac.colorpicker:
 	RenderSprites:
 		Image: sfac
 		Palette: colorpickerscrin
+	-Encyclopedia:
 
 CTFLAG:
 	Inherits: ^TechBuilding
@@ -1086,13 +1094,14 @@ CTFLAG:
 		HasMinibib: true
 	-HitShape:
 	-Health:
-	-Explodes:
+	-FireWarheadsOnDeath:
 	-Selectable:
 	-SelectionDecorations:
 	-Targetable:
 	MapEditorData:
 		Categories: Decoration
 	Interactable:
+	-Encyclopedia:
 
 SPLIT2:
 	Inherits: ^TibTree
@@ -1417,12 +1426,13 @@ SHAB:
 		DetectionTypes: Mine
 		InitialDelay: 1
 		CloakSound: shad-beaconplace1.aud
+		CloakedAlpha: 1
 	RevealsShroud:
 		Range: 8c0
 	WithIdleAnimation:
 		Sequences: idle
 		Interval: 25
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: AttachShadowBeacon
 	GrantTimedCondition@active:
 		Condition: active
@@ -1439,14 +1449,6 @@ optimized.production2:
 	Inherits@DUMMY: ^InvisibleDummy
 	ProvidesPrerequisite:
 	PopControlled:
-
-nod.covenants.available:
-	AlwaysVisible:
-	Interactable:
-	Tooltip:
-		Name: 3 enemy buildings or harvesters destroyed
-	Buildable:
-		Description: 3 enemy buildings or harvesters destroyed
 
 scrin.allegiances.available:
 	AlwaysVisible:
@@ -1475,17 +1477,17 @@ playerxp.level1:
 playerxp.level2:
 	Inherits@DUMMY: ^InvisibleDummy
 	Tooltip:
-		Name: Rank 1
+		Name: Rank 2
 	Buildable:
-		Description: Player XP rank 1.
+		Description: Player XP rank 2.
 	RenderSprites:
 
 playerxp.level3:
 	Inherits@DUMMY: ^InvisibleDummy
 	Tooltip:
-		Name: Rank 1
+		Name: Rank 3
 	Buildable:
-		Description: Player XP rank 1.
+		Description: Player XP rank 3.
 	RenderSprites:
 
 influence.level1:
@@ -1510,4 +1512,28 @@ influence.level3:
 		Name: Influence Level 3
 	Buildable:
 		Description: Allied influence level 3.
+	RenderSprites:
+
+covenant.level1:
+	Inherits@DUMMY: ^InvisibleDummy
+	Tooltip:
+		Name: Covenant level 1 (1x enemy building destroyed/infiltrated or harvester destroyed)
+	Buildable:
+		Description: Covenant level 1 (1x enemy building destroyed/infiltrated or harvester destroyed)
+	RenderSprites:
+
+covenant.level2:
+	Inherits@DUMMY: ^InvisibleDummy
+	Tooltip:
+		Name: Covenant level 2
+	Buildable:
+		Description: Covenant level 2.
+	RenderSprites:
+
+covenant.level3:
+	Inherits@DUMMY: ^InvisibleDummy
+	Tooltip:
+		Name: Covenant level 3
+	Buildable:
+		Description: Covenant level 3.
 	RenderSprites:

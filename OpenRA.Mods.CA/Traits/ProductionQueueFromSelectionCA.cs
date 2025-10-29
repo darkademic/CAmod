@@ -53,18 +53,6 @@ namespace OpenRA.Mods.CA.Traits
 				.SelectMany(a => a.TraitsImplementing<ProductionQueue>())
 				.FirstOrDefault(q => q.Enabled);
 
-			// Linked producer queue
-			if (queue == null)
-			{
-				queue = world.Selection.Actors
-					.Where(a => a.IsInWorld && a.World.LocalPlayer == a.Owner)
-					.SelectMany(a => a.TraitsImplementing<LinkedProducerTarget>())
-					.Where(t => t.Source?.Actor != null)
-					.Select(t => t.Source.Actor)
-					.SelectMany(s => s.TraitsImplementing<ProductionQueue>())
-					.FirstOrDefault(q => q.Enabled);
-			}
-
 			// Queue-per-player
 			if (queue == null)
 			{
@@ -79,7 +67,7 @@ namespace OpenRA.Mods.CA.Traits
 					.FirstOrDefault(q => q.Enabled && types.Contains(q.Info.Type));
 			}
 
-			if (queue == null || !queue.BuildableItems().Any())
+			if (queue == null || !queue.AnyItemsToBuild())
 				return;
 
 			if (tabsWidget.Value != null)

@@ -1,21 +1,21 @@
 Player:
 	ModularBot@BrutalAI:
-		Name: Brutal AI
+		Name: bot-brutal-ai.name
 		Type: brutal
 	ModularBot@VeryHardAI:
-		Name: Very Hard AI
+		Name: bot-vhard-ai.name
 		Type: vhard
 	ModularBot@HardAI:
-		Name: Hard AI
+		Name: bot-hard-ai.name
 		Type: hard
 	ModularBot@NormalAI:
-		Name: Normal AI
+		Name: bot-normal-ai.name
 		Type: normal
 	ModularBot@EasyAI:
-		Name: Easy AI
+		Name: bot-easy-ai.name
 		Type: easy
 	ModularBot@NavalAI:
-		Name: Naval AI
+		Name: bot-naval-ai.name
 		Type: naval
 	GrantConditionOnBotOwner@BrutalAI:
 		Condition: enable-brutal-ai
@@ -217,44 +217,32 @@ Player:
 					CheckRadius: 8c0
 			airborne:
 				OrderName: airborne
-				MinimumAttractiveness: 5
+				MinimumAttractiveness: 3
 				Consideration@1:
 					Against: Enemy
 					Types: Structure
-					Attractiveness: 2
-					TargetMetric: Value
+					Attractiveness: 1
+					TargetMetric: None
 					CheckRadius: 8c0
 				Consideration@2:
-					Against: Ally
-					Types: Infantry, Vehicle
-					Attractiveness: 1
-					TargetMetric: Value
-					CheckRadius: 8c0
-				Consideration@3:
 					Against: Enemy
 					Types: Water
-					Attractiveness: -5
+					Attractiveness: -3
 					TargetMetric: None
 					CheckRadius: 5c0
 			airbornetank:
 				OrderName: airbornetank
-				MinimumAttractiveness: 5
+				MinimumAttractiveness: 3
 				Consideration@1:
 					Against: Enemy
 					Types: Structure
-					Attractiveness: 2
-					TargetMetric: Value
+					Attractiveness: 1
+					TargetMetric: None
 					CheckRadius: 8c0
 				Consideration@2:
-					Against: Ally
-					Types: Infantry, Vehicle
-					Attractiveness: 1
-					TargetMetric: Value
-					CheckRadius: 8c0
-				Consideration@3:
 					Against: Enemy
 					Types: Water
-					Attractiveness: -5
+					Attractiveness: -3
 					TargetMetric: None
 					CheckRadius: 5c0
 			assassinsquadai:
@@ -373,6 +361,14 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 5c0
+			chaosbombs:
+				OrderName: chaosbombs
+				MinimumAttractiveness: 6
+				Consideration@1:
+					Against: Enemy
+					Types: Infantry, Vehicle
+					Attractiveness: 1
+					CheckRadius: 4c0
 			infernobombs:
 				OrderName: infernobomb
 				MinimumAttractiveness: 1
@@ -570,19 +566,13 @@ Player:
 				OrderName: ironcurtain
 				MinimumAttractiveness: 1000
 				FineScanRadius: 2
-				Consideration@2:
-					Against: Enemy
-					Types: Infantry
-					Attractiveness: 2
-					TargetMetric: Value
-					CheckRadius: 2c0
-				Consideration@3:
+				Consideration@1:
 					Against: Ally
-					Types: Vehicle, Tank
+					Types: Vehicle
 					Attractiveness: 5
 					TargetMetric: Value
 					CheckRadius: 3c0
-				Consideration@4:
+				Consideration@2:
 					Against: Ally
 					Types: Infantry
 					Attractiveness: -2
@@ -745,21 +735,6 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 5c0
-			gateway:
-				OrderName: gateway
-				MinimumAttractiveness: 5
-				Consideration@1:
-					Against: Enemy
-					Types: Structure
-					Attractiveness: 1
-					TargetMetric: None
-					CheckRadius: 8c0
-				Consideration@2:
-					Against: Enemy
-					Types: Water
-					Attractiveness: -5
-					TargetMetric: None
-					CheckRadius: 8c0
 			suppressionpower:
 				OrderName: suppression
 				MinimumAttractiveness: 3000
@@ -799,13 +774,12 @@ Player:
 		RequiresCondition: enable-brutal-ai || enable-vhard-ai || enable-hard-ai || enable-normal-ai || enable-easy-ai || enable-naval-ai
 		HarvesterTypes: harv,harv.td,harv.td.upg,harv.scrin,harv.chrono
 		RefineryTypes: proc,proc.td,proc.scrin
-	CaptureManagerBotModuleCA:
+	CaptureManagerBotModule:
 		RequiresCondition: enable-brutal-ai || enable-vhard-ai || enable-hard-ai || enable-normal-ai || enable-easy-ai
 		CapturingActorTypes: e6,n6,s6
 		CapturableActorTypes: fact,afac,sfac,barr,tent,hand,pyle,port,weap,airs,weap.td,wsph,atek,stek,gtek,tmpl,scrt,dome,hq,hq.upg,nerv,mslo,mslo.nod,weat,eye,rfgn,iron,pdox,sgen,mani,oilb,bio,miss,hosp,fcom
 		CheckCaptureTargetsForVisibility: false
 		MaximumCaptureTargetOptions: 15
-		EnemyAvoidanceRadius: 4c0
 	BridgeRepairBotModule:
 		RequiresCondition: enable-brutal-ai || enable-vhard-ai || enable-hard-ai || enable-normal-ai || enable-easy-ai
 		RepairActorTypes: e6, n6, s6
@@ -1035,7 +1009,7 @@ Player:
 			hovermam.upgrade: 1
 			ionmam.upgrade: 1
 			vulcan.upgrade: 1
-			rapc.upgrade: 1
+			aapc.upgrade: 1
 			empgren.upgrade: 1
 			avenger.upgrade: 1
 			sidewinders.upgrade: 1
@@ -1051,7 +1025,8 @@ Player:
 			rahstealth.upgrade: 1
 			sharv.upgrade: 1
 			hstk.upgrade: 1
-			advcyber.upgrade: 1
+			cust.upgrade: 1
+			rbug.upgrade: 1
 			cyborgdmg.upgrade: 1
 			cyborgprod.upgrade: 1
 			cyborgspeed.upgrade: 1
@@ -1306,7 +1281,7 @@ Player:
 			hovermam.upgrade: 1
 			ionmam.upgrade: 1
 			vulcan.upgrade: 1
-			rapc.upgrade: 1
+			aapc.upgrade: 1
 			empgren.upgrade: 1
 			avenger.upgrade: 1
 			sidewinders.upgrade: 1
@@ -1322,7 +1297,8 @@ Player:
 			rahstealth.upgrade: 1
 			sharv.upgrade: 1
 			hstk.upgrade: 1
-			advcyber.upgrade: 1
+			cust.upgrade: 1
+			rbug.upgrade: 1
 			cyborgdmg.upgrade: 1
 			cyborgprod.upgrade: 1
 			cyborgspeed.upgrade: 1
@@ -1576,7 +1552,7 @@ Player:
 			hovermam.upgrade: 1
 			ionmam.upgrade: 1
 			vulcan.upgrade: 1
-			rapc.upgrade: 1
+			aapc.upgrade: 1
 			empgren.upgrade: 1
 			avenger.upgrade: 1
 			sidewinders.upgrade: 1
@@ -1592,7 +1568,8 @@ Player:
 			rahstealth.upgrade: 1
 			sharv.upgrade: 1
 			hstk.upgrade: 1
-			advcyber.upgrade: 1
+			cust.upgrade: 1
+			rbug.upgrade: 1
 			cyborgdmg.upgrade: 1
 			cyborgprod.upgrade: 1
 			cyborgspeed.upgrade: 1
@@ -1846,7 +1823,7 @@ Player:
 			hovermam.upgrade: 1
 			ionmam.upgrade: 1
 			vulcan.upgrade: 1
-			rapc.upgrade: 1
+			aapc.upgrade: 1
 			empgren.upgrade: 1
 			avenger.upgrade: 1
 			sidewinders.upgrade: 1
@@ -1862,7 +1839,8 @@ Player:
 			rahstealth.upgrade: 1
 			sharv.upgrade: 1
 			hstk.upgrade: 1
-			advcyber.upgrade: 1
+			cust.upgrade: 1
+			rbug.upgrade: 1
 			cyborgdmg.upgrade: 1
 			cyborgprod.upgrade: 1
 			cyborgspeed.upgrade: 1
@@ -2080,7 +2058,7 @@ Player:
 			hovermam.upgrade: 1
 			ionmam.upgrade: 1
 			vulcan.upgrade: 1
-			rapc.upgrade: 1
+			aapc.upgrade: 1
 			empgren.upgrade: 1
 			avenger.upgrade: 1
 			sidewinders.upgrade: 1
@@ -2096,7 +2074,8 @@ Player:
 			rahstealth.upgrade: 1
 			sharv.upgrade: 1
 			hstk.upgrade: 1
-			advcyber.upgrade: 1
+			cust.upgrade: 1
+			rbug.upgrade: 1
 			cyborgdmg.upgrade: 1
 			cyborgprod.upgrade: 1
 			cyborgspeed.upgrade: 1
@@ -2223,6 +2202,8 @@ Player:
 			mast: 2250
 			yuri: 2250
 			bori: 2250
+			u3.squad: 3750
+			gtnk.squad: 3750
 		UnitsToBuild:
 			e1: 65
 			e2: 25
@@ -2269,6 +2250,7 @@ Player:
 			hopl: 15
 			tigr: 15
 			cryt: 15
+			mrdr: 15
 			evis: 15
 			impl: 15
 			stlk: 15
@@ -2288,7 +2270,7 @@ Player:
 			jeep: 30
 			apc2.nodai: 20
 			apc2.gdiai: 20
-			rapc.ai: 20
+			aapc.ai: 20
 			vulc.ai: 10
 			hmmv: 30
 			gdrn: 30
@@ -2441,7 +2423,7 @@ Player:
 			apc.ai: 2
 			apc2.nodai: 2
 			apc2.gdiai: 2
-			rapc.ai: 2
+			aapc.ai: 2
 			vulc.ai: 5
 			btr.ai: 5
 			btr.yuri.ai: 5
@@ -2553,6 +2535,8 @@ Player:
 			mast: 3000
 			yuri: 3000
 			bori: 3000
+			u3.squad: 4500
+			gtnk.squad: 4500
 		UnitsToBuild:
 			e1: 65
 			e2: 25
@@ -2599,6 +2583,7 @@ Player:
 			hopl: 15
 			tigr: 15
 			cryt: 15
+			mrdr: 15
 			evis: 15
 			impl: 15
 			stlk: 15
@@ -2771,7 +2756,7 @@ Player:
 			apc.ai: 2
 			apc2.nodai: 2
 			apc2.gdiai: 2
-			rapc.ai: 2
+			aapc.ai: 2
 			vulc.ai: 5
 			btr.ai: 5
 			btr.yuri.ai: 5
@@ -2847,6 +2832,8 @@ Player:
 			mast: 3750
 			yuri: 3750
 			bori: 3750
+			u3.squad: 4500
+			gtnk.squad: 4500
 		UnitsToBuild:
 			e1: 65
 			e2: 25
@@ -2893,6 +2880,7 @@ Player:
 			hopl: 15
 			tigr: 15
 			cryt: 15
+			mrdr: 15
 			evis: 15
 			impl: 15
 			stlk: 15
@@ -2905,7 +2893,7 @@ Player:
 			yuri: 15
 			mast: 15
 			apc: 20
-			rapc: 20
+			aapc: 20
 			sapc: 10
 			intl: 10
 			jeep: 30
@@ -3060,7 +3048,7 @@ Player:
 			nhaw: 1
 			apc: 2
 			apc2: 2
-			rapc: 2
+			aapc: 2
 			vulc: 5
 			hmmv: 2
 			bggy: 2
@@ -3133,6 +3121,8 @@ Player:
 			mast: 4500
 			yuri: 4500
 			bori: 4500
+			u3.squad: 4500
+			gtnk.squad: 4500
 		UnitsToBuild:
 			e1: 65
 			e2: 25
@@ -3179,6 +3169,7 @@ Player:
 			hopl: 15
 			tigr: 15
 			cryt: 15
+			mrdr: 15
 			evis: 15
 			impl: 15
 			stlk: 15
@@ -3191,7 +3182,7 @@ Player:
 			yuri: 15
 			mast: 15
 			apc: 20
-			rapc: 20
+			aapc: 20
 			sapc: 10
 			intl: 10
 			jeep: 30
@@ -3346,7 +3337,7 @@ Player:
 			nhaw: 1
 			apc: 2
 			apc2: 2
-			rapc: 2
+			aapc: 2
 			vulc: 5
 			hmmv: 2
 			bggy: 2
@@ -3405,6 +3396,8 @@ Player:
 			harv.td.upg: 2250
 			harv.scrin: 2250
 			harv.chrono: 2250
+			u3.squad: 4500
+			gtnk.squad: 4500
 		UnitsToBuild:
 			e1: 65
 			e2: 25

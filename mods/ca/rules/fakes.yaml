@@ -98,6 +98,8 @@ WEAF:
 	Inherits: ^FakeBuilding
 	Inherits@infiltrate: ^InfiltratableFake
 	Inherits@SHAPE: ^3x2Shape
+	Selectable:
+		Bounds: 3072, 2048
 	Buildable:
 		BuildPaletteOrder: 920
 		Prerequisites: weap, ~structures.england, ~techlevel.low
@@ -117,7 +119,7 @@ WEAF:
 		LocalCenterOffset: 0,-512,0
 	WithBuildingBib:
 	RenderSprites:
-		Image: WEAP
+		Image: weap
 	WithProductionDoorOverlay:
 		Sequence: build-top
 		RequiresCondition: !build-incomplete
@@ -159,7 +161,7 @@ DOMF:
 		LocalCenterOffset: 0,-512,0
 	WithBuildingBib:
 	RenderSprites:
-		Image: DOME
+		Image: dome
 	Valued:
 		Cost: 200
 	Health:
@@ -202,7 +204,7 @@ FACF:
 	WithBuildingPlacedAnimation:
 		RequiresCondition: !build-incomplete
 	RenderSprites:
-		Image: FACT
+		Image: fact
 	Valued:
 		Cost: 250
 	Health:
@@ -250,7 +252,7 @@ SYRF:
 			TopLeft: -512, 598
 			BottomRight: 512, 1110
 	RenderSprites:
-		Image: SYRD
+		Image: syrd
 	Valued:
 		Cost: 100
 	Health:

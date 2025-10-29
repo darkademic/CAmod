@@ -25,9 +25,11 @@ namespace OpenRA.Mods.CA.Widgets
 {
 	public class SupportPowersScrollableWidget : Widget
 	{
-		public readonly string ReadyText = "";
+		[FluentReference]
+		public string ReadyText = "";
 
-		public readonly string HoldText = "";
+		[FluentReference]
+		public string HoldText = "";
 
 		public readonly string OverlayFont = "TinyBold";
 
@@ -121,7 +123,10 @@ namespace OpenRA.Mods.CA.Widgets
 			overlayFont = Game.Renderer.Fonts[OverlayFont];
 
 			iconOffset = 0.5f * IconSize.ToFloat2() + IconSpriteOffset;
+
+			HoldText = FluentProvider.GetMessage(HoldText);
 			holdOffset = iconOffset - overlayFont.Measure(HoldText) / 2;
+			ReadyText = FluentProvider.GetMessage(ReadyText);
 			readyOffset = iconOffset - overlayFont.Measure(ReadyText) / 2;
 
 			clock = new Animation(worldRenderer.World, ClockAnimation);
@@ -130,7 +135,7 @@ namespace OpenRA.Mods.CA.Widgets
 		public void RefreshIcons()
 		{
 			icons = new Dictionary<Rectangle, SupportPowerIcon>();
-			var powers = spm.Powers.Values.Where(p => !p.Disabled)
+			var powers = spm.Powers.Values.Where(p => !p.Disabled && p.Info != null)
 				.OrderBy(p => p.Info.SupportPowerPaletteOrder);
 
 			if (CurrentStartIndex > powers.Count() - 1)
@@ -183,11 +188,14 @@ namespace OpenRA.Mods.CA.Widgets
 		{
 			if (!clicked.Power.Active)
 			{
-				Game.Sound.PlayToPlayer(SoundType.UI, spm.Self.Owner, clicked.Power.Info.InsufficientPowerSound);
-				Game.Sound.PlayNotification(spm.Self.World.Map.Rules, spm.Self.Owner, "Speech",
-					clicked.Power.Info.InsufficientPowerSpeechNotification, spm.Self.Owner.Faction.InternalName);
+				if (clicked.Power.Info != null)
+				{
+					Game.Sound.PlayToPlayer(SoundType.UI, spm.Self.Owner, clicked.Power.Info.InsufficientPowerSound);
+					Game.Sound.PlayNotification(spm.Self.World.Map.Rules, spm.Self.Owner, "Speech",
+						clicked.Power.Info.InsufficientPowerSpeechNotification, spm.Self.Owner.Faction.InternalName);
 
-				TextNotificationsManager.AddTransientLine(clicked.Power.Info.InsufficientPowerTextNotification, spm.Self.Owner);
+					TextNotificationsManager.AddTransientLine(spm.Self.Owner, clicked.Power.Info.InsufficientPowerTextNotification);
+				}
 			}
 			else
 				clicked.Power.Target();

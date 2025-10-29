@@ -11,7 +11,7 @@ SS:
 	TooltipExtras:
 		Strengths: • Strong vs Naval Units
 		Weaknesses: • Cannot attack Ground Units, Aircraft
-		Attributes: • Can detect other submarines
+		Attributes: • Detects other submarines
 	Valued:
 		Cost: 950
 	Tooltip:
@@ -65,6 +65,8 @@ SS:
 	RangeMultiplier@STOPSHOOTINGROCKS3:
 		Modifier: 25
 		RequiresCondition: im-dumb == 3
+	Encyclopedia:
+		Category: Soviets/Naval
 
 MSUB:
 	Inherits: ^Submarine
@@ -79,7 +81,7 @@ MSUB:
 	TooltipExtras:
 		Strengths: • Strong vs Buildings, Ground Units
 		Weaknesses: • Weak vs Naval Units\n• Cannot attack Aircraft
-		Attributes: • Can detect other submarines
+		Attributes: • Detects other submarines
 	Valued:
 		Cost: 1650
 	Tooltip:
@@ -115,6 +117,8 @@ MSUB:
 		DecorationBounds: 1877, 1877
 	Cloak:
 		CloakDelay: 100
+	Encyclopedia:
+		Category: Soviets/Naval
 
 DD:
 	Inherits: ^Ship
@@ -129,7 +133,7 @@ DD:
 	TooltipExtras:
 		Strengths: • Strong vs Naval Units, Vehicles, Aircraft
 		Weaknesses: • Weak vs Infantry
-		Attributes: • Can detect submarines
+		Attributes: • Detects submarines
 	Valued:
 		Cost: 1000
 	Tooltip:
@@ -145,7 +149,7 @@ DD:
 		Speed: 56
 	RevealsShroud:
 		MinRange: 5c0
-		Range: 6c0
+		Range: 8c0
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
 		Range: 5c0
@@ -188,6 +192,8 @@ DD:
 		BorderColor: 00000020
 	Selectable:
 		DecorationBounds: 1621, 1621
+	Encyclopedia:
+		Category: Allies/Naval
 
 CA:
 	Inherits: ^Ship
@@ -259,6 +265,8 @@ CA:
 		Turret: secondary
 	Selectable:
 		DecorationBounds: 1877, 1877
+	Encyclopedia:
+		Category: Allies/Naval
 
 LST:
 	Inherits: ^Ship
@@ -298,7 +306,7 @@ LST:
 	WithLandingCraftAnimation:
 		OpenTerrainTypes: Clear, Rough, Road, Ore, Gems, Beach
 	Cargo:
-		Types: Infantry, Hacker, Vehicle
+		Types: Infantry, Hacker, Brute, Vehicle
 		MaxWeight: 5
 		PassengerFacing: 0
 		LoadingCondition: notmobile
@@ -312,7 +320,7 @@ LST:
 		ExitSounds: gexit1a.aud
 	ProvidesPrerequisite@MCV:
 		RequiresCondition: contains-mcv
-		Prerequisite: anyconyard
+		Prerequisite: anymcv
 	Selectable:
 		DecorationBounds: 1536, 1536
 	-Targetable@MINIDRONE:
@@ -320,6 +328,17 @@ LST:
 	-AttachableTo@MINIDRONE:
 	Targetable@MINDCONTROL:
 		RequiresCondition: !cargo && !mindcontrolled
+	Encyclopedia:
+		Category: Allies/Naval; Soviets/Naval; GDI/Naval; Nod/Naval
+
+LST.Reinforce:
+	Inherits: LST
+	-Selectable:
+	-Buildable:
+	RenderSprites:
+		Image: lst
+	Interactable:
+	RejectsOrders:
 
 PT:
 	Inherits: ^Ship
@@ -334,7 +353,7 @@ PT:
 	TooltipExtras:
 		Strengths: • Strong vs Naval Units
 		Weaknesses: • Weak vs Ground Units\n• Cannot attack Aircraft
-		Attributes: • Can detect submarines
+		Attributes: • Detects submarines
 	Valued:
 		Cost: 500
 	Tooltip:
@@ -379,6 +398,8 @@ PT:
 		BorderColor: 00000020
 	Selectable:
 		DecorationBounds: 1536, 1536
+	Encyclopedia:
+		Category: Allies/Naval
 
 PT2:
 	Inherits: ^Ship
@@ -394,7 +415,7 @@ PT2:
 	TooltipExtras:
 		Strengths: • Strong vs Submarines, Aircraft
 		Weaknesses: • Weak vs Ground Units
-		Attributes: • Can detect submarines
+		Attributes: • Detects submarines
 	Valued:
 		Cost: 750
 	Tooltip:
@@ -452,6 +473,8 @@ PT2:
 		BorderColor: 00000020
 	Selectable:
 		DecorationBounds: 1536, 1536
+	Encyclopedia:
+		Category: GDI/Naval
 
 DD2:
 	Inherits: ^Ship
@@ -467,7 +490,7 @@ DD2:
 	TooltipExtras:
 		Strengths: • Strong vs Naval Units, Vehicles
 		Weaknesses: • Cannot attack Aircraft
-		Attributes: • Can detect submarines
+		Attributes: • Detects submarines
 	Valued:
 		Cost: 1000
 	Tooltip:
@@ -483,7 +506,7 @@ DD2:
 		Speed: 60
 	RevealsShroud:
 		MinRange: 5c0
-		Range: 6c0
+		Range: 8c0
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
 		Range: 5c0
@@ -551,6 +574,8 @@ DD2:
 	GrantConditionOnPrerequisite@POINTDEF:
 		Condition: pointdef-upgrade
 		Prerequisites: pointdef.upgrade
+	Encyclopedia:
+		Category: GDI/Naval
 
 SS2:
 	Inherits: ^Submarine
@@ -565,7 +590,7 @@ SS2:
 	TooltipExtras:
 		Strengths: • Strong vs Naval Units
 		Weaknesses: • Cannot attack Ground Units, Aircraft
-		Attributes: • Can detect other submarines
+		Attributes: • Detects other submarines
 	Valued:
 		Cost: 950
 	Tooltip:
@@ -619,6 +644,8 @@ SS2:
 	RangeMultiplier@STOPSHOOTINGROCKS3:
 		Modifier: 25
 		RequiresCondition: im-dumb == 3
+	Encyclopedia:
+		Category: Nod/Naval
 
 ISUB:
 	Inherits: ^Submarine
@@ -633,7 +660,7 @@ ISUB:
 	TooltipExtras:
 		Strengths: • Strong vs Buildings, Ground Units
 		Weaknesses: • Weak vs Naval Units\n• Cannot attack Aircraft
-		Attributes: • Missiles can be shot down by static anti-air defenses\n• Can detect other submarines
+		Attributes: • Missiles can be shot down by static anti-air defenses\n• Detects other submarines
 	Valued:
 		Cost: 2000
 	Tooltip:
@@ -671,7 +698,7 @@ ISUB:
 		ForceFireIgnoresActors: True
 		PauseOnCondition: under-bridge || empdisable || being-warped || blinded
 		FacingTolerance: 16
-		ChargeLevel: 50
+		ChargeLevel: 75
 		DischargeRate: 5
 		ShowSelectionBar: true
 		SelectionBarColor: ffaa00
@@ -686,6 +713,8 @@ ISUB:
 	RenderRangeCircle@Attack:
 		RangeCircleType: ISUBRange
 		Color: ffdd0060
+	Encyclopedia:
+		Category: Nod/Naval
 
 ICBM:
 	Inherits: ^ShootableMissile
@@ -714,10 +743,10 @@ ICBM:
 		Weapon: HonestJohnSub
 		Type: Footprint
 		RequiresCondition: !airborne
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: V3ExplodeAirborne
 		RequiresCondition: airborne
-	ThrowsShrapnel@Debris:
+	FireProjectilesOnDeath@Debris:
 		Weapons: SmallDebris
 		Pieces: 3, 5
 		Range: 1c511, 3c0
@@ -731,7 +760,7 @@ CV:
 		Queue: ShipSQ, ShipMQ
 		BuildPaletteOrder: 60
 		Prerequisites: ~syrd.gdi, gtek, ~techlevel.high
-		Description: Carrier that launches a squadron\n  of Hornet drone aircraft.
+		Description: Carrier that launches a squadron of Hornet drone aircraft.
 	TooltipExtras:
 		Strengths: • Strong vs Ground Units, Buildings
 		Weaknesses: • Cannot attack Aircraft
@@ -796,6 +825,8 @@ CV:
 	ProductionCostMultiplier@arcBonus:
 		Multiplier: 90
 		Prerequisites: player.arc
+	Encyclopedia:
+		Category: GDI/Naval
 
 SB:
 	Inherits: ^Ship
@@ -824,11 +855,11 @@ SB:
 		TurnSpeed: 40
 		Speed: 113
 	RevealsShroud:
-		MinRange: 4c0
-		Range: 5c0
+		MinRange: 5c0
+		Range: 7c0
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
-		Range: 4c0
+		Range: 5c0
 	Armament@PRIMARY:
 		Weapon: SBRockets
 		LocalOffset: -128, -170, 170, -128, 170, 170
@@ -852,6 +883,8 @@ SB:
 		BorderColor: 00000020
 	Selectable:
 		DecorationBounds: 1536, 1536
+	Encyclopedia:
+		Category: Nod/Naval
 
 SEAS:
 	Inherits: ^Ship
@@ -865,7 +898,7 @@ SEAS:
 	TooltipExtras:
 		Strengths: • Strong vs Aircraft, Infantry
 		Weaknesses: • Weak vs Naval Units, Vehicles
-		Attributes: • Can detect submarines
+		Attributes: • Detects submarines
 	Valued:
 		Cost: 600
 	Tooltip:
@@ -908,3 +941,5 @@ SEAS:
 		BorderColor: 00000020
 	Selectable:
 		DecorationBounds: 1536, 1536
+	Encyclopedia:
+		Category: Soviets/Naval

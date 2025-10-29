@@ -121,6 +121,7 @@ MAST:
 	Inherits@SATHACKPOWER: ^SatHackPower
 	-Passenger:
 	-PassengerBlocked:
+	-DummyConditionConsumer@Passenger:
 	-MassEntersCargo:
 	-TakeCover:
 	AutoTarget:
@@ -145,10 +146,6 @@ MAST:
 		CooldownTicks: 1250
 		DeployedTicks: 375
 		StartsFullyCharged: true
-		-DeployingCondition:
-		-ShowSelectionBar:
-		-Voice:
-		-PauseOnCondition:
 		DischargingColor: bb0000
 		ChargingColor: cc00cc
 		Instant: true
@@ -156,7 +153,6 @@ MAST:
 		InitialDelay: 0
 		CloakDelay: 25
 		CloakedCondition: hidden
-		Palette: cloaktd
 		IsPlayerPalette: true
 		DetectionTypes: SuperCloak
 		RequiresCondition: deployed && !cloak-force-disabled
@@ -201,7 +197,7 @@ RNDV:
 	KillsSelf:
 		Delay: 5
 	SpawnRandomActorOnDeath@RANDOM:
-		Actors: btr, bggy, hmmv, jeep, gdrn, gunw, shrw, bike, arty, arty.nod, howi, apc, vulc, rapc, ifv, ttnk, ttra, xo, msam, hsam, mlrs, spec, v2rl, katy, ftnk, hftk, corr, 1tnk, 2tnk, 3tnk, 3tnk.atomic, 3tnk.yuri, 3tnk.atomicyuri, mtnk, mtnk.drone, ltnk, wtnk, stnk.nod, rtnk, ptnk, pcan, ctnk, cryo, mgg, msg, mrj, mnly, msar, devo, stcr, ruin, atmz, lace, seek, intl, dark, tnkd, v3rl, isu, memp, cdrn, dtrk, qtnk, lchr, sapc
+		Actors: btr, bggy, hmmv, jeep, gdrn, gunw, shrw, bike, arty, arty.nod, howi, apc, vulc, aapc, ifv, ttnk, ttra, xo, msam, hsam, mlrs, spec, v2rl, katy, ftnk, hftk, corr, 1tnk, 2tnk, 3tnk, 3tnk.atomic, 3tnk.yuri, 3tnk.atomicyuri, mtnk, mtnk.drone, ltnk, wtnk, stnk.nod, rtnk, ptnk, pcan, ctnk, cryo, mgg, msg, mrj, mnly, msar, devo, stcr, ruin, atmz, lace, seek, intl, dark, tnkd, v3rl, isu, memp, cdrn, dtrk, qtnk, lchr, sapc
 		OwnerType: InternalName
 	ClassicFacingBodyOrientation:
 	QuantizeFacingsFromSequence:

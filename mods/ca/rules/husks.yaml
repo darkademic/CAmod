@@ -1316,7 +1316,7 @@ KIRO.Husk.Ground:
 	KillsSelf:
 		Delay: 1
 		-RequiresCondition:
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: KirovExplode
 	-OwnerLostAction:
 	-CaptureManager:
@@ -1453,9 +1453,9 @@ HOSP.Husk:
 	Tooltip:
 		Name: Ruin (Hospital)
 	TransformOnCapture:
-		IntoActor: hosp
+		IntoActor: hosp.rebuilt
 	InfiltrateForTransform:
-		IntoActor: hosp
+		IntoActor: hosp.rebuilt
 	RenderSprites:
 		Image: HOSP.destroyed
 
@@ -1467,9 +1467,9 @@ MACS.Husk:
 	Tooltip:
 		Name: Ruin (Machine Shop)
 	TransformOnCapture:
-		IntoActor: macs
+		IntoActor: macs.rebuilt
 	InfiltrateForTransform:
-		IntoActor: macs
+		IntoActor: macs.rebuilt
 	RenderSprites:
 		Image: MACS.destroyed
 
@@ -1502,7 +1502,7 @@ OILB.Husk:
 		IntoActor: oilb
 	RenderSprites:
 		Image: OILB.destroyed
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: BarrelExplode
 	WithIdleOverlay@Burns:
 		Offset: -511,0,0
@@ -1521,7 +1521,7 @@ OILR.Husk:
 		IntoActor: oilr
 	RenderSprites:
 		Image: OILR.destroyed
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: BarrelExplode
 	WithIdleOverlay@Burns:
 		Offset: -511,0,0

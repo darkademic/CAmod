@@ -12,15 +12,21 @@ using System;
 using System.Linq;
 using OpenRA.Mods.CA.Traits;
 using OpenRA.Mods.Common.Widgets;
+using OpenRA.Primitives;
 using OpenRA.Widgets;
 
 namespace OpenRA.Mods.CA.Widgets.Logic
 {
 	class NodCovenantIndicatorLogic : ChromeLogic
 	{
+		[FluentReference("level")]
+		const string CovenantLevel = "label-covenant-level";
+		const string CovenantDescription = "label-covenant-description";
+
+		const string CountType = "NodCovenant";
 		const string DisabledImage = "disabled";
 
-		readonly ProvidesPrerequisiteOnKillCount counter;
+		readonly ProvidesPrerequisitesOnCount counter;
 
 		private string levelImageName;
 
@@ -37,8 +43,8 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 				return;
 			}
 
-			counter = world.LocalPlayer.PlayerActor.TraitsImplementing<ProvidesPrerequisiteOnKillCount>()
-				.FirstOrDefault(c => c.Info.Type == "NodCovenant");
+			counter = world.LocalPlayer.PlayerActor.TraitsImplementing<ProvidesPrerequisitesOnCount>()
+				.FirstOrDefault(c => c.Info.Type == CountType);
 
 			if (counter == null)
 			{
@@ -53,6 +59,16 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 
 			levelImage.GetImageName = () => levelImageName;
 			levelImage.IsVisible = () => true;
+
+			var tooltipTextCached = new CachedTransform<int, string>((CurrentCount) =>
+			{
+				var tooltip = FluentProvider.GetMessage(CovenantLevel, "level", CurrentCount);
+				tooltip += "\n\n";
+				tooltip += FluentProvider.GetMessage(CovenantDescription);
+				return tooltip;
+			});
+
+			levelImage.GetTooltipText = () => tooltipTextCached.Update(Math.Min(counter.CurrentCount, 3));
 		}
 
 		private void HandleIncremented()
@@ -62,7 +78,7 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 
 		private void UpdateLevelImageName()
 		{
-			var count = counter.Counts.ContainsKey("BuildingsOrHarvesters") ? Math.Min(counter.Counts["BuildingsOrHarvesters"], 3) : 0;
+			var count = Math.Min(counter.CurrentCount, 3);
 			levelImageName = $"level{count}";
 		}
 	}

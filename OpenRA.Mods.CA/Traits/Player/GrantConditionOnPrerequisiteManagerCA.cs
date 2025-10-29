@@ -15,6 +15,7 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.CA.Traits
 {
+	[TraitLocation(SystemActors.Player)]
 	[Desc("Attach this to the player actor. Exactly the same as standard version just with naming changes.")]
 	public class GrantConditionOnPrerequisiteManagerCAInfo : TraitInfo, Requires<TechTreeInfo>
 	{
@@ -41,13 +42,13 @@ namespace OpenRA.Mods.CA.Traits
 		public void Register(Actor actor, GrantConditionOnPrerequisiteCA u, string[] prerequisites)
 		{
 			var key = MakeKey(prerequisites);
-			if (!upgradables.ContainsKey(key))
+			if (!upgradables.TryGetValue(key, out var list))
 			{
-				upgradables.Add(key, new List<(Actor, GrantConditionOnPrerequisiteCA)>());
+				upgradables.Add(key, list = new List<(Actor, GrantConditionOnPrerequisiteCA)>());
 				techTree.Add(key, prerequisites, 0, this);
 			}
 
-			upgradables[key].Add((actor, u));
+			list.Add((actor, u));
 
 			// Notify the current state
 			u.PrerequisitesUpdated(actor, techTree.HasPrerequisites(prerequisites));

@@ -23,41 +23,28 @@ using OpenRA.Widgets;
 
 namespace OpenRA.Mods.Common.Widgets.Logic
 {
-	// Temporary until added to engine
 	public class MissionBrowserLogicCA : ChromeLogic
 	{
 		enum PlayingVideo { None, Info, Briefing, GameStart }
 		enum PanelType { MissionInfo, Options }
 
-		[TranslationReference]
+		[FluentReference]
 		const string NoVideoTitle = "dialog-no-video.title";
 
-		[TranslationReference]
+		[FluentReference]
 		const string NoVideoPrompt = "dialog-no-video.prompt";
 
-		[TranslationReference]
+		[FluentReference]
 		const string NoVideoCancel = "dialog-no-video.cancel";
 
-		[TranslationReference]
+		[FluentReference]
 		const string CantPlayTitle = "dialog-cant-play-video.title";
 
-		[TranslationReference]
+		[FluentReference]
 		const string CantPlayPrompt = "dialog-cant-play-video.prompt";
 
-		[TranslationReference]
+		[FluentReference]
 		const string CantPlayCancel = "dialog-cant-play-video.cancel";
-
-		// Added to prevent unused language string warnings
-		[TranslationReference]
-		const string DifficultyLabel = "dropdown-difficulty.label";
-		[TranslationReference]
-		const string DifficultyDescription = "dropdown-difficulty.description";
-		[TranslationReference]
-		const string DifficultyEasy = "options-difficulty.easy";
-		[TranslationReference]
-		const string DifficultyNormal = "options-difficulty.normal";
-		[TranslationReference]
-		const string DifficultyHard = "options-difficulty.hard";
 
 		readonly ModData modData;
 		readonly Action onStart;
@@ -104,7 +91,10 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 			var title = widget.GetOrNull<LabelWidget>("MISSIONBROWSER_TITLE");
 			if (title != null)
-				title.GetText = () => playingVideo != PlayingVideo.None ? selectedMap.Title : title.Text;
+			{
+				var titleText = title.GetText();
+				title.GetText = () => playingVideo != PlayingVideo.None ? selectedMap.Title : titleText;
+			}
 
 			widget.Get("MISSION_INFO").IsVisible = () => selectedMap != null;
 
@@ -145,8 +135,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			// Add a group for each campaign
 			if (modData.Manifest.Missions.Length > 0)
 			{
+				var stringPool = new HashSet<string>(); // Reuse common strings in YAML
 				var yaml = MiniYaml.Merge(modData.Manifest.Missions.Select(
-					m => MiniYaml.FromStream(modData.DefaultFileSystem.Open(m), m)));
+					m => MiniYaml.FromStream(modData.DefaultFileSystem.Open(m), m, stringPool: stringPool)));
 
 				foreach (var kv in yaml)
 				{
@@ -161,9 +152,10 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						})
 						.Where(x => x.Index != -1)
 						.OrderBy(x => x.Index)
-						.Select(x => x.Preview);
+						.Select(x => x.Preview)
+						.ToList();
 
-					if (previews.Any())
+					if (previews.Count != 0)
 					{
 						CreateMissionGroup(kv.Key, previews, onExit);
 						allPreviews.AddRange(previews);
@@ -173,9 +165,12 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 			// Add an additional group for loose missions
 			var loosePreviews = modData.MapCache
-				.Where(p => p.Status == MapStatus.Available && p.Visibility.HasFlag(MapVisibility.MissionSelector) && !allPreviews.Any(a => a.Uid == p.Uid));
+				.Where(p => p.Status == MapStatus.Available &&
+					p.Visibility.HasFlag(MapVisibility.MissionSelector) &&
+					!allPreviews.Any(a => a.Uid == p.Uid))
+				.ToList();
 
-			if (loosePreviews.Any())
+			if (loosePreviews.Count != 0)
 			{
 				CreateMissionGroup("Missions", loosePreviews, onExit);
 				allPreviews.AddRange(loosePreviews);
@@ -191,7 +186,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					missionList.ScrollToSelectedItem();
 				}
 				else
-					SelectMap(allPreviews.First());
+					SelectMap(allPreviews[0]);
 			}
 
 			// Preload map preview to reduce jank
@@ -208,7 +203,6 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			widget.Get<ButtonWidget>("BACK_BUTTON").OnClick = () =>
 			{
 				StopVideo(videoPlayer);
-				Game.Disconnect();
 				Ui.CloseWindow();
 				onExit();
 			};
@@ -271,21 +265,54 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					var difficulty = missionProgress.Difficulty;
 					if (difficulty != null)
 					{
-						var stars = item.Get<ImageWidget>("COMPLETION_DIFFICULTY");
-						stars.IsVisible = () => true;
-						stars.GetImageName = () => difficulty;
+						var firstStar = item.Get<ImageWidget>("COMPLETION_STAR");
+						firstStar.IsVisible = () => true;
+						firstStar.GetImageName = () =>
+						{
+							return difficulty switch
+							{
+								"easy" => "bronze",
+								"normal" => "silver",
+								_ => "gold"
+							};
+						};
+
+						if (difficulty == "vhard" || difficulty == "brutal")
+						{
+							var secondStar = firstStar.Clone();
+							secondStar.Bounds.X -= firstStar.Bounds.Width;
+							item.AddChild(secondStar);
+						}
+
+						if (difficulty == "brutal")
+						{
+							var thirdStar = firstStar.Clone();
+							thirdStar.Bounds.X -= 2 * firstStar.Bounds.Width;
+							item.AddChild(thirdStar);
+						}
 					}
+
+					var difficultyCompleted = difficulty != null ? FluentProvider.GetMessage($"options-difficulty.{difficulty}") : null;
+
+					if (difficultyCompleted != null)
+						item.GetTooltipText = () => $"Completed ({difficultyCompleted})";
+					else
+						item.GetTooltipText = () => "Completed";
 
 					var dateCompleted = missionProgress.DateCompleted.ToString("d");
 					var completionTime = missionProgress.Time;
-					var difficultyCompleted = missionProgress.Difficulty != null ? char.ToUpper(missionProgress.Difficulty[0]) + missionProgress.Difficulty.Substring(1) : null;
 
-					var details = $"• Date: {dateCompleted}   \\n• Version: {missionProgress.Version}\\n• Duration: {completionTime}\\n• Speed: {missionProgress.Speed}";
+					var details = $"• Date: {dateCompleted}\n• Version: {missionProgress.Version}\n• Duration: {completionTime}\n• Speed: {missionProgress.Speed}";
 
-					if (difficultyCompleted != null)
-						details += $"\\n• Difficulty: {difficultyCompleted}";
+					if (missionProgress.FogEnabled.HasValue)
+						details += $"\n• Fog: {(missionProgress.FogEnabled.Value ? "Enabled" : "Disabled")}";
 
-					item.GetTooltipText = () => "Completed";
+					if (missionProgress.BuildRadiusEnabled.HasValue)
+						details += $"\n• Build Radius: {(missionProgress.BuildRadiusEnabled.Value ? "Enabled" : "Disabled")}";
+
+					if (missionProgress.RespawnEnabled.HasValue)
+						details += $"\n• Respawns: {(missionProgress.RespawnEnabled.Value ? "Enabled" : "Disabled")}";
+
 					item.GetTooltipDesc = () => details;
 
 					var tick = item.Get<ImageWidget>("COMPLETION_ICON");
@@ -487,8 +514,8 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				ConfirmationDialogs.ButtonPrompt(modData,
 					title: NoVideoTitle,
 					text: NoVideoPrompt,
-					cancelText: NoVideoCancel,
-					onCancel: () => { });
+					onCancel: () => { },
+					cancelText: NoVideoCancel);
 			}
 			else
 			{
@@ -504,8 +531,8 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					ConfirmationDialogs.ButtonPrompt(modData,
 						title: CantPlayTitle,
 						text: CantPlayPrompt,
-						cancelText: CantPlayCancel,
-						onCancel: () => { });
+						onCancel: () => { },
+						cancelText: CantPlayCancel);
 				}
 				else
 				{

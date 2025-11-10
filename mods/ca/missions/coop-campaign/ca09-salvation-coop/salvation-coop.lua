@@ -18,6 +18,7 @@ end
 
 AfterWorldLoaded = function()
 	StartCashSpread(0)
+	TransferBaseToPlayer(SinglePlayerPlayer, GetFirstActivePlayer())
 end
 
 AfterTick = function()

@@ -46,6 +46,7 @@ Players:
 		Color: 99ACF2
 		LockSpawn: True
 		LockTeam: True
+		Allies: England
 		Enemies: USSR, Creeps
 	PlayerReference@England:
 		Name: England
@@ -518,6 +519,6 @@ Actors:
 		Owner: Neutral
 		Location: 63,48
 
-Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-coalitions.yaml, rules.yaml
+Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-coalitions.yaml, relativity-rules.yaml
 
-Weapons: ca|weapons/custom/campaign.yaml, weapons.yaml
+Weapons: ca|weapons/custom/campaign.yaml, relativity-weapons.yaml

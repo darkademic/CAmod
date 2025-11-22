@@ -120,13 +120,13 @@ Squads = {
 	},
 	AirFleetKillers = {
 		ActiveCondition = function(squad)
-			local scrinFleet = squad.TargetPlayer.GetActorsByTypes({ "pac", "deva" })
+			local scrinFleet = GetMissionPlayersActorsByTypes({ "pac", "deva" })
 			return #scrinFleet > AirFleetKillersThreshold[Difficulty] and not IslandAirfieldsEliminated
 		end,
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 50, Max = 50 }),
 		Compositions = function(squad)
 			local migs = { "mig" }
-			local numFleetShips = #squad.TargetPlayer.GetActorsByArmorTypes({ "Aircraft" })
+			local numFleetShips = #GetMissionPlayersActorsByTypes({ "pac", "deva" })
 			for i = 1, math.min(numFleetShips, MaxFleetKillers[Difficulty]) do
 				table.insert(migs, "mig")
 			end
@@ -135,13 +135,13 @@ Squads = {
 	},
 	TripodKillers = {
 		ActiveCondition = function(squad)
-			local tripods = squad.TargetPlayer.GetActorsByTypes({ "tpod", "rtpd" })
+			local tripods = GetMissionPlayersActorsByTypes({ "tpod", "rtpd" })
 			return #tripods > TripodKillersThreshold[Difficulty] and not IslandAirfieldsEliminated
 		end,
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 30, Max = 30 }),
 		Compositions = function(squad)
 			local sukhois = { "suk" }
-			local numTripods = #squad.TargetPlayer.GetActorsByTypes({ "tpod", "rtpd" })
+			local numTripods = #GetMissionPlayersActorsByTypes({ "tpod", "rtpd" })
 			for i = 1, math.min(numTripods, MaxTripodKillers[Difficulty]) do
 				table.insert(sukhois, "suk")
 			end
@@ -150,16 +150,17 @@ Squads = {
 	}
 }
 
-DefinePlayers = function()
+SetupPlayers = function()
 	Scrin = Player.GetPlayer("Scrin")
 	USSR = Player.GetPlayer("USSR")
 	USSRUnmanned = Player.GetPlayer("USSRUnmanned")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { Scrin }
 	MissionEnemies = { USSR }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	IslandAirfieldsEliminated = false
 	IslandSAMsDestroyed = false
@@ -181,14 +182,16 @@ WorldLoaded = function()
 	ObjectiveDestroySAMs = Scrin.AddSecondaryObjective("Destroy front line of Soviet SAM Sites.")
 
 	Trigger.AfterDelay(DateTime.Seconds(5), function()
-		Media.PlaySpeechNotification(Scrin, "ReinforcementsArrived")
+		PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 		Notification("Reinforcements have arrived.")
 		Reinforcements.Reinforce(Scrin, { "devo" }, { ScrinReinforce1Spawn.Location, ScrinReinforce1Dest.Location }, 75)
 		Reinforcements.Reinforce(Scrin, { "devo" }, { ScrinReinforce2Spawn.Location, ScrinReinforce2Dest.Location }, 75)
 	end)
 
 	Trigger.AfterDelay(DateTime.Minutes(20), function()
-		Actor.Create("reaperaccess", true, { Owner = Scrin })
+		Utils.Do(MissionPlayers, function(p)
+			Actor.Create("reaperaccess", true, { Owner = p })
+		end)
 		Notification("You have been granted access to Reaper Tripods.")
 		MediaCA.PlaySound(MissionDir .. "/s_reaperaccess.aud", 2)
 	end)
@@ -221,14 +224,16 @@ WorldLoaded = function()
 	end)
 
 	Trigger.OnAllKilledOrCaptured(ForwardSAMs, function()
-		Actor.Create("fleetaccess", true, { Owner = Scrin })
+		Utils.Do(MissionPlayers, function(p)
+			Actor.Create("fleetaccess", true, { Owner = p })
+		end)
 		Scrin.MarkCompletedObjective(ObjectiveDestroySAMs)
 		Notification("Scrin fleet vessels now available.")
 		MediaCA.PlaySound(MissionDir .. "/s_scrinfleet.aud", 2)
 
 		Trigger.AfterDelay(DateTime.Seconds(5), function()
 			Notification("Reinforcements have arrived.")
-			Media.PlaySpeechNotification(Scrin, "ReinforcementsArrived")
+			PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 			Reinforcements.Reinforce(Scrin, { "pac" }, { ScrinReinforce1Spawn.Location, ScrinReinforce1Dest.Location }, 75)
 			Reinforcements.Reinforce(Scrin, { "pac" }, { ScrinReinforce2Spawn.Location, ScrinReinforce2Dest.Location }, 75)
 		end)
@@ -375,7 +380,7 @@ end
 DevastatorReinforcements = function()
 	Trigger.AfterDelay(DateTime.Seconds(5), function()
 		Notification("Reinforcements have arrived.")
-		Media.PlaySpeechNotification(Scrin, "ReinforcementsArrived")
+		PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 		Reinforcements.Reinforce(Scrin, { "deva" }, { ScrinReinforce1Spawn.Location, ScrinReinforce1Dest.Location }, 75)
 		Reinforcements.Reinforce(Scrin, { "deva" }, { ScrinReinforce2Spawn.Location, ScrinReinforce2Dest.Location }, 75)
 	end)

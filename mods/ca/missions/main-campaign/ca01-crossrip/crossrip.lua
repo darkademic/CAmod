@@ -178,7 +178,7 @@ Squads = {
 
 -- Setup and Tick
 
-DefinePlayers = function()
+SetupPlayers = function()
 	Greece = Player.GetPlayer("Greece")
 	USSR = Player.GetPlayer("USSR")
 	Scrin = Player.GetPlayer("Scrin")
@@ -188,7 +188,7 @@ DefinePlayers = function()
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = 0
 	Camera.Position = PlayerMcv.CenterPosition
@@ -216,7 +216,7 @@ WorldLoaded = function()
 
 	Trigger.AfterDelay(DateTime.Seconds(2), function()
 		BaseFlare = Actor.Create("flare", true, { Owner = Greece, Location = DeploySuggestion.Location })
-		Media.PlaySpeechNotification(Greece, "SignalFlare")
+		PlaySpeechNotificationToMissionPlayers("SignalFlare")
 		Notification("Signal flare detected. Press [" .. UtilsCA.Hotkey("ToLastEvent") .. "] to view location.")
 		Beacon.New(Greece, DeploySuggestion.CenterPosition)
 		Trigger.AfterDelay(DateTime.Seconds(2), function()
@@ -237,7 +237,7 @@ WorldLoaded = function()
 end
 
 Tick = function()
-	if not IsBaseEstablished and HasConyard(Greece) then
+	if not IsBaseEstablished and MissionPlayersHaveConyard() then
 		IsBaseEstablished = true
 		if ObjectiveInvestigateArea == nil then
 			ObjectiveInvestigateArea = Greece.AddObjective("Investigate the area.")
@@ -245,7 +245,9 @@ Tick = function()
 		end
 		Greece.MarkCompletedObjective(ObjectiveEstablishBase)
 
-		if IsNormalOrBelow() then
+		if IsHardOrBelow() then
+			InitUSSRAttacks()
+
 			Trigger.AfterDelay(DateTime.Seconds(5), function()
 				Tip("Build a barracks for access to static defenses which should allow you to hold off any early attacks. Use Pillboxes against infantry and Turrets against vehicles.")
 			end)
@@ -316,8 +318,10 @@ InitUSSR = function()
 	SetupRefAndSilosCaptureCredits(USSR)
 	AutoReplaceHarvesters(USSR)
 	AutoRebuildConyards(USSR)
-	InitAttackSquad(Squads.Main, USSR)
-	InitAirAttackSquad(Squads.Migs, USSR)
+
+	if IsVeryHardOrAbove() then
+		InitUSSRAttacks()
+	end
 
 	-- Set western patrol
 	Utils.Do(WestPatrolUnits, function(unit)
@@ -355,6 +359,11 @@ InitUSSR = function()
 	Trigger.OnCapture(SovietChronosphere, function(self, captor, oldOwner, newOwner)
 		SovietChronosphere.Kill()
 	end)
+end
+
+InitUSSRAttacks = function()
+	InitAttackSquad(Squads.Main, USSR)
+	InitAirAttackSquad(Squads.Migs, USSR)
 end
 
 ScrinInvasion = function()
@@ -459,7 +468,11 @@ InterdimensionalCrossrip = function()
 		Greece.MarkCompletedObjective(ObjectiveCaptureOrDestroyChronosphere)
 	end
 
-	local unitLostSilencer = Actor.Create("unitlostsilencer", true, { Owner = Greece })
+	local unitLostSilencers = {}
+
+	Utils.Do(MissionPlayers, function(p)
+		table.insert(unitLostSilencers, Actor.Create("unitlostsilencer", true, { Owner = p }))
+	end)
 
 	Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(2)), function()
 		ScrinInvasion()
@@ -467,7 +480,9 @@ InterdimensionalCrossrip = function()
 		MediaCA.PlaySound(MissionDir .. "/r_evac.aud", 2)
 		TimerTicks = EvacuationTime[Difficulty]
 		Trigger.AfterDelay(DateTime.Seconds(7), function()
-			unitLostSilencer.Destroy()
+			Utils.Do(unitLostSilencers, function(silencer)
+				silencer.Destroy()
+			end)
 		end)
 	end)
 
@@ -571,26 +586,17 @@ end
 
 GetInvasionInterval = function()
 	local armyValue = GetMissionPlayersArmyValue()
+	local baseInterval = DateTime.Seconds(23)
+	local secondsToSubtract = math.floor(armyValue / 5000)
+	local minimumInterval = DateTime.Seconds(10)
 
 	if Difficulty == "easy" then
-		if armyValue >= 10000 then
-			return DateTime.Seconds(22)
-		else
-			return DateTime.Seconds(24)
-		end
-	else
-		if armyValue >= 48000 then
-			return DateTime.Seconds(13)
-		elseif armyValue >= 38000 then
-			return DateTime.Seconds(15)
-		elseif armyValue >= 28000 then
-			return DateTime.Seconds(17)
-		elseif armyValue >= 18000 then
-			return DateTime.Seconds(19)
-		elseif armyValue >= 10000 then
-			return DateTime.Seconds(22)
-		else
-			return DateTime.Seconds(24)
-		end
+		minimumInterval = DateTime.Seconds(21)
+	elseif Difficulty == "normal" then
+		minimumInterval = DateTime.Seconds(18)
+	elseif Difficulty == "hard" then
+		minimumInterval = DateTime.Seconds(15)
 	end
+
+	return math.max(baseInterval - DateTime.Seconds(secondsToSubtract), minimumInterval)
 end

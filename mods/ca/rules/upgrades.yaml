@@ -114,6 +114,27 @@ bombard2.strat:
 	WithProductionIconOverlay:
 		Prerequisites: bombard2.strat
 
+bombard3.strat:
+	Inherits: ^GDIUpgrade
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Upgrade: Firestorm Missile System
+	Buildable:
+		BuildPaletteOrder: 8
+		Prerequisites: ~player.gdi, upgc, !upgc.drop, bombard2.strat, ~bombard.strat, ~!seek.strat, ~!hold.strat, ~techlevel.high
+		Description: Provides an napalm rocket barrage.
+		IconPalette: chrometd
+	TooltipExtras:
+		Strengths: + Increases firepower and rate of fire of vehicles and aircraft by a further 3%\n+ Unlocks Firestorm Missile Barrage power
+		Attributes: (!) Mutually exclusive with Supply Drop Zone
+	RenderSprites:
+		PlayerPalette: playertd
+	WithProductionIconOverlay:
+		Prerequisites: bombard3.strat
+	UpdatesCount:
+		Type: StrategyLevel
+
 seek.strat:
 	Inherits: ^GDIUpgrade
 	Tooltip:
@@ -157,6 +178,27 @@ seek2.strat:
 	WithProductionIconOverlay:
 		Prerequisites: seek2.strat
 
+seek3.strat:
+	Inherits: ^GDIUpgrade
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Upgrade: Advanced Radar System
+	Buildable:
+		BuildPaletteOrder: 10
+		Prerequisites: ~player.gdi, upgc, !upgc.drop, seek2.strat, ~seek.strat, ~!bombard.strat, ~!hold.strat, ~techlevel.high
+		Description: Provides detailed information on enemy locations.
+		IconPalette: chrometd
+	TooltipExtras:
+		Strengths: + Increases speed and weapon range of vehicles and aircraft by a further 5%\n+ Unlocks Advanced Radar Scan power
+		Attributes: (!) Mutually exclusive with Supply Drop Zone
+	RenderSprites:
+		PlayerPalette: playertd
+	WithProductionIconOverlay:
+		Prerequisites: seek3.strat
+	UpdatesCount:
+		Type: StrategyLevel
+
 hold.strat:
 	Inherits: ^GDIUpgrade
 	Tooltip:
@@ -199,6 +241,27 @@ hold2.strat:
 		Type: StrategyLevel
 	WithProductionIconOverlay:
 		Prerequisites: hold2.strat
+
+hold3.strat:
+	Inherits: ^GDIUpgrade
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Upgrade: Nanoshield Generator
+	Buildable:
+		BuildPaletteOrder: 12
+		Prerequisites: ~player.gdi, upgc, !upgc.drop, hold2.strat, ~hold.strat, ~!bombard.strat, ~!seek.strat, ~techlevel.high
+		Description: Provides the ability to shield units in an area
+		IconPalette: chrometd
+	TooltipExtras:
+		Strengths: + Increases armor of vehicles and aircraft by a further 5%\n+ Unlocks Nanite Shield power
+		Attributes: (!) Mutually exclusive with Supply Drop Zone
+	RenderSprites:
+		PlayerPalette: playertd
+	WithProductionIconOverlay:
+		Prerequisites: hold3.strat
+	UpdatesCount:
+		Type: StrategyLevel
 
 vulcan.upgrade:
 	Inherits: ^GDIUpgrade
@@ -540,10 +603,10 @@ bdrone.upgrade:
 		IconPalette: chrometd
 		Description: Allows construction of remotely piloted Battle Tanks.\n\nReplaces: Battle Tank
 	TooltipExtras:
-		Strengths: + Immunity to crew kill, chaos gas and mind control\n+ Reduced cost\n+ Increased rate of fire\n+ Self-repair\n• XP of losses reclaimed by replacements
-		Weaknesses: – Disabled if radar is down\n– Can be hacked
+		Strengths: + Reduced cost\n+ Increased rate of fire\n+ Self-repair\n• XP of losses reclaimed by replacements\n+ Immunity to crew kill, chaos gas and mind control
+		Weaknesses: – Reduced HP\n– Reduced damage\n– Disabled if radar is down\n– Can be hacked
 	Valued:
-		Cost: 1250
+		Cost: 750
 	RenderSprites:
 		Image: bdrone.upgrade
 	AnnounceOnCreation:
@@ -633,8 +696,8 @@ mdrone.upgrade:
 		IconPalette: chrometd
 		Description: Allows construction of remotely piloted Mammoth Tanks.\n\nReplaces: Mammoth Tank
 	TooltipExtras:
-		Strengths: + Immunity to crew kill, chaos gas and mind control\n+ Reduced cost\n+ Increased rate of fire\n+ Improved self-repair\n• XP of losses reclaimed by replacements
-		Weaknesses: – Disabled if radar is down\n– Can be hacked
+		Strengths: + Reduced cost\n+ Increased rate of fire\n+ Improved self-repair\n• XP of losses reclaimed by replacements\n+ Immunity to crew kill, chaos gas and mind control
+		Weaknesses: – Reduced HP\n– Reduced damage\n– Disabled if radar is down\n– Can be hacked
 	Valued:
 		Cost: 750
 	RenderSprites:
@@ -666,6 +729,27 @@ gyro.upgrade:
 		Prerequisites: gyro.upgrade
 	EncyclopediaExtras:
 		Subfaction: talon
+
+upgc.drop:
+	Inherits: ^GDIUpgrade
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Upgrade: Supply Drop Zone
+	Buildable:
+		BuildPaletteOrder: 90
+		Prerequisites: ~gdiorupgc, upgc, !bombard3.strat, !seek3.strat, !hold3.strat, ~techlevel.high
+		Description: Provides a dropzone for emergency supplies.
+		IconPalette: chrometd
+	TooltipExtras:
+		Strengths: + $1250 delivered every 60 seconds (normal speed)
+		Attributes: (!) Mutually exclusive with Firestorm Missile System, Advanced Radar System and Nanoshield Generator
+	RenderSprites:
+		PlayerPalette: playertd
+	UpdatesCount:
+		Type: StrategyLevel
+	WithProductionIconOverlay:
+		Prerequisites: dropzone
 
 #########################NOD#########
 ########################################
@@ -1860,7 +1944,7 @@ loyalist.allegiance:
 	Buildable:
 		BuildPaletteOrder: 16
 		Prerequisites: ~player.scrin, scrin.allegiances.available, !rebel.allegiance, !malefic.allegiance, ~techlevel.medium
-		Description: Declare your allegiance and side with the Scrin Overlord.\n\nRequired for:\n• Eviscerator\n• Ruiner\n• Overlord's Wrath\n• 25% faster regrowth of resources near Colony Platforms\n\n
+		Description: Declare your allegiance and side with the Scrin Overlord.\n\nRequired for:\n• Eviscerator\n• Ruiner\n• Overlord's Wrath\n• Ichor Spike\n\n
 		IconPalette: chromes
 	TooltipExtras:
 		Attributes: (!) Only ONE allegiance may be chosen.
@@ -1870,6 +1954,8 @@ loyalist.allegiance:
 		Image: loyalist.allegiance
 	WithProductionIconOverlay:
 		Prerequisites: loyalist.allegiance
+	FreeActorCA@IchorSpike:
+		Actor: ichorspike.provider
 
 rebel.allegiance:
 	Inherits: ^ScrinUpgrade
@@ -1878,7 +1964,7 @@ rebel.allegiance:
 	Buildable:
 		BuildPaletteOrder: 17
 		Prerequisites: ~player.scrin, scrin.allegiances.available, !loyalist.allegiance, !malefic.allegiance, ~techlevel.medium
-		Description: Declare your allegiance and side with the Scrin Rebels.\n\nRequired for:\n• Impaler\n• Nullifier\n• Gateway\n• Colony Ships can produce non-defense structures on the move\n\n
+		Description: Declare your allegiance and side with the Scrin Rebels.\n\nRequired for:\n• Impaler\n• Nullifier\n• Gateway\n• Colony Spike\n\n
 		IconPalette: chromes
 	TooltipExtras:
 		Attributes: (!) Only ONE allegiance may be chosen.
@@ -1888,6 +1974,8 @@ rebel.allegiance:
 		Image: rebel.allegiance
 	WithProductionIconOverlay:
 		Prerequisites: rebel.allegiance
+	FreeActorCA@ColonySpike:
+		Actor: colonyspike.provider
 
 malefic.allegiance:
 	Inherits: ^ScrinUpgrade

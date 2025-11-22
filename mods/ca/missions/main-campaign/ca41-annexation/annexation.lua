@@ -66,7 +66,7 @@ Squads = {
 
 -- Setup and Tick
 
-DefinePlayers = function()
+SetupPlayers = function()
 	USSR = Player.GetPlayer("USSR")
 	Nod = Player.GetPlayer("Nod")
 	Scrin = Player.GetPlayer("Scrin")
@@ -80,7 +80,7 @@ DefinePlayers = function()
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = DateTime.Minutes(3)
 	NumTransmittersCaptured = 0
@@ -91,7 +91,9 @@ WorldLoaded = function()
 	InitScrinRebels()
 	InitNod()
 
-	Actor.Create("hazmatsoviet.upgrade", true, { Owner = USSR })
+	Utils.Do(MissionPlayers, function(p)
+		Actor.Create("hazmatsoviet.upgrade", true, { Owner = p })
+	end)
 
 	ObjectiveCaptureNerveCenter = USSR.AddObjective("Capture rebel Nerve Center.")
 	ObjectiveEliminateRebels = USSR.AddObjective("Eliminate all rebel forces.")
@@ -116,8 +118,10 @@ WorldLoaded = function()
 		end)
 	end)
 
+	GatewayNerveCenter.GrantCondition("nerv-damage-reduction")
+
 	Trigger.OnCapture(GatewayNerveCenter, function(self, captor, oldOwner, newOwner)
-		if newOwner == USSR and not USSR.IsObjectiveCompleted(ObjectiveCaptureNerveCenter) then
+		if IsMissionPlayer(newOwner) and not USSR.IsObjectiveCompleted(ObjectiveCaptureNerveCenter) then
 			USSR.MarkCompletedObjective(ObjectiveCaptureNerveCenter)
 			ObjectiveHoldNerveCenter = USSR.AddObjective("Protect the captured Nerve Center.")
 			TimerTicks = 0
@@ -305,7 +309,7 @@ InitSignalTransmittersObjective = function()
 				Trigger.AfterDelay(DateTime.Seconds(3), function()
 					local wormhole = SpawnWormhole(wormholeLoc)
 					Trigger.AfterDelay(DateTime.Seconds(3), function()
-						Media.PlaySpeechNotification(USSR, "ReinforcementsArrived")
+						PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 						Notification("Reinforcements have arrived.")
 						InitScrinReinforcements(wormhole)
 						FleetRecall(transmitterLocation)

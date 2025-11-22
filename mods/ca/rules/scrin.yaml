@@ -396,64 +396,6 @@ VEHICLES.SCRIN:
 		RequiresCondition: anathema
 		Palette: anathema
 
-^RebelMcvProduction:
-	Inherits@BLD: ^ProducesBuildings
-	-PrimaryBuilding:
-	-WithDecoration@primary:
-	GrantConditionOnPrerequisite@Rebel:
-		Prerequisites: rebel.allegiance
-		Condition: rebel-allegiance
-	ProvidesPrerequisite@scrin:
-		Prerequisite: structures.scrin
-		RequiresCondition: rebel-allegiance
-	ProvidesPrerequisiteValidatedFaction@reaper:
-		Factions: reaper
-		Prerequisite: structures.reaper
-		RequiresCondition: rebel-allegiance
-	ProvidesPrerequisiteValidatedFaction@traveler:
-		Factions: traveler
-		Prerequisite: structures.traveler
-		RequiresCondition: rebel-allegiance
-	ProvidesPrerequisiteValidatedFaction@harbinger:
-		Factions: harbinger
-		Prerequisite: structures.harbinger
-		RequiresCondition: rebel-allegiance
-	ProvidesPrerequisiteValidatedFaction@collector:
-		Factions: collector
-		Prerequisite: structures.collector
-		RequiresCondition: rebel-allegiance
-	FreeActor@QUEUEUPDATER:
-		RequiresCondition: updatequeue && rebel-allegiance
-	-SpawnActorOnCapture@QUEUEUPDATER:
-	-GrantConditionOnPrerequisite@MQF:
-	-GrantConditionOnPrerequisite@MQS:
-	GrantDelayedCondition@QUEUEUPDATER:
-		RequiresCondition: rebel-allegiance
-	-ProductionQueue@MQDEF:
-	-ProductionBar@MQDEF:
-	Production@SQBLD:
-		Produces: BuildingSQ
-		RequiresCondition: !global-multiqueuefull && rebel-allegiance
-		PauseOnCondition: being-warped
-	Production@MQBLD:
-		Produces: BuildingMQ
-		RequiresCondition: global-multiqueuefull && rebel-allegiance
-		PauseOnCondition: being-warped
-	ProductionBar@SQBLD:
-		RequiresCondition: !global-multiqueuefull && rebel-allegiance
-	ProductionBar@MQBLD:
-		RequiresCondition: global-multiqueuefull && rebel-allegiance
-	SpeedMultiplier@ProducingMobile:
-		Modifier: 60
-		RequiresCondition: producing-mobile
-	GrantConditionWhileProducing@ProducingMobile:
-		ProductionType: BuildingSQ
-		Condition: producing-mobile
-		RequiresCondition: rebel-allegiance && !has-conyard
-	GrantConditionOnPrerequisiteCA@has-conyard:
-		Condition: has-conyard
-		Prerequisites: anyconyard
-
 ^ScrinVehicleVoice:
 	Voiced:
 		VoiceSet: ScrinVehicleVoice
@@ -2177,6 +2119,7 @@ LCHR.Orb:
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@bounty: ^GlobalBounty
 	Inherits@Warpable: ^Warpable
+	ScriptTriggers:
 	Selectable:
 		DecorationBounds: 1536, 1536, 0, -128
 	Tooltip:
@@ -3078,7 +3021,6 @@ SMCV:
 	Inherits@SCRINVEHICLEVOICE: ^ScrinVehicleVoice
 	Inherits@EconomyPolicyDiscount: ^EconomyPolicyDiscount
 	Inherits@EconomyPolicyMcvSpeedBonus: ^EconomyPolicyMcvSpeedBonus
-	Inherits@RebelMcvProduction: ^RebelMcvProduction
 	Inherits@HeavyArmor: ^HeavyArmor
 	Inherits@NodCovenantTarget: ^NodCovenantTarget
 	Buildable:
@@ -4712,14 +4654,6 @@ SFAC:
 		ActorTypes: s1,s1,s1,s1,s6
 		GuaranteedActorTypes: s1, s1
 	-UpdatesBuildOrder:
-	GrantConditionOnPrerequisite@LoyalistBonus:
-		Condition: loyalist-allegiance
-		Prerequisites: loyalist.allegiance
-	ProximityExternalCondition@IchorBoost:
-		Range: 16c0
-		Condition: ichor-boost
-		ValidRelationships: Neutral
-		RequiresCondition: loyalist-allegiance
 
 REAC:
 	Inherits: ^ScrinBuilding
@@ -5954,12 +5888,10 @@ STRM2:
 	JamsMissiles@IONSTORM:
 		Range: 2c512
 
-SCOL.Temp:
+SSPK:
 	Inherits: SCOL
 	Tooltip:
 		Name: Storm Spike
-	RenderSprites:
-		Image: scol
 	-Sellable:
 	-Buildable:
 	Health:
@@ -6002,17 +5934,41 @@ SCOL.Temp:
 	-ChangesHealth@DefensePolicy2:
 	-UpdatesCount@NodCovenant:
 	-Encyclopedia:
+	GrantTimedCondition@Active:
+		Condition: active
+		Duration: 750
+	TimedConditionBarCA@Active:
+		Condition: active
+		Color: FFFFFF
+		ValidRelationships: Ally, Enemy, Neutral
+	DummyConditionConsumer@Active:
+		Condition: active
 
-VSPK:
-	Inherits: ^BasicBuilding
-	-ShakeOnDeath:
+^SpikeBase:
+	Inherits: ^Defense
 	OwnerLostAction:
 		Action: Kill
 	RenderSprites:
 		PlayerPalette: playerscrin
-	FireWarheadsOnDeath:
-		Weapon: SmallBuildingExplode
-		EmptyWeapon: SmallBuildingExplode
+	Armor:
+		Type: Concrete
+	Building:
+		TerrainTypes: Clear,Road,Ore,Gems,Tiberium,BlueTiberium,BlackTiberium
+		AllowPlacementOnResources: true
+		-BuildSounds:
+	SoundOnDamageTransition:
+		-DamagedSounds:
+		DestroyedSounds: kaboom15.aud
+	-ShakeOnDeath:
+	-RepairableBuilding:
+	-WithBuildingRepairDecoration:
+	-Sellable:
+	-ChangesHealth@DefensePolicy2:
+	-RenderRangeCircle:
+	-DetectCloaked:
+
+VSPK:
+	Inherits: ^SpikeBase
 	Selectable:
 		Bounds: 1280, 1792, 0, -512
 		DecorationBounds: 1280, 2560, 0, -768
@@ -6023,62 +5979,154 @@ VSPK:
 	TooltipExtras:
 		Attributes: • Corrupts resources\n• Damages nearby enemies over time\n• Direct damage is reflected back to the attacker
 		Description: Gradually transforms nearby resources into Black Tiberium, which is devoid of most of its useful properties.
-	Armor:
-		Type: Concrete
-	Targetable:
-		TargetTypes: Ground, Structure, Defense
 	RevealsShroud:
 		MinRange: 6c0
 		Range: 8c0
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
 		Range: 6c0
-	Building:
-		Dimensions: 1,1
-		Footprint: x
-		TerrainTypes: Clear,Road,Ore,Gems,Tiberium,BlueTiberium,BlackTiberium
-		AllowPlacementOnResources: true
-	WithMakeAnimation:
-	SoundOnDamageTransition:
-		-DamagedSounds:
-		DestroyedSounds: kaboom15.aud
 	ProximityExternalCondition@VoidSpike:
 		Condition: voidspike
 		Range: 8c0
 		ValidRelationships: Enemy, Neutral
+		RequiresCondition: !build-incomplete && !being-warped
 	WithRangeCircleCA@VoidSpike:
 		Type: VoidSpike
 		Range: 8c0
 		ValidRelationships: Ally, Enemy, Neutral
 		UsePlayerColor: true
 		PlayerColorAlpha: 160
-	ConvertsResources@Full:
+	ConvertsResources:
 		Range: 8c0
 		ConvertFrom: Tiberium, BlueTiberium, Ore, Gems
 		ConvertTo: BlackTiberium
 		Interval: 10
 		Amount: 1
-	ConvertsResources@Close:
-		Range: 4c0
-		ConvertFrom: Tiberium, BlueTiberium, Ore, Gems
-		ConvertTo: BlackTiberium
-		Interval: 10
-		Amount: 1
+		RequiresCondition: !build-incomplete && !being-warped
 	PeriodicExplosion:
 		Weapon: VoidSpike
+		RequiresCondition: !build-incomplete && !being-warped
 	AmbientSoundCA:
 		SoundFiles: grcl-loop1.aud, grcl-loop2.aud
 		Delay: 0
 		Interval: 20
 		VolumeMultiplier: 0.3
+		AudibleThroughFog: true
+		RequiresCondition: !build-incomplete && !being-warped
 	WithIdleOverlay:
 		Sequence: overlay
 		Palette: scrin
 		IsDecoration: true
+		RequiresCondition: !build-incomplete && !being-warped
 	ReflectsDamage:
 		DamagePercentage: 50
 		ValidRelationships: Ally, Enemy, Neutral
 		ReflectToAttacker: true
+		RequiresCondition: !build-incomplete && !being-warped
+
+ISPK:
+	Inherits: ^SpikeBase
+	Selectable:
+		Bounds: 1280, 2304, 0, -576
+		DecorationBounds: 1280, 2816, 0, -832
+	Health:
+		HP: 40000
+	Tooltip:
+		Name: Ichor Spike
+	TooltipExtras:
+		Attributes: • Enriches Tiberium trees\n• Empowers units with Resource Conversion upgrade
+		Description: Enriches nearby Tiberium trees causing them to seed Tiberium more quickly.
+	RevealsShroud:
+		MinRange: 6c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 6c0
+	WithIdleAnimation:
+		Sequences: idle2, idle3, idle4, idle5
+		Interval: 5, 50
+		RequiresCondition: !build-incomplete && !being-warped
+	ProximityExternalCondition@IchorBoost:
+		Range: 8c0
+		Condition: ichor-boost
+		ValidRelationships: Neutral
+		RequiresCondition: !build-incomplete && !being-warped
+	ProximityExternalCondition@ONTIB:
+		Condition: on-tib
+		Range: 8c0
+		ValidRelationships: Ally, Neutral, Enemy
+	WithRangeCircleCA@IchorBoost:
+		Type: IchorSpike
+		Range: 8c0
+		ValidRelationships: Ally, Enemy, Neutral
+		Color: 00ff00aa
+	TerrainLightSource:
+		Range: 3c0
+		Intensity: 0.1
+		GreenTint: 0.3
+	ChangesHealth:
+		Step: 0
+		PercentageStep: 1
+		Delay: 25
+		StartIfBelow: 100
+		DamageCooldown: 150
+	WithBuildingBib:
+		HasMinibib: true
+
+CSPK:
+	Inherits: ^SpikeBase
+	Inherits@ProducesBuildings: ^ProducesBuildings
+	Selectable:
+		Bounds: 1280, 2304, 0, -576
+		DecorationBounds: 1280, 2816, 0, -832
+	Health:
+		HP: 40000
+	Tooltip:
+		Name: Colony Spike
+	TooltipExtras:
+		Attributes: • Produces non-defense buildings.
+		Description: Enables production of non-defense buildings.
+	RevealsShroud:
+		MinRange: 6c0
+		Range: 10c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 6c0
+	WithBuildingBib:
+		HasMinibib: true
+	Building:
+		TerrainTypes: Clear,Road
+		AllowPlacementOnResources: false
+	-PrimaryBuilding:
+	-WithDecoration@primary:
+	-ProductionQueue@MQDEF:
+	-ProductionBar@MQDEF:
+	-GrantConditionOnPrerequisite@MQF:
+	-GrantConditionOnPrerequisite@MQS:
+	Production@SQBLD:
+		Produces: BuildingSQ
+		PauseOnCondition: build-incomplete || being-warped
+	Production@MQBLD:
+		Produces: BuildingMQ
+		PauseOnCondition: build-incomplete || being-warped
+	ProductionBar@SQBLD:
+		ProductionType: BuildingSQ
+	ProductionBar@MQBLD:
+		ProductionType: BuildingMQ
+	ProvidesPrerequisite@scrin:
+		Prerequisite: structures.scrin
+	ProvidesPrerequisiteValidatedFaction@reaper:
+		Factions: reaper
+		Prerequisite: structures.reaper
+	ProvidesPrerequisiteValidatedFaction@traveler:
+		Factions: traveler
+		Prerequisite: structures.traveler
+	ProvidesPrerequisiteValidatedFaction@harbinger:
+		Factions: harbinger
+		Prerequisite: structures.harbinger
+	ProvidesPrerequisiteValidatedFaction@collector:
+		Factions: collector
+		Prerequisite: structures.collector
 
 #
 # ---- misc
@@ -6512,6 +6560,8 @@ IonSurgeFade:
 		CrushedSequence: die
 		FallbackSequence: die
 	WithMakeAnimation:
+	OwnerLostAction:
+		Action: Kill
 	# required for death animation
 	Health:
 		HP: 1

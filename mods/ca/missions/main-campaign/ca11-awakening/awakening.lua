@@ -168,15 +168,16 @@ AirAttackCompositions = {
 
 -- Setup and Tick
 
-DefinePlayers = function()
+SetupPlayers = function()
 	Nod = Player.GetPlayer("Nod")
 	USSR = Player.GetPlayer("USSR")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { Nod }
 	MissionEnemies = { USSR }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = HoldOutTime[Difficulty]
 	CyborgWaves = 0
@@ -189,7 +190,7 @@ WorldLoaded = function()
 	ObjectiveProtectTemple = Nod.AddObjective("Protect Temple Prime.")
 
 	if IsHardOrAbove() then
-		Utils.Do(Nod.GetActorsByType("mlrs"), function(a)
+		Utils.Do(GetMissionPlayersActorsByType("mlrs"), function(a)
 			a.Destroy()
 		end)
 	end
@@ -231,8 +232,10 @@ OncePerSecondChecks = function()
 			ObjectiveDestroySovietForces = Nod.AddObjective("Destroy all Soviet forces.")
 			Nod.MarkCompletedObjective(ObjectiveProtectTemple)
 
-			Actor.Create("cyborgspeed.upgrade", true, { Owner = Nod })
-			Actor.Create("cyborgarmor.upgrade", true, { Owner = Nod })
+			Utils.Do(MissionPlayers, function(p)
+				Actor.Create("cyborgspeed.upgrade", true, { Owner = p })
+				Actor.Create("cyborgarmor.upgrade", true, { Owner = p })
+			end)
 
 			if not TemplePrime.IsDead then
 				TemplePrime.GrantCondition("awakening-complete")

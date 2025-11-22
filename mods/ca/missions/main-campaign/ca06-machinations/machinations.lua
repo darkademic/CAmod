@@ -150,15 +150,16 @@ Squads = {
 
 -- Setup and Tick
 
-DefinePlayers = function()
+SetupPlayers = function()
 	Greece = Player.GetPlayer("Greece")
 	Nod = Player.GetPlayer("Nod")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { Greece }
 	MissionEnemies = { Nod }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = 0
 	Camera.Position = McvLanding.CenterPosition
@@ -166,6 +167,7 @@ WorldLoaded = function()
 	InitObjectives(Greece)
 	AdjustPlayerStartingCashForDifficulty()
 	InitNod()
+	SetupChurchMoneyCrates()
 	DoMcvArrival()
 
 	if IsNormalOrBelow() then
@@ -188,14 +190,6 @@ WorldLoaded = function()
 		InitNodAttacks()
 	end)
 
-	Trigger.OnKilled(Church1, function(self, killer)
-		Actor.Create("moneycrate", true, { Owner = Greece, Location = Church1.Location })
-	end)
-
-	Trigger.OnKilled(Church2, function(self, killer)
-		Actor.Create("moneycrate", true, { Owner = Greece, Location = Church2.Location })
-	end)
-
 	ObjectiveFindLab = Greece.AddObjective("Locate the Nod research lab.")
 
 	-- On proximity to lab, reveal it and update objectives.
@@ -207,7 +201,7 @@ WorldLoaded = function()
 	end)
 
 	Trigger.OnCapture(ResearchLab, function(self, captor, oldOwner, newOwner)
-		if newOwner == Greece then
+		if IsMissionPlayer(newOwner) then
 			Greece.MarkCompletedObjective(ObjectiveCaptureLab)
 		end
 	end)
@@ -328,6 +322,7 @@ InitNodAttacks = function()
 	end
 end
 
+-- overridden in co-op version
 DoMcvArrival = function()
 	local mcvArrivalPath = { McvEntry.Location, McvLanding.Location }
 	local mcvExitPath = { McvEntry.Location }

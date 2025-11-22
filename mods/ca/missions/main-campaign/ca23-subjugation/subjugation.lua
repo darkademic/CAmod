@@ -90,15 +90,16 @@ Squads = {
 	},
 }
 
-DefinePlayers = function()
+SetupPlayers = function()
 	Scrin = Player.GetPlayer("Scrin")
 	USSR = Player.GetPlayer("USSR")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { Scrin }
 	MissionEnemies = { USSR }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = 0
 	TibFacilitiesCaptured = 0
@@ -122,8 +123,10 @@ WorldLoaded = function()
 		CapturedCreditsAmount = 1500
 	end
 
-	Actor.Create("blink.upgrade", true, { Owner = Scrin })
-	Actor.Create("radar.dummy", true, { Owner = Scrin })
+	Utils.Do(MissionPlayers, function(p)
+		Actor.Create("blink.upgrade", true, { Owner = p })
+		Actor.Create("radar.dummy", true, { Owner = p })
+	end)
 
 	Trigger.AfterDelay(DateTime.Seconds(7), function()
 		Media.DisplayMessage("Your powers are no match for me. Flee through your wormholes, while you can.", "Yuri", HSLColor.FromHex("FF00BB"))
@@ -162,7 +165,7 @@ WorldLoaded = function()
 		end)
 
 		Trigger.OnCapture(a, function(self, captor, oldOwner, newOwner)
-			if newOwner == Scrin then
+			if IsMissionPlayer(newOwner) then
 				TibFacilitiesCaptured = TibFacilitiesCaptured + 1
 				Mastermind.GrantCondition("rank-veteran")
 				Mastermind.Health = Mastermind.MaxHealth
@@ -367,7 +370,7 @@ RespawnMastermind = function()
 		Beacon.New(Scrin, PlayerStart.CenterPosition, DateTime.Seconds(20))
 
 		Trigger.AfterDelay(DateTime.Seconds(2), function()
-			Media.PlaySpeechNotification(Scrin, "ReinforcementsArrived")
+			PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 			Mastermind = Reinforcements.Reinforce(Scrin, { "mast" }, { PlayerStart.Location }, 1)[1]
 			Mastermind.Scatter()
 

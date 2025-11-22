@@ -153,18 +153,19 @@ Squads = {
 	}
 }
 
-DefinePlayers = function()
+SetupPlayers = function()
 	Nod = Player.GetPlayer("Nod")
 	Scrin = Player.GetPlayer("Scrin")
 	ScrinRebels = Player.GetPlayer("ScrinRebels")
 	GDIHostile = Player.GetPlayer("GDIHostile")
 	GDI = Player.GetPlayer("GDI")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { Nod }
 	MissionEnemies = { Scrin }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	NextExterminatorIndex = 1
 	Camera.Position = PlayerStart.CenterPosition
@@ -198,10 +199,16 @@ WorldLoaded = function()
 		end
 	end)
 
-	NodRadarProvider = Actor.Create("radar.dummy", true, { Owner = Nod })
+	RadarProviders = {}
+
+	Utils.Do(MissionPlayers, function(p)
+		table.insert(RadarProviders, Actor.Create("radar.dummy", true, { Owner = p }))
+	end)
 
 	Trigger.OnKilled(RebelMainNerveCenter, function(self, killer)
-		NodRadarProvider.Destroy()
+		Utils.Do(RadarProviders, function(p)
+			p.Destroy()
+		end)
 	end)
 
 	AfterWorldLoaded()
@@ -235,9 +242,7 @@ OncePerFiveSecondChecks = function()
 			end)
 		end
 
-		if not PlayerHasBuildings(ScrinRebels) and not Victory then
-			Nod.MarkFailedObjective(ObjectiveDefendRebels)
-		end
+		DefendScrinRebelsCheck()
 
 		if MissionPlayersHaveNoRequiredUnits() and not Victory then
 			Nod.MarkFailedObjective(ObjectiveDestroyOverlordForces)
@@ -297,6 +302,8 @@ InitScrin = function()
 		end
 	end)
 
+	Actor.Create("loyalist.allegiance", true, { Owner = Scrin })
+
 	Trigger.AfterDelay(SuperweaponsEnabledTime[Difficulty], function()
 		Actor.Create("ai.minor.superweapons.enabled", true, { Owner = Scrin })
 		Actor.Create("ai.superweapons.enabled", true, { Owner = Scrin })
@@ -318,21 +325,25 @@ InitScrin = function()
 end
 
 InitScrinRebels = function()
-	RebuildExcludes.ScrinRebels = { Actors = { FallenRebel1, FallenRebel2, FallenRebel3, FallenRebel4, FallenRebel5, FallenRebel6, FallenRebel7, FallenRebel8, FallenRebel9, FallenRebel10 } }
+	if not ScrinRebelsActive then
+		ScrinRebelsActive = true
 
-	AutoRepairAndRebuildBuildings(ScrinRebels, 15)
-	AutoReplaceHarvesters(ScrinRebels)
-	AutoRebuildConyards(Scrin, true)
-	InitAiUpgrades(ScrinRebels)
-	InitAirAttackSquad(Squads.ScrinRebelsAir, ScrinRebels, Scrin)
-	InitAttackSquad(Squads.ScrinRebelsMain, ScrinRebels, Scrin)
+		RebuildExcludes.ScrinRebels = { Actors = { FallenRebel1, FallenRebel2, FallenRebel3, FallenRebel4, FallenRebel5, FallenRebel6, FallenRebel7, FallenRebel8, FallenRebel9, FallenRebel10 } }
 
-	local scrinRebelGroundAttackers = ScrinRebels.GetGroundAttackers()
+		AutoRepairAndRebuildBuildings(ScrinRebels, 15)
+		AutoReplaceHarvesters(ScrinRebels)
+		AutoRebuildConyards(Scrin, true)
+		InitAiUpgrades(ScrinRebels)
+		InitAirAttackSquad(Squads.ScrinRebelsAir, ScrinRebels, Scrin)
+		InitAttackSquad(Squads.ScrinRebelsMain, ScrinRebels, Scrin)
 
-	Utils.Do(scrinRebelGroundAttackers, function(a)
-		TargetSwapChance(a, 10)
-		CallForHelpOnDamagedOrKilled(a, WDist.New(5120), IsScrinRebelGroundHunterUnit, function(p) return p == Scrin end)
-	end)
+		local scrinRebelGroundAttackers = ScrinRebels.GetGroundAttackers()
+
+		Utils.Do(scrinRebelGroundAttackers, function(a)
+			TargetSwapChance(a, 10)
+			CallForHelpOnDamagedOrKilled(a, WDist.New(5120), IsScrinRebelGroundHunterUnit, function(p) return p == Scrin end)
+		end)
+	end
 end
 
 InitGDI = function()
@@ -444,4 +455,10 @@ end
 
 IsScrinGroundHunterUnitExcludingExterminators = function(actor)
 	return IsScrinGroundHunterUnit(actor) and actor.Type ~= "etpd"
+end
+
+DefendScrinRebelsCheck = function()
+	if not PlayerHasBuildings(ScrinRebels) and not Victory then
+		Nod.MarkFailedObjective(ObjectiveDefendRebels)
+	end
 end

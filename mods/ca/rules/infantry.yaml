@@ -1420,6 +1420,9 @@ THF:
 	WithInfantryBody:
 		IdleSequences: idle
 		StandSequences: stand
+	RevealsShroudMultiplier@Cloaked:
+		Modifier: 160
+		RequiresCondition: hidden
 	Cloak@NORMAL:
 		InitialDelay: 250
 		CloakDelay: 120
@@ -4878,7 +4881,7 @@ ZDEF:
 	Voiced:
 		VoiceSet: ZoneDefenderVoice
 	Health:
-		HP: 18000
+		HP: 20000
 	-TargetedLeapAbility:
 	-Contrail@Jumping:
 	-WithShadow@Jump:
@@ -4978,6 +4981,7 @@ ENFO:
 	TakeCover:
 		ProneOffset: 0,0,0
 		ProneSequencePrefix:
+		SpeedModifier: 100
 	WithInfantryBody:
 		IdleSequences: idle, idle2
 		StandSequences: stand, stand2

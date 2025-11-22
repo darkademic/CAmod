@@ -38,7 +38,7 @@ Squads = {
 
 -- Setup and Tick
 
-DefinePlayers = function()
+SetupPlayers = function()
 	Nod = Player.GetPlayer("Nod")
 	Greece = Player.GetPlayer("Greece")
 	GDI = Player.GetPlayer("GDI")
@@ -48,7 +48,7 @@ DefinePlayers = function()
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = 0
 	Camera.Position = Commando.CenterPosition
@@ -66,21 +66,11 @@ WorldLoaded = function()
 		Hospital.Destroy()
 		Actor.Create("hosp.husk", true, { Owner = Neutral, Location = hospitalLocation })
 	else
-
-		if Difficulty == "normal" then
-			Commando.GrantCondition("difficulty-normal")
-			Hacker1.GrantCondition("difficulty-normal")
-			Hacker2.GrantCondition("difficulty-normal")
-			StealthTank1.GrantCondition("difficulty-normal")
-			StealthTank2.GrantCondition("difficulty-normal")
-		else
-			Commando.GrantCondition("difficulty-easy")
-			Hacker1.GrantCondition("difficulty-easy")
-			Hacker2.GrantCondition("difficulty-easy")
-			StealthTank1.GrantCondition("difficulty-easy")
-			StealthTank2.GrantCondition("difficulty-easy")
-			Actor.Create("sathack.dummy", true, { Owner = Nod, Location = Commando.Location })
-		end
+		Commando.GrantCondition("difficulty-" .. Difficulty)
+		Hacker1.GrantCondition("difficulty-" .. Difficulty)
+		Hacker2.GrantCondition("difficulty-" .. Difficulty)
+		StealthTank1.GrantCondition("difficulty-" .. Difficulty)
+		StealthTank2.GrantCondition("difficulty-" .. Difficulty)
 
 		JumpJet1.Destroy()
 		JumpJet2.Destroy()
@@ -92,6 +82,12 @@ WorldLoaded = function()
 		HardOnlyDisruptor1.Destroy()
 		HardOnlyDisruptor2.Destroy()
 		HardOnlyMammoth.Destroy()
+
+		if Difficulty == "easy" then
+			Utils.Do(MissionPlayers, function(p)
+				Actor.Create("sathack.dummy", true, { Owner = p, Location = Commando.Location })
+			end)
+		end
 
 		Trigger.AfterDelay(DateTime.Seconds(3), function()
 			Tip("Hackers can remotely take control of enemy structures, defenses and drone vehicles.")
@@ -226,8 +222,13 @@ OncePerSecondChecks = function()
 				BridgeCamera1.Destroy()
 				BridgeCamera2.Destroy()
 			end)
+			InitIonControl()
 		end
 	end
+end
+
+InitIonControl = function()
+	-- overridden in co-op version for damage scoreboard
 end
 
 OncePerFiveSecondChecks = function()
@@ -291,9 +292,9 @@ CommandoDeathTrigger = function(commando)
 		if RespawnEnabled then
 			Notification("Commando arriving in 20 seconds.")
 			Trigger.AfterDelay(DateTime.Seconds(20), function()
-				Commando = Reinforcements.Reinforce(Nod, { "rmbo" }, { Respawn.Location, RespawnRally.Location })[1]
-				Beacon.New(Nod, RespawnRally.CenterPosition)
-				Media.PlaySpeechNotification(Nod, "ReinforcementsArrived")
+				Commando = Reinforcements.Reinforce(self.Owner, { "rmbo" }, { Respawn.Location, RespawnRally.Location })[1]
+				Beacon.New(self.Owner, RespawnRally.CenterPosition)
+				Media.PlaySpeechNotification(self.Owner, "ReinforcementsArrived")
 				if IsNormalOrBelow() then
 					Commando.GrantCondition("difficulty-" .. Difficulty)
 				end
@@ -305,19 +306,19 @@ end
 
 HackerDeathTrigger = function(hacker)
 	Trigger.OnKilled(hacker, function(self, killer)
-		if #Nod.GetActorsByType("hack") == 0 and not Nod.IsObjectiveCompleted(ObjectiveHackIonControl) then
+		if #self.Owner.GetActorsByType("hack") == 0 and not Nod.IsObjectiveCompleted(ObjectiveHackIonControl) then
 			if RespawnEnabled then
 				Notification("Hacker arriving in 20 seconds.")
 				Trigger.AfterDelay(DateTime.Seconds(20), function()
-					Hacker = Reinforcements.Reinforce(Nod, { "hack" }, { Respawn.Location, RespawnRally.Location })[1]
-					Beacon.New(Nod, RespawnRally.CenterPosition)
-					Media.PlaySpeechNotification(Nod, "ReinforcementsArrived")
+					Hacker = Reinforcements.Reinforce(self.Owner, { "hack" }, { Respawn.Location, RespawnRally.Location })[1]
+					Beacon.New(self.Owner, RespawnRally.CenterPosition)
+					Media.PlaySpeechNotification(self.Owner, "ReinforcementsArrived")
 					if IsNormalOrBelow() then
 						Hacker.GrantCondition("difficulty-" .. Difficulty)
 					end
 					HackerDeathTrigger(Hacker)
 				end)
-			else
+			elseif #GetMissionPlayersActorsByTypes({ "hack" }) == 0 then
 				Nod.MarkFailedObjective(ObjectiveHackIonControl)
 			end
 		end
@@ -326,13 +327,13 @@ end
 
 StealthTankDeathTrigger = function(stealthTank)
 	Trigger.OnKilled(stealthTank, function(self, killer)
-		if #Nod.GetActorsByType("stnk.nod") == 0 then
+		if #self.Owner.GetActorsByType("stnk.nod") == 0 then
 			if RespawnEnabled then
 				Notification("Stealth Tank arriving in 20 seconds.")
 				Trigger.AfterDelay(DateTime.Seconds(20), function()
-					StealthTank = Reinforcements.Reinforce(Nod, { "stnk.nod" }, { Respawn.Location, RespawnRally.Location })[1]
-					Beacon.New(Nod, RespawnRally.CenterPosition)
-					Media.PlaySpeechNotification(Nod, "ReinforcementsArrived")
+					StealthTank = Reinforcements.Reinforce(self.Owner, { "stnk.nod" }, { Respawn.Location, RespawnRally.Location })[1]
+					Beacon.New(self.Owner, RespawnRally.CenterPosition)
+					Media.PlaySpeechNotification(self.Owner, "ReinforcementsArrived")
 					if IsNormalOrBelow() then
 						StealthTank.GrantCondition("difficulty-" .. Difficulty)
 					end

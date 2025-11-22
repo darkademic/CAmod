@@ -47,17 +47,18 @@ Squads = {
 	AirToAir = AirToAirSquad({ "orca" }, AdjustAirDelayForDifficulty(DateTime.Minutes(10))),
 }
 
-DefinePlayers = function()
+SetupPlayers = function()
 	USSR = Player.GetPlayer("USSR")
 	GDI = Player.GetPlayer("GDI")
 	China = Player.GetPlayer("China")
 	ChinaHostile = Player.GetPlayer("ChinaHostile")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { USSR }
 	MissionEnemies = { GDI }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = 0
 	Camera.Position = McvRally.CenterPosition
@@ -92,7 +93,7 @@ WorldLoaded = function()
 		if not McvRequested then
 			McvRequested = true
 			Trigger.AfterDelay(DateTime.Seconds(5), function()
-				Media.PlaySpeechNotification(USSR, "ReinforcementsArrived")
+				PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 				Notification("Reinforcements have arrived.")
 				Reinforcements.Reinforce(USSR, { "mcv" }, { McvSpawn.Location, McvRally.Location })
 				Beacon.New(USSR, McvRally.CenterPosition)
@@ -250,7 +251,7 @@ InitWeaponsCache = function(withOutpostFlare)
 		if withOutpostFlare then
 			Trigger.AfterDelay(DateTime.Seconds(5), function()
 				local outpostFlare = Actor.Create("flare", true, { Owner = USSR, Location = GDIOutpostFlare.Location })
-				Media.PlaySpeechNotification(USSR, "SignalFlare")
+				PlaySpeechNotificationToMissionPlayers("SignalFlare")
 				Notification("Signal flare detected. Press [" .. UtilsCA.Hotkey("ToLastEvent") .. "] to view location.")
 				Beacon.New(USSR, GDIOutpostFlare.CenterPosition)
 

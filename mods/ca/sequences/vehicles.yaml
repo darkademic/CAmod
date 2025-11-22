@@ -1535,6 +1535,11 @@ hftk:
 		Start: 32
 		Facings: 32
 		UseClassicFacings: True
+	turret-upg:
+		Filename: hftk.shp
+		Start: 64
+		Facings: 32
+		UseClassicFacings: True
 	muzzle:
 		Combine:
 			0:
@@ -3198,6 +3203,7 @@ cust:
 		UseClassicFacings: True
 	spinner:
 		Filename: cust.shp
+		ZOffset: 512
 		Start: 32
 		Length: 8
 		Tick: 80

@@ -1,6 +1,5 @@
 MissionDir = "ca|missions/main-campaign/ca19-proliferation"
 
-
 Fields = {
 	{ Reinforced = false, Waypoint = NWField, Reinforcements = { "gunw", "intl", "s1", "s1", "s3", "s1", "s1", "s3", "s1", "s4" } },
 	{ Reinforced = false, Waypoint = NField, Reinforcements = { "devo", "corr", "s1", "s1", "s3", "s1", "s2", "s1", "s1", "s3" } },
@@ -150,15 +149,16 @@ Squads = {
 	},
 }
 
-DefinePlayers = function()
+SetupPlayers = function()
 	Scrin = Player.GetPlayer("Scrin")
 	Nod = Player.GetPlayer("Nod")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { Scrin }
 	MissionEnemies = { Nod }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = MaintenanceDuration[Difficulty]
 	FieldsClearedAndBeingHarvested = 0
@@ -201,7 +201,7 @@ WorldLoaded = function()
 	Utils.Do(AirReinforcements, function(r)
 		Trigger.OnAllKilled(r.SAMSites, function()
 			Trigger.AfterDelay(DateTime.Seconds(2), function()
-				Media.PlaySpeechNotification(Scrin, "ReinforcementsArrived")
+				PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 				Notification("Reinforcements have arrived.")
 				Beacon.New(Scrin, r.Spawn.CenterPosition)
 				Reinforcements.Reinforce(Scrin, { "stmr" }, { r.Spawn.Location, r.Dest.Location }, 25)
@@ -247,20 +247,7 @@ end
 
 OncePerFiveSecondChecks = function()
 	if DateTime.GameTime > 1 and DateTime.GameTime % 125 == 0 then
-		local playerTotalFunds = Scrin.Cash + Scrin.Resources
-		Scrin.Cash = 0
-		Scrin.Resources = playerTotalFunds
-
-		if Scrin.Resources >= NextReinforcementThreshold then
-			Scrin.Resources = Scrin.Resources - NextReinforcementThreshold
-
-			if NextReinforcementThreshold < ReinforcementFinalThreshold[Difficulty] then
-				NextReinforcementThreshold = NextReinforcementThreshold + ReinforcementThresholdIncrement
-			end
-
-			DoReinforcements()
-		end
-
+		CheckReinforcementThreshold()
 		UpdateRaidTarget()
 		CheckFields()
 		CheckColonyPlatform()
@@ -318,7 +305,7 @@ CheckFields = function()
 				local wormhole = Actor.Create("wormhole", true, { Owner = Scrin, Location = field.Waypoint.Location })
 
 				Trigger.AfterDelay(DateTime.Seconds(2), function()
-					Media.PlaySpeechNotification(Scrin, "ReinforcementsArrived")
+					PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 					Notification("Reinforcements have arrived.")
 					Beacon.New(Scrin, field.Waypoint.CenterPosition)
 
@@ -344,11 +331,12 @@ CheckFields = function()
 	end
 end
 
+-- overridden in co-op version
 UpdateObjectiveMessage = function()
 	if FieldsClearedAndBeingHarvested == 6 then
 		UserInterface.SetMissionText("6 of 6 fields occupied.\n   Maintain for " .. UtilsCA.FormatTimeForGameSpeed(TimerTicks), HSLColor.Lime)
 	else
-		local missionText = FieldsClearedAndBeingHarvested .. " of 6 fields occupied  -  Next reinforcement threshold: $" .. NextReinforcementThreshold
+		local missionText = FieldsClearedAndBeingHarvested .. " of 6 fields occupied  -  Next reinforcement threshold: $" .. Scrin.Cash + Scrin.Resources .. "/" .. NextReinforcementThreshold
 		UserInterface.SetMissionText(missionText, HSLColor.Yellow)
 	end
 end
@@ -391,7 +379,7 @@ DoReinforcements = function()
 	local wormhole = Actor.Create("wormhole", true, { Owner = Scrin, Location = reinforcementsWaypoint.Location })
 
 	Trigger.AfterDelay(DateTime.Seconds(2), function()
-		Media.PlaySpeechNotification(Scrin, "ReinforcementsArrived")
+		PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 		Notification("Reinforcements have arrived.")
 		Beacon.New(Scrin, reinforcementsWaypoint.CenterPosition)
 
@@ -407,6 +395,24 @@ DoReinforcements = function()
 	UpdateObjectiveMessage()
 end
 
+-- overridden in co-op version
+CheckReinforcementThreshold = function()
+	local playerTotalFunds = Scrin.Cash + Scrin.Resources
+	Scrin.Cash = 0
+	Scrin.Resources = playerTotalFunds
+
+	if Scrin.Resources >= NextReinforcementThreshold then
+		Scrin.Resources = Scrin.Resources - NextReinforcementThreshold
+
+		if NextReinforcementThreshold < ReinforcementFinalThreshold[Difficulty] then
+			NextReinforcementThreshold = NextReinforcementThreshold + ReinforcementThresholdIncrement
+		end
+
+		DoReinforcements()
+	end
+end
+
+-- overridden in co-op version
 CheckColonyPlatform = function()
 	local colonyPlatformsAndMcvs = Scrin.GetActorsByTypes({ "smcv", "sfac" })
 	if #colonyPlatformsAndMcvs == 0 and not ColonyPlatformBeingReplaced then
@@ -415,7 +421,7 @@ CheckColonyPlatform = function()
 			local wormhole = Actor.Create("wormhole", true, { Owner = Scrin, Location = McvReplace.Location })
 
 			Trigger.AfterDelay(DateTime.Seconds(2), function()
-				Media.PlaySpeechNotification(Scrin, "ReinforcementsArrived")
+				PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 				Notification("Reinforcements have arrived.")
 				Beacon.New(Scrin, McvReplace.CenterPosition)
 				ColonyPlatformBeingReplaced = false

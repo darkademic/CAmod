@@ -2000,6 +2000,10 @@ icon:
 		Filename: anathemaicon.shp
 	timeskip:
 		Filename: timeskipicon.shp
+	ichorspike:
+		Filename: ispkicon.shp
+	colonyspike:
+		Filename: cspkicon.shp
 	voidspike:
 		Filename: vspkicon.shp
 	placeholder:

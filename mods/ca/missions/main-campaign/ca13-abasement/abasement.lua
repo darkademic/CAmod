@@ -85,17 +85,18 @@ Squads = {
 	},
 }
 
-DefinePlayers = function()
+SetupPlayers = function()
 	USSR = Player.GetPlayer("USSR")
 	Nod = Player.GetPlayer("Nod")
 	NodAbandoned = Player.GetPlayer("NodAbandoned")
 	Scrin = Player.GetPlayer("Scrin")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { USSR }
 	MissionEnemies = { Scrin }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = 0
 	NodAbandoned.Cash = 0
@@ -113,7 +114,7 @@ WorldLoaded = function()
 	ObjectiveSecureSouthNodBase = USSR.AddSecondaryObjective("Secure southern Nod base.")
 
 	Trigger.OnCapture(SignalTransmitter, function(self, captor, oldOwner, newOwner)
-		if newOwner == USSR then
+		if IsMissionPlayer(newOwner) then
 			USSR.MarkCompletedObjective(ObjectiveCaptureSignalTransmitter)
 		end
 	end)

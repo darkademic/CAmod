@@ -26,12 +26,16 @@ McvRebuildDelay = {
 }
 
 UnitBuildTimeMultipliers = {
-	-- at 1.0 a single queue can produce 2500 value/min (~41.6/s)
 	easy = 1.25, -- 2000 value/min per queue (~33/s)
 	normal = 0.81, -- 3086 value/min per queue (~51/s)
 	hard = 0.6, -- 4166 value/min per queue (~69/s)
 	vhard = 0.4, -- 6250 value/min per queue (~104/s)
 	brutal = 0.3 -- 8333 value/min per queue (~138/s)
+	-- 1.0 -- 2500 value/min per queue (~41.6/s)
+	-- 0.52 -- 4807 value/min per queue (~80/s)
+	-- 0.34 -- 7352 value/min per queue (~122/s)
+	-- 0.26 -- 9615 value/min per queue (~160/s)
+	-- 0.2 --- 12500 value/min per queue (~208/s)
 }
 
 AttackValueMultipliers = {
@@ -311,8 +315,14 @@ InitAttackAircraft = function(aircraft, targetPlayers, targetList, targetType)
 				if not target or not target.IsInWorld or target.IsDead then
 					target = nil
 
-					if type(targetPlayers) ~= "table" then
+					if targetPlayers == nil then
+						targetPlayers = MissionPlayers
+					elseif type(targetPlayers) ~= "table" then
 						targetPlayers = { targetPlayers }
+					end
+
+					if #targetPlayers == 0 then
+						return
 					end
 
 					local targetPlayer = Utils.Random(targetPlayers)
@@ -418,6 +428,10 @@ AssaultPlayerBaseOrHunt = function(actor, targetPlayers, waypoints, fromIdle)
 		targetPlayers = { targetPlayers }
 	end
 
+	if #targetPlayers == 0 then
+		return
+	end
+
 	local targetPlayer = Utils.Random(targetPlayers)
 
 	Trigger.AfterDelay(1, function()
@@ -495,6 +509,22 @@ MissionPlayersHaveNavalPresence = function()
 		count = count + #navalUnits
 	end
 	return count > 4
+end
+
+MissionPlayersHaveConyard = function()
+	for _, p in pairs(MissionPlayers) do
+		local conyards = p.GetActorsByTypes(ConyardTypes)
+		if #conyards > 0 then
+			return true
+		end
+	end
+	return false
+end
+
+PlaySpeechNotificationToMissionPlayers = function(notification)
+	Utils.Do(MissionPlayers, function(p)
+		Media.PlaySpeechNotification(p, notification)
+	end)
 end
 
 UpdatePlayerBaseLocations = function()
@@ -1053,10 +1083,10 @@ InitAttackSquad = function(squad, player, targetPlayers)
 			delay = squad.Delay
 		end
 		Trigger.AfterDelay(delay, function()
-			InitAttackWave(squad, player, targetPlayers)
+			InitAttackWave(squad)
 		end)
 	else
-		InitAttackWave(squad, player, targetPlayers)
+		InitAttackWave(squad)
 	end
 end
 
@@ -1072,7 +1102,7 @@ InitNavalAttackSquad = function(squad, player, targetPlayers)
 	InitAttackSquad(squad, player, targetPlayers)
 end
 
-InitAttackWave = function(squad, player, targetPlayers)
+InitAttackWave = function(squad)
 
 	if IsSquadInProduction(squad) then
 		return
@@ -1080,6 +1110,10 @@ InitAttackWave = function(squad, player, targetPlayers)
 
 	squad.WaveTotalCost = 0
 	squad.WaveStartTime = DateTime.GameTime
+
+	if squad.TargetPlayers == nil or #squad.TargetPlayers == 0 then
+		return
+	end
 
 	-- randomly select target for the current wave
 	squad.TargetPlayer = Utils.Random(squad.TargetPlayers)
@@ -1103,7 +1137,7 @@ InitAttackWave = function(squad, player, targetPlayers)
 			return (composition.MinTime == nil or DateTime.GameTime >= composition.MinTime + squad.InitTime) -- after min time
 				and (composition.MaxTime == nil or DateTime.GameTime < composition.MaxTime + squad.InitTime) -- before max time
 				and (composition.RequiredTargetCharacteristics == nil or Utils.All(composition.RequiredTargetCharacteristics, function(characteristic)
-					return PlayerHasCharacteristic(squad.TargetPlayer, characteristic)
+					return PlayerOrMissionPlayersHaveCharacteristic(squad.TargetPlayer, characteristic)
 				end)) -- target player has all required characteristics
 				and (composition.Prerequisites == nil or squad.Player.HasPrerequisites(composition.Prerequisites)) -- player has prerequisites
 				and (composition.EnabledFunc == nil or composition.EnabledFunc()) -- custom function for whether the composition is enabled
@@ -1153,12 +1187,12 @@ InitAttackWave = function(squad, player, targetPlayers)
 			end)
 		else
 			Trigger.AfterDelay(DateTime.Seconds(15), function()
-				InitAttackWave(squad, squad.Player, squad.TargetPlayers)
+				InitAttackWave(squad)
 			end)
 		end
 	else
 		Trigger.AfterDelay(DateTime.Seconds(15), function()
-			InitAttackWave(squad, squad.Player, squad.TargetPlayers)
+			InitAttackWave(squad)
 		end)
 	end
 end
@@ -1200,6 +1234,14 @@ end
 
 PlayerHasCharacteristic = function(player, characteristic)
 	return PlayerCharacteristics[player.InternalName] ~= nil and PlayerCharacteristics[player.InternalName][characteristic] ~= nil and PlayerCharacteristics[player.InternalName][characteristic]
+end
+
+MissionPlayersHaveCharacteristic = function(characteristic)
+	return PlayerCharacteristics["MissionPlayers"] ~= nil and PlayerCharacteristics["MissionPlayers"][characteristic] ~= nil and PlayerCharacteristics["MissionPlayers"][characteristic]
+end
+
+PlayerOrMissionPlayersHaveCharacteristic = function(player, characteristic)
+	return PlayerHasCharacteristic(player, characteristic) or MissionPlayersHaveCharacteristic(characteristic)
 end
 
 ProduceNextAttackSquadUnit = function(squad, queue, unitIndex)
@@ -1682,7 +1724,7 @@ AddHarvesterDeathStack = function(player)
 end
 
 DoHelicopterDrop = function(player, entryPath, transportType, units, unitFunc, transportExitFunc)
-	Reinforcements.ReinforceWithTransport(player, transportType, units, entryPath, nil, function(transport, cargo)
+	return Reinforcements.ReinforceWithTransport(player, transportType, units, entryPath, nil, function(transport, cargo)
 		if not transport.IsDead then
 			transport.UnloadPassengers()
 			if unitFunc ~= nil then
@@ -1700,7 +1742,8 @@ DoHelicopterDrop = function(player, entryPath, transportType, units, unitFunc, t
 end
 
 DoNavalTransportDrop = function(player, entryPath, exitPath, transportType, units, unitFunc)
-	local cargo = Reinforcements.ReinforceWithTransport(player, transportType, units, entryPath, exitPath)[2]
+	local reinforcements = Reinforcements.ReinforceWithTransport(player, transportType, units, entryPath, exitPath)
+	local cargo = reinforcements[2]
 	if unitFunc ~= nil then
 		Utils.Do(cargo, function(a)
 			Trigger.OnAddedToWorld(a, function(self)
@@ -1708,6 +1751,7 @@ DoNavalTransportDrop = function(player, entryPath, exitPath, transportType, unit
 			end)
 		end)
 	end
+	return reinforcements
 end
 
 PlayerHasNavalProduction = function(player)
@@ -2121,6 +2165,17 @@ GetMissionPlayersArmyValue = function()
 	return value
 end
 
+GetMissionPlayersActorsByType = function(type)
+	local actors = {}
+	Utils.Do(MissionPlayers, function(p)
+		local pActors = p.GetActorsByType(type)
+		Utils.Do(pActors, function(a)
+			actors[#actors + 1] = a
+		end)
+	end)
+	return actors
+end
+
 GetMissionPlayersActorsByTypes = function(types)
 	local actors = {}
 	Utils.Do(MissionPlayers, function(p)
@@ -2141,6 +2196,10 @@ CalculatePlayerCharacteristics = function()
 		HeavyValue = 0,
 		AirValue = 0,
 	}
+
+	MissionPlayers = Utils.Where(MissionPlayers, function(p)
+		return p.PlayerIsActive
+	end)
 
 	Utils.Do(MissionPlayers, function(p)
 		PlayerCharacteristics[p.InternalName] = {
@@ -2211,6 +2270,18 @@ CalculatePlayerCharacteristics = function()
 		PlayerCharacteristics["MissionPlayers"].HeavyValue = PlayerCharacteristics["MissionPlayers"].HeavyValue + PlayerCharacteristics[p.InternalName].HeavyValue
 		PlayerCharacteristics["MissionPlayers"].AirValue = PlayerCharacteristics["MissionPlayers"].AirValue + PlayerCharacteristics[p.InternalName].AirValue
 	end)
+
+	if PlayerCharacteristics["MissionPlayers"].InfantryValue > 20000 then
+		PlayerCharacteristics["MissionPlayers"].MassInfantry = true
+	end
+
+	if PlayerCharacteristics["MissionPlayers"].HeavyValue > 20000 then
+		PlayerCharacteristics["MissionPlayers"].MassHeavy = true
+	end
+
+	if PlayerCharacteristics["MissionPlayers"].AirValue > 18000 then
+		PlayerCharacteristics["MissionPlayers"].MassAir = true
+	end
 end
 
 AircraftTargets = {
@@ -2602,7 +2673,7 @@ AirCompositions = {
 SpecialistAirSquad = function(unitTypes, characteristic, characteristicValue, delay, onProducedAction)
 	local squad = {
 		ActiveCondition = function(squad)
-			return PlayerHasCharacteristic(squad.TargetPlayer, characteristic)
+			return PlayerOrMissionPlayersHaveCharacteristic(squad.TargetPlayer, characteristic)
 		end,
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 24, Max = 24 }),
 		Compositions = function(squad)

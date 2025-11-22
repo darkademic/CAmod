@@ -1,6 +1,7 @@
 MissionDir = "ca|missions/main-campaign/ca42-schism"
 
 PurificationInterval = DateTime.Minutes(3)
+PurifierPosition = Purifier.CenterPosition
 
 DefendDuration = {
 	easy = DateTime.Minutes(3),
@@ -117,24 +118,24 @@ Squads = {
 
 -- Setup and Tick
 
-DefinePlayers = function()
+SetupPlayers = function()
 	USSR = Player.GetPlayer("USSR")
 	Scrin = Player.GetPlayer("Scrin")
 	Nod = Player.GetPlayer("Nod")
 	ScrinRebels = Player.GetPlayer("ScrinRebels")
-    ScrinRebelsOuter = Player.GetPlayer("ScrinRebelsOuter")
+	ScrinRebelsOuter = Player.GetPlayer("ScrinRebelsOuter")
 	MaleficScrin = Player.GetPlayer("MaleficScrin")
-	Neutral = Player.GetPlayer("Neutral")
 	SpyPlaneProvider = Player.GetPlayer("SpyPlaneProvider")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { USSR }
 	MissionEnemies = { Nod, ScrinRebels, MaleficScrin }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = PurificationInterval
-	IronCurtainIntegrityTicksRemaining = DateTime.Minutes(25)
+	IronCurtainIntegrityTicksRemaining = DateTime.Minutes(30)
 	Camera.Position = PlayerStart.CenterPosition
 
 	InitObjectives(USSR)
@@ -142,7 +143,9 @@ WorldLoaded = function()
 	InitScrinRebels()
 	InitNod()
 
-	Actor.Create("hazmatsoviet.upgrade", true, { Owner = USSR })
+	Utils.Do(MissionPlayers, function(p)
+		Actor.Create("hazmatsoviet.upgrade", true, { Owner = p })
+	end)
 
 	ObjectiveSecurePurifier = USSR.AddObjective("Use the Exterminator Tripod to secure\nthe purification device.")
 	UpdateMissionText()
@@ -165,7 +168,7 @@ WorldLoaded = function()
 	end)
 
 	Trigger.AfterDelay(DateTime.Seconds(10), function()
-		Exterminator.Owner = USSR
+		TransferExterminator()
 		Exterminator.GrantCondition("difficulty-" .. Difficulty)
 	end)
 
@@ -179,11 +182,11 @@ WorldLoaded = function()
 				spyPlaneDummy1.TargetAirstrike(Purifier.CenterPosition, Angle.NorthEast)
 				spyPlaneDummy1.Destroy()
 
-				Media.PlaySpeechNotification(USSR, "ReinforcementsArrived")
+				PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 				Notification("Reinforcements have arrived.")
 				Reinforcements.Reinforce(USSR, { "kiro" }, { KirovSpawn1.Location, KirovRally1.Location })
 				Reinforcements.Reinforce(USSR, { "kiro" }, { KirovSpawn2.Location, KirovRally2.Location })
-				Reinforcements.Reinforce(USSR, { "mcv" }, { McvSpawn.Location, McvDest.Location }, 75)
+				DoMcvArrival()
 
 				Utils.Do({ SSMNorth, SSMEast1, SSMEast2 }, function(s)
 					if not s.IsDead then
@@ -360,7 +363,7 @@ PurificationWave = function()
 	Lighting.Flash("Purification", AdjustTimeForGameSpeed(10))
 	MediaCA.PlaySound(MissionDir .. "/purificationsm.aud", 2)
 
-	local exterminators = USSR.GetActorsByType("etpd")
+	local exterminators = GetMissionPlayersActorsByType("etpd")
 	if #exterminators > 0 then
 		local exterminator = exterminators[1]
 		local dummy = Actor.Create("purification.dummy", true, { Owner = ScrinRebels, Location = exterminator.Location })
@@ -390,7 +393,7 @@ MaleficInit = function()
 			Actor.Create("wormhole", true, { Owner = MaleficScrin, Location = loc})
 		end)
 
-		MediaCA.PlaySound(MissionDir .. "/malefic.aud", 2)
+		MediaCA.PlaySound("malefic.aud", 2)
 		Trigger.AfterDelay(DateTime.Seconds(8), function()
 			Media.DisplayMessage("Impossible! These Scrin are not..  Do not allow the device to be destroyed!", "Scrin Overlord", HSLColor.FromHex("7700FF"))
 			MediaCA.PlaySound(MissionDir .. "/ovld_impossible.aud", 2)
@@ -466,39 +469,47 @@ OverlordSpawn = function(isInitial)
 end
 
 GetInvasionInterval = function()
-	local armyValue = GetMissionPlayersArmyValue()
+	local defenders = Utils.Where(Map.ActorsInCircle(PurifierPosition, WDist.New(20 * 1024)), function(a)
+		return IsMissionPlayer(a.Owner) and not a.IsDead and a.HasProperty("Attack") and a.Type ~= "etpd"
+	end)
+
+	local armyValue = GetTotalCostOfUnits(defenders)
+	local baseInterval = DateTime.Seconds(30)
+	local secondsToSubtract = math.floor(armyValue / 3500)
+	local minimumInterval = DateTime.Seconds(12)
+
+	if not Purifier.IsDead and Purifier.Health < Purifier.MaxHealth / 3 then
+		baseInterval = baseInterval + DateTime.Seconds(15)
+	end
 
 	if Difficulty == "easy" then
-		if armyValue >= 10000 then
-			return DateTime.Seconds(30)
-		else
-			return DateTime.Seconds(40)
-		end
-	else
-		if armyValue >= 48000 then
-			return DateTime.Seconds(15)
-		elseif armyValue >= 38000 then
-			return DateTime.Seconds(18)
-		elseif armyValue >= 28000 then
-			return DateTime.Seconds(21)
-		elseif armyValue >= 18000 then
-			return DateTime.Seconds(24)
-		elseif armyValue >= 10000 then
-			return DateTime.Seconds(27)
-		else
-			return DateTime.Seconds(30)
-		end
+		minimumInterval = DateTime.Seconds(30)
+	elseif Difficulty == "normal" then
+		minimumInterval = DateTime.Seconds(24)
+	elseif Difficulty == "hard" then
+		minimumInterval = DateTime.Seconds(18)
 	end
+
+	return math.max(baseInterval - DateTime.Seconds(secondsToSubtract), minimumInterval)
 end
 
 ApplyIronCurtain = function()
 	if USSR.PowerState ~= "Normal" then
 		return
 	end
-	local ics = USSR.GetActorsByType("iron")
+	local ics = GetMissionPlayersActorsByType("iron")
 	if #ics > 0 then
 		local ic = ics[1]
 		Media.PlaySound("ironcur9.aud")
 		Exterminator.GrantCondition("invulnerability", DateTime.Seconds(8))
 	end
+end
+
+TransferExterminator = function()
+	Exterminator.Owner = USSR
+end
+
+-- overridden in co-op version
+DoMcvArrival = function()
+	Reinforcements.Reinforce(USSR, { "mcv" }, { McvSpawn.Location, McvDest.Location }, 75)
 end

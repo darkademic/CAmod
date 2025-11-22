@@ -1192,11 +1192,12 @@
 		SelectTargetSpeechNotification: SelectTarget
 		SelectTargetTextNotification: Select target.
 		InsufficientPowerSpeechNotification: InsufficientPower
-		RequiresCondition: tower.rocket
+		RequiresCondition: tower-rocket
 		Prerequisites: ~techlevel.high
 		SupportPowerPaletteOrder: 30
 		TargetCircleRadius: 4c512
 		TargetCircleColor: ff660088
+		DisplayTimerRelationships: Ally, Neutral, Enemy
 		DisplayBeacon: True
 		BeaconAssumedLaunchDelay: 45
 		BeaconRemoveAdvance: 25
@@ -1220,7 +1221,7 @@
 		IconPalette: chrometd
 		Name: Advanced Radar Scan
 		Description: Reveals the location of enemy structures & units through the fog of war.
-		RequiresCondition: tower.radar
+		RequiresCondition: tower-radar
 		PauseOnCondition: !radar-active || disabled || being-warped
 		LaunchSound: gradarup.aud
 		BeginChargeSound: gradardn.aud
@@ -1256,7 +1257,7 @@
 		EffectImage: empty
 		EffectSequence: idle
 		EffectPalette: tseffect-ignore-lighting-alpha75
-		RequiresCondition: tower.shield
+		RequiresCondition: tower-shield
 		TargetCircleRange: 6c0
 		TargetCircleColor: 64a5dcbb
 		SupportPowerPaletteOrder: 30
@@ -1849,6 +1850,56 @@
 		CircleBorderColor: 007700AA
 		SupportPowerPaletteOrder: 10
 
+^IchorSpikePower:
+	DetonateWeaponPower@IchorSpike:
+		OrderName: ichorspike
+		Icon: ichorspike
+		IconPalette: chromes
+		Prerequisites: loyalist.allegiance
+		Cursor: ability
+		ChargeInterval: 6000
+		Name: Ichor Spike
+		ActivationDelay: 1
+		Description: Creates an Ichor Spike at the target location. Resources within its area of influence grow and spread faster.\n\nAlso empowers units with Resource Conversion upgrade.
+		LaunchSound: scrinbuild.aud
+		Weapon: IchorSpikeSpawner
+		AirburstAltitude: 0c0
+		SelectTargetSpeechNotification: SelectTarget
+		SelectTargetTextNotification: Select target.
+		EndChargeSpeechNotification: IchorSpikeReady
+		EndChargeTextNotification: Ichor Spike ready.
+		CameraActor: camera.dummy
+		CameraRemoveDelay: 1
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 50
+		TargetCircleRange: 8c0
+		TargetCircleColor: 00ff00aa
+
+^ColonySpikePower:
+	DetonateWeaponPower@ColonySpike:
+		OrderName: colonyspike
+		Icon: colonyspike
+		IconPalette: chromes
+		Prerequisites: rebel.allegiance
+		Cursor: ability
+		ChargeInterval: 7500
+		Name: Colony Spike
+		ActivationDelay: 1
+		Description: Creates a Colony Spike at the target location. Provides production of non-defensive structures.\n\nMust be built within range of a Colony Platform.
+		LaunchSound: cspk.aud
+		IncomingSound: cspk.aud
+		Weapon: ColonySpikeSpawner
+		AirburstAltitude: 0c0
+		SelectTargetSpeechNotification: SelectTarget
+		SelectTargetTextNotification: Select target.
+		EndChargeSpeechNotification: ColonySpikeReady
+		EndChargeTextNotification: Colony Spike ready.
+		CameraActor: camera.dummy
+		CameraRemoveDelay: 1
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 50
+		TargetMustBeInBuildRadius: true
+
 ^VoidSpikePower:
 	DetonateWeaponPower@VoidSpike:
 		OrderName: voidspike
@@ -1859,20 +1910,21 @@
 		ChargeInterval: 6000
 		Name: Voidspike
 		ActivationDelay: 1
-		Description: Creates an void spike at the target location. Gradually transforms nearby resources into Black Tiberium which is devoid of most of its useful properties.\n\nDamages nearby enemy units.
+		Description: Creates a Voidspike at the target location. Gradually transforms nearby resources into Black Tiberium which is devoid of most of its useful properties.\n\nDamages nearby enemy units.
 		LaunchSound: scrinbuild.aud
 		Weapon: VoidSpikeSpawner
 		AirburstAltitude: 0c0
 		SelectTargetSpeechNotification: SelectTarget
 		SelectTargetTextNotification: Select target.
 		EndChargeSpeechNotification: VoidSpikeReady
-		EndChargeTextNotification: Void Spike ready.
+		EndChargeTextNotification: Voidspike ready.
 		CameraActor: camera.dummy
 		CameraRemoveDelay: 1
 		DisplayRadarPing: True
 		SupportPowerPaletteOrder: 50
 		TargetCircleRange: 7c511
 		TargetCircleColor: 471f8c90
+		IncomingSound: malefic.aud
 
 ^ResourceScanPower:
 	RevealActorsPower@RESOURCESCAN:
@@ -2293,14 +2345,6 @@
 
 # Providers
 
-voidspike.provider:
-	Inherits@DUMMY: ^InvisibleDummy
-	Inherits@VoidSpike: ^VoidSpikePower
-	UpdatesSupportPowerTimer:
-		OrderName: voidspike
-		InitialOnly: true
-		Ticks: 75
-
 assassinsquad.provider:
 	Inherits@DUMMY: ^InvisibleDummy
 	Inherits@AssassinSquad: ^AssassinSquadPower
@@ -2324,3 +2368,27 @@ confessorcabal.provider:
 		OrderName: confessorcabal
 		InitialOnly: true
 		Ticks: 3750
+
+ichorspike.provider:
+	Inherits@DUMMY: ^InvisibleDummy
+	Inherits@IchorSpike: ^IchorSpikePower
+	UpdatesSupportPowerTimer:
+		OrderName: ichorspike
+		InitialOnly: true
+		Ticks: 75
+
+colonyspike.provider:
+	Inherits@DUMMY: ^InvisibleDummy
+	Inherits@ColonySpike: ^ColonySpikePower
+	UpdatesSupportPowerTimer:
+		OrderName: colonyspike
+		InitialOnly: true
+		Ticks: 750
+
+voidspike.provider:
+	Inherits@DUMMY: ^InvisibleDummy
+	Inherits@VoidSpike: ^VoidSpikePower
+	UpdatesSupportPowerTimer:
+		OrderName: voidspike
+		InitialOnly: true
+		Ticks: 750

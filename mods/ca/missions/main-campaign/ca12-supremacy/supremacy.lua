@@ -48,7 +48,7 @@ Squads = {
 
 -- Setup and Tick
 
-DefinePlayers = function()
+SetupPlayers = function()
 	Nod = Player.GetPlayer("Nod")
 	Nod2 = Player.GetPlayer("Nod2")
 	Nod3 = Player.GetPlayer("Nod3")
@@ -59,7 +59,7 @@ DefinePlayers = function()
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = 0
 	Camera.Position = PlayerStart.CenterPosition
@@ -70,7 +70,11 @@ WorldLoaded = function()
 	InitGDI()
 	InitNod()
 
-	NodRadarProvider = Actor.Create("radar.dummy", true, { Owner = Nod })
+	NodRadarProviders = {}
+
+	Utils.Do(MissionPlayers, function(p)
+		table.insert(NodRadarProviders, Actor.Create("radar.dummy", true, { Owner = p }))
+	end)
 
 	ObjectiveReinforce = Nod.AddObjective("Reinforce one of the two Nod bases.")
 
@@ -335,8 +339,14 @@ end
 
 FlipEastBase = function()
     if not Nod.IsObjectiveCompleted(ObjectiveReinforce) then
-		Nod.Cash = 6000 + CashAdjustments[Difficulty]
-		NodRadarProvider.Destroy()
+		Utils.Do(MissionPlayers, function(p)
+			p.Cash = 6000 + CashAdjustments[Difficulty]
+		end)
+
+		Utils.Do(NodRadarProviders, function(p)
+			p.Destroy()
+		end)
+
 		ObjectiveDestroyGDI = Nod.AddObjective("Destroy GDI forces.")
         Nod.MarkCompletedObjective(ObjectiveReinforce)
 		TransferEastNod()
@@ -349,6 +359,7 @@ FlipEastBase = function()
     end
 end
 
+-- overridden in co-op version
 TransferEastNod = function()
 	local nod2Assets = Nod2.GetActors()
 	Utils.Do(nod2Assets, function(a)
@@ -360,8 +371,14 @@ end
 
 FlipWestBase = function()
     if not Nod.IsObjectiveCompleted(ObjectiveReinforce) then
-		Nod.Cash = 6000 + CashAdjustments[Difficulty]
-		NodRadarProvider.Destroy()
+		Utils.Do(MissionPlayers, function(p)
+			p.Cash = 6000 + CashAdjustments[Difficulty]
+		end)
+
+		Utils.Do(NodRadarProviders, function(p)
+			p.Destroy()
+		end)
+
 		ObjectiveDestroyGDI = Nod.AddObjective("Destroy GDI forces.")
         Nod.MarkCompletedObjective(ObjectiveReinforce)
 		TransferWestNod()
@@ -374,6 +391,7 @@ FlipWestBase = function()
     end
 end
 
+-- overridden in co-op version
 TransferWestNod = function()
 	local nod3Assets = Nod3.GetActors()
 	Utils.Do(nod3Assets, function(a)

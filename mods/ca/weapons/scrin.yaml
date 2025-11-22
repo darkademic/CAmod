@@ -1596,7 +1596,23 @@ StormSpikeSpawner:
 	ReloadDelay: 1
 	Projectile: InstantExplode
 	Warhead@spawn: SpawnBuilding
-		Buildings: scol.temp
+		Buildings: sspk
+		Range: 3
+		ValidTargets: Ground, Water, Trees
+
+IchorSpikeSpawner:
+	ReloadDelay: 1
+	Projectile: InstantExplode
+	Warhead@spawn: SpawnBuilding
+		Buildings: ispk
+		Range: 3
+		ValidTargets: Ground, Water, Trees
+
+ColonySpikeSpawner:
+	ReloadDelay: 1
+	Projectile: InstantExplode
+	Warhead@spawn: SpawnBuilding
+		Buildings: cspk
 		Range: 3
 		ValidTargets: Ground, Water, Trees
 

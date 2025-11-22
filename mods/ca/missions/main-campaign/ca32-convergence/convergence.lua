@@ -95,16 +95,17 @@ Squads = {
 	},
 }
 
-DefinePlayers = function()
+SetupPlayers = function()
 	Scrin = Player.GetPlayer("Scrin")
 	GDI = Player.GetPlayer("GDI")
 	TibLifeforms = Player.GetPlayer("TibLifeforms")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { GDI }
 	MissionEnemies = { Scrin }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = 0
 	WavesRemaining = #WaveSpawns
@@ -315,7 +316,7 @@ SendFleetWave = function()
 			local ships = Reinforcements.Reinforce(Scrin, { shipType }, { entry, exit }, 25, function(self)
 				self.Destroy()
 				NumBreakthroughs = NumBreakthroughs + 1
-				Media.PlaySoundNotification(GDI, "AlertBuzzer")
+				Media.PlaySoundNotification(nil, "AlertBuzzer")
 				Notification("A Scrin fleet vessel has broken through.")
 			end)
 			if IsNormalOrBelow() then

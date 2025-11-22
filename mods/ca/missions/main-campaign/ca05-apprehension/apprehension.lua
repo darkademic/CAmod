@@ -31,17 +31,17 @@ Squads = {
 
 -- Setup and Tick
 
-DefinePlayers = function()
+SetupPlayers = function()
 	Greece = Player.GetPlayer("Greece")
 	Nod = Player.GetPlayer("Nod")
-	Neutral = Player.GetPlayer("Neutral")
 	England = Player.GetPlayer("England")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { Greece }
 	MissionEnemies = { Nod }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = 0
 	local samsRemaining = Nod.GetActorsByType("nsam")
@@ -52,8 +52,10 @@ WorldLoaded = function()
 	InitObjectives(Greece)
 	InitNod()
 
-	Actor.Create("optics.upgrade", true, { Owner = Greece })
-	Actor.Create("radar.dummy", true, { Owner = Greece })
+	Utils.Do(MissionPlayers, function(p)
+		Actor.Create("optics.upgrade", true, { Owner = p })
+		Actor.Create("radar.dummy", true, { Owner = p })
+	end)
 
     ObjectiveDestroySAMSites = Greece.AddObjective("Destroy Nod SAM Sites.")
 	ObjectiveClearBase = Greece.AddObjective("Clear the Nod naval base.")
@@ -250,7 +252,7 @@ InitNod = function()
 end
 
 InitLongbows = function()
-	Media.PlaySpeechNotification(Greece, "ReinforcementsArrived")
+	PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 	Notification("Air support inbound.")
 	local targets = { Obelisk3, Obelisk1, Obelisk2, Turret1, Turret2 }
 	local delay = DateTime.Seconds(2)

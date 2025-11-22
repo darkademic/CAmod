@@ -80,16 +80,17 @@ Squads = {
 	}
 }
 
-DefinePlayers = function()
+SetupPlayers = function()
 	Nod = Player.GetPlayer("Nod")
 	Scrin = Player.GetPlayer("Scrin")
 	ScrinRebels = Player.GetPlayer("ScrinRebels")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { Nod }
 	MissionEnemies = { Scrin }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	ShipmentsComplete = 0
 	TimerTicks = DateTime.Seconds(60)

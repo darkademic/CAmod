@@ -116,12 +116,7 @@ Squads = {
 	BrutalComanches = {
 		Delay = DateTime.Minutes(10),
 		ActiveCondition = function(squad)
-			for _, player in pairs(MissionPlayers) do
-				if #player.GetActorsByTypes({ "gtek", "upgc", "eye" }) > 0 then
-					return true
-				end
-			end
-			return false
+			return #GetMissionPlayersActorsByTypes({ "gtek", "upgc", "eye" }) > 0
 		end,
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 24, Max = 24 }),
 		Compositions = {
@@ -132,15 +127,16 @@ Squads = {
 	}
 }
 
-DefinePlayers = function()
+SetupPlayers = function()
 	GDI = Player.GetPlayer("GDI")
 	Nod = Player.GetPlayer("Nod")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { GDI }
 	MissionEnemies = { Nod }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	EnforceAiBuildRadius = true
 	Camera.Position = PlayerStart.CenterPosition
@@ -176,7 +172,7 @@ WorldLoaded = function()
 
 	Trigger.AfterDelay(HoldOutTime[Difficulty] - DateTime.Seconds(20), function()
 		local mcvFlare = Actor.Create("flare", true, { Owner = GDI, Location = McvRally.Location })
-		Media.PlaySpeechNotification(GDI, "SignalFlare")
+		PlaySpeechNotificationToMissionPlayers("SignalFlare")
 		Notification("Signal flare detected. Reinforcements inbound.")
 		Beacon.New(GDI, McvRally.CenterPosition)
 		Trigger.AfterDelay(DateTime.Seconds(20), function()
@@ -185,11 +181,10 @@ WorldLoaded = function()
 	end)
 
 	Trigger.AfterDelay(HoldOutTime[Difficulty], function()
-		Media.PlaySpeechNotification(GDI, "ReinforcementsArrived")
+		PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 		Notification("Reinforcements have arrived.")
-		Reinforcements.Reinforce(GDI, { "hmmv", "mtnk", "amcv", "mtnk" }, { McvSpawn.Location, McvRally.Location }, 75)
 		Beacon.New(GDI, McvRally.CenterPosition)
-		GDI.Cash = 6000 + CashAdjustments[Difficulty]
+		DoReinforcements()
 	end)
 
 	Trigger.OnKilled(Church1, function(self, killer)
@@ -211,7 +206,9 @@ WorldLoaded = function()
 	end)
 
 	Trigger.AfterDelay(DateTime.Minutes(22), function()
-		Actor.Create("recondronedetection", true, { Owner = GDI })
+		Utils.Do(MissionPlayers, function(p)
+			Actor.Create("recondronedetection", true, { Owner = p })
+		end)
 		Notification("Recon Drones are now equipped with stealth detection. This should help you locate the Nod bases in the area.")
 		MediaCA.PlaySound("c_recondrones", 2)
 	end)
@@ -286,4 +283,10 @@ InitNod = function()
 		Actor.Create("ai.minor.superweapons.enabled", true, { Owner = Nod })
 		Actor.Create("ai.superweapons.enabled", true, { Owner = Nod })
 	end)
+end
+
+-- overridden in co-op version
+DoReinforcements = function()
+	Reinforcements.Reinforce(GDI, { "hmmv", "mtnk", "amcv", "mtnk" }, { McvSpawn.Location, McvRally.Location }, 75)
+	GDI.Cash = 6000 + CashAdjustments[Difficulty]
 end

@@ -26,16 +26,17 @@ Squads = {
 	}
 }
 
-DefinePlayers = function()
+SetupPlayers = function()
     GDI = Player.GetPlayer("GDI")
 	Scrin = Player.GetPlayer("Scrin")
 	Nod = Player.GetPlayer("Nod")
+	Neutral = Player.GetPlayer("Neutral")
     MissionPlayers = { GDI }
 	MissionEnemies = { Nod, Scrin }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
     Camera.Position = PlayerStart.CenterPosition
 
@@ -76,7 +77,7 @@ WorldLoaded = function()
 	end)
 
     Trigger.OnCapture(NodCommsCenter, function(self, captor, oldOwner, newOwner)
-        if newOwner == GDI then
+        if IsMissionPlayer(newOwner) then
             GDI.MarkCompletedObjective(ObjectiveCaptureComms)
         end
     end)
@@ -146,7 +147,7 @@ InitNod = function()
 end
 
 InitMcv = function()
-	Media.PlaySpeechNotification(GDI, "ReinforcementsArrived")
+	PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 	Notification("Reinforcements have arrived.")
     local entryPath = { CarryallSpawn.Location, CarryallDest.Location }
     local exitPath =  { CarryallSpawn.Location }
@@ -154,10 +155,10 @@ InitMcv = function()
 end
 
 HasConyardAcrossRiver = function()
-	local conyards = GDI.GetActorsByType("afac")
+	local conyards = GetMissionPlayersActorsByType("afac")
 
 	local conyardsAcrossRiver = Utils.Where(conyards, function(c)
-		return IsMissionPlayer(c.Owner) and c.Location.X > 34 and c.Location.Y > 72
+		return c.Location.X > 34 and c.Location.Y > 72
 	end)
 
 	return #conyardsAcrossRiver > 0

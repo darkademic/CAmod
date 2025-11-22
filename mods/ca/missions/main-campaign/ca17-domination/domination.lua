@@ -53,15 +53,16 @@ Squads = {
 	},
 }
 
-DefinePlayers = function()
+SetupPlayers = function()
 	USSR = Player.GetPlayer("USSR")
 	Nod = Player.GetPlayer("Nod")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { USSR }
 	MissionEnemies = { Nod }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = 0
 	TempleOfNodLocation = TempleOfNod.Location
@@ -142,7 +143,7 @@ WorldLoaded = function()
 		DisableDefenses(centerDefenses)
 		DisableLaserFences()
 		Media.PlaySound("powrdn1.aud")
-		Actor.Create("powerproxy.mutabomb", true, { Owner = USSR })
+		Actor.Create("powerproxy.mutabomb", true, { Owner = MissionPlayers[1] })
 		Trigger.AfterDelay(DateTime.Seconds(3), function()
 			Tip("The Genetic Mutation Bomb support power can turn enemy infantry into Brutes under your command. Avoid enemy SAM sites by holding the mouse button when selecting the target, allowing you to control the approach angle.")
 		end)
@@ -405,7 +406,7 @@ RespawnTrigger = function(a)
 		end
 
 		if not RespawnFlare or RespawnFlare.IsDead then
-			RespawnFlare = Actor.Create("flare", true, { Owner = USSR, Location = respawnLocation })
+			RespawnFlare = Actor.Create("flare", true, { Owner = a.Owner, Location = respawnLocation })
 		end
 
 		Beacon.New(a.Owner, Map.CenterOfCell(respawnLocation), DateTime.Seconds(20))

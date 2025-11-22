@@ -61,7 +61,7 @@ Squads = {
 	}
 }
 
-DefinePlayers = function()
+SetupPlayers = function()
 	Greece = Player.GetPlayer("Greece")
 	USSR = Player.GetPlayer("USSR")
 	Scrin = Player.GetPlayer("Scrin")
@@ -72,7 +72,7 @@ DefinePlayers = function()
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	Camera.Position = PlayerStart.CenterPosition
 
@@ -83,14 +83,16 @@ WorldLoaded = function()
 	InitScrin()
 
 	SetupReveals({ Reveal1, Reveal2, Reveal3, Reveal4 })
-	SetupChurchMoneyCrates(Neutral)
+	SetupChurchMoneyCrates()
 
-	Actor.Create("optics.upgrade", true, { Owner = Greece })
+	Utils.Do(MissionPlayers, function(p)
+		Actor.Create("optics.upgrade", true, { Owner = p })
+	end)
 
 	ObjectiveExtractSpy = Greece.AddObjective("Get spy to safety.")
 
 	Trigger.AfterDelay(DateTime.Seconds(20), function()
-		Spy = Actor.Create("spy.noinfil", true, { Owner = Greece, Location = Gateway.Location })
+		CreateSpy()
 		Spy.DisguiseAs(SpyTarget)
 		Spy.Move(SpyDest.Location)
 		MediaCA.PlaySound(MissionDir .. "/r_spydetected.aud", 2)
@@ -264,13 +266,23 @@ SpyDeparture = function()
 
 				Trigger.AfterDelay(DateTime.Seconds(2), function()
 					Beacon.New(Greece, McvDest.CenterPosition)
-					Media.PlaySpeechNotification(Greece, "ReinforcementsArrived")
+					PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 					Notification("Reinforcements have arrived.")
-					Reinforcements.Reinforce(Greece, { "mcv", "2tnk", "2tnk", "arty", "arty", "e1", "e1", "e1", "e1", "e3", "medi" }, { McvSpawn.Location, McvDest.Location }, 75)
+					DoMcvArrival()
 					InitUSSRAttacks()
 					InitScrinAttacks()
 				end)
 			end
 		end)
 	end)
+end
+
+-- overridden in co-op version
+CreateSpy = function()
+	Spy = Actor.Create("spy.noinfil", true, { Owner = Greece, Location = Gateway.Location })
+end
+
+-- overridden in co-op version
+DoMcvArrival = function()
+	Reinforcements.Reinforce(Greece, { "mcv", "2tnk", "2tnk", "arty", "arty", "e1", "e1", "e1", "e1", "e3", "medi" }, { McvSpawn.Location, McvDest.Location }, 75)
 end

@@ -59,12 +59,7 @@ Squads = {
 	},
 	AntiCruiserAir = {
 		ActiveCondition = function(squad)
-			local cruiserCount = 0
-			for _, p in pairs(MissionPlayers) do
-				local cruisers = p.GetActorsByTypes({ "ca" })
-				cruiserCount = cruiserCount + #cruisers
-			end
-			return cruiserCount > 0
+			return #GetMissionPlayersActorsByType("ca") > 0
 		end,
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 12, Max = 20 }),
 		Compositions = { { Aircraft = { "scrn", "scrn" } } }
@@ -72,7 +67,7 @@ Squads = {
 	AirToAir = AirToAirSquad({ "scrn", "apch", "venm" }, AdjustAirDelayForDifficulty(DateTime.Minutes(12)))
 }
 
-DefinePlayers = function()
+SetupPlayers = function()
 	Greece = Player.GetPlayer("Greece")
 	Nod = Player.GetPlayer("Nod")
 	Neutral = Player.GetPlayer("Neutral")
@@ -81,7 +76,7 @@ DefinePlayers = function()
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	Camera.Position = PlayerStart.CenterPosition
 
@@ -112,6 +107,13 @@ WorldLoaded = function()
 			Trigger.OnKilledOrCaptured(s, function()
 				UpdateMissionText()
 			end)
+		end)
+	end)
+
+	Trigger.OnKilledOrCaptured(StealthGen, function()
+		local mobileStealthGens = Nod.GetActorsByType("msg")
+		Utils.Do(mobileStealthGens, function(m)
+			m.Kill()
 		end)
 	end)
 

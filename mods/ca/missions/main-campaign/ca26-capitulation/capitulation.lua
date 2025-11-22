@@ -108,11 +108,8 @@ Squads = {
 	},
 	AirAntiAir = {
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 12, Max = 12 }),
-		ActiveCondition = function()
-			local gdiAircraft = Utils.Where(GDI.GetActorsByArmorTypes({ "Aircraft" }), function(a)
-				return a.Type ~= "jjet" and a.Type ~= "bjet"
-			end)
-			return #gdiAircraft > 3
+		ActiveCondition = function(squad)
+			return PlayerOrMissionPlayersHaveCharacteristic(squad.TargetPlayer, "MassAir")
 		end,
 		Compositions = {
 			easy = {
@@ -170,15 +167,16 @@ Squads = {
 	},
 }
 
-DefinePlayers = function()
+SetupPlayers = function()
 	GDI = Player.GetPlayer("GDI")
 	USSR = Player.GetPlayer("USSR")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { GDI }
 	MissionEnemies = { USSR }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = MaxReactorFuelTime
 	CurrentDelivery = 1
@@ -216,9 +214,9 @@ WorldLoaded = function()
 	end)
 
 	Trigger.AfterDelay(DateTime.Seconds(13), function()
-		Media.PlaySpeechNotification(GDI, "ReinforcementsArrived")
+		PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 		Notification("Reinforcements have arrived.")
-		Reinforcements.Reinforce(GDI, { "amcv" }, { McvSpawn.Location, PlayerStart.Location }, 75)
+		DoMcvArrival()
 		McvArrived = true
 	end)
 
@@ -484,4 +482,9 @@ PanToStart = function()
 	if Camera.Position.X == targetPos.X and Camera.Position.Y == targetPos.Y then
 		PanToStartComplete = true
 	end
+end
+
+-- overridden in co-op version
+DoMcvArrival = function()
+	Reinforcements.Reinforce(GDI, { "amcv" }, { McvSpawn.Location, PlayerStart.Location }, 75)
 end

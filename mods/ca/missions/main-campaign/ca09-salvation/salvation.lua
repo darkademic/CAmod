@@ -76,16 +76,17 @@ WormholeUnitGroups = {
 
 -- Setup and Tick
 
-DefinePlayers = function()
+SetupPlayers = function()
 	Nod = Player.GetPlayer("Nod")
 	Scrin = Player.GetPlayer("Scrin")
 	Civilian = Player.GetPlayer("Civilian")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { Nod }
 	MissionEnemies = { Scrin }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = 0
 	Camera.Position = PlayerStart.CenterPosition
@@ -104,13 +105,15 @@ WorldLoaded = function()
 	NodCamera5.Destroy()
 	NodCamera6.Destroy()
 
-	Actor.Create("tibcore.upgrade", true, { Owner = Nod })
+	Utils.Do(MissionPlayers, function(p)
+		Actor.Create("tibcore.upgrade", true, { Owner = p })
 
-	if Difficulty == "easy" then
-		Nod.Cash = 4800
-	elseif Difficulty == "normal" then
-		Nod.Cash = 2300
-	end
+		if Difficulty == "easy" then
+			p.Cash = 4800
+		elseif Difficulty == "normal" then
+			p.Cash = 2300
+		end
+	end)
 
 	Trigger.AfterDelay(WormholeDelay[Difficulty], function()
 		SpawnWormhole()

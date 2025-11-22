@@ -81,18 +81,19 @@ Squads = {
 
 -- Setup and Tick
 
-DefinePlayers = function()
+SetupPlayers = function()
 	Nod = Player.GetPlayer("Nod")
 	Greece = Player.GetPlayer("Greece")
 	GDI = Player.GetPlayer("GDI")
 	Legion = Player.GetPlayer("Legion")
 	EvacPlayer = Player.GetPlayer("Evac")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { Nod }
 	MissionEnemies = { Greece, GDI }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = 0
 	Camera.Position = PlayerStart.CenterPosition
@@ -198,7 +199,7 @@ WorldLoaded = function()
 		Trigger.OnEnteredProximityTrigger(researcher.CenterPosition, WDist.New(2 * 1024), function(a, id)
 			if IsMissionPlayer(a.Owner) and a.HasProperty("Move") and not a.HasProperty("Land") then
 				Trigger.RemoveProximityTrigger(id)
-				researcher.Owner = Nod
+				researcher.Owner = a.Owner
 				Notification("Escort researcher to evacuation point.")
 				MediaCA.PlaySound(MissionDir .. "/n_escortresearcher.aud", 2)
 				InitEvacSite()
@@ -247,7 +248,7 @@ WorldLoaded = function()
 							Trigger.OnPassengerEntered(transport, function(t, passenger)
 								if t.PassengerCount == 2 then
 									EvacExiting = true
-									Media.PlaySpeechNotification(Nod, "TargetRescued")
+									PlaySpeechNotificationToMissionPlayers("TargetRescued")
 									t.Move(EvacSpawn.Location)
 									t.Destroy()
 									Trigger.AfterDelay(DateTime.Seconds(4), function()
@@ -374,6 +375,7 @@ AwakenSleeperCell = function()
 	end)
 end
 
+-- overridden in co-op version
 TransferLegionForces = function()
 	local legionForces = Legion.GetActors()
 

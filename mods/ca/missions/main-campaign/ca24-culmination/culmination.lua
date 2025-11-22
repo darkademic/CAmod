@@ -74,18 +74,19 @@ Squads = {
 
 -- Setup and Tick
 
-DefinePlayers = function()
+SetupPlayers = function()
 	Scrin = Player.GetPlayer("Scrin")
 	ScrinNoControl = Player.GetPlayer("ScrinNoControl")
 	USSR = Player.GetPlayer("USSR")
 	Greece = Player.GetPlayer("Greece")
 	Nod = Player.GetPlayer("Nod")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { Scrin }
 	MissionEnemies = { USSR, Greece, Nod }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = 0
 	Camera.Position = PlayerStart.CenterPosition
@@ -122,6 +123,10 @@ WorldLoaded = function()
 		a.Destroy()
 	end)
 
+	Utils.Do(MissionPlayers, function(p)
+		Actor.Create("radar.dummy", true, { Owner = p })
+	end)
+
 	local nodCamera = Actor.Create("largecamera", true, { Owner = Scrin, Location = NodBase.Location })
 	local greeceCamera = Actor.Create("largecamera", true, { Owner = Scrin, Location = AlliedBase.Location })
 	local ussrCamera = Actor.Create("largecamera", true, { Owner = Scrin, Location = SovietBase.Location })
@@ -139,7 +144,9 @@ WorldLoaded = function()
 				InitNod(NodVsAlliesPaths, AlliedBaseCameras)
 				CreateWormholes(AlliedBase.Location)
 				Trigger.AfterDelay(1, function()
-					Actor.Create("QueueUpdaterDummy", true, { Owner = Scrin })
+					Utils.Do(MissionPlayers, function(p)
+						Actor.Create("QueueUpdaterDummy", true, { Owner = p })
+					end)
 				end)
 				SetupMainObjectives({ NodConyard, SovietConyard })
 				if IsHardOrAbove() then
@@ -164,7 +171,9 @@ WorldLoaded = function()
 				InitNod(NodVsSovietPaths, SovietBaseCameras)
 				CreateWormholes(SovietBase.Location)
 				Trigger.AfterDelay(1, function()
-					Actor.Create("QueueUpdaterDummy", true, { Owner = Scrin })
+					Utils.Do(MissionPlayers, function(p)
+						Actor.Create("QueueUpdaterDummy", true, { Owner = p })
+					end)
 				end)
 				SetupMainObjectives({ NodConyard, AlliedConyard })
 				if IsHardOrAbove() then
@@ -189,7 +198,9 @@ WorldLoaded = function()
 				InitGreece(AlliesVsNodPaths, NodBaseCameras)
 				CreateWormholes(NodBase.Location)
 				Trigger.AfterDelay(1, function()
-					Actor.Create("QueueUpdaterDummy", true, { Owner = Scrin })
+					Utils.Do(MissionPlayers, function(p)
+						Actor.Create("QueueUpdaterDummy", true, { Owner = p })
+					end)
 				end)
 				SetupMainObjectives({ SovietConyard, AlliedConyard })
 				if IsHardOrAbove() then
@@ -395,7 +406,7 @@ SetupMainObjectives = function(conyards)
 
 	Utils.Do(conyards, function(c)
 		Trigger.OnCapture(c, function(self, captor, oldOwner, newOwner)
-			if newOwner == Scrin then
+			if IsMissionPlayer(newOwner) then
 				ConyardsCaptured = ConyardsCaptured + 1
 				if ConyardsCaptured == 2 then
 					Scrin.MarkCompletedObjective(ObjectiveSubjugateRemaining)

@@ -124,7 +124,7 @@ Squads = {
 	},
 	Naval = {
 		ActiveCondition = function()
-			return PlayerHasNavalPresence(Greece)
+			return MissionPlayersHaveNavalPresence()
 		end,
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 16, Max = 16 }),
 		ProducerActors = { Ships = { SovietSouthSubPen1, SovietSouthSubPen2 } },
@@ -151,16 +151,17 @@ Squads = {
 
 -- Setup and Tick
 
-DefinePlayers = function()
+SetupPlayers = function()
 	Greece = Player.GetPlayer("Greece")
 	GDI = Player.GetPlayer("GDI")
 	USSR = Player.GetPlayer("USSR")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { Greece }
 	MissionEnemies = { USSR }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = 0
 	GDICommanderAlive = true
@@ -230,7 +231,7 @@ WorldLoaded = function()
 	end)
 
 	Trigger.OnCapture(SovietPrison, function(self, captor, oldOwner, newOwner)
-		if newOwner == Greece then
+		if IsMissionPlayer(newOwner) then
 			local commander = Reinforcements.Reinforce(GDI, { "gnrl" }, { GDICommanderSpawn.Location, GDICommanderRally.Location })[1]
 
 			if ObjectiveLocateCommander ~= nil and not Greece.IsObjectiveCompleted(ObjectiveLocateCommander) then
@@ -258,7 +259,7 @@ WorldLoaded = function()
 						end)
 
 						Trigger.OnPassengerEntered(transport, function(t, passenger)
-							Media.PlaySpeechNotification(Greece, "TargetRescued")
+							PlaySpeechNotificationToMissionPlayers("TargetRescued")
 							t.Move(GDIReinforcementsEntry.Location)
 							t.Destroy()
 							Trigger.AfterDelay(DateTime.Seconds(7), function()
@@ -342,12 +343,19 @@ GDIBaseFound = function()
 	if not IsGDIBaseFound then
 		IsGDIBaseFound = true
 		MediaCA.PlaySound(MissionDir .. "/r_gdibasediscovered.aud", 2)
+
+		Greece.PlayLowPowerNotification = false
+
 		TransferGDIUnits()
+
+		Trigger.AfterDelay(DateTime.Seconds(5), function()
+			Greece.PlayLowPowerNotification = true
+		end)
+
 		InitUSSRAttacks()
 		TimerTicks = HoldOutTime[Difficulty]
 
 		Trigger.AfterDelay(DateTime.Seconds(1), function()
-			Actor.Create("QueueUpdaterDummy", true, { Owner = Greece })
 			ObjectiveHoldOut = Greece.AddObjective("Hold out until reinforcements arrive.")
 			UpdateReinforcementCountdown()
 			Greece.MarkCompletedObjective(ObjectiveFindBase)
@@ -355,7 +363,7 @@ GDIBaseFound = function()
 
 		Trigger.AfterDelay(HoldOutTime[Difficulty] - DateTime.Seconds(20), function()
 			McvFlare = Actor.Create("flare", true, { Owner = Greece, Location = McvRally.Location })
-			Media.PlaySpeechNotification(Greece, "SignalFlare")
+			PlaySpeechNotificationToMissionPlayers("SignalFlare")
 			Notification("Signal flare detected, reinforcements inbound. Press [" .. UtilsCA.Hotkey("ToLastEvent") .. "] to view location.")
 			Beacon.New(Greece, McvRally.CenterPosition)
 			Trigger.AfterDelay(DateTime.Seconds(20), function()
@@ -369,7 +377,7 @@ GDIBaseFound = function()
 
 		if IsNormalOrBelow() then
 			Trigger.AfterDelay(DateTime.Seconds(792), function()
-				Media.PlaySpeechNotification(Greece, "ReinforcementsArrived")
+				PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 				Beacon.New(Greece, GDIReinforcementsEntry.CenterPosition)
 				local gdiReinforcements = { "mtnk", "htnk" }
 				if Difficulty == "easy" then
@@ -381,9 +389,8 @@ GDIBaseFound = function()
 	end
 end
 
+-- overridden in co-op version
 TransferGDIUnits = function()
-	Greece.PlayLowPowerNotification = false
-
 	local gdiForces = GDI.GetActors()
 	Utils.Do(gdiForces, function(a)
 		if a.Type ~= "player" then
@@ -393,10 +400,6 @@ TransferGDIUnits = function()
 
 	Trigger.AfterDelay(1, function()
 		Actor.Create("QueueUpdaterDummy", true, { Owner = Greece })
-	end)
-
-	Trigger.AfterDelay(DateTime.Seconds(5), function()
-		Greece.PlayLowPowerNotification = true
 	end)
 end
 
@@ -419,9 +422,9 @@ HoldOutComplete = function()
 
 		if ObjectiveCapturePrison == nil or not Greece.IsObjectiveCompleted(ObjectiveCapturePrison) then
 			Trigger.AfterDelay(DateTime.Seconds(1), function()
-				Media.PlaySpeechNotification(Greece, "ReinforcementsArrived")
+				PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 				Notification("Reinforcements have arrived.")
-				Reinforcements.Reinforce(Greece, { "2tnk", "mcv", "2tnk" }, { McvEntry.Location, McvRally.Location }, 75)
+				DoMcvArrival()
 				Beacon.New(Greece, McvRally.CenterPosition)
 			end)
 		end
@@ -432,6 +435,11 @@ HoldOutComplete = function()
 			end)
 		end
 	end
+end
+
+-- overridden in co-op version
+DoMcvArrival = function()
+	Reinforcements.Reinforce(Greece, { "2tnk", "mcv", "2tnk" }, { McvEntry.Location, McvRally.Location }, 75)
 end
 
 RevealPrison = function()
@@ -622,15 +630,10 @@ NavalReinforcements = function()
 				destroyers = { "dd", "dd", "dd", "dd" }
 			end
 
-			Media.PlaySpeechNotification(Greece, "ReinforcementsArrived")
+			PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 			Beacon.New(Greece, CruiserSpawn.CenterPosition)
 			Reinforcements.Reinforce(Greece, cruisers, { CruiserSpawn.Location, CruiserDestination.Location }, 75)
 			Reinforcements.Reinforce(Greece, destroyers, { DestroyerSpawn.Location, DestroyerDestination.Location }, 75)
 		end)
 	end
-end
-
-PlayerHasNavalPresence = function(player)
-	local navalUnits = player.GetActorsByTypes({"ca", "dd", "pt", "ss", "seas"})
-	return #navalUnits > 6
 end

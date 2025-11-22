@@ -68,7 +68,7 @@ Squads = {
 	AirToAir = AirToAirSquad({ "scrn", "apch", "venm" }, AdjustAirDelayForDifficulty(DateTime.Minutes(10))),
 }
 
-DefinePlayers = function()
+SetupPlayers = function()
 	USSR = Player.GetPlayer("USSR")
 	Nod = Player.GetPlayer("Nod")
 	SpyPlaneProvider = Player.GetPlayer("SpyPlaneProvider")
@@ -78,7 +78,7 @@ DefinePlayers = function()
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	TimerTicks = 0
 	NumFactoriesCaptured = 0
@@ -153,10 +153,9 @@ WorldLoaded = function()
 	end)
 
 	Trigger.AfterDelay(DateTime.Seconds(5), function()
-		Media.PlaySpeechNotification(USSR, "ReinforcementsArrived")
+		PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 		Notification("Reinforcements have arrived.")
-		Reinforcements.Reinforce(USSR, { "kiro" }, { KirovSpawn1.Location, KirovRally1.Location })
-		Reinforcements.Reinforce(USSR, { "kiro" }, { KirovSpawn2.Location, KirovRally2.Location })
+		SendKirovs()
 	end)
 
 	Trigger.AfterDelay(1, function()
@@ -246,4 +245,10 @@ InitNod = function()
 		Actor.Create("ai.minor.superweapons.enabled", true, { Owner = Nod })
 		Actor.Create("ai.superweapons.enabled", true, { Owner = Nod })
 	end)
+end
+
+-- overridden in co-op version
+SendKirovs = function()
+	Reinforcements.Reinforce(USSR, { "kiro" }, { KirovSpawn1.Location, KirovRally1.Location })
+	Reinforcements.Reinforce(USSR, { "kiro" }, { KirovSpawn2.Location, KirovRally2.Location })
 end

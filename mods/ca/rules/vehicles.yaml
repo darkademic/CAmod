@@ -1905,6 +1905,9 @@ SPEC:
 		ColorSource: Player
 	Voiced:
 		VoiceSet: SpectreVoice
+	GrantConditionToAttached@Cloak:
+		Condition: inherited-cloak
+		RequiresCondition: hidden || invisibility
 	Encyclopedia:
 		Category: Nod/Vehicles
 	EncyclopediaExtras:
@@ -2010,6 +2013,9 @@ SAPC:
 	WithColoredSelectionBox@INVIS:
 		RequiresCondition: invisibility || hidden
 		ColorSource: Player
+	GrantConditionToAttached@Cloak:
+		Condition: inherited-cloak
+		RequiresCondition: hidden || invisibility
 	ReplacedInQueue:
 		Actors: cust
 	Encyclopedia:
@@ -2397,6 +2403,7 @@ AAPC:
 		Attributes: • Targets are revealed and take increased damage
 	-AttackFrontal:
 	AttackTurreted:
+		TargetFrozenActors: True
 		PauseOnCondition: empdisable || being-warped || blinded
 	Turreted:
 		TurnSpeed: 14
@@ -3382,7 +3389,7 @@ GDRN:
 		LocalOffset: 500,0,200
 		MuzzleSequence: muzzle
 	AttackTurreted:
-		PauseOnCondition: gshield || empdisable || being-warped || blinded
+		PauseOnCondition: empdisable || being-warped || blinded
 		Voice: Attack
 	WithMuzzleOverlay:
 	WithSpriteTurret:
@@ -3597,7 +3604,7 @@ RBUG:
 		Weapon: RaiderBuggyLaser
 		MuzzleSequence: muzzle
 		MuzzlePalette: caneon
-		LocalOffset: 250,0,400
+		LocalOffset: 250,0,300
 	Mobile:
 		Speed: 126
 		TurnSpeed: 36
@@ -4356,7 +4363,9 @@ MTNK.Drone:
 	-Tooltip@LaserTank:
 	-TooltipExtras@LaserTank:
 	Valued:
-		Cost: 800
+		Cost: 600
+	Health:
+		HP: 40000
 	Tooltip:
 		Name: Battle Drone
 		-RequiresCondition:
@@ -4606,6 +4615,18 @@ MDRN.Attached:
 		-BeingCapturedCondition:
 	ReclaimsExperience:
 		Type: mdrn
+	Cloak@NORMAL:
+		InitialDelay: 0
+		CloakDelay: 0
+		CloakStyle: Palette
+		CloakedPalette: cloak
+		IsPlayerPalette: false
+		UncloakOn: Attack, Unload, Infiltrate, Demolish, Dock, Damage, Heal
+		RequiresCondition: inherited-cloak
+	Cloak@CRATE-CLOAK:
+		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || inherited-cloak)
+	ExternalCondition@CLOAK:
+		Condition: inherited-cloak
 	-Targetable@HACKABLE:
 	-MindControllable@HACKABLE:
 	-MindControllableProgressBar@HACKABLE:
@@ -4847,7 +4868,9 @@ HTNK.Drone:
 		Weaknesses: • Requires active radar communication
 		Attributes: • Can crush concrete walls\n• Self repairs out of combat\n• Immune to mind control\n• XP of losses reclaimed by replacements
 	Valued:
-		Cost: 1500
+		Cost: 1300
+	Health:
+		HP: 88000
 	Tooltip:
 		Name: Mammoth Drone
 	Mobile:
@@ -4857,6 +4880,8 @@ HTNK.Drone:
 		Voice: Move
 	Armament@PRIMARY:
 		Weapon: 130mmTD.Drone
+	Armament@SECONDARY:
+		Weapon: MammothTusk.Drone
 	AttackTurreted:
 		PauseOnCondition: !radarenabled || empdisable || being-warped || blinded
 		Voice: Attack
@@ -5186,11 +5211,11 @@ STNK.Nod:
 	Armor:
 		Type: Light
 	RevealsShroud:
-		MinRange: 4c0
-		Range: 6c0
+		MinRange: 5c0
+		Range: 7c0
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
-		Range: 4c0
+		Range: 5c0
 	Cloak@NORMAL:
 		InitialDelay: 75
 		CloakDelay: 76
@@ -5268,6 +5293,9 @@ STNK.Nod:
 		Voice: Move
 	AttackMove:
 		Voice: Attack
+	GrantConditionToAttached@Cloak:
+		Condition: inherited-cloak
+		RequiresCondition: hidden || invisibility
 	Encyclopedia:
 		Category: Nod/Vehicles
 
@@ -5303,11 +5331,11 @@ HSTK:
 	Health:
 		HP: 25000
 	RevealsShroud:
-		MinRange: 4c0
-		Range: 6c0
+		MinRange: 5c0
+		Range: 7c0
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
-		Range: 4c0
+		Range: 5c0
 	Cloak@NORMAL:
 		InitialDelay: 89
 		CloakDelay: 90
@@ -5377,6 +5405,9 @@ HSTK:
 		Voice: Move
 	AttackMove:
 		Voice: Attack
+	GrantConditionToAttached@Cloak:
+		Condition: inherited-cloak
+		RequiresCondition: hidden || invisibility
 	Encyclopedia:
 		Category: Nod/Vehicles
 	EncyclopediaExtras:
@@ -5588,6 +5619,10 @@ HFTK:
 		RangeMargin: 0
 		PauseOnCondition: empdisable || being-warped || blinded || parachute
 	WithSpriteTurret:
+		RequiresCondition: !blacknapalm-upgrade
+	WithSpriteTurret@BlackNapalm:
+		Sequence: turret-upg
+		RequiresCondition: blacknapalm-upgrade
 	WithMuzzleOverlay:
 	Voiced:
 		VoiceSet: FlameTankVoice
@@ -5630,6 +5665,10 @@ HFTK:
 HARV.TD:
 	Inherits@HarvesterBase: ^HarvesterBase
 	Inherits@TDPAL: ^TDPalette
+	WithDamageOverlay:
+		Image: smoke_mtd
+	Cloak@CRATE-CLOAK:
+		CloakedPalette: cloak
 	RenderSprites:
 		Image: harv2
 	Tooltip:
@@ -5686,6 +5725,9 @@ HARV.TD.UPG:
 		PauseOnCondition: invisibility
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
+	GrantConditionToAttached@Cloak:
+		Condition: inherited-cloak
+		RequiresCondition: hidden || invisibility
 	SpawnActorOnDeath:
 		Actor: HARV.TD.UPG.Husk
 	-GrantConditionOnPrerequisite@Stealth:
@@ -6643,7 +6685,6 @@ IFV:
 		RequiresCondition: hackturr
 	AttackTurreted:
 		PauseOnCondition: empdisable || being-warped || blinded
-		TargetFrozenActors: True
 	WithMuzzleOverlay:
 	WithSpriteTurret@defaultturr:
 		RequiresCondition: !full || nochange
@@ -7410,7 +7451,7 @@ TITN:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 102000
+		HP: 110000
 	Mobile:
 		Locomotor: sheavytracked
 		Speed: 43
@@ -8026,6 +8067,9 @@ RTNK:
 	FirepowerMultiplier@Ambush:
 		Modifier: 150
 		RequiresCondition: hidden
+	GrantConditionToAttached@Cloak:
+		Condition: inherited-cloak
+		RequiresCondition: hidden || invisibility
 	Encyclopedia:
 		Category: Allies/Vehicles
 	EncyclopediaExtras:
@@ -9381,6 +9425,9 @@ BASI:
 	WithColoredSelectionBox@INVIS:
 		RequiresCondition: invisibility || hidden
 		ColorSource: Player
+	GrantConditionToAttached@Cloak:
+		Condition: inherited-cloak
+		RequiresCondition: hidden || invisibility
 	Encyclopedia:
 		Category: Nod/Vehicles
 	EncyclopediaExtras:
@@ -10798,6 +10845,7 @@ CUST:
 		AlwaysShowMaxRange: true
 		Color: 0040FF60
 		MaxRadiusColor: 0040FF80
+		MaxRadiusFlashColor: 0040FF80
 	GivesExperienceCA:
 		ActorExperienceModifier: 2000
 		PlayerExperienceModifier: 0

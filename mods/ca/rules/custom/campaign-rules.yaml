@@ -9,7 +9,6 @@
 Player:
 	-ConquestVictoryConditions:
 	MissionObjectives:
-		EarlyGameOver: true
 	Shroud:
 		ExploredMapCheckboxEnabled: False
 		ExploredMapCheckboxLocked: True
@@ -108,6 +107,21 @@ World:
 	MusicPlaylist:
 		VictoryMusic: score
 		DefeatMusic: map
+	Faction@0:
+		Selectable: True
+		Description: faction-allies.description
+	Faction@4:
+		Selectable: True
+		Description: faction-soviet.description
+	Faction@8:
+		Selectable: True
+		Description: faction-gdi.description
+	Faction@12:
+		Selectable: True
+		Description: faction-nod.description
+	Faction@16:
+		Selectable: True
+		Description: faction-scrin.description
 
 ^Infantry:
 	GrantConditionOnPrerequisite@BIO:
@@ -116,6 +130,14 @@ World:
 ^Disabled:
 	Buildable:
 		Prerequisites: ~disabled
+
+^NameTag:
+	WithNameTagDecoration:
+		MaxLength: 5
+		ValidRelationships: Ally
+		UsePlayerColor: True
+		Position: Top
+		Margin: 0,-15
 
 # Assigned to actors in missions, assigned in lua dynamically
 # (so we use DummyConditionConsumer to prevent yaml warnings)
@@ -147,6 +169,12 @@ World:
 ^AffectedByDriverKill:
 	ChangesHealth@DRIVER_DEAD:
 		PercentageStep: 0
+
+# Reduce XP gain for snipers to prevent excessive exploiting of driver kill
+
+SNIP:
+	GainsExperienceMultiplier@TenPercentXp:
+		Modifier: 10
 
 # Extra power for AI to reduce the number of power plants needed
 
@@ -233,7 +261,7 @@ SCOL:
 	ExternalCondition@DISABLED:
 		Condition: disabled
 
-SCOL.Temp:
+SSPK:
 	-ExternalCondition@DISABLED:
 
 SHAR:

@@ -67,16 +67,17 @@ Squads = {
 	},
 }
 
-DefinePlayers = function()
+SetupPlayers = function()
 	GDI = Player.GetPlayer("GDI")
 	Scrin = Player.GetPlayer("Scrin")
 	GDISlaves = Player.GetPlayer("GDISlaves")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { GDI }
 	MissionEnemies = { Scrin }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	EnslavedUnitsKilled = 0
 	Camera.Position = PlayerStart.CenterPosition
@@ -96,8 +97,10 @@ WorldLoaded = function()
 		AdvComms.Destroy()
 	end
 
-	Actor.Create("bdrone.upgrade", true, { Owner = GDI })
-	Actor.Create("mdrone.upgrade", true, { Owner = GDI })
+	Utils.Do(MissionPlayers, function(p)
+		Actor.Create("bdrone.upgrade", true, { Owner = p })
+		Actor.Create("mdrone.upgrade", true, { Owner = p })
+	end)
 
 	Trigger.AfterDelay(DateTime.Seconds(7), function()
 		Tip("Drones (e.g. Guardian Drones, Mini Drones, Battle Drones, Mammoth Drones and Mobile EMP) are immune to mind control.")
@@ -197,28 +200,16 @@ WorldLoaded = function()
 
 			Trigger.OnKilled(m, function(self, killer)
 				UpdateObjectiveText()
-				Utils.Do(slaves, function(s)
-					if not s.IsDead then
-						s.Owner = GDI
-						Trigger.AfterDelay(1, function()
-							if not s.IsDead then
-								if s.HasProperty("Move") then
-									s.Stop()
-								end
-								if s.HasProperty("FindResources") then
-									s.FindResources()
-								end
-							end
-						end)
-					end
-				end)
+				FreeSlaves(slaves)
 
 				Trigger.AfterDelay(1, function()
 					Actor.Create("QueueUpdaterDummy", true, { Owner = GDI })
 				end)
 
 				if m == Mastermind4 then
-					Actor.Create("amcv.enabled", true, { Owner = GDI })
+					Utils.Do(MissionPlayers, function(p)
+						Actor.Create("amcv.enabled", true, { Owner = p })
+					end)
 				end
 			end)
 
@@ -364,4 +355,23 @@ EnslavedUnitKilled = function()
 	if ObjectiveMinimiseCasualties ~= nil and EnslavedUnitsKilled > MaxEnslavedUnitsKilled[Difficulty] then
 		GDI.MarkFailedObjective(ObjectiveMinimiseCasualties)
 	end
+end
+
+-- overridden in co-op version
+FreeSlaves = function(slaves)
+	Utils.Do(slaves, function(s)
+		if not s.IsDead then
+			s.Owner = GDI
+			Trigger.AfterDelay(1, function()
+				if not s.IsDead then
+					if s.HasProperty("Move") then
+						s.Stop()
+					end
+					if s.HasProperty("FindResources") then
+						s.FindResources()
+					end
+				end
+			end)
+		end
+	end)
 end

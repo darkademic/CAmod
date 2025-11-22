@@ -79,18 +79,19 @@ Squads = {
 	}
 }
 
-DefinePlayers = function()
+SetupPlayers = function()
 	GDI = Player.GetPlayer("GDI")
 	Scrin = Player.GetPlayer("Scrin")
 	Nod = Player.GetPlayer("Nod")
 	USSR = Player.GetPlayer("USSR")
 	Greece = Player.GetPlayer("Greece")
+	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { GDI }
 	MissionEnemies = { Scrin }
 end
 
 WorldLoaded = function()
-	DefinePlayers()
+	SetupPlayers()
 
 	LastScrinProduction = 0
 	ReinforcementGroupIndex = 1
@@ -287,17 +288,12 @@ SendReinforcements = function()
 	end
 
 	if IsVeryHardOrBelow() and ReinforcementWave == 3 then
-		local unitsWithMcv = {}
-		Utils.Do(units, function(u)
-			table.insert(unitsWithMcv, u)
-		end)
-		table.insert(unitsWithMcv, "amcv")
-		units = unitsWithMcv
+		DoMcvArrival()
 	end
 
 	local reinforcements = Reinforcements.Reinforce(GDI, units, path, 50)
 	ReinforcementFlare.Destroy()
-	Media.PlaySpeechNotification(GDI, "ReinforcementsArrived")
+	PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 	Notification("Reinforcements have arrived.")
 	Beacon.New(GDI, Map.CenterOfCell(flareLoc))
 
@@ -311,4 +307,11 @@ SendReinforcements = function()
 	end
 
 	NextReinforcementsFlare()
+end
+
+-- overridden in co-op version
+DoMcvArrival = function(path)
+	Trigger.AfterDelay(25, function()
+		Reinforcements.Reinforce(GDI, { "amcv" }, path)
+	end)
 end

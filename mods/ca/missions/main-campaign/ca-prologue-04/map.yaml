@@ -778,4 +778,6 @@ Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.ya
 
 Weapons: ca|weapons/custom/campaign.yaml
 
+FluentMessages: ca|fluent/lua.ftl, en.ftl
+
 Notifications: juncture-notifications.yaml

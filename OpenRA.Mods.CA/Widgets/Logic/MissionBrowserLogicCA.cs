@@ -352,7 +352,14 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					infoVideo = missionData.BackgroundVideo;
 					infoVideoVisible = infoVideo != null;
 
-					var briefingText = missionData.Briefing?.Replace("\\n", "\n");
+					// Try to translate the briefing as a Fluent key, fall back to raw text
+					var rawBriefing = missionData.Briefing;
+					string briefingText;
+					if (!string.IsNullOrEmpty(rawBriefing) && preview.TryGetMessage(rawBriefing, out var translated))
+						briefingText = translated;
+					else
+						briefingText = rawBriefing?.Replace("\\n", "\n");
+
 					var briefing = WidgetUtils.WrapText(briefingText, description.Bounds.Width, descriptionFont);
 					var height = descriptionFont.Measure(briefing).Y;
 					Game.RunAfterTick(() =>
@@ -401,7 +408,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			var yOffset = 0;
 			foreach (var option in allOptions.Where(o => o is LobbyBooleanOption))
 			{
-				if (!missionOptions.ContainsKey(option.Id) || !( new[] { "True", "False" }.Contains(missionOptions[option.Id])))
+				if (!missionOptions.ContainsKey(option.Id) || !(new[] { "True", "False" }.Contains(missionOptions[option.Id])))
 					missionOptions[option.Id] = option.DefaultValue;
 
 				if (checkboxColumns.Count == 0)
@@ -603,7 +610,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				var savedOptionsFileContents = File.ReadAllText(savedOptionsFilePath);
 				var savedOptions = JsonConvert.DeserializeObject<Dictionary<string, string>>(savedOptionsFileContents);
 
-				foreach(KeyValuePair<string, string> option in savedOptions)
+				foreach (KeyValuePair<string, string> option in savedOptions)
 					missionOptions[option.Key] = option.Value;
 			}
 			catch

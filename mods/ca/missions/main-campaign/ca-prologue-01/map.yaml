@@ -522,3 +522,5 @@ Actors:
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-coalitions.yaml, relativity-rules.yaml
 
 Weapons: ca|weapons/custom/campaign.yaml, relativity-weapons.yaml
+
+FluentMessages: ca|fluent/lua.ftl, en.ftl

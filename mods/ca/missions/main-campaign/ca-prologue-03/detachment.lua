@@ -25,8 +25,8 @@ WorldLoaded = function()
 	InitObjectives(GDI)
 	InitUSSR()
 
-	ObjectiveLocateForces = GDI.AddObjective("Locate all GDI forces.")
-	ObjectiveExit = GDI.AddObjective("Find a safe exit route.")
+	ObjectiveLocateForces = GDI.AddObjective(UserInterface.GetFluentMessage("locate-forces"))
+	ObjectiveExit = GDI.AddObjective(UserInterface.GetFluentMessage("find-exit"))
 
 	SetupReveals({ Reveal1, Reveal3, Reveal4 })
 
@@ -44,9 +44,9 @@ WorldLoaded = function()
 			FirstRevealComplete = true
 			local camera = Actor.Create("smallcamera", true, { Owner = GDI, Location = Reveal2.Location })
 
-			if UtilsCA.FogEnabled() then
-				Tip("When an enemy structure is destroyed under the fog of war, it won't disappear until its location is revealed again. The explosion sound and screen shake can be used to verify its destruction.")
-			end
+		if UtilsCA.FogEnabled() then
+			Tip("fog-tip")
+		end
 
 			Trigger.AfterDelay(DateTime.Seconds(4), function()
 				camera.Destroy()
@@ -59,15 +59,15 @@ WorldLoaded = function()
 			if IsMissionPlayer(a.Owner) and not GroupsFound[g.Id] then
 				Trigger.RemoveProximityTrigger(id)
 				GroupsFound[g.Id] = true
-				Notification("GDI forces found.")
-				MediaCA.PlaySound(MissionDir .. "/gdifound.aud", 2)
+			Notification("gdi-found")
+			MediaCA.PlaySound(MissionDir .. "/gdifound.aud", 2)
 
-				if g.Id == 2 then
-					Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(2)), function()
-						Media.DisplayMessage("Thank god! You found us!.", "GDI Soldier", HSLColor.FromHex("F2CF74"))
-						MediaCA.PlaySound(MissionDir .. "/thankgod.aud", 1.5)
-					end)
-				end
+			if g.Id == 2 then
+				Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(2)), function()
+					Media.DisplayMessage(UserInterface.GetFluentMessage("thank-god"), UserInterface.GetFluentMessage("gdi-soldier"), HSLColor.FromHex("F2CF74"))
+					MediaCA.PlaySound(MissionDir .. "/thankgod.aud", 1.5)
+				end)
+			end
 
 				local groupActors = Map.ActorsInCircle(g.Waypoint.CenterPosition, WDist.New(8 * 1024));
 				Utils.Do(groupActors, function(a)
@@ -87,7 +87,7 @@ WorldLoaded = function()
 					Trigger.AfterDelay(DateTime.Seconds(4), function()
 						Actor.Create("flare", true, { Owner = GDI, Location = SignalFlare.Location })
 						PlaySpeechNotificationToMissionPlayers("SignalFlare")
-						Notification("Signal flare detected. Press [" .. UtilsCA.Hotkey("ToLastEvent") .. "] to view location.")
+						Media.DisplayMessage(UserInterface.GetFluentMessage("signal-flare-detected", { ["hotkey"] = UtilsCA.Hotkey("ToLastEvent") }), UserInterface.GetFluentMessage("notification"), HSLColor.FromHex("1E90FF"))
 						Beacon.New(GDI, SignalFlare.CenterPosition)
 					end)
 				end
@@ -96,11 +96,11 @@ WorldLoaded = function()
 	end)
 
 	Trigger.AfterDelay(DateTime.Seconds(4), function()
-		Media.DisplayMessage("Commander what's going on, where the hell are we?!", "GDI Soldier", HSLColor.FromHex("F2CF74"))
+		Media.DisplayMessage(UserInterface.GetFluentMessage("where-are-we"), UserInterface.GetFluentMessage("gdi-soldier"), HSLColor.FromHex("F2CF74"))
 		Media.PlaySound(MissionDir .. "/wherearewe.aud")
 
 		Trigger.AfterDelay(DateTime.Seconds(20), function()
-			Media.DisplayMessage("Come in, any GDI units, hostile troops have us pinned down.", "Radio", HSLColor.FromHex("F2CF74"))
+			Media.DisplayMessage(UserInterface.GetFluentMessage("pinned-down"), UserInterface.GetFluentMessage("radio"), HSLColor.FromHex("F2CF74"))
 			MediaCA.PlaySoundAtPos(MissionDir .. "/pinned.aud", 2, Camera.Position + WVec.New(2560, 0, 0))
 		end)
 	end)
@@ -148,9 +148,9 @@ OncePerSecondChecks = function()
 				Trigger.AfterDelay(DateTime.Seconds(2), function()
 					Reinforcements.Reinforce(GDI, { "n1", "n2", "n1", "n2", "n1", "medi", "mtnk", "mtnk" }, { RescueSpawn.Location, RescueRally1.Location, RescueRally2.Location })
 
-					Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(2)), function()
-						Media.DisplayMessage("Hold your fire, we're GDI! Damn, we thought we'd lost the whole company! We've got a base not far from here, we'll take you there.", "GDI Soldier", HSLColor.FromHex("F2CF74"))
-						MediaCA.PlaySound(MissionDir .. "/holdfire.aud", 2)
+				Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(2)), function()
+					Media.DisplayMessage(UserInterface.GetFluentMessage("hold-fire"), UserInterface.GetFluentMessage("gdi-soldier"), HSLColor.FromHex("F2CF74"))
+					MediaCA.PlaySound(MissionDir .. "/holdfire.aud", 2)
 
 						Trigger.AfterDelay(DateTime.Seconds(12), function()
 							GDI.MarkCompletedObjective(ObjectiveExit)

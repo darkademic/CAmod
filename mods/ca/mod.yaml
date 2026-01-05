@@ -100,9 +100,11 @@ FluentMessages:
 	common|fluent/rules.ftl
 	ca|fluent/ca.ftl
 	ca|fluent/chrome.ftl
+	ca|fluent/coop.ftl
 	ca|fluent/encyclopedia.ftl
 	ca|fluent/factions.ftl
 	ca|fluent/hotkeys.ftl
+	ca|fluent/lua.ftl
 	ca|fluent/options.ftl
 	ca|fluent/powers.ftl
 	ca|fluent/rules.ftl

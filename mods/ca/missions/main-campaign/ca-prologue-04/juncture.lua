@@ -40,12 +40,12 @@ WorldLoaded = function()
 	InitObjectives(Nod)
 	InitGDI()
 
-	ObjectiveDestroyAA = Nod.AddObjective("Destroy GDI anti-aircraft defenses.")
+	ObjectiveDestroyAA = Nod.AddObjective(UserInterface.GetFluentMessage("destroy-aa"))
 
 	local aaGuns = GDI.GetActorsByType("cram")
 	Trigger.OnAllKilled(aaGuns, function()
 		local frigates = GDI.GetActorsByType("dd2")
-		ObjectiveDestroyFrigates = Nod.AddObjective("Destroy GDI naval blockade.")
+		ObjectiveDestroyFrigates = Nod.AddObjective(UserInterface.GetFluentMessage("destroy-frigates"))
 
 		Trigger.AfterDelay(DateTime.Seconds(6), function()
 			InitReinforcements()
@@ -123,10 +123,10 @@ InitReinforcements = function()
 
 		Trigger.AfterDelay(DateTime.Seconds(2), function()
 			PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
-			Notification("Reinforcements have arrived.")
+			Notification("reinforcements-arrived")
 
 			Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(3)), function()
-				Media.DisplayMessage("You have done well commander! Now behold; a taste of things to come. Use them wisely.", "Kane", HSLColor.FromHex("FF0000"))
+				Media.DisplayMessage(UserInterface.GetFluentMessage("things-to-come"), UserInterface.GetFluentMessage("kane"), HSLColor.FromHex("FF0000"))
 				MediaCA.PlaySound(MissionDir .. "/thingstocome.aud", 2)
 			end)
 		end)

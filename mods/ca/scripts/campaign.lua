@@ -18,7 +18,7 @@ StructureBuildTimeMultipliers = {
 }
 
 McvRebuildDelay = {
-	easy = DateTime.Minutes(25), -- not used by default
+	easy = DateTime.Minutes(25),  -- not used by default
 	normal = DateTime.Minutes(15), -- not used by default
 	hard = DateTime.Minutes(8),
 	vhard = DateTime.Minutes(5),
@@ -26,11 +26,11 @@ McvRebuildDelay = {
 }
 
 UnitBuildTimeMultipliers = {
-	easy = 1.25, -- 2000 value/min per queue (~33/s)
+	easy = 1.25,  -- 2000 value/min per queue (~33/s)
 	normal = 0.81, -- 3086 value/min per queue (~51/s)
-	hard = 0.6, -- 4166 value/min per queue (~69/s)
-	vhard = 0.4, -- 6250 value/min per queue (~104/s)
-	brutal = 0.3 -- 8333 value/min per queue (~138/s)
+	hard = 0.6,   -- 4166 value/min per queue (~69/s)
+	vhard = 0.4,  -- 6250 value/min per queue (~104/s)
+	brutal = 0.3  -- 8333 value/min per queue (~138/s)
 	-- 1.0 -- 2500 value/min per queue (~41.6/s)
 	-- 0.52 -- 4807 value/min per queue (~80/s)
 	-- 0.34 -- 7352 value/min per queue (~122/s)
@@ -42,7 +42,7 @@ AttackValueMultipliers = {
 	easy = 0.5, -- standard min 20/s, max 40/s
 	normal = 1, -- standard min 40/s, max 80/s
 	hard = 1.5, -- standard min 60/s, max 120/s
-	vhard = 2, -- standard min 80/s, max 160/s
+	vhard = 2,  -- standard min 80/s, max 160/s
 	brutal = 2.5 -- standard min 100/s, max 200/s
 }
 
@@ -50,7 +50,7 @@ NormalRampDuration = DateTime.Minutes(17)
 
 RampDurationMultipliers = {
 	easy = 1.06, -- 18 min
-	normal = 1, -- 17 min
+	normal = 1,  -- 17 min
 	hard = 0.94, -- 16 min
 	vhard = 0.88, -- 15 min
 	brutal = 0.82 -- 14 min
@@ -136,7 +136,8 @@ CashRewardOnCaptureTypes = { "proc", "proc.td", "proc.scrin", "silo", "silo.td",
 
 WallTypes = { "sbag", "fenc", "brik", "cycl", "barb" }
 
-KeyStructures = { "fact", "afac", "sfac", "proc", "proc.td", "proc.scrin", "weap", "weap.td", "airs", "wsph", "dome", "hq", "nerv", "atek", "stek", "gtek", "tmpl", "scrt", "mcv", "amcv", "smcv" }
+KeyStructures = { "fact", "afac", "sfac", "proc", "proc.td", "proc.scrin", "weap", "weap.td", "airs", "wsph", "dome",
+	"hq", "nerv", "atek", "stek", "gtek", "tmpl", "scrt", "mcv", "amcv", "smcv" }
 
 DefaultQueueProducers = {
 	Infantry = BarracksTypes,
@@ -161,56 +162,56 @@ RebuildFunctions = {
 }
 
 -- should be populated with the human players in the mission
-MissionPlayers = { }
+MissionPlayers = {}
 
 -- should be populated with squads definitions needed by the mission
-Squads = { }
+Squads = {}
 
 --
 -- begin automatically populated vars (do not assign values to these)
 --
 
 -- stores the player base locations (recalculated at intervals)
-PlayerBaseLocations = { }
+PlayerBaseLocations = {}
 
 -- queued structures for AI
-BuildingQueues = { }
+BuildingQueues = {}
 
 -- stores active squad leaders
-SquadLeaders = { }
+SquadLeaders = {}
 
 -- stores actors which have called for help so they don't do so repeatedly
-AlertedUnits = { }
+AlertedUnits = {}
 
 -- per production structure, stores which squad to assign produced units to next
-SquadAssignmentQueue = { }
+SquadAssignmentQueue = {}
 
 -- stores which AI production structures have triggers assigned to prevent them being added multiple times
-OnProductionTriggers = { }
+OnProductionTriggers = {}
 
 -- when player kills an AI harvester it delays the production of the next attack wave
-HarvesterDeathStacks = { }
+HarvesterDeathStacks = {}
 
 -- minimum time until next special composition for each AI player
-SpecialCompositionMinTimes = { }
+SpecialCompositionMinTimes = {}
 
 -- caches unit costs for adjusting composition difficulty
-UnitCosts = { }
+UnitCosts = {}
 
 -- player characteristics used to enable AI behaviours
-PlayerCharacteristics = { }
+PlayerCharacteristics = {}
 
 -- stores original AI conyards for rebuilding purposes
-AiConyards = { }
+AiConyards = {}
 
 -- stores queue of conyards that need rebuilding
-AiConyardRebuildQueue = { }
+AiConyardRebuildQueue = {}
 
 -- stores actors that have a trigger assigned for rebuilding AI conyards
-McvProductionTriggers = { }
+McvProductionTriggers = {}
 
 -- stores buildings that should be sold on capture attempts
-BuildingsToSellOnCaptureAttempt = { }
+BuildingsToSellOnCaptureAttempt = {}
 
 --
 -- end automatically populated vars
@@ -225,10 +226,12 @@ InitObjectives = function(player)
 		if p.IsLocalPlayer then
 			Trigger.AfterDelay(1, function()
 				local colour = HSLColor.Yellow
+				local messageKey = "new-primary-objective"
 				if p.GetObjectiveType(id) ~= "Primary" then
 					colour = HSLColor.Gray
+					messageKey = "new-secondary-objective"
 				end
-				Media.DisplayMessage(p.GetObjectiveDescription(id), "New " .. string.lower(p.GetObjectiveType(id)) .. " objective", colour)
+				Media.DisplayMessage(p.GetObjectiveDescription(id), UserInterface.GetFluentMessage(messageKey), colour)
 			end)
 		end
 	end)
@@ -236,13 +239,15 @@ InitObjectives = function(player)
 	Trigger.OnObjectiveCompleted(player, function(p, id)
 		if p.IsLocalPlayer then
 			Media.PlaySoundNotification(player, "AlertBleep")
-			Media.DisplayMessage(p.GetObjectiveDescription(id), "Objective completed", HSLColor.LimeGreen)
+			Media.DisplayMessage(p.GetObjectiveDescription(id), UserInterface.GetFluentMessage("objective-completed"),
+				HSLColor.LimeGreen)
 		end
 	end)
 
 	Trigger.OnObjectiveFailed(player, function(p, id)
 		if p.IsLocalPlayer then
-			Media.DisplayMessage(p.GetObjectiveDescription(id), "Objective failed", HSLColor.Red)
+			Media.DisplayMessage(p.GetObjectiveDescription(id), UserInterface.GetFluentMessage("objective-failed"),
+				HSLColor.Red)
 		end
 	end)
 
@@ -264,11 +269,13 @@ InitObjectives = function(player)
 end
 
 Notification = function(text)
-	Media.DisplayMessage(text, "Notification", HSLColor.FromHex("1E90FF"))
+	Media.DisplayMessage(UserInterface.GetFluentMessage(text), UserInterface.GetFluentMessage("notification"),
+		HSLColor.FromHex("1E90FF"))
 end
 
 Tip = function(text)
-	Media.DisplayMessage(text, "Tip", HSLColor.FromHex("29F3CF"))
+	Media.DisplayMessage(UserInterface.GetFluentMessage(text), UserInterface.GetFluentMessage("tip"),
+		HSLColor.FromHex("29F3CF"))
 end
 
 IsNormalOrAbove = function()
@@ -295,7 +302,7 @@ IsVeryHardOrBelow = function()
 	return IsHardOrBelow() or Difficulty == "vhard"
 end
 
-AttackAircraftTargets = { }
+AttackAircraftTargets = {}
 InitAttackAircraft = function(aircraft, targetPlayers, targetList, targetType)
 	if not aircraft.IsDead then
 		local typeKey = string.gsub(aircraft.Type, "%.", "_")
@@ -353,7 +360,8 @@ end
 ChooseRandomTarget = function(unit, targetPlayer)
 	local target = nil
 	local enemies = Utils.Where(targetPlayer.GetActors(), function(self)
-		return self.HasProperty("Health") and unit.CanTarget(self) and not Utils.Any(WallTypes, function(type) return self.Type == type end)
+		return self.HasProperty("Health") and unit.CanTarget(self) and
+		not Utils.Any(WallTypes, function(type) return self.Type == type end)
 	end)
 	if #enemies > 0 then
 		target = Utils.Random(enemies)
@@ -375,7 +383,8 @@ ChooseRandomTargetOfTypes = function(unit, targetPlayer, targetList, targetType)
 		end
 
 		local enemies = Utils.Where(enemies, function(e)
-			return e.HasProperty("Health") and (e.HasProperty("Move") or e.HasProperty("StartBuildingRepairs")) and unit.CanTarget(e)
+			return e.HasProperty("Health") and (e.HasProperty("Move") or e.HasProperty("StartBuildingRepairs")) and
+			unit.CanTarget(e)
 		end)
 
 		if #enemies > 0 then
@@ -389,7 +398,8 @@ end
 ChooseRandomBuildingTarget = function(unit, targetPlayer)
 	local target = nil
 	local enemies = Utils.Where(targetPlayer.GetActors(), function(e)
-		return e.HasProperty("Health") and e.HasProperty("StartBuildingRepairs") and unit.CanTarget(e) and not Utils.Any(WallTypes, function(t) return e.Type == t end)
+		return e.HasProperty("Health") and e.HasProperty("StartBuildingRepairs") and unit.CanTarget(e) and
+		not Utils.Any(WallTypes, function(t) return e.Type == t end)
 	end)
 	if #enemies > 0 then
 		target = Utils.Random(enemies)
@@ -415,7 +425,6 @@ IdleHunt = function(actor)
 end
 
 AssaultPlayerBaseOrHunt = function(actor, targetPlayers, waypoints, fromIdle)
-
 	if actor.IsDead or not actor.HasProperty("AttackMove") or IsMissionPlayer(actor.Owner) then
 		return
 	end
@@ -492,7 +501,8 @@ end
 
 PlayerBuildingsCount = function(player)
 	local buildings = Utils.Where(player.GetActors(), function(a)
-		return a.HasProperty("StartBuildingRepairs") and not a.HasProperty("Attack") and a.Type ~= "silo" and a.Type ~= "silo.td" and a.Type ~= "silo.scrin"
+		return a.HasProperty("StartBuildingRepairs") and not a.HasProperty("Attack") and a.Type ~= "silo" and
+		a.Type ~= "silo.td" and a.Type ~= "silo.scrin"
 	end)
 	local mcvs = player.GetActorsByTypes(McvTypes)
 	return #buildings + #mcvs
@@ -505,7 +515,8 @@ end
 MissionPlayersHaveNavalPresence = function()
 	local count = 0
 	for _, p in pairs(MissionPlayers) do
-		local navalUnits = p.GetActorsByTypes({ "isub", "msub", "ca", "cv", "dd", "pt", "ss", "seas", "ss2", "sb", "dd2", "pt2", "lst" })
+		local navalUnits = p.GetActorsByTypes({ "isub", "msub", "ca", "cv", "dd", "pt", "ss", "seas", "ss2", "sb", "dd2",
+			"pt2", "lst" })
 		count = count + #navalUnits
 	end
 	return count > 4
@@ -550,7 +561,8 @@ RemoveActorsBasedOnDifficultyTags = function()
 	local brutalOnlyActors = Map.ActorsWithTag("BrutalOnly")
 
 	local actorsToRemoveAbove = {
-		easy = Utils.Concat(normalAndAboveActors, Utils.Concat(hardAndAboveActors, Utils.Concat(veryHardAndAboveActors, brutalOnlyActors))),
+		easy = Utils.Concat(normalAndAboveActors,
+			Utils.Concat(hardAndAboveActors, Utils.Concat(veryHardAndAboveActors, brutalOnlyActors))),
 		normal = Utils.Concat(hardAndAboveActors, Utils.Concat(veryHardAndAboveActors, brutalOnlyActors)),
 		hard = Utils.Concat(veryHardAndAboveActors, brutalOnlyActors),
 		vhard = brutalOnlyActors,
@@ -569,7 +581,8 @@ RemoveActorsBasedOnDifficultyTags = function()
 	local veryHardAndBelowActors = Map.ActorsWithTag("VeryHardAndBelow")
 
 	local actorsToRemoveBelow = {
-		brutal = Utils.Concat(veryHardAndBelowActors, Utils.Concat(hardAndBelowActors, Utils.Concat(normalAndBelowActors, easyOnlyActors))),
+		brutal = Utils.Concat(veryHardAndBelowActors,
+			Utils.Concat(hardAndBelowActors, Utils.Concat(normalAndBelowActors, easyOnlyActors))),
 		vhard = Utils.Concat(hardAndBelowActors, Utils.Concat(normalAndBelowActors, easyOnlyActors)),
 		hard = Utils.Concat(normalAndBelowActors, easyOnlyActors),
 		normal = easyOnlyActors,
@@ -584,14 +597,16 @@ RemoveActorsBasedOnDifficultyTags = function()
 end
 
 AutoRepairBuildings = function(player)
-	local buildings = Utils.Where(Map.ActorsInWorld, function(self) return self.Owner == player and self.HasProperty("StartBuildingRepairs") end)
+	local buildings = Utils.Where(Map.ActorsInWorld,
+		function(self) return self.Owner == player and self.HasProperty("StartBuildingRepairs") end)
 	Utils.Do(buildings, function(a)
 		AutoRepairBuilding(a, player)
 	end)
 end
 
 AutoRepairAndRebuildBuildings = function(player, maxAttempts)
-	local buildings = Utils.Where(Map.ActorsInWorld, function(self) return self.Owner == player and self.HasProperty("StartBuildingRepairs") end)
+	local buildings = Utils.Where(Map.ActorsInWorld,
+		function(self) return self.Owner == player and self.HasProperty("StartBuildingRepairs") end)
 	Utils.Do(buildings, function(a)
 		local excludeFromRebuilding = false
 
@@ -641,7 +656,7 @@ end
 
 AutoRebuildBuilding = function(building, player, maxAttempts)
 	if BuildingQueues[player.InternalName] == nil then
-		BuildingQueues[player.InternalName] = { }
+		BuildingQueues[player.InternalName] = {}
 	end
 	if maxAttempts == nil then
 		maxAttempts = 15
@@ -708,7 +723,7 @@ RebuildBuilding = function(queueItem)
 				RebuildFunctions[queueItem.Player.InternalName](b)
 			end
 
-		-- otherwise add to back of queue (if attempts remaining)
+			-- otherwise add to back of queue (if attempts remaining)
 		elseif queueItem.AttemptsRemaining > 1 then
 			queueItem.AttemptsRemaining = queueItem.AttemptsRemaining - 1
 			BuildingQueues[queueItem.Player.InternalName][#BuildingQueues[queueItem.Player.InternalName] + 1] = queueItem
@@ -754,7 +769,8 @@ HasOwnedBuildingsNearby = function(player, pos, noEnemyBuildings)
 	local bottomRight = WPos.New(pos.X + 8192, pos.Y + 8192, 0)
 
 	local nearbyBuildings = Map.ActorsInBox(topLeft, bottomRight, function(a)
-		return not a.IsDead and a.Owner == player and a.HasProperty("StartBuildingRepairs") and not a.HasProperty("Attack") and a.Type ~= "silo" and a.Type ~= "silo.td" and a.Type ~= "silo.scrin"
+		return not a.IsDead and a.Owner == player and a.HasProperty("StartBuildingRepairs") and not a.HasProperty("Attack") and
+		a.Type ~= "silo" and a.Type ~= "silo.td" and a.Type ~= "silo.scrin"
 	end)
 
 	-- require an owned building nearby
@@ -859,11 +875,10 @@ end
 
 QueueMcv = function(player, conyardEntry)
 	if AiConyardRebuildQueue[player.InternalName] == nil then
-		AiConyardRebuildQueue[player.InternalName] = { }
+		AiConyardRebuildQueue[player.InternalName] = {}
 	end
 
 	Trigger.AfterDelay(McvRebuildDelay[Difficulty], function()
-
 		-- get a conyard without an assigned mcv that has friendly buildings nearby, where a producer can path to it
 		local possibleConyards = GetRebuildableConyardEntries(player)
 
@@ -896,7 +911,8 @@ QueueMcv = function(player, conyardEntry)
 						Trigger.OnIdle(produced, function(self)
 							-- if deploy failed, wait 10 seconds, move to a random location within 5 cells then return and try again
 							produced.Wait(DateTime.Seconds(10))
-							local randomCell = CPos.New(targetConyardEntry.DeployLocation.X + Utils.RandomInteger(-5, 5), targetConyardEntry.DeployLocation.Y + Utils.RandomInteger(-5, 5))
+							local randomCell = CPos.New(targetConyardEntry.DeployLocation.X + Utils.RandomInteger(-5, 5),
+								targetConyardEntry.DeployLocation.Y + Utils.RandomInteger(-5, 5))
 							produced.Move(randomCell)
 							produced.Move(targetConyardEntry.DeployLocation)
 							produced.Deploy()
@@ -906,7 +922,8 @@ QueueMcv = function(player, conyardEntry)
 						Trigger.OnRemovedFromWorld(produced, function(self)
 							if not self.IsDead then
 								Trigger.AfterDelay(DateTime.Seconds(1), function()
-									local nearbyConyards = Map.ActorsInCircle(Map.CenterOfCell(targetConyardEntry.DeployLocation), WDist.FromCells(2), function(a)
+									local nearbyConyards = Map.ActorsInCircle(Map.CenterOfCell(targetConyardEntry.DeployLocation),
+										WDist.FromCells(2), function(a)
 										return a.Owner == player and IsConyard(a)
 									end)
 									if #nearbyConyards > 0 then
@@ -936,10 +953,10 @@ end
 GetRebuildableConyardEntries = function(player)
 	return Utils.Where(AiConyards, function(c)
 		return c.Actor.IsDead
-			and c.AssignedMcv == nil
-			and c.Player == player
-			and HasOwnedBuildingsNearby(player, Map.CenterOfCell(c.DeployLocation), true)
-			and Utils.Any(c.PossibleProducers, function(p) return not p.IsDead end)
+				and c.AssignedMcv == nil
+				and c.Player == player
+				and HasOwnedBuildingsNearby(player, Map.CenterOfCell(c.DeployLocation), true)
+				and Utils.Any(c.PossibleProducers, function(p) return not p.IsDead end)
 	end)
 end
 
@@ -948,9 +965,9 @@ RestoreSquadProduction = function(oldBuilding, newBuilding)
 		return
 	end
 
-	for squadName,squad in pairs(Squads) do
+	for squadName, squad in pairs(Squads) do
 		if squad.ProducerActors ~= nil then
-			for queue,actors in pairs(squad.ProducerActors) do
+			for queue, actors in pairs(squad.ProducerActors) do
 				if actors ~= nil then
 					for idx, a in pairs(actors) do
 						if a == oldBuilding then
@@ -972,7 +989,7 @@ TargetSwapChance = function(unit, chance, isMissionPlayerFunc)
 		if isMissionPlayerFunc(self.Owner) or not isMissionPlayerFunc(attacker.Owner) then
 			return
 		end
-		local rand = Utils.RandomInteger(1,100)
+		local rand = Utils.RandomInteger(1, 100)
 		if rand > 100 - chance then
 			if not unit.IsDead and not attacker.IsDead and unit.HasProperty("Attack") then
 				unit.Stop()
@@ -1068,11 +1085,11 @@ InitAttackSquad = function(squad, player, targetPlayers)
 	end
 
 	if squad.QueueProductionStatuses == nil then
-		squad.QueueProductionStatuses = { }
+		squad.QueueProductionStatuses = {}
 	end
 
 	if squad.IdleUnits == nil then
-		squad.IdleUnits = { }
+		squad.IdleUnits = {}
 	end
 
 	if squad.Delay ~= nil then
@@ -1103,7 +1120,6 @@ InitNavalAttackSquad = function(squad, player, targetPlayers)
 end
 
 InitAttackWave = function(squad)
-
 	if IsSquadInProduction(squad) then
 		return
 	end
@@ -1135,12 +1151,16 @@ InitAttackWave = function(squad)
 		-- filter possible compositions based on game time and other requirements
 		local validCompositions = Utils.Where(allCompositions, function(composition)
 			return (composition.MinTime == nil or DateTime.GameTime >= composition.MinTime + squad.InitTime) -- after min time
-				and (composition.MaxTime == nil or DateTime.GameTime < composition.MaxTime + squad.InitTime) -- before max time
-				and (composition.RequiredTargetCharacteristics == nil or Utils.All(composition.RequiredTargetCharacteristics, function(characteristic)
-					return PlayerOrMissionPlayersHaveCharacteristic(squad.TargetPlayer, characteristic)
-				end)) -- target player has all required characteristics
-				and (composition.Prerequisites == nil or squad.Player.HasPrerequisites(composition.Prerequisites)) -- player has prerequisites
-				and (composition.EnabledFunc == nil or composition.EnabledFunc()) -- custom function for whether the composition is enabled
+					and (composition.MaxTime == nil or DateTime.GameTime < composition.MaxTime + squad.InitTime) -- before max time
+					and
+					(composition.RequiredTargetCharacteristics == nil or Utils.All(composition.RequiredTargetCharacteristics, function(
+							characteristic)
+						return PlayerOrMissionPlayersHaveCharacteristic(squad.TargetPlayer, characteristic)
+					end))                                                                                        -- target player has all required characteristics
+					and
+					(composition.Prerequisites == nil or squad.Player.HasPrerequisites(composition.Prerequisites)) -- player has prerequisites
+					and
+					(composition.EnabledFunc == nil or composition.EnabledFunc())                                -- custom function for whether the composition is enabled
 		end)
 
 		-- determine whether to choose a special composition (33% chance if enough time has elapsed since last used)
@@ -1198,9 +1218,9 @@ InitAttackWave = function(squad)
 end
 
 GetQueuesForComposition = function(composition)
-	local queues = { }
+	local queues = {}
 
-	for k,v in pairs(composition) do
+	for k, v in pairs(composition) do
 		if IsQueue(k) then
 			table.insert(queues, k)
 		end
@@ -1233,11 +1253,15 @@ IsQueue = function(key)
 end
 
 PlayerHasCharacteristic = function(player, characteristic)
-	return PlayerCharacteristics[player.InternalName] ~= nil and PlayerCharacteristics[player.InternalName][characteristic] ~= nil and PlayerCharacteristics[player.InternalName][characteristic]
+	return PlayerCharacteristics[player.InternalName] ~= nil and
+	PlayerCharacteristics[player.InternalName][characteristic] ~= nil and
+	PlayerCharacteristics[player.InternalName][characteristic]
 end
 
 MissionPlayersHaveCharacteristic = function(characteristic)
-	return PlayerCharacteristics["MissionPlayers"] ~= nil and PlayerCharacteristics["MissionPlayers"][characteristic] ~= nil and PlayerCharacteristics["MissionPlayers"][characteristic]
+	return PlayerCharacteristics["MissionPlayers"] ~= nil and
+	PlayerCharacteristics["MissionPlayers"][characteristic] ~= nil and
+	PlayerCharacteristics["MissionPlayers"][characteristic]
 end
 
 PlayerOrMissionPlayersHaveCharacteristic = function(player, characteristic)
@@ -1248,7 +1272,7 @@ ProduceNextAttackSquadUnit = function(squad, queue, unitIndex)
 	local units = squad.QueuedUnits[queue]
 
 	if units == nil then
-		units = { }
+		units = {}
 	end
 
 	-- if there are no more units to build for this queue, check if any other queues are producing -- if none are, send the attack and produce next attack squad after interval
@@ -1293,7 +1317,7 @@ ProduceNextAttackSquadUnit = function(squad, queue, unitIndex)
 				InitAttackSquad(squad, squad.Player, squad.TargetPlayers)
 			end)
 		end
-	-- if more units to build, set them to produce after delay equal to their build time (with difficulty multiplier applied)
+		-- if more units to build, set them to produce after delay equal to their build time (with difficulty multiplier applied)
 	else
 		squad.QueueProductionStatuses[queue] = true
 		local nextUnit = units[unitIndex]
@@ -1340,13 +1364,13 @@ ProduceNextAttackSquadUnit = function(squad, queue, unitIndex)
 				local producerId = tostring(producer)
 
 				local engineersNearby = Map.ActorsInCircle(producer.CenterPosition, WDist.New(2730), function(a)
-					return not a.IsDead and (a.Type == "e6" or a.Type == "n6" or a.Type == "s6" or a.Type == "mast") and a.Owner ~= producer.Owner
+					return not a.IsDead and (a.Type == "e6" or a.Type == "n6" or a.Type == "s6" or a.Type == "mast") and
+					a.Owner ~= producer.Owner
 				end)
 
 				-- prevents capturing player getting a free unit
 				-- the capture blocks the production until the capture completes
 				if #engineersNearby == 0 then
-
 					-- set that the next unit produced from this producer should be assigned to the specified squad
 					AddToSquadAssignmentQueue(producerId, squad)
 
@@ -1377,7 +1401,6 @@ ProduceNextAttackSquadUnit = function(squad, queue, unitIndex)
 end
 
 HandleProducedSquadUnit = function(produced, producerId, squad)
-
 	-- if the produced unit is not owned by the squad player, ignore it
 	if produced.Owner ~= squad.Player then
 		return
@@ -1405,7 +1428,6 @@ HandleProducedSquadUnit = function(produced, producerId, squad)
 		if assignedSquad.OnProducedAction ~= nil then
 			assignedSquad.OnProducedAction(produced)
 		end
-
 	elseif produced.HasProperty("Hunt") then
 		produced.Hunt()
 	end
@@ -1417,15 +1439,16 @@ end
 -- also split by player to prevent these getting jumbled if producer owner changes
 AddToSquadAssignmentQueue = function(producerId, squad)
 	InitSquadAssignmentQueueForProducer(producerId, squad.Player)
-	SquadAssignmentQueue[squad.Player.InternalName][producerId][#SquadAssignmentQueue[squad.Player.InternalName][producerId] + 1] = squad
+	SquadAssignmentQueue[squad.Player.InternalName][producerId][#SquadAssignmentQueue[squad.Player.InternalName][producerId] + 1] =
+	squad
 end
 
 InitSquadAssignmentQueueForProducer = function(producerId, player)
 	if SquadAssignmentQueue[player.InternalName] == nil then
-		SquadAssignmentQueue[player.InternalName] = { }
+		SquadAssignmentQueue[player.InternalName] = {}
 	end
 	if SquadAssignmentQueue[player.InternalName][producerId] == nil then
-		SquadAssignmentQueue[player.InternalName][producerId] = { }
+		SquadAssignmentQueue[player.InternalName][producerId] = {}
 	end
 end
 
@@ -1478,10 +1501,10 @@ function CalculateValuePerSecond(currentTick, attackValues)
 		rampDuration = NormalRampDuration * RampDurationMultipliers[Difficulty]
 	end
 	local growthFactor = 2.06
-    local progress = currentTick / rampDuration
-    local scaledProgress = progress ^ growthFactor
-    local value = minValue + (maxValue - minValue) * scaledProgress
-    return math.min(math.floor(value), maxValue)
+	local progress = currentTick / rampDuration
+	local scaledProgress = progress ^ growthFactor
+	local value = minValue + (maxValue - minValue) * scaledProgress
+	return math.min(math.floor(value), maxValue)
 end
 
 IsSquadInProduction = function(squad)
@@ -1556,7 +1579,7 @@ SendAttackSquad = function(squad)
 						ClearSquadLeader(squadLeader)
 					end)
 
-				-- if not squad leader, follow the leader
+					-- if not squad leader, follow the leader
 				else
 					SquadLeaders[actorId] = squadLeader
 					FollowSquadLeader(a, squad)
@@ -1569,11 +1592,11 @@ SendAttackSquad = function(squad)
 			end
 		end)
 	end
-	squad.IdleUnits = { }
+	squad.IdleUnits = {}
 end
 
 ClearSquadLeader = function(squadLeader)
-	for k,v in pairs(SquadLeaders) do
+	for k, v in pairs(SquadLeaders) do
 		if v == squadLeader then
 			SquadLeaders[k] = nil
 		end
@@ -1590,7 +1613,7 @@ FollowSquadLeader = function(actor, squad)
 			actor.Stop()
 			actor.AttackMove(cell, 1)
 
-			Trigger.AfterDelay(Utils.RandomInteger(35,65), function()
+			Trigger.AfterDelay(Utils.RandomInteger(35, 65), function()
 				FollowSquadLeader(actor, squad)
 			end)
 		else
@@ -1620,7 +1643,7 @@ FollowActor = function(actor, actorToFollow)
 			actor.Stop()
 			actor.AttackMove(cell, 1)
 
-			Trigger.AfterDelay(Utils.RandomInteger(35,65), function()
+			Trigger.AfterDelay(Utils.RandomInteger(35, 65), function()
 				FollowActor(actor, actorToFollow)
 			end)
 		else
@@ -1719,7 +1742,8 @@ SellOnCaptureAttempt = function(buildings, sellAsGroup)
 		local captureCells = Utils.ExpandFootprint(footprint, true)
 
 		Trigger.OnEnteredFootprint(captureCells, function(a, id)
-			if IsMissionPlayer(a.Owner) and (a.Type == "e6" or a.Type == "n6" or a.Type == "s6" or a.Type == "mast" or (a.Type == "ifv" and a.HasPassengers and Utils.Any(a.Passengers, function(p) return p.Type == "e6" or p.Type == "n6" or p.Type == "s6" end))) then
+			if IsMissionPlayer(a.Owner) and (a.Type == "e6" or a.Type == "n6" or a.Type == "s6" or a.Type == "mast" or (a.Type == "ifv" and a.HasPassengers and Utils.Any(a.Passengers, function(
+							p) return p.Type == "e6" or p.Type == "n6" or p.Type == "s6" end))) then
 				Trigger.RemoveFootprintTrigger(id)
 				if sellAsGroup then
 					Utils.Do(buildings, function(b2)
@@ -1902,15 +1926,18 @@ IsGroundHunterUnit = function(actor)
 end
 
 IsGreeceGroundHunterUnit = function(actor)
-	return IsGroundHunterUnit(actor) and actor.Type ~= "arty" and actor.Type ~= "cryo" and actor.Type ~= "mgg" and actor.Type ~= "mrj"
+	return IsGroundHunterUnit(actor) and actor.Type ~= "arty" and actor.Type ~= "cryo" and actor.Type ~= "mgg" and
+	actor.Type ~= "mrj"
 end
 
 IsUSSRGroundHunterUnit = function(actor)
-	return IsGroundHunterUnit(actor) and actor.Type ~= "v2rl" and actor.Type ~= "v3rl" and actor.Type ~= "katy" and actor.Type ~= "grad" and actor.Type ~= "nukc"
+	return IsGroundHunterUnit(actor) and actor.Type ~= "v2rl" and actor.Type ~= "v3rl" and actor.Type ~= "katy" and
+	actor.Type ~= "grad" and actor.Type ~= "nukc"
 end
 
 IsGDIGroundHunterUnit = function(actor)
-	return (IsGroundHunterUnit(actor) or actor.Type == "jjet") and actor.Type ~= "msam" and actor.Type ~= "memp" and actor.Type ~= "thwk"
+	return (IsGroundHunterUnit(actor) or actor.Type == "jjet") and actor.Type ~= "msam" and actor.Type ~= "memp" and
+	actor.Type ~= "thwk"
 end
 
 IsNodGroundHunterUnit = function(actor)
@@ -1945,13 +1972,10 @@ InitAiUpgrades = function(player, advancedDelay)
 	end
 
 	if (player.Faction == "allies") then
-
 		if IsHardOrAbove() then
 			Actor.Create("cryw.upgrade", true, { Owner = Greece })
 		end
-
 	elseif (player.Faction == "soviet") then
-
 		if IsHardOrAbove() then
 			Trigger.AfterDelay(advancedDelay, function()
 				Actor.Create("tarc.upgrade", true, { Owner = player })
@@ -1961,9 +1985,7 @@ InitAiUpgrades = function(player, advancedDelay)
 				Actor.Create(selectedDoctrineUpgrade, true, { Owner = player })
 			end)
 		end
-
 	elseif (player.Faction == "nod") then
-
 		if IsHardOrAbove() then
 			Trigger.AfterDelay(advancedDelay, function()
 				Actor.Create("blacknapalm.upgrade", true, { Owner = player })
@@ -1973,9 +1995,7 @@ InitAiUpgrades = function(player, advancedDelay)
 				Actor.Create("cyborgarmor.upgrade", true, { Owner = player })
 			end)
 		end
-
 	elseif (player.Faction == "gdi") then
-
 		if IsHardOrAbove() then
 			Actor.Create("sonic.upgrade", true, { Owner = player, })
 			Actor.Create("empgren.upgrade", true, { Owner = player, })
@@ -1983,8 +2003,8 @@ InitAiUpgrades = function(player, advancedDelay)
 			Trigger.AfterDelay(advancedDelay, function()
 				local strategyUpgrades = {
 					{ "bombard.strat", "bombard2.strat", "hailstorm.upgrade" },
-					{ "seek.strat", "seek2.strat", "hypersonic.upgrade" },
-					{ "hold.strat", "hold2.strat", "hammerhead.upgrade" },
+					{ "seek.strat",    "seek2.strat",    "hypersonic.upgrade" },
+					{ "hold.strat",    "hold2.strat",    "hammerhead.upgrade" },
 				}
 
 				local selectedStrategyUpgrades = Utils.Random(strategyUpgrades)
@@ -1993,9 +2013,7 @@ InitAiUpgrades = function(player, advancedDelay)
 				end)
 			end)
 		end
-
 	elseif (player.Faction == "scrin") then
-
 		if IsHardOrAbove() then
 			Actor.Create("ioncon.upgrade", true, { Owner = player })
 
@@ -2004,7 +2022,6 @@ InitAiUpgrades = function(player, advancedDelay)
 				Actor.Create("shields.upgrade", true, { Owner = player })
 			end)
 		end
-
 	end
 end
 
@@ -2043,7 +2060,7 @@ AdjustAttackValuesForDifficulty = function(attackValues, difficulty)
 end
 
 AdjustCompositionsForDifficulty = function(compositions, difficulty)
-	local updatedCompositions = { }
+	local updatedCompositions = {}
 
 	Utils.Do(compositions, function(comp)
 		local updatedComposition = AdjustCompositionForDifficulty(comp, difficulty)
@@ -2063,16 +2080,15 @@ AdjustCompositionForDifficulty = function(composition, difficulty)
 	end
 
 	-- total unadjusted cost for all units in each queue
-	local queueTotalUnitCost = { }
+	local queueTotalUnitCost = {}
 
 	-- total adjusted cost for each queue
-	local queueAllocatedTotalUnitCost = { }
+	local queueAllocatedTotalUnitCost = {}
 
 	-- units added to the adjusted composition
-	local updatedComposition = { }
+	local updatedComposition = {}
 
-	for k,v in pairs(composition) do
-
+	for k, v in pairs(composition) do
 		if IsQueue(k) then
 			local queueName = k
 			local queueUnits = v
@@ -2080,7 +2096,7 @@ AdjustCompositionForDifficulty = function(composition, difficulty)
 			queueAllocatedTotalUnitCost[queueName] = 0
 
 			-- for each unit in the queue
-			for i,unit in pairs(queueUnits) do
+			for i, unit in pairs(queueUnits) do
 				local chosenUnit
 
 				-- if the unit is a table of possible units, use the one with the highest cost for calculation purposes
@@ -2097,11 +2113,12 @@ AdjustCompositionForDifficulty = function(composition, difficulty)
 				queueTotalUnitCost[queueName] = queueTotalUnitCost[queueName] + UnitCosts[chosenUnit]
 			end
 
-			local adjustedDesiredTotalUnitCostForQueue = queueTotalUnitCost[queueName] * CompositionValueMultipliers[difficulty]
+			local adjustedDesiredTotalUnitCostForQueue = queueTotalUnitCost[queueName] *
+			CompositionValueMultipliers[difficulty]
 
 			-- allocate units until the adjusted cost is reached
 			while queueAllocatedTotalUnitCost[queueName] < adjustedDesiredTotalUnitCostForQueue do
-				for i,unit in pairs(queueUnits) do
+				for i, unit in pairs(queueUnits) do
 					if queueAllocatedTotalUnitCost[queueName] >= adjustedDesiredTotalUnitCostForQueue then
 						break
 					end
@@ -2115,7 +2132,7 @@ AdjustCompositionForDifficulty = function(composition, difficulty)
 					end
 
 					if updatedComposition[queueName] == nil then
-						updatedComposition[queueName] = { }
+						updatedComposition[queueName] = {}
 					end
 
 					table.insert(updatedComposition[queueName], unit)
@@ -2129,7 +2146,6 @@ AdjustCompositionForDifficulty = function(composition, difficulty)
 			end
 		else
 			if k == "MinTime" or k == "MaxTime" then
-
 				if difficulty == "easy" then
 					updatedComposition[k] = v * 1.4
 				elseif difficulty == "normal" then
@@ -2137,7 +2153,6 @@ AdjustCompositionForDifficulty = function(composition, difficulty)
 				elseif difficulty == "brutal" then
 					updatedComposition[k] = v * 0.9
 				end
-
 			else
 				updatedComposition[k] = v
 			end
@@ -2283,9 +2298,12 @@ CalculatePlayerCharacteristics = function()
 	end)
 
 	Utils.Do(MissionPlayers, function(p)
-		PlayerCharacteristics["MissionPlayers"].InfantryValue = PlayerCharacteristics["MissionPlayers"].InfantryValue + PlayerCharacteristics[p.InternalName].InfantryValue
-		PlayerCharacteristics["MissionPlayers"].HeavyValue = PlayerCharacteristics["MissionPlayers"].HeavyValue + PlayerCharacteristics[p.InternalName].HeavyValue
-		PlayerCharacteristics["MissionPlayers"].AirValue = PlayerCharacteristics["MissionPlayers"].AirValue + PlayerCharacteristics[p.InternalName].AirValue
+		PlayerCharacteristics["MissionPlayers"].InfantryValue = PlayerCharacteristics["MissionPlayers"].InfantryValue +
+		PlayerCharacteristics[p.InternalName].InfantryValue
+		PlayerCharacteristics["MissionPlayers"].HeavyValue = PlayerCharacteristics["MissionPlayers"].HeavyValue +
+		PlayerCharacteristics[p.InternalName].HeavyValue
+		PlayerCharacteristics["MissionPlayers"].AirValue = PlayerCharacteristics["MissionPlayers"].AirValue +
+		PlayerCharacteristics[p.InternalName].AirValue
 	end)
 
 	if PlayerCharacteristics["MissionPlayers"].InfantryValue > 20000 then
@@ -2370,145 +2388,145 @@ PacOrDevastator = { "pac", "deva" }
 UnitCompositions = {
 	Allied = {
 		-- 0 to 10 minutes
-		{ Infantry = {}, Vehicles = { "jeep", "jeep", "jeep", "jeep", "jeep" }, MaxTime = DateTime.Minutes(10) },
-		{ Infantry = {}, Vehicles = { "1tnk", "1tnk", "1tnk", "1tnk" }, MaxTime = DateTime.Minutes(10) },
-		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1" }, Vehicles = { "2tnk", "apc.ai", "2tnk", "arty" }, MaxTime = DateTime.Minutes(10) },
-		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e1", "e1" }, Vehicles = { "2tnk", "ifv.ai", "2tnk", "ifv.ai" }, MaxTime = DateTime.Minutes(10) },
+		{ Infantry = {},                                                                                                                                                       Vehicles = { "jeep", "jeep", "jeep", "jeep", "jeep" },                                      MaxTime = DateTime.Minutes(10) },
+		{ Infantry = {},                                                                                                                                                       Vehicles = { "1tnk", "1tnk", "1tnk", "1tnk" },                                              MaxTime = DateTime.Minutes(10) },
+		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1" },                                                                                                       Vehicles = { "2tnk", "apc.ai", "2tnk", "arty" },                                            MaxTime = DateTime.Minutes(10) },
+		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e1", "e1" },                                                                                           Vehicles = { "2tnk", "ifv.ai", "2tnk", "ifv.ai" },                                          MaxTime = DateTime.Minutes(10) },
 
 		-- 10 minutes onwards
-		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", AlliedAdvancedInfantry, "e1", "e3", "e1", "e1" }, Vehicles = { "2tnk", "ifv.ai", "aapc.ai", "apc.ai", "arty" }, MinTime = DateTime.Minutes(10) },
-		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", AlliedAdvancedInfantry, "e1", "e3", "e1", "e1" }, Vehicles = { "2tnk", "2tnk", "2tnk", "ifv.ai", "ptnk", "ptnk" }, MinTime = DateTime.Minutes(10) },
-		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", AlliedAdvancedInfantry, "e1", "e3", "e1", "e1" }, Vehicles = { "2tnk", "ifv.ai", "ptnk", "2tnk", "2tnk", AlliedT3SupportVehicle }, MinTime = DateTime.Minutes(10) },
-		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "e1", "e1" }, Vehicles = { "batf.ai", "ifv.ai", "batf.ai", "ifv.ai" }, MinTime = DateTime.Minutes(10) },
-		{ Infantry = {}, Vehicles = { "apc.ai", "jeep", "ifv.ai", "aapc.ai", "ifv.ai", "apc.ai" }, MinTime = DateTime.Minutes(10) },
+		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", AlliedAdvancedInfantry, "e1", "e3", "e1", "e1" },                                                       Vehicles = { "2tnk", "ifv.ai", "aapc.ai", "apc.ai", "arty" },                               MinTime = DateTime.Minutes(10) },
+		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", AlliedAdvancedInfantry, "e1", "e3", "e1", "e1" },                                                       Vehicles = { "2tnk", "2tnk", "2tnk", "ifv.ai", "ptnk", "ptnk" },                            MinTime = DateTime.Minutes(10) },
+		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", AlliedAdvancedInfantry, "e1", "e3", "e1", "e1" },                                                       Vehicles = { "2tnk", "ifv.ai", "ptnk", "2tnk", "2tnk", AlliedT3SupportVehicle },            MinTime = DateTime.Minutes(10) },
+		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "e1", "e1" },                                                             Vehicles = { "batf.ai", "ifv.ai", "batf.ai", "ifv.ai" },                                    MinTime = DateTime.Minutes(10) },
+		{ Infantry = {},                                                                                                                                                       Vehicles = { "apc.ai", "jeep", "ifv.ai", "aapc.ai", "ifv.ai", "apc.ai" },                   MinTime = DateTime.Minutes(10) },
 
 		-- 16 minutes onwards
-		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", AlliedAdvancedInfantry, "e1", "e3", "e1", "e1", "e3", "e1", "e1" }, Vehicles = { "2tnk", "2tnk", "ifv.ai", AlliedT3SupportVehicle, "2tnk", PrismCannonOrZeus }, MinTime = DateTime.Minutes(16) },
-		{ Infantry = { "e3", "enfo", "enfo", "enfo", "enfo", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "enfo", "enfo" }, Vehicles = { "2tnk", "ptnk", "2tnk", "2tnk", "2tnk", "ptnk" }, MinTime = DateTime.Minutes(18), IsSpecial = true },
+		{ Infantry = { "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", AlliedAdvancedInfantry, "e1", "e3", "e1", "e1", "e3", "e1", "e1" },                                     Vehicles = { "2tnk", "2tnk", "ifv.ai", AlliedT3SupportVehicle, "2tnk", PrismCannonOrZeus }, MinTime = DateTime.Minutes(16) },
+		{ Infantry = { "e3", "enfo", "enfo", "enfo", "enfo", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "enfo", "enfo" }, Vehicles = { "2tnk", "ptnk", "2tnk", "2tnk", "2tnk", "ptnk" },                              MinTime = DateTime.Minutes(18), IsSpecial = true },
 
 		------ Anti-tank
-		{ Infantry = { "e3", "e1", "e3", "e3", "e1", "e3", "e1", "e3", "e1", "e3", "e3", "e1", "e3", "e3", "e3", "e3" }, Vehicles = { "tnkd", "tnkd", "tnkd", "tnkd", "tnkd", "tnkd" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassHeavy" } },
+		{ Infantry = { "e3", "e1", "e3", "e3", "e1", "e3", "e1", "e3", "e1", "e3", "e3", "e1", "e3", "e3", "e3", "e3" },                                                       Vehicles = { "tnkd", "tnkd", "tnkd", "tnkd", "tnkd", "tnkd" },                              MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassHeavy" } },
 
 		------ Anti-infantry
-		{ Infantry = { "e3", "enfo", "e1", "e1", "e1", "enfo", "e1", "e1", "enfo", "e3", "e1", "e1", "enfo", "e1", "e1", "e1", "e1", "e1", "e1", "enfo", "enfo" }, Vehicles = { "ptnk", "ptnk", "ptnk", "cryo", "ptnk", "ptnk" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassInfantry" } },
+		{ Infantry = { "e3", "enfo", "e1", "e1", "e1", "enfo", "e1", "e1", "enfo", "e3", "e1", "e1", "enfo", "e1", "e1", "e1", "e1", "e1", "e1", "enfo", "enfo" },             Vehicles = { "ptnk", "ptnk", "ptnk", "cryo", "ptnk", "ptnk" },                              MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassInfantry" } },
 
 		-- Specials
-		{ Infantry = {}, Vehicles = { "ctnk", "ctnk", "ctnk", "ctnk", "ctnk", "ctnk"  }, MinTime = DateTime.Minutes(18), IsSpecial = true },
-		{ Infantry = { "seal", "seal", "seal", "seal", "seal", "seal", "e7" }, Vehicles = { }, MinTime = DateTime.Minutes(18), IsSpecial = true },
-		{ Infantry = { "snip", "snip", "snip", "snip", "snip", "snip", "snip", "snip" }, Vehicles = { "rtnk", "rtnk", "rtnk", "rtnk", "rtnk", "rtnk", "rtnk" }, MinTime = DateTime.Minutes(18), IsSpecial = true },
-		{ Infantry = { "e3", "cryt", "cryt", "cryt", "e3", "e1", "e1", "e1", "e1", "e1", "e1", "cryt", "cryt", "cryt",  }, Vehicles = { "cryo", "2tnk", "2tnk", "cryo", "ifv", "cryo", "2tnk" }, MinTime = DateTime.Minutes(18), IsSpecial = true }
+		{ Infantry = {},                                                                                                                                                       Vehicles = { "ctnk", "ctnk", "ctnk", "ctnk", "ctnk", "ctnk" },                              MinTime = DateTime.Minutes(18), IsSpecial = true },
+		{ Infantry = { "seal", "seal", "seal", "seal", "seal", "seal", "e7" },                                                                                                 Vehicles = {},                                                                              MinTime = DateTime.Minutes(18), IsSpecial = true },
+		{ Infantry = { "snip", "snip", "snip", "snip", "snip", "snip", "snip", "snip" },                                                                                       Vehicles = { "rtnk", "rtnk", "rtnk", "rtnk", "rtnk", "rtnk", "rtnk" },                      MinTime = DateTime.Minutes(18), IsSpecial = true },
+		{ Infantry = { "e3", "cryt", "cryt", "cryt", "e3", "e1", "e1", "e1", "e1", "e1", "e1", "cryt", "cryt", "cryt", },                                                      Vehicles = { "cryo", "2tnk", "2tnk", "cryo", "ifv", "cryo", "2tnk" },                       MinTime = DateTime.Minutes(18), IsSpecial = true }
 	},
 	Soviet = {
 		-- 0 to 10 minutes
-		{ Infantry = { "e3", "e1", "e1", "e1", "e1", "e1", "e2", "e3", "e4" }, Vehicles = { "3tnk", "btr.ai", "3tnk" }, MaxTime = DateTime.Minutes(10), },
+		{ Infantry = { "e3", "e1", "e1", "e1", "e1", "e1", "e2", "e3", "e4" },                                                       Vehicles = { "3tnk", "btr.ai", "3tnk" },                                                                  MaxTime = DateTime.Minutes(10), },
 
 		-- 10 to 16 minutes
-		{ Infantry = { "e3", "e1", "e1", "e3", "shok", "e1", "shok", "e1", "e2", "e3", "e4", "e1" }, Vehicles = { "3tnk", SovietMammothVariant, "btr.ai", TeslaVariant, SovietBasicArty }, MinTime = DateTime.Minutes(10), MaxTime = DateTime.Minutes(16), },
-		{ Infantry = { "e3", "e1", "shok", "e3", "shok", "e1", "shok", "e1", "shok", "e3", "e4", "e1" }, Vehicles = { TeslaVariant, SovietMammothVariant, "btr.ai", TeslaVariant, SovietBasicArty }, MinTime = DateTime.Minutes(10), MaxTime = DateTime.Minutes(16), },
+		{ Infantry = { "e3", "e1", "e1", "e3", "shok", "e1", "shok", "e1", "e2", "e3", "e4", "e1" },                                 Vehicles = { "3tnk", SovietMammothVariant, "btr.ai", TeslaVariant, SovietBasicArty },                     MinTime = DateTime.Minutes(10), MaxTime = DateTime.Minutes(16), },
+		{ Infantry = { "e3", "e1", "shok", "e3", "shok", "e1", "shok", "e1", "shok", "e3", "e4", "e1" },                             Vehicles = { TeslaVariant, SovietMammothVariant, "btr.ai", TeslaVariant, SovietBasicArty },               MinTime = DateTime.Minutes(10), MaxTime = DateTime.Minutes(16), },
 
 		-- 16 minutes onwards
 		{ Infantry = { "e3", "e1", "e1", "e3", "shok", "e1", "e1", "cmsr", "e1", "e2", "e3", "e4", "e1", "e1", "e1", "e1", "shok" }, Vehicles = { "3tnk", SovietMammothVariant, "btr.ai", TeslaVariant, SovietBasicArty, SovietAdvancedArty }, MinTime = DateTime.Minutes(16), },
-		{ Infantry = { "e3", "e1", "e1", "e3", "ttrp", "e1", "ttrp", "e1", "cmsr", "e2", "e3", "e4", "e1", "e1", "e1", "e1" }, Vehicles = { "3tnk", SovietMammothVariant, "btr.ai", TeslaVariant, SovietBasicArty, SovietAdvancedArty }, MinTime = DateTime.Minutes(16), },
-		{ Infantry = { "e3", "e1", "e1", "e3", "e8", "e1", "e8", "e1", "deso", "deso", "e2", "e3", "e4", "e1", "e1", "e1", "e1" }, Vehicles = { SovietMammothVariant, "3tnk.atomic", "btr.ai", "3tnk.atomic", "apoc", "v3rl" }, MinTime = DateTime.Minutes(16), },
+		{ Infantry = { "e3", "e1", "e1", "e3", "ttrp", "e1", "ttrp", "e1", "cmsr", "e2", "e3", "e4", "e1", "e1", "e1", "e1" },       Vehicles = { "3tnk", SovietMammothVariant, "btr.ai", TeslaVariant, SovietBasicArty, SovietAdvancedArty }, MinTime = DateTime.Minutes(16), },
+		{ Infantry = { "e3", "e1", "e1", "e3", "e8", "e1", "e8", "e1", "deso", "deso", "e2", "e3", "e4", "e1", "e1", "e1", "e1" },   Vehicles = { SovietMammothVariant, "3tnk.atomic", "btr.ai", "3tnk.atomic", "apoc", "v3rl" },              MinTime = DateTime.Minutes(16), },
 
 		------ Anti-tank
-		{ Infantry = { "e3", "e1", "e3", "e3", "e1", "e3", "e1", "e3", "e1", "e3", "e3", "e1", "e3", "e3", "e3", "e3" }, Vehicles = { "ttra", "ttra", "ttra", "ttra", "ttra", "ttra" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassHeavy" } },
+		{ Infantry = { "e3", "e1", "e3", "e3", "e1", "e3", "e1", "e3", "e1", "e3", "e3", "e1", "e3", "e3", "e3", "e3" },             Vehicles = { "ttra", "ttra", "ttra", "ttra", "ttra", "ttra" },                                            MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassHeavy" } },
 
 		------ Anti-infantry
-		{ Infantry = { "e3", "e1", "e1", "e1", "e1", "shok", "shok", "ttrp", "e1", "e1", "e1", "e1", "e1", "e1", "e1", "e1", "e1" }, Vehicles = { "btr", "btr", "ttnk", "v2rl", "ttnk", "btr", "v2rl", "v2rl" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassInfantry" } },
+		{ Infantry = { "e3", "e1", "e1", "e1", "e1", "shok", "shok", "ttrp", "e1", "e1", "e1", "e1", "e1", "e1", "e1", "e1", "e1" }, Vehicles = { "btr", "btr", "ttnk", "v2rl", "ttnk", "btr", "v2rl", "v2rl" },                               MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassInfantry" } },
 
 		-- Specials
-		{ Infantry = { "ttrp", "ttrp", "ttrp", "ttrp", "ttrp", "ttrp", "ttrp", "ttrp" }, Vehicles = { "ttnk", "ttra", "ttnk", "ttra", "ttnk", "ttnk", "ttra" }, MinTime = DateTime.Minutes(18), IsSpecial = true },
-		{ Infantry = { "deso", "deso", "deso", "deso", "deso", "deso", "deso", "deso" }, Vehicles = { "4tnk.erad", "4tnk.erad", "4tnk.erad", "4tnk.erad", "4tnk.erad" }, MinTime = DateTime.Minutes(18), IsSpecial = true }
+		{ Infantry = { "ttrp", "ttrp", "ttrp", "ttrp", "ttrp", "ttrp", "ttrp", "ttrp" },                                             Vehicles = { "ttnk", "ttra", "ttnk", "ttra", "ttnk", "ttnk", "ttra" },                                    MinTime = DateTime.Minutes(18), IsSpecial = true },
+		{ Infantry = { "deso", "deso", "deso", "deso", "deso", "deso", "deso", "deso" },                                             Vehicles = { "4tnk.erad", "4tnk.erad", "4tnk.erad", "4tnk.erad", "4tnk.erad" },                           MinTime = DateTime.Minutes(18), IsSpecial = true }
 	},
 	GDI = {
 		-- 0 to 10 minutes
-		{ Infantry = {}, Vehicles = { HumveeOrGuardianDrone, HumveeOrGuardianDrone, HumveeOrGuardianDrone, HumveeOrGuardianDrone, HumveeOrGuardianDrone }, MaxTime = DateTime.Minutes(10) },
-		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n2", "n2" }, Vehicles = { "mtnk", "mtnk", "msam", "vulc", "vulc.ai"  }, MaxTime = DateTime.Minutes(10) },
-		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n2", "n2", "n1", "n1", "n1", "n3" }, Vehicles = { "mtnk", "mtnk", HumveeOrGuardianDrone, HumveeOrGuardianDrone }, MaxTime = DateTime.Minutes(10) },
+		{ Infantry = {},                                                                                                                   Vehicles = { HumveeOrGuardianDrone, HumveeOrGuardianDrone, HumveeOrGuardianDrone, HumveeOrGuardianDrone, HumveeOrGuardianDrone },                MaxTime = DateTime.Minutes(10) },
+		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n2", "n2" },                                                                   Vehicles = { "mtnk", "mtnk", "msam", "vulc", "vulc.ai" },                                                                                        MaxTime = DateTime.Minutes(10) },
+		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n2", "n2", "n1", "n1", "n1", "n3" },                                           Vehicles = { "mtnk", "mtnk", HumveeOrGuardianDrone, HumveeOrGuardianDrone },                                                                     MaxTime = DateTime.Minutes(10) },
 
 		-- 10 minutes onwards
-		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n1", "n1", "n3", "n1", "n1", "n1" }, Vehicles = { "mtnk", "mtnk", "vulc", "vulc.ai", "jugg"  }, MinTime = DateTime.Minutes(10) },
-		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n1", "n1", "jjet", "n1", "n3", "n1", "n1", "n1" }, Vehicles = { "mtnk", "vulc", "vulc.ai", "msam", "vulc.ai" }, MinTime = DateTime.Minutes(10) },
-		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n1", "n1", "jjet", "n1", "n3", "n1", "n1", "n1" }, Vehicles = { "titn", "mtnk", "msam", "vulc", GDIMammothVariant }, MinTime = DateTime.Minutes(10) },
-		{ Infantry = { "jjet", "bjet", "jjet", "jjet", "bjet", "jjet" }, Vehicles = { TOWHumveeOrGuardianDrone, TOWHumveeOrGuardianDrone, TOWHumveeOrGuardianDrone, TOWHumveeOrGuardianDrone, TOWHumveeOrGuardianDrone }, MinTime = DateTime.Minutes(10) },
-		{ Infantry = {}, Vehicles = { "hsam", "hsam", "hsam", "hsam", "hsam", "hsam", "hsam" }, MinTime = DateTime.Minutes(10) },
+		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n1", "n1", "n3", "n1", "n1", "n1" },                                           Vehicles = { "mtnk", "mtnk", "vulc", "vulc.ai", "jugg" },                                                                                        MinTime = DateTime.Minutes(10) },
+		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n1", "n1", "jjet", "n1", "n3", "n1", "n1", "n1" },                             Vehicles = { "mtnk", "vulc", "vulc.ai", "msam", "vulc.ai" },                                                                                     MinTime = DateTime.Minutes(10) },
+		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n1", "n1", "jjet", "n1", "n3", "n1", "n1", "n1" },                             Vehicles = { "titn", "mtnk", "msam", "vulc", GDIMammothVariant },                                                                                MinTime = DateTime.Minutes(10) },
+		{ Infantry = { "jjet", "bjet", "jjet", "jjet", "bjet", "jjet" },                                                                   Vehicles = { TOWHumveeOrGuardianDrone, TOWHumveeOrGuardianDrone, TOWHumveeOrGuardianDrone, TOWHumveeOrGuardianDrone, TOWHumveeOrGuardianDrone }, MinTime = DateTime.Minutes(10) },
+		{ Infantry = {},                                                                                                                   Vehicles = { "hsam", "hsam", "hsam", "hsam", "hsam", "hsam", "hsam" },                                                                           MinTime = DateTime.Minutes(10) },
 
 		-- 10 to 16 minutes
-		{ Infantry = { "n1", "n1", "n3", "n1", "n1", "n1", "n1", "n1", "n3", "n1", "n1" }, Vehicles = { "htnk", WolverineOrXO, WolverineOrXO, "hsam", "vulc", GDIMammothVariant, WolverineOrXO }, MinTime = DateTime.Minutes(10), MaxTime = DateTime.Minutes(16) },
+		{ Infantry = { "n1", "n1", "n3", "n1", "n1", "n1", "n1", "n1", "n3", "n1", "n1" },                                                 Vehicles = { "htnk", WolverineOrXO, WolverineOrXO, "hsam", "vulc", GDIMammothVariant, WolverineOrXO },                                           MinTime = DateTime.Minutes(10), MaxTime = DateTime.Minutes(16) },
 
 		-- 16 minutes onwards
-		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n1", ZoneTrooperVariant, "n1", "n1", ZoneTrooperVariant, ZoneTrooperVariant }, Vehicles = { "mtnk", GDIMammothVariant, "vulc", "mtnk", "msam", GDIMammothVariant }, MinTime = DateTime.Minutes(16) },
-		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n1", "n1", "n1", "n1", "n3", "n1", "n1", "n1", "n1", "n3" }, Vehicles = { "vulc.ai", "disr", "vulc", "disr", "disr" }, MinTime = DateTime.Minutes(16) },
-		{ Infantry = { "n3", "rmbo", "n3", "n1", "n1", "n1", "n1", "n1", "n3", "n1", "n1", "n3", "n1", "n1" }, Vehicles = { GDIMammothVariant, "msam", "vulc", "msam", GDIMammothVariant }, MinTime = DateTime.Minutes(16) },
-		{ Infantry = { "n3", "n1", "n1", ZoneTrooperVariant, ZoneTrooperVariant, ZoneTrooperVariant, ZoneTrooperVariant, "n1", "n1" }, Vehicles = { GDIMammothVariant, "mtnk", WolverineOrXO, WolverineOrXO, GDIMammothVariant, GDIMammothVariant }, MinTime = DateTime.Minutes(16) },
+		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n1", ZoneTrooperVariant, "n1", "n1", ZoneTrooperVariant, ZoneTrooperVariant }, Vehicles = { "mtnk", GDIMammothVariant, "vulc", "mtnk", "msam", GDIMammothVariant },                                                             MinTime = DateTime.Minutes(16) },
+		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n1", "n1", "n1", "n1", "n3", "n1", "n1", "n1", "n1", "n3" },                   Vehicles = { "vulc.ai", "disr", "vulc", "disr", "disr" },                                                                                        MinTime = DateTime.Minutes(16) },
+		{ Infantry = { "n3", "rmbo", "n3", "n1", "n1", "n1", "n1", "n1", "n3", "n1", "n1", "n3", "n1", "n1" },                             Vehicles = { GDIMammothVariant, "msam", "vulc", "msam", GDIMammothVariant },                                                                     MinTime = DateTime.Minutes(16) },
+		{ Infantry = { "n3", "n1", "n1", ZoneTrooperVariant, ZoneTrooperVariant, ZoneTrooperVariant, ZoneTrooperVariant, "n1", "n1" },     Vehicles = { GDIMammothVariant, "mtnk", WolverineOrXO, WolverineOrXO, GDIMammothVariant, GDIMammothVariant },                                    MinTime = DateTime.Minutes(16) },
 
 		------ Anti-tank
-		{ Infantry = { "n3", "n3", "n3", "ztrp", "n3", "n3", "ztrp", "ztrp", "ztrp", "ztrp" }, Vehicles = { GDIMammothVariant, "xo", GDIMammothVariant, "xo", GDIMammothVariant, "xo" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassHeavy" } },
+		{ Infantry = { "n3", "n3", "n3", "ztrp", "n3", "n3", "ztrp", "ztrp", "ztrp", "ztrp" },                                             Vehicles = { GDIMammothVariant, "xo", GDIMammothVariant, "xo", GDIMammothVariant, "xo" },                                                        MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassHeavy" } },
 
 		------ Anti-infantry
-		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n1", "n1", "n3", "n1", "n1", "n1", "n1", "n1", "n1", "n1", "n1" }, Vehicles = { "wolv", "wolv", "vulc", "vulc.ai", "wolv", "disr", "jugg", "wolv" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassInfantry" } },
+		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n1", "n1", "n3", "n1", "n1", "n1", "n1", "n1", "n1", "n1", "n1" },             Vehicles = { "wolv", "wolv", "vulc", "vulc.ai", "wolv", "disr", "jugg", "wolv" },                                                                MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassInfantry" } },
 
 		-- Specials
-		{ Infantry = { "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2" }, Vehicles = { "htnk.ion", "htnk.ion", "htnk.ion" }, MinTime = DateTime.Minutes(18), IsSpecial = true },
-		{ Infantry = {}, Vehicles = { "memp", "memp", "memp", "memp", "memp" }, MinTime = DateTime.Minutes(18), IsSpecial = true },
-		{ Infantry = {}, Vehicles = { "mtnk", "vulc", "thwk", "mtnk", "vulc", "thwk", "thwk", "thwk" }, MinTime = DateTime.Minutes(18), IsSpecial = true },
-		{ Infantry = { "ztrp", "ztrp", "ztrp", "ztrp", "ztrp", "ztrp", "ztrp", "ztrp" }, Vehicles = { "titn.rail", "titn.rail", "titn.rail", "titn.rail", "titn.rail" }, MinTime = DateTime.Minutes(18), IsSpecial = true },
+		{ Infantry = { "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2" },                   Vehicles = { "htnk.ion", "htnk.ion", "htnk.ion" },                                                                                               MinTime = DateTime.Minutes(18), IsSpecial = true },
+		{ Infantry = {},                                                                                                                   Vehicles = { "memp", "memp", "memp", "memp", "memp" },                                                                                           MinTime = DateTime.Minutes(18), IsSpecial = true },
+		{ Infantry = {},                                                                                                                   Vehicles = { "mtnk", "vulc", "thwk", "mtnk", "vulc", "thwk", "thwk", "thwk" },                                                                   MinTime = DateTime.Minutes(18), IsSpecial = true },
+		{ Infantry = { "ztrp", "ztrp", "ztrp", "ztrp", "ztrp", "ztrp", "ztrp", "ztrp" },                                                   Vehicles = { "titn.rail", "titn.rail", "titn.rail", "titn.rail", "titn.rail" },                                                                  MinTime = DateTime.Minutes(18), IsSpecial = true },
 	},
 	Nod = {
 		-- 0 to 10 minutes
-		{ Infantry = {}, Vehicles = { "bike", "bike", "bike", "bike" }, MaxTime = DateTime.Minutes(10) },
-		{ Infantry = { "n3", "n1", "n1", "n1", "n4", "n1", "n1", "n1" }, Vehicles = { "bggy", "bggy", "bike", "bike" }, MaxTime = DateTime.Minutes(10) },
-		{ Infantry = { "n3", "n1", "n1", "n4", "n1", "n1", "n1" }, Vehicles = { "ltnk", "bggy", "bike" }, MaxTime = DateTime.Minutes(10) },
+		{ Infantry = {},                                                                                                                                                                  Vehicles = { "bike", "bike", "bike", "bike" },                                                                                   MaxTime = DateTime.Minutes(10) },
+		{ Infantry = { "n3", "n1", "n1", "n1", "n4", "n1", "n1", "n1" },                                                                                                                  Vehicles = { "bggy", "bggy", "bike", "bike" },                                                                                   MaxTime = DateTime.Minutes(10) },
+		{ Infantry = { "n3", "n1", "n1", "n4", "n1", "n1", "n1" },                                                                                                                        Vehicles = { "ltnk", "bggy", "bike" },                                                                                           MaxTime = DateTime.Minutes(10) },
 
 		-- 10 minutes onwards
-		{ Infantry = { "n3", "n1", "n1", "n1", "n1", "n4", "n3", "bh", "n1", "n1", "n1", "n1", "n1", "n3", "n1", "n1" }, Vehicles = { "ltnk", "ltnk", FlameTankHeavyFlameTankOrHowitzer, "arty.nod" }, MinTime = DateTime.Minutes(10) },
-		{ Infantry = { "n3", "n1", "n1", "n1", "n4", "n1", "n3", "n1", "n1", "n1", "n1", "n1", "n1", "n3", "n1", "n1" }, Vehicles = { "ltnk", "arty.nod", FlameTankHeavyFlameTankOrHowitzer, "mlrs" }, MinTime = DateTime.Minutes(10) },
-		{ Infantry = { BasicCyborg, BasicCyborg, BasicCyborg, BasicCyborg, "tplr", AdvancedCyborg, "n1c", "n1c", BasicCyborg, AdvancedCyborg }, Vehicles = { "ltnk", FlameTankHeavyFlameTankOrHowitzer, "ltnk" }, MinTime = DateTime.Minutes(10) },
+		{ Infantry = { "n3", "n1", "n1", "n1", "n1", "n4", "n3", "bh", "n1", "n1", "n1", "n1", "n1", "n3", "n1", "n1" },                                                                  Vehicles = { "ltnk", "ltnk", FlameTankHeavyFlameTankOrHowitzer, "arty.nod" },                                                    MinTime = DateTime.Minutes(10) },
+		{ Infantry = { "n3", "n1", "n1", "n1", "n4", "n1", "n3", "n1", "n1", "n1", "n1", "n1", "n1", "n3", "n1", "n1" },                                                                  Vehicles = { "ltnk", "arty.nod", FlameTankHeavyFlameTankOrHowitzer, "mlrs" },                                                    MinTime = DateTime.Minutes(10) },
+		{ Infantry = { BasicCyborg, BasicCyborg, BasicCyborg, BasicCyborg, "tplr", AdvancedCyborg, "n1c", "n1c", BasicCyborg, AdvancedCyborg },                                           Vehicles = { "ltnk", FlameTankHeavyFlameTankOrHowitzer, "ltnk" },                                                                MinTime = DateTime.Minutes(10) },
 
 		-- 10 to 16 minutes
-		{ Infantry = {}, Vehicles = { "stnk.nod", "sapc.ai", "stnk.nod", "stnk.nod", "sapc.ai" }, MinTime = DateTime.Minutes(10), MaxTime = DateTime.Minutes(16) },
+		{ Infantry = {},                                                                                                                                                                  Vehicles = { "stnk.nod", "sapc.ai", "stnk.nod", "stnk.nod", "sapc.ai" },                                                         MinTime = DateTime.Minutes(10), MaxTime = DateTime.Minutes(16) },
 
 		-- 16 minutes onwards
-		{ Infantry = {}, Vehicles = { "stnk.nod", "stnk.nod", "sapc.ai", "stnk.nod", "stnk.nod", "sapc.ai", "stnk.nod", "stnk.nod" }, MinTime = DateTime.Minutes(16) },
-		{ Infantry = { BasicCyborg, BasicCyborg, BasicCyborg, BasicCyborg, BasicCyborg, AdvancedCyborg, "n1c", "n1c", BasicCyborg, BasicCyborg, "rmbc", AdvancedCyborg, AdvancedCyborg }, Vehicles = { "ltnk", "ltnk", FlameTankHeavyFlameTankOrHowitzer, "mlrs" }, MinTime = DateTime.Minutes(16) },
+		{ Infantry = {},                                                                                                                                                                  Vehicles = { "stnk.nod", "stnk.nod", "sapc.ai", "stnk.nod", "stnk.nod", "sapc.ai", "stnk.nod", "stnk.nod" },                     MinTime = DateTime.Minutes(16) },
+		{ Infantry = { BasicCyborg, BasicCyborg, BasicCyborg, BasicCyborg, BasicCyborg, AdvancedCyborg, "n1c", "n1c", BasicCyborg, BasicCyborg, "rmbc", AdvancedCyborg, AdvancedCyborg }, Vehicles = { "ltnk", "ltnk", FlameTankHeavyFlameTankOrHowitzer, "mlrs" },                                                        MinTime = DateTime.Minutes(16) },
 
 		------ Anti-tank
-		{ Infantry = { "n3c", "n3c", "n1", "enli", "n4", "n1", "n3c", "enli", "n3c", "n3c", "enli", "n1" }, Vehicles = { "ltnk", "ltnk", "wtnk", "wtnk", "stnk.nod", "ltnk" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassHeavy" } },
+		{ Infantry = { "n3c", "n3c", "n1", "enli", "n4", "n1", "n3c", "enli", "n3c", "n3c", "enli", "n1" },                                                                               Vehicles = { "ltnk", "ltnk", "wtnk", "wtnk", "stnk.nod", "ltnk" },                                                               MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassHeavy" } },
 
 		------ Anti-infantry
-		{ Infantry = { "n4", "n4", "n1", "n1", "n1", "n1", "n1", "n1", "n4", "n4", "n4", "n4", "n1", "n1", "n1", "n1", "n4", "n4" }, Vehicles = { "ltnk.laser", "ltnk.laser", "mlrs", FlameTankHeavyFlameTankOrHowitzer, FlameTankHeavyFlameTankOrHowitzer, "mlrs" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassInfantry" } },
+		{ Infantry = { "n4", "n4", "n1", "n1", "n1", "n1", "n1", "n1", "n4", "n4", "n4", "n4", "n1", "n1", "n1", "n1", "n4", "n4" },                                                      Vehicles = { "ltnk.laser", "ltnk.laser", "mlrs", FlameTankHeavyFlameTankOrHowitzer, FlameTankHeavyFlameTankOrHowitzer, "mlrs" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassInfantry" } },
 
 		-- Specials
-		{ Infantry = { "bh", "bh", "bh", "bh", "bh", "bh", "bh", "bh", "bh" }, Vehicles = { "hftk", "hftk", "hftk", "hftk", "hftk", "hftk" }, MinTime = DateTime.Minutes(18), IsSpecial = true },
-		{ Infantry = { "n3", "n1", "n1", "n1", "n4", "n1", "n3", "n1", "n1", "n1", "n1", "n1", "n1", "n3", "n1", "n1" }, Vehicles = { "wtnk", "wtnk", "wtnk", "wtnk", "wtnk" }, MinTime = DateTime.Minutes(18), IsSpecial = true },
-		{ Infantry = { }, Vehicles = { "bike", "bike", "bike", "bike", "bike", "bike", "bike", "bike", "bike", "bike", "bike", "bike", "bike", "bike" }, MinTime = DateTime.Minutes(18), IsSpecial = true },
-		{ Infantry = { "rmbc", "rmbc", "rmbc", "rmbc", "rmbc", "enli", "rmbc", "rmbc", "enli" }, MinTime = DateTime.Minutes(18), IsSpecial = true },
-		{ Infantry = { "reap", "reap", "reap", "reap", "reap", "reap", "reap", "reap", "reap" }, Vehicles = { "ltnk", "bike", "bike", "ltnk" }, MinTime = DateTime.Minutes(18), IsSpecial = true },
+		{ Infantry = { "bh", "bh", "bh", "bh", "bh", "bh", "bh", "bh", "bh" },                                                                                                            Vehicles = { "hftk", "hftk", "hftk", "hftk", "hftk", "hftk" },                                                                   MinTime = DateTime.Minutes(18), IsSpecial = true },
+		{ Infantry = { "n3", "n1", "n1", "n1", "n4", "n1", "n3", "n1", "n1", "n1", "n1", "n1", "n1", "n3", "n1", "n1" },                                                                  Vehicles = { "wtnk", "wtnk", "wtnk", "wtnk", "wtnk" },                                                                           MinTime = DateTime.Minutes(18), IsSpecial = true },
+		{ Infantry = {},                                                                                                                                                                  Vehicles = { "bike", "bike", "bike", "bike", "bike", "bike", "bike", "bike", "bike", "bike", "bike", "bike", "bike", "bike" },   MinTime = DateTime.Minutes(18), IsSpecial = true },
+		{ Infantry = { "rmbc", "rmbc", "rmbc", "rmbc", "rmbc", "enli", "rmbc", "rmbc", "enli" },                                                                                          MinTime = DateTime.Minutes(18),                                                                                                  IsSpecial = true },
+		{ Infantry = { "reap", "reap", "reap", "reap", "reap", "reap", "reap", "reap", "reap" },                                                                                          Vehicles = { "ltnk", "bike", "bike", "ltnk" },                                                                                   MinTime = DateTime.Minutes(18), IsSpecial = true },
 	},
 	Scrin = {
 		-- 0 to 10 minutes
-		{ Infantry = { "s3", "s1", "s1", "s1", "s3", "s3", "s4" }, Vehicles = { "intl.ai2", GunWalkerSeekerOrLacerator, "intl.ai2", GunWalkerSeekerOrLacerator }, MaxTime = DateTime.Minutes(10), },
+		{ Infantry = { "s3", "s1", "s1", "s1", "s3", "s3", "s4" },                                                                                                       Vehicles = { "intl.ai2", GunWalkerSeekerOrLacerator, "intl.ai2", GunWalkerSeekerOrLacerator },                                                                               MaxTime = DateTime.Minutes(10), },
 
 		-- 10 to 13 minutes
-		{ Infantry = { "s3", "s1", "s1", "s1", "s1", "s1", "s2", "s2", "s3", "s3" }, Vehicles = { "intl.ai2", GunWalkerSeekerOrLacerator, "intl.ai2", CorrupterOrDevourer, GunWalkerSeekerOrLacerator, "tpod", GunWalkerSeekerOrLacerator, CorrupterOrDevourer }, MinTime = DateTime.Minutes(10), MaxTime = DateTime.Minutes(13), },
+		{ Infantry = { "s3", "s1", "s1", "s1", "s1", "s1", "s2", "s2", "s3", "s3" },                                                                                     Vehicles = { "intl.ai2", GunWalkerSeekerOrLacerator, "intl.ai2", CorrupterOrDevourer, GunWalkerSeekerOrLacerator, "tpod", GunWalkerSeekerOrLacerator, CorrupterOrDevourer }, MinTime = DateTime.Minutes(10),        MaxTime = DateTime.Minutes(13), },
 
 		-- 13 to 19 minutes
-		{ Infantry = { "s3", "s1", "s1", "s1", "s1", "s1", "s2", "s2", "s3", "s3", "s3", "s4", "s4" }, Vehicles = { "intl.ai2", GunWalkerSeekerOrLacerator, "intl.ai2", CorrupterOrDevourer, GunWalkerSeekerOrLacerator, TripodVariant, CorrupterOrDevourer }, Aircraft = { PacOrDevastator }, MinTime = DateTime.Minutes(13), MaxTime = DateTime.Minutes(19), },
+		{ Infantry = { "s3", "s1", "s1", "s1", "s1", "s1", "s2", "s2", "s3", "s3", "s3", "s4", "s4" },                                                                   Vehicles = { "intl.ai2", GunWalkerSeekerOrLacerator, "intl.ai2", CorrupterOrDevourer, GunWalkerSeekerOrLacerator, TripodVariant, CorrupterOrDevourer },                      Aircraft = { PacOrDevastator },        MinTime = DateTime.Minutes(13),                    MaxTime = DateTime.Minutes(19), },
 
 		------ Anti-infantry
-		{ Infantry = { "s3", "s1", "s1", "s1", "s1", "s1", "s2", "s2", "s3", "s3", "s1", "s1", "s1", "s2" }, Vehicles = { "shrw", "corr", "corr", "shrw", "corr", "shrw", "corr", "corr" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassInfantry" } },
+		{ Infantry = { "s3", "s1", "s1", "s1", "s1", "s1", "s2", "s2", "s3", "s3", "s1", "s1", "s1", "s2" },                                                             Vehicles = { "shrw", "corr", "corr", "shrw", "corr", "shrw", "corr", "corr" },                                                                                               MinTime = DateTime.Minutes(16),        RequiredTargetCharacteristics = { "MassInfantry" } },
 
 		------ Anti-tank
-		{ Infantry = { "s3", "s4", "s1", "s4", "s4", "s1", "s4", "s4", "s3", "s1", "s4", "s1", "s4", "s4", "s4" }, Vehicles = { "gunw", "devo", "devo", "gunw", "devo", "atmz", "devo", "tpod", "atmz", "devo" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassHeavy" } },
+		{ Infantry = { "s3", "s4", "s1", "s4", "s4", "s1", "s4", "s4", "s3", "s1", "s4", "s1", "s4", "s4", "s4" },                                                       Vehicles = { "gunw", "devo", "devo", "gunw", "devo", "atmz", "devo", "tpod", "atmz", "devo" },                                                                               MinTime = DateTime.Minutes(16),        RequiredTargetCharacteristics = { "MassHeavy" } },
 
 		-- 19 minutes onwards
-		{ Infantry = { "s3", "s1", "s1", "s1", "s1", "s1", "s2", "s2", "s3", "s3", "s3", "s4", "s4" }, Vehicles = { "intl.ai2", GunWalkerSeekerOrLacerator, "intl.ai2", CorrupterOrDevourer, GunWalkerSeekerOrLacerator, TripodVariant, AtomizerObliteratorOrRuiner }, Aircraft = { PacOrDevastator, "pac" }, MinTime = DateTime.Minutes(19), },
+		{ Infantry = { "s3", "s1", "s1", "s1", "s1", "s1", "s2", "s2", "s3", "s3", "s3", "s4", "s4" },                                                                   Vehicles = { "intl.ai2", GunWalkerSeekerOrLacerator, "intl.ai2", CorrupterOrDevourer, GunWalkerSeekerOrLacerator, TripodVariant, AtomizerObliteratorOrRuiner },              Aircraft = { PacOrDevastator, "pac" }, MinTime = DateTime.Minutes(19), },
 
 		-- Specials
-		{ Infantry = { "brst", "brst", "brst", "brst", "brst", "brst", "brst" }, MinTime = DateTime.Minutes(18), IsSpecial = true },
-		{ Infantry = { "s3", "s3", "s2", "s2", "s2", "s2", "s2", "s2", "s2", "s2" }, Vehicles = { "tpod", "tpod", "tpod", "tpod", "tpod", "tpod" }, MinTime = DateTime.Minutes(18), IsSpecial = true },
-		{ Infantry = { "s3", "s1", "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s1", "s3", "s1", "s1", "s1" }, Vehicles = { "stcr", "gunw", "stcr", "gunw", "stcr", "gunw", "stcr" }, MinTime = DateTime.Minutes(18), IsSpecial = true }
+		{ Infantry = { "brst", "brst", "brst", "brst", "brst", "brst", "brst" },                                                                                         MinTime = DateTime.Minutes(18),                                                                                                                                              IsSpecial = true },
+		{ Infantry = { "s3", "s3", "s2", "s2", "s2", "s2", "s2", "s2", "s2", "s2" },                                                                                     Vehicles = { "tpod", "tpod", "tpod", "tpod", "tpod", "tpod" },                                                                                                               MinTime = DateTime.Minutes(18),        IsSpecial = true },
+		{ Infantry = { "s3", "s1", "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s1", "s3", "s1", "s1", "s1" }, Vehicles = { "stcr", "gunw", "stcr", "gunw", "stcr", "gunw", "stcr" },                                                                                                       MinTime = DateTime.Minutes(18),        IsSpecial = true }
 	}
 }
 
@@ -2527,23 +2545,23 @@ ScrinWaterCompositions = {
 		{ Vehicles = { "intl", "intl.ai2", "seek" }, },
 		{ Vehicles = { "seek", "seek", "seek" }, },
 		{ Vehicles = { "lace", "lace", "seek", "seek" }, },
-		{ Vehicles = { "devo", "intl.ai2", "ruin" }, MinTime = DateTime.Minutes(7) },
-		{ Vehicles = { "intl", "intl.ai2", { "seek", "lace" }, { "devo", "devo", "ruin" }, { "devo", "atmz", "ruin" }  }, MinTime = DateTime.Minutes(12) }
+		{ Vehicles = { "devo", "intl.ai2", "ruin" },                                                                      MinTime = DateTime.Minutes(7) },
+		{ Vehicles = { "intl", "intl.ai2", { "seek", "lace" }, { "devo", "devo", "ruin" }, { "devo", "atmz", "ruin" } },  MinTime = DateTime.Minutes(12) }
 	},
 	vhard = {
 		{ Vehicles = { "intl", "intl.ai2", "seek" }, },
 		{ Vehicles = { "seek", "seek", "seek" }, },
 		{ Vehicles = { "lace", "lace", "lace" }, },
-		{ Vehicles = { "devo", "intl.ai2", "ruin" }, MinTime = DateTime.Minutes(7) },
-		{ Vehicles = { "intl", "intl.ai2", { "seek", "lace" }, { "devo", "devo", "ruin" }, { "devo", "atmz", "ruin" }  }, MinTime = DateTime.Minutes(12) }
+		{ Vehicles = { "devo", "intl.ai2", "ruin" },                                                                      MinTime = DateTime.Minutes(7) },
+		{ Vehicles = { "intl", "intl.ai2", { "seek", "lace" }, { "devo", "devo", "ruin" }, { "devo", "atmz", "ruin" } },  MinTime = DateTime.Minutes(12) }
 	},
 	brutal = {
-		{ Vehicles = { "intl", "intl.ai2", "seek", "atmz" }, MaxTime = DateTime.Minutes(7) },
-		{ Vehicles = { "seek", "seek", "seek", "seek" }, MaxTime = DateTime.Minutes(7) },
-		{ Vehicles = { "lace", "lace", "lace", "lace" }, MaxTime = DateTime.Minutes(8) },
-		{ Vehicles = { "lace", "lace", "lace", "lace", "lace", "lace", "lace", "lace" }, MinTime = DateTime.Minutes(8) },
-		{ Vehicles = { "devo", "intl.ai2", "ruin", "ruin" }, MinTime = DateTime.Minutes(7), MaxTime = DateTime.Minutes(13) },
-		{ Vehicles = { "intl", "intl.ai2", { "seek", "lace" }, { "seek", "lace" }, { "devo", "devo", "ruin" }, { "devo", "atmz", "ruin" }, "ruin", "ruin"  }, MinTime = DateTime.Minutes(13) }
+		{ Vehicles = { "intl", "intl.ai2", "seek", "atmz" },                                                                                                  MaxTime = DateTime.Minutes(7) },
+		{ Vehicles = { "seek", "seek", "seek", "seek" },                                                                                                      MaxTime = DateTime.Minutes(7) },
+		{ Vehicles = { "lace", "lace", "lace", "lace" },                                                                                                      MaxTime = DateTime.Minutes(8) },
+		{ Vehicles = { "lace", "lace", "lace", "lace", "lace", "lace", "lace", "lace" },                                                                      MinTime = DateTime.Minutes(8) },
+		{ Vehicles = { "devo", "intl.ai2", "ruin", "ruin" },                                                                                                  MinTime = DateTime.Minutes(7), MaxTime = DateTime.Minutes(13) },
+		{ Vehicles = { "intl", "intl.ai2", { "seek", "lace" }, { "seek", "lace" }, { "devo", "devo", "ruin" }, { "devo", "atmz", "ruin" }, "ruin", "ruin" },  MinTime = DateTime.Minutes(13) }
 	}
 }
 

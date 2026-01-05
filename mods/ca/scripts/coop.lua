@@ -303,26 +303,23 @@ GoodSpread = function()
 end
 
 local function SyncObjectives()
-	local texts = {
-		primary = "Primary",
-		secondary = "Secondary",
-		newPrimary = "New primary objective",
-		newSecondary = "New secondary objective"
-	}
+	local primaryType = UserInterface.GetFluentMessage("primary")
+	local newPrimaryMsg = UserInterface.GetFluentMessage("new-primary-objective")
+	local newSecondaryMsg = UserInterface.GetFluentMessage("new-secondary-objective")
 
 	Trigger.OnObjectiveAdded(MainPlayer, function(_, obid)
 		local description = MainPlayer.GetObjectiveDescription(obid)
 		local type = MainPlayer.GetObjectiveType(obid)
-		local required = type == texts.primary
+		local required = type == primaryType
 
 		ForEachPlayer(function(player)
 			player.AddObjective(description, type, required)
 			local OBJcolour = HSLColor.Yellow
 			if required then
-				Media.DisplayMessageToPlayer(player, description, texts.newPrimary, OBJcolour)
+				Media.DisplayMessageToPlayer(player, description, newPrimaryMsg, OBJcolour)
 			else
 				OBJcolour = HSLColor.Gray
-				Media.DisplayMessageToPlayer(player, description, texts.newSecondary, OBJcolour)
+				Media.DisplayMessageToPlayer(player, description, newSecondaryMsg, OBJcolour)
 			end
 		end)
 	end)
@@ -348,7 +345,7 @@ local function SyncObjectives()
 			player.MarkCompletedObjective(obid)
 			if player.IsLocalPlayer then
 				Media.PlaySoundNotification(player, "AlertBleep")
-				Media.DisplayMessage(MainPlayer.GetObjectiveDescription(obid), "Objective completed", HSLColor.LimeGreen)
+				Media.DisplayMessage(MainPlayer.GetObjectiveDescription(obid), UserInterface.GetFluentMessage("objective-completed"), HSLColor.LimeGreen)
 			end
 		end)
 	end)
@@ -358,7 +355,7 @@ local function SyncObjectives()
 			player.MarkFailedObjective(obid)
 			if player.IsLocalPlayer then
 				Media.PlaySoundNotification(player, "AlertBleep")
-				Media.DisplayMessage(MainPlayer.GetObjectiveDescription(obid), "Objective failed", HSLColor.Red)
+				Media.DisplayMessage(MainPlayer.GetObjectiveDescription(obid), UserInterface.GetFluentMessage("objective-failed"), HSLColor.Red)
 			end
 		end)
 	end)
@@ -444,7 +441,7 @@ PlayerDefeatedOrDisconnected = function(player)
 			local playerName = player.Name
 			if selectedMessage ~= nil then
 				local formattedMessage = string.gsub(selectedMessage, "PID", playerName)
-				Media.DisplayMessage(formattedMessage, "High Command", player.Color)
+				Media.DisplayMessage(formattedMessage, UserInterface.GetFluentMessage("high-command"), player.Color)
 			end
 		end
 	end)
@@ -854,7 +851,7 @@ local function SetExtraMines()
 			Utils.Do(AllSpawners,function(SID)
 				SID.Destroy()
 			end)
-			Media.DisplayMessage("All resource spawners are deleted now. Good luck!")
+			Media.DisplayMessage(UserInterface.GetFluentMessage("resource-spawners-deleted"))
 		end)
 	end
 end

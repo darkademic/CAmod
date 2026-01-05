@@ -7,9 +7,12 @@ AlliedAttackPaths = {
 	{ EastAttackRally.Location, SovietBase.Location }
 }
 
-TeslaTrigger = { TeslaTrigger1.Location, TeslaTrigger2.Location, TeslaTrigger3.Location, TeslaTrigger4.Location, TeslaTrigger5.Location, TeslaTrigger6.Location, TeslaTrigger7.Location }
-TeslaTriggerWest = { TeslaTriggerWest1.Location, TeslaTriggerWest2.Location, TeslaTriggerWest3.Location, TeslaTriggerWest4.Location, TeslaTriggerWest5.Location, TeslaTriggerWest6.Location, TeslaTriggerWest7.Location,
-	TeslaTriggerWest8.Location, TeslaTriggerWest9.Location, TeslaTriggerWest10.Location, TeslaTriggerWest11.Location, TeslaTriggerWest12.Location, TeslaTriggerWest13.Location, TeslaTriggerWest14.Location,
+TeslaTrigger = { TeslaTrigger1.Location, TeslaTrigger2.Location, TeslaTrigger3.Location, TeslaTrigger4.Location,
+	TeslaTrigger5.Location, TeslaTrigger6.Location, TeslaTrigger7.Location }
+TeslaTriggerWest = { TeslaTriggerWest1.Location, TeslaTriggerWest2.Location, TeslaTriggerWest3.Location,
+	TeslaTriggerWest4.Location, TeslaTriggerWest5.Location, TeslaTriggerWest6.Location, TeslaTriggerWest7.Location,
+	TeslaTriggerWest8.Location, TeslaTriggerWest9.Location, TeslaTriggerWest10.Location, TeslaTriggerWest11.Location,
+	TeslaTriggerWest12.Location, TeslaTriggerWest13.Location, TeslaTriggerWest14.Location,
 	TeslaTriggerWest15.Location, TeslaTriggerWest16.Location }
 
 Squads = {
@@ -47,19 +50,21 @@ WorldLoaded = function()
 	InitObjectives(USSR)
 	InitGreece()
 
-	ObjectiveWipeOutVillage = USSR.AddObjective("Wipe out the village.")
-	ObjectiveDestroyBase = USSR.AddObjective("Destroy the Allied base.")
+	ObjectiveWipeOutVillage = USSR.AddObjective(UserInterface.GetFluentMessage("wipe-out-village"))
+	ObjectiveDestroyBase = USSR.AddObjective(UserInterface.GetFluentMessage("destroy-allied-base"))
 
 	Trigger.AfterDelay(DateTime.Seconds(2), function()
 		PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
-		Notification("Reinforcements have arrived.")
+		Notification("reinforcements-arrived")
 		DoMcvArrival()
 	end)
 
 	Trigger.AfterDelay(DateTime.Minutes(1), function()
 		local villageFlare = Actor.Create("flare", true, { Owner = USSR, Location = VillageCenter.Location })
 		PlaySpeechNotificationToMissionPlayers("SignalFlare")
-		Notification("Signal flare detected. Press [" .. UtilsCA.Hotkey("ToLastEvent") .. "] to view location.")
+		Media.DisplayMessage(
+			UserInterface.GetFluentMessage("signal-flare-detected", { ["hotkey"] = UtilsCA.Hotkey("ToLastEvent") }),
+			UserInterface.GetFluentMessage("notification"), HSLColor.FromHex("1E90FF"))
 		Beacon.New(USSR, VillageCenter.CenterPosition)
 		Trigger.AfterDelay(DateTime.Minutes(5), villageFlare.Destroy)
 	end)
@@ -157,11 +162,13 @@ WarpInTeslaTanks = function(TankLocation1, TankLocation2, EffectLocation)
 	Actor.Create("ttnk", true, { Owner = USSR, Location = TankLocation1, Facing = Angle.South })
 	Actor.Create("ttnk", true, { Owner = USSR, Location = TankLocation2, Facing = Angle.South })
 	Trigger.AfterDelay(DateTime.Seconds(2), function()
-		Media.DisplayMessage("Greetings Comrades! The Soviet Empire truly knows no boundaries!", "Tesla Tank", HSLColor.FromHex("FF0000"))
+		Media.DisplayMessage(UserInterface.GetFluentMessage("greetings"), UserInterface.GetFluentMessage("tesla-tank"),
+			HSLColor.FromHex("FF0000"))
 		MediaCA.PlaySound(MissionDir .. "/greetings.aud", 2)
 
 		Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(6)), function()
-			Media.DisplayMessage("We understand that Comrade Stalin has his doubts about our agreement. We hope these gifts will put his mind at ease.", "Unknown", HSLColor.FromHex("999999"))
+			Media.DisplayMessage(UserInterface.GetFluentMessage("doubts"), UserInterface.GetFluentMessage("unknown-speaker"),
+				HSLColor.FromHex("999999"))
 			MediaCA.PlaySound(MissionDir .. "/doubts.aud", 2)
 		end)
 	end)

@@ -1394,7 +1394,7 @@ THF:
 		Description: Steals enemy credits and hijacks enemy vehicles.
 	TooltipExtras:
 		Weaknesses: • Unarmed
-		Attributes: • Cloaked when not moving\n• Gains vision range while cloaked
+		Attributes: • Cloaked with increased vision when not moving
 	Valued:
 		Cost: 500
 	Tooltip:

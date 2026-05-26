@@ -759,7 +759,7 @@ WCHR:
 		Name: Watcher
 	TooltipExtras:
 		Weaknesses: • Cannot deal damage
-		Attributes: • Can attach parasites to enemy vehicles & structures\n• Cloaked when not moving\n• Detects cloaked ground units and spies\n• Special Ability: Teleport (with upgrade)
+		Attributes: • Can attach parasites to enemy vehicles & structures\n• Cloaked with increased vision when not moving\n• Detects cloaked ground units and spies\n• Special Ability: Teleport (with upgrade)
 	Health:
 		HP: 5000
 	UpdatesPlayerStatistics:

@@ -61,6 +61,7 @@ GAP:
 	Inherits: ^Defense
 	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDownOrForceDisable
 	Inherits@AUTOTARGET: ^AutoTargetAll
+	Inherits@DefensePolicyGapBonus: ^DefensePolicyGapBonus
 	Valued:
 		Cost: 1000
 	Tooltip:

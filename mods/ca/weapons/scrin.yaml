@@ -403,6 +403,20 @@ InterloperLaser:
 			Heavy: 100
 			Concrete: 40
 
+InterloperWave:
+	Inherits: InterloperLaser
+	Report: mrdr-fire1.aud, mrdr-fire2.aud
+	-Projectile:
+	Projectile: BulletCA
+		Image: mrdrdisc
+		Speed: 750
+		Palette: scrin
+	Warhead@1Dam: SpreadDamage
+		Damage: 1800
+		Spread: 426
+	Warhead@3Eff: CreateEffect
+		Explosions: large_explosion
+
 ^ScrinPlasmaBeam:
 	Inherits: ^ScrinLaser
 	-Projectile:

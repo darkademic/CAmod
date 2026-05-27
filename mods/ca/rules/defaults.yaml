@@ -2316,38 +2316,43 @@
 		Condition: economy-policy3
 		Prerequisites: economy.policy, influence.level3
 
-^DefensePolicyDamageReduction:
+^DefensePolicyStructureBonuses:
 	GrantConditionOnPrerequisite@DefensePolicy1:
 		Condition: defense-policy1
 		Prerequisites: defense.policy, influence.level1
 	GrantConditionOnPrerequisite@DefensePolicy2:
 		Condition: defense-policy2
 		Prerequisites: defense.policy, influence.level2
-	GrantConditionOnPrerequisite@DefensePolicy3:
-		Condition: defense-policy3
-		Prerequisites: defense.policy, influence.level3
 	DamageMultiplier@DefensePolicy1:
 		Modifier: 87
 		RequiresCondition: defense-policy1 && !defense-policy2
 	DamageMultiplier@DefensePolicy2:
 		Modifier: 77
 		RequiresCondition: defense-policy2
-	ChangesHealth@DefensePolicy2:
+	ChangesHealth@DefensePolicyRepairs:
 		Step: 200
 		StartIfBelow: 100
 		Delay: 24
 		DamageCooldown: 0
 		RequiresCondition: defense-policy2 && being-repaired
-	RevealsShroudMultiplier@DefensePolicy3:
-		Modifier: 125
-		RequiresCondition: defense-policy3
+	RevealsShroudMultiplier@DefensePolicyVision:
+		Modifier: 150
+		RequiresCondition: defense-policy2
 
-^DefensePolicyDamageBonus:
+^DefensePolicyDefenseRangeBonus:
 	GrantConditionOnPrerequisite@DefensePolicy3:
 		Condition: defense-policy3
 		Prerequisites: defense.policy, influence.level3
-	FirepowerMultiplier@DefensePolicy3:
+	FirepowerMultiplier@DefensePolicyDamage:
 		Modifier: 115
+		RequiresCondition: defense-policy3
+
+^DefensePolicyGapBonus:
+	GrantConditionOnPrerequisite@DefensePolicy3:
+		Condition: defense-policy3
+		Prerequisites: defense.policy, influence.level3
+	CreatesShroudMultiplier@DefencePolicyShroud:
+		Modifier: 125
 		RequiresCondition: defense-policy3
 
 ^DevelopmentPolicyVeterancyBonus:
@@ -3533,7 +3538,7 @@
 	Inherits@WatcherParasite: ^WatcherParasiteAttachable
 	Inherits@TargetPaintable: ^TargetPaintable
 	Inherits@UndermineFoundation: ^UndermineFoundation
-	Inherits@DefensePolicyDamageReduction: ^DefensePolicyDamageReduction
+	Inherits@DefensePolicyStructureBonuses: ^DefensePolicyStructureBonuses
 	Inherits@NodCovenantTarget: ^NodCovenantTarget
 	WithPalettedOverlay@IRONCURTAIN:
 		RequiresCondition: invulnerability && !forceshield
@@ -3665,7 +3670,7 @@
 	Inherits@veilable: ^Veilable
 	Inherits@weapjammable: ^WeaponJammable
 	Inherits@atomize: ^Atomizable
-	Inherits@DefensePolicyDamageBonus: ^DefensePolicyDamageBonus
+	Inherits@DefensePolicyDefenseRangeBonus: ^DefensePolicyDefenseRangeBonus
 	-SpeedMultiplier@concussion:
 	WithPalettedOverlay@IRONCURTAIN:
 		RequiresCondition: invulnerability
@@ -3735,12 +3740,16 @@
 	GivesExperienceCA:
 		ActorExperienceModifier: 10000
 	-UpdatesBuildOrder:
-	ChangesHealth@DefensePolicy2:
-		Step: 140
 	ExternalCondition@PowerDown:
 		Condition: powerdown
 	DummyConditionConsumer@PowerDown:
 		Condition: powerdown
+	ChangesHealth@DefensePolicyRepairs:
+		Step: 140
+		RequiresCondition: defense-policy3 && being-repaired
+	RevealsShroudMultiplier@DefensePolicyVision:
+		Modifier: 125
+		RequiresCondition: defense-policy3
 
 ^DefenseTD:
 	Inherits@1: ^Defense

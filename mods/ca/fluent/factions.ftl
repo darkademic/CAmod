@@ -332,6 +332,7 @@ faction-traveler =
 
     Bonuses:
       • Fast Walkers (+15% Speed)
+      • Stormrider & Tormentor (+15% speed)
 
 faction-harbinger =
     .name = Harbinger-31
@@ -347,8 +348,8 @@ faction-harbinger =
       • Stellar Fusion Cannon
 
     Bonuses:
-      • Devastator Warship (10% discount)
-      • Mothership (10% discount)
+      • Interloper (deals splash damage)
+      • Devastator Warship (+3 range)
 
 faction-collector =
     .name = Collector-73

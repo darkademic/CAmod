@@ -1648,7 +1648,7 @@ defense.policy:
 	Buildable:
 		BuildPaletteOrder: 1
 		Prerequisites: ~player.allies, influence.level1, !economy.policy, !defense.policy, !development.policy, ~techlevel.medium
-		Description: Pursue defense policy.\n\n• Level 1: +15% building HP, +25% Construction Yard build radius\n• Level 2: +30% building HP, +40% building repair rate & +20% defense repair rate\n• Level 3: +25% building/defense vision radius, +15% defense weapon damage
+		Description: Pursue defense policy.\n\n• Level 1: +15% building HP, +25% Construction Yard build radius\n• Level 2: +30% building HP, +40% building repair rate, +50% building vision radius\n• Level 3: +25% defense vision radius, +20% defense repair rate, +15% defense weapon damage, +2 gap generator shroud radius
 	TooltipExtras:
 		Attributes: (!) Only ONE Policy may be chosen.
 	Valued:

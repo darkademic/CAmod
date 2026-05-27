@@ -413,8 +413,19 @@ HindRockets:
 			Concrete: 26
 			Heavy: 48
 
+HindRockets.Ukraine:
+	Inherits: HindRockets
+	Warhead@Concussion: GrantExternalConditionCA
+		Range: 0c682
+		Duration: 150
+		Condition: concussion
+
 HindRockets.UPG:
 	Inherits: HindRockets
+	BurstDelays: 8
+
+HindRockets.Ukraine.UPG:
+	Inherits: HindRockets.Ukraine
 	BurstDelays: 8
 
 HellfireAG.Harrier:

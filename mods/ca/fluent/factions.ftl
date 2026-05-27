@@ -48,7 +48,7 @@ faction-germany =
       • Temporal Flux
 
     Bonuses:
-      • Chrono Tanks (10% discount)
+      • Chrono Tank (+1 teleport charge)
       • Chronosphere (20% discount)
 
 faction-usa =
@@ -104,6 +104,7 @@ faction-ukraine =
       • Seismic Missiles
 
     Bonuses:
+      • Hind rockets reduce enemy movement speed & rate of fire
       • Terror Dog (20% discount)
       • Kirov Cluster Bombs
 

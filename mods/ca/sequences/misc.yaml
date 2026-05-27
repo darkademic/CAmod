@@ -3098,7 +3098,16 @@ chronoprep-overlay:
 		BlendMode: Additive
 		Offset: 0, -2
 		ZOffset: 512
-		Alpha: 0.5
+		Alpha: 0.45
+
+tflux-overlay:
+	idle:
+		Filename: chronoprep.shp
+		Length: *
+		BlendMode: Alpha
+		Offset: 0, -2
+		ZOffset: 512
+		Alpha: 0.18
 
 killzone:
 	idle:

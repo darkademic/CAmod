@@ -2744,7 +2744,7 @@ NeutronCannon:
 	ReloadDelay: 5
 	Burst: 22
 	BurstDelays: 5
-	Range: 5c0
+	Range: 6c0
 	Projectile: InstantHit
 	TargetActorCenter: true
 	Warhead@Damage: WarpPercentDamage
@@ -2762,7 +2762,7 @@ NeutronCannon:
 NeutronCannonBeam:
 	ValidTargets: Temporal
 	ReloadDelay: 5
-	Range: 5c0
+	Range: 6c0
 	TargetActorCenter: true
 	Projectile: LaserZapCA
 		Width: 60

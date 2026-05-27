@@ -1895,7 +1895,7 @@ SPEC:
 		PauseOnCondition: invisibility
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 		RequiresCondition: !player-shadow
@@ -2005,7 +2005,7 @@ SAPC:
 		AudibleThroughFog: true
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 		RequiresCondition: !player-shadow
@@ -2777,7 +2777,7 @@ MSG:
 		RequiresCondition: deployed && !cloak-force-disabled
 		MaximumVerticalOffset: 512
 		AffectsParent: true
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 		RequiresCondition: !player-shadow
@@ -3044,15 +3044,18 @@ CTNK:
 		PreChargeCondition: chronoprep
 		MaxInstantCircleColor: EEEEEE44
 		MaxInstantCircleBorderColor: 00000044
-	WithColoredOverlay@PreCharge:
-		RequiresCondition: chronoprep
-		Color: 00eeff22
+		TeleportCondition: temporal-flux-init
+		ConditionDuration: 1
 	WithIdleOverlay@PreCharge:
 		Sequence: idle
 		Image: chronoprep-overlay
 		Palette: effect
 		RequiresCondition: chronoprep
 		IsDecoration: True
+	GrantTimedCondition@TemporalFlux:
+		RequiresCondition: (temporal-flux-init || chronoshifted) && tflx-upgrade
+	WithColoredOverlay@TemporalFlux:
+		RequiresCondition: temporal-flux || chronoprep
 	ProducibleWithLevel:
 		Prerequisites: vehicles.upgraded
 	WithProductionIconOverlay:
@@ -3060,19 +3063,16 @@ CTNK:
 		Prerequisites: vehicles.upgraded
 	Selectable:
 		DecorationBounds: 1280, 1280
-	ProductionCostMultiplier@GermanyBonus:
-		Multiplier: 90
-		Prerequisites: player.germany
-	PortableChronoModifier@TEMPORALFLUX:
+	PortableChronoModifier@GermanyBonus:
 		ExtraCharges: 1
-		RequiresCondition: tflx-upgrade
-	GrantConditionOnPrerequisite@TEMPORALFLUX:
-		Condition: tflx-upgrade
-		Prerequisites: tflx.upgrade
+		RequiresCondition: player-germany
+	GrantConditionOnPrerequisite@Germany:
+		Condition: player-germany
+		Prerequisites: player.germany
 	WithChronoshiftChargePipsDecoration:
 		Position: BottomLeft
 		Margin: 4, 3
-		RequiresCondition: tflx-upgrade
+		RequiresCondition: player-germany
 	AmbientSoundCA@Prep:
 		SoundFiles: chronoprep.aud
 		RequiresCondition: chronoprep
@@ -5236,7 +5236,7 @@ STNK.Nod:
 		PauseOnCondition: invisibility
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 		RequiresCondition: !player-shadow
@@ -5358,7 +5358,7 @@ HSTK:
 		PauseOnCondition: invisibility
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 		RequiresCondition: !player-shadow
@@ -7094,7 +7094,7 @@ IFV:
 		PauseOnCondition: invisibility
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 	Armament@Psi:
@@ -8047,7 +8047,7 @@ RTNK:
 		PauseOnCondition: invisibility
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		ValidDamageStates: Critical
 	Selectable:
 		DecorationBounds: 1194, 1194
@@ -9031,7 +9031,7 @@ CHPR:
 	TooltipExtras:
 		Strengths: • Strong vs Heavy Armor, Defenses
 		Weaknesses: • Weak vs Buildings\n• Cannot attack Aircraft
-		Attributes: • Target is disabled while being erased\n• Can crush concrete walls\n• Special Ability: Teleport (with upgrade)
+		Attributes: • Target is disabled while being erased\n• Can crush concrete walls\n• Special Ability: Teleport
 	Valued:
 		Cost: 1550
 	Tooltip:
@@ -9112,11 +9112,12 @@ CHPR:
 	PortableChronoCA:
 		ChargeDelay: 375
 		MaxDistance: 18
-		RequiresCondition: !(empdisable && being-warped) && !chronoshifted && tflx-upgrade
+		RequiresCondition: !(empdisable && being-warped) && !chronoshifted
 		ShowSelectionBarWhenFull: false
-	GrantConditionOnPrerequisite@TEMPORALFLUX:
-		Condition: tflx-upgrade
-		Prerequisites: tflx.upgrade
+		TeleportCondition: temporal-flux-init
+		ConditionDuration: 1
+	GrantTimedCondition@TemporalFlux:
+		RequiresCondition: (temporal-flux-init || chronoshifted) && tflx-upgrade
 	RejectsOrders@AICHPR:
 		RequiresCondition: botwarping
 	GrantConditionOnAttack@AICHPR:
@@ -9129,9 +9130,6 @@ CHPR:
 		Bots: brutal, vhard, hard, normal, easy, naval
 	WithIdleOverlay@MINDCONTROL:
 		Offset: -200,0,768
-	RangeMultiplier@TEMPORALFLUX:
-		RequiresCondition: tflx-upgrade
-		Modifier: 130
 	Encyclopedia:
 		Category: Allies/Vehicles
 	EncyclopediaExtras:
@@ -9413,7 +9411,7 @@ BASI:
 		PauseOnCondition: invisibility
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 		RequiresCondition: !player-shadow

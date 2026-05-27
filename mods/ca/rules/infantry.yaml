@@ -1436,7 +1436,7 @@ THF:
 		CloakedCondition: hidden
 		RequiresCondition: !cloak-force-disabled && !being-warped
 		PauseOnCondition: invisibility
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 	Mobile:
@@ -2210,7 +2210,7 @@ SNIP:
 		UncloakOn: Move, Unload, Infiltrate, Demolish, Dock, Attack
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Heavy, Critical
 	GrantConditionOnPrerequisite@APB:
@@ -2437,7 +2437,7 @@ SAB:
 		ValidMovementTypes: Horizontal, Vertical, Turn
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Heavy, Critical
 		RequiresCondition: !player-shadow
@@ -3734,7 +3734,7 @@ SHAD:
 		UncloakSound: gstealof.aud
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		ValidDamageStates: Critical
 		RequiresCondition: !player-shadow
 	GrantConditionOnPrerequisite@Shadow:

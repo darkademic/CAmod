@@ -568,9 +568,34 @@
 		Palette: ra2effect-ignore-lighting-alpha75
 		ReturnToAvoidDeath: true
 		Condition: chronoshifted
+	DummyConditionGranter@Chronoshifted:
+		Condition: chronoshifted
 	HealthCapDamageMultiplier@CHRONO:
 		MaxHealthEquivalent: 47000
 		RequiresCondition: chronoshifted
+	GrantTimedCondition@TemporalFlux:
+		ForceFullDuration: true
+		Condition: temporal-flux
+		Duration: 200
+		RequiresCondition: chronoshifted && tflx-upgrade
+	GrantConditionOnPrerequisite@TemporalFlux:
+		Condition: tflx-upgrade
+		Prerequisites: tflx.upgrade
+	WithColoredOverlay@TemporalFlux:
+		RequiresCondition: temporal-flux
+		Color: 00eeff22
+	WithIdleOverlay@TemporalFlux:
+		Sequence: idle
+		Image: tflux-overlay
+		Palette: effect
+		RequiresCondition: temporal-flux
+		IsDecoration: True
+	ReloadDelayMultiplier@CHRONO:
+		Modifier: 75
+		RequiresCondition: temporal-flux
+	SpeedMultiplier@CHRONO:
+		Modifier: 133
+		RequiresCondition: temporal-flux
 
 ^NoUnloadWhenChronoshifted:
 	RejectsOrders@NOUNLOADCHRONO:
@@ -1505,7 +1530,7 @@
 		Color: 606060
 	ExternalCondition@CRATE-CLOAK:
 		Condition: crate-cloak
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Heavy, Critical
 
@@ -3183,7 +3208,7 @@
 		UncloakSound: subshow1.aud
 		CloakedCondition: underwater
 		PauseOnCondition: cloak-force-disabled || invisibility || being-warped || crossing-ford
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 	DetectCloaked:

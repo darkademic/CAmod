@@ -1056,6 +1056,9 @@ HonestJohnSub:
 		Falloff: 100, 75, 52, 37, 24, 15, 2
 		MaxLevel: 750
 		LayerName: radioactivity.medium
+		GlowScale: 1.5
+		GlowFadeFrames: 30
+		GlowFadeInFrames: 12
 
 SCUD:
 	Inherits: ^AntiGroundMissile
@@ -2133,6 +2136,9 @@ CryoMissile:
 		Level: 100
 		Falloff: 100, 75, 52, 15, 2
 		MaxLevel: 600
+		GlowScale: 1.5
+		GlowFadeFrames: 30
+		GlowFadeInFrames: 12
 
 CryoMissileNHAW:
 	Inherits: CryoMissile

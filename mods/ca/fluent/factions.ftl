@@ -242,7 +242,7 @@ faction-blackh =
       • Black Napalm
 
     Bonuses:
-      • SSM (10% discount)
+      • Flamethrower (+20% speed)
       • Free Howitzer Upgrade
 
 faction-marked =
@@ -331,7 +331,7 @@ faction-traveler =
       • Advanced Articulators
 
     Bonuses:
-      • Fast Walkers (+15% Speed)
+      • Fast Walkers (+15% speed)
       • Stormrider & Tormentor (+15% speed)
 
 faction-harbinger =

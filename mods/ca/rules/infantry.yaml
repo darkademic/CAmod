@@ -1880,6 +1880,12 @@ N4:
 	FirepowerMultiplier@HeroOfTheUnion:
 		RequiresCondition: herooftheunion
 		Modifier: 120
+	SpeedMultiplier@BlackHand:
+		RequiresCondition: player-blackh
+		Modifier: 120
+	GrantConditionOnPrerequisite@BlackHand:
+		Condition: player-blackh
+		Prerequisites: player.blackh
 	Encyclopedia:
 		Category: Nod/Infantry
 
@@ -1982,6 +1988,12 @@ N5:
 		DeploySound: tibsurge.aud
 	Targetable@ChemWarrior:
 		TargetTypes: ChemWarrior
+	SpeedMultiplier@BlackHand:
+		RequiresCondition: player-blackh && !cyborgspeed-upgrade
+		Modifier: 120
+	GrantConditionOnPrerequisite@BlackHand:
+		Condition: player-blackh
+		Prerequisites: player.blackh
 	Encyclopedia:
 		Category: Nod/Infantry
 

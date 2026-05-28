@@ -416,6 +416,7 @@ InterloperWave:
 		Spread: 426
 	Warhead@3Eff: CreateEffect
 		Explosions: large_explosion
+		ImpactSounds: seeker-hit1.aud, seeker-hit2.aud
 
 ^ScrinPlasmaBeam:
 	Inherits: ^ScrinLaser

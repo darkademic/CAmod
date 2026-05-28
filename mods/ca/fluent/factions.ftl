@@ -242,6 +242,7 @@ faction-blackh =
       • Black Napalm
 
     Bonuses:
+      • SSM (10% discount)
       • Flamethrower (+20% speed)
       • Free Howitzer Upgrade
 

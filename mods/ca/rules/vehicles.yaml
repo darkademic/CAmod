@@ -7217,7 +7217,9 @@ IFV.AI:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 27000
+		HP: 32000
+	Armor:
+		Type: Light
 	Mobile:
 		Speed: 100
 	RevealsShroud:

@@ -1434,6 +1434,8 @@
 		RequiresCondition: aircraft-repair
 		RequiresSelection: True
 		ValidRelationships: Ally, Neutral
+	WithLinkedRangeCirclePreview@AIRCRAFTREPAIR:
+		Type: AircraftRepair
 
 ^AffectedByDriverKill:
 	GrantConditionIfOwnerIsNeutral@DRIVER_DEAD:

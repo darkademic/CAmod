@@ -5462,7 +5462,7 @@ SREP:
 	ProximityExternalCondition@AIRCRAFTREPAIR:
 		Condition: aircraft-repair
 		Range: 10c0
-	WithRangeCircle@AIRCRAFTREPAIR:
+	WithRangeCircleCA@AIRCRAFTREPAIR:
 		Type: AircraftRepair
 		Color: FFD000AA
 		Range: 10c0

@@ -489,6 +489,8 @@ TSLA:
 	Targetable@TeslaBoost:
 		TargetTypes: TeslaBoost
 		RequiresCondition: !powerdown
+	WithLinkedRangeCirclePreview@TeslaBoost:
+		Type: TeslaBoost
 	WithBuildingBib:
 		HasMinibib: true
 	WithTeslaChargeAnimation:
@@ -2004,7 +2006,7 @@ TPWR:
 	ProximityExternalCondition@TeslaBoost:
 		Condition: charged
 		Range: 6c0
-	WithRangeCircle@TeslaBoost:
+	WithRangeCircleCA@TeslaBoost:
 		Type: TeslaBoost
 		Color: FFFF00AA
 		Range: 6c0
@@ -2397,7 +2399,7 @@ FIX:
 	ProximityExternalCondition@AIRCRAFTREPAIR:
 		Condition: aircraft-repair
 		Range: 10c0
-	WithRangeCircle@AIRCRAFTREPAIR:
+	WithRangeCircleCA@AIRCRAFTREPAIR:
 		Type: AircraftRepair
 		Color: FFD000AA
 		Range: 10c0
@@ -4201,7 +4203,7 @@ REP:
 	ProximityExternalCondition@AIRCRAFTREPAIR:
 		Condition: aircraft-repair
 		Range: 10c0
-	WithRangeCircle@AIRCRAFTREPAIR:
+	WithRangeCircleCA@AIRCRAFTREPAIR:
 		Type: AircraftRepair
 		Color: FFD000AA
 		Range: 10c0

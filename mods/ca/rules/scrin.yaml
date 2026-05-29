@@ -3109,6 +3109,12 @@ SMCV:
 		RequiresCondition: !empdisable && !being-warped && !driver-dead
 	DamageTypeDamageMultiplier@A2GPROTECTION:
 		Modifier: 60
+	SpeedMultiplier@Traveler:
+		Modifier: 115
+		RequiresCondition: player-traveler
+	GrantConditionOnPrerequisite@Traveler:
+		Condition: player-traveler
+		Prerequisites: player.traveler
 	Encyclopedia:
 		Category: Scrin/Vehicles
 
@@ -3252,12 +3258,6 @@ STMR:
 	GpsRadarDot:
 		Sequence: Plane
 	-SoundOnDamageTransitionCA:
-	SpeedMultiplier@Traveler:
-		Modifier: 115
-		RequiresCondition: player-traveler
-	GrantConditionOnPrerequisite@Traveler:
-		Condition: player-traveler
-		Prerequisites: player.traveler
 	Encyclopedia:
 		Category: Scrin/Aircraft
 
@@ -3401,12 +3401,6 @@ TORM:
 	ReloadAmmoPool@MothershipRearmable:
 		Count: 4
 	-SoundOnDamageTransitionCA:
-	SpeedMultiplier@Traveler:
-		Modifier: 115
-		RequiresCondition: player-traveler
-	GrantConditionOnPrerequisite@Traveler:
-		Condition: player-traveler
-		Prerequisites: player.traveler
 	Encyclopedia:
 		Category: Scrin/Aircraft
 

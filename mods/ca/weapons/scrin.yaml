@@ -796,7 +796,7 @@ ReaperLaserChargedReversed:
 StormriderZap:
 	Range: 5c768
 	Report: stormrider-fire1.aud, stormrider-fire2.aud, stormrider-fire3.aud
-	ReloadDelay: 70
+	ReloadDelay: 50
 	Burst: 5
 	BurstDelays: 4
 	Projectile: Bullet
@@ -857,7 +857,7 @@ StormRiderZapAA:
 		ImpactSounds: irocataa.aud, irocatab.aud, irocatac.aud, irocatad.aud
 
 TormentorZap:
-	ReloadDelay: 70
+	ReloadDelay: 50
 	Burst: 6
 	BurstDelays: 0, 4, 0, 4, 0
 	ValidTargets: Ground, Water

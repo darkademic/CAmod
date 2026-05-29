@@ -333,7 +333,7 @@ faction-traveler =
 
     Bonuses:
       • Fast Walkers (+15% speed)
-      • Stormrider & Tormentor (+15% speed)
+      • Colony Ship (+15% speed)
 
 faction-harbinger =
     .name = Harbinger-31

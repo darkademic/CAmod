@@ -872,6 +872,8 @@ BRST:
 		CircleWidth: 0
 		Type: BursterAttack
 		DeployCursor: move
+	Crushable:
+		WarnProbability: 0
 
 EVIS:
 	Inherits@SCRININFANTRY: ^ScrinInfantry

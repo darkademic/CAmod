@@ -2769,11 +2769,11 @@ MSG:
 		UndeploySounds: clicky1.aud
 		UndeployOnMove: true
 		UndeployOnPickup: true
-	WithRangeCircle@MSG:
+	WithRangeCircleCA@MSG:
 		Type: StealthGenerator
 		RequiresCondition: deployed
 		Range: 5c512
-		Color: 00aa00
+		Color: 7681a0
 	ProximityExternalCondition@MSG:
 		Range: 5c512
 		Condition: sgencloak

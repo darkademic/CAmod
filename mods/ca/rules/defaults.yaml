@@ -3643,6 +3643,8 @@
 		ValuePercentage: 1
 		PlayerExperienceRelationships: Enemy, Neutral
 		SubsequentCaptureModifier: 50
+	WithLinkedRangeCirclePreview@SGEN:
+		Type: StealthGenerator
 	Encyclopedia:
 		Scale: 2
 

@@ -5240,10 +5240,10 @@ SGEN:
 	Targetable@INFILTRATION:
 		RequiresCondition: !being-warped
 		TargetTypes: ResetSupportPowerInfiltrate
-	WithRangeCircle@SGEN:
+	WithRangeCircleCA@SGEN:
 		Type: StealthGenerator
 		Range: 7c512
-		Color: 00aa00
+		Color: 7681a0
 	ProximityExternalCondition@SGEN:
 		Range: 7c512
 		Condition: sgencloak

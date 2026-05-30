@@ -10,6 +10,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 using OpenRA.Traits;
@@ -34,8 +35,8 @@ namespace OpenRA.Mods.CA.Traits
 		[Desc("Maximum range that guarding actors will maintain.")]
 		public readonly WDist Range = WDist.FromCells(2);
 
-		[Desc("Maximum number of guard orders to chain together.")]
-		public readonly WDist MaxDistance = WDist.FromCells(15);
+		[Desc("Maximum range to scan for guard targets.")]
+		public readonly WDist MaxDistance = WDist.FromCells(8);
 
 		public override object Create(ActorInitializer init) { return new GuardsSelection(init, this); }
 	}
@@ -70,40 +71,45 @@ namespace OpenRA.Mods.CA.Traits
 			if (self.Owner.IsBot)
 				return;
 
-			var world = self.World;
-
 			if (order.Target.Type == TargetType.Actor && (order.Target.Actor.Disposed || order.Target.Actor.Owner == self.Owner || !order.Target.Actor.IsInWorld || order.Target.Actor.IsDead))
 				return;
 
-			var guardActors = world.Selection.Actors
+			var guardActors = self.World.FindActorsInCircle(self.CenterPosition, Info.MaxDistance)
 				.Where(a => a.Owner == self.Owner
 					&& !a.Disposed
 					&& !a.IsDead
 					&& a.IsInWorld
 					&& a != self
 					&& IsValidGuardTarget(self, a))
+				.OrderBy(a => (a.CenterPosition - order.Target.CenterPosition).LengthSquared)
+				.ThenBy(a => a.ActorID)
+				.Take(Info.MaxTargets)
 				.ToArray();
 
 			if (guardActors.Length == 0)
 				return;
 
-			var mainGuardActor = guardActors.ClosestTo(order.Target.CenterPosition);
-			if (mainGuardActor == null)
+			self.World.AddFrameEndTask(_ =>
+			{
+				if (self.Disposed || self.IsDead || !self.IsInWorld)
+					return;
+
+				for (var i = 0; i < guardActors.Length; i++)
+					QueueGuardTarget(self, Target.FromActor(guardActors[i]), i > 0);
+
+				self.ShowTargetLines();
+			});
+		}
+
+		void QueueGuardTarget(Actor self, in Target target, bool queued)
+		{
+			var targetCopy = target;
+
+			if (target.Type != TargetType.Actor)
 				return;
 
-			var mainGuardTarget = Target.FromActor(mainGuardActor);
-			world.IssueOrder(new Order("Guard", self, mainGuardTarget, false, null, null));
-
-			var guardTargets = 0;
-
-			foreach (var guardActor in guardActors)
-			{
-				guardTargets++;
-				world.IssueOrder(new Order("Guard", self, Target.FromActor(guardActor), true, null, null));
-
-				if (guardTargets >= Info.MaxTargets)
-					break;
-			}
+			var range = target.Actor.Info.TraitInfo<GuardableInfo>().Range;
+			self.QueueActivity(queued, new AttackMoveActivity(self, () => move.MoveFollow(self, targetCopy, WDist.Zero, range, targetLineColor: Info.TargetLineColor)));
 		}
 
 		bool IsValidGuardTarget(Actor self, Actor targetActor)

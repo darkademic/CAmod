@@ -100,7 +100,7 @@ namespace OpenRA.Mods.CA.Traits
 					case TargetType.FrozenActor:
 						return CanTargetActor(self, target, ref modifiers, ref cursor);
 					case TargetType.Terrain:
-						return false;
+						return true;
 					default:
 						return false;
 				}

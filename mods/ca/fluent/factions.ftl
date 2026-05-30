@@ -366,6 +366,7 @@ faction-collector =
       • Coalescence
 
     Bonuses:
+      • Watcher (attack applies suppression)
       • Field Manipulator (20% discount)
       • Suppression Field (-15% cooldown, +10% duration)
 

@@ -759,7 +759,7 @@ WCHR:
 		Name: Watcher
 	TooltipExtras:
 		Weaknesses: • Cannot deal damage
-		Attributes: • Can attach parasites to enemy vehicles & structures\n• Cloaked with increased vision when not moving\n• Detects cloaked ground units and spies\n• Special Ability: Teleport (with upgrade)
+		Attributes: • Can attach parasites to enemy vehicles & structures\n• Cloaked with increased vision when not moving\n• Detects cloaked ground units and spies\n• Applies multi-target suppression (Collector-73 only)\n• Special Ability: Teleport (with upgrade)
 	Health:
 		HP: 5000
 	UpdatesPlayerStatistics:
@@ -783,6 +783,11 @@ WCHR:
 	Armament@PRIMARY:
 		Weapon: WatcherDart
 		LocalOffset: 150,0,400
+		RequiresCondition: !player-collector
+	Armament@PRIMARYCOLLECTOR:
+		Weapon: WatcherDartCollector
+		LocalOffset: 150,0,400
+		RequiresCondition: player-collector
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: ReturnFire
@@ -817,6 +822,9 @@ WCHR:
 	GrantConditionOnPrerequisite@BLINKPACKS:
 		Condition: blink-upgrade
 		Prerequisites: blink.upgrade
+	GrantConditionOnPrerequisite@Collector:
+		Condition: player-collector
+		Prerequisites: player.collector
 	WithColoredOverlay@BLINKFLASH:
 		Color: ffffff80
 		RequiresCondition: blink

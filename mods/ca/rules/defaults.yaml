@@ -2131,20 +2131,20 @@
 	Inherits@ObserverAttachable: ^ObserverAttachable
 	Targetable@WatcherParasite:
 		TargetTypes: WatcherParasiteAttachable
-		RequiresCondition: !observer-attached
 	AttachableTo@WatcherParasite:
 		Type: WatcherParasite
 		Limit: 1
+		LimitBehaviour: ReplaceOldest
 		AttachedCondition: observer-attached
 
 ^ShadowBeaconAttachable:
 	Inherits@ObserverAttachable: ^ObserverAttachable
 	Targetable@ShadowBeacon:
 		TargetTypes: ShadowBeaconAttachable
-		RequiresCondition: !observer-attached
 	AttachableTo@ShadowBeacon:
 		Type: ShadowBeacon
 		Limit: 1
+		LimitBehaviour: ReplaceOldest
 		AttachedCondition: observer-attached
 
 ^TargetPaintable:
@@ -2663,6 +2663,7 @@
 	Inherits@ReaperSnareable: ^ReaperSnareable
 	Inherits@IdolOfKane: ^IdolOfKane
 	Inherits@Berserk: ^Berserk
+	Inherits@WatcherParasite: ^WatcherParasiteAttachable
 	Inherits@DevelopmentPolicyVeterancyBonus: ^DevelopmentPolicyVeterancyBonus
 	RenderSprites:
 		PlayerPalette: playertd

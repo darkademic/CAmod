@@ -430,6 +430,16 @@ camera.decoy:
 		RemoveInstead: true
 		Delay: 100
 
+camera.interceptors:
+	Inherits: ^CameraBase
+	WithRangeCircleCA@Interceptors:
+		Type: Interceptors
+		Range: 12c0
+		Visible: Always
+		ValidRelationships: Ally, Enemy, Neutral
+		UsePlayerColor: true
+		PlayerColorAlpha: 192
+
 gps.satellite:
 	Inherits@DUMMY: ^InvisibleDummy
 	ProvidesPrerequisite:

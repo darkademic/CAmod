@@ -1543,16 +1543,46 @@ WatcherDart:
 		ContrailStartColorAlpha: 128
 		AllowSnapping: true
 	Warhead@Attach: AttachActor
-		Range: 341
+		Range: 0c42
 		Actor: watcher.parasite
 		AttachSounds: wchr-hit1.aud
 		MissSounds: dud1.aud
 		ValidTargets: WatcherParasiteAttachable
 		ValidRelationships: Enemy, Neutral
 	Warhead@Flash: FlashTarget
-		Spread: 341
+		Spread: 0c42
 		Color: ffffff
 		ValidTargets: WatcherParasiteAttachable
+
+WatcherDartCollector:
+	Inherits: WatcherDart
+	Warhead@Arc: FireShrapnel
+		Weapon: WatcherDartArc
+		AimChance: 100
+		Amount: 5
+		ThrowWithoutTarget: true
+		AimTargetStances: Enemy
+	Warhead@Suppression: GrantExternalConditionCA
+		Range: 0c341
+		Duration: 150
+		Condition: suppression
+
+WatcherDartArc:
+	Range: 3c0
+	Projectile: PlasmaBeam
+		Duration: 7
+		Colors: ad76c408
+		InnerLightness: 200
+		OuterLightness: 100
+		Radius: 2
+		Distortion: 150
+		DistortionAnimation: 150
+		SegmentLength: 350
+		ZOffset: 512
+	Warhead@Suppression: GrantExternalConditionCA
+		Range: 0c341
+		Duration: 150
+		Condition: suppression
 
 RiftInit:
 	ValidTargets: Ground, Water
@@ -2098,7 +2128,7 @@ AtomizerArcInfantry:
 	Projectile: InstantHit
 
 BursterTargeting:
-	ValidTargets: Vehicle, Infantry, Structure
+	ValidTargets: Ground
 	Range: 1c512
 	Projectile: InstantHit
 	Warhead@1Dam: TargetDamage
@@ -2144,6 +2174,9 @@ BursterExplode:
 		ValidTargets: Ground, Water, Infantry, Vehicle
 		ThrowWithoutTarget: true
 		Delay: 1
+	Warhead@3Res: CreateResource
+		AddsResourceType: Tiberium
+		Size: 1
 
 MindSparkEruption:
 	ReloadDelay: 1000

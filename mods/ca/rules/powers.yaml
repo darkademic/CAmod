@@ -183,6 +183,8 @@
 		Strikes: 3
 		CircleDelay: 40
 		SupportPowerPaletteOrder: 45
+		TargetCircleRange: 3c512
+		TargetCircleColor: 999999AA
 
 ^GpsPower:
 	DummyGpsPower@NOFOG:
@@ -1142,8 +1144,7 @@
 		SelectTargetTextNotification: Select target.
 		EndChargeSpeechNotification: InterceptorsReady
 		EndChargeTextNotification: Interceptors ready.
-		CameraActor: camera
-		CameraRemoveDelay: 450
+		CameraActor: camera.interceptors
 		UnitType: yf23.bomber
 		QuantizedFacings: 8
 		DisplayBeacon: true

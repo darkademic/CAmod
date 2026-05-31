@@ -1564,9 +1564,10 @@ WatcherDartCollector:
 		ThrowWithoutTarget: true
 		AimTargetStances: Enemy
 	Warhead@Suppression: GrantExternalConditionCA
-		Range: 0c341
+		Range: 0c42
 		Duration: 150
 		Condition: suppression
+		ValidRelationships: Enemy, Neutral
 
 WatcherDartArc:
 	Range: 3c0
@@ -1581,9 +1582,10 @@ WatcherDartArc:
 		SegmentLength: 350
 		ZOffset: 512
 	Warhead@Suppression: GrantExternalConditionCA
-		Range: 0c341
+		Range: 0c42
 		Duration: 150
 		Condition: suppression
+		ValidRelationships: Enemy, Neutral
 
 RiftInit:
 	ValidTargets: Ground, Water

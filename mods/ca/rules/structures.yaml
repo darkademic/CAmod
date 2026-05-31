@@ -3606,6 +3606,7 @@ ATWR:
 		Weapon: StingerGTWR
 		LocalOffset: 256,128,0, 256,-128,0
 		LocalYaw: -100,100
+	ArmamentBurstCounter:
 	AttackTurreted:
 		PauseOnCondition: build-incomplete || disabled || empdisable || being-warped
 	ClassicFacingBodyOrientation:

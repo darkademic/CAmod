@@ -41,7 +41,7 @@ SS:
 		RequiresCondition: !crossing-ford
 		FacingTolerance: 0
 	AutoTarget:
-		InitialStance: HoldFire
+		InitialStance: ReturnFire
 	AutoTargetPriority@DEFAULT:
 		ValidTargets: Water, Underwater
 	AutoTargetPriority@ATTACKANYTHING:
@@ -623,7 +623,7 @@ SS2:
 		RequiresCondition: !crossing-ford
 		FacingTolerance: 0
 	AutoTarget:
-		InitialStance: HoldFire
+		InitialStance: ReturnFire
 	AutoTargetPriority@DEFAULT:
 		ValidTargets: Water, Underwater
 	AutoTargetPriority@ATTACKANYTHING:

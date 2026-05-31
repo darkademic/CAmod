@@ -644,6 +644,7 @@ S4:
 	Armament@BATF:
 		Name: batf
 		Weapon: IntruderDiscsBATF
+	ArmamentBurstCounter:
 	AttackFrontal:
 		PauseOnCondition: being-warped || blinded || reapersnare
 		FacingTolerance: 0
@@ -703,6 +704,7 @@ MRDR:
 	Armament@BATF:
 		Name: batf
 		Weapon: IntruderDiscsBATF
+	ArmamentBurstCounter:
 	AttackFrontal:
 		PauseOnCondition: being-warped || blinded || reapersnare
 		FacingTolerance: 0
@@ -1145,7 +1147,7 @@ SMEDI:
 		ValidRelationships: Ally
 	Voiced:
 		VoiceSet: AssimilatorVoice
-	GuardsSelection:
+	AutoGuard:
 		ValidTargets: Infantry
 	KeepsDistance:
 	Encyclopedia:
@@ -1230,7 +1232,7 @@ ARTI:
 		Prerequisites: barracks.upgraded
 	Voiced:
 		VoiceSet: AssimilatorVoice
-	GuardsSelection:
+	AutoGuard:
 		ValidTargets: Vehicle
 	KeepsDistance:
 	Encyclopedia:
@@ -1705,6 +1707,7 @@ SEEK:
 		Weapon: PlasmaDiscs.Hypercharged
 		LocalOffset: 320,-25,320, 320,25,320
 		RequiresCondition: hypercharged
+	ArmamentBurstCounter:
 	AttackTurreted:
 		PauseOnCondition: empdisable || being-warped || blinded
 	WithSpriteTurret:

@@ -36,6 +36,7 @@ IntruderDiscs:
 	Projectile: MissileCA
 		Speed: 190
 		LockOnProbability: 0
+		LockOnBurstCounts: 0
 		RangeLimit: 7c512
 		Blockable: false
 	Warhead@1Dam: SpreadDamage

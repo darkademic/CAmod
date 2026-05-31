@@ -201,13 +201,14 @@ PlasmaDiscs:
 		Image: plasdiscsm
 		TrailImage: smokey
 		TrailPalette: scrinplasma
-		Speed: 450
+		Speed: 550
 		Inaccuracy: 0c256
+		LockOnInaccuracy: 0
 		Blockable: false
 		Jammable: true
 		HorizontalRateOfTurn: 30
 		RangeLimit: 6c512
-		LockOnProbability: 50
+		LockOnBurstCounts: 1,3,5
 		MinimumLaunchAngle: 80
 		MaximumLaunchAngle: 112
 		VerticalRateOfTurn: 60
@@ -251,7 +252,7 @@ IntruderDiscs:
 	Burst: 3
 	Projectile: MissileCA
 		Inaccuracy: 0c128
-		LockOnProbability: 33
+		LockOnBurstCounts: 1,3
 	Warhead@1Dam: SpreadDamage
 		Damage: 2850
 		Spread: 256
@@ -269,8 +270,8 @@ MarauderDiscs:
 	Report: mrdr-fire1.aud, mrdr-fire2.aud
 	Projectile: MissileCA
 		Image: mrdrdisc
-		Speed: 550
-		LockOnProbability: 100
+		Speed: 600
+		-LockOnBurstCounts:
 		RangeLimit: 7c0
 		Palette: scrin
 		MinimumLaunchAngle: 40

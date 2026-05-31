@@ -18,7 +18,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.CA.Traits
 {
 	[Desc("Attach to support unit so that when ordered as part of a group with combat units it will guard those units.")]
-	class GuardsSelectionInfo : ConditionalTraitInfo
+	class AutoGuardInfo : ConditionalTraitInfo
 	{
 		[Desc("Will only guard units with these target types.")]
 		public readonly BitSet<TargetableType> ValidTargets = new BitSet<TargetableType>("Ground", "Water");
@@ -27,7 +27,7 @@ namespace OpenRA.Mods.CA.Traits
 		public readonly HashSet<string> ValidOrders = new HashSet<string>() { "AttackMove", "AssaultMove", "Attack", "ForceAttack", "KeepDistance" };
 
 		[Desc("Maximum number of guard orders to chain together.")]
-		public readonly int MaxTargets = 10;
+		public readonly int MaxTargets = 8;
 
 		[Desc("Color to use for the target line.")]
 		public readonly Color TargetLineColor = Color.OrangeRed;
@@ -36,21 +36,26 @@ namespace OpenRA.Mods.CA.Traits
 		public readonly WDist Range = WDist.FromCells(2);
 
 		[Desc("Maximum range to scan for guard targets.")]
-		public readonly WDist MaxDistance = WDist.FromCells(8);
+		public readonly WDist MaxDistance = WDist.FromCells(6);
 
-		public override object Create(ActorInitializer init) { return new GuardsSelection(init, this); }
+		[Desc("If guard targets are this much further from the target, don't guard them.")]
+		public readonly WDist MaxDistanceIfFurtherFromTarget = WDist.FromCells(3);
+
+		public override object Create(ActorInitializer init) { return new AutoGuard(init, this); }
 	}
 
-	class GuardsSelection : ConditionalTrait<GuardsSelectionInfo>, IResolveOrder, INotifyCreated
+	class AutoGuard : ConditionalTrait<AutoGuardInfo>, IResolveOrder, INotifyCreated
 	{
 		IMove move;
+		AutoTarget autoTarget;
 
-		public GuardsSelection(ActorInitializer init, GuardsSelectionInfo info)
+		public AutoGuard(ActorInitializer init, AutoGuardInfo info)
 			: base(info) { }
 
 		protected override void Created(Actor self)
 		{
 			move = self.Trait<IMove>();
+			autoTarget = self.TraitOrDefault<AutoTarget>();
 			base.Created(self);
 		}
 
@@ -74,13 +79,19 @@ namespace OpenRA.Mods.CA.Traits
 			if (order.Target.Type == TargetType.Actor && (order.Target.Actor.Disposed || order.Target.Actor.Owner == self.Owner || !order.Target.Actor.IsInWorld || order.Target.Actor.IsDead))
 				return;
 
+			if (autoTarget != null && autoTarget.Stance < UnitStance.Defend)
+				return;
+
+			var orderTargetPosition = order.Target.CenterPosition;
+			var selfDistanceToTarget = (self.CenterPosition - orderTargetPosition).HorizontalLength;
+
 			var guardActors = self.World.FindActorsInCircle(self.CenterPosition, Info.MaxDistance)
 				.Where(a => a.Owner == self.Owner
 					&& !a.Disposed
 					&& !a.IsDead
 					&& a.IsInWorld
 					&& a != self
-					&& IsValidGuardTarget(self, a))
+					&& IsValidGuardTarget(self, a, orderTargetPosition, selfDistanceToTarget))
 				.OrderBy(a => (a.CenterPosition - order.Target.CenterPosition).LengthSquared)
 				.ThenBy(a => a.ActorID)
 				.Take(Info.MaxTargets)
@@ -112,7 +123,7 @@ namespace OpenRA.Mods.CA.Traits
 			self.QueueActivity(queued, new AttackMoveActivity(self, () => move.MoveFollow(self, targetCopy, WDist.Zero, range, targetLineColor: Info.TargetLineColor)));
 		}
 
-		bool IsValidGuardTarget(Actor self, Actor targetActor)
+		bool IsValidGuardTarget(Actor self, Actor targetActor, WPos orderTargetPosition, int selfDistanceToTarget)
 		{
 			if (!Info.ValidTargets.Overlaps(targetActor.GetEnabledTargetTypes()))
 				return false;
@@ -120,11 +131,15 @@ namespace OpenRA.Mods.CA.Traits
 			if (!targetActor.Info.HasTraitInfo<AttackBaseInfo>() || !targetActor.Info.HasTraitInfo<GuardableInfo>())
 				return false;
 
-			var guardsSelection = targetActor.TraitsImplementing<GuardsSelection>();
-			if (guardsSelection.Any(t => !t.IsTraitDisabled))
+			var AutoGuard = targetActor.TraitsImplementing<AutoGuard>();
+			if (AutoGuard.Any(t => !t.IsTraitDisabled))
 				return false;
 
 			if ((targetActor.CenterPosition - self.CenterPosition).HorizontalLengthSquared > Info.MaxDistance.LengthSquared)
+				return false;
+
+			var targetDistanceToOrder = (targetActor.CenterPosition - orderTargetPosition).HorizontalLength;
+			if (targetDistanceToOrder >= selfDistanceToTarget + Info.MaxDistanceIfFurtherFromTarget.Length)
 				return false;
 
 			return true;

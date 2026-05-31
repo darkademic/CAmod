@@ -94,7 +94,7 @@ DOG:
 		Type: DogAttack
 		DeployCursor: move
 	KeepsDistance:
-	GuardsSelection:
+	AutoGuard:
 		ValidOrders: AttackMove, AssaultMove, ForceAttack, KeepDistance
 		ValidTargets: Infantry, Vehicle
 	Encyclopedia:
@@ -132,7 +132,7 @@ TDOG:
 	ProductionCostMultiplier@UkraineBonus:
 		Multiplier: 80
 		Prerequisites: player.ukraine
-	-GuardsSelection:
+	-AutoGuard:
 	-KeepsDistance:
 
 E1:
@@ -997,7 +997,7 @@ MEDI:
 	WithProductionIconOverlay:
 		Types: Veterancy
 		Prerequisites: barracks.upgraded
-	GuardsSelection:
+	AutoGuard:
 		ValidTargets: Infantry
 	KeepsDistance:
 	Encyclopedia:
@@ -1086,7 +1086,7 @@ MECH:
 	WithProductionIconOverlay:
 		Types: Veterancy
 		Prerequisites: barracks.upgraded
-	GuardsSelection:
+	AutoGuard:
 		ValidTargets: Vehicle
 	Convertible:
 		SpawnActors: CMEC
@@ -1179,7 +1179,7 @@ CMEC:
 	WithProductionIconOverlay:
 		Types: Veterancy
 		Prerequisites: barracks.upgraded
-	GuardsSelection:
+	AutoGuard:
 		ValidTargets: Vehicle
 	-TakeCover:
 	KeepsDistance:
@@ -4578,7 +4578,7 @@ CDOG:
 	EncyclopediaExtras:
 		AdditionalInfo: Stolen from Soviet Barracks.
 	-KeepsDistance:
-	-GuardsSelection:
+	-AutoGuard:
 
 MORT.Sonic:
 	Inherits: ^MortarInfantryBase

@@ -794,7 +794,7 @@ StingerGTWR:
 		HorizontalRateOfTurn: 40
 		RangeLimit: 11c819
 		Speed: 400
-		LockOnProbability: 66
+		LockOnBurstCounts: 1
 	Warhead@1Dam: SpreadDamage
 		Damage: 8900
 		Spread: 341
@@ -1499,8 +1499,9 @@ IFVRocketsAAE.TibCore:
 	Projectile: MissileCA
 		Speed: 266
 		Inaccuracy: 512
+		LockOnInaccuracy: 0
 		CruiseAltitude: 5c0
-		LockOnProbability: 66
+		LockOnBurstCounts: 1
 		Jammable: false
 		RangeLimit: 13c0
 		MinimumLaunchAngle: 64
@@ -1560,7 +1561,7 @@ IFVRocketsAAE.TibCore:
 	Report: hammerheadmissile1.aud, hammerheadmissile2.aud
 	Projectile: MissileCA
 		ContrailStartColor: FFCC00E6
-		LockOnProbability: 100
+		-LockOnBurstCounts:
 		Speed: 250
 	Warhead@1Dam: SpreadDamage
 		Damage: 860
@@ -1583,7 +1584,7 @@ IFVRocketsAAE.TibCore:
 		Inaccuracy: 1c256
 		MinimumLaunchAngle: 200
 		MaximumLaunchAngle: 250
-		LockOnProbability: 100
+		-LockOnBurstCounts:
 		CruiseAltitude: 0
 	Warhead@1Dam: SpreadDamage
 		Spread: 426
@@ -2505,7 +2506,6 @@ KamovRocketsWide:
 		Arm: 0
 		Inaccuracy: 0
 		HorizontalRateOfTurn: 40
-		LockOnProbability: 100
 		HomingActivationDelay: 2
 		CruiseAltitude: 1c0
 		MinimumLaunchSpeed: 12

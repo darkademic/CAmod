@@ -5066,6 +5066,7 @@ MSAM:
 		RequiresCondition: hailstorm-upgrade
 		PauseOnCondition: reloading-primary
 		ReloadingCondition: reloading-secondary
+	ArmamentBurstCounter:
 	Voiced:
 		VoiceSet: MsamVoice
 	Encyclopedia:
@@ -6401,12 +6402,12 @@ IFV:
 	TooltipExtras@psyturr:
 		Strengths: • Strong vs Infantry, Vehicles
 		Weaknesses: • Cannot deal damage\n• Cannot attack Aircraft
-		Attributes: • Can mind control enemy units\n• Control lost if passenger exits
+		Attributes: • Can mind control enemy units
 		IsStandard: false
 		RequiresCondition: psyturr
 	TooltipExtras@hackturr:
 		Strengths: • Strong vs Defenses, Buildings
-		Weaknesses: • Cannot deal damage\n• Control lost if passenger exits
+		Weaknesses: • Cannot deal damage
 		IsStandard: false
 		RequiresCondition: hackturr
 	TooltipExtras@cryoturr:
@@ -7002,13 +7003,13 @@ IFV:
 	GrantConditionOnPrerequisite@TibCore:
 		Condition: tibcore-upgrade
 		Prerequisites: tibcore.upgrade
-	GuardsSelection@REPAIR:
+	AutoGuard@REPAIR:
 		ValidTargets: Vehicle
 		RequiresCondition: mechturr && !stance-attackanything
-	GuardsSelection@MEDIC:
+	AutoGuard@MEDIC:
 		ValidTargets: Infantry
 		RequiresCondition: medturr && !stance-attackanything
-	GuardsSelection@SPY:
+	AutoGuard@SPY:
 		RequiresCondition: spyturr && !stance-attackanything
 	WithDecoration@COMMANDOSKULL:
 		RequiresCondition: commturr || psyturr
@@ -7955,6 +7956,7 @@ HSAM:
 		RequiresCondition: hailstorm-upgrade
 		PauseOnCondition: reloading-primary
 		ReloadingCondition: reloading-secondary
+	ArmamentBurstCounter:
 	GrantConditionOnTerrain@ONWATER:
 		TerrainTypes: Water
 		Condition: onwater
@@ -9491,7 +9493,7 @@ MANT:
 		DetectionTypes: AirCloak
 		RequiresCondition: empdisable || being-warped
 	KeepsDistance:
-	GuardsSelection:
+	AutoGuard:
 		ValidTargets: Infantry, Vehicle
 	Encyclopedia:
 		Category: Nod/Stolen Technology
@@ -10815,7 +10817,7 @@ CUST:
 		TargetTypes: MindControlImmune
 		RequiresCondition: loaded-cmdo
 	KeepsDistance:
-	GuardsSelection:
+	AutoGuard:
 		ValidTargets: Cyborg, Vehicle
 	AttackTurreted:
 		PauseOnCondition: empdisable || being-warped || blinded

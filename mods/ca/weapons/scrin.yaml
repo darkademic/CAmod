@@ -1561,7 +1561,7 @@ WatcherDartCollector:
 		Weapon: WatcherDartArc
 		AimChance: 100
 		Amount: 5
-		ThrowWithoutTarget: true
+		ThrowWithoutTarget: false
 		AimTargetStances: Enemy
 	Warhead@Suppression: GrantExternalConditionCA
 		Range: 0c42

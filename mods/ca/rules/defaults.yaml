@@ -1776,6 +1776,8 @@
 		RequiresCondition: pointdef-upgrade
 	WithIdleOverlay@NSHIELD:
 		RequiresCondition: (nshield || gshield) && !(empdisable || invulnerability || invisibility)
+	Targetable@Harvester:
+		TargetTypes: Harvester
 	Targetable@MindControlResistant:
 		TargetTypes: MindControlResistant
 

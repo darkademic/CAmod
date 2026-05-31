@@ -328,7 +328,7 @@ namespace OpenRA.Mods.CA.Projectiles
 
 		bool ShouldLockOn(World world)
 		{
-			if (info.LockOnBurstCounts.Count == 0 || (info.LockOnBurstCounts.Count == 1 && info.LockOnBurstCounts.Contains(1)))
+			if (info.LockOnBurstCounts.Count == 0 || (info.LockOnBurstCounts.Count == 1 && info.LockOnBurstCounts.Contains(0)))
 				return world.SharedRandom.Next(100) <= info.LockOnProbability;
 
 			var counter = args.SourceActor.TraitsImplementing<ArmamentBurstCounter>()

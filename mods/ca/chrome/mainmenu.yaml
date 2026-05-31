@@ -368,7 +368,7 @@ Container@MAINMENU:
 					TooltipText: Facebook Page
 					TooltipContainer: LINKS_TOOLTIP_CONTAINER
 					Url: https://www.facebook.com/openracombinedarms
-				ExternalLinkButton@LADDER_LINK:
+				ExternalLinkButton@MODDB_LINK:
 					X: 102
 					Y: 0
 					Width: 32
@@ -401,15 +401,15 @@ Container@MAINMENU:
 					TooltipText: Tech Tree
 					TooltipContainer: LINKS_TOOLTIP_CONTAINER
 					Url: https://ca.oraladder.net/tech-tree
-				ExternalLinkButton@MODDB_LINK:
+				ExternalLinkButton@WEBSITE_LINK:
 					X: 204
 					Y: 0
 					Width: 32
 					Height: 32
-					Background: ladder-icon
+					Background: ca-website-icon
 					Align: Left
 					LeftMargin: 0
-					TooltipText: 1v1 Ladder Website
+					TooltipText: CA Website
 					TooltipContainer: LINKS_TOOLTIP_CONTAINER
 					Url: https://ca.oraladder.net
 				TooltipContainer@LINKS_TOOLTIP_CONTAINER:

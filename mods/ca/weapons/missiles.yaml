@@ -1500,8 +1500,8 @@ IFVRocketsAAE.TibCore:
 		Speed: 266
 		Inaccuracy: 512
 		LockOnInaccuracy: 0
-		CruiseAltitude: 5c0
 		LockOnBurstCounts: 1
+		CruiseAltitude: 5c0
 		Jammable: false
 		RangeLimit: 13c0
 		MinimumLaunchAngle: 64
@@ -1561,6 +1561,7 @@ IFVRocketsAAE.TibCore:
 	Report: hammerheadmissile1.aud, hammerheadmissile2.aud
 	Projectile: MissileCA
 		ContrailStartColor: FFCC00E6
+		LockOnInaccuracy: 448
 		-LockOnBurstCounts:
 		Speed: 250
 	Warhead@1Dam: SpreadDamage
@@ -1581,7 +1582,7 @@ IFVRocketsAAE.TibCore:
 	BurstDelays: 6
 	Projectile:
 		ContrailStartColor: FF4400E6
-		Inaccuracy: 1c256
+		LockOnInaccuracy: 1c256
 		MinimumLaunchAngle: 200
 		MaximumLaunchAngle: 250
 		-LockOnBurstCounts:

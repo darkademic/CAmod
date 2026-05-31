@@ -908,6 +908,7 @@ CryoMortar:
 		Level: 50
 		Falloff: 100, 75, 52, 15, 2
 		MaxLevel: 600
+		GlowColor: 46b9ee
 		GlowScale: 1.5
 		GlowFadeFrames: 30
 		GlowFadeInFrames: 12

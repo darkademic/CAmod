@@ -1847,8 +1847,7 @@ N4:
 		LocalOffset: 341,0,300
 		MuzzleSequence: muzzle
 		MuzzlePalette: tdeffect
-	Armament@FF:
-		Weapon: FlamerTDFF
+
 	Armament@BATF:
 		Name: batf
 		Weapon: FlamerTDBATF
@@ -1922,8 +1921,6 @@ N5:
 		LocalOffset: 341,0,300
 		MuzzleSequence: muzzle
 		MuzzlePalette: tdeffect
-	Armament@FF:
-		Weapon: ChemsprayTDFF
 	Armament@BATF:
 		Name: batf
 		Weapon: ChemsprayTDBATF

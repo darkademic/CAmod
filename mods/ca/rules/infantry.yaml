@@ -94,7 +94,7 @@ DOG:
 		Type: DogAttack
 		DeployCursor: move
 	KeepsDistance:
-	GuardsSelection:
+	AutoGuard:
 		ValidOrders: AttackMove, AssaultMove, ForceAttack, KeepDistance
 		ValidTargets: Infantry, Vehicle
 	Encyclopedia:
@@ -132,7 +132,7 @@ TDOG:
 	ProductionCostMultiplier@UkraineBonus:
 		Multiplier: 80
 		Prerequisites: player.ukraine
-	-GuardsSelection:
+	-AutoGuard:
 	-KeepsDistance:
 
 E1:
@@ -997,7 +997,7 @@ MEDI:
 	WithProductionIconOverlay:
 		Types: Veterancy
 		Prerequisites: barracks.upgraded
-	GuardsSelection:
+	AutoGuard:
 		ValidTargets: Infantry
 	KeepsDistance:
 	Encyclopedia:
@@ -1086,7 +1086,7 @@ MECH:
 	WithProductionIconOverlay:
 		Types: Veterancy
 		Prerequisites: barracks.upgraded
-	GuardsSelection:
+	AutoGuard:
 		ValidTargets: Vehicle
 	Convertible:
 		SpawnActors: CMEC
@@ -1179,7 +1179,7 @@ CMEC:
 	WithProductionIconOverlay:
 		Types: Veterancy
 		Prerequisites: barracks.upgraded
-	GuardsSelection:
+	AutoGuard:
 		ValidTargets: Vehicle
 	-TakeCover:
 	KeepsDistance:
@@ -1394,7 +1394,7 @@ THF:
 		Description: Steals enemy credits and hijacks enemy vehicles.
 	TooltipExtras:
 		Weaknesses: • Unarmed
-		Attributes: • Cloaked when not moving\n• Gains vision range while cloaked
+		Attributes: • Cloaked with increased vision when not moving
 	Valued:
 		Cost: 500
 	Tooltip:
@@ -1436,7 +1436,7 @@ THF:
 		CloakedCondition: hidden
 		RequiresCondition: !cloak-force-disabled && !being-warped
 		PauseOnCondition: invisibility
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 	Mobile:
@@ -1880,6 +1880,12 @@ N4:
 	FirepowerMultiplier@HeroOfTheUnion:
 		RequiresCondition: herooftheunion
 		Modifier: 120
+	SpeedMultiplier@BlackHand:
+		RequiresCondition: player-blackh
+		Modifier: 120
+	GrantConditionOnPrerequisite@BlackHand:
+		Condition: player-blackh
+		Prerequisites: player.blackh
 	Encyclopedia:
 		Category: Nod/Infantry
 
@@ -1982,6 +1988,12 @@ N5:
 		DeploySound: tibsurge.aud
 	Targetable@ChemWarrior:
 		TargetTypes: ChemWarrior
+	SpeedMultiplier@BlackHand:
+		RequiresCondition: player-blackh && !cyborgspeed-upgrade
+		Modifier: 120
+	GrantConditionOnPrerequisite@BlackHand:
+		Condition: player-blackh
+		Prerequisites: player.blackh
 	Encyclopedia:
 		Category: Nod/Infantry
 
@@ -2210,7 +2222,7 @@ SNIP:
 		UncloakOn: Move, Unload, Infiltrate, Demolish, Dock, Attack
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Heavy, Critical
 	GrantConditionOnPrerequisite@APB:
@@ -2437,7 +2449,7 @@ SAB:
 		ValidMovementTypes: Horizontal, Vertical, Turn
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Heavy, Critical
 		RequiresCondition: !player-shadow
@@ -3734,7 +3746,7 @@ SHAD:
 		UncloakSound: gstealof.aud
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		ValidDamageStates: Critical
 		RequiresCondition: !player-shadow
 	GrantConditionOnPrerequisite@Shadow:
@@ -4566,7 +4578,7 @@ CDOG:
 	EncyclopediaExtras:
 		AdditionalInfo: Stolen from Soviet Barracks.
 	-KeepsDistance:
-	-GuardsSelection:
+	-AutoGuard:
 
 MORT.Sonic:
 	Inherits: ^MortarInfantryBase

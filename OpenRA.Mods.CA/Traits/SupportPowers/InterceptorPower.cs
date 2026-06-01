@@ -36,9 +36,6 @@ namespace OpenRA.Mods.CA.Traits
 		[Desc("Actor to spawn when the aircraft start attacking")]
 		public readonly string CameraActor = null;
 
-		[Desc("Amount of time to keep the camera alive after the aircraft have finished attacking")]
-		public readonly int CameraRemoveDelay = 25;
-
 		[Desc("Weapon range offset to apply during the beacon clock calculation")]
 		public readonly WDist BeaconDistanceOffset = WDist.FromCells(6);
 
@@ -228,7 +225,6 @@ namespace OpenRA.Mods.CA.Traits
 			if (camera == null)
 				return;
 
-			camera.QueueActivity(new Wait(info.CameraRemoveDelay));
 			camera.QueueActivity(new RemoveSelf());
 		}
 

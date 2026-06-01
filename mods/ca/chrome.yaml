@@ -1560,16 +1560,16 @@ facebook-icon-hover:
 facebook-icon-pressed:
 	Inherits: facebook-icon
 
-ladder-icon:
+ca-website-icon:
 	Image: external-resources.png
 	PanelRegion: 128, 0, 0, 0, 32, 32, 0, 0
 
-ladder-icon-hover:
+ca-website-icon-hover:
 	Image: external-resources.png
 	PanelRegion: 128, 32, 0, 0, 32, 32, 0, 0
 
-ladder-icon-pressed:
-	Inherits: ladder-icon
+ca-website-icon-pressed:
+	Inherits: ca-website-icon
 
 tree-icon:
 	Image: external-resources.png

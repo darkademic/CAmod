@@ -869,8 +869,9 @@ SniperIFVGun.UPG:
 	ReloadDelay: 105
 	Warhead@1Dam: SpreadDamage
 		Versus:
-			Light: 40
+			Light: 35
 			Heavy: 50
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 
 SniperIFVGun:
 	Inherits: SniperIFVGun.UPG

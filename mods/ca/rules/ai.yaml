@@ -720,6 +720,24 @@ Player:
 					Attractiveness: 1
 					TargetMetric: Value
 					CheckRadius: 6c0
+			ichorspikepower:
+				OrderName: ichorspike
+				MinimumAttractiveness: 2
+				Consideration@1:
+					Against: Ally
+					Types: Harvester
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 4c512
+			voidspikepower:
+				OrderName: voidspike
+				MinimumAttractiveness: 2
+				Consideration@1:
+					Against: Enemy
+					Types: Harvester
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 4c512
 			owrath:
 				OrderName: overlordswrath
 				MinimumAttractiveness: 3000

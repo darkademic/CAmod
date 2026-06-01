@@ -15,6 +15,12 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.CA.Traits
 {
+	public enum LimitBehaviour
+	{
+		BlockNew,
+		ReplaceOldest
+	}
+
 	[Desc("Allows actor to have actors with Attachable trait attached to it.")]
 	public class AttachableToInfo : TraitInfo
 	{
@@ -24,6 +30,9 @@ namespace OpenRA.Mods.CA.Traits
 
 		[Desc("Limit how many specific actors can be attached.")]
 		public readonly int Limit = 0;
+
+		[Desc("What happens when a new attachment would exceed `Limit`.")]
+		public readonly LimitBehaviour LimitBehaviour = LimitBehaviour.BlockNew;
 
 		[Desc("Conditions to apply when attached to.")]
 		[GrantedConditionReference]
@@ -45,14 +54,13 @@ namespace OpenRA.Mods.CA.Traits
 		public Carryable Carryable { get; private set; }
 		readonly Actor self;
 		readonly HashSet<Attachable> attached = new HashSet<Attachable>();
+		readonly List<Attachable> attachmentOrder = new List<Attachable>();
 		readonly HashSet<Attachable> attachedToTransfer = new HashSet<Attachable>();
-		int attachedCount = 0;
 		int attachedToken = Actor.InvalidConditionToken;
 		int limitToken = Actor.InvalidConditionToken;
 		bool reserved;
 
 		public Actor Actor => self;
-		public HashSet<Attachable> Attached => attached;
 
 		public AttachableTo(ActorInitializer init, AttachableToInfo info)
 		{
@@ -169,7 +177,7 @@ namespace OpenRA.Mods.CA.Traits
 			if (!attachable.IsValid)
 				return false;
 
-			if (Info.Limit > 0 && attachedCount >= Info.Limit)
+			if (Info.Limit > 0 && Info.LimitBehaviour == LimitBehaviour.BlockNew && attached.Count >= Info.Limit)
 				return false;
 
 			return true;
@@ -180,14 +188,17 @@ namespace OpenRA.Mods.CA.Traits
 			if (!CanAttach(attachable, ignoreReservation))
 				return false;
 
-			attached.Add(attachable);
 			attachable.AttachTo(this, self.CenterPosition);
-			attachedCount++;
+			if (attached.Add(attachable))
+				attachmentOrder.Add(attachable);
+
+			if (Info.Limit > 0 && Info.LimitBehaviour == LimitBehaviour.ReplaceOldest && attached.Count > Info.Limit)
+				attachmentOrder[0].HostLost();
 
 			if (Info.AttachedCondition != null && attachedToken == Actor.InvalidConditionToken)
 				attachedToken = self.GrantCondition(Info.AttachedCondition);
 
-			if (Info.LimitCondition != null && limitToken == Actor.InvalidConditionToken && Info.Limit > 0 && attachedCount >= Info.Limit)
+			if (Info.LimitCondition != null && limitToken == Actor.InvalidConditionToken && Info.Limit > 0 && attached.Count >= Info.Limit)
 				limitToken = self.GrantCondition(Info.LimitCondition);
 
 			reserved = false;
@@ -201,12 +212,12 @@ namespace OpenRA.Mods.CA.Traits
 		public void Detach(Actor detachedActor, Attachable attachable)
 		{
 			attached.Remove(attachable);
-			attachedCount--;
+			attachmentOrder.Remove(attachable);
 
 			if (attachedToken != Actor.InvalidConditionToken && attached.Count == 0)
 				attachedToken = self.RevokeCondition(attachedToken);
 
-			if (limitToken != Actor.InvalidConditionToken && (Info.Limit == 0 || attachedCount < Info.Limit))
+			if (limitToken != Actor.InvalidConditionToken && (Info.Limit == 0 || attached.Count < Info.Limit))
 				limitToken = self.RevokeCondition(limitToken);
 
 			foreach (var notify in notifyAttached)

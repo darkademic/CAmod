@@ -35,20 +35,17 @@ namespace OpenRA.Mods.CA.Traits
 
 	public class MassEntersCargo : ConditionalTrait<MassEntersCargoInfo>, INotifyCreated, IIssueOrder, IResolveOrder, IOrderVoice
 	{
-		private readonly MassEntersCargoInfo info;
 		private Passenger passenger;
 
 		public int Weight => passenger.Info.Weight;
 
 		public MassEntersCargo(ActorInitializer init, MassEntersCargoInfo info)
 			: base(info)
-		{
-			this.info = info;
-		}
+		{ }
 
 		void INotifyCreated.Created(Actor self)
 		{
-			passenger = self.Trait<Passenger>();;
+			passenger = self.Trait<Passenger>();
 		}
 
 		IEnumerable<IOrderTargeter> IIssueOrder.Orders
@@ -69,7 +66,10 @@ namespace OpenRA.Mods.CA.Traits
 		{
 			if (order.OrderID == "MassEnterTransport")
 			{
-				return new Order(order.OrderID, self, target, queued);
+				var targetActor = target.Type == TargetType.Actor ? target.Actor : null;
+				var selectedActors = targetActor == null ? new[] { self } : OrderedPassengersForTarget(self, targetActor, self.World.Selection.Actors).Select(a => a.Actor).ToArray();
+
+				return new Order(order.OrderID, self, target, queued, selectedActors);
 			}
 
 			return null;
@@ -118,6 +118,19 @@ namespace OpenRA.Mods.CA.Traits
 			return IsCorrectCargoType(target) && CanEnter(target);
 		}
 
+		IEnumerable<TraitPair<MassEntersCargo>> OrderedPassengersForTarget(Actor self, Actor targetActor, IEnumerable<Actor> actors)
+		{
+			return actors
+				.Where(a => a != null
+					&& a.Info.HasTraitInfo<MassEntersCargoInfo>()
+					&& a.Owner == self.Owner
+					&& !a.IsDead)
+				.Select(a => new TraitPair<MassEntersCargo>(a, a.TraitOrDefault<MassEntersCargo>()))
+				.Where(a => a.Trait != null && a.Trait.IsValidForTarget(targetActor))
+				.OrderBy(a => (a.Actor.CenterPosition - targetActor.CenterPosition).LengthSquared)
+				.ThenBy(a => a.Actor.ActorID);
+		}
+
 		void IResolveOrder.ResolveOrder(Actor self, Order order)
 		{
 			if (order.OrderString != "MassEnterTransport")
@@ -129,20 +142,11 @@ namespace OpenRA.Mods.CA.Traits
 				return;
 
 			var targetActor = order.Target.Actor;
+			if (targetActor == null || targetActor.IsDead)
+				return;
 
-			var selectedWithTrait = self.World.Selection.Actors
-				.Where(a => a.Info.HasTraitInfo<MassEntersCargoInfo>()
-					&& a.Owner == self.Owner
-					&& !a.IsDead
-					&& a.Trait<MassEntersCargo>().IsValidForTarget(targetActor))
-				.OrderBy(a => (a.CenterPosition - targetActor.CenterPosition).LengthSquared)
-				.Select(a => new TraitPair<MassEntersCargo>(a, a.Trait<MassEntersCargo>()));
-
-			// Find the closest actor to the target transport
-			var closestActor = selectedWithTrait.FirstOrDefault();
-
-			// Only perform allocation if the current actor is the closest actor
-			if (closestActor.Actor != self)
+			var selectedWithTrait = OrderedPassengersForTarget(self, targetActor, order.ExtraActors ?? System.Array.Empty<Actor>()).ToArray();
+			if (!selectedWithTrait.Any(a => a.Actor == self))
 				return;
 
 			// Create a list of available transports
@@ -159,7 +163,11 @@ namespace OpenRA.Mods.CA.Traits
 					UnallocatedSpace = a.Trait<Cargo>().Info.MaxWeight - a.Trait<Cargo>().Passengers.Sum(p => p.Trait<Passenger>().Info.Weight)
 				})
 				.Where(t => t.Cargo != null && t.Cargo.HasSpace(1))
+				.OrderBy(t => (t.Actor.CenterPosition - targetActor.CenterPosition).LengthSquared)
+				.ThenBy(t => t.Actor.ActorID)
 				.ToList();
+
+			TransportInfo assignedTransport = null;
 
 			// Allocate passengers to the closest available transport
 			foreach (var pair in selectedWithTrait)
@@ -170,21 +178,26 @@ namespace OpenRA.Mods.CA.Traits
 				var closestTransport = availableTransports
 					.Where(t => t.UnallocatedSpace >= pair.Trait.Weight)
 					.OrderBy(t => (t.Actor.CenterPosition - pair.Actor.CenterPosition).LengthSquared)
+					.ThenBy(t => t.Actor.ActorID)
 					.FirstOrDefault();
 
 				if (closestTransport == null)
 					continue;
 
-				// can't queue an activity here because the selected units aren't known by all clients so causes a de-sync
-				// pair.Actor.QueueActivity(order.Queued, new MassRideTransport(pair.Actor, Target.FromActor(closestTransport.Actor), passenger.Info.TargetLineColor));
-				self.World.IssueOrder(new Order("EnterTransport", pair.Actor, Target.FromActor(closestTransport.Actor), order.Queued));
-				pair.Actor.ShowTargetLines();
+				if (pair.Actor == self)
+					assignedTransport = closestTransport;
 
 				if (!closestTransport.Cargo.HasSpace(1))
 					availableTransports.Remove(closestTransport);
 				else
 					closestTransport.UnallocatedSpace -= pair.Trait.Weight;
 			}
+
+			if (assignedTransport == null)
+				return;
+
+			self.QueueActivity(order.Queued, new MassRideTransport(self, Target.FromActor(assignedTransport.Actor), passenger.Info.TargetLineColor));
+			self.ShowTargetLines();
 		}
 	}
 

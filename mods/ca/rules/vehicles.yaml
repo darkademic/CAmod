@@ -1895,7 +1895,7 @@ SPEC:
 		PauseOnCondition: invisibility
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 		RequiresCondition: !player-shadow
@@ -2005,7 +2005,7 @@ SAPC:
 		AudibleThroughFog: true
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 		RequiresCondition: !player-shadow
@@ -2589,6 +2589,7 @@ TRUK.DROP:
 MGG:
 	Inherits: ^Vehicle
 	Inherits@AUTOTARGET: ^AutoTargetGround
+	Inherits@DefensePolicyGapBonus: ^DefensePolicyGapBonus
 	Buildable:
 		Queue: VehicleSQ, VehicleMQ
 		BuildPaletteOrder: 301
@@ -2642,6 +2643,8 @@ MGG:
 		PauseOnCondition: empdisable || being-warped
 	Turreted:
 		Offset: -299,0,171
+	CreatesShroudMultiplier@DefencePolicyShroud:
+		Modifier: 133
 	Encyclopedia:
 		Category: Allies/Vehicles
 
@@ -2766,18 +2769,18 @@ MSG:
 		UndeploySounds: clicky1.aud
 		UndeployOnMove: true
 		UndeployOnPickup: true
-	WithRangeCircle@MSG:
+	WithRangeCircleCA@MSG:
 		Type: StealthGenerator
 		RequiresCondition: deployed
 		Range: 5c512
-		Color: 00aa00
+		Color: 7681a0
 	ProximityExternalCondition@MSG:
 		Range: 5c512
 		Condition: sgencloak
 		RequiresCondition: deployed && !cloak-force-disabled
 		MaximumVerticalOffset: 512
 		AffectsParent: true
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 		RequiresCondition: !player-shadow
@@ -3044,15 +3047,18 @@ CTNK:
 		PreChargeCondition: chronoprep
 		MaxInstantCircleColor: EEEEEE44
 		MaxInstantCircleBorderColor: 00000044
-	WithColoredOverlay@PreCharge:
-		RequiresCondition: chronoprep
-		Color: 00eeff22
+		TeleportCondition: temporal-flux-init
+		ConditionDuration: 1
 	WithIdleOverlay@PreCharge:
 		Sequence: idle
 		Image: chronoprep-overlay
 		Palette: effect
 		RequiresCondition: chronoprep
 		IsDecoration: True
+	GrantTimedCondition@TemporalFlux:
+		RequiresCondition: (temporal-flux-init || chronoshifted) && tflx-upgrade
+	WithColoredOverlay@TemporalFlux:
+		RequiresCondition: temporal-flux || chronoprep
 	ProducibleWithLevel:
 		Prerequisites: vehicles.upgraded
 	WithProductionIconOverlay:
@@ -3060,19 +3066,16 @@ CTNK:
 		Prerequisites: vehicles.upgraded
 	Selectable:
 		DecorationBounds: 1280, 1280
-	ProductionCostMultiplier@GermanyBonus:
-		Multiplier: 90
-		Prerequisites: player.germany
-	PortableChronoModifier@TEMPORALFLUX:
+	PortableChronoModifier@GermanyBonus:
 		ExtraCharges: 1
-		RequiresCondition: tflx-upgrade
-	GrantConditionOnPrerequisite@TEMPORALFLUX:
-		Condition: tflx-upgrade
-		Prerequisites: tflx.upgrade
+		RequiresCondition: player-germany
+	GrantConditionOnPrerequisite@Germany:
+		Condition: player-germany
+		Prerequisites: player.germany
 	WithChronoshiftChargePipsDecoration:
 		Position: BottomLeft
 		Margin: 4, 3
-		RequiresCondition: tflx-upgrade
+		RequiresCondition: player-germany
 	AmbientSoundCA@Prep:
 		SoundFiles: chronoprep.aud
 		RequiresCondition: chronoprep
@@ -4581,6 +4584,8 @@ MDRN:
 
 MDRN.Attached:
 	Inherits: MDRN
+	AutoTargetPriority@ATTACKANYTHING:
+		RequiresCondition: stance-attackanything
 	-Buildable:
 	-Selectable:
 	-Tooltip:
@@ -4589,13 +4594,11 @@ MDRN.Attached:
 	RenderSprites:
 		Image: mdrn
 	-Mobile:
-	AttachedAircraft:
+	-Repairable:
+	-AttackMove:
+	-Guard:
+	ImmobilePositionable:
 		TurnSpeed: 18
-		Speed: 0
-		CanHover: true
-		Repulsable: false
-		CruiseAltitude: 1
-		LandableTerrainTypes: Clear,Road,Rough,Ore,Gems,Tiberium,BlueTiberium,BlackTiberium,Water,Tree,River,Rock,Beach,Bridge,Tunnel,Wall,Ford
 	RevealsShroud:
 		Type: GroundPosition
 	RevealsShroud@GAPGEN:
@@ -4607,7 +4610,6 @@ MDRN.Attached:
 	TurnOnIdleCA:
 		MinDelay: 25
 		MaxDelay: 75
-		TurnWhileAircraftPaused: true
 	Armament@PRIMARY:
 		Weapon: M60mgMD.Attached
 		LocalOffset: -500,0,72
@@ -5063,6 +5065,7 @@ MSAM:
 		RequiresCondition: hailstorm-upgrade
 		PauseOnCondition: reloading-primary
 		ReloadingCondition: reloading-secondary
+	ArmamentBurstCounter:
 	Voiced:
 		VoiceSet: MsamVoice
 	Encyclopedia:
@@ -5236,7 +5239,7 @@ STNK.Nod:
 		PauseOnCondition: invisibility
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 		RequiresCondition: !player-shadow
@@ -5358,7 +5361,7 @@ HSTK:
 		PauseOnCondition: invisibility
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 		RequiresCondition: !player-shadow
@@ -6398,12 +6401,12 @@ IFV:
 	TooltipExtras@psyturr:
 		Strengths: • Strong vs Infantry, Vehicles
 		Weaknesses: • Cannot deal damage\n• Cannot attack Aircraft
-		Attributes: • Can mind control enemy units\n• Control lost if passenger exits
+		Attributes: • Can mind control enemy units
 		IsStandard: false
 		RequiresCondition: psyturr
 	TooltipExtras@hackturr:
 		Strengths: • Strong vs Defenses, Buildings
-		Weaknesses: • Cannot deal damage\n• Control lost if passenger exits
+		Weaknesses: • Cannot deal damage
 		IsStandard: false
 		RequiresCondition: hackturr
 	TooltipExtras@cryoturr:
@@ -6999,13 +7002,13 @@ IFV:
 	GrantConditionOnPrerequisite@TibCore:
 		Condition: tibcore-upgrade
 		Prerequisites: tibcore.upgrade
-	GuardsSelection@REPAIR:
+	AutoGuard@REPAIR:
 		ValidTargets: Vehicle
 		RequiresCondition: mechturr && !stance-attackanything
-	GuardsSelection@MEDIC:
+	AutoGuard@MEDIC:
 		ValidTargets: Infantry
 		RequiresCondition: medturr && !stance-attackanything
-	GuardsSelection@SPY:
+	AutoGuard@SPY:
 		RequiresCondition: spyturr && !stance-attackanything
 	WithDecoration@COMMANDOSKULL:
 		RequiresCondition: commturr || psyturr
@@ -7094,7 +7097,7 @@ IFV:
 		PauseOnCondition: invisibility
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 	Armament@Psi:
@@ -7214,7 +7217,9 @@ IFV.AI:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 27000
+		HP: 32000
+	Armor:
+		Type: Light
 	Mobile:
 		Speed: 100
 	RevealsShroud:
@@ -7950,6 +7955,7 @@ HSAM:
 		RequiresCondition: hailstorm-upgrade
 		PauseOnCondition: reloading-primary
 		ReloadingCondition: reloading-secondary
+	ArmamentBurstCounter:
 	GrantConditionOnTerrain@ONWATER:
 		TerrainTypes: Water
 		Condition: onwater
@@ -8047,7 +8053,7 @@ RTNK:
 		PauseOnCondition: invisibility
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		ValidDamageStates: Critical
 	Selectable:
 		DecorationBounds: 1194, 1194
@@ -9031,7 +9037,7 @@ CHPR:
 	TooltipExtras:
 		Strengths: • Strong vs Heavy Armor, Defenses
 		Weaknesses: • Weak vs Buildings\n• Cannot attack Aircraft
-		Attributes: • Target is disabled while being erased\n• Can crush concrete walls\n• Special Ability: Teleport (with upgrade)
+		Attributes: • Target is disabled while being erased\n• Can crush concrete walls\n• Special Ability: Teleport
 	Valued:
 		Cost: 1550
 	Tooltip:
@@ -9112,11 +9118,12 @@ CHPR:
 	PortableChronoCA:
 		ChargeDelay: 375
 		MaxDistance: 18
-		RequiresCondition: !(empdisable && being-warped) && !chronoshifted && tflx-upgrade
+		RequiresCondition: !(empdisable && being-warped) && !chronoshifted
 		ShowSelectionBarWhenFull: false
-	GrantConditionOnPrerequisite@TEMPORALFLUX:
-		Condition: tflx-upgrade
-		Prerequisites: tflx.upgrade
+		TeleportCondition: temporal-flux-init
+		ConditionDuration: 1
+	GrantTimedCondition@TemporalFlux:
+		RequiresCondition: (temporal-flux-init || chronoshifted) && tflx-upgrade
 	RejectsOrders@AICHPR:
 		RequiresCondition: botwarping
 	GrantConditionOnAttack@AICHPR:
@@ -9129,9 +9136,6 @@ CHPR:
 		Bots: brutal, vhard, hard, normal, easy, naval
 	WithIdleOverlay@MINDCONTROL:
 		Offset: -200,0,768
-	RangeMultiplier@TEMPORALFLUX:
-		RequiresCondition: tflx-upgrade
-		Modifier: 130
 	Encyclopedia:
 		Category: Allies/Vehicles
 	EncyclopediaExtras:
@@ -9413,7 +9417,7 @@ BASI:
 		PauseOnCondition: invisibility
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 		RequiresCondition: !player-shadow
@@ -9488,7 +9492,7 @@ MANT:
 		DetectionTypes: AirCloak
 		RequiresCondition: empdisable || being-warped
 	KeepsDistance:
-	GuardsSelection:
+	AutoGuard:
 		ValidTargets: Infantry, Vehicle
 	Encyclopedia:
 		Category: Nod/Stolen Technology
@@ -10812,7 +10816,7 @@ CUST:
 		TargetTypes: MindControlImmune
 		RequiresCondition: loaded-cmdo
 	KeepsDistance:
-	GuardsSelection:
+	AutoGuard:
 		ValidTargets: Cyborg, Vehicle
 	AttackTurreted:
 		PauseOnCondition: empdisable || being-warped || blinded

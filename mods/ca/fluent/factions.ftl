@@ -48,7 +48,7 @@ faction-germany =
       • Temporal Flux
 
     Bonuses:
-      • Chrono Tanks (10% discount)
+      • Chrono Tank (+1 teleport charge)
       • Chronosphere (20% discount)
 
 faction-usa =
@@ -104,6 +104,7 @@ faction-ukraine =
       • Seismic Missiles
 
     Bonuses:
+      • Hind rockets reduce enemy movement speed & rate of fire
       • Terror Dog (20% discount)
       • Kirov Cluster Bombs
 
@@ -242,6 +243,7 @@ faction-blackh =
 
     Bonuses:
       • SSM (10% discount)
+      • Flamethrower (+20% speed)
       • Free Howitzer Upgrade
 
 faction-marked =
@@ -330,7 +332,8 @@ faction-traveler =
       • Advanced Articulators
 
     Bonuses:
-      • Fast Walkers (+15% Speed)
+      • Fast Walkers (+15% speed)
+      • Colony Ship (+15% speed)
 
 faction-harbinger =
     .name = Harbinger-31
@@ -346,8 +349,8 @@ faction-harbinger =
       • Stellar Fusion Cannon
 
     Bonuses:
-      • Devastator Warship (10% discount)
-      • Mothership (10% discount)
+      • Interloper (deals splash damage)
+      • Devastator Warship (+3 range)
 
 faction-collector =
     .name = Collector-73
@@ -363,6 +366,7 @@ faction-collector =
       • Coalescence
 
     Bonuses:
+      • Watcher (attack applies suppression)
       • Field Manipulator (20% discount)
       • Suppression Field (-15% cooldown, +10% duration)
 

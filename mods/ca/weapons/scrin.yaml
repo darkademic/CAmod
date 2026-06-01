@@ -201,13 +201,14 @@ PlasmaDiscs:
 		Image: plasdiscsm
 		TrailImage: smokey
 		TrailPalette: scrinplasma
-		Speed: 450
+		Speed: 550
 		Inaccuracy: 0c256
+		LockOnInaccuracy: 0
 		Blockable: false
 		Jammable: true
 		HorizontalRateOfTurn: 30
 		RangeLimit: 6c512
-		LockOnProbability: 50
+		LockOnBurstCounts: 1,3,5
 		MinimumLaunchAngle: 80
 		MaximumLaunchAngle: 112
 		VerticalRateOfTurn: 60
@@ -251,7 +252,7 @@ IntruderDiscs:
 	Burst: 3
 	Projectile: MissileCA
 		Inaccuracy: 0c128
-		LockOnProbability: 33
+		LockOnBurstCounts: 1,3
 	Warhead@1Dam: SpreadDamage
 		Damage: 2850
 		Spread: 256
@@ -269,8 +270,8 @@ MarauderDiscs:
 	Report: mrdr-fire1.aud, mrdr-fire2.aud
 	Projectile: MissileCA
 		Image: mrdrdisc
-		Speed: 550
-		LockOnProbability: 100
+		Speed: 600
+		-LockOnBurstCounts:
 		RangeLimit: 7c0
 		Palette: scrin
 		MinimumLaunchAngle: 40
@@ -402,6 +403,21 @@ InterloperLaser:
 			Wood: 80
 			Heavy: 100
 			Concrete: 40
+
+InterloperWave:
+	Inherits: InterloperLaser
+	Report: mrdr-fire1.aud, mrdr-fire2.aud
+	-Projectile:
+	Projectile: BulletCA
+		Image: mrdrdisc
+		Speed: 750
+		Palette: scrin
+	Warhead@1Dam: SpreadDamage
+		Damage: 1800
+		Spread: 426
+	Warhead@3Eff: CreateEffect
+		Explosions: large_explosion
+		ImpactSounds: seeker-hit1.aud, seeker-hit2.aud
 
 ^ScrinPlasmaBeam:
 	Inherits: ^ScrinLaser
@@ -781,7 +797,7 @@ ReaperLaserChargedReversed:
 StormriderZap:
 	Range: 5c768
 	Report: stormrider-fire1.aud, stormrider-fire2.aud, stormrider-fire3.aud
-	ReloadDelay: 70
+	ReloadDelay: 50
 	Burst: 5
 	BurstDelays: 4
 	Projectile: Bullet
@@ -842,7 +858,7 @@ StormRiderZapAA:
 		ImpactSounds: irocataa.aud, irocatab.aud, irocatac.aud, irocatad.aud
 
 TormentorZap:
-	ReloadDelay: 70
+	ReloadDelay: 50
 	Burst: 6
 	BurstDelays: 0, 4, 0, 4, 0
 	ValidTargets: Ground, Water
@@ -1528,16 +1544,48 @@ WatcherDart:
 		ContrailStartColorAlpha: 128
 		AllowSnapping: true
 	Warhead@Attach: AttachActor
-		Range: 341
+		Range: 0c42
 		Actor: watcher.parasite
 		AttachSounds: wchr-hit1.aud
 		MissSounds: dud1.aud
 		ValidTargets: WatcherParasiteAttachable
 		ValidRelationships: Enemy, Neutral
 	Warhead@Flash: FlashTarget
-		Spread: 341
+		Spread: 0c42
 		Color: ffffff
 		ValidTargets: WatcherParasiteAttachable
+
+WatcherDartCollector:
+	Inherits: WatcherDart
+	Warhead@Arc: FireShrapnel
+		Weapon: WatcherDartArc
+		AimChance: 100
+		Amount: 5
+		ThrowWithoutTarget: false
+		AimTargetStances: Enemy
+	Warhead@Suppression: GrantExternalConditionCA
+		Range: 0c42
+		Duration: 150
+		Condition: suppression
+		ValidRelationships: Enemy, Neutral
+
+WatcherDartArc:
+	Range: 3c0
+	Projectile: PlasmaBeam
+		Duration: 7
+		Colors: ad76c408
+		InnerLightness: 200
+		OuterLightness: 100
+		Radius: 2
+		Distortion: 150
+		DistortionAnimation: 150
+		SegmentLength: 350
+		ZOffset: 512
+	Warhead@Suppression: GrantExternalConditionCA
+		Range: 0c42
+		Duration: 150
+		Condition: suppression
+		ValidRelationships: Enemy, Neutral
 
 RiftInit:
 	ValidTargets: Ground, Water
@@ -2083,7 +2131,7 @@ AtomizerArcInfantry:
 	Projectile: InstantHit
 
 BursterTargeting:
-	ValidTargets: Vehicle, Infantry, Structure
+	ValidTargets: Ground
 	Range: 1c512
 	Projectile: InstantHit
 	Warhead@1Dam: TargetDamage
@@ -2129,6 +2177,9 @@ BursterExplode:
 		ValidTargets: Ground, Water, Infantry, Vehicle
 		ThrowWithoutTarget: true
 		Delay: 1
+	Warhead@3Res: CreateResource
+		AddsResourceType: Tiberium
+		Size: 1
 
 MindSparkEruption:
 	ReloadDelay: 1000

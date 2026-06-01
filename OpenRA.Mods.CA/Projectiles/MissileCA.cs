@@ -90,6 +90,9 @@ namespace OpenRA.Mods.CA.Projectiles
 		[Desc("Probability of locking onto and following target.")]
 		public readonly int LockOnProbability = 100;
 
+		[Desc("1-based burst shot indexes that always lock on. When set, overrides `LockOnProbability`.")]
+		public readonly HashSet<int> LockOnBurstCounts = new HashSet<int>();
+
 		[Desc("Horizontal rate of turn.")]
 		public readonly WAngle HorizontalRateOfTurn = new WAngle(20);
 
@@ -282,8 +285,7 @@ namespace OpenRA.Mods.CA.Projectiles
 
 			var world = args.SourceActor.World;
 
-			if (world.SharedRandom.Next(100) <= info.LockOnProbability)
-				lockOn = true;
+			lockOn = ShouldLockOn(world);
 
 			var inaccuracy = lockOn && info.LockOnInaccuracy.Length > -1 ? info.LockOnInaccuracy.Length : info.Inaccuracy.Length;
 			if (inaccuracy > 0)
@@ -322,6 +324,18 @@ namespace OpenRA.Mods.CA.Projectiles
 
 			shadowColor = new float3(info.ShadowColor.R, info.ShadowColor.G, info.ShadowColor.B) / 255f;
 			shadowAlpha = info.ShadowColor.A / 255f;
+		}
+
+		bool ShouldLockOn(World world)
+		{
+			if (info.LockOnBurstCounts.Count == 0 || (info.LockOnBurstCounts.Count == 1 && info.LockOnBurstCounts.Contains(0)))
+				return world.SharedRandom.Next(100) <= info.LockOnProbability;
+
+			var counter = args.SourceActor.TraitsImplementing<ArmamentBurstCounter>()
+				.FirstOrDefault(c => c.MatchesWeapon(args.Weapon));
+
+			var burstCount = counter?.ConsumeBurstCount(args.Weapon);
+			return burstCount.HasValue && info.LockOnBurstCounts.Contains(burstCount.Value);
 		}
 
 		static int LoopRadius(int speed, int rot)

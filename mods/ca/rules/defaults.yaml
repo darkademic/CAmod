@@ -568,9 +568,34 @@
 		Palette: ra2effect-ignore-lighting-alpha75
 		ReturnToAvoidDeath: true
 		Condition: chronoshifted
+	DummyConditionGranter@Chronoshifted:
+		Condition: chronoshifted
 	HealthCapDamageMultiplier@CHRONO:
 		MaxHealthEquivalent: 47000
 		RequiresCondition: chronoshifted
+	GrantTimedCondition@TemporalFlux:
+		ForceFullDuration: true
+		Condition: temporal-flux
+		Duration: 200
+		RequiresCondition: chronoshifted && tflx-upgrade
+	GrantConditionOnPrerequisite@TemporalFlux:
+		Condition: tflx-upgrade
+		Prerequisites: tflx.upgrade
+	WithColoredOverlay@TemporalFlux:
+		RequiresCondition: temporal-flux
+		Color: 00eeff22
+	WithIdleOverlay@TemporalFlux:
+		Sequence: idle
+		Image: tflux-overlay
+		Palette: effect
+		RequiresCondition: temporal-flux
+		IsDecoration: True
+	ReloadDelayMultiplier@CHRONO:
+		Modifier: 75
+		RequiresCondition: temporal-flux
+	SpeedMultiplier@CHRONO:
+		Modifier: 133
+		RequiresCondition: temporal-flux
 
 ^NoUnloadWhenChronoshifted:
 	RejectsOrders@NOUNLOADCHRONO:
@@ -1409,6 +1434,8 @@
 		RequiresCondition: aircraft-repair
 		RequiresSelection: True
 		ValidRelationships: Ally, Neutral
+	WithLinkedRangeCirclePreview@AIRCRAFTREPAIR:
+		Type: AircraftRepair
 
 ^AffectedByDriverKill:
 	GrantConditionIfOwnerIsNeutral@DRIVER_DEAD:
@@ -1505,7 +1532,7 @@
 		Color: 606060
 	ExternalCondition@CRATE-CLOAK:
 		Condition: crate-cloak
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Heavy, Critical
 
@@ -1749,6 +1776,8 @@
 		RequiresCondition: pointdef-upgrade
 	WithIdleOverlay@NSHIELD:
 		RequiresCondition: (nshield || gshield) && !(empdisable || invulnerability || invisibility)
+	Targetable@Harvester:
+		TargetTypes: Harvester
 	Targetable@MindControlResistant:
 		TargetTypes: MindControlResistant
 
@@ -2104,20 +2133,20 @@
 	Inherits@ObserverAttachable: ^ObserverAttachable
 	Targetable@WatcherParasite:
 		TargetTypes: WatcherParasiteAttachable
-		RequiresCondition: !observer-attached
 	AttachableTo@WatcherParasite:
 		Type: WatcherParasite
 		Limit: 1
+		LimitBehaviour: ReplaceOldest
 		AttachedCondition: observer-attached
 
 ^ShadowBeaconAttachable:
 	Inherits@ObserverAttachable: ^ObserverAttachable
 	Targetable@ShadowBeacon:
 		TargetTypes: ShadowBeaconAttachable
-		RequiresCondition: !observer-attached
 	AttachableTo@ShadowBeacon:
 		Type: ShadowBeacon
 		Limit: 1
+		LimitBehaviour: ReplaceOldest
 		AttachedCondition: observer-attached
 
 ^TargetPaintable:
@@ -2291,38 +2320,43 @@
 		Condition: economy-policy3
 		Prerequisites: economy.policy, influence.level3
 
-^DefensePolicyDamageReduction:
+^DefensePolicyStructureBonuses:
 	GrantConditionOnPrerequisite@DefensePolicy1:
 		Condition: defense-policy1
 		Prerequisites: defense.policy, influence.level1
 	GrantConditionOnPrerequisite@DefensePolicy2:
 		Condition: defense-policy2
 		Prerequisites: defense.policy, influence.level2
-	GrantConditionOnPrerequisite@DefensePolicy3:
-		Condition: defense-policy3
-		Prerequisites: defense.policy, influence.level3
 	DamageMultiplier@DefensePolicy1:
 		Modifier: 87
 		RequiresCondition: defense-policy1 && !defense-policy2
 	DamageMultiplier@DefensePolicy2:
 		Modifier: 77
 		RequiresCondition: defense-policy2
-	ChangesHealth@DefensePolicy2:
+	ChangesHealth@DefensePolicyRepairs:
 		Step: 200
 		StartIfBelow: 100
 		Delay: 24
 		DamageCooldown: 0
 		RequiresCondition: defense-policy2 && being-repaired
-	RevealsShroudMultiplier@DefensePolicy3:
-		Modifier: 125
-		RequiresCondition: defense-policy3
+	RevealsShroudMultiplier@DefensePolicyVision:
+		Modifier: 150
+		RequiresCondition: defense-policy2
 
-^DefensePolicyDamageBonus:
+^DefensePolicyDefenseRangeBonus:
 	GrantConditionOnPrerequisite@DefensePolicy3:
 		Condition: defense-policy3
 		Prerequisites: defense.policy, influence.level3
-	FirepowerMultiplier@DefensePolicy3:
+	FirepowerMultiplier@DefensePolicyDamage:
 		Modifier: 115
+		RequiresCondition: defense-policy3
+
+^DefensePolicyGapBonus:
+	GrantConditionOnPrerequisite@DefensePolicy3:
+		Condition: defense-policy3
+		Prerequisites: defense.policy, influence.level3
+	CreatesShroudMultiplier@DefencePolicyShroud:
+		Modifier: 125
 		RequiresCondition: defense-policy3
 
 ^DevelopmentPolicyVeterancyBonus:
@@ -2631,6 +2665,7 @@
 	Inherits@ReaperSnareable: ^ReaperSnareable
 	Inherits@IdolOfKane: ^IdolOfKane
 	Inherits@Berserk: ^Berserk
+	Inherits@WatcherParasite: ^WatcherParasiteAttachable
 	Inherits@DevelopmentPolicyVeterancyBonus: ^DevelopmentPolicyVeterancyBonus
 	RenderSprites:
 		PlayerPalette: playertd
@@ -3183,7 +3218,7 @@
 		UncloakSound: subshow1.aud
 		CloakedCondition: underwater
 		PauseOnCondition: cloak-force-disabled || invisibility || being-warped || crossing-ford
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 	DetectCloaked:
@@ -3508,7 +3543,7 @@
 	Inherits@WatcherParasite: ^WatcherParasiteAttachable
 	Inherits@TargetPaintable: ^TargetPaintable
 	Inherits@UndermineFoundation: ^UndermineFoundation
-	Inherits@DefensePolicyDamageReduction: ^DefensePolicyDamageReduction
+	Inherits@DefensePolicyStructureBonuses: ^DefensePolicyStructureBonuses
 	Inherits@NodCovenantTarget: ^NodCovenantTarget
 	WithPalettedOverlay@IRONCURTAIN:
 		RequiresCondition: invulnerability && !forceshield
@@ -3611,6 +3646,8 @@
 		ValuePercentage: 1
 		PlayerExperienceRelationships: Enemy, Neutral
 		SubsequentCaptureModifier: 50
+	WithLinkedRangeCirclePreview@SGEN:
+		Type: StealthGenerator
 	Encyclopedia:
 		Scale: 2
 
@@ -3640,7 +3677,7 @@
 	Inherits@veilable: ^Veilable
 	Inherits@weapjammable: ^WeaponJammable
 	Inherits@atomize: ^Atomizable
-	Inherits@DefensePolicyDamageBonus: ^DefensePolicyDamageBonus
+	Inherits@DefensePolicyDefenseRangeBonus: ^DefensePolicyDefenseRangeBonus
 	-SpeedMultiplier@concussion:
 	WithPalettedOverlay@IRONCURTAIN:
 		RequiresCondition: invulnerability
@@ -3710,12 +3747,16 @@
 	GivesExperienceCA:
 		ActorExperienceModifier: 10000
 	-UpdatesBuildOrder:
-	ChangesHealth@DefensePolicy2:
-		Step: 140
 	ExternalCondition@PowerDown:
 		Condition: powerdown
 	DummyConditionConsumer@PowerDown:
 		Condition: powerdown
+	ChangesHealth@DefensePolicyRepairs:
+		Step: 140
+		RequiresCondition: defense-policy3 && being-repaired
+	RevealsShroudMultiplier@DefensePolicyVision:
+		Modifier: 125
+		RequiresCondition: defense-policy3
 
 ^DefenseTD:
 	Inherits@1: ^Defense

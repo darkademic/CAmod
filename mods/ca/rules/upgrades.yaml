@@ -1067,7 +1067,7 @@ cyborgarmor.upgrade:
 		BuildPaletteOrder: 40
 		Prerequisites: ~player.nod, covenant.level2, ~techlevel.high
 		IconPalette: chrometd
-		Description: Improves cyborg armor.\n\nUpgrades: Cyborg\nUpgrades: Cyborg Rocket Soldier\nUpgrades: Chemical Warrior\nUpgrades: Acolyte/Templar\nUpgrades: Cyborg Mechanic\nUpgrades: Enlightened\nUpgrades: Cyborg Reaper\nUpgrades: Cyborg Elite
+		Description: Improves cyborg armor.\n\nUpgrades: Cyborg\nUpgrades: Cyborg Rocket Soldier\nUpgrades: Chemical Warrior\nUpgrades: Acolyte/Templar\nUpgrades: Cyborg Mechanic\nUpgrades: Cyberscrin/Cyberdog\nUpgrades: Enlightened\nUpgrades: Cyborg Reaper\nUpgrades: Cyborg Elite
 	TooltipExtras:
 		Strengths: + 20% reduced damage taken\n+ Additional 10% reduced damage from explosives
 	Valued:
@@ -1102,7 +1102,7 @@ cyborgdmg.upgrade:
 		BuildPaletteOrder: 40
 		Prerequisites: ~player.nod, covenant.level3, ~wrath.covenant, ~techlevel.high
 		IconPalette: chrometd
-		Description: Increases cyborg firepower.\n\nUpgrades: Cyborg\nUpgrades: Cyborg Rocket Soldier\nUpgrades: Chemical Warrior\nUpgrades: Acolyte/Templar\nUpgrades: Cyborg Mechanic\nUpgrades: Cyborg Elite
+		Description: Increases cyborg firepower.\n\nUpgrades: Cyborg\nUpgrades: Cyborg Rocket Soldier\nUpgrades: Chemical Warrior\nUpgrades: Acolyte/Templar\nUpgrades: Cyborg Mechanic\nUpgrades: Cyberscrin/Cyberdog\nUpgrades: Cyborg Elite
 	TooltipExtras:
 		Strengths: + 10% increased firepower
 	Valued:
@@ -1142,7 +1142,7 @@ cyborgspeed.upgrade:
 		BuildPaletteOrder: 40
 		Prerequisites: ~player.nod, covenant.level3, ~zeal.covenant, ~techlevel.high
 		IconPalette: chrometd
-		Description: Increases cyborg movement speed.\n\nUpgrades: Cyborg\nUpgrades: Cyborg Rocket Soldier\nUpgrades: Chemical Warrior\nUpgrades: Acolyte/Templar\nUpgrades: Cyborg Mechanic\nUpgrades: Enlightened\nUpgrades: Cyborg Elite
+		Description: Increases cyborg movement speed.\n\nUpgrades: Cyborg\nUpgrades: Cyborg Rocket Soldier\nUpgrades: Chemical Warrior\nUpgrades: Acolyte/Templar\nUpgrades: Cyborg Mechanic\nUpgrades: Cyberscrin/Cyberdog\nUpgrades: Enlightened\nUpgrades: Cyborg Elite
 	TooltipExtras:
 		Strengths: + 20% faster movement
 	Valued:
@@ -1648,7 +1648,7 @@ defense.policy:
 	Buildable:
 		BuildPaletteOrder: 1
 		Prerequisites: ~player.allies, influence.level1, !economy.policy, !defense.policy, !development.policy, ~techlevel.medium
-		Description: Pursue defense policy.\n\n• Level 1: +15% building HP, +25% Construction Yard build radius\n• Level 2: +30% building HP, +40% building repair rate & +20% defense repair rate\n• Level 3: +25% building/defense vision radius, +15% defense weapon damage
+		Description: Pursue defense policy.\n\n• Level 1: +15% building/defense HP, +25% Construction Yard build radius\n• Level 2: +30% building/defense HP, +40% building repair rate, +50% building vision radius\n• Level 3: +25% defense vision radius, +20% defense repair rate, +15% defense weapon damage, +2 gap generator shroud radius
 	TooltipExtras:
 		Attributes: (!) Only ONE Policy may be chosen.
 	Valued:
@@ -1871,10 +1871,10 @@ tflx.upgrade:
 		Name: Upgrade: Temporal Flux
 	Buildable:
 		BuildPaletteOrder: 40
-		Prerequisites: ~player.germany, pdox, ~techlevel.high
-		Description: Upgrades Chrono Prisons granting them the ability to teleport through time. Improves Chrono Tank chronoshifting.\n\nUpgrades: Chrono Prison\nUpgrades: Chrono Tank
+		Prerequisites: ~player.germany, atek, ~techlevel.high
+		Description: Units gain increased movement speed and rate of fire after being chronoshifted.\n\nUpgrades: Chronoshift\n\nUpgrades: Chrono Prison\nUpgrades: Chrono Tank
 	TooltipExtras:
-		Strengths: + Chrono Prison gains teleport ability\n+ Chrono Prison weapon range increased\n+ Chrono Tank can teleport twice before recharging
+		Strengths: + 33% increased movement & rate of fire for 8s after chronoshifting
 	Valued:
 		Cost: 750
 	RenderSprites:

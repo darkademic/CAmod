@@ -61,6 +61,7 @@ GAP:
 	Inherits: ^Defense
 	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDownOrForceDisable
 	Inherits@AUTOTARGET: ^AutoTargetAll
+	Inherits@DefensePolicyGapBonus: ^DefensePolicyGapBonus
 	Valued:
 		Cost: 1000
 	Tooltip:
@@ -488,6 +489,8 @@ TSLA:
 	Targetable@TeslaBoost:
 		TargetTypes: TeslaBoost
 		RequiresCondition: !powerdown
+	WithLinkedRangeCirclePreview@TeslaBoost:
+		Type: TeslaBoost
 	WithBuildingBib:
 		HasMinibib: true
 	WithTeslaChargeAnimation:
@@ -805,7 +808,7 @@ HBOX:
 		CloakDelay: 60
 		IsPlayerPalette: true
 		PauseOnCondition: cloak-force-disabled || being-warped
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 	Turreted:
@@ -2003,7 +2006,7 @@ TPWR:
 	ProximityExternalCondition@TeslaBoost:
 		Condition: charged
 		Range: 6c0
-	WithRangeCircle@TeslaBoost:
+	WithRangeCircleCA@TeslaBoost:
 		Type: TeslaBoost
 		Color: FFFF00AA
 		Range: 6c0
@@ -2396,7 +2399,7 @@ FIX:
 	ProximityExternalCondition@AIRCRAFTREPAIR:
 		Condition: aircraft-repair
 		Range: 10c0
-	WithRangeCircle@AIRCRAFTREPAIR:
+	WithRangeCircleCA@AIRCRAFTREPAIR:
 		Type: AircraftRepair
 		Color: FFD000AA
 		Range: 10c0
@@ -3603,6 +3606,7 @@ ATWR:
 		Weapon: StingerGTWR
 		LocalOffset: 256,128,0, 256,-128,0
 		LocalYaw: -100,100
+	ArmamentBurstCounter:
 	AttackTurreted:
 		PauseOnCondition: build-incomplete || disabled || empdisable || being-warped
 	ClassicFacingBodyOrientation:
@@ -4200,7 +4204,7 @@ REP:
 	ProximityExternalCondition@AIRCRAFTREPAIR:
 		Condition: aircraft-repair
 		Range: 10c0
-	WithRangeCircle@AIRCRAFTREPAIR:
+	WithRangeCircleCA@AIRCRAFTREPAIR:
 		Type: AircraftRepair
 		Color: FFD000AA
 		Range: 10c0
@@ -5237,17 +5241,17 @@ SGEN:
 	Targetable@INFILTRATION:
 		RequiresCondition: !being-warped
 		TargetTypes: ResetSupportPowerInfiltrate
-	WithRangeCircle@SGEN:
+	WithRangeCircleCA@SGEN:
 		Type: StealthGenerator
 		Range: 7c512
-		Color: 00aa00
+		Color: 7681a0
 	ProximityExternalCondition@SGEN:
 		Range: 7c512
 		Condition: sgencloak
 		MaximumVerticalOffset: 512
 		AffectsParent: true
 		RequiresCondition: !disabled && !empdisable && !being-warped && !active && !cloak-force-disabled
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 	Encyclopedia:
@@ -5269,7 +5273,7 @@ SGEN.Shadow:
 	GrantExternalConditionPowerCA@SGEN:
 		-ActiveCondition:
 	-ExternalCondition@ACTIVE:
-	-GrantConditionOnDamageState@UNCLOAK:
+	-GrantConditionOnDamageStateCA@UNCLOAK:
 	-Encyclopedia:
 
 CRAM:

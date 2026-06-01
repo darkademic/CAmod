@@ -644,6 +644,7 @@ S4:
 	Armament@BATF:
 		Name: batf
 		Weapon: IntruderDiscsBATF
+	ArmamentBurstCounter:
 	AttackFrontal:
 		PauseOnCondition: being-warped || blinded || reapersnare
 		FacingTolerance: 0
@@ -703,6 +704,7 @@ MRDR:
 	Armament@BATF:
 		Name: batf
 		Weapon: IntruderDiscsBATF
+	ArmamentBurstCounter:
 	AttackFrontal:
 		PauseOnCondition: being-warped || blinded || reapersnare
 		FacingTolerance: 0
@@ -759,7 +761,7 @@ WCHR:
 		Name: Watcher
 	TooltipExtras:
 		Weaknesses: • Cannot deal damage
-		Attributes: • Can attach parasites to enemy vehicles & structures\n• Cloaked when not moving\n• Detects cloaked ground units and spies\n• Special Ability: Teleport (with upgrade)
+		Attributes: • Can attach parasites to enemy vehicles & structures\n• Cloaked with increased vision when not moving\n• Detects cloaked ground units and spies\n• Applies multi-target suppression (Collector-73 only)\n• Special Ability: Teleport (with upgrade)
 	Health:
 		HP: 5000
 	UpdatesPlayerStatistics:
@@ -783,6 +785,11 @@ WCHR:
 	Armament@PRIMARY:
 		Weapon: WatcherDart
 		LocalOffset: 150,0,400
+		RequiresCondition: !player-collector
+	Armament@PRIMARYCOLLECTOR:
+		Weapon: WatcherDartCollector
+		LocalOffset: 150,0,400
+		RequiresCondition: player-collector
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: ReturnFire
@@ -799,7 +806,7 @@ WCHR:
 		IsPlayerPalette: false
 		RequiresCondition: !cloak-force-disabled && !being-warped
 		PauseOnCondition: invisibility
-	GrantConditionOnDamageState@UNCLOAK:
+	GrantConditionOnDamageStateCA@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 	WithColoredSelectionBox@INVIS:
@@ -817,6 +824,9 @@ WCHR:
 	GrantConditionOnPrerequisite@BLINKPACKS:
 		Condition: blink-upgrade
 		Prerequisites: blink.upgrade
+	GrantConditionOnPrerequisite@Collector:
+		Condition: player-collector
+		Prerequisites: player.collector
 	WithColoredOverlay@BLINKFLASH:
 		Color: ffffff80
 		RequiresCondition: blink
@@ -872,6 +882,8 @@ BRST:
 		CircleWidth: 0
 		Type: BursterAttack
 		DeployCursor: move
+	Crushable:
+		WarnProbability: 0
 
 EVIS:
 	Inherits@SCRININFANTRY: ^ScrinInfantry
@@ -1084,7 +1096,7 @@ STLK:
 	WithColoredOverlay@PhaseShield:
 		Color: 15091f88
 		RequiresCondition: phaseshield
-	-GrantConditionOnDamageState@UNCLOAK:
+	-GrantConditionOnDamageStateCA@UNCLOAK:
 	WithColoredSelectionBox@INVIS:
 		RequiresCondition: invisibility || hidden
 		ColorSource: Player
@@ -1135,7 +1147,7 @@ SMEDI:
 		ValidRelationships: Ally
 	Voiced:
 		VoiceSet: AssimilatorVoice
-	GuardsSelection:
+	AutoGuard:
 		ValidTargets: Infantry
 	KeepsDistance:
 	Encyclopedia:
@@ -1220,7 +1232,7 @@ ARTI:
 		Prerequisites: barracks.upgraded
 	Voiced:
 		VoiceSet: AssimilatorVoice
-	GuardsSelection:
+	AutoGuard:
 		ValidTargets: Vehicle
 	KeepsDistance:
 	Encyclopedia:
@@ -1695,6 +1707,7 @@ SEEK:
 		Weapon: PlasmaDiscs.Hypercharged
 		LocalOffset: 320,-25,320, 320,25,320
 		RequiresCondition: hypercharged
+	ArmamentBurstCounter:
 	AttackTurreted:
 		PauseOnCondition: empdisable || being-warped || blinded
 	WithSpriteTurret:
@@ -1854,7 +1867,15 @@ INTL:
 		MuzzleSequence: muzzle
 		MuzzlePalette: scrin
 		LocalOffset: 470,84,30, 470,-84,30
+		RequiresCondition: !player-harbinger
+	Armament@Harbinger:
+		Weapon: InterloperWave
+		LocalOffset: 470,0,30
+		RequiresCondition: player-harbinger
 	WithMuzzleOverlay:
+	GrantConditionOnPrerequisite@Harbinger:
+		Condition: player-harbinger
+		Prerequisites: player.harbinger
 	ProducibleWithLevel:
 		Prerequisites: vehicles.upgraded
 	WithProductionIconOverlay:
@@ -3101,6 +3122,12 @@ SMCV:
 		RequiresCondition: !empdisable && !being-warped && !driver-dead
 	DamageTypeDamageMultiplier@A2GPROTECTION:
 		Modifier: 60
+	SpeedMultiplier@Traveler:
+		Modifier: 115
+		RequiresCondition: player-traveler
+	GrantConditionOnPrerequisite@Traveler:
+		Condition: player-traveler
+		Prerequisites: player.traveler
 	Encyclopedia:
 		Category: Scrin/Vehicles
 
@@ -3643,8 +3670,11 @@ DEVA:
 		RequiresCondition: empdisable && !being-warped
 	-Hovers@CRUISING:
 	-EjectOnDeath:
-	ProductionCostMultiplier@HARBONUS:
-		Multiplier: 90
+	RangeMultiplier@Harbinger:
+		Modifier: 113
+		RequiresCondition: player-harbinger
+	GrantConditionOnPrerequisite@Harbinger:
+		Condition: player-harbinger
 		Prerequisites: player.harbinger
 	KillsSelf@Emp:
 		RequiresCondition: empdisable && cruising && !shields-upgrade
@@ -5439,7 +5469,7 @@ SREP:
 	ProximityExternalCondition@AIRCRAFTREPAIR:
 		Condition: aircraft-repair
 		Range: 10c0
-	WithRangeCircle@AIRCRAFTREPAIR:
+	WithRangeCircleCA@AIRCRAFTREPAIR:
 		Type: AircraftRepair
 		Color: FFD000AA
 		Range: 10c0
@@ -5954,7 +5984,7 @@ SSPK:
 	GrantConditionOnDamage@IONSTORM:
 		RequiresCondition: ioncon-upgrade && !(empdisable || being-warped)
 	-MapEditorData:
-	-ChangesHealth@DefensePolicy2:
+	-ChangesHealth@DefensePolicyRepairs:
 	-UpdatesCount@NodCovenant:
 	-Encyclopedia:
 	GrantTimedCondition@Active:
@@ -5986,7 +6016,7 @@ SSPK:
 	-RepairableBuilding:
 	-WithBuildingRepairDecoration:
 	-Sellable:
-	-ChangesHealth@DefensePolicy2:
+	-ChangesHealth@DefensePolicyRepairs:
 	-RenderRangeCircle:
 	-DetectCloaked:
 	-SpawnActorOnDeath:

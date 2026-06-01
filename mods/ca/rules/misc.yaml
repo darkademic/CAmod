@@ -361,7 +361,7 @@ camera.psychic:
 		Visible: Always
 	KillsSelf:
 		RemoveInstead: true
-		Delay: 1150
+		Delay: 90
 
 camera.sathack:
 	Inherits: ^CameraBase
@@ -429,6 +429,16 @@ camera.decoy:
 	KillsSelf:
 		RemoveInstead: true
 		Delay: 100
+
+camera.interceptors:
+	Inherits: ^CameraBase
+	WithRangeCircleCA@Interceptors:
+		Type: Interceptors
+		Range: 12c0
+		Visible: Always
+		ValidRelationships: Ally, Enemy, Neutral
+		UsePlayerColor: true
+		PlayerColorAlpha: 192
 
 gps.satellite:
 	Inherits@DUMMY: ^InvisibleDummy
@@ -1402,12 +1412,7 @@ killzone:
 shadow.beacon.camera:
 	Inherits@1: ^CameraBase
 	-Immobile:
-	AttachedAircraft:
-		Speed: 0
-		CanHover: true
-		Repulsable: false
-		CruiseAltitude: 1
-		LandableTerrainTypes: Clear,Road,Rough,Ore,Gems,Tiberium,BlueTiberium,BlackTiberium,Water,Tree,River,Rock,Beach,Bridge,Tunnel,Wall,Ford
+	ImmobilePositionable:
 	Attachable:
 		Type: ShadowBeacon
 		TargetTypes: ShadowBeaconAttachable

@@ -215,7 +215,7 @@ FlamerTD:
 		SingleHitPerActor: true
 		MinimumImpactDistance: 256
 		MaximumImpactDistance: 2c512
-		MinimumFriendlyFireDistance: 1c768
+		MinimumFriendlyFireRange: 1c768
 		ForceGround: DamageOnly
 		SmudgeType: Scorch
 		DamageFalloff@1:

@@ -10746,7 +10746,7 @@ CUST:
 		TurnSpeed: 16
 		Voice: Move
 	Voiced:
-		VoiceSet: CyborgVoice
+		VoiceSet: CustodianVoice
 	Passenger:
 		Voice: Move
 		CargoCondition: passenger

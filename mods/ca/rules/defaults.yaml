@@ -1685,7 +1685,6 @@
 	Inherits@SELECTION: ^SelectableEconomicUnit
 	Inherits@A2GPROTECTION: ^AirToGroundProtection
 	Inherits@EconomyPolicyDiscount: ^EconomyPolicyDiscount
-	Inherits@EconomyPolicyDurability: ^EconomyPolicyDurability
 	Inherits@HeavyArmor: ^HeavyArmor
 	Inherits@NodCovenantTarget: ^NodCovenantTarget
 	TooltipExtras:
@@ -2293,16 +2292,22 @@
 		Multiplier: 85
 		Prerequisites: economy.policy, influence.level1, !influence.level2
 	ProductionCostMultiplier@EconomyPolicy2:
+		Multiplier: 80
+		Prerequisites: economy.policy, influence.level2, !influence.level3
+	ProductionCostMultiplier@EconomyPolicy3:
 		Multiplier: 75
-		Prerequisites: economy.policy, influence.level2
+		Prerequisites: economy.policy, influence.level3
 
 ^EconomyPolicyTimeReduction:
 	ProductionTimeMultiplier@EconomyPolicy1:
 		Multiplier: 85
 		Prerequisites: economy.policy, influence.level1, !influence.level2
 	ProductionTimeMultiplier@EconomyPolicy2:
+		Multiplier: 80
+		Prerequisites: economy.policy, influence.level2, !influence.level3
+	ProductionTimeMultiplier@EconomyPolicy3:
 		Multiplier: 75
-		Prerequisites: economy.policy, influence.level2
+		Prerequisites: economy.policy, influence.level3
 
 ^EconomyPolicyMcvSpeedBonus:
 	SpeedMultiplier@EconomyPolicy2:
@@ -2311,14 +2316,6 @@
 	GrantConditionOnPrerequisite@EconomyPolicy2:
 		Condition: economy-policy2
 		Prerequisites: economy.policy, influence.level2
-
-^EconomyPolicyDurability:
-	DamageMultiplier@EconomyPolicy3:
-		Modifier: 87
-		RequiresCondition: economy-policy3
-	GrantConditionOnPrerequisite@EconomyPolicy3:
-		Condition: economy-policy3
-		Prerequisites: economy.policy, influence.level3
 
 ^DefensePolicyStructureBonuses:
 	GrantConditionOnPrerequisite@DefensePolicy1:

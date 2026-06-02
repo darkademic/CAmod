@@ -1227,3 +1227,10 @@ ConfessorVoice:
 		Action: conf-move1, conf-move2, conf-move3, conf-move4
 		Attack: confessor-attack1, confessor-attack2
 		Build: conf-create
+
+CustodianVoice:
+	Voices:
+		Select: cust-select1, cust-select2, cust-select3, cust-select4
+		Move: cust-move1, cust-move2, cust-move3, cust-move4
+		Attack: cust-move1, cust-move2, cust-move3, cust-move4
+		Action: cust-move1, cust-move2, cust-move3, cust-move4

@@ -707,12 +707,12 @@ AuroraVoice:
 		Move: vaurmoa, vaurmob, vaurmoc, vaurmod
 		Action: vaurata, vaurmsa, vaurmsb, vaurmsc
 
-TeslaTankVoice:
+TeslaTrackVoice:
 	Voices:
-		Select: itessec, itessed, itessee
-		Move: itesmoa, itesmob, itesmoc, itesmod, itesmoe
-		Attack: itesata, itesatb, itesatc, itesatd, itesate
-		Action: itesmoa, itesmob, itesmoc, itesmod, itesmoe
+		Select: ttra-select1, ttra-select2, ttra-select3, ttra-select4
+		Move: ttra-move1, ttra-move2, ttra-move3, ttra-move4
+		Attack: ttra-attack1, ttra-attack2, ttra-attack3, ttra-attack4
+		Action: ttra-attack1, ttra-attack2, ttra-attack3, ttra-move4
 
 TeslaTankRA2Voice:
 	Voices:

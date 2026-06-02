@@ -2851,7 +2851,7 @@ TTRA:
 	Passenger:
 		Voice: Move
 	Voiced:
-		VoiceSet: TeslaTankVoice
+		VoiceSet: TeslaTrackVoice
 	SpawnActorOnDeath:
 		Actor: TTRA.Husk
 		RequiresCondition: !being-warped

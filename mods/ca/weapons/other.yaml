@@ -370,7 +370,6 @@ BlackHandFlamer:
 			Image: thinblueflame
 			Palette: effect-ignore-lighting-alpha85
 			RepeatAnimation: false
-			Inaccuracy: 5000
 		DamageFalloff@1:
 			Spread: 256
 			Falloff: 100, 85, 0

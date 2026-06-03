@@ -1249,8 +1249,8 @@ tdog.upgrade:
 		Prerequisites: ~player.soviet, anyradar, ~techlevel.medium
 		Description: Attack Dogs are strapped with explosives.\n\nReplaces: Attack Dog
 	TooltipExtras:
-		Strengths: + Able to damage vehicles and buildings
-		Weaknesses: – Explodes on attack or on death\n– Increased cost
+		Strengths: + Able to damage vehicles and buildings\n+ Trained to detect scent of enemy vehicles
+		Weaknesses: – Explodes on attack or on death\n– No longer detects scent of enemy infantry\n– Reduced detection range\n– Increased cost
 	Valued:
 		Cost: 750
 	RenderSprites:

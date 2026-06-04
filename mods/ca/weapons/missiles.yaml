@@ -1304,6 +1304,16 @@ HonestJohn.UPG:
 	Warhead@Flames: FireCluster
 		Weapon: BurnFxBlack
 
+HonestJohnBH:
+	Inherits: HonestJohn
+	ReloadDelay: 190
+	Burst: 3
+	BurstDelays: 50
+
+HonestJohnBH.UPG:
+	Inherits: HonestJohn.UPG
+	ReloadDelay: 205
+
 HonestJohnTargeting:
 	Inherits: HonestJohn
 	ReloadDelay: 25

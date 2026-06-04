@@ -5074,10 +5074,20 @@ MLRS:
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Inherits@SLOWCRUSH: ^SlowedByCrushing
 	RenderSprites:
+		FactionImages:
+			nod: mlrs
+			blackh: mlrs.bh
+			legion: mlrs
+			marked: mlrs
+			shadow: mlrs
 	Valued:
 		Cost: 1350
 	Tooltip:
 		Name: SSM Launcher
+		RequiresCondition: !blackhand
+	Tooltip@BH:
+		Name: SSM Launcher (Triple)
+		RequiresCondition: blackhand
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Buildable:
@@ -5105,8 +5115,15 @@ MLRS:
 		Range: 4c0
 	Turreted:
 		TurnSpeed: 8
-		Offset: -128,0,128
+		Offset: -168,0,128
 		RealignDelay: 0
+		RequiresCondition: !blackhand
+	Turreted@BH:
+		Turret: secondary
+		TurnSpeed: 7
+		Offset: -168,0,128
+		RealignDelay: 0
+		RequiresCondition: blackhand
 	AttackMove:
 		AttackMoveCondition: attack-move
 	Armament@PRIMARY:
@@ -5114,13 +5131,27 @@ MLRS:
 		LocalOffset: 0,171,0, 0,-171,0
 		PauseOnCondition: moving
 		ReloadingCondition: reloading
-		RequiresCondition: !blacknapalm-upgrade
+		RequiresCondition: !blacknapalm-upgrade && !blackhand
 	Armament@PRIMARYUPG:
 		Weapon: HonestJohn.UPG
 		LocalOffset: 0,171,0, 0,-171,0
 		PauseOnCondition: moving
 		ReloadingCondition: reloading
-		RequiresCondition: blacknapalm-upgrade
+		RequiresCondition: blacknapalm-upgrade && !blackhand
+	Armament@PRIMARYBH:
+		Name: tertiary
+		Weapon: HonestJohnBH
+		LocalOffset: 0,0,0, 0,-171,0, 0,171,0
+		PauseOnCondition: moving
+		ReloadingCondition: reloading
+		RequiresCondition: !blacknapalm-upgrade && blackhand
+	Armament@PRIMARYUPGBH:
+		Name: tertiary
+		Weapon: HonestJohnBH.UPG
+		LocalOffset: 0,0,0, 0,-171,0, 0,171,0
+		PauseOnCondition: moving
+		ReloadingCondition: reloading
+		RequiresCondition: blacknapalm-upgrade && blackhand
 	Armament@TARGETTER:
 		Name: targetter
 		Weapon: HonestJohnTargeting
@@ -5129,21 +5160,44 @@ MLRS:
 	AmmoPool:
 		Ammo: 2
 		AmmoCondition: ammo
+		RequiresCondition: !blackhand
+	AmmoPool@BH:
+		Name: tertiary
+		Armaments: tertiary
+		Ammo: 3
+		AmmoCondition: ammobh
+		RequiresCondition: blackhand
 	AttackTurreted:
-		Armaments: primary, targetter
+		Turrets: primary, secondary
+		Armaments: primary, tertiary, targetter
 		TargetFrozenActors: True
 		ForceFireIgnoresActors: True
 		PauseOnCondition: empdisable || being-warped || blinded
 	WithSpriteTurret:
-		RequiresCondition: ammo > 1
+		RequiresCondition: !blackhand && ammo > 1
 	WithSpriteTurret@OneMissile:
-		RequiresCondition: ammo == 1
+		RequiresCondition: !blackhand && ammo == 1
 		Sequence: turret1
 	WithSpriteTurret@NoMissiles:
-		RequiresCondition: !ammo
+		RequiresCondition: !blackhand && !ammo
 		Sequence: turret0
+	WithSpriteTurret@BH:
+		RequiresCondition: blackhand && ammobh > 2
+		Turret: secondary
+	WithSpriteTurret@BHTwoMissile:
+		RequiresCondition: blackhand && ammobh == 2
+		Sequence: turret2
+		Turret: secondary
+	WithSpriteTurret@BHOneMissile:
+		RequiresCondition: blackhand && ammobh == 1
+		Sequence: turret1
+		Turret: secondary
+	WithSpriteTurret@BHNoMissiles:
+		RequiresCondition: blackhand && !ammobh
+		Sequence: turret0
+		Turret: secondary
 	GrantConditionOnAttack@AIMING:
-		ArmamentNames: primary, targetter
+		ArmamentNames: primary, tertiary, targetter
 		Condition: aiming
 		RevokeDelay: 15
 		RevokeAll: false
@@ -5155,6 +5209,12 @@ MLRS:
 	ReloadAmmoPool@1:
 		Delay: 120
 		Count: 2
+		RequiresCondition: !blackhand
+	ReloadAmmoPool@BH:
+		AmmoPool: tertiary
+		Delay: 170
+		Count: 3
+		RequiresCondition: blackhand
 	ProducibleWithLevel:
 		Prerequisites: vehicles.upgraded
 	WithProductionIconOverlay:
@@ -5162,12 +5222,12 @@ MLRS:
 		Prerequisites: vehicles.upgraded
 	Selectable:
 		DecorationBounds: 1194, 1194
-	ProductionCostMultiplier@BlackhBonus:
-		Multiplier: 90
-		Prerequisites: player.blackh
 	GrantConditionOnPrerequisite@UPG:
 		Condition: blacknapalm-upgrade
 		Prerequisites: blacknapalm.upgrade
+	GrantConditionOnPrerequisite@BH:
+		Condition: blackhand
+		Prerequisites: player.blackh
 	Encyclopedia:
 		Category: Nod/Vehicles
 	EncyclopediaExtras:

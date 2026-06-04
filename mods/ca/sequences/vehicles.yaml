@@ -1352,6 +1352,11 @@ mlrs:
 		Start: 32
 		Facings: 32
 		UseClassicFacings: True
+	turret2:
+		Filename: mlrs.shp
+		Start: 32
+		Facings: 32
+		UseClassicFacings: True
 	turret1:
 		Filename: mlrs.shp
 		Start: 64
@@ -1375,6 +1380,49 @@ mlrs.destroyed:
 	turret:
 		Filename: mlrs.shp
 		Start: 96
+		Facings: 32
+		UseClassicFacings: True
+		ZOffset: -512
+
+mlrs.bh:
+	Inherits: ^VehicleOverlays
+	idle:
+		Filename: mlrsbh.shp
+		Facings: 32
+		UseClassicFacings: True
+	turret:
+		Filename: mlrsbh.shp
+		Start: 32
+		Facings: 32
+		UseClassicFacings: True
+	turret2:
+		Filename: mlrsbh.shp
+		Start: 64
+		Facings: 32
+		UseClassicFacings: True
+	turret1:
+		Filename: mlrsbh.shp
+		Start: 96
+		Facings: 32
+		UseClassicFacings: True
+	turret0:
+		Filename: mlrsbh.shp
+		Start: 128
+		Facings: 32
+		UseClassicFacings: True
+	icon:
+		Filename: mlrsbhicnh.shp
+
+mlrs.bh.destroyed:
+	Inherits: ^VehicleOverlays
+	idle:
+		Filename: mlrsbh.shp
+		Facings: 32
+		UseClassicFacings: True
+		ZOffset: -512
+	turret:
+		Filename: mlrsbh.shp
+		Start: 128
 		Facings: 32
 		UseClassicFacings: True
 		ZOffset: -512

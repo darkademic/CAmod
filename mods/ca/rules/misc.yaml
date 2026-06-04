@@ -361,7 +361,7 @@ camera.psychic:
 		Visible: Always
 	KillsSelf:
 		RemoveInstead: true
-		Delay: 90
+		Delay: 775
 
 camera.sathack:
 	Inherits: ^CameraBase

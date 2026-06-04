@@ -2851,7 +2851,7 @@ TTRA:
 	Passenger:
 		Voice: Move
 	Voiced:
-		VoiceSet: TeslaTankVoice
+		VoiceSet: TeslaTrackVoice
 	SpawnActorOnDeath:
 		Actor: TTRA.Husk
 		RequiresCondition: !being-warped
@@ -3649,7 +3649,6 @@ FTNK.Decoy:
 		Locomotor: wheeled
 	Armament@PRIMARY:
 		Weapon: BigFlamerTD.Decoy
-	-Armament@FF:
 	FireWarheadsOnDeath:
 		Weapon: DecoyDespawn
 		EmptyWeapon: DecoyDespawn
@@ -3691,8 +3690,6 @@ HFTK.Decoy:
 		Weapon: HeavyFlameTankFlamer.Decoy
 	Armament@PRIMARYUPG:
 		Weapon: HeavyFlameTankFlamer.UPG.Decoy
-	-Armament@FF:
-	-Armament@FFUPG:
 	FireWarheadsOnDeath:
 		Weapon: DecoyDespawn
 		EmptyWeapon: DecoyDespawn
@@ -5547,9 +5544,6 @@ FTNK:
 		MuzzleSequence: muzzle
 		MuzzlePalette: tdeffect
 		LocalOffset: 682,128,42, 682,-128,42
-	Armament@FF:
-		Weapon: BigFlamerTDFF
-		LocalOffset: 682,128,42, 682,-128,42
 	WithMuzzleOverlay:
 	AttackFrontal:
 		PauseOnCondition: empdisable || being-warped || blinded || parachute
@@ -5613,16 +5607,6 @@ HFTK:
 		Weapon: HeavyFlameTankFlamer.UPG
 		MuzzleSequence: muzzle2
 		MuzzlePalette: scrin-ignore-lighting-alpha85
-		LocalOffset: 750,200,150, 750,-200,150
-		RequiresCondition: blacknapalm-upgrade
-	Armament@FF:
-		Name: secondary
-		Weapon: HeavyFlameTankFlamerFF
-		LocalOffset: 750,200,150, 750,-200,150
-		RequiresCondition: !blacknapalm-upgrade
-	Armament@FFUPG:
-		Name: secondary
-		Weapon: HeavyFlameTankFlamerFF.UPG
 		LocalOffset: 750,200,150, 750,-200,150
 		RequiresCondition: blacknapalm-upgrade
 	AttackTurreted:
@@ -10647,16 +10631,6 @@ AVTR:
 		MuzzlePalette: scrin-ignore-lighting-alpha85
 		LocalOffset: 550,200,700
 		RequiresCondition: blacknapalm-upgrade
-	Armament@FF:
-		Name: secondary
-		Weapon: AvatarFlamerFF
-		LocalOffset: 550,200,700
-		RequiresCondition: !blacknapalm-upgrade
-	Armament@FFUPG:
-		Name: secondary
-		Weapon: AvatarFlamerFF.UPG
-		LocalOffset: 550,200,700
-		RequiresCondition: blacknapalm-upgrade
 	AmbientSoundCA@3:
 		SoundFiles: bigflamer-loop1.aud
 		InitialSound: bigflamer-start1.aud
@@ -10772,7 +10746,7 @@ CUST:
 		TurnSpeed: 16
 		Voice: Move
 	Voiced:
-		VoiceSet: CyborgVoice
+		VoiceSet: CustodianVoice
 	Passenger:
 		Voice: Move
 		CargoCondition: passenger

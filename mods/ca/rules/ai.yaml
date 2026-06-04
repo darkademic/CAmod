@@ -728,7 +728,28 @@ Player:
 					Types: Harvester
 					Attractiveness: 1
 					TargetMetric: None
-					CheckRadius: 4c512
+					CheckRadius: 3c512
+				Consideration@2:
+					Against: Ally
+					Types: IchorSpike
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 3c512
+			colonyspikepower:
+				OrderName: colonyspike
+				MinimumAttractiveness: 2
+				Consideration@1:
+					Against: Ally
+					Types: Building
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 3c512
+				Consideration@2:
+					Against: Ally
+					Types: ColonySpike
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 3c512
 			voidspikepower:
 				OrderName: voidspike
 				MinimumAttractiveness: 2
@@ -737,7 +758,13 @@ Player:
 					Types: Harvester
 					Attractiveness: 1
 					TargetMetric: None
-					CheckRadius: 4c512
+					CheckRadius: 3c512
+				Consideration@2:
+					Against: Ally
+					Types: Ground
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 3c512
 			owrath:
 				OrderName: overlordswrath
 				MinimumAttractiveness: 3000

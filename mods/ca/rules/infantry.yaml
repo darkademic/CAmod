@@ -112,7 +112,7 @@ TDOG:
 	TooltipExtras:
 		Strengths: • Strong vs Infantry, Light Armor, Heavy Armor
 		Weaknesses: • Cannot attack Aircraft
-		Attributes: • Detects cloaked units, spies and mines\n• Detects the scent of enemy infantry beyond vision range\n• Immune to mind control\n• Explodes on death or on contact with a target
+		Attributes: • Detects cloaked units, spies and mines\n• Detects the scent of enemy vehicles beyond vision range\n• Immune to mind control\n• Explodes on death or on contact with a target
 	Valued:
 		Cost: 300
 	KillsSelf:
@@ -132,6 +132,11 @@ TDOG:
 	ProductionCostMultiplier@UkraineBonus:
 		Multiplier: 80
 		Prerequisites: player.ukraine
+	RangedGpsRadarProvider:
+		Range: 9c0
+		TargetTypes: Vehicle
+	WithRangeCircle:
+		Range: 9c0
 	-AutoGuard:
 	-KeepsDistance:
 
@@ -1847,8 +1852,7 @@ N4:
 		LocalOffset: 341,0,300
 		MuzzleSequence: muzzle
 		MuzzlePalette: tdeffect
-	Armament@FF:
-		Weapon: FlamerTDFF
+
 	Armament@BATF:
 		Name: batf
 		Weapon: FlamerTDBATF
@@ -1922,8 +1926,6 @@ N5:
 		LocalOffset: 341,0,300
 		MuzzleSequence: muzzle
 		MuzzlePalette: tdeffect
-	Armament@FF:
-		Weapon: ChemsprayTDFF
 	Armament@BATF:
 		Name: batf
 		Weapon: ChemsprayTDBATF

@@ -209,99 +209,79 @@ FlamerTD:
 	TargetActorCenter: true
 	Projectile: LinearPulse
 		Speed: 256
-		MinimumImpactDistance: 0c768
-		MaximumImpactDistance: 1c768
+		ImpactType: Rectangle
+		RectangleLength: 512
+		RectangleWidth: 2c0
+		SingleHitPerActor: true
+		MinimumImpactDistance: 256
+		MaximumImpactDistance: 2c512
+		MinimumFriendlyFireRange: 1c768
 		ForceGround: DamageOnly
-	Warhead@1Dam: SpreadDamage
-		Spread: 426
-		Falloff: 100, 35, 10, 0
-		Damage: 1850
-		Versus:
-			None: 300
-			Wood: 100
-			Tree: 100
-			Light: 70
-			Heavy: 30
-			Concrete: 30
-			Brick: 5
-		DamageTypes: Prone50Percent, TriggerProne, FireDeath
-		ValidRelationships: Enemy, Neutral
-		Delay: 5
-	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
-		InvalidTargets: Vehicle, Building, Wall
-
-FlamerTDFF:
-	Inherits: FlamerTD
-	Projectile: LinearPulse
-		MinimumImpactDistance: 1c768
+		DamageFalloff@1:
+			Spread: 512
+			Falloff: 100, 25, 0
+		DamageFalloff@2:
+			Spread: 256
+			Falloff: 100, 100, 100, 100, 100, 100, 100, 100, 100, 80, 25, 0
+			FalloffBasis: DistanceFromSource
 	Warhead@1Dam: SpreadDamage
-		Falloff: 100, 50, 0
-		ValidRelationships: Ally
-		DebugOverlayColor: ffaa00
-	-Warhead@2Smu:
+		Damage: 10500
+		Versus:
+			None: 100
+			Wood: 85
+			Tree: 30
+			Light: 60
+			Heavy: 25
+			Concrete: 25
+			Brick: 5
+		Delay: 8
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 
 BigFlamerTD:
 	Inherits: FlamerTD
 	Burst: 2
 	BurstDelays: 5
 	Projectile: LinearPulse
-		Speed: 288
 		Inaccuracy: 484
-		MinimumImpactDistance: 288
-		MaximumImpactDistance: 2304
 		ProjectileAnimation@1:
 			Speed: 96
 			Image: flameallfast
 			Palette: tseffect-ignore-lighting-alpha90
+		DamageFalloff@1:
+			Falloff: 100, 40, 0
 	Warhead@1Dam: SpreadDamage
-		Damage: 925
+		Damage: 6000
 		Versus:
-			Light: 100
-			Concrete: 50
+			Wood: 105
+			Light: 85
+			Concrete: 45
 
 BigFlamerTD.Decoy:
 	Inherits: BigFlamerTD
+	Projectile: LinearPulse
+		-SmudgeType:
+		-DamageFalloff@1:
+		-DamageFalloff@2:
 	Warhead@1Dam: SpreadDamage
 		Damage: 0
-	-Warhead@2Smu:
 
 FlamerTDBATF:
 	Inherits: BigFlamerTD
 	Burst: 1
 
-BigFlamerTDFF:
-	Inherits: BigFlamerTD
-	Projectile: LinearPulse
-		-ProjectileAnimation@1:
-		MinimumImpactDistance: 1440
-	Warhead@1Dam: SpreadDamage
-		Falloff: 100, 50, 0
-		ValidRelationships: Ally
-		DebugOverlayColor: ffaa00
-	-Warhead@2Smu:
-
 ChemsprayTD:
 	Inherits: FlamerTD
-	Warhead@1Dam: SpreadDamage
-		Falloff: 100, 45, 20, 0
-		Damage: 2000
-		Versus:
-			Concrete: 40
-			Heavy: 40
-		DamageTypes: Prone50Percent, TriggerProne, RadiationDeath
-	Warhead@2Smu: LeaveSmudge
+	Projectile: LinearPulse
 		SmudgeType: Scorch-NoFlame
-
-ChemsprayTDFF:
-	Inherits: FlamerTDFF
+		DamageFalloff@1:
+			Falloff: 100, 35, 0
 	Warhead@1Dam: SpreadDamage
-		Damage: 2000
+		Damage: 11250
 		Versus:
-			Concrete: 40
-			Heavy: 40
+			Concrete: 35
+			Heavy: 35
 		DamageTypes: Prone50Percent, TriggerProne, RadiationDeath
-		InvalidTargets: ChemWarrior
 
 ChemsprayTDBATF:
 	Inherits: BigFlamerTD
@@ -310,11 +290,10 @@ ChemsprayTDBATF:
 		ProjectileAnimation@1:
 			Image: chemallfast
 			Palette: ra2effect-ignore-lighting-alpha90
+			SmudgeType: Scorch-NoFlame
 	Warhead@1Dam: SpreadDamage
-		Damage: 1100
+		Damage: 11250
 		DamageTypes: Prone50Percent, TriggerProne, RadiationDeath
-	Warhead@2Smu: LeaveSmudge
-		SmudgeType: Scorch-NoFlame
 
 HeavyFlameTankFlamer:
 	Inherits: BigFlamerTD
@@ -322,78 +301,56 @@ HeavyFlameTankFlamer:
 	ReloadDelay: 80
 	Burst: 25
 	BurstDelays: 2
+	Projectile: LinearPulse
+		SmudgeChance: 10
 	Warhead@1Dam: SpreadDamage
-		Falloff: 100, 45, 20, 0
-		Damage: 175
-		Versus:
-			None: 230
-	Warhead@2Smu: LeaveSmudge
-		AirThreshold: 256
-		Chance: 10
+		Damage: 1140
 
 HeavyFlameTankFlamer.Decoy:
 	Inherits: HeavyFlameTankFlamer
+	Projectile: LinearPulse
+		-SmudgeType:
+		-DamageFalloff@1:
+		-DamageFalloff@2:
 	Warhead@1Dam: SpreadDamage
 		Damage: 0
-	-Warhead@2Smu:
 
 HeavyFlameTankFlamer.UPG:
 	Inherits: HeavyFlameTankFlamer
 	ReloadDelay: 95
 	Projectile: LinearPulse
+		SmudgeType: Scorch-Black
 		ProjectileAnimation@1:
 			Image: flameallblack
 			Palette: scrin-ignore-lighting-alpha85
 	Warhead@1Dam: SpreadDamage
-		Damage: 180
+		Damage: 1175
 		Versus:
 			Heavy: 70
-			Concrete: 60
-	Warhead@2Smu: LeaveSmudge
-		SmudgeType: Scorch-Black
+			Concrete: 90
 
 HeavyFlameTankFlamer.UPG.Decoy:
 	Inherits: HeavyFlameTankFlamer.UPG
+	Projectile: LinearPulse
+		-SmudgeType:
+		-DamageFalloff@1:
+		-DamageFalloff@2:
 	Warhead@1Dam: SpreadDamage
 		Damage: 0
-	-Warhead@2Smu:
-
-HeavyFlameTankFlamerFF:
-	Inherits: HeavyFlameTankFlamer
-	Projectile: LinearPulse
-		-ProjectileAnimation@1:
-		MinimumImpactDistance: 1440
-	Warhead@1Dam: SpreadDamage
-		Falloff: 100, 50, 0
-		ValidRelationships: Ally
-		DebugOverlayColor: ffaa00
-	-Warhead@2Smu:
-
-HeavyFlameTankFlamerFF.UPG:
-	Inherits: HeavyFlameTankFlamerFF
-	ReloadDelay: 95
 
 AvatarFlamer:
 	Inherits: HeavyFlameTankFlamer
 	Burst: 13
 	BurstDelays: 4
 	Warhead@1Dam: SpreadDamage
-		Damage: 260
+		Damage: 570
 
 AvatarFlamer.UPG:
 	Inherits: HeavyFlameTankFlamer.UPG
 	Burst: 13
 	BurstDelays: 4
 	Warhead@1Dam: SpreadDamage
-		Damage: 270
-
-AvatarFlamerFF:
-	Inherits: HeavyFlameTankFlamerFF
-	Burst: 13
-	BurstDelays: 4
-
-AvatarFlamerFF.UPG:
-	ReloadDelay: 95
+		Damage: 590
 
 BlackHandFlamer:
 	Inherits: HeavyFlameTankFlamer
@@ -402,29 +359,35 @@ BlackHandFlamer:
 	Burst: 28
 	Range: 3c512
 	Projectile: LinearPulse
-		Speed: 440
+		Speed: 512
+		ImpactInterval: 256
+		RectangleWidth: 1c0
 		Inaccuracy: 160
-		MinimumImpactDistance: 440
 		MaximumImpactDistance: 3c512
+		SmudgeChance: 5
 		ProjectileAnimation@1:
 			Speed: 220
 			Image: thinblueflame
 			Palette: effect-ignore-lighting-alpha85
 			RepeatAnimation: false
+		DamageFalloff@1:
+			Spread: 256
+			Falloff: 100, 85, 0
+		DamageFalloff@2:
+			Spread: 256
+			Falloff: 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 80, 25, 0
+			FalloffBasis: DistanceFromSource
 	Warhead@1Dam: SpreadDamage
-		Range: 0, 256, 512
-		Falloff: 100, 100, 0
-		Damage: 260
+		Damage: 820
 		Versus:
-			None: 55
-			Wood: 15
-			Light: 70
+			None: 45
+			Wood: 30
+			Light: 65
 			Heavy: 100
 			Concrete: 35
 			Brick: 5
 		-Delay:
-	Warhead@2Smu: LeaveSmudge
-		Chance: 5
+		ValidRelationships: Enemy, Neutral
 
 Napalm:
 	Inherits: ^FireWeapon

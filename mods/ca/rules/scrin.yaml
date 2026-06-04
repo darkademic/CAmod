@@ -6078,6 +6078,8 @@ VSPK:
 		ValidRelationships: Ally, Enemy, Neutral
 		ReflectToAttacker: true
 		RequiresCondition: !build-incomplete && !being-warped
+	Targetable@Voidspike:
+		TargetTypes: Voidspike
 
 ISPK:
 	Inherits: ^SpikeBase
@@ -6127,6 +6129,8 @@ ISPK:
 		DamageCooldown: 150
 	WithBuildingBib:
 		HasMinibib: true
+	Targetable@IchorSpike:
+		TargetTypes: IchorSpike
 
 CSPK:
 	Inherits: ^SpikeBase
@@ -6200,6 +6204,8 @@ CSPK:
 	ProvidesPrerequisiteValidatedFaction@collector:
 		Factions: collector
 		Prerequisite: structures.collector
+	Targetable@ColonySpike:
+		TargetTypes: ColonySpike
 
 #
 # ---- misc

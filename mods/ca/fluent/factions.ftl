@@ -146,7 +146,7 @@ faction-yuri =
       • Gattling BTR
 
     Bonuses:
-      • Spy Plane grants psychic detection for 40s after vision fades
+      • Spy Plane (psychic detection after vision fades)
 
 faction-talon =
     .name = Talon
@@ -242,7 +242,7 @@ faction-blackh =
       • Black Napalm
 
     Bonuses:
-      • SSM (Extra Missile)
+      • SSM (extra missile)
       • Flamethrower (+20% speed)
       • Free Howitzer Upgrade
 

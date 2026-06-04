@@ -3420,6 +3420,8 @@ GDRN:
 		BuildDuration: 200
 		RequiresCondition: !mindcontrolled
 	ReclaimsExperience:
+		Type: Drone
+		MaximumReclaimableValuePercentage: 600
 	Sellable:
 		RequiresCondition: unit-sellable && !c4 && !being-warped
 	Encyclopedia:
@@ -3457,8 +3459,6 @@ GDRN.TOW:
 		SelectionBarColor: aaaaaa
 	Selectable:
 		Class: gdrn
-	ReclaimsExperience:
-		Type: gdrn
 	-ReplacedInQueue:
 	-Upgradeable@TOW:
 	-WithDecoration@UpgradeOverlay:
@@ -4420,6 +4420,8 @@ MTNK.Drone:
 	Sellable:
 		RequiresCondition: unit-sellable && !c4 && !being-warped
 	ReclaimsExperience:
+		Type: Drone
+		MaximumReclaimableValuePercentage: 600
 	Encyclopedia:
 		Category: GDI/Vehicles
 	EncyclopediaExtras:
@@ -4564,6 +4566,7 @@ MDRN:
 		MinAttachDistance: 1c512
 		OnAttachTransformInto: mdrn.attached
 		AttachSound: mdrn-attach.aud
+		GivesExperienceToMaster: true
 	-Carryable:
 	-GrantCondition@CarriedImmobile:
 	WithIdleOverlay@NSHIELD:
@@ -4572,6 +4575,8 @@ MDRN:
 		Weapon: VisualExplodeSmall
 		EmptyWeapon: VisualExplodeSmall
 	ReclaimsExperience:
+		Type: Drone
+		MaximumReclaimableValuePercentage: 600
 	Sellable:
 		RequiresCondition: unit-sellable && !c4 && !being-warped
 	Encyclopedia:
@@ -4622,8 +4627,6 @@ MDRN.Attached:
 		DamageCooldown: 50
 	CaptureManager:
 		-BeingCapturedCondition:
-	ReclaimsExperience:
-		Type: mdrn
 	Cloak@NORMAL:
 		InitialDelay: 0
 		CloakDelay: 0
@@ -4645,6 +4648,14 @@ MDRN.Attached:
 	-ChronoshiftableCA:
 	-HealthCapDamageMultiplier@CHRONO:
 	-Encyclopedia:
+	-GainsExperience:
+	-ReclaimsExperience:
+	GivesExperienceToMaster:
+	InheritsExperienceLevelOfMaster:
+		Conditions:
+			1: rank-veteran
+			2: rank-veteran
+			3: rank-veteran
 	-GrantConditionOnPrerequisite@NODRANK:
 	-GrantConditionOnPrerequisite@SCRINRANK:
 	-WithDecoration@RANK-1:
@@ -4927,6 +4938,8 @@ HTNK.Drone:
 	-Upgradeable@DRONE:
 	-WithDecoration@UpgradeOverlay:
 	ReclaimsExperience:
+		Type: Drone
+		MaximumReclaimableValuePercentage: 600
 	Sellable:
 		RequiresCondition: unit-sellable && !c4 && !being-warped
 	EncyclopediaExtras:

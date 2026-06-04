@@ -1288,8 +1288,9 @@ PortaLaser.Templar.UPG:
 	Range: 6c512
 	StartBurstReport: lasgunupg.aud, lasgunupg2.aud
 	Projectile: LaserZapCA
+		Duration: 6
 		SecondaryBeamWidth: 75
-		SecondaryBeamColor: FF006660
+		SecondaryBeamColor: FF00FF60
 	Warhead@1Dam: SpreadDamage
 		Damage: 2000
 
@@ -2477,19 +2478,6 @@ IrradiatedUnit:
 			Concrete: 10
 			Brick: 0
 
-Lasher:
-	ReloadDelay: 5
-	Range: 1c0
-	ValidTargets: Ground, Water
-	Projectile: InstantHit
-	Warhead@1Dam: SpreadDamage
-		Range: 0, 341, 682
-		Falloff: 100, 100, 0
-		Damage: 4000
-		ValidTargets: Infantry
-		DamageTypes: BulletDeath, FlakVestMitigatedMinor
-		ValidRelationships: Enemy, Neutral
-
 ChaosDroneTargeting:
 	Range: 2c0
 	Projectile: InstantHit
@@ -3121,9 +3109,9 @@ Lasher:
 	Warhead@1Dam: SpreadDamage
 		Range: 0, 341, 682
 		Falloff: 100, 100, 0
-		Damage: 350
+		Damage: 500
 		ValidTargets: Infantry
-		DamageTypes: BulletDeath
+		DamageTypes: BulletDeath, FlakVestMitigatedMinor
 		ValidRelationships: Enemy, Neutral
 
 ShadowBeaconLauncher:

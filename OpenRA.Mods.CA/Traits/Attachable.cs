@@ -75,6 +75,9 @@ namespace OpenRA.Mods.CA.Traits
 		[Desc("On detaching, transform into this actor.")]
 		public readonly string OnDetachTransformInto = null;
 
+		[Desc("If true, copies stored `GainsExperience` progress to the attachment target on a successful attach.")]
+		public readonly bool OnAttachCopyExperience = false;
+
 		[Desc("If true, detatch on host being killed/captured, otherwise dispose.")]
 		public readonly OnDetachBehavior OnDetachBehavior = OnDetachBehavior.Dispose;
 
@@ -96,6 +99,8 @@ namespace OpenRA.Mods.CA.Traits
 		Target lastTarget;
 		readonly IPositionable positionable;
 		readonly Actor self;
+
+		public Actor AttachedToActor => attachedTo?.Actor;
 
 		public Attachable(ActorInitializer init, AttachableInfo info)
 		{

@@ -783,6 +783,7 @@ SPY:
 			yuri: cmdo-disguise
 			seal: seal-disguise
 			cmsr: cmsr-disguise
+			assa: assa-disguise
 	Infiltrates:
 		Types: ResetSupportPowerInfiltrate, PowerOutageInfiltrate, VetInfiltrate, ResetShroudInfiltrate, GrantSupportPowerInfiltrate
 		Notification: BuildingInfiltrated
@@ -824,6 +825,13 @@ SPY:
 		Position: TopLeft
 		ValidRelationships: Ally, Enemy, Neutral
 		RequiresCondition: cmsr-disguise
+	WithDecoration@AssassinSkull:
+		Image: pips
+		Sequence: pip-assa
+		Palette: effect
+		Position: TopLeft
+		ValidRelationships: Ally, Enemy, Neutral
+		RequiresCondition: assa-disguise
 	WithIdleOverlay@Inspiration:
 		Image: ussrstar
 		Sequence: idle-overlay1
@@ -2487,6 +2495,7 @@ SAB:
 ASSA:
 	Inherits: ^Soldier
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@COMMANDOSKULL: ^CommandoSkull
 	Buildable:
 		Queue: AssassinSquad
 		Description: Specialist armed with a sniper rifle and C4 explosives.
@@ -2582,6 +2591,8 @@ ASSA:
 	WithProductionIconOverlay:
 		Types: Veterancy
 		Prerequisites: barracks.upgraded
+	WithDecoration@COMMANDOSKULL:
+		Sequence: pip-assa
 	Targetable@MindControlResistant:
 		TargetTypes: MindControlResistant
 	Encyclopedia:

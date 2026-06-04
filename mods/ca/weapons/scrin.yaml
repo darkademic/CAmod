@@ -1635,6 +1635,15 @@ SuppressionField:
 		Duration: 600
 		Condition: suppression
 		ValidTargets: Air, AirSmall
+	Warhead@Distort: HeatDistortion
+		Scale: 0.5
+		FadeFrames: 280
+		FadeInFrames: 15
+	Warhead@GlowImpact: GlowImpact
+		Color: f454d0
+		Scale: 1.5
+		FadeFrames: 180
+		FadeInFrames: 5
 
 BuzzerSpawner:
 	ReloadDelay: 1
@@ -2063,6 +2072,11 @@ AtomizerBolts:
 		ExplosionPalette: scrin
 		Image: atmzbolthit
 		ImpactSounds: atomizer-hit1.aud
+	Warhead@Glow: GlowImpact
+		GlowScale: 1.5
+		GlowFadeFrames: 25
+		GlowFadeInFrames: 5
+		GlowColor: ff0000
 
 AtomizerArc:
 	Inherits: AtomizerBolts
@@ -2344,6 +2358,11 @@ NullifierBolt:
 		Spread: 0c128
 		Color: ffff00
 		ValidTargets: Infantry, Vehicle, Ship, Defense
+	Warhead@Glow: GlowImpact
+		GlowScale: 1.5
+		GlowFadeFrames: 30
+		GlowFadeInFrames: 10
+		GlowColor: ffff00
 
 ScrinRepair:
 	Inherits: Heal

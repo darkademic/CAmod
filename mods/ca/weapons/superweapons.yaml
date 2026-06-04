@@ -1247,9 +1247,10 @@ TimeWarp:
 		Damage: 1
 	Warhead@3Flash: ChronoFlashEffect
 	Warhead@Distort: HeatDistortion
-		Scale: 0.4
+		Scale: 0.5
 		FadeFrames: 280
 		FadeInFrames: 15
+		ImpactActors: false
 
 ClusterMineSpawner:
 	ValidTargets: Ground, Water

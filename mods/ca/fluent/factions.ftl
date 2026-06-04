@@ -226,6 +226,7 @@ faction-arc =
       • Drone Carrier (10% discount)
       • Additional Comms. Centers (50% discount)
       • Comms. Center emergency backup power
+      • Newly produced drones reclaim XP of those destroyed
 
 faction-blackh =
     .name = Black Hand

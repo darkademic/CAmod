@@ -1393,6 +1393,10 @@ EnlightenedEmp:
 		Explosions: enliemphit1, enliemphit2
 		ImpactSounds: enli-emphit.aud
 		Inaccuracy: 341
+	Warhead@Shock: Shockwave
+		Scale: 0.2
+		FadeFrames: 70
+		FadeInFrames: 0
 
 VenomLaser:
 	ReloadDelay: 30
@@ -2201,6 +2205,10 @@ OrcaBomb:
 		Condition: empdisable
 		ValidTargets: Defense
 		InvalidTargets: EmpImmune
+	Warhead@Shock: Shockwave
+		Scale: 0.2
+		FadeFrames: 70
+		FadeInFrames: 0
 
 OrcaBombBuilding:
 	Inherits: OrcaBomb
@@ -2272,6 +2280,10 @@ MicrowaveZap:
 		Explosions: idle
 		ValidTargets: Ground, Trees
 		ExplosionPalette: scrineffect
+	Warhead@Distort: HeatDistortion
+		Scale: 0.2
+		FadeFrames: 180
+		FadeInFrames: 15
 
 MicrowaveZap.UPG:
 	Inherits: MicrowaveZap
@@ -2885,6 +2897,10 @@ DisruptorPulse:
 		ValidRelationships: Ally
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath, FlakVestMitigatedMinor
 		InvalidTargets: Disruptor
+	Warhead@Distort: HeatDistortion
+		Scale: 0.3
+		FadeFrames: 180
+		FadeInFrames: 15
 
 DisruptorPulse.Amp:
 	Inherits: DisruptorPulse
@@ -2957,6 +2973,10 @@ SonicPulseDelphis:
 		Duration: 75
 		Condition: undermine-foundation
 		ValidTargets: Structure
+	Warhead@Distort: HeatDistortion
+		Scale: 0.2
+		FadeFrames: 180
+		FadeInFrames: 15
 
 JDAM:
 	ValidTargets: Ground, Water, Trees
@@ -3495,6 +3515,10 @@ ShadeEmp:
 		Explosions: enliemphit1, enliemphit2
 		ImpactSounds: enli-emphit.aud
 		Inaccuracy: 341
+	Warhead@Shock: Shockwave
+		Scale: 0.2
+		FadeFrames: 70
+		FadeInFrames: 0
 
 ManticoreBolts:
 	Inherits: ^AirToAirMissile

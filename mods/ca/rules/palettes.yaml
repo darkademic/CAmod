@@ -363,6 +363,13 @@
 	GlowRenderer:
 		GlowRadius: 30
 		GlowIntensity: 0.1
+	HeatDistortionRenderer:
+		DistortionRadius: 100
+		DistortionStrength: 6
+	ShockwaveDistortionRenderer:
+		MaxRadius: 100
+		RingThickness: 10
+		Strength: 5
 	CloakPaletteEffectCA@CLOAK:
 		Palette: cloak
 	CloakPaletteEffectCA@CLOAKGREEN:

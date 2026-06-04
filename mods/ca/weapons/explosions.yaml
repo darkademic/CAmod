@@ -914,6 +914,10 @@ MEMP:
 		InvalidTargets: Vehicle, Structure, Wall, Husk, Trees
 		Size: 2,1
 		Delay: 6
+	Warhead@Shock: Shockwave
+		Scale: 1.0
+		FadeFrames: 90
+		FadeInFrames: 0
 
 ChaosGas:
 	ReloadDelay: 200

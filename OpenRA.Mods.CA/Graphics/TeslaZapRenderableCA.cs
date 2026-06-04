@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using OpenRA.Graphics;
+using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 
 namespace OpenRA.Mods.CA.Graphics
@@ -39,6 +40,9 @@ namespace OpenRA.Mods.CA.Graphics
 		readonly string dimSequence;
 		readonly string brightSequence;
 		readonly int brightZaps, dimZaps;
+		readonly Color glowColor;
+		readonly float glowScale;
+		readonly float glowIntensity;
 
 		readonly WPos cachedPos;
 		readonly WVec cachedLength;
@@ -47,7 +51,7 @@ namespace OpenRA.Mods.CA.Graphics
 		public TeslaZapRenderableCA(WPos pos, int zOffset, in WVec length, string image,
 			string brightSequence, int brightZaps,
 			string dimSequence, int dimZaps,
-			string palette)
+			string palette, Color glowColor, float glowScale, float glowIntensity)
 		{
 			this.pos = pos;
 			this.zOffset = zOffset;
@@ -58,6 +62,9 @@ namespace OpenRA.Mods.CA.Graphics
 			this.dimZaps = dimZaps;
 			this.dimSequence = dimSequence;
 			this.brightSequence = brightSequence;
+			this.glowColor = glowColor;
+			this.glowScale = glowScale;
+			this.glowIntensity = glowIntensity;
 
 			cachedPos = WPos.Zero;
 			cachedLength = WVec.Zero;
@@ -71,13 +78,13 @@ namespace OpenRA.Mods.CA.Graphics
 
 		public IPalettedRenderable WithPalette(PaletteReference newPalette)
 		{
-			return new TeslaZapRenderableCA(pos, zOffset, length, image, brightSequence, brightZaps, dimSequence, dimZaps, palette);
+			return new TeslaZapRenderableCA(Pos, ZOffset, length, image, brightSequence, brightZaps, dimSequence, dimZaps, palette, glowColor, glowScale, glowIntensity);
 		}
 
 		public IRenderable WithZOffset(int newOffset) =>
-			new TeslaZapRenderableCA(Pos, ZOffset, length, image, brightSequence, brightZaps, dimSequence, dimZaps, palette);
+			new TeslaZapRenderableCA(Pos, ZOffset, length, image, brightSequence, brightZaps, dimSequence, dimZaps, palette, glowColor, glowScale, glowIntensity);
 		public IRenderable OffsetBy(in WVec vec) =>
-			new TeslaZapRenderableCA(Pos + vec, ZOffset, length, image, brightSequence, brightZaps, dimSequence, dimZaps, palette);
+			new TeslaZapRenderableCA(Pos + vec, ZOffset, length, image, brightSequence, brightZaps, dimSequence, dimZaps, palette, glowColor, glowScale, glowIntensity);
 		public IRenderable AsDecoration() { return this; }
 
 		public IFinalizedRenderable PrepareRender(WorldRenderer wr) { return this; }
@@ -86,6 +93,10 @@ namespace OpenRA.Mods.CA.Graphics
 		{
 			if (wr.World.FogObscures(pos) && wr.World.FogObscures(pos + length))
 				return;
+
+			if (Game.Settings.Graphics.WeaponPostfx && glowScale > 0f && length.Length != 0)
+				wr.World.WorldActor.TraitOrDefault<GlowRenderer>()
+					?.RegisterGlow(Pos, Pos + length, glowColor, glowScale, intensity: glowIntensity);
 
 			if (!cache.Any() || length != cachedLength || pos != cachedPos)
 				cache = GenerateRenderables(wr);

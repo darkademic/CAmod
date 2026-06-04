@@ -45,7 +45,7 @@ namespace OpenRA.Mods.CA.Graphics
 		{
 			var screenWidth = wr.ScreenVector(new WVec(width, WDist.Zero, WDist.Zero))[0];
 
-			if (Game.Settings.Graphics.LaserGlow)
+			if (Game.Settings.Graphics.WeaponPostfx)
 				wr.World.WorldActor.TraitOrDefault<GlowRenderer>()
 					?.RegisterGlow(Pos, Pos, color, width.Length / 86f);
 

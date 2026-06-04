@@ -95,7 +95,7 @@ namespace OpenRA.Mods.CA.Graphics
 				var end = wr.Screen3DPosition(pos + y);
 				Game.Renderer.WorldRgbaColorRenderer.DrawLine(last, end, screenWidth, color);
 
-				if (Game.Settings.Graphics.LaserGlow)
+				if (Game.Settings.Graphics.WeaponPostfx)
 					wr.World.WorldActor.TraitOrDefault<GlowRenderer>()
 						?.RegisterGlow(Pos, Pos, color, width.Length / 86f);
 

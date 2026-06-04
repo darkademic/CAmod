@@ -565,6 +565,10 @@ MiniRift:
 		Condition: slowed
 		ValidTargets: Vehicle, Ship
 		ValidRelationships: Enemy, Neutral
+	Warhead@Distort: HeatDistortion
+		Scale: 0.3
+		FadeFrames: 180
+		FadeInFrames: 15
 
 CyberscrinLaser:
 	Inherits: DevourerLaser
@@ -1616,6 +1620,10 @@ Rift:
 			Concrete: 120
 			Brick: 75
 		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
+	Warhead@Distort: HeatDistortion
+		Scale: 0.6
+		FadeFrames: 380
+		FadeInFrames: 15
 
 SuppressionField:
 	Projectile: InstantExplode

@@ -84,7 +84,7 @@ namespace OpenRA.Mods.CA.Warheads
 				}
 			}
 
-			if (GlowScale > 0 && Game.Settings.Graphics.LaserGlow)
+			if (GlowScale > 0 && Game.Settings.Graphics.WeaponPostfx)
 				world.WorldActor.TraitOrDefault<GlowRenderer>()
 					?.RegisterGlow(pos, pos, GlowColor, GlowScale, GlowFadeFrames, GlowFadeInFrames);
 

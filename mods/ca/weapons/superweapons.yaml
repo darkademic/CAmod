@@ -115,6 +115,10 @@ AtomBomb:
 	Warhead@22FlashEffect: FlashEffect
 		Duration: 20
 		FlashType: Nuke
+	Warhead@Distort: HeatDistortion
+		Scale: 0.6
+		FadeFrames: 180
+		FadeInFrames: 15
 
 InfernoBomb:
 	Inherits: CarpetBomb
@@ -168,6 +172,10 @@ InfernoBomb:
 		AimChance: 0
 		ValidTargets: Ground, Water, Infantry, Vehicle
 		ThrowWithoutTarget: true
+	Warhead@Distort: HeatDistortion
+		Scale: 0.4
+		FadeFrames: 180
+		FadeInFrames: 15
 
 InfernoBombTargeter:
 	Range: 13c0
@@ -226,6 +234,11 @@ GeneticMutation:
 		Damage: 50000
 		DamageTypes: MutatedDeath
 		ValidTargets: GeneticallyMutatable
+	Warhead@GlowImpact: GlowImpact
+		Color: DF1FEE
+		Scale: 2
+		FadeFrames: 180
+		FadeInFrames: 15
 
 GeneticMutation.UPG:
 	Inherits: GeneticMutation
@@ -256,6 +269,14 @@ HeliosBomb:
 	Warhead@Flash: FlashEffect
 		Duration: 10
 		FlashType: Nuke
+	Warhead@Distort: HeatDistortion
+		Scale: 0.5
+		FadeFrames: 180
+		FadeInFrames: 15
+	Warhead@GlowImpact: GlowImpact
+		Scale: 3
+		FadeFrames: 180
+		FadeInFrames: 15
 
 Atomic:
 	ValidTargets: Ground, Trees, Water, Underwater, Air, AirSmall
@@ -374,6 +395,14 @@ Atomic:
 		GlowScale: 1.5
 		GlowFadeFrames: 30
 		GlowFadeInFrames: 12
+	Warhead@Distort: HeatDistortion
+		Scale: 0.6
+		FadeFrames: 180
+		FadeInFrames: 15
+	Warhead@GlowImpact: GlowImpact
+		Scale: 5
+		FadeFrames: 180
+		FadeInFrames: 15
 
 IonCannon:
 	ValidTargets: Ground, Water, Air
@@ -418,6 +447,11 @@ IonCannon:
 		SmudgeType: Scorch
 		Size: 2,1
 		Delay: 6
+	Warhead@GlowImpact: GlowImpact
+		Color: FFFFFF
+		Scale: 1.5
+		FadeFrames: 90
+		FadeInFrames: 5
 
 Empicbm:
 	ValidTargets: Ground, Water
@@ -455,6 +489,10 @@ Empicbm:
 		InvalidTargets: Vehicle, Structure, Wall, Husk, Trees
 		Size: 2,1
 		Delay: 6
+	Warhead@Shock: Shockwave
+		Scale: 1.0
+		FadeFrames: 90
+		FadeInFrames: 0
 
 EMPMissileLauncher:
 	ReloadDelay: 120
@@ -535,6 +573,15 @@ EMPMissileLauncher:
 		InvalidTargets: Vehicle, Structure, Wall, Husk, Trees
 		Size: 2,1
 		Delay: 6
+	Warhead@Shock: Shockwave
+		Scale: 1.0
+		FadeFrames: 90
+		FadeInFrames: 0
+	Warhead@GlowImpact: GlowImpact
+		Color: FFFFFF
+		Scale: 3
+		FadeFrames: 90
+		FadeInFrames: 5
 
 FirestormBarrage:
 	ReloadDelay: 100
@@ -599,6 +646,10 @@ FirestormBarrage:
 		AimChance: 0
 		ValidTargets: Ground, Water, Infantry, Vehicle
 		ThrowWithoutTarget: true
+	Warhead@GlowImpact: GlowImpact
+		Scale: 1.5
+		FadeFrames: 90
+		FadeInFrames: 5
 
 IronCurtain:
 	Projectile: InstantExplode
@@ -649,6 +700,15 @@ IronCurtain:
 	Warhead@4Eff: CreateEffect
 		ExplosionPalette: effect-ignore-lighting-alpha85
 		Explosions: ironcurtain_effect
+	Warhead@Distort: HeatDistortion
+		Scale: 0.5
+		FadeFrames: 280
+		FadeInFrames: 15
+	Warhead@GlowImpact: GlowImpact
+		Color: AE0C00
+		Scale: 2
+		FadeFrames: 180
+		FadeInFrames: 5
 
 ForceShield:
 	Projectile: InstantExplode
@@ -677,6 +737,15 @@ ForceShield:
 		Condition: forcedisabled
 		ValidTargets: Ground, Structure
 		ValidRelationships: Ally
+	Warhead@Distort: HeatDistortion
+		Scale: 0.5
+		FadeFrames: 280
+		FadeInFrames: 15
+	Warhead@GlowImpact: GlowImpact
+		Color: 32C8FF
+		Scale: 4
+		FadeFrames: 180
+		FadeInFrames: 15
 
 StealthBubble:
 	Projectile: InstantExplode
@@ -716,6 +785,11 @@ StealthBubble:
 	Warhead@2Eff: CreateEffect
 		ExplosionPalette: tseffect
 		Explosions: stealthbub
+	Warhead@GlowImpact: GlowImpact
+		Color: 00FF00
+		Scale: 2
+		FadeFrames: 180
+		FadeInFrames: 15
 
 Chemicbm:
 	ValidTargets: Ground, Water
@@ -800,9 +874,6 @@ Chemicbm:
 		Falloff: 100, 75, 52, 37, 24, 15, 2
 		MaxLevel: 750
 		LayerName: radioactivity.strong
-		GlowScale: 1.5
-		GlowFadeFrames: 30
-		GlowFadeInFrames: 12
 	Warhead@13Spawn: SpawnActor
 		Actors: toxiccloud
 		Range: 5
@@ -849,6 +920,11 @@ Chemicbm:
 		AimChance: 0
 		ValidTargets: Ground, Water, Infantry, Vehicle
 		ThrowWithoutTarget: true
+	Warhead@GlowImpact: GlowImpact
+		Color: 00FF00
+		Scale: 5
+		FadeFrames: 300
+		FadeInFrames: 15
 
 IonStormInit:
 	Projectile: InstantExplode
@@ -940,6 +1016,11 @@ IonBolt:
 		SmudgeType: Scorch
 		Size: 2,1
 		Delay: 6
+	Warhead@GlowImpact: GlowImpact
+		Color: FFFFFF
+		Scale: 2
+		FadeFrames: 60
+		FadeInFrames: 3
 
 DeathHand:
 	Projectile: InstantHit
@@ -955,6 +1036,10 @@ DeathHand:
 		ImpactActors: false
 		AffectsParent: true
 		AirThreshold: 3c511
+	Warhead@GlowImpact: GlowImpact
+		Scale: 3
+		FadeFrames: 180
+		FadeInFrames: 15
 
 DeathHandCluster:
 	ReloadDelay: 60
@@ -1001,6 +1086,10 @@ DeathHandCluster:
 		AimChance: 0
 		ValidTargets: Ground, Water, Infantry, Vehicle
 		ThrowWithoutTarget: true
+	Warhead@GlowImpact: GlowImpact
+		Scale: 1
+		FadeFrames: 90
+		FadeInFrames: 5
 
 WeatherStormInit:
 	Projectile: InstantExplode
@@ -1083,6 +1172,11 @@ WeatherBolt:
 		ValidTargets: Ground, Water
 	Warhead@6Smu: LeaveSmudge
 		SmudgeType: Scorch
+	Warhead@GlowImpact: GlowImpact
+		Color: FFFFFF
+		Scale: 2
+		FadeFrames: 60
+		FadeInFrames: 0
 
 DropPodVisual:
 	Warhead@1Eff: CreateEffect
@@ -1131,6 +1225,10 @@ TemporalIncursion:
 		ValidTargets: Ground, Water
 		ImpactActors: false
 	Warhead@3Flash: ChronoFlashEffect
+	Warhead@Distort: HeatDistortion
+		Scale: 0.5
+		FadeFrames: 280
+		FadeInFrames: 15
 
 ChronoAI:
 	Inherits: TemporalIncursion
@@ -1148,6 +1246,10 @@ TimeWarp:
 	Warhead@Damage1: SpreadDamage
 		Damage: 1
 	Warhead@3Flash: ChronoFlashEffect
+	Warhead@Distort: HeatDistortion
+		Scale: 0.4
+		FadeFrames: 280
+		FadeInFrames: 15
 
 ClusterMineSpawner:
 	ValidTargets: Ground, Water
@@ -1277,6 +1379,11 @@ Cryostorm:
 		ExplosionPalette: ra2effect-ignore-lighting-alpha75
 		Inaccuracy: 3c512
 		Delay: 8
+	Warhead@GlowImpact: GlowImpact
+		Color: 2986CC
+		Scale: 3
+		FadeFrames: 180
+		FadeInFrames: 15
 
 CryostormInit:
 	ReloadDelay: 25

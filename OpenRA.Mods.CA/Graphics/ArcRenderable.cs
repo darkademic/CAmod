@@ -53,7 +53,7 @@ namespace OpenRA.Mods.CA.Graphics
 			for (int i = 0; i <= segments; i++)
 				points[i] = wr.Screen3DPosition(WPos.LerpQuadratic(a, b, angle, i, segments));
 
-			if (Game.Settings.Graphics.LaserGlow)
+			if (Game.Settings.Graphics.WeaponPostfx)
 				wr.World.WorldActor.TraitOrDefault<GlowRenderer>()
 					?.RegisterGlow(Pos, Pos, color, width.Length / 86f);
 

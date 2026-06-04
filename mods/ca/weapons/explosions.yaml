@@ -365,7 +365,7 @@ BarrelExplode:
 KirovExplode:
 	Inherits: ^Explosion
 	Warhead@1Dam: SpreadDamage
-		Damage: 3000
+		Damage: 1500
 		Falloff: 1000, 368, 135, 50, 18, 7, 0
 		Delay: 2
 		ValidTargets: Ground, Trees

@@ -146,7 +146,7 @@ namespace OpenRA.Mods.CA.Traits
 		IEnumerable<Actor> targets;
 		WithSpriteBody wsb;
 
-		public GrantExternalConditionPowerCAInfo Info => info;
+		public new GrantExternalConditionPowerCAInfo Info => info;
 
 		[Sync]
 		public int Ticks { get; private set; }

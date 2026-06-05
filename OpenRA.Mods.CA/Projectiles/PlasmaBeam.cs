@@ -129,7 +129,7 @@ namespace OpenRA.Mods.CA.Projectiles
 		public readonly bool Invisible = false;
 
 		[Desc("Color of the screen-space glow halo drawn along the zap.",
-	"Only visible when the \"Weapon Glow Effects\" setting is enabled.")]
+			"Only visible when the \"Weapon Glow Effects\" setting is enabled.")]
 		public readonly Color GlowColor = Color.FromArgb(255, 0, 255);
 
 		[Desc("Scale multiplier for the glow halo's radius (also scales intensity).",

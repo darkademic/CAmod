@@ -585,6 +585,7 @@ CyberscrinLaser:
 		StartOffset: 0,288,0
 		FollowingOffset: 0,-36,0
 		ImpactTicks: 0, 2, 4, 6, 8, 10, 12, 14, 16
+		GlowColor: ff0000
 	Warhead@1Dam: SpreadDamage
 		Spread: 256
 		Damage: 1000
@@ -764,6 +765,7 @@ ReaperLaser:
 		CenterBeam: true
 		CenterBeamWidth: 45
 		CenterBeamColor: eeffeeff
+		GlowColor: 338800
 
 ReaperLaserCharged:
 	Inherits: ReaperLaser

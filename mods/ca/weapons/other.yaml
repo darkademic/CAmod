@@ -3395,6 +3395,7 @@ ViperLaser:
 	Report: viper-fire1.aud
 	Projectile: PlasmaBeam
 		Colors: ff0000E6, cc0000E6
+		GlowColor: ff0000
 	Warhead@1Dam: SpreadDamage
 		Damage: 1550
 

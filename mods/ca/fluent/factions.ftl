@@ -146,7 +146,7 @@ faction-yuri =
       • Gattling BTR
 
     Bonuses:
-      • Spy Plane grants psychic detection for 40s after vision fades
+      • Spy Plane (psychic detection after vision fades)
 
 faction-talon =
     .name = Talon
@@ -226,6 +226,7 @@ faction-arc =
       • Drone Carrier (10% discount)
       • Additional Comms. Centers (50% discount)
       • Comms. Center emergency backup power
+      • Newly produced drones reclaim XP of those destroyed
 
 faction-blackh =
     .name = Black Hand
@@ -242,7 +243,7 @@ faction-blackh =
       • Black Napalm
 
     Bonuses:
-      • SSM (Extra Missile)
+      • SSM (extra missile)
       • Flamethrower (+20% speed)
       • Free Howitzer Upgrade
 

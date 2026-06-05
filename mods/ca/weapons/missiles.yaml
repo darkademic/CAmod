@@ -1306,13 +1306,13 @@ HonestJohn.UPG:
 
 HonestJohnBH:
 	Inherits: HonestJohn
-	ReloadDelay: 190
+	ReloadDelay: 165
 	Burst: 3
-	BurstDelays: 50
 
 HonestJohnBH.UPG:
 	Inherits: HonestJohn.UPG
-	ReloadDelay: 205
+	ReloadDelay: 180
+	Burst: 3
 
 HonestJohnTargeting:
 	Inherits: HonestJohn

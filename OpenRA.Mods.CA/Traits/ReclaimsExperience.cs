@@ -20,6 +20,9 @@ namespace OpenRA.Mods.CA.Traits
 		[Desc("Pool to use. Uses actor name if not set.")]
 		public readonly string Type = null;
 
+		[Desc("Maximum amount of experience that can be reclaimed from the pool on death, as a percentage of unit's value.")]
+		public readonly int MaximumReclaimableValuePercentage = 100;
+
 		public override object Create(ActorInitializer init) { return new ReclaimsExperience(init, this); }
 	}
 
@@ -27,11 +30,14 @@ namespace OpenRA.Mods.CA.Traits
 	{
 		public readonly ReclaimsExperienceInfo Info;
 		GainsExperience gainsExperienceTrait;
+		int maxReclaimableAmount;
 
 		public ReclaimsExperience(ActorInitializer init, ReclaimsExperienceInfo info)
 		{
 			Info = info;
 			gainsExperienceTrait = init.Self.TraitsImplementing<GainsExperience>().First();
+			var valuedInfo = init.Self.Info.TraitInfoOrDefault<ValuedInfo>();
+			maxReclaimableAmount = valuedInfo != null ? valuedInfo.Cost * info.MaximumReclaimableValuePercentage : 0;
 		}
 
 		void INotifyCreated.Created(Actor self)
@@ -39,7 +45,11 @@ namespace OpenRA.Mods.CA.Traits
 			var pool = self.Owner.PlayerActor.TraitsImplementing<ReclaimableExperiencePool>().SingleOrDefault();
 
 			if (pool != null)
-				gainsExperienceTrait.GiveExperience(pool.TakeXpFromPool(Info.Type ?? self.Info.Name));
+			{
+				var xp = pool.TakeXpFromPool(Info.Type ?? self.Info.Name, maxReclaimableAmount);
+				if (xp > 0)
+					gainsExperienceTrait.GiveExperience(xp, true);
+			}
 		}
 
 		void INotifyKilled.Killed(Actor self, AttackInfo e)

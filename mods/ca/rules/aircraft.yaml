@@ -2877,7 +2877,7 @@ KIRO:
 		RequiresCondition: !airborne
 	DamageMultiplier@doorsopen:
 		RequiresCondition: doorsopen
-		Modifier: 133
+		Modifier: 150
 	GrantConditionOnAttack@doorsopen:
 		Condition: doorsopen
 		RevokeDelay: 50

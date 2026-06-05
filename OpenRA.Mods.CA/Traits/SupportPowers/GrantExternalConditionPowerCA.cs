@@ -146,6 +146,8 @@ namespace OpenRA.Mods.CA.Traits
 		IEnumerable<Actor> targets;
 		WithSpriteBody wsb;
 
+		public new GrantExternalConditionPowerCAInfo Info => info;
+
 		[Sync]
 		public int Ticks { get; private set; }
 
@@ -173,7 +175,7 @@ namespace OpenRA.Mods.CA.Traits
 		{
 			targets = GetTargets(self.World.Map.CellContaining(order.Target.CenterPosition));
 
-			if (targets.Count() < info.MinTargets)
+			if (targets.Count() < info.MinTargets || (info.TargetMustBeVisible && !targets.Any(a => a.CanBeViewedByPlayer(Self.Owner))))
 				return false;
 
 			return true;
@@ -264,12 +266,6 @@ namespace OpenRA.Mods.CA.Traits
 				return false;
 
 			if (!a.TraitsImplementing<ExternalCondition>().Any(t => t.Info.Condition == Condition && t.CanGrantCondition(Self)))
-				return false;
-
-			if (info.TargetMustBeVisible && !Self.Owner.Shroud.IsVisible(a.Location))
-				return false;
-
-			if (!a.CanBeViewedByPlayer(Self.Owner))
 				return false;
 
 			if (a.CenterPosition.Z > info.MaxAltitude.Length)
@@ -363,7 +359,7 @@ namespace OpenRA.Mods.CA.Traits
 			{
 				world.CancelInputMode();
 				var targets = power.GetTargets(cell);
-				if (mi.Button == MouseButton.Left && targets.Count() >= power.info.MinTargets)
+				if (mi.Button == MouseButton.Left && (targets.Count() >= power.info.MinTargets || !power.info.TargetMustBeVisible))
 					yield return new Order(order, manager.Self, Target.FromCell(world, cell), false) { SuppressVisualFeedback = true };
 			}
 
@@ -379,7 +375,7 @@ namespace OpenRA.Mods.CA.Traits
 			protected override IEnumerable<IRenderable> RenderAnnotations(WorldRenderer wr, World world)
 			{
 				var xy = wr.Viewport.ViewToWorld(Viewport.LastMousePos);
-				var targetUnits = power.GetTargets(xy);
+				var targetUnits = power.GetTargets(xy).Where(a => a.CanBeViewedByPlayer(power.Self.Owner)).ToArray();
 
 				if (power.info.ShowSelectionBoxes)
 				{
@@ -431,7 +427,7 @@ namespace OpenRA.Mods.CA.Traits
 
 				if (power.info.TargetTintColor != null)
 				{
-					var targetUnits = power.GetTargets(xy);
+					var targetUnits = power.GetTargets(xy).Where(a => a.CanBeViewedByPlayer(power.Self.Owner));
 
 					foreach (var unit in targetUnits)
 					{
@@ -455,8 +451,13 @@ namespace OpenRA.Mods.CA.Traits
 
 			protected override string GetCursor(World world, CPos cell, int2 worldPixel, MouseInput mi)
 			{
-				var targets = power.GetTargets(cell);
-				return targets.Count() >= power.info.MinTargets ? power.info.Cursor : power.info.BlockedCursor;
+				var targets = power.GetTargets(cell).ToArray();
+				var numTargets = targets.Count();
+				var hasVisibleTarget = targets.Any(a => a.CanBeViewedByPlayer(power.Self.Owner));
+
+				return numTargets >= power.info.MinTargets && (!power.info.TargetMustBeVisible || hasVisibleTarget)
+					? power.info.Cursor
+					: power.info.BlockedCursor;
 			}
 		}
 	}

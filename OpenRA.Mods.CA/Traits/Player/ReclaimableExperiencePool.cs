@@ -8,8 +8,8 @@
  */
 #endregion
 
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using OpenRA.Mods.Common;
 using OpenRA.Traits;
 
@@ -28,29 +28,29 @@ namespace OpenRA.Mods.CA.Traits
 	public class ReclaimableExperiencePool
 	{
 		public readonly ReclaimableExperiencePoolInfo Info;
-		Dictionary<string, List<int>> xpPool;
+		Dictionary<string, int> xpPool;
 
 		public ReclaimableExperiencePool(ActorInitializer init, ReclaimableExperiencePoolInfo info)
 		{
 			Info = info;
-			xpPool = new Dictionary<string, List<int>>();
+			xpPool = new Dictionary<string, int>();
 		}
 
 		public void AddXpToPool(string type, int amount)
 		{
 			if (!xpPool.ContainsKey(type))
-				xpPool[type] = new List<int>();
+				xpPool[type] = 0;
 
-			xpPool[type].Add(Util.ApplyPercentageModifiers(amount, new[] { Info.Percentage }));
+			xpPool[type] += Util.ApplyPercentageModifiers(amount, new[] { Info.Percentage });
 		}
 
-		public int TakeXpFromPool(string type)
+		public int TakeXpFromPool(string type, int maximumAmount = int.MaxValue)
 		{
-			if (!xpPool.TryGetValue(type, out var value) || value.Count == 0)
+			if (!xpPool.TryGetValue(type, out var value) || value <= 0)
 				return 0;
 
-			int xp = value.Max();
-			value.Remove(xp);
+			int xp = Math.Min(value, maximumAmount);
+			xpPool[type] -= xp;
 			return xp;
 		}
 	}

@@ -65,8 +65,9 @@ namespace OpenRA.Mods.CA.Traits
 			if (health == null)
 				return;
 
-			var appliedDamage = Math.Min(e.Damage.Value, health.HP);
-			if (appliedDamage == 0)
+			var hpBefore = Math.Min(health.HP + e.Damage.Value, health.MaxHP);
+			var appliedDamage = Math.Min(e.Damage.Value, hpBefore);
+			if (appliedDamage <= 0)
 				return;
 
 			var valued = damaged.Info.TraitInfoOrDefault<ValuedInfo>();
@@ -74,7 +75,7 @@ namespace OpenRA.Mods.CA.Traits
 				: valued != null ? valued.Cost : 0;
 
 			var experienceModifiers = damaged.TraitsImplementing<IGivesExperienceModifier>().ToArray().Select(m => m.GetGivesExperienceModifier()).Append(info.ActorExperienceModifier);
-			experienceModifiers = experienceModifiers.Append((int)(((float)e.Damage.Value / (float)health.MaxHP) * 100));
+			experienceModifiers = experienceModifiers.Append((int)(((float)appliedDamage / (float)health.MaxHP) * 100));
 
 			foreach (var mindControllable in mindControllables)
 				if (mindControllable.Master.HasValue)

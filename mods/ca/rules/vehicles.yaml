@@ -4565,8 +4565,8 @@ MDRN:
 		ValidRelationships: Ally
 		MinAttachDistance: 1c512
 		OnAttachTransformInto: mdrn.attached
+		OnAttachCopyExperience: true
 		AttachSound: mdrn-attach.aud
-		GivesExperienceToMaster: true
 	-Carryable:
 	-GrantCondition@CarriedImmobile:
 	WithIdleOverlay@NSHIELD:

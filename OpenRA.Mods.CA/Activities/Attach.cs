@@ -29,7 +29,6 @@ namespace OpenRA.Mods.CA.Activities
 		readonly Color targetLineColor;
 		AttachState state;
 		int storedExperienceToCopy;
-		int sourceActorValue;
 
 		bool TargetIsValid => target.Actor != null && target.Type == TargetType.Actor && target.Actor.IsInWorld && !target.Actor.IsDead && attachableTo.CanAttach(attachable);
 
@@ -135,7 +134,6 @@ namespace OpenRA.Mods.CA.Activities
 		void CaptureExperienceToCopy(Actor self)
 		{
 			storedExperienceToCopy = 0;
-			sourceActorValue = 0;
 
 			if (!attachable.Info.OnAttachCopyExperience)
 				return;
@@ -145,23 +143,20 @@ namespace OpenRA.Mods.CA.Activities
 				return;
 
 			storedExperienceToCopy = gainsExperience.Experience;
-			sourceActorValue = self.Info.TraitInfoOrDefault<ValuedInfo>()?.Cost ?? 0;
 		}
 
 		void CopyExperienceToMaster()
 		{
-			if (storedExperienceToCopy <= 0 || sourceActorValue <= 0)
+			if (storedExperienceToCopy <= 0)
 				return;
 
 			var masterExperience = target.Actor.TraitOrDefault<GainsExperience>();
-			var targetActorValue = target.Actor.Info.TraitInfoOrDefault<ValuedInfo>()?.Cost ?? 0;
-			if (masterExperience == null || targetActorValue <= 0)
+			if (masterExperience == null)
 				return;
 
-			var copiedExperience = (int)(storedExperienceToCopy * (long)sourceActorValue / targetActorValue);
-			masterExperience.GiveExperience(copiedExperience, true);
+			var copiedExperience = storedExperienceToCopy;
+			masterExperience.GiveExperience(copiedExperience);
 			storedExperienceToCopy = 0;
-			sourceActorValue = 0;
 		}
 
 		public override IEnumerable<TargetLineNode> TargetLineNodes(Actor self)

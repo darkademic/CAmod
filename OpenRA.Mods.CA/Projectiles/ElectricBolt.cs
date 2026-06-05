@@ -87,6 +87,18 @@ namespace OpenRA.Mods.CA.Projectiles
 		[Desc("Does the beam follow the target.")]
 		public readonly bool TrackTarget = false;
 
+		[Desc("Color of the screen-space glow halo drawn along the zap.",
+	"Only visible when the \"Weapon Glow Effects\" setting is enabled.")]
+		public readonly Color GlowColor = Color.FromArgb(255, 51, 255);
+
+		[Desc("Scale multiplier for the glow halo's radius (also scales intensity).",
+			"Set to 0 to disable the glow for this zap.")]
+		public readonly float GlowScale = 0.4f;
+
+		[Desc("Brightness-only multiplier for the glow halo, independent of GlowScale (does not grow the radius).")]
+		public readonly float GlowIntensity = 1.65f;
+
+
 		public IProjectile Create(ProjectileArgs args)
 		{
 			return new ElectricBolt(this, args);
@@ -119,7 +131,8 @@ namespace OpenRA.Mods.CA.Projectiles
 			var colors = info.Colors.ToList();
 
 			for (int i = 0; i < info.PlayerColorZaps; i++)
-				colors.Add(Color.FromArgb(info.PlayerColorZapAlpha.Length != 2 ? info.PlayerColorZapAlpha[0] : OpenRA.Mods.Common.Util.RandomInRange(args.SourceActor.World.SharedRandom, info.PlayerColorZapAlpha), playerColor.R, playerColor.G, playerColor.B));
+				colors.Add(Color.FromArgb(info.PlayerColorZapAlpha.Length != 2 ? info.PlayerColorZapAlpha[0] :
+					OpenRA.Mods.Common.Util.RandomInRange(args.SourceActor.World.SharedRandom, info.PlayerColorZapAlpha), playerColor.R, playerColor.G, playerColor.B));
 
 			source = lastSource = args.Source;
 			target = lastTarget = args.PassiveTarget;
@@ -175,7 +188,8 @@ namespace OpenRA.Mods.CA.Projectiles
 
 		void CheckBlocked()
 		{
-			if (info.Blockable && BlocksProjectiles.AnyBlockingActorsBetween(args.SourceActor.World, args.SourceActor.Owner, source, target, info.Width, out var blockedPos))
+			if (info.Blockable && BlocksProjectiles.AnyBlockingActorsBetween(args.SourceActor.World, args.SourceActor.Owner, source,
+				target, info.Width, out var blockedPos))
 				target = blockedPos;
 		}
 
@@ -276,7 +290,8 @@ namespace OpenRA.Mods.CA.Projectiles
 				foreach (var zap in zaps)
 				{
 					var offsets = zap.Positions;
-					yield return new ElectricBoltRenderable(offsets, zOffset, info.Width, zap.Color);
+					yield return new ElectricBoltRenderable(offsets, zOffset, info.Width, zap.Color,
+				info.GlowColor, info.GlowScale, info.GlowIntensity);
 				}
 			}
 		}

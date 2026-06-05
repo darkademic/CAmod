@@ -9,9 +9,11 @@
 #endregion
 
 using System.Collections.Generic;
+using System.Linq;
 using OpenRA.GameRules;
 using OpenRA.Graphics;
 using OpenRA.Mods.CA.Graphics;
+using OpenRA.Mods.CA.Traits.Render;
 using OpenRA.Primitives;
 using OpenRA.Support;
 using OpenRA.Traits;
@@ -25,7 +27,7 @@ namespace OpenRA.Mods.CA.Projectiles
 		public readonly int Duration = 10;
 
 		[Desc("Color of the beam. Default falls back to player color.")]
-		public readonly Color[] Color = null;
+		public readonly Color Color = Color.FromArgb(128, 255, 0, 0);
 
 		[Desc("Inner lightness of the beam.")]
 		public readonly byte InnerLightness = 0xff;
@@ -47,6 +49,18 @@ namespace OpenRA.Mods.CA.Projectiles
 
 		[Desc("Equivalent to sequence ZOffset. Controls Z sorting.")]
 		public readonly int ZOffset = 0;
+
+		[Desc("Color of the screen-space glow halo drawn along the zap.",
+			"Only visible when the \"Weapon Glow Effects\" setting is enabled.")]
+		public readonly Color GlowColor = Color.FromArgb(255, 0, 0);
+
+		[Desc("Scale multiplier for the glow halo's radius (also scales intensity).",
+			"Set to 0 to disable the glow for this zap.")]
+		public readonly float GlowScale = 0.3f;
+
+		[Desc("Brightness-only multiplier for the glow halo, independent of GlowScale (does not grow the radius).")]
+		public readonly float GlowIntensity = 1.65f;
+
 
 		public IProjectile Create(ProjectileArgs args) { return new KKNDLaser(args, this); }
 	}
@@ -76,10 +90,10 @@ namespace OpenRA.Mods.CA.Projectiles
 			target = args.PassiveTarget;
 			source = args.Source;
 
-			colors = new Color[info.Radius];
+			colors = new Color[info.Radius];	
 			for (var i = 0; i < info.Radius; i++)
 			{
-				var color = info.Color == null ? Color.Red : info.Color.Random(Game.CosmeticRandom);
+				var color = info.Color;
 				var bw = (float)((info.InnerLightness - info.OuterLightness) * i / (info.Radius - 1) + info.OuterLightness) / 0xff;
 				var alpha = (float)color.A;
 				var dstR = bw > .5 ? 1 - (1 - 2 * (bw - .5)) * (1 - (float)color.R / 0xff) : 2 * bw * ((float)color.R / 0xff);
@@ -165,7 +179,7 @@ namespace OpenRA.Mods.CA.Projectiles
 
 			for (var i = 0; i < offsets.Length - 1; i++)
 				for (var j = 0; j < info.Radius; j++)
-					yield return new KKNDLaserRenderable(offsets, info.ZOffset, new WDist(32 + (info.Radius - j - 1) * 64), colors[j]);
+					yield return new KKNDLaserRenderable(offsets, info.ZOffset, new WDist(32 + (info.Radius - j - 1) * 64), colors[j], info.GlowColor, info.GlowScale, info.GlowIntensity); ;
 		}
 	}
 }

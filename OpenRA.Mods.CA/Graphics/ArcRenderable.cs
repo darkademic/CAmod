@@ -22,8 +22,12 @@ namespace OpenRA.Mods.CA.Graphics
 		readonly int zOffset;
 		readonly WDist width;
 		readonly int segments;
+		readonly Color glowColor;
+		readonly float glowScale;
+		readonly float glowIntensity;
 
-		public ArcRenderable(WPos a, WPos b, int zOffset, WAngle angle, Color color, WDist width, int segments)
+		public ArcRenderable(WPos a, WPos b, int zOffset, WAngle angle, Color color, WDist width, int segments,
+			Color glowColor, float glowScale, float glowIntensity)
 		{
 			this.a = a;
 			this.b = b;
@@ -32,6 +36,9 @@ namespace OpenRA.Mods.CA.Graphics
 			this.zOffset = zOffset;
 			this.width = width;
 			this.segments = segments;
+			this.glowColor = glowColor;
+			this.glowScale = glowScale;
+			this.glowIntensity = glowIntensity;
 		}
 
 		public WPos Pos { get { return a; } }
@@ -39,9 +46,9 @@ namespace OpenRA.Mods.CA.Graphics
 		public int ZOffset { get { return zOffset; } }
 		public bool IsDecoration { get { return true; } }
 
-		public IRenderable WithPalette(PaletteReference newPalette) { return new ArcRenderable(a, b, zOffset, angle, color, width, segments); }
-		public IRenderable WithZOffset(int newOffset) { return new ArcRenderable(a, b, zOffset, angle, color, width, segments); }
-		public IRenderable OffsetBy(in WVec offset) { var offsetBy = offset; return new ArcRenderable(a + offsetBy, b + offsetBy, zOffset, angle, color, width, segments); }
+		public IRenderable WithPalette(PaletteReference newPalette) { return new ArcRenderable(a, b, zOffset, angle, color, width, segments, glowColor, glowScale, glowIntensity); }
+		public IRenderable WithZOffset(int newOffset) { return new ArcRenderable(a, b, zOffset, angle, color, width, segments, glowColor, glowScale, glowIntensity); }
+		public IRenderable OffsetBy(in WVec offset) { var offsetBy = offset; return new ArcRenderable(a + offsetBy, b + offsetBy, zOffset, angle, color, width, segments, glowColor, glowScale, glowIntensity); }
 		public IRenderable AsDecoration() { return this; }
 
 		public IFinalizedRenderable PrepareRender(WorldRenderer wr) { return this; }
@@ -53,9 +60,10 @@ namespace OpenRA.Mods.CA.Graphics
 			for (int i = 0; i <= segments; i++)
 				points[i] = wr.Screen3DPosition(WPos.LerpQuadratic(a, b, angle, i, segments));
 
-			if (Game.Settings.Graphics.WeaponPostfx)
+			if (Game.Settings.Graphics.WeaponPostfx && glowScale > 0f)
 				wr.World.WorldActor.TraitOrDefault<GlowRenderer>()
-					?.RegisterGlow(Pos, Pos, color, width.Length / 86f);
+					?.RegisterGlow(a, b, glowColor, glowScale, intensity: glowIntensity);
+
 
 			Game.Renderer.WorldRgbaColorRenderer.DrawLine(points, screenWidth, color, false);
 		}

@@ -55,6 +55,18 @@ namespace OpenRA.Mods.CA.Projectiles
 		[PaletteReference]
 		public readonly string HitAnimPalette = "effect";
 
+		[Desc("Color of the screen-space glow halo drawn along the zap.",
+			"Only visible when the \"Weapon Glow Effects\" setting is enabled.")]
+		public readonly Color GlowColor = Color.FromArgb(0, 255, 0);
+
+		[Desc("Scale multiplier for the glow halo's radius (also scales intensity).",
+			"Set to 0 to disable the glow for this zap.")]
+		public readonly float GlowScale = 0.5f;
+
+		[Desc("Brightness-only multiplier for the glow halo, independent of GlowScale (does not grow the radius).")]
+		public readonly float GlowIntensity = 1.65f;
+
+
 		public IProjectile Create(ProjectileArgs args)
 		{
 			var c = UsePlayerColor ? args.SourceActor.OwnerColor() : Color;
@@ -130,7 +142,8 @@ namespace OpenRA.Mods.CA.Projectiles
 				WDist amp = info.ScaleAmplitudeWithDuration
 					? info.Amplitude * ticks / info.BeamDuration
 					: info.Amplitude;
-				yield return new RadBeamRenderable(args.Source, zOffset, target - args.Source, info.Thickness, color, amp, info.WaveLength, info.QuantizationCount);
+				yield return new RadBeamRenderable(args.Source, zOffset, target - args.Source, info.Thickness, color, amp, info.WaveLength, info.QuantizationCount,
+				info.GlowColor, info.GlowScale, info.GlowIntensity);
 			}
 
 			if (hitanim != null)

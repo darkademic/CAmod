@@ -2413,9 +2413,7 @@ Cloud:
 		Falloff: 100, 75, 52, 15, 2
 		MaxLevel: 750
 		LayerName: radioactivity.strong
-		GlowScale: 1.5
-		GlowFadeFrames: 30
-		GlowFadeInFrames: 12
+		GlowScale: 0
 	Warhead@1Dam: SpreadDamage
 		Spread: 426
 		Damage: 350
@@ -2764,6 +2762,10 @@ NeutronCannonBeam:
 			Brick: 0
 		ValidTargets: Temporal
 		DamageTypes: ChronoDeath
+	Warhead@Distort: HeatDistortion
+		Scale: 0.2
+		FadeFrames: 180
+		FadeInFrames: 15
 
 NeutronCannonPulse:
 	Inherits: NeutronCannonBeam
@@ -3022,6 +3024,10 @@ JDAM:
 		AimChance: 0
 		ValidTargets: Ground, Infantry, Vehicle
 		ThrowWithoutTarget: true
+	Warhead@GlowImpact: GlowImpact
+		Scale: 2
+		FadeFrames: 300
+		FadeInFrames: 15
 
 HarvSwap:
 	ReloadDelay: 500

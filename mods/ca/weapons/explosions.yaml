@@ -392,6 +392,10 @@ KirovExplode:
 		RandomClusterCount: 3
 		Dimensions: 2,2
 		Footprint: xx xx
+	Warhead@GlowImpact: GlowImpact
+		Scale: 2
+		FadeFrames: 180
+		FadeInFrames: 15
 
 MothershipExplode:
 	Inherits: KirovExplode
@@ -412,6 +416,10 @@ MothershipExplode:
 		Duration: 5
 		Intensity: 1
 		Multiplier: 0.5,0.5
+	Warhead@GlowImpact: GlowImpact
+		Scale: 3
+		FadeFrames: 180
+		FadeInFrames: 15
 
 MothershipExplodeCluster:
 	Projectile: InstantHit
@@ -537,6 +545,10 @@ CrateNuke:
 	Warhead@FlashEffect: FlashEffect
 		Duration: 20
 		FlashType: Nuke
+	Warhead@GlowImpact: GlowImpact
+		Scale: 3
+		FadeFrames: 180
+		FadeInFrames: 15
 
 UnitExplodeIraqTank:
 	Inherits: CrateNuke
@@ -567,6 +579,10 @@ UnitExplodeIraqTank:
 		GlowFadeInFrames: 12
 	-Warhead@Flames:
 	-Warhead@FlashEffect:
+	Warhead@GlowImpact: GlowImpact
+		Scale: 1
+		FadeFrames: 180
+		FadeInFrames: 15
 
 MiniNuke:
 	ValidTargets: Ground, Trees, Water, Underwater, Air
@@ -661,6 +677,10 @@ MiniNuke:
 	Warhead@FlashEffect: FlashEffect
 		Duration: 20
 		FlashType: Nuke
+	Warhead@GlowImpact: GlowImpact
+		Scale: 3
+		FadeFrames: 180
+		FadeInFrames: 15
 
 MicroNuke:
 	Inherits: MiniNuke
@@ -749,6 +769,10 @@ MicroNuke:
 		GlowFadeFrames: 30
 		GlowFadeInFrames: 12
 	-Warhead@FlashEffect:
+	Warhead@GlowImpact: GlowImpact
+		Scale: 1
+		FadeFrames: 180
+		FadeInFrames: 15
 
 UnitExplodeVice:
 	Warhead@1Dam: SpreadDamage
@@ -784,6 +808,11 @@ UnitExplodeVice:
 		GlowScale: 1.5
 		GlowFadeFrames: 30
 		GlowFadeInFrames: 12
+	Warhead@GlowImpact: GlowImpact
+		Color: 00FF00
+		Scale: 1
+		FadeFrames: 300
+		FadeInFrames: 15
 
 UnitExplodeToxinTruck:
 	ValidTargets: Ground, Water, Underwater
@@ -864,6 +893,11 @@ UnitExplodeToxinTruck:
 		AimChance: 0
 		ValidTargets: Ground, Water, Infantry, Vehicle
 		ThrowWithoutTarget: true
+	Warhead@GlowImpact: GlowImpact
+		Color: 00FF00
+		Scale: 3
+		FadeFrames: 300
+		FadeInFrames: 15
 
 MEMP:
 	Report: mobemp1.aud

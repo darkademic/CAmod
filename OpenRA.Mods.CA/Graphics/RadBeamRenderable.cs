@@ -24,6 +24,9 @@ namespace OpenRA.Mods.CA.Graphics
 		readonly WDist amplitude;
 		readonly WDist wavelength;
 		readonly int quantizationCount;
+		readonly Color glowColor;
+		readonly float glowScale;
+		readonly float glowIntensity;
 
 		public RadBeamRenderable(
 				WPos pos,
@@ -31,7 +34,7 @@ namespace OpenRA.Mods.CA.Graphics
 				WVec sourceToTarget,
 				WDist width, Color color,
 				WDist amplitude, WDist wavelength,
-				int quantizationCount)
+				int quantizationCount, Color glowColor, float glowScale, float glowIntensity)
 		{
 			this.pos = pos;
 			this.zOffset = zOffset;
@@ -41,6 +44,9 @@ namespace OpenRA.Mods.CA.Graphics
 			this.amplitude = amplitude;
 			this.wavelength = wavelength;
 			this.quantizationCount = quantizationCount;
+			this.glowColor = glowColor;
+			this.glowScale = glowScale;
+			this.glowIntensity = glowIntensity;
 		}
 
 		public WPos Pos { get { return pos; } }
@@ -50,12 +56,12 @@ namespace OpenRA.Mods.CA.Graphics
 
 		public IRenderable WithPalette(PaletteReference newPalette)
 		{
-			return new RadBeamRenderable(pos, zOffset, sourceToTarget, width, color, amplitude, wavelength, quantizationCount);
+			return new RadBeamRenderable(pos, zOffset, sourceToTarget, width, color, amplitude, wavelength, quantizationCount, glowColor, glowScale, glowIntensity);
 		}
 
-		public IRenderable WithZOffset(int newOffset) { return new RadBeamRenderable(pos, zOffset, sourceToTarget, width, color, amplitude, wavelength, quantizationCount); }
+		public IRenderable WithZOffset(int newOffset) { return new RadBeamRenderable(pos, zOffset, sourceToTarget, width, color, amplitude, wavelength, quantizationCount, glowColor, glowScale, glowIntensity); }
 
-		public IRenderable OffsetBy(in WVec offset) { return new RadBeamRenderable(pos + offset, zOffset, sourceToTarget, width, color, amplitude, wavelength, quantizationCount); }
+		public IRenderable OffsetBy(in WVec offset) { return new RadBeamRenderable(pos + offset, zOffset, sourceToTarget, width, color, amplitude, wavelength, quantizationCount, glowColor, glowScale, glowIntensity); }
 
 		public IRenderable AsDecoration() { return this; }
 
@@ -95,9 +101,9 @@ namespace OpenRA.Mods.CA.Graphics
 				var end = wr.Screen3DPosition(pos + y);
 				Game.Renderer.WorldRgbaColorRenderer.DrawLine(last, end, screenWidth, color);
 
-				if (Game.Settings.Graphics.WeaponPostfx)
+				if (Game.Settings.Graphics.WeaponPostfx && glowScale > 0f)
 					wr.World.WorldActor.TraitOrDefault<GlowRenderer>()
-						?.RegisterGlow(Pos, Pos, color, width.Length / 86f);
+						?.RegisterGlow(Pos, Pos + sourceToTarget, glowColor, glowScale, intensity: glowIntensity);
 
 				pos += forwardStep; // keep moving along x axis
 				last = end;

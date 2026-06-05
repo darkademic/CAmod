@@ -1879,6 +1879,7 @@ LeecherBeam:
 		DistortionAnimation: 150
 		SegmentLength: 350
 		Inaccuracy: 128
+		GlowColor: FF0000
 	Warhead@1Dam: SpreadDamage
 		Spread: 288
 		Falloff: 100, 45, 20, 7, 0

@@ -111,6 +111,18 @@ namespace OpenRA.Mods.CA.Projectiles
 		[Desc("If true, the projectile will not be rendered.")]
 		public readonly bool Invisible = false;
 
+		[Desc("Color of the screen-space glow halo drawn along the zap.",
+			"Only visible when the \"Weapon Glow Effects\" setting is enabled.")]
+		public readonly Color GlowColor = Color.FromArgb(51, 255, 255);
+
+		[Desc("Scale multiplier for the glow halo's radius (also scales intensity).",
+			"Set to 0 to disable the glow for this zap.")]
+		public readonly float GlowScale = 0.3f;
+
+		[Desc("Brightness-only multiplier for the glow halo, independent of GlowScale (does not grow the radius).")]
+		public readonly float GlowIntensity = 1.65f;
+
+
 		public IProjectile Create(ProjectileArgs args)
 		{
 			var bc = BeamPlayerColor ? Color.FromArgb(BeamColor.A, args.SourceActor.OwnerColor()) : BeamColor;
@@ -278,7 +290,8 @@ namespace OpenRA.Mods.CA.Projectiles
 
 			if (ticks < info.Duration)
 			{
-				yield return new RailgunHelixRenderableCA(args.Source, info.ZOffset, this, info, ticks);
+				yield return new RailgunHelixRenderableCA(args.Source, info.ZOffset, this, info, ticks,
+				info.GlowColor, info.GlowScale, info.GlowIntensity);
 				yield return new BeamRenderable(args.Source, info.ZOffset, SourceToTarget, info.BeamShape, info.BeamWidth,
 					Color.FromArgb(BeamColor.A + info.BeamAlphaDeltaPerTick * ticks, BeamColor));
 			}

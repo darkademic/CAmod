@@ -45,6 +45,18 @@ namespace OpenRA.Mods.CA.Graphics
 		[Desc("The width of the zap.")]
 		public readonly WDist Width = new WDist(43);
 
+		[Desc("Color of the screen-space glow halo drawn along the zap.",
+			"Only visible when the \"Weapon Glow Effects\" setting is enabled.")]
+		public readonly Color GlowColor = Color.FromArgb(160, 200, 255);
+
+		[Desc("Scale multiplier for the glow halo's radius (also scales intensity).",
+			"Set to 0 to disable the glow for this zap.")]
+		public readonly float GlowScale = 0f;
+
+		[Desc("Brightness-only multiplier for the glow halo, independent of GlowScale (does not grow the radius).")]
+		public readonly float GlowIntensity = 1.65f;
+
+
 		public override object Create(ActorInitializer init) { return new WithMindControlArc(init.Self, this); }
 	}
 
@@ -77,7 +89,8 @@ namespace OpenRA.Mods.CA.Graphics
 					yield return new ArcRenderable(
 						self.CenterPosition + info.Offset,
 						s.Actor.CenterPosition + info.Offset,
-						info.ZOffset, info.Angle, color, info.Width, info.QuantizedSegments);
+						info.ZOffset, info.Angle, color, info.Width, info.QuantizedSegments,
+						info.GlowColor, info.GlowScale, info.GlowIntensity);
 				yield break;
 			}
 
@@ -87,7 +100,8 @@ namespace OpenRA.Mods.CA.Graphics
 			yield return new ArcRenderable(
 				mindControllable.Master.Value.Actor.CenterPosition + info.Offset,
 				self.CenterPosition + info.Offset,
-				info.ZOffset, info.Angle, color, info.Width, info.QuantizedSegments);
+				info.ZOffset, info.Angle, color, info.Width, info.QuantizedSegments,
+				info.GlowColor, info.GlowScale, info.GlowIntensity);
 		}
 
 		bool IRenderAboveShroudWhenSelected.SpatiallyPartitionable { get { return false; } }

@@ -119,6 +119,10 @@ AtomBomb:
 		Scale: 0.6
 		FadeFrames: 180
 		FadeInFrames: 15
+	Warhead@GlowImpact: GlowImpact
+		Scale: 3
+		FadeFrames: 180
+		FadeInFrames: 15
 
 InfernoBomb:
 	Inherits: CarpetBomb
@@ -174,6 +178,10 @@ InfernoBomb:
 		ThrowWithoutTarget: true
 	Warhead@Distort: HeatDistortion
 		Scale: 0.4
+		FadeFrames: 180
+		FadeInFrames: 15
+	Warhead@GlowImpact: GlowImpact
+		Scale: 3
 		FadeFrames: 180
 		FadeInFrames: 15
 

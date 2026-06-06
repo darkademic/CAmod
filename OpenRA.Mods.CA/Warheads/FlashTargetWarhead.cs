@@ -20,12 +20,13 @@ namespace OpenRA.Mods.CA.Warheads
 	public class FlashTargetWarhead : TargetDamageWarhead
 	{
 		public readonly Color Color = Color.White;
+		public readonly float Alpha = 0.5f;
 
 		protected override void InflictDamage(Actor victim, Actor firedBy, HitShape shape, WarheadArgs args)
 		{
 			victim.World.AddFrameEndTask(w =>
 			{
-				w.Add(new FlashTarget(victim, Color, 0.5f, 1, 2, 0));
+				w.Add(new FlashTarget(victim, Color, Alpha, 1, 2, 0));
 			});
 		}
 	}

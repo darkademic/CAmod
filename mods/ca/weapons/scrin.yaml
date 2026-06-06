@@ -2269,9 +2269,18 @@ ObliteratorBolt:
 	MinRange: 1c0
 	ReloadDelay: 75
 	Report: oblt-fire1.aud
+	TargetActorCenter: true
 	Projectile: LinearPulse
 		Speed: 768
-		ImpactInterval: 390
+		ImpactInterval: 384
+		ImpactType: Rectangle
+		RectangleLength: 768
+		RectangleWidth: 1c512
+		SingleHitPerActor: true
+		ForceGround: DamageOnly
+		DamageFalloff@1:
+			Spread: 0c384
+			Falloff: 100, 45, 0
 		ProjectileAnimation@1:
 			Image: obltbolt
 			Sequences: idle, idle2
@@ -2279,40 +2288,36 @@ ObliteratorBolt:
 			HitAnim: enrvbolthit
 			HitAnimSequence: idle
 			HitAnimPalette: scrin
+			SmudgeType: Scorch-NoFlame
+		ImpactAnimation@1:
+			Image: obltbolt
+			Sequences: trail, trail2, trail3
+			Palette: scrin
+			Inaccuracy: 110
 	Warhead@1Dam: SpreadDamage
-		Spread: 390
-		Falloff: 100, 50, 0
-		Damage: 7500
+		Damage: 16000
 		Versus:
-			Wood: 40
-			Concrete: 40
-			Heavy: 65
-			Light: 65
+			None: 60
+			Wood: 115
+			Concrete: 100
+			Heavy: 90
+			Light: 100
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 		ValidRelationships: Enemy, Neutral
 	Warhead@friendlyFire: SpreadDamage
-		Spread: 390
-		Falloff: 100, 50, 0
 		Damage: 1000
 		Versus:
-			Wood: 40
-			Concrete: 40
-			Heavy: 65
-			Light: 65
+			None: 60
+			Wood: 115
+			Concrete: 100
+			Heavy: 90
+			Light: 100
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 		ValidRelationships: Ally
 		InvalidTargets: Obliterator
-	Warhead@2Eff: CreateFacingEffect
-		Explosions: trail, trail2, trail3
-		ExplosionPalette: scrin
-		Image: obltbolt
-		ValidTargets: Ground, Air, Ship, Trees
-		Inaccuracy: 110
-	Warhead@2Smu: LeaveSmudge
-		SmudgeType: Scorch
 	Warhead@Flash: FlashTarget
-		Spread: 1c0
 		Color: 9c3ee0
+		Alpha: 0.7
 		ValidTargets: Infantry, Structure, Vehicle
 
 NullifierBolt:

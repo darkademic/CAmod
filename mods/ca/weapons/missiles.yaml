@@ -2112,7 +2112,7 @@ CryoMissile:
 		Falloff: 100, 50, 25, 0
 		Versus:
 			None: 50
-			Wood: 20
+			Wood: 80
 			Light: 100
 			Heavy: 70
 			Concrete: 75

@@ -156,6 +156,9 @@ namespace OpenRA.Mods.CA.Projectiles
 		[Desc("Palette to use for the impact animation.")]
 		public readonly string Palette = "effect";
 
+		[Desc("The random distance to offset from the impact point.")]
+		public readonly WDist Inaccuracy = WDist.Zero;
+
 		/// <summary>
 		/// This constructor is used solely for documentation generation.
 		/// </summary>
@@ -686,11 +689,16 @@ namespace OpenRA.Mods.CA.Projectiles
 			{
 				if (!string.IsNullOrEmpty(impactAnim.Image))
 				{
+					var impactAnimPos = impactPosForVisual;
+
+					if (impactAnim.Inaccuracy.Length > 0)
+						impactAnimPos += WVec.FromPDF(world.SharedRandom, 2) * impactAnim.Inaccuracy.Length / 1024;
+
 					// Pick a random sequence for this impact
 					var sequence = impactAnim.Sequences.Random(world.SharedRandom);
 
 					// Create SpriteEffect with facing
-					world.AddFrameEndTask(w => w.Add(new SpriteEffect(impactPosForVisual, facing, w, impactAnim.Image, sequence, impactAnim.Palette)));
+					world.AddFrameEndTask(w => w.Add(new SpriteEffect(impactAnimPos, facing, w, impactAnim.Image, sequence, impactAnim.Palette)));
 				}
 			}
 

@@ -5208,7 +5208,7 @@ CRYT:
 		Description: Elite infantry armed with a cryo sprayer.
 	TooltipExtras:
 		Strengths: • Strong vs Infantry, Light Armor
-		Weaknesses: • Weak vs Buildings, Defenses\n• Cannot attack Aircraft
+		Weaknesses: • Weak vs Defenses\n• Cannot attack Aircraft
 		Attributes: • Slows enemy units and makes them take increased damage
 	Valued:
 		Cost: 700

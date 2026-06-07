@@ -2399,7 +2399,7 @@ SAB:
 	TooltipExtras:
 		Strengths: • Strong vs Infantry
 		Weaknesses: • Can only attack Infantry
-		Attributes: • Detects cloaked ground units and spies\n• Limited stealth (drains while moving)\n• Infiltrates production buildings to steal technology\n    • Allies: Cryo Mortar, Reckoner, Phantom\n    • Soviets: Cyberdog, Cyclops, Kamov\n    • GDI: Sonic Mortar, Basilisk, Shade\n    • Nod: Chem Mortar, Mantis, Vertigo\n    • Scrin: Cyberscrin, Viper, Manticore\n• Infiltrates radars/tech centers to lock technology\n• Infiltrates any building for vision
+		Attributes: • Detects cloaked ground units and spies\n• Infiltrates production buildings to steal technology\n    • Allies: Cryo Mortar, Reckoner, Phantom\n    • Soviets: Cyberdog, Cyclops, Kamov\n    • GDI: Sonic Mortar, Basilisk, Shade\n    • Nod: Chem Mortar, Mantis, Vertigo\n    • Scrin: Cyberscrin, Viper, Manticore\n• Infiltrates radars/tech centers to lock technology\n• Infiltrates any building for vision
 	Valued:
 		Cost: 500
 	Tooltip:
@@ -2429,7 +2429,7 @@ SAB:
 	Health:
 		HP: 5000
 	Mobile:
-		Speed: 54
+		Speed: 46
 		Voice: Move
 	Armament:
 		Weapon: SilencedPPK
@@ -2444,19 +2444,16 @@ SAB:
 		InitialStance: HoldFire
 		InitialStanceAI: Defend
 	Cloak:
-		InitialDelay: 0
-		CloakDelay: 25
+		InitialDelay: 200
+		CloakDelay: 200
 		CloakedCondition: hidden
 		IsPlayerPalette: true
 		DetectionTypes: Cloak
-		RequiresCondition: can-cloak && !cloak-force-disabled && !being-warped
+		RequiresCondition: !cloak-force-disabled && !being-warped
 		PauseOnCondition: invisibility
 		UncloakOn: Unload, Infiltrate, Demolish, Dock, Attack, Damage
 		CloakSound: gstealon.aud
 		UncloakSound: gstealof.aud
-	GrantConditionOnMovement:
-		Condition: moving
-		ValidMovementTypes: Horizontal, Vertical, Turn
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden)
 	GrantConditionOnDamageStateCA@UNCLOAK:
@@ -2475,17 +2472,6 @@ SAB:
 	WithProductionIconOverlay:
 		Types: Veterancy
 		Prerequisites: barracks.upgraded
-	GrantChargingCondition@CLOAK:
-		Condition: can-cloak
-		InitialCharge: 600
-		MaxCharge: 600
-		ChargeRate: 2
-		PauseOnCondition: moving
-		RequiresCondition: !cloak-force-disabled
-		ChargingColor: 999999
-		DischargingColor: EEEEEE
-		ChargeDelay: 75
-		ShowSelectionBarWhenFull: false
 	WithColoredSelectionBox@INVIS:
 		RequiresCondition: invisibility || hidden
 		ColorSource: Player

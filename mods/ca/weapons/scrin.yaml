@@ -801,7 +801,7 @@ ReaperLaserChargedReversed:
 		FollowingOffset: 50,100,0
 
 StormriderZap:
-	Range: 5c768
+	Range: 6c0
 	Report: stormrider-fire1.aud, stormrider-fire2.aud, stormrider-fire3.aud
 	ReloadDelay: 50
 	Burst: 5

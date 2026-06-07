@@ -1326,6 +1326,7 @@ EnlightenedBeam:
 		RecalculateColors: true
 		TrackTarget: false
 		MaxFacingDeviation: 64
+		GlowColor: 0eebf3
 	Warhead@1Dam: HealthPercentageSpreadDamage
 		Spread: 341
 		Falloff: 100, 45, 25, 15, 0
@@ -2446,9 +2447,9 @@ VirusCloud:
 	Inherits: Cloud
 	-Warhead@18Radio:
 	Warhead@1Dam: SpreadDamage
-		Damage: 1000
+		Damage: 850
 		Spread: 256
-		Falloff: 100, 37, 14, 5, 0
+		Falloff: 100, 37, 14, 0
 		DamageTypes: PoisonDeath
 		Versus:
 			Light: 35
@@ -2497,6 +2498,7 @@ RadTrooperBeam:
 		WaveLength: 384
 		Thickness: 32
 		ZOffset: 512
+		GlowScale: 0.25
 	Warhead@1Dam: SpreadDamage
 		Spread: 136
 		Damage: 7600
@@ -2517,6 +2519,7 @@ DesolatorBeam:
 	Report: idesat1a.aud
 	Projectile: RadBeam
 		Thickness: 48
+		GlowScale: 0.5
 	Warhead@1Dam: SpreadDamage
 		Spread: 180
 		Versus:

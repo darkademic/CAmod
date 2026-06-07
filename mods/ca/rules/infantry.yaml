@@ -4008,6 +4008,7 @@ BH:
 		Weapon: BlackHandFlamer
 	TakeCover:
 		ProneOffset: 160,0,-256
+		SpeedModifier: 70
 	WithMuzzleOverlay:
 	AttackFrontal:
 		PauseOnCondition: being-warped || blinded || reapersnare

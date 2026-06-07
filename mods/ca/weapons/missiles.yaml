@@ -1435,9 +1435,9 @@ IFVRocketsAA:
 	Burst: 2
 	BurstDelays: 5
 	Warhead@1Dam: SpreadDamage
-		Damage: 4200
+		Damage: 4600
 	Warhead@smallDamage: SpreadDamage
-		Damage: 4200
+		Damage: 4600
 
 IFVRocketsE:
 	Inherits: IFVRockets
@@ -1720,10 +1720,10 @@ StnkMissileAA:
 		Speed: 298
 		RangeLimit: 9c0
 	Warhead@1Dam: SpreadDamage
-		Damage: 4800
+		Damage: 5200
 	Warhead@smallDamage: SpreadDamage
 		Spread: 192
-		Damage: 4800
+		Damage: 5200
 	Warhead@3Eff: CreateEffect
 		ImpactSounds: xplos.aud
 
@@ -1773,9 +1773,9 @@ StnkMissileAA.TibCore:
 		ContrailStartWidth: 0c40
 	Report: tibcore1.aud, tibcore2.aud, tibcore3.aud
 	Warhead@1Dam: SpreadDamage
-		Damage: 3360
+		Damage: 3600
 	Warhead@smallDamage: SpreadDamage
-		Damage: 3360
+		Damage: 3600
 	Warhead@3Eff: CreateEffect
 		ImpactSounds: tibcorehit1.aud, tibcorehit2.aud, tibcorehit3.aud
 	Warhead@tib: CreateEffect
@@ -1813,9 +1813,9 @@ HstkMissileAA:
 		MaximumLaunchSpeed: 36
 		Acceleration: 768
 	Warhead@1Dam: SpreadDamage
-		Damage: 3360
+		Damage: 3600
 	Warhead@smallDamage: SpreadDamage
-		Damage: 3360
+		Damage: 3600
 
 HstkMissile.TibCore:
 	Inherits: StnkMissile.TibCore
@@ -1849,9 +1849,9 @@ HstkMissileAA.TibCore:
 		Acceleration: 768
 		Speed: 357
 	Warhead@1Dam: SpreadDamage
-		Damage: 3850
+		Damage: 4100
 	Warhead@smallDamage: SpreadDamage
-		Damage: 3850
+		Damage: 4100
 	Warhead@3Eff: CreateEffect
 		ImpactSounds: expnew17.aud
 	Warhead@Flash: FlashTarget

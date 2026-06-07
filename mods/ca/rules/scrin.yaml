@@ -3189,7 +3189,7 @@ STMR:
 	Aircraft:
 		CruiseAltitude: 2560
 		TurnSpeed: 22
-		Speed: 146
+		Speed: 157
 		IdleSpeed: 135
 		IdleTurnSpeed: 15
 		RepulsionSpeed: 40

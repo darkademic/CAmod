@@ -75,7 +75,10 @@ namespace OpenRA.Mods.CA.Traits
 
 		void UpdateConditions()
 		{
-			var inheritedLevel = FindMaster()?.TraitOrDefault<GainsExperience>()?.Level ?? 0;
+			var master = FindMaster();
+			var inheritedLevel = master == null || master.IsDead
+				? 0
+				: master.TraitOrDefault<GainsExperience>()?.Level ?? 0;
 			if (inheritedLevel == currentLevel)
 				return;
 

@@ -38,6 +38,13 @@ encyclopedia.tips.general:
 	QuantizeFacingsFromSequence:
 		Sequence: stand
 
+^BuildingEffectPreview:
+	Inherits: ^EffectPreview
+	RenderSprites:
+		Image: apwr
+		PlayerPalette: player
+	WithSpriteBody:
+
 ^SupportPowerPreview:
 	Inherits: ^InvisibleDummy
 	Buildable:
@@ -2688,6 +2695,23 @@ encyclopedia.debuffs.suppression:
 		Weaknesses: -60% movement speed\n-20% rate of fire
 	WithPalettedOverlay@SUPPRESSION:
 		ShowInPreview: true
+
+encyclopedia.debuffs.underminedfoundation:
+	Inherits: ^BuildingEffectPreview
+	Tooltip:
+		Name: Undermined Foundation
+	Encyclopedia:
+		Category: Other/Debuffs
+	EncyclopediaExtras:
+		Description: Applied by the Allied Delphis APC. Buildings take greatly increased damage.
+	TooltipExtras:
+		Weaknesses: +60% damage received
+	WithPreviewDecoration@UnderminedFoundation:
+		Image: underminefoundation
+		Sequence: idle
+		Palette: effect
+		Position: Top
+		Margin: 0, 8
 
 encyclopedia.debuffs.veiled:
 	Inherits: ^VehicleEffectPreview

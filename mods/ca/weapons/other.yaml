@@ -1326,6 +1326,7 @@ EnlightenedBeam:
 		RecalculateColors: true
 		TrackTarget: false
 		MaxFacingDeviation: 64
+		GlowColor: 0eebf3
 	Warhead@1Dam: HealthPercentageSpreadDamage
 		Spread: 341
 		Falloff: 100, 45, 25, 15, 0
@@ -2446,9 +2447,9 @@ VirusCloud:
 	Inherits: Cloud
 	-Warhead@18Radio:
 	Warhead@1Dam: SpreadDamage
-		Damage: 1000
+		Damage: 850
 		Spread: 256
-		Falloff: 100, 37, 14, 5, 0
+		Falloff: 100, 37, 14, 0
 		DamageTypes: PoisonDeath
 		Versus:
 			Light: 35
@@ -2497,6 +2498,7 @@ RadTrooperBeam:
 		WaveLength: 384
 		Thickness: 32
 		ZOffset: 512
+		GlowScale: 0.25
 	Warhead@1Dam: SpreadDamage
 		Spread: 136
 		Damage: 7600
@@ -2517,6 +2519,7 @@ DesolatorBeam:
 	Report: idesat1a.aud
 	Projectile: RadBeam
 		Thickness: 48
+		GlowScale: 0.5
 	Warhead@1Dam: SpreadDamage
 		Spread: 180
 		Versus:
@@ -3395,6 +3398,7 @@ ViperLaser:
 	Report: viper-fire1.aud
 	Projectile: PlasmaBeam
 		Colors: ff0000E6, cc0000E6
+		GlowColor: ff0000
 	Warhead@1Dam: SpreadDamage
 		Damage: 1550
 
@@ -3789,30 +3793,47 @@ CryoSprayer:
 	TargetActorCenter: true
 	Projectile: LinearPulse
 		Speed: 341
+		ImpactType: Rectangle
+		RectangleLength: 0c512
+		RectangleWidth: 0c768
 		MinimumImpactDistance: 0
 		MaximumImpactDistance: 5456
+		Inaccuracy: 160
+		SingleHitPerActor: true
+		ImpactAnimation@1:
+			Image: explosion
+			Sequences: cryobeam1, cryobeam2
+			Palette: effect
+			Inaccuracy: 110
+		DamageFalloff@1:
+			Spread: 128
+			Falloff: 100, 75, 25, 0
+		DamageFalloff@2:
+			Spread: 384
+			Falloff: 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 80, 25, 0
+			FalloffBasis: DistanceFromSource
 	Warhead@1Dam: SpreadDamage
 		Spread: 0c128
 		Falloff: 100, 75, 25, 0
 		Damage: 400
 		Versus:
 			None: 100
-			Wood: 2
+			Wood: 120
 			Light: 15
 			Heavy: 10
-			Concrete: 2
+			Concrete: 30
 			Brick: 0
 		ValidRelationships: Enemy, Neutral
 		DamageTypes: Prone50Percent, TriggerProne, FrozenDeath
-	Warhead@2Eff: CreateFacingEffect
-		Explosions: cryobeam1, cryobeam2
-		ExplosionPalette: effect
-		ValidTargets: Ground, Air, Ship, Trees
-		Inaccuracy: 110
 	Warhead@chill1: GrantExternalConditionCA
 		Condition: chilled
 		Duration: 75
-		Range: 0c341
+		Range: 0c42
+		ValidRelationships: Enemy, Neutral
+	Warhead@chill2: GrantExternalConditionCA
+		Condition: chilled
+		Duration: 75
+		Range: 0c42
 		ValidRelationships: Enemy, Neutral
 
 ZeusCloud:

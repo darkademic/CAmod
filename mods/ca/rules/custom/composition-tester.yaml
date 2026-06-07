@@ -1204,6 +1204,10 @@ vulcan.upgrade:
 	Buildable:
 		Prerequisites: ~disabled
 
+ejjet.upgrade:
+	Buildable:
+		Prerequisites: ~player.gdi
+
 avenger.upgrade:
 	Buildable:
 		Prerequisites: ~disabled

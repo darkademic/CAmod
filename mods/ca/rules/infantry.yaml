@@ -2821,6 +2821,13 @@ JJET:
 		MinRange: 6c0
 		Type: GroundPosition
 		RevealGeneratedShroud: False
+		RequiresCondition: !ejjet-upgrade
+	RevealsShroud@Enhanced:
+		Range: 9c0
+		MinRange: 6c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+		RequiresCondition: ejjet-upgrade
 	RevealsShroud@GAPGEN:
 		Range: 6c0
 		Type: GroundPosition
@@ -2965,6 +2972,15 @@ JJET:
 		DecorationBounds: 512, 725, 0, -256
 	KillsSelf@Emp:
 		RequiresCondition: empdisable && cruising
+	GrantConditionOnPrerequisite@Enhanced:
+		Condition: ejjet-upgrade
+		Prerequisites: ejjet.upgrade
+	SpeedMultiplier@Enhanced:
+		Modifier: 125
+		RequiresCondition: ejjet-upgrade
+	RangeMultiplier@Enhanced:
+		Modifier: 125
+		RequiresCondition: ejjet-upgrade
 	GrantConditionOnDamageState@DAMAGED:
 		Condition: damaged
 		ValidDamageStates: Light, Medium, Heavy, Critical

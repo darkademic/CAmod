@@ -143,7 +143,7 @@ seek.strat:
 		BuildPaletteOrder: 9
 		Prerequisites: ~player.gdi, anyradar, ~!bombard.strat, ~!hold.strat, ~techlevel.medium
 		IconPalette: chrometd
-		Description: Speed and weapon range focused strategy, required for:\n• Zone Raider\n• TOW Missile Upgrade\n• Hypersonic Missiles Upgrade\n• Sidewinders Upgrade\n• Advanced Radar Power\n\n
+		Description: Speed and weapon range focused strategy, required for:\n• Zone Raider\n• Enhanced Jumpjets Upgrade\n• Hypersonic Missiles Upgrade\n• Sidewinders Upgrade\n• Advanced Radar Power\n\n
 	TooltipExtras:
 		Strengths: + Increases speed and weapon range of vehicles and aircraft by 5%
 		Attributes: \n(!) Only ONE Strategy may be chosen.
@@ -299,6 +299,24 @@ bjet.upgrade:
 	WithProductionIconOverlay:
 		Prerequisites: bjet.upgrade
 
+tow.upgrade:
+	Inherits: ^GDIUpgrade
+	Tooltip:
+		Name: Research: TOW Missile
+	Buildable:
+		BuildPaletteOrder: 20
+		Prerequisites: ~player.gdi, anyradar, ~techlevel.medium
+		Description: Hum-Vees and Guardian Drones will be produced with TOW missile launchers.\n\nReplaces: Hum-Vee\nReplaces: Guardian Drone
+	TooltipExtras:
+		Strengths: + Added TOW missile launcher (strong vs Heavy Armor)
+		Weaknesses: – Increased cost\n– Reduced speed
+	Valued:
+		Cost: 1000
+	RenderSprites:
+		Image: tow.upgrade
+	WithProductionIconOverlay:
+		Prerequisites: tow.upgrade
+
 empgren.upgrade:
 	Inherits: ^GDIUpgrade
 	Tooltip:
@@ -433,23 +451,23 @@ thwk.upgrade:
 	EncyclopediaExtras:
 		AdditionalInfo: Requires Bombardment Strategy.
 
-tow.upgrade:
+ejjet.upgrade:
 	Inherits: ^GDIUpgrade
 	Tooltip:
-		Name: Research: TOW Missile
+		Name: Upgrade: Enhanced Jumpjets
 	Buildable:
 		BuildPaletteOrder: 30
+		IconPalette: chrometd
 		Prerequisites: ~player.gdi, gtek, ~seek.strat, ~techlevel.high
-		Description: Hum-Vees and Guardian Drones will be produced with TOW missile launchers.\n\nReplaces: Hum-Vee\nReplaces: Guardian Drone
+		Description: .\n\nUpgrades: Jumpjet Infantry\nUpgrades: Bombardier
 	TooltipExtras:
-		Strengths: + Added TOW missile launcher (strong vs Heavy Armor)
-		Weaknesses: – Increased cost\n– Reduced speed
+		Strengths: + 25% faster movement\n+ 25% longer weapon range\n+ Vision range increased by 2
 	Valued:
 		Cost: 1000
 	RenderSprites:
-		Image: tow.upgrade
+		Image: ejjet.upgrade
 	WithProductionIconOverlay:
-		Prerequisites: tow.upgrade
+		Prerequisites: ejjet.upgrade
 	EncyclopediaExtras:
 		AdditionalInfo: Requires Seek & Destroy Strategy.
 

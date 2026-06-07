@@ -5263,7 +5263,7 @@ SGEN.Shadow:
 		Prerequisites: tmpl, ~structures.nod, ~player.shadow, ~techlevel.high
 	TooltipExtras:
 		Attributes: • Maximum 1 can be built\n• Cloaks nearby units and structures\n• Requires power to operate\n• Special Ability: Tiberium Stealth
-	WithRangeCircle@SGEN:
+	WithRangeCircleCA@SGEN:
 		Range: 11c512
 	ProximityExternalCondition@SGEN:
 		Range: 11c512

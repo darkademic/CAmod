@@ -309,7 +309,7 @@ tow.upgrade:
 		Description: Hum-Vees and Guardian Drones will be produced with TOW missile launchers.\n\nReplaces: Hum-Vee\nReplaces: Guardian Drone
 	TooltipExtras:
 		Strengths: + Added TOW missile launcher (strong vs Heavy Armor)
-		Weaknesses: – Increased cost\n– Reduced speed
+		Weaknesses: – Increased cost\n– Reduced speed\n– Disables Point Defense Shields for Hum-Vees and Guardian Drones
 	Valued:
 		Cost: 1000
 	RenderSprites:
@@ -459,7 +459,7 @@ ejjet.upgrade:
 		BuildPaletteOrder: 30
 		IconPalette: chrometd
 		Prerequisites: ~player.gdi, gtek, ~seek.strat, ~techlevel.high
-		Description: .\n\nUpgrades: Jumpjet Infantry\nUpgrades: Bombardier
+		Description: Improves speed, range and vision for Jumpjet Troopers and Bombardiers.\n\nUpgrades: Jumpjet Infantry\nUpgrades: Bombardier
 	TooltipExtras:
 		Strengths: + 25% faster movement\n+ 25% longer weapon range\n+ Vision range increased by 2
 	Valued:
@@ -482,6 +482,7 @@ pointdef.upgrade:
 		Description: Equips several units with point defense shields and/or point defense lasers which protect against enemy fire.\n\nUpgrades: Battle Tank (Shield and Laser)\nUpgrades: Battle Drone (Shield and Laser)\nUpgrades: Hum-Vee (Shield)\nUpgrades: Guardian Drone (Shield)\nUpgrades: Harvester (Shield)\nUpgrades: Frigate (Laser)
 	TooltipExtras:
 		Strengths: + Added Point Defense Shield\n+ Added Point Defense Laser
+		Attributes: – TOW Missile upgrade will disable shields for Hum-Vees and Guardian Drones
 	Valued:
 		Cost: 1500
 	RenderSprites:

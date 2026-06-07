@@ -3270,7 +3270,7 @@ HMMV:
 		Prerequisites: vehicles.upgraded
 	GrantConditionOnPrerequisite@GSHIELD:
 		Condition: pointdef-upgrade
-		Prerequisites: pointdef.upgrade
+		Prerequisites: pointdef.upgrade, !tow.upgrade
 	TimedDamageMultiplier@GSHIELD:
 		ActiveCondition: gshield
 		ChargingColor: 008888
@@ -3396,7 +3396,7 @@ GDRN:
 		RequiresCondition: !(empdisable || being-warped)
 	GrantConditionOnPrerequisite@GSHIELD:
 		Condition: pointdef-upgrade
-		Prerequisites: pointdef.upgrade
+		Prerequisites: pointdef.upgrade, !tow.upgrade
 	TimedDamageMultiplier@GSHIELD:
 		ActiveCondition: gshield
 		ChargingColor: 008888

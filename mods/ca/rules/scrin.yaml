@@ -130,7 +130,7 @@ VEHICLES.SCRIN:
 
 ^ScrinShields:
 	Shielded:
-		MaxStrength: 8000
+		MaxStrength: 10000
 		RegenDelay: 350
 		RegenAmount: 250
 		RegenInterval: 5
@@ -3160,6 +3160,8 @@ STMR:
 		AddToArmyValue: true
 	Health:
 		HP: 26000
+	Shielded:
+		MaxStrength: 10000
 	RevealsShroud:
 		Range: 11c0
 		MinRange: 9c0
@@ -3299,6 +3301,8 @@ TORM:
 		AddToArmyValue: true
 	Health:
 		HP: 10000
+	Shielded:
+		MaxStrength: 5000
 	RevealsShroud:
 		Range: 11c0
 		MinRange: 9c0
@@ -3405,8 +3409,6 @@ TORM:
 	SpeedMultiplier@EMPDISABLE:
 		Modifier: 0
 		RequiresCondition: empdisable
-	Shielded:
-		MaxStrength: 4000
 	GpsRadarDot:
 		Sequence: Plane
 	Targetable@MothershipRearmable:
@@ -3443,6 +3445,8 @@ ENRV:
 		AddToArmyValue: true
 	Health:
 		HP: 22500
+	Shielded:
+		MaxStrength: 7500
 	RevealsShroud:
 		Range: 12c0
 		MinRange: 10c0
@@ -3541,8 +3545,6 @@ ENRV:
 	SpeedMultiplier@EMPDISABLE:
 		Modifier: 0
 		RequiresCondition: empdisable
-	Shielded:
-		MaxStrength: 5625
 	GpsRadarDot:
 		Sequence: Plane
 	Targetable@MothershipRearmable:
@@ -3581,6 +3583,8 @@ DEVA:
 		AddToArmyValue: true
 	Health:
 		HP: 32000
+	Shielded:
+		MaxStrength: 10000
 	Armor:
 		Type: Aircraft
 	HitShape:
@@ -3726,6 +3730,8 @@ PAC:
 		AddToArmyValue: true
 	Health:
 		HP: 56000
+	Shielded:
+		MaxStrength: 20000
 	Armor:
 		Type: Aircraft
 	HitShape:
@@ -3826,8 +3832,6 @@ PAC:
 	WithProductionIconOverlay:
 		Types: Veterancy
 		Prerequisites: aircraft.upgraded
-	Shielded:
-		MaxStrength: 14000
 	Turreted@SHIELDS:
 		Offset: -128,0,0
 	GpsRadarDot:
@@ -3962,6 +3966,8 @@ MSHP:
 		AddToArmyValue: true
 	Health:
 		HP: 130000
+	Shielded:
+		MaxStrength: 26000
 	Armor:
 		Type: Aircraft
 	HitShape:
@@ -4096,8 +4102,6 @@ MSHP:
 	SpeedMultiplier@EMPDISABLE:
 		Modifier: 0
 		RequiresCondition: empdisable
-	Shielded:
-		MaxStrength: 26000
 	SpawnActorAbility:
 		Actors: wormhole
 		SkipMakeAnimations: false

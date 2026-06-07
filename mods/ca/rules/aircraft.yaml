@@ -5087,6 +5087,9 @@ JACK:
 	-SoundOnDamageTransitionCA:
 	ActorLostNotification:
 		RequiresCondition: !diving
+	ReclaimsExperience:
+		Type: Drone
+		OnlyAddToPool: true
 	TargetedAttackAbility:
 		TargetCursor: attack
 		ArmamentNames: primary

@@ -343,14 +343,14 @@ AvatarFlamer:
 	Burst: 13
 	BurstDelays: 4
 	Warhead@1Dam: SpreadDamage
-		Damage: 570
+		Damage: 800
 
 AvatarFlamer.UPG:
 	Inherits: HeavyFlameTankFlamer.UPG
 	Burst: 13
 	BurstDelays: 4
 	Warhead@1Dam: SpreadDamage
-		Damage: 590
+		Damage: 850
 
 BlackHandFlamer:
 	Inherits: HeavyFlameTankFlamer

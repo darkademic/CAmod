@@ -156,6 +156,7 @@ MaverickSU:
 			Wood: 18
 			Concrete: 65
 			Heavy: 85
+			Light: 45
 	Warhead@2Dam: SpreadDamage
 		Damage: 1600
 		Spread: 128

@@ -3954,7 +3954,7 @@ MSHP:
 	TooltipExtras:
 		Strengths: • Strong vs Buildings, Defenses, Heavy Armor, Light Armor, Infantry
 		Weaknesses: • Cannot attack Aircraft\n• Long charge time before firing anti-structure weapon\n• Cannot move while firing
-		Attributes: • Maximum 1 can be built\n• Can create wormholes\n• Can recharge nearby Stormriders/Enervators
+		Attributes: • Maximum 1 can be built\n• Can create wormholes\n• Can recharge nearby Stormriders/Enervators/Tormentors
 	Voiced:
 		VoiceSet: MothershipVoice
 	Valued:
@@ -6095,7 +6095,7 @@ ISPK:
 	Tooltip:
 		Name: Ichor Spike
 	TooltipExtras:
-		Attributes: • Enriches Tiberium trees\n• Empowers units with Resource Conversion upgrade
+		Attributes: • Enriches Tiberium trees (3 max)\n• Empowers units with Resource Conversion upgrade
 		Description: Enriches nearby Tiberium trees causing them to seed Tiberium more quickly.
 	RevealsShroud:
 		MinRange: 6c0
@@ -6107,11 +6107,12 @@ ISPK:
 		Sequences: idle2, idle3, idle4, idle5
 		Interval: 5, 50
 		RequiresCondition: !build-incomplete && !being-warped
-	ProximityExternalCondition@IchorBoost:
+	ProximityExternalConditionCA@IchorBoost:
 		Range: 8c0
 		Condition: ichor-boost
 		ValidRelationships: Neutral
 		RequiresCondition: !build-incomplete && !being-warped
+		MaxTargets: 3
 	ProximityExternalCondition@ONTIB:
 		Condition: on-tib
 		Range: 8c0

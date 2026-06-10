@@ -35,12 +35,8 @@ namespace OpenRA.Mods.CA.Activities
 		public InstantTransform(Actor self, string toActor)
 		{
 			ToActor = toActor;
-		}
-
-		protected override void OnFirstRun(Actor self)
-        {
 			IsInterruptible = false;
-        }
+		}
 
 		public override bool Tick(Actor self)
 		{

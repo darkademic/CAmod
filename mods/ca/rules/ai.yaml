@@ -568,7 +568,7 @@ Player:
 				FineScanRadius: 2
 				Consideration@1:
 					Against: Ally
-					Types: Vehicle
+					Types: Repairable
 					Attractiveness: 5
 					TargetMetric: Value
 					CheckRadius: 3c0

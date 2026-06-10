@@ -4647,6 +4647,9 @@ MDRN.Attached:
 	-PowerMultiplier@HACKED:
 	-ChronoshiftableCA:
 	-HealthCapDamageMultiplier@CHRONO:
+	-ExternalCondition@NSHIELD:
+	DummyConditionGranter@NSHIELD:
+		Condition: nshield
 	-Encyclopedia:
 	-GainsExperience:
 	-ReclaimsExperience:
@@ -5126,6 +5129,8 @@ MLRS:
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
 		Range: 4c0
+	Voiced:
+		VoiceSet: SSMVoice
 	Turreted:
 		TurnSpeed: 8
 		Offset: -168,0,128
@@ -5184,6 +5189,7 @@ MLRS:
 		Turrets: primary, secondary
 		Armaments: primary, tertiary, targetter
 		TargetFrozenActors: True
+		Voice: Attack
 		ForceFireIgnoresActors: True
 		PauseOnCondition: empdisable || being-warped || blinded
 	WithSpriteTurret:
@@ -8432,6 +8438,9 @@ MSAR:
 	ProvidesPrerequisite@radar-active:
 		Prerequisite: radar-active
 		RequiresCondition: deployed && !(jammed || empdisable || being-warped)
+	ProductionCostMultiplier@ArcBonus:
+		Multiplier: 80
+		Prerequisites: player.arc
 	-WithDecoration@BOMBARD:
 	-WithDecoration@BOMBARD2:
 	-WithDecoration@BOMBARD3:

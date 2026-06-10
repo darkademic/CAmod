@@ -1234,3 +1234,10 @@ CustodianVoice:
 		Move: cust-move1, cust-move2, cust-move3, cust-move4
 		Attack: cust-move1, cust-move2, cust-move3, cust-move4
 		Action: cust-move1, cust-move2, cust-move3, cust-move4
+
+SSMVoice:
+	Voices:
+		Select: ssm-select1, ssm-select2, ssm-select3, ssm-select4
+		Move: ssm-move1, ssm-move2, ssm-move3, ssm-move4
+		Attack: ssm-attack1, ssm-attack2, ssm-attack3, ssm-attack4
+		Action: ssm-move1, ssm-move2, ssm-move3, ssm-move4

@@ -854,11 +854,11 @@ Ivanbomb:
 	Report: grenade1.aud
 	Projectile: Bullet
 		LaunchAngle: 80
-		Speed: 166
+		Speed: 136
 		Inaccuracy: 0
 		Image: TNT
 		BounceCount: 2
-		BounceRangeModifier: 60
+		BounceRangeModifier: 40
 		BounceSound: dud2.aud
 		ValidBounceBlockerRelationships: Ally, Neutral, Enemy
 		ContrailLength: 10

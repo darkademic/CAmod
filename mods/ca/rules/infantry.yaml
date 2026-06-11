@@ -873,7 +873,7 @@ E7:
 		Weaknesses: • Cannot attack Aircraft
 		Attributes: • Maximum 1 can be trained\n• Detects cloaked ground units and spies\n• Immune to mind control\n• Plants C4 to destroy structures and vehicles
 	Valued:
-		Cost: 1350
+		Cost: 1500
 	Tooltip:
 		Name: Tanya
 	UpdatesPlayerStatistics:
@@ -2026,7 +2026,7 @@ RMBO:
 	Inherits@CommandoRegen: ^CommandoRegen
 	Inherits@HEALINGCOOLDOWN: ^HealingCooldown
 	Valued:
-		Cost: 1350
+		Cost: 1500
 	Tooltip:
 		Name: Commando
 	UpdatesPlayerStatistics:
@@ -2297,7 +2297,7 @@ BORI:
 		Weaknesses: • Cannot attack Aircraft
 		Attributes: • Maximum 1 can be trained\n• Detects cloaked ground units and spies\n• Immune to mind control\n• Calls airstrike on targeted structures
 	Valued:
-		Cost: 1350
+		Cost: 1500
 	Tooltip:
 		Name: Boris
 	UpdatesPlayerStatistics:
@@ -4067,7 +4067,7 @@ YURI:
 		Weaknesses: • Cannot attack Aircraft
 		Attributes: • Maximum 1 can be trained\n• Detects cloaked ground units and spies\n• Immune to mind control\n• Shorter range and longer reload against vehicles\n• Psychic detection radius\n• Special Ability: Mind Blast
 	Valued:
-		Cost: 1350
+		Cost: 1500
 	Tooltip:
 		Name: Yuri
 	UpdatesPlayerStatistics:

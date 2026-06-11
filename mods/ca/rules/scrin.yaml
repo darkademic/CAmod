@@ -635,7 +635,7 @@ S4:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 9000
+		HP: 11000
 	RevealsShroud:
 		Range: 5c0
 	Armament@PRIMARY:
@@ -748,7 +748,6 @@ S6:
 WCHR:
 	Inherits@SCRININFANTRY: ^ScrinInfantry
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
-	Inherits@SELECTION: ^SelectableSupportUnit
 	Buildable:
 		Queue: InfantrySQ, InfantryMQ
 		BuildAtProductionType: Soldier
@@ -1306,7 +1305,7 @@ MAST:
 	Voiced:
 		VoiceSet: MastermindVoice
 	Valued:
-		Cost: 1350
+		Cost: 1500
 	Tooltip:
 		Name: Mastermind
 		RequiresCondition: !rank-elite
@@ -3444,7 +3443,7 @@ ENRV:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 22500
+		HP: 20000
 	Shielded:
 		MaxStrength: 7500
 	RevealsShroud:

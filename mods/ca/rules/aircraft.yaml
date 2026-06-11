@@ -4363,7 +4363,7 @@ KAMV:
 		Queue: AircraftSQ, AircraftMQ
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 201
-		Prerequisites: ~aircraft.kamv
+		Prerequisites: anyradar, ~aircraft.kamv
 		Description: Durable helicopter gunship armed with long range anti-tank rockets with concussive warheads.
 	TooltipExtras:
 		Strengths: • Strong vs Heavy Armor, Light Armor

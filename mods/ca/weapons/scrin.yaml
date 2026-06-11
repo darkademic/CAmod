@@ -255,7 +255,7 @@ IntruderDiscs:
 		LockOnBurstCounts: 1,3
 	Warhead@1Dam: SpreadDamage
 		Damage: 2850
-		Spread: 256
+		Spread: 288
 		Versus:
 			None: 15
 			Wood: 100
@@ -1063,7 +1063,7 @@ PlasmaTurretGun:
 			Wood: 50
 			Concrete: 30
 			Light: 55
-			Heavy: 35
+			Heavy: 25
 			Brick: 20
 		DamageTypes: Prone50Percent, TriggerProne, DefaultDeath
 	Warhead@2Dam: HealthPercentageDamage

@@ -44,7 +44,7 @@ FireballLauncher:
 	Warhead@1Dam: SpreadDamage
 		Versus:
 			Light: 0
-			Heavy: 10
+			Heavy: 8
 			Concrete: 15
 			Wood: 24
 	Warhead@2Dam: SpreadDamage
@@ -74,7 +74,7 @@ ChemballLauncher:
 	Warhead@1Dam: SpreadDamage
 		Spread: 288
 		Versus:
-			Heavy: 15
+			Heavy: 12
 		DamageTypes: Prone50Percent, TriggerProne, RadiationDeath
 	Warhead@2Dam: SpreadDamage
 		Versus:

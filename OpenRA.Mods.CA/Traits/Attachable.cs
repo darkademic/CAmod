@@ -99,6 +99,7 @@ namespace OpenRA.Mods.CA.Traits
 		Target lastTarget;
 		readonly IPositionable positionable;
 		readonly Actor self;
+		public int CopiedExperience { get; private set; }
 
 		public Actor AttachedToActor => attachedTo?.Actor;
 
@@ -373,6 +374,11 @@ namespace OpenRA.Mods.CA.Traits
 				&& (!Info.TargetTypes.Any() || Info.TargetTypes.Overlaps(target.FrozenActor.TargetTypes))
 				&& Info.ValidRelationships.HasRelationship(self.Owner.RelationshipWith(target.FrozenActor.Owner))
 				&& target.FrozenActor.Actor.TraitsImplementing<AttachableTo>().Any(x => x.CanAttach(this));
+		}
+
+		public void AddCopiedExperience(int amount)
+		{
+			CopiedExperience += amount;
 		}
 
 		public void ResolveOrder(Actor self, Order order)

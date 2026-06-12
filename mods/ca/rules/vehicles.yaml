@@ -3905,6 +3905,8 @@ VULC:
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
 		Range: 4c0
+	Voiced:
+		VoiceSet: VulcanVoice
 	Armament@GAT:
 		Weapon: MGatt
 		LocalOffset: 220,0,350
@@ -3991,6 +3993,7 @@ VULC:
 	AttackTurreted:
 		PauseOnCondition: empdisable || being-warped || blinded
 		Armaments: primary, secondary
+		Voice: Attack
 	Turreted:
 		TurnSpeed: 28
 		Offset: 0,0,150

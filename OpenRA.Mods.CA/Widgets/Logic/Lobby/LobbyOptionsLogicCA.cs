@@ -109,7 +109,7 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 				divider.Bounds.Y = optionsContainer.Bounds.Height + 5;
 				divider.Bounds.Width = optionsContainer.Bounds.Width - 20;
 				divider.Bounds.Height = 1;
-				optionsContainer.Bounds.Height += 10;
+				optionsContainer.Bounds.Height += 4;
 				optionsContainer.AddChild(divider);
 
 				var advancedHeader = advancedHeaderTemplate.Clone();

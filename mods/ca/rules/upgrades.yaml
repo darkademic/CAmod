@@ -52,7 +52,7 @@ flakarmor.upgrade:
 	WithProductionIconOverlay:
 		Prerequisites: flakarmor.upgrade
 	Encyclopedia:
-		Category: Allies/Upgrades; Soviets/Upgrades; GDI/Upgrades; Nod/Upgrades
+		Category: Allies/Upgrades; Soviets/Upgrades; GDI/Upgrades
 
 #########################GDI#########
 ########################################

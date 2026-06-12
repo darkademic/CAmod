@@ -176,7 +176,7 @@ Player:
 		DefaultCash: 6000
 		DefaultCashDropdownDisplayOrder: 1
 	DeveloperMode:
-		CheckboxDisplayOrder: 14
+		CheckboxDisplayOrder: 1001
 	Shroud:
 		FogCheckboxEnabled: True
 		FogCheckboxLocked: False

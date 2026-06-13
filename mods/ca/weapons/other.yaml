@@ -989,6 +989,7 @@ HackArc:
 		Width: 86
 		Duration: 20
 		HitAnim: empty
+		GlowScale: 0
 	Warhead@Flash: FlashTarget
 		Spread: 0c511
 		Color: 00ff00

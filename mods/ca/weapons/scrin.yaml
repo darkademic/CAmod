@@ -87,6 +87,7 @@ EnslaveInfantry:
 	Warhead@Flash: FlashTarget
 		Spread: 341
 		Color: ff00ff
+		Duration: 6
 		ValidTargets: Infantry
 		ValidRelationships: Neutral, Enemy
 

@@ -1391,6 +1391,9 @@ BikeRockets.TibCore:
 		ExplosionPalette: scrin
 		Image: shardhit
 		ValidTargets: Ground, Trees, Water
+	Warhead@Flash: FlashTarget
+		Spread: 0c511
+		Color: 00ff00
 
 BikeRocketsAA.TibCore:
 	Inherits: BikeRocketsAA
@@ -1412,6 +1415,10 @@ BikeRocketsAA.TibCore:
 		Explosions: idle, idle2, idle3, idle4
 		ExplosionPalette: scrin
 		Image: shardhit
+		ValidTargets: Air, AirSmall
+	Warhead@Flash: FlashTarget
+		Spread: 0c511
+		Color: 00ff00
 		ValidTargets: Air, AirSmall
 
 SBRockets:
@@ -1759,6 +1766,9 @@ StnkMissile.TibCore:
 		ExplosionPalette: scrin
 		Image: shardhit
 		ValidTargets: Ground, Trees, Water
+	Warhead@Flash: FlashTarget
+		Spread: 0c511
+		Color: 00ff00
 
 StnkMissileAA.TibCore:
 	Inherits: StnkMissileAA
@@ -1783,6 +1793,10 @@ StnkMissileAA.TibCore:
 		Explosions: idle, idle2, idle3, idle4
 		ExplosionPalette: scrin
 		Image: shardhit
+		ValidTargets: Air, AirSmall
+	Warhead@Flash: FlashTarget
+		Spread: 0c511
+		Color: 00ff00
 		ValidTargets: Air, AirSmall
 
 HstkMissile:
@@ -1837,10 +1851,6 @@ HstkMissile.TibCore:
 	Warhead@3Eff: CreateEffect
 		Explosions: large_explosion
 		ImpactSounds: expnew16.aud, expnew17.aud
-	Warhead@Flash: FlashTarget
-		Spread: 0c511
-		Color: 00ff00
-		ValidTargets: Ground, Vehicle
 
 HstkMissileAA.TibCore:
 	Inherits: StnkMissileAA.TibCore
@@ -1855,10 +1865,6 @@ HstkMissileAA.TibCore:
 		Damage: 4100
 	Warhead@3Eff: CreateEffect
 		ImpactSounds: expnew17.aud
-	Warhead@Flash: FlashTarget
-		Spread: 0c511
-		Color: 00ff00
-		ValidTargets: Air, AirSmall
 
 BoatMissile:
 	Inherits: Stinger
@@ -2021,6 +2027,7 @@ ScrinTorp:
 	Warhead@Flash: FlashTarget
 		Spread: 0c511
 		Color: 00ff00
+		Duration: 4
 		ValidTargets: Ground, Vehicle
 
 ScrinTorp.UPG:
@@ -2054,6 +2061,7 @@ ScrinTorpAA:
 	Warhead@Flash: FlashTarget
 		Spread: 0c511
 		Color: 00ff00
+		Duration: 4
 		ValidTargets: Air, AirSmall
 
 ScrinTorpAA.UPG:

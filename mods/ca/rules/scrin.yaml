@@ -215,12 +215,13 @@ VEHICLES.SCRIN:
 		DelayPerInstance: 120
 		MaximumInstances: 3
 		RevokeDelay: 200
+		FirstStackImmediate: true
 		RequiresCondition: storm-active
 	RangeMultiplier@IONSTORM1:
 		Modifier: 105
 		RequiresCondition: storm-level == 1
-	FirepowerMultiplier@IONSTORM1:
-		Modifier: 110
+	ReloadDelayMultiplier@IONSTORM1:
+		Modifier: 91
 		RequiresCondition: storm-level == 1
 	DamageMultiplier@IONSTORM1:
 		Modifier: 95
@@ -228,8 +229,8 @@ VEHICLES.SCRIN:
 	RangeMultiplier@IONSTORM2:
 		Modifier: 110
 		RequiresCondition: storm-level == 2
-	FirepowerMultiplier@IONSTORM2:
-		Modifier: 115
+	ReloadDelayMultiplier@IONSTORM2:
+		Modifier: 83
 		RequiresCondition: storm-level == 2
 	DamageMultiplier@IONSTORM2:
 		Modifier: 90
@@ -237,8 +238,8 @@ VEHICLES.SCRIN:
 	RangeMultiplier@IONSTORM3:
 		Modifier: 115
 		RequiresCondition: storm-level == 3
-	FirepowerMultiplier@IONSTORM3:
-		Modifier: 120
+	ReloadDelayMultiplier@IONSTORM3:
+		Modifier: 77
 		RequiresCondition: storm-level == 3
 	DamageMultiplier@IONSTORM3:
 		Modifier: 85
@@ -5900,6 +5901,9 @@ STRM:
 		Speed: 3
 	Hovers:
 		Ticks: 12
+	WithShadow:
+		Offset: 43, 128, 0
+		ZOffset: -129
 	Interactable:
 	GrantRandomCondition@CloudShape:
 		Conditions: strm1, strm2, strm3, strm4
@@ -5959,6 +5963,12 @@ SSPK:
 		Range: 6c0
 	RevealsShroud@GAPGEN:
 		Range: 4c0
+	DamageMultiplier@IONSTORM1:
+		Modifier: 100
+	DamageMultiplier@IONSTORM2:
+		Modifier: 95
+	DamageMultiplier@IONSTORM3:
+		Modifier: 90
 	-Power:
 	-SpawnActorOnDeath:
 	-WithBuildingRepairDecoration:

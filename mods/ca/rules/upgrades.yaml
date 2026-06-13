@@ -2186,12 +2186,12 @@ ioncon.upgrade:
 	Buildable:
 		BuildPaletteOrder: 30
 		Prerequisites: ~player.scrin, scrt, ~techlevel.high
-		Description: Allows Storm Columns and Stormcrawlers to store ion energy and release it into the atmosphere, creating a localized Ion Storm.\n\nUpgrades: Storm Column\nUpgrades: Stormcrawler
+		Description: Allows Storm Columns, Storm Spikes and Stormcrawlers to store ion energy and release it into the atmosphere, creating a localized Ion Storm.\n\nUpgrades: Storm Column\nUpgrades: Stormcrawler\nUpgrades: Storm Spike
 		IconPalette: chromes
 	TooltipExtras:
 		Strengths: + Increases damage and range over time when active\n+ Reduces incoming damage over time when active\n+ Ion storm can damage enemy units and structures
 	Valued:
-		Cost: 1250
+		Cost: 750
 	RenderSprites:
 		Image: ioncon.upgrade
 	WithProductionIconOverlay:

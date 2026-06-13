@@ -1015,7 +1015,7 @@ DoubleDepthCharge:
 		Damage: 15000
 		Versus:
 			None: 0
-			Wood: 25
+			Wood: 30
 			Light: 0
 			Heavy: 0
 			Concrete: 75

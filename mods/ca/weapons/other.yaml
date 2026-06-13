@@ -424,7 +424,7 @@ TeslaZap:
 	Warhead@1Dam: SpreadDamage
 		Versus:
 			Wood: 60
-			Concrete: 80
+			Concrete: 75
 
 TeslaZapBoost1:
 	Inherits: TeslaZap
@@ -1513,7 +1513,7 @@ PrisLaser:
 		Versus:
 			None: 40
 			Wood: 40
-			Concrete: 90
+			Concrete: 95
 			Light: 80
 			Heavy: 80
 			Brick: 50
@@ -2819,7 +2819,7 @@ SonicPulse:
 		Versus:
 			None: 28
 			Wood: 92
-			Concrete: 80
+			Concrete: 95
 			Light: 92
 			Heavy: 100
 		DamageTypes: Prone50Percent, TriggerProne, DefaultDeath

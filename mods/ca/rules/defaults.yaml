@@ -1769,7 +1769,7 @@
 		DrainingColor: 00ffff
 		Modifier: 25
 		Duration: 75
-		ChargeTime: 375
+		ChargeTime: 750
 		ActivateSound: gshieldup.aud
 		DeactivateSound: gshielddown.aud
 		RequiresCondition: pointdef-upgrade

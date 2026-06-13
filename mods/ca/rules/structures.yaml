@@ -4749,7 +4749,7 @@ PRIS:
 	Selectable:
 		DecorationBounds: 1024, 1962, 0, -560
 	Health:
-		HP: 40000
+		HP: 42000
 	Armor:
 		Type: Concrete
 	RevealsShroud:

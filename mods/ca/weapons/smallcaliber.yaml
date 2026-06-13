@@ -200,7 +200,7 @@ Vulcan:
 		Blockable: true
 		Invisible: true
 	Warhead@1Dam: SpreadDamage
-		Spread: 128
+		Spread: 160
 		Damage: 1000
 		Versus:
 			None: 220

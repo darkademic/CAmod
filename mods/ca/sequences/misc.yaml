@@ -1291,6 +1291,15 @@ scrintorp:
 		Length: *
 		ZOffset: 2046
 
+scrintorpblue:
+	Defaults:
+		IgnoreWorldTint: true
+		Alpha: 0.9
+	idle:
+		Filename: scrintorpblue.shp
+		Length: *
+		ZOffset: 2046
+
 litning:
 	Defaults:
 		IgnoreWorldTint: true

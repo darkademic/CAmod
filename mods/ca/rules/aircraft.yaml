@@ -3316,13 +3316,13 @@ SCRN:
 		RequiresCondition: !wrath-covenant
 		AmmoUsage: 4
 	Armament@PRIMARYUPG:
-		Weapon: ScrinTorp
+		Weapon: ScrinTorp.UPG
 		LocalOffset: 0,213,-85, 0,-213,-85
 		PauseOnCondition: !ammo || blinded
 		RequiresCondition: wrath-covenant
 		AmmoUsage: 3
 	Armament@SECONDARYUPG:
-		Weapon: ScrinTorpAA
+		Weapon: ScrinTorpAA.UPG
 		LocalOffset: 0,213,-85, 0,-213,-85
 		PauseOnCondition: !ammo || blinded
 		RequiresCondition: wrath-covenant

@@ -15,6 +15,7 @@ World:
 		ShortGameCheckboxEnabled: True
 		ShortGameCheckboxLocked: True
 		ShortGameCheckboxVisible: False
+		BlindPickModeCheckboxVisible: false
 	CrateSpawner:
 		CheckboxEnabled: False
 		CheckboxLocked: True

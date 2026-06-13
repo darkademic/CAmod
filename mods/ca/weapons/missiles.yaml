@@ -2023,6 +2023,16 @@ ScrinTorp:
 		Color: 00ff00
 		ValidTargets: Ground, Vehicle
 
+ScrinTorp.UPG:
+	Inherits: ScrinTorp
+	Projectile: MissileCA
+		Image: scrintorpblue
+		Palette: caneon
+		TrailImage: smokey
+		TrailPalette: scrinplasma
+	Warhead@Flash: FlashTarget
+		Color: 7766ff
+
 ScrinTorpAA:
 	Inherits: ^AirToAirMissile
 	ReloadDelay: 40
@@ -2045,6 +2055,16 @@ ScrinTorpAA:
 		Spread: 0c511
 		Color: 00ff00
 		ValidTargets: Air, AirSmall
+
+ScrinTorpAA.UPG:
+	Inherits: ScrinTorpAA
+	Projectile: MissileCA
+		Image: scrintorpblue
+		Palette: caneon
+		TrailImage: smokey
+		TrailPalette: scrinplasma
+	Warhead@Flash: FlashTarget
+		Color: 7766ff
 
 SMIGBomb:
 	ReloadDelay: 150

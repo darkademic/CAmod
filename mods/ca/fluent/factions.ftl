@@ -313,7 +313,7 @@ faction-reaper =
       • Storm Spike
 
     Upgrades:
-      • Shard Walker
+      • Ion Conduits
 
     Bonuses:
       • Resource Conversion also applies to Corrupters

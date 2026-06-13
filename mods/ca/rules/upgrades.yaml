@@ -1454,6 +1454,7 @@ impstorm.upgrade:
 	WithProductionIconOverlay:
 		Prerequisites: impstorm.upgrade
 	EncyclopediaExtras:
+		Subfaction: russia
 		AdditionalInfo: Requires Infantry Doctrine.
 
 impmuta.upgrade:
@@ -1473,6 +1474,7 @@ impmuta.upgrade:
 	WithProductionIconOverlay:
 		Prerequisites: impmuta.upgrade
 	EncyclopediaExtras:
+		Subfaction: yuri
 		AdditionalInfo: Requires Infantry Doctrine.
 
 reactive.upgrade:
@@ -1808,6 +1810,8 @@ entrench.upgrade:
 		Image: entrench.upgrade
 	WithProductionIconOverlay:
 		Prerequisites: entrench.upgrade
+	EncyclopediaExtras:
+		Subfaction: france
 
 cryw.upgrade:
 	Inherits: ^AlliedUpgrade
@@ -1864,6 +1868,8 @@ apb.upgrade:
 		Image: apb.upgrade
 	WithProductionIconOverlay:
 		Prerequisites: apb.upgrade
+	EncyclopediaExtras:
+		Subfaction: england
 
 airborne.upgrade:
 	Inherits: ^AlliedUpgrade
@@ -1882,6 +1888,8 @@ airborne.upgrade:
 		Image: airborne.upgrade
 	WithProductionIconOverlay:
 		Prerequisites: airborne.upgrade
+	EncyclopediaExtras:
+		Subfaction: usa
 
 tflx.upgrade:
 	Inherits: ^AlliedUpgrade
@@ -1900,6 +1908,8 @@ tflx.upgrade:
 		Image: tflx.upgrade
 	WithProductionIconOverlay:
 		Prerequisites: tflx.upgrade
+	EncyclopediaExtras:
+		Subfaction: germany
 
 charv.upgrade:
 	Inherits: ^AlliedUpgrade
@@ -2094,14 +2104,14 @@ shrw.upgrade:
 		Name: Research: Shard Walker
 	Buildable:
 		BuildPaletteOrder: 20
-		Prerequisites: ~player.reaper, anyradar, ~techlevel.medium
+		Prerequisites: ~player.scrin, anyradar, ~techlevel.medium
 		Description: Allows production of Shard Walkers, a heavier and more powerful variant of the Gun Walker.\n\nReplaces: Gun Walker
 		IconPalette: chromes
 	TooltipExtras:
 		Strengths: + Increased durability\n+ Increased damage
 		Weaknesses: – Slower movement\n– Slower projectiles
 	Valued:
-		Cost: 750
+		Cost: 1000
 	RenderSprites:
 		Image: shrw.upgrade
 	WithProductionIconOverlay:
@@ -2124,6 +2134,8 @@ advart.upgrade:
 		Image: advart.upgrade
 	WithProductionIconOverlay:
 		Prerequisites: advart.upgrade
+	EncyclopediaExtras:
+		Subfaction: traveler
 
 carapace.upgrade:
 	Inherits: ^ScrinUpgrade
@@ -2185,7 +2197,7 @@ ioncon.upgrade:
 		Name: Upgrade: Ion Conduits
 	Buildable:
 		BuildPaletteOrder: 30
-		Prerequisites: ~player.scrin, scrt, ~techlevel.high
+		Prerequisites: ~player.reaper, scrt, ~techlevel.high
 		Description: Allows Storm Columns, Storm Spikes and Stormcrawlers to store ion energy and release it into the atmosphere, creating a localized Ion Storm.\n\nUpgrades: Storm Column\nUpgrades: Stormcrawler\nUpgrades: Storm Spike
 		IconPalette: chromes
 	TooltipExtras:
@@ -2196,6 +2208,8 @@ ioncon.upgrade:
 		Image: ioncon.upgrade
 	WithProductionIconOverlay:
 		Prerequisites: ioncon.upgrade
+	EncyclopediaExtras:
+		Subfaction: reaper
 
 regen.upgrade:
 	Inherits: ^ScrinUpgrade
@@ -2233,6 +2247,8 @@ stellar.upgrade:
 		Image: stellar.upgrade
 	WithProductionIconOverlay:
 		Prerequisites: stellar.upgrade
+	EncyclopediaExtras:
+		Subfaction: harbinger
 
 coalescence.upgrade:
 	Inherits: ^ScrinUpgrade
@@ -2252,6 +2268,8 @@ coalescence.upgrade:
 		Image: coalescence.upgrade
 	WithProductionIconOverlay:
 		Prerequisites: coalescence.upgrade
+	EncyclopediaExtras:
+		Subfaction: collector
 
 shields.upgrade:
 	Inherits: ^ScrinUpgrade

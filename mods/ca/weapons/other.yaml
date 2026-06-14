@@ -2234,7 +2234,7 @@ OrcaBombBuilding:
 	-Warhead@4Eff:
 	-Warhead@emp:
 	-Warhead@empdef:
-	-Warhead@Shock: Shockwave
+	-Warhead@Shock:
 
 MicrowaveZap:
 	ValidTargets: Ground, Water

@@ -2077,10 +2077,10 @@ AtomizerBolts:
 		Image: atmzbolthit
 		ImpactSounds: atomizer-hit1.aud
 	Warhead@Glow: GlowImpact
-		GlowScale: 1.5
-		GlowFadeFrames: 25
-		GlowFadeInFrames: 5
-		GlowColor: ff0000
+		Scale: 1.5
+		FadeFrames: 25
+		FadeInFrames: 5
+		Color: ff0000
 
 AtomizerArc:
 	Inherits: AtomizerBolts
@@ -2368,10 +2368,10 @@ NullifierBolt:
 		Color: ffff00
 		ValidTargets: Infantry, Vehicle, Ship, Defense
 	Warhead@Glow: GlowImpact
-		GlowScale: 1.5
-		GlowFadeFrames: 30
-		GlowFadeInFrames: 10
-		GlowColor: ffff00
+		Scale: 1.5
+		FadeFrames: 30
+		FadeInFrames: 10
+		Color: ffff00
 
 ScrinRepair:
 	Inherits: Heal

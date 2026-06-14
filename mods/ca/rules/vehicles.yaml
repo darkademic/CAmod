@@ -5103,10 +5103,10 @@ MLRS:
 		Cost: 1350
 	Tooltip:
 		Name: SSM Launcher
-		RequiresCondition: !blackhand
+		RequiresCondition: !player-blackh
 	Tooltip@BH:
 		Name: SSM Launcher (Triple)
-		RequiresCondition: blackhand
+		RequiresCondition: player-blackh
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Buildable:
@@ -5138,13 +5138,13 @@ MLRS:
 		TurnSpeed: 8
 		Offset: -168,0,128
 		RealignDelay: 0
-		RequiresCondition: !blackhand
+		RequiresCondition: !player-blackh
 	Turreted@BH:
-		Turret: secondary
+		Turret: primarybh
 		TurnSpeed: 7
 		Offset: -168,0,128
 		RealignDelay: 0
-		RequiresCondition: blackhand
+		RequiresCondition: player-blackh
 	AttackMove:
 		AttackMoveCondition: attack-move
 	Armament@PRIMARY:
@@ -5152,27 +5152,27 @@ MLRS:
 		LocalOffset: 0,171,0, 0,-171,0
 		PauseOnCondition: moving
 		ReloadingCondition: reloading
-		RequiresCondition: !blacknapalm-upgrade && !blackhand
+		RequiresCondition: !blacknapalm-upgrade && !player-blackh
 	Armament@PRIMARYUPG:
 		Weapon: HonestJohn.UPG
 		LocalOffset: 0,171,0, 0,-171,0
 		PauseOnCondition: moving
 		ReloadingCondition: reloading
-		RequiresCondition: blacknapalm-upgrade && !blackhand
+		RequiresCondition: blacknapalm-upgrade && !player-blackh
 	Armament@PRIMARYBH:
-		Name: tertiary
+		Name: primarybh
 		Weapon: HonestJohnBH
 		LocalOffset: 0,0,0, 0,-171,0, 0,171,0
 		PauseOnCondition: moving
 		ReloadingCondition: reloading
-		RequiresCondition: !blacknapalm-upgrade && blackhand
+		RequiresCondition: !blacknapalm-upgrade && player-blackh
 	Armament@PRIMARYUPGBH:
-		Name: tertiary
+		Name: primarybh
 		Weapon: HonestJohnBH.UPG
 		LocalOffset: 0,0,0, 0,-171,0, 0,171,0
 		PauseOnCondition: moving
 		ReloadingCondition: reloading
-		RequiresCondition: blacknapalm-upgrade && blackhand
+		RequiresCondition: blacknapalm-upgrade && player-blackh
 	Armament@TARGETTER:
 		Name: targetter
 		Weapon: HonestJohnTargeting
@@ -5181,45 +5181,43 @@ MLRS:
 	AmmoPool:
 		Ammo: 2
 		AmmoCondition: ammo
-		RequiresCondition: !blackhand
 	AmmoPool@BH:
-		Name: tertiary
-		Armaments: tertiary
+		Name: primarybh
+		Armaments: primarybh
 		Ammo: 3
 		AmmoCondition: ammobh
-		RequiresCondition: blackhand
 	AttackTurreted:
-		Turrets: primary, secondary
-		Armaments: primary, tertiary, targetter
+		Turrets: primary, primarybh
+		Armaments: primary, primarybh, targetter
 		TargetFrozenActors: True
 		Voice: Attack
 		ForceFireIgnoresActors: True
 		PauseOnCondition: empdisable || being-warped || blinded
 	WithSpriteTurret:
-		RequiresCondition: !blackhand && ammo > 1
+		RequiresCondition: !player-blackh && ammo > 1
 	WithSpriteTurret@OneMissile:
-		RequiresCondition: !blackhand && ammo == 1
+		RequiresCondition: !player-blackh && ammo == 1
 		Sequence: turret1
 	WithSpriteTurret@NoMissiles:
-		RequiresCondition: !blackhand && !ammo
+		RequiresCondition: !player-blackh && !ammo
 		Sequence: turret0
 	WithSpriteTurret@BH:
-		RequiresCondition: blackhand && ammobh > 2
-		Turret: secondary
+		RequiresCondition: player-blackh && ammobh > 2
+		Turret: primarybh
 	WithSpriteTurret@BHTwoMissile:
-		RequiresCondition: blackhand && ammobh == 2
+		RequiresCondition: player-blackh && ammobh == 2
 		Sequence: turret2
-		Turret: secondary
+		Turret: primarybh
 	WithSpriteTurret@BHOneMissile:
-		RequiresCondition: blackhand && ammobh == 1
+		RequiresCondition: player-blackh && ammobh == 1
 		Sequence: turret1
-		Turret: secondary
+		Turret: primarybh
 	WithSpriteTurret@BHNoMissiles:
-		RequiresCondition: blackhand && !ammobh
+		RequiresCondition: player-blackh && !ammobh
 		Sequence: turret0
-		Turret: secondary
+		Turret: primarybh
 	GrantConditionOnAttack@AIMING:
-		ArmamentNames: primary, tertiary, targetter
+		ArmamentNames: primary, primarybh, targetter
 		Condition: aiming
 		RevokeDelay: 15
 		RevokeAll: false
@@ -5231,12 +5229,12 @@ MLRS:
 	ReloadAmmoPool@1:
 		Delay: 120
 		Count: 2
-		RequiresCondition: !blackhand
+		RequiresCondition: !player-blackh
 	ReloadAmmoPool@BH:
-		AmmoPool: tertiary
+		AmmoPool: primarybh
 		Delay: 170
 		Count: 3
-		RequiresCondition: blackhand
+		RequiresCondition: player-blackh
 	ProducibleWithLevel:
 		Prerequisites: vehicles.upgraded
 	WithProductionIconOverlay:
@@ -5248,7 +5246,7 @@ MLRS:
 		Condition: blacknapalm-upgrade
 		Prerequisites: blacknapalm.upgrade
 	GrantConditionOnPrerequisite@BH:
-		Condition: blackhand
+		Condition: player-blackh
 		Prerequisites: player.blackh
 	Encyclopedia:
 		Category: Nod/Vehicles

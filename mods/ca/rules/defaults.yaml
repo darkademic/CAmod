@@ -1415,6 +1415,9 @@
 ^RepairsAircraftWithRepairBay:
 	ExternalCondition@AIRCRAFTREPAIR:
 		Condition: aircraft-repair
+	GrantConditionOnPrerequisite@EagleBonus:
+		Condition: aircraft-repair
+		Prerequisites: player.eagle
 	RepairsUnits:
 		ValuePercentage: 0
 		HpPerStep: 1000

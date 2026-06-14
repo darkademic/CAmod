@@ -2624,7 +2624,7 @@ RAH:
 		LandingSounds: vhelilana.aud
 		Voice: Move
 	Cloak@NORMAL:
-		DetectionTypes: AirCloakW
+		DetectionTypes: AirCloak
 		InitialDelay: 100
 		CloakDelay: 200
 		CloakSound: trans1.aud

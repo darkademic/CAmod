@@ -1912,7 +1912,7 @@ NPWR:
 	TooltipExtras:
 		Weaknesses: • Explodes when destroyed
 	Valued:
-		Cost: 1000
+		Cost: 1500
 	Tooltip:
 		Name: Atomic Reactor
 	ProvidesPrerequisite@anypower:

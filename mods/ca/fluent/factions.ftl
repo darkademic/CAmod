@@ -204,6 +204,7 @@ faction-eagle =
 
     Bonuses:
       • Aircraft (10% discount)
+      • Airfields repair aircraft without requiring Service Depot nearby
 
 faction-arc =
     .name = ARC

@@ -1952,6 +1952,7 @@ GapBeam:
 		Distortion: 32
 		DistortionAnimation: 64
 		TrackTarget: true
+		GlowScale: 0
 	Warhead@Debuff: GrantExternalConditionCA
 		Range: 1c256
 		Duration: 15

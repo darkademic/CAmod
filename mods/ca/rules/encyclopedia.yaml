@@ -2418,7 +2418,7 @@ encyclopedia.buffs.inspiration:
 	EncyclopediaExtras:
 		Description: Applied to basic infantry within range of a Soviet Commissar, Troop Crawler or Overlord Tank. Increases movement speed and rate of fire.
 	TooltipExtras:
-		Strengths: +30% movement speed\n+10% rate of fire
+		Strengths: +15% movement speed\n+10% rate of fire
 	WithIdleOverlay@Inspiration1:
 		Image: ussrstar
 		Sequence: idle-overlay1
@@ -2434,7 +2434,7 @@ encyclopedia.buffs.inspiration2:
 	EncyclopediaExtras:
 		Description: Applied to basic infantry within range of two or more different units that apply the Inspiration effect. Further increases movement speed and rate of fire.
 	TooltipExtras:
-		Strengths: +40% movement speed\n+20% rate of fire
+		Strengths: +30% movement speed\n+20% rate of fire
 	WithIdleOverlay@Inspiration2:
 		Image: ussrstar
 		Sequence: idle-overlay2

@@ -469,7 +469,7 @@
 		Modifier: 92
 	SpeedMultiplier@Inspiration1:
 		RequiresCondition: inspiration == 1
-		Modifier: 130
+		Modifier: 115
 	ReloadDelayMultiplier@Inspiration2:
 		RequiresCondition: inspiration >= 2
 		Modifier: 84
@@ -478,7 +478,7 @@
 		Modifier: 84
 	SpeedMultiplier@Inspiration2:
 		RequiresCondition: inspiration >= 2
-		Modifier: 140
+		Modifier: 130
 	WithIdleOverlay@Inspiration1:
 		Image: ussrstar
 		Sequence: idle-overlay1

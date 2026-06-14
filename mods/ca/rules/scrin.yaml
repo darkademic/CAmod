@@ -3313,13 +3313,13 @@ TORM:
 		Type: GroundPosition
 	Armament@PRIMARY:
 		Weapon: TormentorZap
-		LocalOffset: 450,300,100, 450,-300,100
+		LocalOffset: 250,0,100
 		PauseOnCondition: !ammo
 		MuzzleSequence: muzzle
 		MuzzlePalette: scrin
 	Armament@SECONDARY:
 		Weapon: TormentorZapAA
-		LocalOffset: 450,300,100, 450,-300,100
+		LocalOffset: 250,0,100
 		PauseOnCondition: !ammo
 		MuzzleSequence: muzzle
 		MuzzlePalette: scrin
@@ -3331,7 +3331,7 @@ TORM:
 		PauseOnCondition: empdisable || being-warped || blinded
 	Aircraft:
 		CruiseAltitude: 2560
-		TurnSpeed: 32
+		TurnSpeed: 40
 		Speed: 201
 		IdleSpeed: 146
 		IdleTurnSpeed: 15
@@ -3386,15 +3386,14 @@ TORM:
 		Prerequisites: aircraft.upgraded
 	-EjectOnDeath:
 	AmmoPool:
-		Ammo: 12
+		Ammo: 2
 		AmmoCondition: ammo
-		ReloadDelay: 10
+		ReloadDelay: 60
 		ReloadCount: 1
 	WithAmmoPipsDecoration:
 		Position: BottomLeft
 		Margin: 4, 3
 		RequiresSelection: true
-		PipCount: 4
 	Rearmable:
 		RearmActors: hpad, hpad.td, afld, afld.gdi, grav
 	GrantConditionOnDamageState@SmokeTrail:

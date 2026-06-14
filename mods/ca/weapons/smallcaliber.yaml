@@ -323,11 +323,11 @@ ChainGun.Yak.R:
 	Projectile: InstantHit
 		Blockable: false
 	Warhead@1Dam: SpreadDamage
-		Damage: 4000
+		Damage: 3150
 		Versus:
 			None: 100
 			Wood: 35
-			Light: 45
+			Light: 55
 			Heavy: 25
 			Concrete: 25
 		DamageTypes: Prone50Percent, TriggerProne, BulletDeath, AirToGround

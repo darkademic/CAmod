@@ -866,24 +866,22 @@ StormRiderZapAA:
 
 TormentorZap:
 	ReloadDelay: 50
-	Burst: 6
-	BurstDelays: 0, 4, 0, 4, 0
 	ValidTargets: Ground, Water
 	Range: 7c0
 	Report: torm-fire1.aud, torm-fire2.aud
 	Projectile: LaserZapCA
-		Width: 56
+		Width: 70
 		HitAnim: laserfire
 		Color: 954fffAA
 		ZOffset: 512
 		SecondaryBeam: true
-		SecondaryBeamWidth: 90
+		SecondaryBeamWidth: 120
 		SecondaryBeamZOffset: 511
 		SecondaryBeamColor: 7d00fe30
-		Duration: 3
+		Duration: 10
 	Warhead@1Dam: SpreadDamage
 		Spread: 42
-		Damage: 2300
+		Damage: 13800
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath, TankBuster, AirToGround
 		Versus:
 			None: 20
@@ -892,6 +890,8 @@ TormentorZap:
 			Heavy: 100
 			Concrete: 95
 			Brick: 50
+	Warhead@1Flash: FlashTarget
+		Color: ac89e7
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch-NoFlame
 		InvalidTargets: Vehicle, Structure, Wall, Husk, Trees, Creep
@@ -901,7 +901,7 @@ TormentorZapAA:
 	Range: 6c0
 	ValidTargets: Air, AirSmall
 	Warhead@1Dam: SpreadDamage
-		Damage: 1100
+		Damage: 7200
 		ValidTargets: Air, AirSmall
 	-Warhead@2Smu:
 

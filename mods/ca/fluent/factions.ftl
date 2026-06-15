@@ -245,7 +245,7 @@ faction-blackh =
 
     Bonuses:
       • SSM (extra missile)
-      • Flamethrower (+20% speed)
+      • Flamethrower/Chem Warrior (+20% speed)
       • Free Howitzer Upgrade
 
 faction-marked =

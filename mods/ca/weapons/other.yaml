@@ -2479,6 +2479,18 @@ IrradiatedUnit:
 			Wood: 10
 			Concrete: 10
 			Brick: 0
+	Warhead@Cond: GrantExternalConditionCA
+		Range: 1c340
+		Duration: 20
+		Condition: rad-exposure
+		InvalidTargets: Desolator
+		AffectsParent: true
+	Warhead@Flash: FlashTarget
+		Spread: 1c340
+		Duration: 4
+		Color: 00ff00
+		Alpha: 0.35
+		InvalidTargets: Desolator
 
 ChaosDroneTargeting:
 	Range: 2c0

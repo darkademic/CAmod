@@ -10,6 +10,7 @@
 
 using System;
 using System.Linq;
+using OpenRA.Mods.CA.Effects;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 using OpenRA.Traits;
@@ -33,6 +34,22 @@ namespace OpenRA.Mods.CA.Traits
 
 		[Desc("Apply the damage using these damagetypes.")]
 		public readonly BitSet<DamageType> DamageTypes = default(BitSet<DamageType>);
+
+		[GrantedConditionReference]
+		[Desc("Condition to apply on damage.")]
+		public readonly string Condition = null;
+
+		[Desc("Condition duration (if 0 will use DamageInterval).")]
+		public readonly int ConditionDuration = 0;
+
+		[Desc("Color to flash the actor when damaged.")]
+		public readonly Color FlashColor = Color.White;
+
+		[Desc("Alpha value to flash the actor when damaged.")]
+		public readonly float FlashAlpha = 0.5f;
+
+		[Desc("Duration of the flash in ticks. 0 for disabled.")]
+		public readonly int FlashDuration = 0;
 
 		public override object Create(ActorInitializer init) { return new DamagedByTintedCells(init.Self, this); }
 
@@ -62,6 +79,10 @@ namespace OpenRA.Mods.CA.Traits
 		[Sync]
 		int damageTicks;
 
+		[Sync]
+		int conditionTicks;
+		int conditionToken = Actor.InvalidConditionToken;
+
 		public DamagedByTintedCells(Actor self, DamagedByTintedCellsInfo info)
 			: base(info)
 		{
@@ -72,21 +93,60 @@ namespace OpenRA.Mods.CA.Traits
 
 		void ITick.Tick(Actor self)
 		{
-			if (IsTraitDisabled || --damageTicks > 0)
+			if (IsTraitDisabled)
 				return;
+
+			var damaged = ProcessDamage(self);
+
+			if (!string.IsNullOrEmpty(Info.Condition))
+			{
+				if (damaged)
+				{
+					if (conditionToken == Actor.InvalidConditionToken)
+						conditionToken = self.GrantCondition(Info.Condition);
+
+					conditionTicks = Info.ConditionDuration > 0 ? Info.ConditionDuration : Info.DamageInterval;
+				}
+
+				if (conditionToken != Actor.InvalidConditionToken && conditionTicks-- <= 0)
+				{
+					conditionToken = self.RevokeCondition(conditionToken);
+				}
+			}
+		}
+
+		bool ProcessDamage(Actor self)
+		{
+			if (--damageTicks > 0)
+				return false;
 
 			// Prevents harming cargo.
 			if (!self.IsInWorld)
-				return;
+				return false;
 
 			var level = tcLayer.GetLevel(self.Location);
 			if (level <= 0)
-				return;
+				return false;
 
 			int dmg = level / Info.DamageLevel * Info.Damage;
 			self.InflictDamage(self.World.WorldActor, new Damage(dmg, Info.DamageTypes));
-
 			damageTicks = Info.DamageInterval;
+
+			if (dmg > 0 && Info.FlashDuration > 0)
+			{
+				self.World.Add(new FlashTargetCA(self, Info.FlashColor, Info.FlashAlpha, Info.FlashDuration, 1, 2, 0));
+			}
+
+			return dmg > 0;
+		}
+
+		protected override void TraitDisabled(Actor self)
+		{
+			if (conditionToken != Actor.InvalidConditionToken)
+				conditionToken = self.RevokeCondition(conditionToken);
+
+			conditionTicks = 0;
+			damageTicks = 0;
 		}
 	}
 }

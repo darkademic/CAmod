@@ -934,6 +934,17 @@ pips:
 	pip-conc:
 		Filename: pip-conc.shp
 		Offset: 0, 0
+	pip-rad:
+		Filename: pip-rad.shp
+		Offset: 0, 0
+		Length: 2
+		Tick: 300
+	pip-radsm:
+		Filename: pip-rad.shp
+		Offset: 0, 0
+		Length: 2
+		Start: 2
+		Tick: 300
 	pip-ion1:
 		Filename: pip-ion.shp
 		Length: 1

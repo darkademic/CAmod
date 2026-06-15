@@ -1999,7 +1999,7 @@ N5:
 	Targetable@ChemWarrior:
 		TargetTypes: ChemWarrior
 	SpeedMultiplier@BlackHand:
-		RequiresCondition: player-blackh && !cyborgspeed-upgrade
+		RequiresCondition: player-blackh
 		Modifier: 120
 	GrantConditionOnPrerequisite@BlackHand:
 		Condition: player-blackh

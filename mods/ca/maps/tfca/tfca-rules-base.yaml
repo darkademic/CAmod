@@ -559,8 +559,6 @@ SAB:
 		HP: 15000
 	Selectable:
 		Priority: 10
-	-GrantChargingCondition@CLOAK:
-	-GrantConditionOnMovement:
 	Cloak:
 		RequiresCondition: !cloak-force-disabled && !being-warped
 		CloakDelay: 66

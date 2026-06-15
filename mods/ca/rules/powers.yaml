@@ -1238,7 +1238,7 @@
 		Icon: arscan
 		IconPalette: chrometd
 		Name: Advanced Radar Scan
-		Description: Reveals the location of enemy structures & units through the fog of war.
+		Description: Reveals the location of enemy structures & units through the fog of war.\n\nCan be toggled on/off, but each deactivation will reduce the remaining duration.
 		RequiresCondition: tower-radar
 		PauseOnCondition: !radar-active || disabled || being-warped
 		LaunchSound: gradarup.aud

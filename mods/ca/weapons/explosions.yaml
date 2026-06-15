@@ -555,14 +555,14 @@ UnitExplodeIraqTank:
 	Warhead@3Eff_impact: CreateEffect
 		Explosions: nuke3
 	Warhead@1Dam_impact: SpreadDamage
-		Damage: 1000
+		Damage: 1300
 		Versus:
 			None: 45
 			Light: 85
 		Falloff: 368, 135, 50, 18, 0
 	-Warhead@2Res_impact:
 	Warhead@4Dam_areanuke1: SpreadDamage
-		Damage: 500
+		Damage: 650
 		Versus:
 			None: 45
 			Light: 85

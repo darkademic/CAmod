@@ -658,6 +658,10 @@ CorrupterSpewCharged:
 
 CorrupterExplode:
 	Inherits: UnitExplodeIraqTank
+	Warhead@1Dam_impact: SpreadDamage
+		Damage: 1000
+	Warhead@4Dam_areanuke1: SpreadDamage
+		Damage: 500
 	Warhead@3Eff_impact: CreateEffect
 		Explosions: med_chem
 		ExplosionPalette: tdeffect

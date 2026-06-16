@@ -1290,14 +1290,24 @@
 
 ^RadiationIcon:
 	ExternalCondition@RadExposure:
-		Condition: rad-exposure
+		Condition: rad-damage
 	WithDecoration@Radiation:
 		Image: pips
 		Sequence: pip-rad
 		Palette: chrome
 		Position: Top
-		RequiresCondition: rad-exposure
+		RequiresCondition: rad-damage
 		ValidRelationships: Ally, Neutral, Enemy
+
+^TibDamageIcon:
+	ExternalCondition@TibDamage:
+		Condition: tib-damage
+	WithDecoration@TibDamage:
+		Image: pips
+		Sequence: pip-tib
+		Palette: chrome
+		Position: Top
+		RequiresCondition: tib-damage && !rad-damage
 
 ^RadiationIconInfantry:
 	Inherits: ^RadiationIcon
@@ -2565,18 +2575,18 @@
 		DamageInterval: 16
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.strong
-		Condition: rad-exposure
+		Condition: rad-damage
 		FlashColor: 00ff00
-		FlashAlpha: 0.35
+		FlashAlpha: 0.25
 		FlashDuration: 3
 	DamagedByTintedCells@RADMED:
 		Damage: 40
 		DamageInterval: 16
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.medium
-		Condition: rad-exposure
+		Condition: rad-damage
 		FlashColor: 00ff00
-		FlashAlpha: 0.35
+		FlashAlpha: 0.25
 		FlashDuration: 3
 	DetectCloaked@UNDERBRIDGE:
 		DetectionTypes: Underbridge
@@ -2693,6 +2703,7 @@
 	Inherits@WatcherParasite: ^WatcherParasiteAttachable
 	Inherits@DevelopmentPolicyVeterancyBonus: ^DevelopmentPolicyVeterancyBonus
 	Inherits@RadiationIcon: ^RadiationIconInfantry
+	Inherits@TibDamageIcon: ^TibDamageIcon
 	RenderSprites:
 		PlayerPalette: playertd
 	Huntable:
@@ -2718,12 +2729,16 @@
 		RequiresCondition: on-tib
 		DelayPerInstance: 250
 		RevokeDelay: 200
-	DamagedByTerrain@TIBDAMAGE:
+	DamagedByTerrainCA@TIBDAMAGE:
 		Terrain: Tiberium, BlueTiberium, BlackTiberium
 		Damage: 125
 		DamageInterval: 16
 		DamageTypes: ToxinDeath
 		RequiresCondition: tibexposed && !(hazmatsuits || hazmatsuits-soviet || being-warped || parachute)
+		Condition: tib-damage
+		FlashColor: 00ff00
+		FlashAlpha: 0.25
+		FlashDuration: 3
 	GrantConditionOnPrerequisite@BIO:
 		Condition: hazmatsuits
 		Prerequisites: bio
@@ -2850,9 +2865,9 @@
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.strong
 		RequiresCondition: !(hazmatsuits || being-warped || parachute || hazmatsuits-soviet)
-		Condition: rad-exposure
+		Condition: rad-damage
 		FlashColor: 00ff00
-		FlashAlpha: 0.35
+		FlashAlpha: 0.25
 		FlashDuration: 3
 	DamagedByTintedCells@RADSTRONGHAZMAT:
 		Damage: 375
@@ -2860,9 +2875,9 @@
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.strong
 		RequiresCondition: hazmatsuits && !(being-warped || parachute || hazmatsuits-soviet)
-		Condition: rad-exposure
+		Condition: rad-damage
 		FlashColor: 00ff00
-		FlashAlpha: 0.35
+		FlashAlpha: 0.25
 		FlashDuration: 3
 	DamagedByTintedCells@RADSTRONGHAZMATSOVIET:
 		Damage: 25
@@ -2870,9 +2885,9 @@
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.strong
 		RequiresCondition: hazmatsuits-soviet && !(being-warped || parachute || hazmatsuits)
-		Condition: rad-exposure
+		Condition: rad-damage
 		FlashColor: 00ff00
-		FlashAlpha: 0.35
+		FlashAlpha: 0.25
 		FlashDuration: 3
 	DamagedByTintedCells@RADMED:
 		Damage: 300
@@ -2880,9 +2895,9 @@
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.medium
 		RequiresCondition: !(hazmatsuits || being-warped || parachute || hazmatsuits-soviet)
-		Condition: rad-exposure
+		Condition: rad-damage
 		FlashColor: 00ff00
-		FlashAlpha: 0.35
+		FlashAlpha: 0.25
 		FlashDuration: 3
 	DamagedByTintedCells@RADMEDHAZMAT:
 		Damage: 150
@@ -2890,9 +2905,9 @@
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.medium
 		RequiresCondition: hazmatsuits && !(being-warped || parachute || hazmatsuits-soviet)
-		Condition: rad-exposure
+		Condition: rad-damage
 		FlashColor: 00ff00
-		FlashAlpha: 0.35
+		FlashAlpha: 0.25
 		FlashDuration: 3
 	DamagedByTintedCells@RADWEAK:
 		Damage: 100
@@ -2900,9 +2915,9 @@
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.weak
 		RequiresCondition: !(hazmatsuits || being-warped || parachute || hazmatsuits-soviet)
-		Condition: rad-exposure
+		Condition: rad-damage
 		FlashColor: 00ff00
-		FlashAlpha: 0.35
+		FlashAlpha: 0.25
 		FlashDuration: 3
 	DamagedByTintedCells@RADWEAKHAZMAT:
 		Damage: 50
@@ -2910,9 +2925,9 @@
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.weak
 		RequiresCondition: hazmatsuits && !(being-warped || parachute || hazmatsuits-soviet)
-		Condition: rad-exposure
+		Condition: rad-damage
 		FlashColor: 00ff00
-		FlashAlpha: 0.35
+		FlashAlpha: 0.25
 		FlashDuration: 3
 	DamagedByTintedCells@FROZEN:
 		Damage: 50
@@ -3034,7 +3049,7 @@
 	-GrantConditionOnTerrain@HAZMATSOVIET:
 	-SpeedMultiplier@HAZMATSOVIET:
 	-Targetable@HAZMAT:
-	-DamagedByTerrain@TIBDAMAGE:
+	-DamagedByTerrainCA@TIBDAMAGE:
 	-GrantStackingCondition@TIBEXPOSED:
 	DamagedByTintedCells@RADSTRONG:
 		Damage: 375
@@ -3217,16 +3232,18 @@
 		DamageInterval: 16
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.strong
-		Condition: rad-exposure
+		Condition: rad-damage
 		FlashColor: 00ff00
+		FlashAlpha: 0.25
 		FlashDuration: 3
 	DamagedByTintedCells@RADMED:
 		Damage: 40
 		DamageInterval: 16
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.medium
-		Condition: rad-exposure
+		Condition: rad-damage
 		FlashColor: 00ff00
+		FlashAlpha: 0.25
 		FlashDuration: 3
 	GrantConditionOnTerrain@UNDERBRIDGE:
 		Condition: under-bridge

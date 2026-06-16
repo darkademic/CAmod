@@ -413,7 +413,7 @@ VEHICLES.SCRIN:
 		CrushedSequencePalette: playerscrin
 	-GrantConditionOnTerrain@ONTIB:
 	-GrantStackingCondition@TIBEXPOSED:
-	-DamagedByTerrain@TIBDAMAGE:
+	-DamagedByTerrainCA@TIBDAMAGE:
 	-GrantConditionOnPrerequisite@BIO:
 	-GrantConditionOnPrerequisite@HAZMAT:
 	-GrantConditionOnPrerequisite@HAZMATSOVIET:
@@ -1254,7 +1254,7 @@ GSCR:
 		Name: Brutalizer
 	-GrantConditionOnTerrain@ONTIB:
 	-GrantStackingCondition@TIBEXPOSED:
-	-DamagedByTerrain@TIBDAMAGE:
+	-DamagedByTerrainCA@TIBDAMAGE:
 	WithInfantryBody:
 		MoveSequence: run
 		StandSequences: stand

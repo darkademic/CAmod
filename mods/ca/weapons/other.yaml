@@ -2482,7 +2482,7 @@ IrradiatedUnit:
 	Warhead@Cond: GrantExternalConditionCA
 		Range: 1c340
 		Duration: 20
-		Condition: rad-exposure
+		Condition: rad-damage
 		InvalidTargets: Desolator
 		AffectsParent: true
 	Warhead@Flash: FlashTarget

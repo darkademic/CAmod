@@ -3111,7 +3111,7 @@ E8:
 		Modifier: 110
 	-GrantConditionOnTerrain@ONTIB:
 	-GrantStackingCondition@TIBEXPOSED:
-	-DamagedByTerrain@TIBDAMAGE:
+	-DamagedByTerrainCA@TIBDAMAGE:
 	-DamagedByTintedCells@RADSTRONG:
 	-DamagedByTintedCells@RADSTRONGHAZMAT:
 	-DamagedByTintedCells@RADSTRONGHAZMATSOVIET:
@@ -4840,7 +4840,7 @@ ZTRP:
 		RequiresCondition: !being-warped && jumping
 	-GrantConditionOnTerrain@ONTIB:
 	-GrantStackingCondition@TIBEXPOSED:
-	-DamagedByTerrain@TIBDAMAGE:
+	-DamagedByTerrainCA@TIBDAMAGE:
 	TargetedLeapAbility:
 		TakeOffSounds: ztrp-jump1.aud, ztrp-jump2.aud
 		LandingSounds: ztrp-land1.aud, ztrp-land2.aud

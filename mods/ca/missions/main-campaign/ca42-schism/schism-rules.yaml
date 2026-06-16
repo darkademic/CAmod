@@ -40,7 +40,7 @@ Player:
 # Purified Tib doesn't damage infantry
 
 ^Infantry:
-	DamagedByTerrain@TIBDAMAGE:
+	DamagedByTerrainCA@TIBDAMAGE:
 		Terrain: Tiberium
 
 ETPD:

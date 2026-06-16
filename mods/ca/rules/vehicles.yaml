@@ -31,6 +31,11 @@ V2RL:
 	Armament:
 		Weapon: SCUD
 		ReloadingCondition: reloading
+		RequiresCondition: !player-iraq
+	Armament@Iraq:
+		Weapon: SCUD.Iraq
+		ReloadingCondition: reloading
+		RequiresCondition: player-iraq
 	AttackFrontal:
 		TargetFrozenActors: True
 		ForceFireIgnoresActors: True
@@ -50,6 +55,9 @@ V2RL:
 	WithProductionIconOverlay:
 		Types: Veterancy
 		Prerequisites: vehicles.upgraded
+	GrantConditionOnPrerequisite@Iraq:
+		Prerequisites: player.iraq
+		Condition: player-iraq
 	Selectable:
 		DecorationBounds: 1194, 1194
 	Encyclopedia:

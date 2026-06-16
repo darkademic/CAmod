@@ -1094,6 +1094,28 @@ SCUD:
 		Explosions: large_splash
 		ImpactSounds: splashl1.aud, splashl2.aud
 
+SCUD.Iraq:
+	Inherits: SCUD
+	Warhead@1Dam: SpreadDamage
+		DamageTypes: Prone50Percent, TriggerProne, RadiationDeath, FlakVestMitigatedMinor
+	Warhead@4Eff: CreateEffect
+		Explosions: med_chem
+		ExplosionPalette: tdeffect
+		ImpactSounds: vtoxcona.aud, vtoxconb.aud, vtoxconc.aud
+	Warhead@18Radio: CreateTintedCells
+		Spread: 1c256
+		Level: 200
+		Falloff: 100, 32
+		LayerName: radioactivity.weak
+		GlowScale: 1.5
+		GlowFadeFrames: 30
+		GlowFadeInFrames: 12
+	Warhead@2irrad: GrantExternalConditionCA
+		Range: 0c512
+		Duration: 250
+		Condition: irradiated
+		ValidTargets: Vehicle, Ship
+
 V3Weapon:
 	Inherits: ^AntiGroundMissile
 	-Report:

@@ -51,9 +51,6 @@ MSLO:
 	Targetable@INFILTRATION:
 		RequiresCondition: !being-warped
 		TargetTypes: ResetSupportPowerInfiltrate
-	ProductionCostMultiplier@IRAQBONUS:
-		Multiplier: 60
-		Prerequisites: player.iraq
 	Encyclopedia:
 		Category: Soviets/Buildings
 

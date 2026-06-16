@@ -125,7 +125,7 @@ faction-iraq =
 
     Bonuses:
       • Heavy Hazmat Suits equipped as standard
-      • Missile Silo (40% discount)
+      • V2 (fires radioactive warheads)
       • Kirov Atom Bombs
 
 faction-yuri =

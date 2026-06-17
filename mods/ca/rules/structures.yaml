@@ -805,9 +805,6 @@ HBOX:
 		CloakDelay: 60
 		IsPlayerPalette: true
 		PauseOnCondition: cloak-force-disabled || being-warped
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
 	Turreted:
 		TurnSpeed: 512
 	-QuantizeFacingsFromSequence:
@@ -5248,9 +5245,6 @@ SGEN:
 		MaximumVerticalOffset: 512
 		AffectsParent: true
 		RequiresCondition: !disabled && !empdisable && !being-warped && !active && !cloak-force-disabled
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
 	Encyclopedia:
 		Category: Nod/Buildings
 
@@ -5270,7 +5264,6 @@ SGEN.Shadow:
 	GrantExternalConditionPowerCA@SGEN:
 		-ActiveCondition:
 	-ExternalCondition@ACTIVE:
-	-GrantConditionOnDamageStateCA@UNCLOAK:
 	-Encyclopedia:
 
 CRAM:

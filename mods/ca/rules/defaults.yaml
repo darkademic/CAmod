@@ -1561,9 +1561,6 @@
 		Color: 606060
 	ExternalCondition@CRATE-CLOAK:
 		Condition: crate-cloak
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Heavy, Critical
 
 ^Chillable:
 	TimedConditionBar@chilled:
@@ -3299,9 +3296,6 @@
 		UncloakSound: subshow1.aud
 		CloakedCondition: underwater
 		PauseOnCondition: cloak-force-disabled || invisibility || being-warped || crossing-ford
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
 	DetectCloaked:
 		DetectionTypes: Underwater
 		Range: 4c0

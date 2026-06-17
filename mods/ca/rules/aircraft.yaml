@@ -204,10 +204,6 @@ B2B:
 		CloakDelay: 200
 		UncloakSound: appear1.aud
 		UncloakOn: Attack, Unload, Infiltrate, Demolish, Dock, Damage, Heal
-		RequiresCondition: !cloak-force-disabled && airborne
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
 	GrantConditionOnDamageState@SmokeTrail:
 		Condition: enable-smoke
 
@@ -2638,13 +2634,12 @@ RAH:
 		PauseOnCondition: invisibility
 	GrantConditionOnResupply@DecloakOnResupply:
 		Condition: cloak-force-disabled
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
-		RequiresCondition: !player-shadow
 	GrantConditionOnPrerequisite@Shadow:
 		Condition: player-shadow
 		Prerequisites: player.shadow
+	SpeedMultiplier@ShadowCloak:
+		Modifier: 110
+		RequiresCondition: player-shadow && hidden
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: AttackAnything
@@ -4744,13 +4739,12 @@ VERT:
 		CloakedCondition: hidden
 		RequiresCondition: !cloak-force-disabled && airborne && !being-warped
 		PauseOnCondition: invisibility
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
-		RequiresCondition: !player-shadow
 	GrantConditionOnPrerequisite@Shadow:
 		Condition: player-shadow
 		Prerequisites: player.shadow
+	SpeedMultiplier@ShadowCloak:
+		Modifier: 110
+		RequiresCondition: player-shadow && hidden
 	-RangeMultiplier@SEEK:
 	-RangeMultiplier@SEEK2:
 	-RangeMultiplier@SEEK3:

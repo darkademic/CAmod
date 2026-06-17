@@ -301,7 +301,7 @@ faction-shadow =
       • Heavy Stealth Tank
 
     Bonuses:
-      • Stealth units can still cloak when critically damaged
+      • Stealth units move 10% faster while cloaked
       • Stealth Generator (+4 passive range, remains cloaked during Tiberium Stealth)
 
 faction-reaper =

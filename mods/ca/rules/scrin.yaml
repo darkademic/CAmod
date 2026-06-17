@@ -806,9 +806,6 @@ WCHR:
 		IsPlayerPalette: false
 		RequiresCondition: !cloak-force-disabled && !being-warped
 		PauseOnCondition: invisibility
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
 	WithColoredSelectionBox@INVIS:
 		RequiresCondition: invisibility || hidden
 		ColorSource: Player
@@ -1096,7 +1093,6 @@ STLK:
 	WithColoredOverlay@PhaseShield:
 		Color: 15091f88
 		RequiresCondition: phaseshield
-	-GrantConditionOnDamageStateCA@UNCLOAK:
 	WithColoredSelectionBox@INVIS:
 		RequiresCondition: invisibility || hidden
 		ColorSource: Player

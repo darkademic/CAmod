@@ -8484,6 +8484,8 @@ PTNK:
 	Mobile:
 		Speed: 72
 		Voice: Move
+		ImmovableCondition: deployed
+		RequireForceMoveCondition: !undeployed
 	Passenger:
 		Voice: Move
 	RevealsShroud:
@@ -8531,6 +8533,38 @@ PTNK:
 		RequiresCondition: !mindcontrolled
 	Encyclopedia:
 		Category: Allies/Vehicles
+	GrantConditionOnDeployTurreted:
+		DeployedCondition: deployed
+		UndeployedCondition: undeployed
+		UndeployOnMove: True
+		DeploySounds: ptnk-deploy.aud
+		UndeploySounds: ptnk-undeploy.aud
+		PauseOnCondition: being-warped
+		SmartDeploy: True
+		ValidFacings: 0, 256, 512, 768
+		RequiresCondition: player-france
+	WithFacingSpriteBody@Deployed:
+		Sequence: fort
+		RequiresCondition: !undeployed
+		Name: fortbody
+	WithMakeAnimation@Deployed:
+		BodyNames: fortbody
+		Sequence: fortmake
+	DamageMultiplier@Deployed:
+		Modifier: 75
+		RequiresCondition: !undeployed
+	RangeMultiplier@Deployed:
+		Modifier: 112
+		RequiresCondition: !undeployed
+	ChangesHealth:
+		PercentageStep: 1
+		Delay: 25
+		StartIfBelow: 100
+		DamageCooldown: 150
+		RequiresCondition: !undeployed
+	GrantConditionOnPrerequisite@France:
+		Condition: player-france
+		Prerequisites: player.france
 
 PCAN:
 	Inherits: PTNK
@@ -8560,6 +8594,8 @@ PCAN:
 		ChargingSounds: pcancharge.aud
 	Voiced:
 		VoiceSet: PrismCannonVoice
+	RangeMultiplier@Deployed:
+		Modifier: 109
 	-ReplacedInQueue:
 	-Upgradeable@PCAN:
 	-WithDecoration@UpgradeOverlay:

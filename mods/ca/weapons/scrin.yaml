@@ -892,7 +892,7 @@ TormentorZap:
 			Light: 65
 			Wood: 30
 			Heavy: 100
-			Concrete: 95
+			Concrete: 105
 			Brick: 50
 	Warhead@1Flash: FlashTarget
 		Color: ac89e7
@@ -977,7 +977,7 @@ EnervatorBoltsAA:
 
 InvaderLauncher:
 	ReloadDelay: 5
-	Range: 8c0
+	Range: 7c0
 	ValidTargets: Air, AirSmall, Ground, Water
 	Projectile: InstantHit
 	Warhead@1Dam: TargetDamage

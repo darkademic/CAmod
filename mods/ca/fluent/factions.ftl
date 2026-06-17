@@ -31,6 +31,7 @@ faction-france =
       • Entrenchment
 
     Bonuses:
+      • Prism Tank/Cannon (deploy to fortify)
       • Walls & Defenses (10% discount)
 
 faction-germany =

@@ -104,7 +104,7 @@ Maverick:
 		Versus:
 			None: 20
 			Wood: 30
-			Concrete: 95
+			Concrete: 105
 			Light: 65
 			Heavy: 100
 
@@ -376,7 +376,7 @@ HellfireAG:
 			None: 20
 			Wood: 30
 			Light: 65
-			Concrete: 95
+			Concrete: 105
 
 HellfireAG.Orca:
 	Inherits: HellfireAG

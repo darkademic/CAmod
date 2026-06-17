@@ -5187,9 +5187,9 @@ SGEN:
 		Prerequisites: tmpl, ~structures.nod, ~!player.shadow, ~techlevel.high
 		BuildLimit: 1
 		IconPalette: chrometd
-		Description: Makes a group of units/structures invisible for a short time.
+		Description: Makes units/structures invisible.
 	TooltipExtras:
-		Attributes: • Maximum 1 can be built\n• Cloaks nearby units and structures when not active\n• Requires power to operate\n• Special Ability: Tiberium Stealth
+		Attributes: • Maximum 1 can be built\n• Cloaks nearby units and structures\n• Requires power to operate\n• Special Ability: Tiberium Stealth
 	Valued:
 		Cost: 1500
 	Tooltip:
@@ -5214,8 +5214,6 @@ SGEN:
 		Range: 5c0
 		RequiresCondition: !disabled
 	WithBuildingBib:
-	ExternalCondition@ACTIVE:
-		Condition: active
 	SupportPowerChargeBar:
 	Power:
 		Amount: -200
@@ -5244,7 +5242,7 @@ SGEN:
 		Condition: sgencloak
 		MaximumVerticalOffset: 512
 		AffectsParent: true
-		RequiresCondition: !disabled && !empdisable && !being-warped && !active && !cloak-force-disabled
+		RequiresCondition: !disabled && !empdisable && !being-warped && !cloak-force-disabled
 	Encyclopedia:
 		Category: Nod/Buildings
 
@@ -5252,18 +5250,12 @@ SGEN.Shadow:
 	Inherits: SGEN
 	Buildable:
 		Prerequisites: tmpl, ~structures.nod, ~player.shadow, ~techlevel.high
-	TooltipExtras:
-		Attributes: • Maximum 1 can be built\n• Cloaks nearby units and structures\n• Requires power to operate\n• Special Ability: Tiberium Stealth
 	WithRangeCircleCA@SGEN:
 		Range: 11c512
 	ProximityExternalCondition@SGEN:
 		Range: 11c512
-		RequiresCondition: !disabled && !empdisable && !being-warped
 	RenderSprites:
 		Image: sgen
-	GrantExternalConditionPowerCA@SGEN:
-		-ActiveCondition:
-	-ExternalCondition@ACTIVE:
 	-Encyclopedia:
 
 CRAM:

@@ -1073,7 +1073,6 @@ SCUD:
 		Blockable: false
 		TrailImage: smokey
 		TrailDelay: 5
-		Inaccuracy: 213
 		Image: V2
 		Shadow: True
 		LaunchAngle: 62
@@ -1103,7 +1102,7 @@ SCUD.Iraq:
 		ExplosionPalette: tdeffect
 		ImpactSounds: vtoxcona.aud, vtoxconb.aud, vtoxconc.aud
 	Warhead@18Radio: CreateTintedCells
-		Spread: 1c256
+		Spread: 2c0
 		Level: 200
 		Falloff: 100, 32
 		LayerName: radioactivity.weak
@@ -1310,13 +1309,11 @@ HonestJohn.UPG:
 		Versus:
 			Light: 100
 			Heavy: 70
-		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 	Warhead@2Dam: SpreadDamage
 		Damage: 1200
 		Versus:
 			Light: 100
 			Heavy: 70
-		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 	-Warhead@3Dam:
 	-Warhead@4Dam:
 	Warhead@2Smu: LeaveSmudge

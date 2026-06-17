@@ -302,7 +302,7 @@ faction-shadow =
 
     Bonuses:
       • Stealth units move 10% faster while cloaked
-      • Stealth Generator (+4 passive range, remains cloaked during Tiberium Stealth)
+      • Stealth Generator (+4 passive range)
 
 faction-reaper =
     .name = Reaper-17

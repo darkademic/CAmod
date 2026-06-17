@@ -1823,7 +1823,6 @@
 		Cursor: chemmissile
 		PauseOnCondition: disabled || empdisable || being-warped
 		DisplayTimerRelationships: Ally, Neutral, Enemy
-		ActiveCondition: active
 		SupportPowerPaletteOrder: 20
 		ShowTargetCircle: true
 		TargetCircleColor: 00ff11

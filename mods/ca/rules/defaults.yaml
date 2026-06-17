@@ -1219,6 +1219,13 @@
 	SpeedCapSpeedMultiplier@IRONCURTAIN:
 		RequiresCondition: invulnerability
 		MaxSpeed: 60
+	WithDecoration@IRONCURTAIN:
+		Image: pips
+		Sequence: pip-ic
+		Palette: chrome
+		Position: Top
+		RequiresCondition: invulnerability
+		ValidRelationships: Ally, Neutral, Enemy
 
 ^IronCurtainable-Kills:
 	Inherits: ^IronCurtainable

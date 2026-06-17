@@ -148,7 +148,6 @@ Player:
 		-EndChargeSpeechNotification:
 		ChargeInterval: 1
 	GrantExternalConditionPowerCA@SGEN:
-		-ActiveCondition:
 		-BeginChargeSpeechNotification:
 		-EndChargeSpeechNotification:
 		DisplayTimerRelationships: None

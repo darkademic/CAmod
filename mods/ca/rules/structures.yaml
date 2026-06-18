@@ -4787,13 +4787,11 @@ PRIS:
 	Power:
 		Amount: -80
 	ProvidesPrerequisite@buildingname:
-	WithRangeCircle@SUPPORT:
-		Type: PrismSupport
-		Range: 5c0
-		Color: ffffff66
 	WithPrismLinkVisualization:
 		Range: 5c0
-		Color: 00ffffff
+		SelectedColor: 00FFFF77
+		PlacementColor: 00FFFFFF
+		RangeCircleColor: 00FFFF77
 	Encyclopedia:
 		Category: Allies/Defenses
 

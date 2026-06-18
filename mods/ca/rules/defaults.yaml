@@ -1219,13 +1219,6 @@
 	SpeedCapSpeedMultiplier@IRONCURTAIN:
 		RequiresCondition: invulnerability
 		MaxSpeed: 60
-	WithDecoration@IRONCURTAIN:
-		Image: pips
-		Sequence: pip-ic
-		Palette: chrome
-		Position: Top
-		RequiresCondition: invulnerability
-		ValidRelationships: Ally, Neutral, Enemy
 
 ^IronCurtainable-Kills:
 	Inherits: ^IronCurtainable
@@ -1295,31 +1288,51 @@
 		Modifier: 110
 		RequiresCondition: irradiated
 
-^RadiationIcon:
+^ConditionIcons:
 	ExternalCondition@RadExposure:
 		Condition: rad-damage
+	DummyConditionGranter@Concussion:
+		Condition: concussion
+	DummyConditionGranter@Invulnerability:
+		Condition: invulnerability
+	WithDecoration@IRONCURTAIN:
+		Image: pips
+		Sequence: pip-ic
+		Palette: chrome
+		Position: Top
+		RequiresCondition: invulnerability
+		ValidRelationships: Ally, Neutral, Enemy
+	WithDecoration@Concussion:
+		Image: pips
+		Sequence: pip-conc
+		Palette: chrome
+		Position: Top
+		RequiresCondition: concussion && !invulnerability
+		BlinkInterval: 16
+		BlinkPatterns:
+			concussion: On, On, Off
+		RequiresSelection: False
+		ValidRelationships: Ally, Neutral, Enemy
 	WithDecoration@Radiation:
 		Image: pips
 		Sequence: pip-rad
 		Palette: chrome
 		Position: Top
-		RequiresCondition: rad-damage
+		RequiresCondition: rad-damage && !concussion && !invulnerability
 		ValidRelationships: Ally, Neutral, Enemy
 
-^TibDamageIcon:
-	ExternalCondition@TibDamage:
+^ConditionIconsInfantry:
+	Inherits: ^ConditionIcons
+	DummyConditionGranter@TibDamage:
 		Condition: tib-damage
+	WithDecoration@Radiation:
+		Sequence: pip-radsm
 	WithDecoration@TibDamage:
 		Image: pips
 		Sequence: pip-tib
 		Palette: chrome
 		Position: Top
-		RequiresCondition: tib-damage && !rad-damage
-
-^RadiationIconInfantry:
-	Inherits: ^RadiationIcon
-	WithDecoration@Radiation:
-		Sequence: pip-radsm
+		RequiresCondition: tib-damage && !rad-damage && !concussion && !invulnerability
 
 ^AtomicAmmunition:
 	ExternalCondition@ATOMICAMMO:
@@ -1688,17 +1701,6 @@
 	ReloadDelayMultiplier@concussion:
 		Modifier: 200
 		RequiresCondition: concussion
-	WithDecoration@Concussion:
-		Image: pips
-		Sequence: pip-conc
-		Palette: chrome
-		Position: Top
-		RequiresCondition: concussion
-		BlinkInterval: 16
-		BlinkPatterns:
-			concussion: On, On, Off
-		RequiresSelection: False
-		ValidRelationships: Ally, Neutral, Enemy
 
 ^ReaperSnareable:
 	WithIdleOverlay@ReaperSnare:
@@ -2481,7 +2483,7 @@
 	Inherits@Anathema: ^Anathema
 	Inherits@Berserk: ^Berserk
 	Inherits@DevelopmentPolicyVeterancyBonus: ^DevelopmentPolicyVeterancyBonus
-	Inherits@RadiationIcon: ^RadiationIcon
+	Inherits@ConditionIcons: ^ConditionIcons
 	Huntable:
 	EdibleByLeap:
 	OwnerLostAction:
@@ -2706,8 +2708,7 @@
 	Inherits@Berserk: ^Berserk
 	Inherits@WatcherParasite: ^WatcherParasiteAttachable
 	Inherits@DevelopmentPolicyVeterancyBonus: ^DevelopmentPolicyVeterancyBonus
-	Inherits@RadiationIcon: ^RadiationIconInfantry
-	Inherits@TibDamageIcon: ^TibDamageIcon
+	Inherits@ConditionIconsInfantry: ^ConditionIconsInfantry
 	RenderSprites:
 		PlayerPalette: playertd
 	Huntable:
@@ -3176,7 +3177,7 @@
 	Inherits@Anathema: ^Anathema
 	Inherits@Berserk: ^Berserk
 	Inherits@DevelopmentPolicyVeterancyBonus: ^DevelopmentPolicyVeterancyBonus
-	Inherits@RadiationIcon: ^RadiationIcon
+	Inherits@ConditionIcons: ^ConditionIcons
 	Huntable:
 	RenderSprites:
 		PlayerPalette: playernavy

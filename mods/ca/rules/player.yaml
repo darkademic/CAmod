@@ -154,6 +154,7 @@ Player:
 		NewOptionsTextNotification: New construction options.
 		CannotPlaceTextNotification: Cannot deploy here.
 	SupportPowerManager:
+	StackableSupportPowerManager:
 	SupportPowerInstanceManager:
 	ScriptTriggers:
 	ScriptTriggersCA:

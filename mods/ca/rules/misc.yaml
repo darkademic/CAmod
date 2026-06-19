@@ -794,15 +794,15 @@ powerproxy.paratroopers.allies:
 
 powerproxy.airborne:
 	Inherits@DUMMY: ^InvisibleDummy
-	ParatroopersPowerCA:
+	StackableParatroopersPower:
 		OrderName: airborne
 		Icon: airborne
 		SquadSize: 1
 		UnitType: galx
-		Name: Airdrop: Guardian GIs (Single Use)
+		Name: Airdrop: Guardian GIs
 		Description: A Heavy Transport Plane drops a squad of Guardian GIs\nanywhere on the map.
 		OneShot: true
-		AllowMultiple: true
+		StackActivationInterval: 250
 		DropItems: U3,U3,U3,U3,U3
 		SelectTargetSpeechNotification: SelectTarget
 		EndChargeSpeechNotification: Reinforce
@@ -821,6 +821,8 @@ powerproxy.airborne:
 		SupportPowerPaletteOrder: 70
 		PrerequisiteDropItems:
 			airborne.upgrade: U3R2, U3R2, U3R2, U3R2, U3R2
+	AddsSupportPowerStackOnCreation:
+		OrderName: airborne
 	Buildable:
 		Queue: PowerProxy
 	Tooltip:
@@ -828,15 +830,15 @@ powerproxy.airborne:
 
 powerproxy.airborne.tank:
 	Inherits@DUMMY: ^InvisibleDummy
-	ParatroopersPowerCA:
+	StackableParatroopersPower:
 		OrderName: airbornetank
 		Icon: airdropicon
 		SquadSize: 1
 		UnitType: galx
-		Name: Airdrop: Grizzly Tanks (Single Use)
+		Name: Airdrop: Grizzly Tanks
 		Description: A Heavy Transport Plane drops a pair of Grizzly Tanks\nanywhere on the map.
 		OneShot: true
-		AllowMultiple: true
+		StackActivationInterval: 250
 		DropItems: GTNK,GTNK
 		SelectTargetSpeechNotification: SelectTarget
 		EndChargeSpeechNotification: Reinforce
@@ -855,6 +857,8 @@ powerproxy.airborne.tank:
 		SupportPowerPaletteOrder: 70
 		PrerequisiteDropItems:
 			airborne.upgrade: GTNKR2, GTNKR2
+	AddsSupportPowerStackOnCreation:
+		OrderName: airbornetank
 	Buildable:
 		Queue: PowerProxy
 	Tooltip:

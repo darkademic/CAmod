@@ -2052,12 +2052,12 @@ ScrinTorp:
 ScrinTorp.UPG:
 	Inherits: ScrinTorp
 	Projectile: MissileCA
-		Image: scrintorpblue
+		Image: scrintorpred
 		Palette: caneon
 		TrailImage: smokey
 		TrailPalette: scrinplasma
 	Warhead@Flash: FlashTarget
-		Color: 7766ff
+		Color: ff4444
 
 ScrinTorpAA:
 	Inherits: ^AirToAirMissile

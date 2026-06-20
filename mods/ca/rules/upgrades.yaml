@@ -459,9 +459,9 @@ ejjet.upgrade:
 		BuildPaletteOrder: 30
 		IconPalette: chrometd
 		Prerequisites: ~player.gdi, gtek, ~seek.strat, ~techlevel.high
-		Description: Improves speed, range and vision for Jumpjet Troopers and Bombardiers.\n\nUpgrades: Jumpjet Infantry\nUpgrades: Bombardier
+		Description: Improves the speed and vision of Jumpjet Troopers and Bombardiers.\n\nUpgrades: Jumpjet Infantry\nUpgrades: Bombardier
 	TooltipExtras:
-		Strengths: + 25% faster movement\n+ 25% longer weapon range\n+ Vision range increased by 2
+		Strengths: + 25% faster movement\n+ Vision range increased by 2
 	Valued:
 		Cost: 1000
 	RenderSprites:
@@ -1648,7 +1648,7 @@ economy.policy:
 		Prerequisites: ~player.allies, influence.level1, !economy.policy, !defense.policy, !development.policy, ~techlevel.medium
 		Description: Pursue economic policy.\n\n• Level 1: -15% cost of Refineries, Harvesters & MCVs\n• Level 2: -20% cost of Refineries, Harvesters & MCVs, +20% MCV movement speed\n• Level 3: -25% cost of Refineries, Harvesters & MCVs, Free Chrono Miner upgrade, +50% Ore Purifier income
 	TooltipExtras:
-		Attributes: (!) Only ONE Policy may be chosen.
+		Attributes: (!) Only ONE Policy may be chosen.(!) Cost reductions do not stack
 	Valued:
 		Cost: 300
 	RenderSprites:
@@ -1671,7 +1671,7 @@ defense.policy:
 		Prerequisites: ~player.allies, influence.level1, !economy.policy, !defense.policy, !development.policy, ~techlevel.medium
 		Description: Pursue defense policy.\n\n• Level 1: +15% building/defense HP, +25% Construction Yard build radius\n• Level 2: +30% building/defense HP, +40% building repair rate, +50% building vision radius\n• Level 3: +25% defense vision radius, +20% defense repair rate, +15% defense weapon damage, +2 gap generator shroud radius
 	TooltipExtras:
-		Attributes: (!) Only ONE Policy may be chosen.
+		Attributes: (!) Only ONE Policy may be chosen.\n(!) HP bonuses do not stack
 	Valued:
 		Cost: 300
 	RenderSprites:
@@ -1688,7 +1688,7 @@ development.policy:
 		Prerequisites: ~player.allies, influence.level1, !economy.policy, !defense.policy, !development.policy, ~techlevel.medium
 		Description: Pursue development policy.\n\n• Level 1: +20% unit experience gain\n• Level 2: +40% unit experience gain, 15% discount on Tech Center, HQ & all upgrades\n• Level 3: +60% unit experience gain, rank 3 units gain additional health & damage
 	TooltipExtras:
-		Attributes: (!) Only ONE Policy may be chosen.
+		Attributes: (!) Only ONE Policy may be chosen.(!) XP bonuses do not stack
 	Valued:
 		Cost: 300
 	RenderSprites:

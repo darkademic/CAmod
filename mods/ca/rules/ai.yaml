@@ -564,18 +564,24 @@ Player:
 					CheckRadius: 8c0
 			ironcurtainpower:
 				OrderName: ironcurtain
-				MinimumAttractiveness: 1000
+				MinimumAttractiveness: 4000
 				FineScanRadius: 2
 				Consideration@1:
 					Against: Ally
 					Types: Repairable
-					Attractiveness: 5
+					Attractiveness: 3
 					TargetMetric: Value
 					CheckRadius: 3c0
 				Consideration@2:
+					Against: Enemy
+					Types: Vehicle, Infantry
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@3:
 					Against: Ally
 					Types: Infantry
-					Attractiveness: -2
+					Attractiveness: -1
 					TargetMetric: Value
 					CheckRadius: 2c0
 			atomicammopower:

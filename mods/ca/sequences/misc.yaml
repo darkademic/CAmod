@@ -1313,12 +1313,12 @@ scrintorp:
 		Length: *
 		ZOffset: 2046
 
-scrintorpblue:
+scrintorpred:
 	Defaults:
 		IgnoreWorldTint: true
 		Alpha: 0.9
 	idle:
-		Filename: scrintorpblue.shp
+		Filename: scrintorpred.shp
 		Length: *
 		ZOffset: 2046
 

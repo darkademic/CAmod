@@ -2474,6 +2474,11 @@ encyclopedia.buffs.ironcurtain:
 	WithPalettedOverlay@IRONCURTAIN:
 		Palette: invuln
 		ShowInPreview: true
+	WithPreviewDecoration:
+		Image: pips
+		Sequence: pip-ic
+		Palette: chrome
+		Position: Top
 
 encyclopedia.buffs.naniterepair:
 	Inherits: ^VehicleEffectPreview
@@ -2633,6 +2638,11 @@ encyclopedia.debuffs.irradiated:
 		Weaknesses: • Deals periodic damage to nearby units\n• Irradiates the ground\n-10% damage dealt\n+10% damage received
 	WithPalettedOverlay@IRRADIATABLE:
 		ShowInPreview: true
+	WithPreviewDecoration:
+		Image: pips
+		Sequence: pip-rad
+		Palette: chrome
+		Position: Top
 
 encyclopedia.debuffs.jammed:
 	Inherits: ^VehicleEffectPreview

@@ -2702,7 +2702,7 @@ TPOD:
 		HP: 86000
 	Mobile:
 		Locomotor: heavytracked
-		Speed: 50
+		Speed: 46
 		TurnSpeed: 512
 	Passenger:
 		Weight: 3

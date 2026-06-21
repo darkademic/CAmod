@@ -2088,7 +2088,7 @@ ScrinTorpAA:
 ScrinTorpAA.UPG:
 	Inherits: ScrinTorpAA
 	Projectile: MissileCA
-		Image: scrintorpblue
+		Image: scrintorpred
 		Palette: caneon
 		TrailImage: smokey
 		TrailPalette: scrinplasma

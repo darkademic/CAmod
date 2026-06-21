@@ -56,6 +56,8 @@ DOG:
 		TargetTypes: ChaosImmune
 	Targetable@MindControlImmune:
 		TargetTypes: MindControlImmune
+	Targetable@Dog:
+		TargetTypes: Dog
 	WithInfantryBody:
 		MoveSequence: walk
 		StandSequences: stand
@@ -2844,7 +2846,7 @@ JJET:
 	TooltipExtras:
 		Strengths: • Strong vs Infantry, Aircraft
 		Weaknesses: • Weak vs Heavy Armor, Buildings, Defenses
-		Attributes: • Detects cloaked ground units
+		Attributes: • Detects cloaked units (with upgrade)
 	Valued:
 		Cost: 350
 	Tooltip:
@@ -2944,8 +2946,9 @@ JJET:
 	Hovers@CRUISING:
 		RequiresCondition: cruising
 	DetectCloaked:
-		DetectionTypes: Cloak
-		Range: 2c0
+		DetectionTypes: Cloak, AirCloak
+		Range: 5c0
+		RequiresCondition: ejjet-upgrade
 	Selectable:
 		Bounds: 768, 768, 0, -256
 		DecorationBounds: 512, 725, 0, -256

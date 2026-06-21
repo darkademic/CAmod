@@ -635,6 +635,12 @@ SilencedPPK:
 	Report: silppk.aud
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
+		InvalidTargets: Dog
+	Warhead@DogDam: HealthPercentageDamage
+		Damage: 50
+		Spread: 42
+		DamageTypes: BulletDeath
+		ValidTargets: Dog
 	Warhead@2Eff: CreateEffect
 		Explosions: piff, piff2
 		ValidTargets: Ground, Ship, Air, AirSmall, Trees

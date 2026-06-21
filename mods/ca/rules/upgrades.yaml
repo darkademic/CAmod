@@ -459,9 +459,9 @@ ejjet.upgrade:
 		BuildPaletteOrder: 30
 		IconPalette: chrometd
 		Prerequisites: ~player.gdi, gtek, ~seek.strat, ~techlevel.high
-		Description: Improves the speed and vision of Jumpjet Troopers and Bombardiers.\n\nUpgrades: Jumpjet Infantry\nUpgrades: Bombardier
+		Description: Improves the speed and vision of Jumpjet Troopers and Bombardiers and grants them cloak detection.\n\nUpgrades: Jumpjet Infantry\nUpgrades: Bombardier
 	TooltipExtras:
-		Strengths: + 25% faster movement\n+ Vision range increased by 2
+		Strengths: + 25% faster movement\n+ Vision range increased by 2\n+ Cloak detection
 	Valued:
 		Cost: 1000
 	RenderSprites:

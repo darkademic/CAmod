@@ -34,7 +34,7 @@ namespace OpenRA.Mods.CA.Traits
 		}
 	}
 
-	public class ClassicAirstrikePowerInfo : DirectionalSupportPowerInfo
+	public class ClassicAirstrikePowerInfo : StackableDirectionalSupportPowerInfo
 	{
 		[FieldLoader.LoadUsing("LoadSquad")]
 		[Desc("A list of aircraft in the squad. Each has configurable UnitType, SpawnOffset and TargetOffset.")]
@@ -79,7 +79,7 @@ namespace OpenRA.Mods.CA.Traits
 		public override object Create(ActorInitializer init) { return new ClassicAirstrikePower(init.Self, this); }
 	}
 
-	public class ClassicAirstrikePower : DirectionalSupportPower
+	public class ClassicAirstrikePower : StackableDirectionalSupportPower
 	{
 		readonly ClassicAirstrikePowerInfo info;
 

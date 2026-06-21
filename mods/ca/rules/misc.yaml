@@ -709,7 +709,8 @@ powerproxy.parabombs:
 		Name: Parabombs (Single Use)
 		Description: A Badger drops a load of parachuted bombs on your target.
 		OneShot: true
-		AllowMultiple: true
+		Stacks: 1
+		StackActivationInterval: 750
 		UnitType: badr.bomber
 		EndChargeSpeechNotification: Reinforce
 		SelectTargetSpeechNotification: SelectTarget
@@ -723,6 +724,8 @@ powerproxy.parabombs:
 		ClockSequence: clock
 		CircleSequence: circles
 		OrderName: crateparabombs
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
 		SupportPowerPaletteOrder: 70
 
 powerproxy.sonarpulse:
@@ -744,14 +747,15 @@ powerproxy.sonarpulse:
 
 powerproxy.paratroopers:
 	Inherits@DUMMY: ^InvisibleDummy
-	ParatroopersPower:
+	ParatroopersPowerCA:
 		Icon: paratroopers
 		SquadSize: 1
 		UnitType: halo.paradrop
 		Name: Paratroopers (Single Use)
 		Description: A Halo transport drops a squad of infantry\nanywhere on the map.
 		OneShot: true
-		AllowMultiple: true
+		Stacks: 1
+		StackActivationInterval: 750
 		DropItems: E1,E1,E1,E3,E3,E1,E1,E1,E2,E2
 		SelectTargetSpeechNotification: SelectTarget
 		EndChargeSpeechNotification: Reinforce
@@ -765,18 +769,21 @@ powerproxy.paratroopers:
 		ArrowSequence: arrow
 		ClockSequence: clock
 		CircleSequence: circles
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
 		SupportPowerPaletteOrder: 70
 
 powerproxy.paratroopers.allies:
 	Inherits@DUMMY: ^InvisibleDummy
-	ParatroopersPower:
+	ParatroopersPowerCA:
 		Icon: paratroopers
 		SquadSize: 1
 		UnitType: tran.paradrop
 		Name: Paratroopers (Single Use)
 		Description: A Chinook drops a squad of infantry\nanywhere on the map.
 		OneShot: true
-		AllowMultiple: true
+		Stacks: 1
+		StackActivationInterval: 750
 		DropItems: E1,E1,E1,E1,E3,E3,E3,MEDI
 		SelectTargetSpeechNotification: SelectTarget
 		EndChargeSpeechNotification: Reinforce
@@ -790,11 +797,13 @@ powerproxy.paratroopers.allies:
 		ArrowSequence: arrow
 		ClockSequence: clock
 		CircleSequence: circles
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
 		SupportPowerPaletteOrder: 70
 
 powerproxy.airborne:
 	Inherits@DUMMY: ^InvisibleDummy
-	StackableParatroopersPower:
+	ParatroopersPowerCA:
 		OrderName: airborne
 		Icon: airborne
 		SquadSize: 1
@@ -802,6 +811,7 @@ powerproxy.airborne:
 		Name: Airdrop: Guardian GIs
 		Description: A Heavy Transport Plane drops a squad of Guardian GIs\nanywhere on the map.
 		OneShot: true
+		Stacks: 1
 		StackActivationInterval: 250
 		DropItems: U3,U3,U3,U3,U3
 		SelectTargetSpeechNotification: SelectTarget
@@ -828,7 +838,7 @@ powerproxy.airborne:
 
 powerproxy.airborne.tank:
 	Inherits@DUMMY: ^InvisibleDummy
-	StackableParatroopersPower:
+	ParatroopersPowerCA:
 		OrderName: airbornetank
 		Icon: airdropicon
 		SquadSize: 1
@@ -836,6 +846,7 @@ powerproxy.airborne.tank:
 		Name: Airdrop: Grizzly Tanks
 		Description: A Heavy Transport Plane drops a pair of Grizzly Tanks\nanywhere on the map.
 		OneShot: true
+		Stacks: 1
 		StackActivationInterval: 250
 		DropItems: GTNK,GTNK
 		SelectTargetSpeechNotification: SelectTarget
@@ -878,7 +889,8 @@ powerproxy.airstrike:
 		Name: Air Strike (Single Use)
 		Description: A10 strike planes drop napalm\nbombs on your target.
 		OneShot: true
-		AllowMultiple: true
+		Stacks: 1
+		StackActivationInterval: 375
 		SelectTargetSpeechNotification: SelectTarget
 		EndChargeSpeechNotification: Reinforce
 		LaunchSpeechNotification: ReinforcementsArrived

@@ -21,7 +21,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.CA.Traits
 {
 	[Desc("Support power that delivers paratroopers. CA version adds overrides based on prerequisites.")]
-	public class ParatroopersPowerCAInfo : DirectionalSupportPowerInfo
+	public class ParatroopersPowerCAInfo : StackableDirectionalSupportPowerInfo
 	{
 		[ActorReference(typeof(AircraftInfo))]
 		public readonly string UnitType = "badr";
@@ -76,7 +76,7 @@ namespace OpenRA.Mods.CA.Traits
 		public override object Create(ActorInitializer init) { return new ParatroopersPowerCA(init.Self, this); }
 	}
 
-	public class ParatroopersPowerCA : DirectionalSupportPower
+	public class ParatroopersPowerCA : StackableDirectionalSupportPower
 	{
 		readonly ParatroopersPowerCAInfo info;
 		TechTree techTree;

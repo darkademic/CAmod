@@ -87,6 +87,7 @@ EnslaveInfantry:
 	Warhead@Flash: FlashTarget
 		Spread: 341
 		Color: ff00ff
+		Duration: 6
 		ValidTargets: Infantry
 		ValidRelationships: Neutral, Enemy
 
@@ -255,7 +256,7 @@ IntruderDiscs:
 		LockOnBurstCounts: 1,3
 	Warhead@1Dam: SpreadDamage
 		Damage: 2850
-		Spread: 256
+		Spread: 288
 		Versus:
 			None: 15
 			Wood: 100
@@ -657,6 +658,10 @@ CorrupterSpewCharged:
 
 CorrupterExplode:
 	Inherits: UnitExplodeIraqTank
+	Warhead@1Dam_impact: SpreadDamage
+		Damage: 1000
+	Warhead@4Dam_areanuke1: SpreadDamage
+		Damage: 500
 	Warhead@3Eff_impact: CreateEffect
 		Explosions: med_chem
 		ExplosionPalette: tdeffect
@@ -733,7 +738,7 @@ RuinerCannonCharged:
 
 TripodLaser:
 	Inherits: ^ScrinPlasmaBeam
-	Range: 5c768
+	Range: 5c256
 	Report: tripod-fire1.aud, tripod-fire2.aud, tripod-fire3.aud
 	ReloadDelay: 65
 	Projectile: PlasmaBeam
@@ -865,32 +870,32 @@ StormRiderZapAA:
 
 TormentorZap:
 	ReloadDelay: 50
-	Burst: 6
-	BurstDelays: 0, 4, 0, 4, 0
 	ValidTargets: Ground, Water
 	Range: 7c0
 	Report: torm-fire1.aud, torm-fire2.aud
 	Projectile: LaserZapCA
-		Width: 56
+		Width: 70
 		HitAnim: laserfire
 		Color: 954fffAA
 		ZOffset: 512
 		SecondaryBeam: true
-		SecondaryBeamWidth: 90
+		SecondaryBeamWidth: 120
 		SecondaryBeamZOffset: 511
 		SecondaryBeamColor: 7d00fe30
-		Duration: 3
+		Duration: 10
 	Warhead@1Dam: SpreadDamage
 		Spread: 42
-		Damage: 2300
+		Damage: 13800
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath, TankBuster, AirToGround
 		Versus:
 			None: 20
 			Light: 65
 			Wood: 30
 			Heavy: 100
-			Concrete: 95
+			Concrete: 105
 			Brick: 50
+	Warhead@1Flash: FlashTarget
+		Color: ac89e7
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch-NoFlame
 		InvalidTargets: Vehicle, Structure, Wall, Husk, Trees, Creep
@@ -900,7 +905,7 @@ TormentorZapAA:
 	Range: 6c0
 	ValidTargets: Air, AirSmall
 	Warhead@1Dam: SpreadDamage
-		Damage: 1100
+		Damage: 7200
 		ValidTargets: Air, AirSmall
 	-Warhead@2Smu:
 
@@ -972,7 +977,7 @@ EnervatorBoltsAA:
 
 InvaderLauncher:
 	ReloadDelay: 5
-	Range: 8c0
+	Range: 7c0
 	ValidTargets: Air, AirSmall, Ground, Water
 	Projectile: InstantHit
 	Warhead@1Dam: TargetDamage
@@ -1063,7 +1068,7 @@ PlasmaTurretGun:
 			Wood: 50
 			Concrete: 30
 			Light: 55
-			Heavy: 35
+			Heavy: 25
 			Brick: 20
 		DamageTypes: Prone50Percent, TriggerProne, DefaultDeath
 	Warhead@2Dam: HealthPercentageDamage
@@ -2076,10 +2081,10 @@ AtomizerBolts:
 		Image: atmzbolthit
 		ImpactSounds: atomizer-hit1.aud
 	Warhead@Glow: GlowImpact
-		GlowScale: 1.5
-		GlowFadeFrames: 25
-		GlowFadeInFrames: 5
-		GlowColor: ff0000
+		Scale: 1.5
+		FadeFrames: 25
+		FadeInFrames: 5
+		Color: ff0000
 
 AtomizerArc:
 	Inherits: AtomizerBolts
@@ -2367,10 +2372,10 @@ NullifierBolt:
 		Color: ffff00
 		ValidTargets: Infantry, Vehicle, Ship, Defense
 	Warhead@Glow: GlowImpact
-		GlowScale: 1.5
-		GlowFadeFrames: 30
-		GlowFadeInFrames: 10
-		GlowColor: ffff00
+		Scale: 1.5
+		FadeFrames: 30
+		FadeInFrames: 10
+		Color: ffff00
 
 ScrinRepair:
 	Inherits: Heal

@@ -469,7 +469,7 @@
 		Modifier: 92
 	SpeedMultiplier@Inspiration1:
 		RequiresCondition: inspiration == 1
-		Modifier: 130
+		Modifier: 115
 	ReloadDelayMultiplier@Inspiration2:
 		RequiresCondition: inspiration >= 2
 		Modifier: 84
@@ -478,7 +478,7 @@
 		Modifier: 84
 	SpeedMultiplier@Inspiration2:
 		RequiresCondition: inspiration >= 2
-		Modifier: 140
+		Modifier: 130
 	WithIdleOverlay@Inspiration1:
 		Image: ussrstar
 		Sequence: idle-overlay1
@@ -1288,6 +1288,52 @@
 		Modifier: 110
 		RequiresCondition: irradiated
 
+^ConditionIcons:
+	ExternalCondition@RadExposure:
+		Condition: rad-damage
+	DummyConditionGranter@Concussion:
+		Condition: concussion
+	DummyConditionGranter@Invulnerability:
+		Condition: invulnerability
+	WithDecoration@IRONCURTAIN:
+		Image: pips
+		Sequence: pip-ic
+		Palette: chrome
+		Position: Top
+		RequiresCondition: invulnerability
+		ValidRelationships: Ally, Neutral, Enemy
+	WithDecoration@Concussion:
+		Image: pips
+		Sequence: pip-conc
+		Palette: chrome
+		Position: Top
+		RequiresCondition: concussion && !invulnerability
+		BlinkInterval: 16
+		BlinkPatterns:
+			concussion: On, On, Off
+		RequiresSelection: False
+		ValidRelationships: Ally, Neutral, Enemy
+	WithDecoration@Radiation:
+		Image: pips
+		Sequence: pip-rad
+		Palette: chrome
+		Position: Top
+		RequiresCondition: rad-damage && !concussion && !invulnerability
+		ValidRelationships: Ally, Neutral, Enemy
+
+^ConditionIconsInfantry:
+	Inherits: ^ConditionIcons
+	DummyConditionGranter@TibDamage:
+		Condition: tib-damage
+	WithDecoration@Radiation:
+		Sequence: pip-radsm
+	WithDecoration@TibDamage:
+		Image: pips
+		Sequence: pip-tib
+		Palette: chrome
+		Position: Top
+		RequiresCondition: tib-damage && !rad-damage && !concussion && !invulnerability
+
 ^AtomicAmmunition:
 	ExternalCondition@ATOMICAMMO:
 		Condition: atomic-ammo
@@ -1415,6 +1461,9 @@
 ^RepairsAircraftWithRepairBay:
 	ExternalCondition@AIRCRAFTREPAIR:
 		Condition: aircraft-repair
+	GrantConditionOnPrerequisite@EagleBonus:
+		Condition: aircraft-repair
+		Prerequisites: player.eagle
 	RepairsUnits:
 		ValuePercentage: 0
 		HpPerStep: 1000
@@ -1532,9 +1581,6 @@
 		Color: 606060
 	ExternalCondition@CRATE-CLOAK:
 		Condition: crate-cloak
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Heavy, Critical
 
 ^Chillable:
 	TimedConditionBar@chilled:
@@ -1655,17 +1701,6 @@
 	ReloadDelayMultiplier@concussion:
 		Modifier: 200
 		RequiresCondition: concussion
-	WithDecoration@Concussion:
-		Image: pips
-		Sequence: pip-conc
-		Palette: chrome
-		Position: Top
-		RequiresCondition: concussion
-		BlinkInterval: 16
-		BlinkPatterns:
-			concussion: On, On, Off
-		RequiresSelection: False
-		ValidRelationships: Ally, Neutral, Enemy
 
 ^ReaperSnareable:
 	WithIdleOverlay@ReaperSnare:
@@ -1769,7 +1804,7 @@
 		DrainingColor: 00ffff
 		Modifier: 25
 		Duration: 75
-		ChargeTime: 375
+		ChargeTime: 750
 		ActivateSound: gshieldup.aud
 		DeactivateSound: gshielddown.aud
 		RequiresCondition: pointdef-upgrade
@@ -2448,6 +2483,7 @@
 	Inherits@Anathema: ^Anathema
 	Inherits@Berserk: ^Berserk
 	Inherits@DevelopmentPolicyVeterancyBonus: ^DevelopmentPolicyVeterancyBonus
+	Inherits@ConditionIcons: ^ConditionIcons
 	Huntable:
 	EdibleByLeap:
 	OwnerLostAction:
@@ -2545,11 +2581,19 @@
 		DamageInterval: 16
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.strong
+		Condition: rad-damage
+		FlashColor: 00ff00
+		FlashAlpha: 0.25
+		FlashDuration: 3
 	DamagedByTintedCells@RADMED:
 		Damage: 40
 		DamageInterval: 16
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.medium
+		Condition: rad-damage
+		FlashColor: 00ff00
+		FlashAlpha: 0.25
+		FlashDuration: 3
 	DetectCloaked@UNDERBRIDGE:
 		DetectionTypes: Underbridge
 		Range: 5c0
@@ -2664,6 +2708,7 @@
 	Inherits@Berserk: ^Berserk
 	Inherits@WatcherParasite: ^WatcherParasiteAttachable
 	Inherits@DevelopmentPolicyVeterancyBonus: ^DevelopmentPolicyVeterancyBonus
+	Inherits@ConditionIconsInfantry: ^ConditionIconsInfantry
 	RenderSprites:
 		PlayerPalette: playertd
 	Huntable:
@@ -2689,12 +2734,16 @@
 		RequiresCondition: on-tib
 		DelayPerInstance: 250
 		RevokeDelay: 200
-	DamagedByTerrain@TIBDAMAGE:
+	DamagedByTerrainCA@TIBDAMAGE:
 		Terrain: Tiberium, BlueTiberium, BlackTiberium
 		Damage: 125
 		DamageInterval: 16
 		DamageTypes: ToxinDeath
 		RequiresCondition: tibexposed && !(hazmatsuits || hazmatsuits-soviet || being-warped || parachute)
+		Condition: tib-damage
+		FlashColor: 00ff00
+		FlashAlpha: 0.25
+		FlashDuration: 3
 	GrantConditionOnPrerequisite@BIO:
 		Condition: hazmatsuits
 		Prerequisites: bio
@@ -2711,6 +2760,9 @@
 	Targetable:
 		RequiresCondition: !parachute && !being-warped
 		TargetTypes: Ground, Infantry
+	Targetable@Parachuting:
+		RequiresCondition: parachute
+		TargetTypes: AirSmall
 	Targetable@SpyDisguise:
 		TargetTypes: SpyDisguise
 	Targetable@TNTPlantable:
@@ -2821,42 +2873,70 @@
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.strong
 		RequiresCondition: !(hazmatsuits || being-warped || parachute || hazmatsuits-soviet)
+		Condition: rad-damage
+		FlashColor: 00ff00
+		FlashAlpha: 0.25
+		FlashDuration: 3
 	DamagedByTintedCells@RADSTRONGHAZMAT:
 		Damage: 375
 		DamageInterval: 16
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.strong
 		RequiresCondition: hazmatsuits && !(being-warped || parachute || hazmatsuits-soviet)
+		Condition: rad-damage
+		FlashColor: 00ff00
+		FlashAlpha: 0.25
+		FlashDuration: 3
 	DamagedByTintedCells@RADSTRONGHAZMATSOVIET:
 		Damage: 25
 		DamageInterval: 16
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.strong
 		RequiresCondition: hazmatsuits-soviet && !(being-warped || parachute || hazmatsuits)
+		Condition: rad-damage
+		FlashColor: 00ff00
+		FlashAlpha: 0.25
+		FlashDuration: 3
 	DamagedByTintedCells@RADMED:
 		Damage: 300
 		DamageInterval: 16
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.medium
 		RequiresCondition: !(hazmatsuits || being-warped || parachute || hazmatsuits-soviet)
+		Condition: rad-damage
+		FlashColor: 00ff00
+		FlashAlpha: 0.25
+		FlashDuration: 3
 	DamagedByTintedCells@RADMEDHAZMAT:
 		Damage: 150
 		DamageInterval: 16
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.medium
 		RequiresCondition: hazmatsuits && !(being-warped || parachute || hazmatsuits-soviet)
+		Condition: rad-damage
+		FlashColor: 00ff00
+		FlashAlpha: 0.25
+		FlashDuration: 3
 	DamagedByTintedCells@RADWEAK:
 		Damage: 100
 		DamageInterval: 16
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.weak
 		RequiresCondition: !(hazmatsuits || being-warped || parachute || hazmatsuits-soviet)
+		Condition: rad-damage
+		FlashColor: 00ff00
+		FlashAlpha: 0.25
+		FlashDuration: 3
 	DamagedByTintedCells@RADWEAKHAZMAT:
 		Damage: 50
 		DamageInterval: 16
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.weak
 		RequiresCondition: hazmatsuits && !(being-warped || parachute || hazmatsuits-soviet)
+		Condition: rad-damage
+		FlashColor: 00ff00
+		FlashAlpha: 0.25
+		FlashDuration: 3
 	DamagedByTintedCells@FROZEN:
 		Damage: 50
 		DamageInterval: 16
@@ -2977,7 +3057,7 @@
 	-GrantConditionOnTerrain@HAZMATSOVIET:
 	-SpeedMultiplier@HAZMATSOVIET:
 	-Targetable@HAZMAT:
-	-DamagedByTerrain@TIBDAMAGE:
+	-DamagedByTerrainCA@TIBDAMAGE:
 	-GrantStackingCondition@TIBEXPOSED:
 	DamagedByTintedCells@RADSTRONG:
 		Damage: 375
@@ -3097,6 +3177,7 @@
 	Inherits@Anathema: ^Anathema
 	Inherits@Berserk: ^Berserk
 	Inherits@DevelopmentPolicyVeterancyBonus: ^DevelopmentPolicyVeterancyBonus
+	Inherits@ConditionIcons: ^ConditionIcons
 	Huntable:
 	RenderSprites:
 		PlayerPalette: playernavy
@@ -3159,11 +3240,19 @@
 		DamageInterval: 16
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.strong
+		Condition: rad-damage
+		FlashColor: 00ff00
+		FlashAlpha: 0.25
+		FlashDuration: 3
 	DamagedByTintedCells@RADMED:
 		Damage: 40
 		DamageInterval: 16
 		DamageTypes: RadiationDeath
 		LayerName: radioactivity.medium
+		Condition: rad-damage
+		FlashColor: 00ff00
+		FlashAlpha: 0.25
+		FlashDuration: 3
 	GrantConditionOnTerrain@UNDERBRIDGE:
 		Condition: under-bridge
 		TerrainTypes: Bridge, Tunnel
@@ -3215,9 +3304,6 @@
 		UncloakSound: subshow1.aud
 		CloakedCondition: underwater
 		PauseOnCondition: cloak-force-disabled || invisibility || being-warped || crossing-ford
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
 	DetectCloaked:
 		DetectionTypes: Underwater
 		Range: 4c0

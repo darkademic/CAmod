@@ -204,10 +204,6 @@ B2B:
 		CloakDelay: 200
 		UncloakSound: appear1.aud
 		UncloakOn: Attack, Unload, Infiltrate, Demolish, Dock, Damage, Heal
-		RequiresCondition: !cloak-force-disabled && airborne
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
 	GrantConditionOnDamageState@SmokeTrail:
 		Condition: enable-smoke
 
@@ -2624,7 +2620,7 @@ RAH:
 		LandingSounds: vhelilana.aud
 		Voice: Move
 	Cloak@NORMAL:
-		DetectionTypes: AirCloakW
+		DetectionTypes: AirCloak
 		InitialDelay: 100
 		CloakDelay: 200
 		CloakSound: trans1.aud
@@ -2638,13 +2634,12 @@ RAH:
 		PauseOnCondition: invisibility
 	GrantConditionOnResupply@DecloakOnResupply:
 		Condition: cloak-force-disabled
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
-		RequiresCondition: !player-shadow
 	GrantConditionOnPrerequisite@Shadow:
 		Condition: player-shadow
 		Prerequisites: player.shadow
+	SpeedMultiplier@ShadowCloak:
+		Modifier: 110
+		RequiresCondition: player-shadow && hidden
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: AttackAnything
@@ -3316,13 +3311,13 @@ SCRN:
 		RequiresCondition: !wrath-covenant
 		AmmoUsage: 4
 	Armament@PRIMARYUPG:
-		Weapon: ScrinTorp
+		Weapon: ScrinTorp.UPG
 		LocalOffset: 0,213,-85, 0,-213,-85
 		PauseOnCondition: !ammo || blinded
 		RequiresCondition: wrath-covenant
 		AmmoUsage: 3
 	Armament@SECONDARYUPG:
-		Weapon: ScrinTorpAA
+		Weapon: ScrinTorpAA.UPG
 		LocalOffset: 0,213,-85, 0,-213,-85
 		PauseOnCondition: !ammo || blinded
 		RequiresCondition: wrath-covenant
@@ -4363,7 +4358,7 @@ KAMV:
 		Queue: AircraftSQ, AircraftMQ
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 201
-		Prerequisites: ~aircraft.kamv
+		Prerequisites: anyradar, ~aircraft.kamv
 		Description: Durable helicopter gunship armed with long range anti-tank rockets with concussive warheads.
 	TooltipExtras:
 		Strengths: • Strong vs Heavy Armor, Light Armor
@@ -4744,13 +4739,12 @@ VERT:
 		CloakedCondition: hidden
 		RequiresCondition: !cloak-force-disabled && airborne && !being-warped
 		PauseOnCondition: invisibility
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
-		RequiresCondition: !player-shadow
 	GrantConditionOnPrerequisite@Shadow:
 		Condition: player-shadow
 		Prerequisites: player.shadow
+	SpeedMultiplier@ShadowCloak:
+		Modifier: 110
+		RequiresCondition: player-shadow && hidden
 	-RangeMultiplier@SEEK:
 	-RangeMultiplier@SEEK2:
 	-RangeMultiplier@SEEK3:
@@ -5087,6 +5081,9 @@ JACK:
 	-SoundOnDamageTransitionCA:
 	ActorLostNotification:
 		RequiresCondition: !diving
+	ReclaimsExperience:
+		Type: Drone
+		OnlyAddToPool: true
 	TargetedAttackAbility:
 		TargetCursor: attack
 		ArmamentNames: primary

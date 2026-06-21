@@ -124,10 +124,16 @@ namespace OpenRA.Mods.CA.Activities
 				return;
 
 			var attached = attachableTo.Attach(a, attachable, true);
-			if (attached)
-				CopyExperienceToMaster();
 
-			if (attached && attachable.Info.AttachSound != null && !a.World.FogObscures(a.CenterPosition))
+			if (!attached)
+			{
+				attachable.HostLost();
+				return;
+			}
+
+			CopyExperienceToMaster();
+
+			if (attachable.Info.AttachSound != null && !a.World.FogObscures(a.CenterPosition))
 				Game.Sound.Play(SoundType.World, attachable.Info.AttachSound, a.CenterPosition);
 		}
 
@@ -142,7 +148,7 @@ namespace OpenRA.Mods.CA.Activities
 			if (gainsExperience == null || gainsExperience.Experience <= 0)
 				return;
 
-			storedExperienceToCopy = gainsExperience.Experience;
+			storedExperienceToCopy = gainsExperience.Experience - attachable.CopiedExperience;
 		}
 
 		void CopyExperienceToMaster()
@@ -157,6 +163,7 @@ namespace OpenRA.Mods.CA.Activities
 			var copiedExperience = storedExperienceToCopy;
 			masterExperience.GiveExperience(copiedExperience);
 			storedExperienceToCopy = 0;
+			attachable.AddCopiedExperience(copiedExperience);
 		}
 
 		public override IEnumerable<TargetLineNode> TargetLineNodes(Actor self)

@@ -23,6 +23,9 @@ namespace OpenRA.Mods.CA.Traits
 		[Desc("Maximum amount of experience that can be reclaimed from the pool on death, as a percentage of unit's value.")]
 		public readonly int MaximumReclaimableValuePercentage = 100;
 
+		[Desc("When true, only adds to the pool on death, doesn't reclaim on creation.")]
+		public readonly bool OnlyAddToPool = false;
+
 		public override object Create(ActorInitializer init) { return new ReclaimsExperience(init, this); }
 	}
 
@@ -42,6 +45,9 @@ namespace OpenRA.Mods.CA.Traits
 
 		void INotifyCreated.Created(Actor self)
 		{
+			if (Info.OnlyAddToPool)
+				return;
+
 			var pool = self.Owner.PlayerActor.TraitsImplementing<ReclaimableExperiencePool>().SingleOrDefault();
 
 			if (pool != null)

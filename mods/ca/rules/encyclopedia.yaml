@@ -2418,7 +2418,7 @@ encyclopedia.buffs.inspiration:
 	EncyclopediaExtras:
 		Description: Applied to basic infantry within range of a Soviet Commissar, Troop Crawler or Overlord Tank. Increases movement speed and rate of fire.
 	TooltipExtras:
-		Strengths: +30% movement speed\n+10% rate of fire
+		Strengths: +15% movement speed\n+10% rate of fire
 	WithIdleOverlay@Inspiration1:
 		Image: ussrstar
 		Sequence: idle-overlay1
@@ -2434,7 +2434,7 @@ encyclopedia.buffs.inspiration2:
 	EncyclopediaExtras:
 		Description: Applied to basic infantry within range of two or more different units that apply the Inspiration effect. Further increases movement speed and rate of fire.
 	TooltipExtras:
-		Strengths: +40% movement speed\n+20% rate of fire
+		Strengths: +30% movement speed\n+20% rate of fire
 	WithIdleOverlay@Inspiration2:
 		Image: ussrstar
 		Sequence: idle-overlay2
@@ -2474,6 +2474,11 @@ encyclopedia.buffs.ironcurtain:
 	WithPalettedOverlay@IRONCURTAIN:
 		Palette: invuln
 		ShowInPreview: true
+	WithPreviewDecoration:
+		Image: pips
+		Sequence: pip-ic
+		Palette: chrome
+		Position: Top
 
 encyclopedia.buffs.naniterepair:
 	Inherits: ^VehicleEffectPreview
@@ -2633,6 +2638,11 @@ encyclopedia.debuffs.irradiated:
 		Weaknesses: • Deals periodic damage to nearby units\n• Irradiates the ground\n-10% damage dealt\n+10% damage received
 	WithPalettedOverlay@IRRADIATABLE:
 		ShowInPreview: true
+	WithPreviewDecoration:
+		Image: pips
+		Sequence: pip-rad
+		Palette: chrome
+		Position: Top
 
 encyclopedia.debuffs.jammed:
 	Inherits: ^VehicleEffectPreview

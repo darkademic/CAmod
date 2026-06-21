@@ -154,7 +154,7 @@ PROC.TD:
 	GivesBountyCA:
 		ShowBounty: false
 
-^Concussion:
+^ConditionIcons:
 	WithDecoration@Concussion:
 		RequiresSelection: True
 

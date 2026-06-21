@@ -2367,6 +2367,17 @@ ptnk:
 		Filename: ptnkt.shp
 		Facings: 32
 		UseClassicFacings: True
+	fort:
+		Filename: ptnkfort.shp
+		Facings: 4
+		Frames: 6,13,6,13
+		Length: 1
+	fortmake:
+		Filename: ptnkfort.shp
+		Facings: 4
+		Frames: 0,1,2,3,4,5,6,7,8,9,10,11,12,13,0,1,2,3,4,5,6,7,8,9,10,11,12,13
+		Length: 7
+		Tick: 80
 	muzzle:
 		Filename: prismmuzzle.shp
 		Length: 4
@@ -2577,6 +2588,17 @@ pcan:
 	muzzle:
 		Filename: prismmuzzle.shp
 		Length: 4
+	fort:
+		Filename: ptnkfort.shp
+		Facings: 4
+		Frames: 6,13,6,13
+		Length: 1
+	fortmake:
+		Filename: ptnkfort.shp
+		Facings: 4
+		Frames: 0,1,2,3,4,5,6,7,8,9,10,11,12,13,0,1,2,3,4,5,6,7,8,9,10,11,12,13
+		Length: 7
+		Tick: 80
 	icon:
 		Filename: pcanicon.shp
 

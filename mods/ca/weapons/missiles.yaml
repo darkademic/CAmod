@@ -104,7 +104,7 @@ Maverick:
 		Versus:
 			None: 20
 			Wood: 30
-			Concrete: 95
+			Concrete: 105
 			Light: 65
 			Heavy: 100
 
@@ -156,6 +156,7 @@ MaverickSU:
 			Wood: 18
 			Concrete: 65
 			Heavy: 85
+			Light: 45
 	Warhead@2Dam: SpreadDamage
 		Damage: 1600
 		Spread: 128
@@ -375,7 +376,7 @@ HellfireAG:
 			None: 20
 			Wood: 30
 			Light: 65
-			Concrete: 95
+			Concrete: 105
 
 HellfireAG.Orca:
 	Inherits: HellfireAG
@@ -803,7 +804,7 @@ StingerGTWR:
 			Wood: 55
 			Light: 70
 			Heavy: 75
-			Concrete: 60
+			Concrete: 55
 		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@3Eff: CreateEffect
 		Explosions: frag_3
@@ -1072,7 +1073,6 @@ SCUD:
 		Blockable: false
 		TrailImage: smokey
 		TrailDelay: 5
-		Inaccuracy: 213
 		Image: V2
 		Shadow: True
 		LaunchAngle: 62
@@ -1092,6 +1092,28 @@ SCUD:
 	Warhead@4EffWater: CreateEffect
 		Explosions: large_splash
 		ImpactSounds: splashl1.aud, splashl2.aud
+
+SCUD.Iraq:
+	Inherits: SCUD
+	Warhead@1Dam: SpreadDamage
+		DamageTypes: Prone50Percent, TriggerProne, RadiationDeath, FlakVestMitigatedMinor
+	Warhead@4Eff: CreateEffect
+		Explosions: med_chem
+		ExplosionPalette: tdeffect
+		ImpactSounds: vtoxcona.aud, vtoxconb.aud, vtoxconc.aud
+	Warhead@18Radio: CreateTintedCells
+		Spread: 2c0
+		Level: 200
+		Falloff: 100, 32
+		LayerName: radioactivity.weak
+		GlowScale: 1.5
+		GlowFadeFrames: 30
+		GlowFadeInFrames: 12
+	Warhead@2irrad: GrantExternalConditionCA
+		Range: 0c512
+		Duration: 250
+		Condition: irradiated
+		ValidTargets: Vehicle, Ship
 
 V3Weapon:
 	Inherits: ^AntiGroundMissile
@@ -1287,13 +1309,11 @@ HonestJohn.UPG:
 		Versus:
 			Light: 100
 			Heavy: 70
-		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 	Warhead@2Dam: SpreadDamage
 		Damage: 1200
 		Versus:
 			Light: 100
 			Heavy: 70
-		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 	-Warhead@3Dam:
 	-Warhead@4Dam:
 	Warhead@2Smu: LeaveSmudge
@@ -1352,7 +1372,7 @@ BikeRocketsAA:
 	Warhead@1Dam: SpreadDamage
 		Damage: 3600
 	Warhead@smallDamage: SpreadDamage
-		Spread: 192
+		Spread: 256
 		Damage: 3600
 
 BikeRockets.TibCore:
@@ -1390,6 +1410,9 @@ BikeRockets.TibCore:
 		ExplosionPalette: scrin
 		Image: shardhit
 		ValidTargets: Ground, Trees, Water
+	Warhead@Flash: FlashTarget
+		Spread: 0c511
+		Color: 00ff00
 
 BikeRocketsAA.TibCore:
 	Inherits: BikeRocketsAA
@@ -1411,6 +1434,10 @@ BikeRocketsAA.TibCore:
 		Explosions: idle, idle2, idle3, idle4
 		ExplosionPalette: scrin
 		Image: shardhit
+		ValidTargets: Air, AirSmall
+	Warhead@Flash: FlashTarget
+		Spread: 0c511
+		Color: 00ff00
 		ValidTargets: Air, AirSmall
 
 SBRockets:
@@ -1435,9 +1462,9 @@ IFVRocketsAA:
 	Burst: 2
 	BurstDelays: 5
 	Warhead@1Dam: SpreadDamage
-		Damage: 4200
+		Damage: 4600
 	Warhead@smallDamage: SpreadDamage
-		Damage: 4200
+		Damage: 4600
 
 IFVRocketsE:
 	Inherits: IFVRockets
@@ -1720,10 +1747,10 @@ StnkMissileAA:
 		Speed: 298
 		RangeLimit: 9c0
 	Warhead@1Dam: SpreadDamage
-		Damage: 4800
+		Damage: 5200
 	Warhead@smallDamage: SpreadDamage
-		Spread: 192
-		Damage: 4800
+		Spread: 256
+		Damage: 5200
 	Warhead@3Eff: CreateEffect
 		ImpactSounds: xplos.aud
 
@@ -1758,6 +1785,9 @@ StnkMissile.TibCore:
 		ExplosionPalette: scrin
 		Image: shardhit
 		ValidTargets: Ground, Trees, Water
+	Warhead@Flash: FlashTarget
+		Spread: 0c511
+		Color: 00ff00
 
 StnkMissileAA.TibCore:
 	Inherits: StnkMissileAA
@@ -1773,15 +1803,19 @@ StnkMissileAA.TibCore:
 		ContrailStartWidth: 0c40
 	Report: tibcore1.aud, tibcore2.aud, tibcore3.aud
 	Warhead@1Dam: SpreadDamage
-		Damage: 3360
+		Damage: 3600
 	Warhead@smallDamage: SpreadDamage
-		Damage: 3360
+		Damage: 3600
 	Warhead@3Eff: CreateEffect
 		ImpactSounds: tibcorehit1.aud, tibcorehit2.aud, tibcorehit3.aud
 	Warhead@tib: CreateEffect
 		Explosions: idle, idle2, idle3, idle4
 		ExplosionPalette: scrin
 		Image: shardhit
+		ValidTargets: Air, AirSmall
+	Warhead@Flash: FlashTarget
+		Spread: 0c511
+		Color: 00ff00
 		ValidTargets: Air, AirSmall
 
 HstkMissile:
@@ -1813,9 +1847,9 @@ HstkMissileAA:
 		MaximumLaunchSpeed: 36
 		Acceleration: 768
 	Warhead@1Dam: SpreadDamage
-		Damage: 3360
+		Damage: 3600
 	Warhead@smallDamage: SpreadDamage
-		Damage: 3360
+		Damage: 3600
 
 HstkMissile.TibCore:
 	Inherits: StnkMissile.TibCore
@@ -1836,10 +1870,6 @@ HstkMissile.TibCore:
 	Warhead@3Eff: CreateEffect
 		Explosions: large_explosion
 		ImpactSounds: expnew16.aud, expnew17.aud
-	Warhead@Flash: FlashTarget
-		Spread: 0c511
-		Color: 00ff00
-		ValidTargets: Ground, Vehicle
 
 HstkMissileAA.TibCore:
 	Inherits: StnkMissileAA.TibCore
@@ -1849,15 +1879,11 @@ HstkMissileAA.TibCore:
 		Acceleration: 768
 		Speed: 357
 	Warhead@1Dam: SpreadDamage
-		Damage: 3850
+		Damage: 4100
 	Warhead@smallDamage: SpreadDamage
-		Damage: 3850
+		Damage: 4100
 	Warhead@3Eff: CreateEffect
 		ImpactSounds: expnew17.aud
-	Warhead@Flash: FlashTarget
-		Spread: 0c511
-		Color: 00ff00
-		ValidTargets: Air, AirSmall
 
 BoatMissile:
 	Inherits: Stinger
@@ -2020,7 +2046,18 @@ ScrinTorp:
 	Warhead@Flash: FlashTarget
 		Spread: 0c511
 		Color: 00ff00
+		Duration: 4
 		ValidTargets: Ground, Vehicle
+
+ScrinTorp.UPG:
+	Inherits: ScrinTorp
+	Projectile: MissileCA
+		Image: scrintorpred
+		Palette: caneon
+		TrailImage: smokey
+		TrailPalette: scrinplasma
+	Warhead@Flash: FlashTarget
+		Color: ff4444
 
 ScrinTorpAA:
 	Inherits: ^AirToAirMissile
@@ -2043,7 +2080,18 @@ ScrinTorpAA:
 	Warhead@Flash: FlashTarget
 		Spread: 0c511
 		Color: 00ff00
+		Duration: 4
 		ValidTargets: Air, AirSmall
+
+ScrinTorpAA.UPG:
+	Inherits: ScrinTorpAA
+	Projectile: MissileCA
+		Image: scrintorpblue
+		Palette: caneon
+		TrailImage: smokey
+		TrailPalette: scrinplasma
+	Warhead@Flash: FlashTarget
+		Color: 7766ff
 
 SMIGBomb:
 	ReloadDelay: 150

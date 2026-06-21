@@ -1238,7 +1238,7 @@
 		Icon: arscan
 		IconPalette: chrometd
 		Name: Advanced Radar Scan
-		Description: Reveals the location of enemy structures & units through the fog of war.
+		Description: Reveals the location of enemy structures & units through the fog of war.\n\nCan be toggled on/off, but each deactivation will reduce the remaining duration.
 		RequiresCondition: tower-radar
 		PauseOnCondition: !radar-active || disabled || being-warped
 		LaunchSound: gradarup.aud
@@ -1823,7 +1823,6 @@
 		Cursor: chemmissile
 		PauseOnCondition: disabled || empdisable || being-warped
 		DisplayTimerRelationships: Ally, Neutral, Enemy
-		ActiveCondition: active
 		SupportPowerPaletteOrder: 20
 		ShowTargetCircle: true
 		TargetCircleColor: 00ff11
@@ -1881,7 +1880,7 @@
 		ChargeInterval: 6000
 		Name: Ichor Spike
 		ActivationDelay: 1
-		Description: Creates an Ichor Spike at the target location. Resources within its area of influence grow and spread faster.\n\nAlso empowers units with Resource Conversion upgrade.
+		Description: Creates an Ichor Spike at the target location. Resources within its area of influence grow and spread faster.\n\nAlso empowers units with Resource Conversion upgrade.\n\nUp to 3 resource nodes are affected.
 		LaunchSound: scrinbuild.aud
 		Weapon: IchorSpikeSpawner
 		AirburstAltitude: 0c0

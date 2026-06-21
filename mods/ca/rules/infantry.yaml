@@ -873,7 +873,7 @@ E7:
 		Weaknesses: • Cannot attack Aircraft
 		Attributes: • Maximum 1 can be trained\n• Detects cloaked ground units and spies\n• Immune to mind control\n• Plants C4 to destroy structures and vehicles
 	Valued:
-		Cost: 1350
+		Cost: 1500
 	Tooltip:
 		Name: Tanya
 	UpdatesPlayerStatistics:
@@ -1449,9 +1449,6 @@ THF:
 		CloakedCondition: hidden
 		RequiresCondition: !cloak-force-disabled && !being-warped
 		PauseOnCondition: invisibility
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
 	Mobile:
 		Speed: 54
 		Voice: Move
@@ -1999,7 +1996,7 @@ N5:
 	Targetable@ChemWarrior:
 		TargetTypes: ChemWarrior
 	SpeedMultiplier@BlackHand:
-		RequiresCondition: player-blackh && !cyborgspeed-upgrade
+		RequiresCondition: player-blackh
 		Modifier: 120
 	GrantConditionOnPrerequisite@BlackHand:
 		Condition: player-blackh
@@ -2026,7 +2023,7 @@ RMBO:
 	Inherits@CommandoRegen: ^CommandoRegen
 	Inherits@HEALINGCOOLDOWN: ^HealingCooldown
 	Valued:
-		Cost: 1350
+		Cost: 1500
 	Tooltip:
 		Name: Commando
 	UpdatesPlayerStatistics:
@@ -2232,9 +2229,6 @@ SNIP:
 		UncloakOn: Move, Unload, Infiltrate, Demolish, Dock, Attack
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden)
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Heavy, Critical
 	GrantConditionOnPrerequisite@APB:
 		Condition: apb-upgrade
 		Prerequisites: apb.upgrade
@@ -2297,7 +2291,7 @@ BORI:
 		Weaknesses: • Cannot attack Aircraft
 		Attributes: • Maximum 1 can be trained\n• Detects cloaked ground units and spies\n• Immune to mind control\n• Calls airstrike on targeted structures
 	Valued:
-		Cost: 1350
+		Cost: 1500
 	Tooltip:
 		Name: Boris
 	UpdatesPlayerStatistics:
@@ -2399,7 +2393,7 @@ SAB:
 	TooltipExtras:
 		Strengths: • Strong vs Infantry
 		Weaknesses: • Can only attack Infantry
-		Attributes: • Detects cloaked ground units and spies\n• Limited stealth (drains while moving)\n• Infiltrates production buildings to steal technology\n    • Allies: Cryo Mortar, Reckoner, Phantom\n    • Soviets: Cyberdog, Cyclops, Kamov\n    • GDI: Sonic Mortar, Basilisk, Shade\n    • Nod: Chem Mortar, Mantis, Vertigo\n    • Scrin: Cyberscrin, Viper, Manticore\n• Infiltrates radars/tech centers to lock technology\n• Infiltrates any building for vision
+		Attributes: • Detects cloaked ground units and spies\n• Infiltrates production buildings to steal technology\n    • Allies: Cryo Mortar, Reckoner, Phantom\n    • Soviets: Cyberdog, Cyclops, Kamov\n    • GDI: Sonic Mortar, Basilisk, Shade\n    • Nod: Chem Mortar, Mantis, Vertigo\n    • Scrin: Cyberscrin, Viper, Manticore\n• Infiltrates radars/tech centers to lock technology\n• Infiltrates any building for vision
 	Valued:
 		Cost: 500
 	Tooltip:
@@ -2429,7 +2423,7 @@ SAB:
 	Health:
 		HP: 5000
 	Mobile:
-		Speed: 54
+		Speed: 46
 		Voice: Move
 	Armament:
 		Weapon: SilencedPPK
@@ -2444,28 +2438,24 @@ SAB:
 		InitialStance: HoldFire
 		InitialStanceAI: Defend
 	Cloak:
-		InitialDelay: 0
-		CloakDelay: 25
+		InitialDelay: 200
+		CloakDelay: 200
 		CloakedCondition: hidden
 		IsPlayerPalette: true
 		DetectionTypes: Cloak
-		RequiresCondition: can-cloak && !cloak-force-disabled && !being-warped
+		RequiresCondition: !cloak-force-disabled && !being-warped
 		PauseOnCondition: invisibility
 		UncloakOn: Unload, Infiltrate, Demolish, Dock, Attack, Damage
 		CloakSound: gstealon.aud
 		UncloakSound: gstealof.aud
-	GrantConditionOnMovement:
-		Condition: moving
-		ValidMovementTypes: Horizontal, Vertical, Turn
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden)
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Heavy, Critical
-		RequiresCondition: !player-shadow
 	GrantConditionOnPrerequisite@Shadow:
 		Condition: player-shadow
 		Prerequisites: player.shadow
+	SpeedMultiplier@ShadowCloak:
+		Modifier: 110
+		RequiresCondition: player-shadow && hidden
 	IgnoresDisguise:
 	DetectCloaked:
 		DetectionTypes: Cloak
@@ -2475,17 +2465,6 @@ SAB:
 	WithProductionIconOverlay:
 		Types: Veterancy
 		Prerequisites: barracks.upgraded
-	GrantChargingCondition@CLOAK:
-		Condition: can-cloak
-		InitialCharge: 600
-		MaxCharge: 600
-		ChargeRate: 2
-		PauseOnCondition: moving
-		RequiresCondition: !cloak-force-disabled
-		ChargingColor: 999999
-		DischargingColor: EEEEEE
-		ChargeDelay: 75
-		ShowSelectionBarWhenFull: false
 	WithColoredSelectionBox@INVIS:
 		RequiresCondition: invisibility || hidden
 		ColorSource: Player
@@ -2821,6 +2800,13 @@ JJET:
 		MinRange: 6c0
 		Type: GroundPosition
 		RevealGeneratedShroud: False
+		RequiresCondition: !ejjet-upgrade
+	RevealsShroud@Enhanced:
+		Range: 9c0
+		MinRange: 6c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+		RequiresCondition: ejjet-upgrade
 	RevealsShroud@GAPGEN:
 		Range: 6c0
 		Type: GroundPosition
@@ -2965,6 +2951,12 @@ JJET:
 		DecorationBounds: 512, 725, 0, -256
 	KillsSelf@Emp:
 		RequiresCondition: empdisable && cruising
+	GrantConditionOnPrerequisite@Enhanced:
+		Condition: ejjet-upgrade
+		Prerequisites: ejjet.upgrade
+	SpeedMultiplier@Enhanced:
+		Modifier: 125
+		RequiresCondition: ejjet-upgrade
 	GrantConditionOnDamageState@DAMAGED:
 		Condition: damaged
 		ValidDamageStates: Light, Medium, Heavy, Critical
@@ -3109,7 +3101,7 @@ E8:
 		Modifier: 110
 	-GrantConditionOnTerrain@ONTIB:
 	-GrantStackingCondition@TIBEXPOSED:
-	-DamagedByTerrain@TIBDAMAGE:
+	-DamagedByTerrainCA@TIBDAMAGE:
 	-DamagedByTintedCells@RADSTRONG:
 	-DamagedByTintedCells@RADSTRONGHAZMAT:
 	-DamagedByTintedCells@RADSTRONGHAZMATSOVIET:
@@ -3759,12 +3751,12 @@ SHAD:
 		UncloakSound: gstealof.aud
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden)
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		ValidDamageStates: Critical
-		RequiresCondition: !player-shadow
 	GrantConditionOnPrerequisite@Shadow:
 		Condition: player-shadow
 		Prerequisites: player.shadow
+	SpeedMultiplier@ShadowCloak:
+		Modifier: 110
+		RequiresCondition: player-shadow && hidden
 	IgnoresDisguise:
 	DetectCloaked:
 		DetectionTypes: Cloak
@@ -4006,6 +3998,7 @@ BH:
 		Weapon: BlackHandFlamer
 	TakeCover:
 		ProneOffset: 160,0,-256
+		SpeedModifier: 70
 	WithMuzzleOverlay:
 	AttackFrontal:
 		PauseOnCondition: being-warped || blinded || reapersnare
@@ -4064,7 +4057,7 @@ YURI:
 		Weaknesses: • Cannot attack Aircraft
 		Attributes: • Maximum 1 can be trained\n• Detects cloaked ground units and spies\n• Immune to mind control\n• Shorter range and longer reload against vehicles\n• Psychic detection radius\n• Special Ability: Mind Blast
 	Valued:
-		Cost: 1350
+		Cost: 1500
 	Tooltip:
 		Name: Yuri
 	UpdatesPlayerStatistics:
@@ -4837,7 +4830,7 @@ ZTRP:
 		RequiresCondition: !being-warped && jumping
 	-GrantConditionOnTerrain@ONTIB:
 	-GrantStackingCondition@TIBEXPOSED:
-	-DamagedByTerrain@TIBDAMAGE:
+	-DamagedByTerrainCA@TIBDAMAGE:
 	TargetedLeapAbility:
 		TakeOffSounds: ztrp-jump1.aud, ztrp-jump2.aud
 		LandingSounds: ztrp-land1.aud, ztrp-land2.aud

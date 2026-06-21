@@ -51,9 +51,6 @@ MSLO:
 	Targetable@INFILTRATION:
 		RequiresCondition: !being-warped
 		TargetTypes: ResetSupportPowerInfiltrate
-	ProductionCostMultiplier@IRAQBONUS:
-		Multiplier: 60
-		Prerequisites: player.iraq
 	Encyclopedia:
 		Category: Soviets/Buildings
 
@@ -808,9 +805,6 @@ HBOX:
 		CloakDelay: 60
 		IsPlayerPalette: true
 		PauseOnCondition: cloak-force-disabled || being-warped
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
 	Turreted:
 		TurnSpeed: 512
 	-QuantizeFacingsFromSequence:
@@ -1912,7 +1906,7 @@ NPWR:
 	TooltipExtras:
 		Weaknesses: • Explodes when destroyed
 	Valued:
-		Cost: 1000
+		Cost: 1500
 	Tooltip:
 		Name: Atomic Reactor
 	ProvidesPrerequisite@anypower:
@@ -4749,7 +4743,7 @@ PRIS:
 	Selectable:
 		DecorationBounds: 1024, 1962, 0, -560
 	Health:
-		HP: 40000
+		HP: 44000
 	Armor:
 		Type: Concrete
 	RevealsShroud:
@@ -4793,13 +4787,11 @@ PRIS:
 	Power:
 		Amount: -80
 	ProvidesPrerequisite@buildingname:
-	WithRangeCircle@SUPPORT:
-		Type: PrismSupport
-		Range: 5c0
-		Color: ffffff66
 	WithPrismLinkVisualization:
 		Range: 5c0
-		Color: 00ffffff
+		SelectedColor: 00FFFF77
+		PlacementColor: 00FFFFFF
+		RangeCircleColor: 00FFFF77
 	Encyclopedia:
 		Category: Allies/Defenses
 
@@ -5193,9 +5185,9 @@ SGEN:
 		Prerequisites: tmpl, ~structures.nod, ~!player.shadow, ~techlevel.high
 		BuildLimit: 1
 		IconPalette: chrometd
-		Description: Makes a group of units/structures invisible for a short time.
+		Description: Makes units/structures invisible.
 	TooltipExtras:
-		Attributes: • Maximum 1 can be built\n• Cloaks nearby units and structures when not active\n• Requires power to operate\n• Special Ability: Tiberium Stealth
+		Attributes: • Maximum 1 can be built\n• Cloaks nearby units and structures\n• Requires power to operate\n• Special Ability: Tiberium Stealth
 	Valued:
 		Cost: 1500
 	Tooltip:
@@ -5220,8 +5212,6 @@ SGEN:
 		Range: 5c0
 		RequiresCondition: !disabled
 	WithBuildingBib:
-	ExternalCondition@ACTIVE:
-		Condition: active
 	SupportPowerChargeBar:
 	Power:
 		Amount: -200
@@ -5250,10 +5240,7 @@ SGEN:
 		Condition: sgencloak
 		MaximumVerticalOffset: 512
 		AffectsParent: true
-		RequiresCondition: !disabled && !empdisable && !being-warped && !active && !cloak-force-disabled
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
+		RequiresCondition: !disabled && !empdisable && !being-warped && !cloak-force-disabled
 	Encyclopedia:
 		Category: Nod/Buildings
 
@@ -5261,19 +5248,12 @@ SGEN.Shadow:
 	Inherits: SGEN
 	Buildable:
 		Prerequisites: tmpl, ~structures.nod, ~player.shadow, ~techlevel.high
-	TooltipExtras:
-		Attributes: • Maximum 1 can be built\n• Cloaks nearby units and structures\n• Requires power to operate\n• Special Ability: Tiberium Stealth
-	WithRangeCircle@SGEN:
+	WithRangeCircleCA@SGEN:
 		Range: 11c512
 	ProximityExternalCondition@SGEN:
 		Range: 11c512
-		RequiresCondition: !disabled && !empdisable && !being-warped
 	RenderSprites:
 		Image: sgen
-	GrantExternalConditionPowerCA@SGEN:
-		-ActiveCondition:
-	-ExternalCondition@ACTIVE:
-	-GrantConditionOnDamageStateCA@UNCLOAK:
 	-Encyclopedia:
 
 CRAM:

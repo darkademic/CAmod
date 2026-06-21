@@ -44,7 +44,7 @@ FireballLauncher:
 	Warhead@1Dam: SpreadDamage
 		Versus:
 			Light: 0
-			Heavy: 10
+			Heavy: 8
 			Concrete: 15
 			Wood: 24
 	Warhead@2Dam: SpreadDamage
@@ -74,7 +74,7 @@ ChemballLauncher:
 	Warhead@1Dam: SpreadDamage
 		Spread: 288
 		Versus:
-			Heavy: 15
+			Heavy: 12
 		DamageTypes: Prone50Percent, TriggerProne, RadiationDeath
 	Warhead@2Dam: SpreadDamage
 		Versus:
@@ -343,14 +343,14 @@ AvatarFlamer:
 	Burst: 13
 	BurstDelays: 4
 	Warhead@1Dam: SpreadDamage
-		Damage: 570
+		Damage: 800
 
 AvatarFlamer.UPG:
 	Inherits: HeavyFlameTankFlamer.UPG
 	Burst: 13
 	BurstDelays: 4
 	Warhead@1Dam: SpreadDamage
-		Damage: 590
+		Damage: 850
 
 BlackHandFlamer:
 	Inherits: HeavyFlameTankFlamer
@@ -424,7 +424,7 @@ TeslaZap:
 	Warhead@1Dam: SpreadDamage
 		Versus:
 			Wood: 60
-			Concrete: 80
+			Concrete: 75
 
 TeslaZapBoost1:
 	Inherits: TeslaZap
@@ -854,11 +854,11 @@ Ivanbomb:
 	Report: grenade1.aud
 	Projectile: Bullet
 		LaunchAngle: 80
-		Speed: 166
+		Speed: 136
 		Inaccuracy: 0
 		Image: TNT
 		BounceCount: 2
-		BounceRangeModifier: 60
+		BounceRangeModifier: 40
 		BounceSound: dud2.aud
 		ValidBounceBlockerRelationships: Ally, Neutral, Enemy
 		ContrailLength: 10
@@ -989,6 +989,7 @@ HackArc:
 		Width: 86
 		Duration: 20
 		HitAnim: empty
+		GlowScale: 0
 	Warhead@Flash: FlashTarget
 		Spread: 0c511
 		Color: 00ff00
@@ -1513,7 +1514,7 @@ PrisLaser:
 		Versus:
 			None: 40
 			Wood: 40
-			Concrete: 90
+			Concrete: 95
 			Light: 80
 			Heavy: 80
 			Brick: 50
@@ -1951,6 +1952,7 @@ GapBeam:
 		Distortion: 32
 		DistortionAnimation: 64
 		TrackTarget: true
+		GlowScale: 0
 	Warhead@Debuff: GrantExternalConditionCA
 		Range: 1c256
 		Duration: 15
@@ -2233,7 +2235,7 @@ OrcaBombBuilding:
 	-Warhead@4Eff:
 	-Warhead@emp:
 	-Warhead@empdef:
-	-Warhead@Shock: Shockwave
+	-Warhead@Shock:
 
 MicrowaveZap:
 	ValidTargets: Ground, Water
@@ -2477,6 +2479,18 @@ IrradiatedUnit:
 			Wood: 10
 			Concrete: 10
 			Brick: 0
+	Warhead@Cond: GrantExternalConditionCA
+		Range: 1c340
+		Duration: 20
+		Condition: rad-damage
+		InvalidTargets: Desolator
+		AffectsParent: true
+	Warhead@Flash: FlashTarget
+		Spread: 1c340
+		Duration: 4
+		Color: 00ff00
+		Alpha: 0.35
+		InvalidTargets: Desolator
 
 ChaosDroneTargeting:
 	Range: 2c0
@@ -2819,7 +2833,7 @@ SonicPulse:
 		Versus:
 			None: 28
 			Wood: 92
-			Concrete: 80
+			Concrete: 95
 			Light: 92
 			Heavy: 100
 		DamageTypes: Prone50Percent, TriggerProne, DefaultDeath

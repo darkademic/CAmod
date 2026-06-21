@@ -39,6 +39,9 @@ namespace OpenRA.Mods.CA.Traits
 		[Desc("Ticks after being damaged during which selling the actor will update the counter for the damaging player(s).")]
 		public readonly int SoldAfterDamageCooldown = 75;
 
+		[Desc("Relationships that a killing/capturing/damaging/infiltrating player must have to update the count. No effect on Owned.")]
+		public readonly PlayerRelationship ValidRelationships = PlayerRelationship.Enemy;
+
 		public override object Create(ActorInitializer init) { return new UpdatesCount(this); }
 	}
 
@@ -47,8 +50,8 @@ namespace OpenRA.Mods.CA.Traits
 	{
 		public readonly UpdatesCountInfo info;
 		CountManager countManager;
-		bool hasBeenInfiltrated = false;
 		public readonly Dictionary<Player, int> lastDamagedTicks = new();
+		HashSet<Player> playersInfiltratedBy = new();
 
 		public UpdatesCount(UpdatesCountInfo info)
 			: base(info)
@@ -115,7 +118,7 @@ namespace OpenRA.Mods.CA.Traits
 
 			var attackingPlayer = e.Attacker.Owner;
 
-			if (attackingPlayer.RelationshipWith(self.Owner) != PlayerRelationship.Enemy)
+			if (!Info.ValidRelationships.HasRelationship(attackingPlayer.RelationshipWith(self.Owner)))
 				return;
 
 			var attackerCounter = attackingPlayer.PlayerActor.Trait<CountManager>();
@@ -134,7 +137,7 @@ namespace OpenRA.Mods.CA.Traits
 			{
 				var player = kvp.Key;
 				var damagedTick = kvp.Value;
-				if (currentTick - damagedTick <= info.SoldAfterDamageCooldown && player.RelationshipWith(self.Owner) == PlayerRelationship.Enemy)
+				if (currentTick - damagedTick <= info.SoldAfterDamageCooldown)
 				{
 					var attackerCounter = player.PlayerActor.Trait<CountManager>();
 					attackerCounter.Increment(info.Type);
@@ -144,23 +147,37 @@ namespace OpenRA.Mods.CA.Traits
 
 		void INotifyDamage.Damaged(Actor self, AttackInfo e)
 		{
+			if (!Info.ValidRelationships.HasRelationship(e.Attacker.Owner.RelationshipWith(self.Owner)))
+				return;
+
 			if (info.UpdateOn.HasFlag(UpdateOnType.SoldAfterDamage))
 				lastDamagedTicks[e.Attacker.Owner] = self.World.WorldTick;
 		}
 
 		void INotifyCapture.OnCapture(Actor self, Actor captor, Player oldOwner, Player newOwner, BitSet<CaptureType> captureTypes)
 		{
-			if (info.UpdateOn.HasFlag(UpdateOnType.Captured))
-				newOwner.PlayerActor.Trait<CountManager>().Increment(info.Type);
+			if (!info.UpdateOn.HasFlag(UpdateOnType.Captured))
+				return;
+
+			if (!Info.ValidRelationships.HasRelationship(newOwner.RelationshipWith(oldOwner)))
+				return;
+
+			newOwner.PlayerActor.Trait<CountManager>().Increment(info.Type);
 		}
 
 		void INotifyInfiltrated.Infiltrated(Actor self, Actor infiltrator, BitSet<TargetableType> types)
 		{
-			if (!hasBeenInfiltrated && info.UpdateOn.HasFlag(UpdateOnType.Infiltrated))
-			{
-				infiltrator.Owner.PlayerActor.Trait<CountManager>().Increment(info.Type);
-				hasBeenInfiltrated = true;
-			}
+			if (!info.UpdateOn.HasFlag(UpdateOnType.Infiltrated))
+				return;
+
+			if (playersInfiltratedBy.Contains(infiltrator.Owner))
+				return;
+
+			if (!Info.ValidRelationships.HasRelationship(infiltrator.Owner.RelationshipWith(self.Owner)))
+				return;
+
+			infiltrator.Owner.PlayerActor.Trait<CountManager>().Increment(info.Type);
+			playersInfiltratedBy.Add(infiltrator.Owner);
 		}
 	}
 }

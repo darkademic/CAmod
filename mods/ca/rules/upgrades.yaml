@@ -52,7 +52,7 @@ flakarmor.upgrade:
 	WithProductionIconOverlay:
 		Prerequisites: flakarmor.upgrade
 	Encyclopedia:
-		Category: Allies/Upgrades; Soviets/Upgrades; GDI/Upgrades; Nod/Upgrades
+		Category: Allies/Upgrades; Soviets/Upgrades; GDI/Upgrades
 
 #########################GDI#########
 ########################################
@@ -143,7 +143,7 @@ seek.strat:
 		BuildPaletteOrder: 9
 		Prerequisites: ~player.gdi, anyradar, ~!bombard.strat, ~!hold.strat, ~techlevel.medium
 		IconPalette: chrometd
-		Description: Speed and weapon range focused strategy, required for:\n• Zone Raider\n• TOW Missile Upgrade\n• Hypersonic Missiles Upgrade\n• Sidewinders Upgrade\n• Advanced Radar Power\n\n
+		Description: Speed and weapon range focused strategy, required for:\n• Zone Raider\n• Enhanced Jumpjets Upgrade\n• Hypersonic Missiles Upgrade\n• Sidewinders Upgrade\n• Advanced Radar Power\n\n
 	TooltipExtras:
 		Strengths: + Increases speed and weapon range of vehicles and aircraft by 5%
 		Attributes: \n(!) Only ONE Strategy may be chosen.
@@ -299,6 +299,24 @@ bjet.upgrade:
 	WithProductionIconOverlay:
 		Prerequisites: bjet.upgrade
 
+tow.upgrade:
+	Inherits: ^GDIUpgrade
+	Tooltip:
+		Name: Research: TOW Missile
+	Buildable:
+		BuildPaletteOrder: 20
+		Prerequisites: ~player.gdi, anyradar, ~techlevel.medium
+		Description: Hum-Vees and Guardian Drones will be produced with TOW missile launchers.\n\nReplaces: Hum-Vee\nReplaces: Guardian Drone
+	TooltipExtras:
+		Strengths: + Added TOW missile launcher (strong vs Heavy Armor)
+		Weaknesses: – Increased cost\n– Reduced speed\n– Disables Point Defense Shields for Hum-Vees and Guardian Drones
+	Valued:
+		Cost: 1000
+	RenderSprites:
+		Image: tow.upgrade
+	WithProductionIconOverlay:
+		Prerequisites: tow.upgrade
+
 empgren.upgrade:
 	Inherits: ^GDIUpgrade
 	Tooltip:
@@ -403,7 +421,7 @@ strategic.upgrade:
 		BuildPaletteOrder: 30
 		Prerequisites: ~player.gdi, gtek, anystrategy, ~!bombard.strat, ~!seek.strat, ~!hold.strat, ~techlevel.high
 		IconPalette: chrometd
-		Description: Upgrade depends on chosen strategy.\n\n• Bombardment: Tomahawk Launcher research\n• Seek & Destroy: TOW Missile upgrade\n• Hold the Line: Point Defense Systems upgrade
+		Description: Upgrade depends on chosen strategy.\n\n• Bombardment: Tomahawk Launcher research\n• Seek & Destroy: Enhanced Jumpjets upgrade\n• Hold the Line: Point Defense Systems upgrade
 	Valued:
 		Cost: 1000
 	RenderSprites:
@@ -433,23 +451,23 @@ thwk.upgrade:
 	EncyclopediaExtras:
 		AdditionalInfo: Requires Bombardment Strategy.
 
-tow.upgrade:
+ejjet.upgrade:
 	Inherits: ^GDIUpgrade
 	Tooltip:
-		Name: Research: TOW Missile
+		Name: Upgrade: Enhanced Jumpjets
 	Buildable:
 		BuildPaletteOrder: 30
+		IconPalette: chrometd
 		Prerequisites: ~player.gdi, gtek, ~seek.strat, ~techlevel.high
-		Description: Hum-Vees and Guardian Drones will be produced with TOW missile launchers.\n\nReplaces: Hum-Vee\nReplaces: Guardian Drone
+		Description: Improves the speed and vision of Jumpjet Troopers and Bombardiers.\n\nUpgrades: Jumpjet Infantry\nUpgrades: Bombardier
 	TooltipExtras:
-		Strengths: + Added TOW missile launcher (strong vs Heavy Armor)
-		Weaknesses: – Increased cost\n– Reduced speed
+		Strengths: + 25% faster movement\n+ Vision range increased by 2
 	Valued:
 		Cost: 1000
 	RenderSprites:
-		Image: tow.upgrade
+		Image: ejjet.upgrade
 	WithProductionIconOverlay:
-		Prerequisites: tow.upgrade
+		Prerequisites: ejjet.upgrade
 	EncyclopediaExtras:
 		AdditionalInfo: Requires Seek & Destroy Strategy.
 
@@ -464,6 +482,7 @@ pointdef.upgrade:
 		Description: Equips several units with point defense shields and/or point defense lasers which protect against enemy fire.\n\nUpgrades: Battle Tank (Shield and Laser)\nUpgrades: Battle Drone (Shield and Laser)\nUpgrades: Hum-Vee (Shield)\nUpgrades: Guardian Drone (Shield)\nUpgrades: Harvester (Shield)\nUpgrades: Frigate (Laser)
 	TooltipExtras:
 		Strengths: + Added Point Defense Shield\n+ Added Point Defense Laser
+		Attributes: – TOW Missile upgrade will disable shields for Hum-Vees and Guardian Drones
 	Valued:
 		Cost: 1500
 	RenderSprites:
@@ -1435,6 +1454,7 @@ impstorm.upgrade:
 	WithProductionIconOverlay:
 		Prerequisites: impstorm.upgrade
 	EncyclopediaExtras:
+		Subfaction: russia
 		AdditionalInfo: Requires Infantry Doctrine.
 
 impmuta.upgrade:
@@ -1454,6 +1474,7 @@ impmuta.upgrade:
 	WithProductionIconOverlay:
 		Prerequisites: impmuta.upgrade
 	EncyclopediaExtras:
+		Subfaction: yuri
 		AdditionalInfo: Requires Infantry Doctrine.
 
 reactive.upgrade:
@@ -1627,7 +1648,7 @@ economy.policy:
 		Prerequisites: ~player.allies, influence.level1, !economy.policy, !defense.policy, !development.policy, ~techlevel.medium
 		Description: Pursue economic policy.\n\n• Level 1: -15% cost of Refineries, Harvesters & MCVs\n• Level 2: -20% cost of Refineries, Harvesters & MCVs, +20% MCV movement speed\n• Level 3: -25% cost of Refineries, Harvesters & MCVs, Free Chrono Miner upgrade, +50% Ore Purifier income
 	TooltipExtras:
-		Attributes: (!) Only ONE Policy may be chosen.
+		Attributes: (!) Only ONE Policy may be chosen.(!) Cost reductions do not stack
 	Valued:
 		Cost: 300
 	RenderSprites:
@@ -1650,7 +1671,7 @@ defense.policy:
 		Prerequisites: ~player.allies, influence.level1, !economy.policy, !defense.policy, !development.policy, ~techlevel.medium
 		Description: Pursue defense policy.\n\n• Level 1: +15% building/defense HP, +25% Construction Yard build radius\n• Level 2: +30% building/defense HP, +40% building repair rate, +50% building vision radius\n• Level 3: +25% defense vision radius, +20% defense repair rate, +15% defense weapon damage, +2 gap generator shroud radius
 	TooltipExtras:
-		Attributes: (!) Only ONE Policy may be chosen.
+		Attributes: (!) Only ONE Policy may be chosen.\n(!) HP bonuses do not stack
 	Valued:
 		Cost: 300
 	RenderSprites:
@@ -1667,7 +1688,7 @@ development.policy:
 		Prerequisites: ~player.allies, influence.level1, !economy.policy, !defense.policy, !development.policy, ~techlevel.medium
 		Description: Pursue development policy.\n\n• Level 1: +20% unit experience gain\n• Level 2: +40% unit experience gain, 15% discount on Tech Center, HQ & all upgrades\n• Level 3: +60% unit experience gain, rank 3 units gain additional health & damage
 	TooltipExtras:
-		Attributes: (!) Only ONE Policy may be chosen.
+		Attributes: (!) Only ONE Policy may be chosen.(!) XP bonuses do not stack
 	Valued:
 		Cost: 300
 	RenderSprites:
@@ -1789,6 +1810,8 @@ entrench.upgrade:
 		Image: entrench.upgrade
 	WithProductionIconOverlay:
 		Prerequisites: entrench.upgrade
+	EncyclopediaExtras:
+		Subfaction: france
 
 cryw.upgrade:
 	Inherits: ^AlliedUpgrade
@@ -1845,6 +1868,8 @@ apb.upgrade:
 		Image: apb.upgrade
 	WithProductionIconOverlay:
 		Prerequisites: apb.upgrade
+	EncyclopediaExtras:
+		Subfaction: england
 
 airborne.upgrade:
 	Inherits: ^AlliedUpgrade
@@ -1863,6 +1888,8 @@ airborne.upgrade:
 		Image: airborne.upgrade
 	WithProductionIconOverlay:
 		Prerequisites: airborne.upgrade
+	EncyclopediaExtras:
+		Subfaction: usa
 
 tflx.upgrade:
 	Inherits: ^AlliedUpgrade
@@ -1881,6 +1908,8 @@ tflx.upgrade:
 		Image: tflx.upgrade
 	WithProductionIconOverlay:
 		Prerequisites: tflx.upgrade
+	EncyclopediaExtras:
+		Subfaction: germany
 
 charv.upgrade:
 	Inherits: ^AlliedUpgrade
@@ -2075,14 +2104,14 @@ shrw.upgrade:
 		Name: Research: Shard Walker
 	Buildable:
 		BuildPaletteOrder: 20
-		Prerequisites: ~player.reaper, anyradar, ~techlevel.medium
+		Prerequisites: ~player.scrin, anyradar, ~techlevel.medium
 		Description: Allows production of Shard Walkers, a heavier and more powerful variant of the Gun Walker.\n\nReplaces: Gun Walker
 		IconPalette: chromes
 	TooltipExtras:
 		Strengths: + Increased durability\n+ Increased damage
 		Weaknesses: – Slower movement\n– Slower projectiles
 	Valued:
-		Cost: 750
+		Cost: 1000
 	RenderSprites:
 		Image: shrw.upgrade
 	WithProductionIconOverlay:
@@ -2105,6 +2134,8 @@ advart.upgrade:
 		Image: advart.upgrade
 	WithProductionIconOverlay:
 		Prerequisites: advart.upgrade
+	EncyclopediaExtras:
+		Subfaction: traveler
 
 carapace.upgrade:
 	Inherits: ^ScrinUpgrade
@@ -2166,17 +2197,19 @@ ioncon.upgrade:
 		Name: Upgrade: Ion Conduits
 	Buildable:
 		BuildPaletteOrder: 30
-		Prerequisites: ~player.scrin, scrt, ~techlevel.high
-		Description: Allows Storm Columns and Stormcrawlers to store ion energy and release it into the atmosphere, creating a localized Ion Storm.\n\nUpgrades: Storm Column\nUpgrades: Stormcrawler
+		Prerequisites: ~player.reaper, scrt, ~techlevel.high
+		Description: Allows Storm Columns, Storm Spikes and Stormcrawlers to store ion energy and release it into the atmosphere, creating a localized Ion Storm.\n\nUpgrades: Storm Column\nUpgrades: Stormcrawler\nUpgrades: Storm Spike
 		IconPalette: chromes
 	TooltipExtras:
 		Strengths: + Increases damage and range over time when active\n+ Reduces incoming damage over time when active\n+ Ion storm can damage enemy units and structures
 	Valued:
-		Cost: 1250
+		Cost: 750
 	RenderSprites:
 		Image: ioncon.upgrade
 	WithProductionIconOverlay:
 		Prerequisites: ioncon.upgrade
+	EncyclopediaExtras:
+		Subfaction: reaper
 
 regen.upgrade:
 	Inherits: ^ScrinUpgrade
@@ -2214,6 +2247,8 @@ stellar.upgrade:
 		Image: stellar.upgrade
 	WithProductionIconOverlay:
 		Prerequisites: stellar.upgrade
+	EncyclopediaExtras:
+		Subfaction: harbinger
 
 coalescence.upgrade:
 	Inherits: ^ScrinUpgrade
@@ -2233,6 +2268,8 @@ coalescence.upgrade:
 		Image: coalescence.upgrade
 	WithProductionIconOverlay:
 		Prerequisites: coalescence.upgrade
+	EncyclopediaExtras:
+		Subfaction: collector
 
 shields.upgrade:
 	Inherits: ^ScrinUpgrade

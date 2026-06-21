@@ -151,7 +151,7 @@ InfernoBomb:
 		Damage: 1000
 		Falloff: 1000, 368, 135, 50, 18, 7, 0
 		Delay: 5
-		ValidTargets: Ground, Trees, Water, Air
+		ValidTargets: Ground, Water, Trees
 		Versus:
 			Wood: 50
 			Concrete: 25

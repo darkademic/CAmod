@@ -168,6 +168,9 @@ namespace OpenRA.Mods.CA.Traits
 
 		public bool CanAttach(Attachable attachable, bool ignoreReservation = false)
 		{
+			if (self.IsDead)
+				return false;
+
 			if (attachable.Info.Type != Info.Type)
 				return false;
 

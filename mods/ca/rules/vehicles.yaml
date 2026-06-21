@@ -31,6 +31,11 @@ V2RL:
 	Armament:
 		Weapon: SCUD
 		ReloadingCondition: reloading
+		RequiresCondition: !player-iraq
+	Armament@Iraq:
+		Weapon: SCUD.Iraq
+		ReloadingCondition: reloading
+		RequiresCondition: player-iraq
 	AttackFrontal:
 		TargetFrozenActors: True
 		ForceFireIgnoresActors: True
@@ -50,6 +55,9 @@ V2RL:
 	WithProductionIconOverlay:
 		Types: Veterancy
 		Prerequisites: vehicles.upgraded
+	GrantConditionOnPrerequisite@Iraq:
+		Prerequisites: player.iraq
+		Condition: player-iraq
 	Selectable:
 		DecorationBounds: 1194, 1194
 	Encyclopedia:
@@ -1895,13 +1903,12 @@ SPEC:
 		PauseOnCondition: invisibility
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
-		RequiresCondition: !player-shadow
 	GrantConditionOnPrerequisite@Shadow:
 		Condition: player-shadow
 		Prerequisites: player.shadow
+	SpeedMultiplier@ShadowCloak:
+		Modifier: 110
+		RequiresCondition: player-shadow && hidden
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: AttackAnything
@@ -2005,13 +2012,12 @@ SAPC:
 		AudibleThroughFog: true
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
-		RequiresCondition: !player-shadow
 	GrantConditionOnPrerequisite@Shadow:
 		Condition: player-shadow
 		Prerequisites: player.shadow
+	SpeedMultiplier@ShadowCloak:
+		Modifier: 110
+		RequiresCondition: player-shadow && hidden
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: AttackAnything
@@ -2719,7 +2725,7 @@ MSG:
 		Weaknesses: • Unarmed
 		Attributes: • Special Ability: Deploys to cloak nearby units and structures
 	Valued:
-		Cost: 1250
+		Cost: 1100
 	Tooltip:
 		Name: Mobile Stealth Generator
 		RequiresCondition: !deployed
@@ -2772,21 +2778,14 @@ MSG:
 	WithRangeCircleCA@MSG:
 		Type: StealthGenerator
 		RequiresCondition: deployed
-		Range: 5c512
+		Range: 6c512
 		Color: 7681a0
 	ProximityExternalCondition@MSG:
-		Range: 5c512
+		Range: 6c512
 		Condition: sgencloak
 		RequiresCondition: deployed && !cloak-force-disabled
 		MaximumVerticalOffset: 512
 		AffectsParent: true
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
-		RequiresCondition: !player-shadow
-	GrantConditionOnPrerequisite@Shadow:
-		Condition: player-shadow
-		Prerequisites: player.shadow
 	Encyclopedia:
 		Category: Nod/Vehicles
 	EncyclopediaExtras:
@@ -3270,7 +3269,7 @@ HMMV:
 		Prerequisites: vehicles.upgraded
 	GrantConditionOnPrerequisite@GSHIELD:
 		Condition: pointdef-upgrade
-		Prerequisites: pointdef.upgrade
+		Prerequisites: pointdef.upgrade, !tow.upgrade
 	TimedDamageMultiplier@GSHIELD:
 		ActiveCondition: gshield
 		ChargingColor: 008888
@@ -3396,7 +3395,7 @@ GDRN:
 		RequiresCondition: !(empdisable || being-warped)
 	GrantConditionOnPrerequisite@GSHIELD:
 		Condition: pointdef-upgrade
-		Prerequisites: pointdef.upgrade
+		Prerequisites: pointdef.upgrade, !tow.upgrade
 	TimedDamageMultiplier@GSHIELD:
 		ActiveCondition: gshield
 		ChargingColor: 008888
@@ -3905,6 +3904,8 @@ VULC:
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
 		Range: 4c0
+	Voiced:
+		VoiceSet: VulcanVoice
 	Armament@GAT:
 		Weapon: MGatt
 		LocalOffset: 220,0,350
@@ -3991,6 +3992,7 @@ VULC:
 	AttackTurreted:
 		PauseOnCondition: empdisable || being-warped || blinded
 		Armaments: primary, secondary
+		Voice: Attack
 	Turreted:
 		TurnSpeed: 28
 		Offset: 0,0,150
@@ -4647,6 +4649,9 @@ MDRN.Attached:
 	-PowerMultiplier@HACKED:
 	-ChronoshiftableCA:
 	-HealthCapDamageMultiplier@CHRONO:
+	-ExternalCondition@NSHIELD:
+	DummyConditionGranter@NSHIELD:
+		Condition: nshield
 	-Encyclopedia:
 	-GainsExperience:
 	-ReclaimsExperience:
@@ -5097,10 +5102,10 @@ MLRS:
 		Cost: 1350
 	Tooltip:
 		Name: SSM Launcher
-		RequiresCondition: !blackhand
+		RequiresCondition: !player-blackh
 	Tooltip@BH:
 		Name: SSM Launcher (Triple)
-		RequiresCondition: blackhand
+		RequiresCondition: player-blackh
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Buildable:
@@ -5126,17 +5131,19 @@ MLRS:
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
 		Range: 4c0
+	Voiced:
+		VoiceSet: SSMVoice
 	Turreted:
 		TurnSpeed: 8
 		Offset: -168,0,128
 		RealignDelay: 0
-		RequiresCondition: !blackhand
+		RequiresCondition: !player-blackh
 	Turreted@BH:
-		Turret: secondary
+		Turret: primarybh
 		TurnSpeed: 7
 		Offset: -168,0,128
 		RealignDelay: 0
-		RequiresCondition: blackhand
+		RequiresCondition: player-blackh
 	AttackMove:
 		AttackMoveCondition: attack-move
 	Armament@PRIMARY:
@@ -5144,27 +5151,27 @@ MLRS:
 		LocalOffset: 0,171,0, 0,-171,0
 		PauseOnCondition: moving
 		ReloadingCondition: reloading
-		RequiresCondition: !blacknapalm-upgrade && !blackhand
+		RequiresCondition: !blacknapalm-upgrade && !player-blackh
 	Armament@PRIMARYUPG:
 		Weapon: HonestJohn.UPG
 		LocalOffset: 0,171,0, 0,-171,0
 		PauseOnCondition: moving
 		ReloadingCondition: reloading
-		RequiresCondition: blacknapalm-upgrade && !blackhand
+		RequiresCondition: blacknapalm-upgrade && !player-blackh
 	Armament@PRIMARYBH:
-		Name: tertiary
+		Name: primarybh
 		Weapon: HonestJohnBH
 		LocalOffset: 0,0,0, 0,-171,0, 0,171,0
 		PauseOnCondition: moving
 		ReloadingCondition: reloading
-		RequiresCondition: !blacknapalm-upgrade && blackhand
+		RequiresCondition: !blacknapalm-upgrade && player-blackh
 	Armament@PRIMARYUPGBH:
-		Name: tertiary
+		Name: primarybh
 		Weapon: HonestJohnBH.UPG
 		LocalOffset: 0,0,0, 0,-171,0, 0,171,0
 		PauseOnCondition: moving
 		ReloadingCondition: reloading
-		RequiresCondition: blacknapalm-upgrade && blackhand
+		RequiresCondition: blacknapalm-upgrade && player-blackh
 	Armament@TARGETTER:
 		Name: targetter
 		Weapon: HonestJohnTargeting
@@ -5173,44 +5180,43 @@ MLRS:
 	AmmoPool:
 		Ammo: 2
 		AmmoCondition: ammo
-		RequiresCondition: !blackhand
 	AmmoPool@BH:
-		Name: tertiary
-		Armaments: tertiary
+		Name: primarybh
+		Armaments: primarybh
 		Ammo: 3
 		AmmoCondition: ammobh
-		RequiresCondition: blackhand
 	AttackTurreted:
-		Turrets: primary, secondary
-		Armaments: primary, tertiary, targetter
+		Turrets: primary, primarybh
+		Armaments: primary, primarybh, targetter
 		TargetFrozenActors: True
+		Voice: Attack
 		ForceFireIgnoresActors: True
 		PauseOnCondition: empdisable || being-warped || blinded
 	WithSpriteTurret:
-		RequiresCondition: !blackhand && ammo > 1
+		RequiresCondition: !player-blackh && ammo > 1
 	WithSpriteTurret@OneMissile:
-		RequiresCondition: !blackhand && ammo == 1
+		RequiresCondition: !player-blackh && ammo == 1
 		Sequence: turret1
 	WithSpriteTurret@NoMissiles:
-		RequiresCondition: !blackhand && !ammo
+		RequiresCondition: !player-blackh && !ammo
 		Sequence: turret0
 	WithSpriteTurret@BH:
-		RequiresCondition: blackhand && ammobh > 2
-		Turret: secondary
+		RequiresCondition: player-blackh && ammobh > 2
+		Turret: primarybh
 	WithSpriteTurret@BHTwoMissile:
-		RequiresCondition: blackhand && ammobh == 2
+		RequiresCondition: player-blackh && ammobh == 2
 		Sequence: turret2
-		Turret: secondary
+		Turret: primarybh
 	WithSpriteTurret@BHOneMissile:
-		RequiresCondition: blackhand && ammobh == 1
+		RequiresCondition: player-blackh && ammobh == 1
 		Sequence: turret1
-		Turret: secondary
+		Turret: primarybh
 	WithSpriteTurret@BHNoMissiles:
-		RequiresCondition: blackhand && !ammobh
+		RequiresCondition: player-blackh && !ammobh
 		Sequence: turret0
-		Turret: secondary
+		Turret: primarybh
 	GrantConditionOnAttack@AIMING:
-		ArmamentNames: primary, tertiary, targetter
+		ArmamentNames: primary, primarybh, targetter
 		Condition: aiming
 		RevokeDelay: 15
 		RevokeAll: false
@@ -5222,12 +5228,12 @@ MLRS:
 	ReloadAmmoPool@1:
 		Delay: 120
 		Count: 2
-		RequiresCondition: !blackhand
+		RequiresCondition: !player-blackh
 	ReloadAmmoPool@BH:
-		AmmoPool: tertiary
+		AmmoPool: primarybh
 		Delay: 170
 		Count: 3
-		RequiresCondition: blackhand
+		RequiresCondition: player-blackh
 	ProducibleWithLevel:
 		Prerequisites: vehicles.upgraded
 	WithProductionIconOverlay:
@@ -5239,7 +5245,7 @@ MLRS:
 		Condition: blacknapalm-upgrade
 		Prerequisites: blacknapalm.upgrade
 	GrantConditionOnPrerequisite@BH:
-		Condition: blackhand
+		Condition: player-blackh
 		Prerequisites: player.blackh
 	Encyclopedia:
 		Category: Nod/Vehicles
@@ -5309,13 +5315,12 @@ STNK.Nod:
 		PauseOnCondition: invisibility
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
-		RequiresCondition: !player-shadow
 	GrantConditionOnPrerequisite@Shadow:
 		Condition: player-shadow
 		Prerequisites: player.shadow
+	SpeedMultiplier@ShadowCloak:
+		Modifier: 110
+		RequiresCondition: player-shadow && hidden
 	Armament@PRIMARY:
 		Weapon: StnkMissile
 		LocalOffset: 213,43,128, 213,-43,128
@@ -5431,13 +5436,12 @@ HSTK:
 		PauseOnCondition: invisibility
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
-		RequiresCondition: !player-shadow
 	GrantConditionOnPrerequisite@Shadow:
 		Condition: player-shadow
 		Prerequisites: player.shadow
+	SpeedMultiplier@ShadowCloak:
+		Modifier: 110
+		RequiresCondition: player-shadow && hidden
 	Armament@PRIMARY:
 		Weapon: HstkMissile
 		LocalOffset: 213,160,128, 213,-160,128
@@ -7154,9 +7158,6 @@ IFV:
 		PauseOnCondition: invisibility
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
 	Armament@Psi:
 		Weapon: EnslaveInfantry
 		LocalOffset: 200,0,300
@@ -8110,8 +8111,6 @@ RTNK:
 		PauseOnCondition: invisibility
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		ValidDamageStates: Critical
 	Selectable:
 		DecorationBounds: 1194, 1194
 	ProducibleWithLevel:
@@ -8432,6 +8431,9 @@ MSAR:
 	ProvidesPrerequisite@radar-active:
 		Prerequisite: radar-active
 		RequiresCondition: deployed && !(jammed || empdisable || being-warped)
+	ProductionCostMultiplier@ArcBonus:
+		Multiplier: 80
+		Prerequisites: player.arc
 	-WithDecoration@BOMBARD:
 	-WithDecoration@BOMBARD2:
 	-WithDecoration@BOMBARD3:
@@ -8466,6 +8468,8 @@ PTNK:
 	Mobile:
 		Speed: 72
 		Voice: Move
+		ImmovableCondition: deployed
+		RequireForceMoveCondition: !undeployed
 	Passenger:
 		Voice: Move
 	RevealsShroud:
@@ -8513,6 +8517,38 @@ PTNK:
 		RequiresCondition: !mindcontrolled
 	Encyclopedia:
 		Category: Allies/Vehicles
+	GrantConditionOnDeployTurreted:
+		DeployedCondition: deployed
+		UndeployedCondition: undeployed
+		UndeployOnMove: True
+		DeploySounds: ptnk-deploy.aud
+		UndeploySounds: ptnk-undeploy.aud
+		PauseOnCondition: being-warped
+		SmartDeploy: True
+		ValidFacings: 0, 256, 512, 768
+		RequiresCondition: player-france
+	WithFacingSpriteBody@Deployed:
+		Sequence: fort
+		RequiresCondition: !undeployed
+		Name: fortbody
+	WithMakeAnimation@Deployed:
+		BodyNames: fortbody
+		Sequence: fortmake
+	DamageMultiplier@Deployed:
+		Modifier: 75
+		RequiresCondition: !undeployed
+	RangeMultiplier@Deployed:
+		Modifier: 112
+		RequiresCondition: !undeployed
+	ChangesHealth:
+		PercentageStep: 1
+		Delay: 25
+		StartIfBelow: 100
+		DamageCooldown: 150
+		RequiresCondition: !undeployed
+	GrantConditionOnPrerequisite@France:
+		Condition: player-france
+		Prerequisites: player.france
 
 PCAN:
 	Inherits: PTNK
@@ -8542,6 +8578,8 @@ PCAN:
 		ChargingSounds: pcancharge.aud
 	Voiced:
 		VoiceSet: PrismCannonVoice
+	RangeMultiplier@Deployed:
+		Modifier: 109
 	-ReplacedInQueue:
 	-Upgradeable@PCAN:
 	-WithDecoration@UpgradeOverlay:
@@ -9474,13 +9512,12 @@ BASI:
 		PauseOnCondition: invisibility
 	Cloak@CRATE-CLOAK:
 		RequiresCondition: crate-cloak && !(cloak-force-disabled || invisibility || hidden || driver-dead)
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
-		RequiresCondition: !player-shadow
 	GrantConditionOnPrerequisite@Shadow:
 		Condition: player-shadow
 		Prerequisites: player.shadow
+	SpeedMultiplier@ShadowCloak:
+		Modifier: 110
+		RequiresCondition: player-shadow && hidden
 	WithColoredSelectionBox@INVIS:
 		RequiresCondition: invisibility || hidden
 		ColorSource: Player

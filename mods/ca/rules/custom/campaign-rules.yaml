@@ -101,6 +101,7 @@ World:
 		ShortGameCheckboxEnabled: False
 		ShortGameCheckboxLocked: True
 		ShortGameCheckboxVisible: False
+		BlindPickModeCheckboxVisible: False
 	TimeLimitManager:
 		TimeLimitLocked: True
 		TimeLimitDropdownVisible: False

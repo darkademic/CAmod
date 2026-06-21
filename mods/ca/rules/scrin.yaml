@@ -130,7 +130,7 @@ VEHICLES.SCRIN:
 
 ^ScrinShields:
 	Shielded:
-		MaxStrength: 8000
+		MaxStrength: 10000
 		RegenDelay: 350
 		RegenAmount: 250
 		RegenInterval: 5
@@ -215,12 +215,13 @@ VEHICLES.SCRIN:
 		DelayPerInstance: 120
 		MaximumInstances: 3
 		RevokeDelay: 200
+		FirstStackImmediate: true
 		RequiresCondition: storm-active
 	RangeMultiplier@IONSTORM1:
 		Modifier: 105
 		RequiresCondition: storm-level == 1
-	FirepowerMultiplier@IONSTORM1:
-		Modifier: 110
+	ReloadDelayMultiplier@IONSTORM1:
+		Modifier: 91
 		RequiresCondition: storm-level == 1
 	DamageMultiplier@IONSTORM1:
 		Modifier: 95
@@ -228,8 +229,8 @@ VEHICLES.SCRIN:
 	RangeMultiplier@IONSTORM2:
 		Modifier: 110
 		RequiresCondition: storm-level == 2
-	FirepowerMultiplier@IONSTORM2:
-		Modifier: 115
+	ReloadDelayMultiplier@IONSTORM2:
+		Modifier: 83
 		RequiresCondition: storm-level == 2
 	DamageMultiplier@IONSTORM2:
 		Modifier: 90
@@ -237,8 +238,8 @@ VEHICLES.SCRIN:
 	RangeMultiplier@IONSTORM3:
 		Modifier: 115
 		RequiresCondition: storm-level == 3
-	FirepowerMultiplier@IONSTORM3:
-		Modifier: 120
+	ReloadDelayMultiplier@IONSTORM3:
+		Modifier: 77
 		RequiresCondition: storm-level == 3
 	DamageMultiplier@IONSTORM3:
 		Modifier: 85
@@ -412,7 +413,7 @@ VEHICLES.SCRIN:
 		CrushedSequencePalette: playerscrin
 	-GrantConditionOnTerrain@ONTIB:
 	-GrantStackingCondition@TIBEXPOSED:
-	-DamagedByTerrain@TIBDAMAGE:
+	-DamagedByTerrainCA@TIBDAMAGE:
 	-GrantConditionOnPrerequisite@BIO:
 	-GrantConditionOnPrerequisite@HAZMAT:
 	-GrantConditionOnPrerequisite@HAZMATSOVIET:
@@ -635,7 +636,7 @@ S4:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 9000
+		HP: 11000
 	RevealsShroud:
 		Range: 5c0
 	Armament@PRIMARY:
@@ -748,7 +749,6 @@ S6:
 WCHR:
 	Inherits@SCRININFANTRY: ^ScrinInfantry
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
-	Inherits@SELECTION: ^SelectableSupportUnit
 	Buildable:
 		Queue: InfantrySQ, InfantryMQ
 		BuildAtProductionType: Soldier
@@ -806,9 +806,6 @@ WCHR:
 		IsPlayerPalette: false
 		RequiresCondition: !cloak-force-disabled && !being-warped
 		PauseOnCondition: invisibility
-	GrantConditionOnDamageStateCA@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
 	WithColoredSelectionBox@INVIS:
 		RequiresCondition: invisibility || hidden
 		ColorSource: Player
@@ -1096,7 +1093,6 @@ STLK:
 	WithColoredOverlay@PhaseShield:
 		Color: 15091f88
 		RequiresCondition: phaseshield
-	-GrantConditionOnDamageStateCA@UNCLOAK:
 	WithColoredSelectionBox@INVIS:
 		RequiresCondition: invisibility || hidden
 		ColorSource: Player
@@ -1254,7 +1250,7 @@ GSCR:
 		Name: Brutalizer
 	-GrantConditionOnTerrain@ONTIB:
 	-GrantStackingCondition@TIBEXPOSED:
-	-DamagedByTerrain@TIBDAMAGE:
+	-DamagedByTerrainCA@TIBDAMAGE:
 	WithInfantryBody:
 		MoveSequence: run
 		StandSequences: stand
@@ -1306,7 +1302,7 @@ MAST:
 	Voiced:
 		VoiceSet: MastermindVoice
 	Valued:
-		Cost: 1350
+		Cost: 1500
 	Tooltip:
 		Name: Mastermind
 		RequiresCondition: !rank-elite
@@ -2706,7 +2702,7 @@ TPOD:
 		HP: 86000
 	Mobile:
 		Locomotor: heavytracked
-		Speed: 50
+		Speed: 46
 		TurnSpeed: 512
 	Passenger:
 		Weight: 3
@@ -3160,6 +3156,8 @@ STMR:
 		AddToArmyValue: true
 	Health:
 		HP: 26000
+	Shielded:
+		MaxStrength: 10000
 	RevealsShroud:
 		Range: 11c0
 		MinRange: 9c0
@@ -3299,6 +3297,8 @@ TORM:
 		AddToArmyValue: true
 	Health:
 		HP: 10000
+	Shielded:
+		MaxStrength: 5000
 	RevealsShroud:
 		Range: 11c0
 		MinRange: 9c0
@@ -3309,13 +3309,13 @@ TORM:
 		Type: GroundPosition
 	Armament@PRIMARY:
 		Weapon: TormentorZap
-		LocalOffset: 450,300,100, 450,-300,100
+		LocalOffset: 250,0,100
 		PauseOnCondition: !ammo
 		MuzzleSequence: muzzle
 		MuzzlePalette: scrin
 	Armament@SECONDARY:
 		Weapon: TormentorZapAA
-		LocalOffset: 450,300,100, 450,-300,100
+		LocalOffset: 250,0,100
 		PauseOnCondition: !ammo
 		MuzzleSequence: muzzle
 		MuzzlePalette: scrin
@@ -3327,7 +3327,7 @@ TORM:
 		PauseOnCondition: empdisable || being-warped || blinded
 	Aircraft:
 		CruiseAltitude: 2560
-		TurnSpeed: 32
+		TurnSpeed: 40
 		Speed: 201
 		IdleSpeed: 146
 		IdleTurnSpeed: 15
@@ -3382,15 +3382,14 @@ TORM:
 		Prerequisites: aircraft.upgraded
 	-EjectOnDeath:
 	AmmoPool:
-		Ammo: 12
+		Ammo: 2
 		AmmoCondition: ammo
-		ReloadDelay: 10
+		ReloadDelay: 60
 		ReloadCount: 1
 	WithAmmoPipsDecoration:
 		Position: BottomLeft
 		Margin: 4, 3
 		RequiresSelection: true
-		PipCount: 4
 	Rearmable:
 		RearmActors: hpad, hpad.td, afld, afld.gdi, grav
 	GrantConditionOnDamageState@SmokeTrail:
@@ -3405,8 +3404,6 @@ TORM:
 	SpeedMultiplier@EMPDISABLE:
 		Modifier: 0
 		RequiresCondition: empdisable
-	Shielded:
-		MaxStrength: 4000
 	GpsRadarDot:
 		Sequence: Plane
 	Targetable@MothershipRearmable:
@@ -3442,7 +3439,9 @@ ENRV:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 22500
+		HP: 20000
+	Shielded:
+		MaxStrength: 7500
 	RevealsShroud:
 		Range: 12c0
 		MinRange: 10c0
@@ -3541,8 +3540,6 @@ ENRV:
 	SpeedMultiplier@EMPDISABLE:
 		Modifier: 0
 		RequiresCondition: empdisable
-	Shielded:
-		MaxStrength: 5625
 	GpsRadarDot:
 		Sequence: Plane
 	Targetable@MothershipRearmable:
@@ -3581,6 +3578,8 @@ DEVA:
 		AddToArmyValue: true
 	Health:
 		HP: 32000
+	Shielded:
+		MaxStrength: 10000
 	Armor:
 		Type: Aircraft
 	HitShape:
@@ -3726,6 +3725,8 @@ PAC:
 		AddToArmyValue: true
 	Health:
 		HP: 56000
+	Shielded:
+		MaxStrength: 20000
 	Armor:
 		Type: Aircraft
 	HitShape:
@@ -3788,7 +3789,7 @@ PAC:
 		SpawnAllAtOnce: false
 		LoadedCondition: inva-loaded
 		RequiresCondition: !empdisable && !being-warped
-		MaxSlaveDistance: 12c0
+		MaxSlaveDistance: 9c0
 	WithSpawnerMasterPipsDecoration:
 		Position: BottomLeft
 		Margin: 4, 3
@@ -3826,8 +3827,6 @@ PAC:
 	WithProductionIconOverlay:
 		Types: Veterancy
 		Prerequisites: aircraft.upgraded
-	Shielded:
-		MaxStrength: 14000
 	Turreted@SHIELDS:
 		Offset: -128,0,0
 	GpsRadarDot:
@@ -3950,7 +3949,7 @@ MSHP:
 	TooltipExtras:
 		Strengths: • Strong vs Buildings, Defenses, Heavy Armor, Light Armor, Infantry
 		Weaknesses: • Cannot attack Aircraft\n• Long charge time before firing anti-structure weapon\n• Cannot move while firing
-		Attributes: • Maximum 1 can be built\n• Can create wormholes\n• Can recharge nearby Stormriders/Enervators
+		Attributes: • Maximum 1 can be built\n• Can create wormholes\n• Can recharge nearby Stormriders/Enervators/Tormentors
 	Voiced:
 		VoiceSet: MothershipVoice
 	Valued:
@@ -3962,6 +3961,8 @@ MSHP:
 		AddToArmyValue: true
 	Health:
 		HP: 130000
+	Shielded:
+		MaxStrength: 26000
 	Armor:
 		Type: Aircraft
 	HitShape:
@@ -4096,8 +4097,6 @@ MSHP:
 	SpeedMultiplier@EMPDISABLE:
 		Modifier: 0
 		RequiresCondition: empdisable
-	Shielded:
-		MaxStrength: 26000
 	SpawnActorAbility:
 		Actors: wormhole
 		SkipMakeAnimations: false
@@ -5653,7 +5652,7 @@ PTUR:
 		Weaknesses: • Cannot attack Aircraft
 		Attributes: • Detects cloaked units
 	Valued:
-		Cost: 725
+		Cost: 700
 	CustomSellValue:
 		Value: 250
 	Tooltip:
@@ -5897,6 +5896,9 @@ STRM:
 		Speed: 3
 	Hovers:
 		Ticks: 12
+	WithShadow:
+		Offset: 43, 128, 0
+		ZOffset: -129
 	Interactable:
 	GrantRandomCondition@CloudShape:
 		Conditions: strm1, strm2, strm3, strm4
@@ -5956,6 +5958,12 @@ SSPK:
 		Range: 6c0
 	RevealsShroud@GAPGEN:
 		Range: 4c0
+	DamageMultiplier@IONSTORM1:
+		Modifier: 100
+	DamageMultiplier@IONSTORM2:
+		Modifier: 95
+	DamageMultiplier@IONSTORM3:
+		Modifier: 90
 	-Power:
 	-SpawnActorOnDeath:
 	-WithBuildingRepairDecoration:
@@ -6091,7 +6099,7 @@ ISPK:
 	Tooltip:
 		Name: Ichor Spike
 	TooltipExtras:
-		Attributes: • Enriches Tiberium trees\n• Empowers units with Resource Conversion upgrade
+		Attributes: • Enriches Tiberium trees (3 max)\n• Empowers units with Resource Conversion upgrade
 		Description: Enriches nearby Tiberium trees causing them to seed Tiberium more quickly.
 	RevealsShroud:
 		MinRange: 6c0
@@ -6103,11 +6111,12 @@ ISPK:
 		Sequences: idle2, idle3, idle4, idle5
 		Interval: 5, 50
 		RequiresCondition: !build-incomplete && !being-warped
-	ProximityExternalCondition@IchorBoost:
+	ProximityExternalConditionCA@IchorBoost:
 		Range: 8c0
 		Condition: ichor-boost
 		ValidRelationships: Neutral
 		RequiresCondition: !build-incomplete && !being-warped
+		MaxTargets: 3
 	ProximityExternalCondition@ONTIB:
 		Condition: on-tib
 		Range: 8c0

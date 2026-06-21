@@ -110,6 +110,10 @@ pointdef.upgrade:
 	icon:
 		Filename: upg-pointdeficnh.shp
 
+ejjet.upgrade:
+	icon:
+		Filename: upg-ejjeticnh.shp
+
 hazmat.upgrade:
 	icon:
 		Filename: upg-hazmicnh.shp

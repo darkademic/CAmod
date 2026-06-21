@@ -200,7 +200,7 @@ Vulcan:
 		Blockable: true
 		Invisible: true
 	Warhead@1Dam: SpreadDamage
-		Spread: 128
+		Spread: 160
 		Damage: 1000
 		Versus:
 			None: 220
@@ -323,7 +323,7 @@ ChainGun.Yak.R:
 	Projectile: InstantHit
 		Blockable: false
 	Warhead@1Dam: SpreadDamage
-		Damage: 4000
+		Damage: 3150
 		Versus:
 			None: 100
 			Wood: 35
@@ -345,7 +345,7 @@ ChainGun.Yak.AA:
 		Falloff: 100, 100, 30, 15
 		ValidTargets: Air
 		ValidRelationships: Enemy, Neutral
-		Damage: 1500
+		Damage: 1350
 		Versus:
 			None: 100
 			Wood: 100
@@ -357,7 +357,7 @@ ChainGun.Yak.AA:
 	Warhead@smallDamage: SpreadDamage
 		Spread: 341
 		Falloff: 100, 50, 14, 0
-		Damage: 1500
+		Damage: 1350
 		ValidTargets: AirSmall
 		ValidRelationships: Enemy, Neutral
 		DamageTypes: Prone50Percent, TriggerProne, DefaultDeath

@@ -309,7 +309,7 @@ Actors:
 	Actor1950: camera
 		Owner: Multi0
 		Location: 177,146
-	Actor1953: sgen.shadow
+	Actor1953: sgen
 		Owner: HostileDummy
 		Location: 162,127
 	Actor1954: nuk2

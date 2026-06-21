@@ -542,6 +542,7 @@ World:
 		ShortGameCheckboxDisplayOrder: 1
 		TechLevelDropdownDisplayOrder: 4
 		GameSpeedDropdownDisplayOrder: 2
+		BlindPickModeCheckboxDisplayOrder: 1000
 	CreateMapPlayers:
 	StartingUnits@mcvonly:
 		Class: none

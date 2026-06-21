@@ -934,6 +934,28 @@ pips:
 	pip-conc:
 		Filename: pip-conc.shp
 		Offset: 0, 0
+	pip-rad:
+		Filename: pip-rad.shp
+		Offset: 0, 0
+		Length: 2
+		Tick: 300
+	pip-radsm:
+		Filename: pip-rad.shp
+		Offset: 0, 0
+		Length: 2
+		Start: 2
+		Tick: 300
+	pip-tib:
+		Filename: pip-rad.shp
+		Offset: 0, 0
+		Length: 2
+		Start: 4
+		Tick: 300
+	pip-ic:
+		Filename: pip-ic.shp
+		Offset: 0, 0
+		Length: 2
+		Tick: 300
 	pip-ion1:
 		Filename: pip-ion.shp
 		Length: 1
@@ -1288,6 +1310,15 @@ scrintorp:
 		IgnoreWorldTint: true
 	idle:
 		Filename: scrintorp.shp
+		Length: *
+		ZOffset: 2046
+
+scrintorpred:
+	Defaults:
+		IgnoreWorldTint: true
+		Alpha: 0.9
+	idle:
+		Filename: scrintorpred.shp
 		Length: *
 		ZOffset: 2046
 

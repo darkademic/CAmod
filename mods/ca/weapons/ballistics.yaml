@@ -294,6 +294,7 @@
 	BurstDelays: 8
 	Warhead@1Dam: SpreadDamage
 		Damage: 4500
+		Spread: 256
 		Falloff: 368, 184, 80, 18, 0
 		Versus:
 			None: 40
@@ -302,7 +303,7 @@
 			Heavy: 115
 			Wood: 75
 			Concrete: 60
-		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath, FlakVestMitigated
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@3Eff_impact: CreateEffect
 		Explosions: nuke3
 		ImpactSounds: kaboom1.aud, kaboom22.aud
@@ -1015,7 +1016,7 @@ DoubleDepthCharge:
 		Damage: 15000
 		Versus:
 			None: 0
-			Wood: 25
+			Wood: 30
 			Light: 0
 			Heavy: 0
 			Concrete: 75

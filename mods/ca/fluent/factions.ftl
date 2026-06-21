@@ -31,6 +31,7 @@ faction-france =
       • Entrenchment
 
     Bonuses:
+      • Prism Tank/Cannon (deploy to fortify)
       • Walls & Defenses (10% discount)
 
 faction-germany =
@@ -125,7 +126,7 @@ faction-iraq =
 
     Bonuses:
       • Heavy Hazmat Suits equipped as standard
-      • Missile Silo (40% discount)
+      • V2 (fires radioactive warheads)
       • Kirov Atom Bombs
 
 faction-yuri =
@@ -204,6 +205,7 @@ faction-eagle =
 
     Bonuses:
       • Aircraft (10% discount)
+      • Airfields repair aircraft without requiring Service Depot nearby
 
 faction-arc =
     .name = ARC
@@ -244,7 +246,7 @@ faction-blackh =
 
     Bonuses:
       • SSM (extra missile)
-      • Flamethrower (+20% speed)
+      • Flamethrower/Chem Warrior (+20% speed)
       • Free Howitzer Upgrade
 
 faction-marked =
@@ -299,8 +301,8 @@ faction-shadow =
       • Heavy Stealth Tank
 
     Bonuses:
-      • Stealth units can still cloak when critically damaged
-      • Stealth Generator (+4 passive range, remains cloaked during Tiberium Stealth)
+      • Stealth units move 10% faster while cloaked
+      • Stealth Generator (+4 passive range)
 
 faction-reaper =
     .name = Reaper-17
@@ -313,7 +315,7 @@ faction-reaper =
       • Storm Spike
 
     Upgrades:
-      • Shard Walker
+      • Ion Conduits
 
     Bonuses:
       • Resource Conversion also applies to Corrupters

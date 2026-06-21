@@ -63,6 +63,7 @@ VehicleVoice:
 		collector: .s00,.s02
 	Voices:
 		Select: vehic1,yessir1,report1,await1,unit1
+		Attack: ackno,affirm1,movout1
 		Action: ackno,affirm1,movout1
 		Unload: movout1
 
@@ -1234,3 +1235,17 @@ CustodianVoice:
 		Move: cust-move1, cust-move2, cust-move3, cust-move4
 		Attack: cust-move1, cust-move2, cust-move3, cust-move4
 		Action: cust-move1, cust-move2, cust-move3, cust-move4
+
+SSMVoice:
+	Voices:
+		Select: ssm-select1, ssm-select2, ssm-select3, ssm-select4
+		Move: ssm-move1, ssm-move2, ssm-move3, ssm-move4
+		Attack: ssm-attack1, ssm-attack2, ssm-attack3, ssm-attack4
+		Action: ssm-move1, ssm-move2, ssm-move3, ssm-move4
+
+VulcanVoice:
+	Voices:
+		Select: vulc-select1, vulc-select2, vulc-select3, vulc-select4
+		Move: vulc-move1, vulc-move2, vulc-move3, vulc-move4
+		Attack: vulc-attack1, vulc-attack2, vulc-attack3, vulc-attack4
+		Action: vulc-move1, vulc-move2, vulc-move3, vulc-move4

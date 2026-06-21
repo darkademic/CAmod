@@ -821,8 +821,6 @@ powerproxy.airborne:
 		SupportPowerPaletteOrder: 70
 		PrerequisiteDropItems:
 			airborne.upgrade: U3R2, U3R2, U3R2, U3R2, U3R2
-	AddsSupportPowerStackOnCreation:
-		OrderName: airborne
 	Buildable:
 		Queue: PowerProxy
 	Tooltip:
@@ -857,8 +855,6 @@ powerproxy.airborne.tank:
 		SupportPowerPaletteOrder: 70
 		PrerequisiteDropItems:
 			airborne.upgrade: GTNKR2, GTNKR2
-	AddsSupportPowerStackOnCreation:
-		OrderName: airbornetank
 	Buildable:
 		Queue: PowerProxy
 	Tooltip:

@@ -9,6 +9,7 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using OpenRA.Mods.Common.Traits;
@@ -34,12 +35,25 @@ namespace OpenRA.Mods.CA.Traits
 		[Desc("Maximum number of stacks that can be owned at once. Zero means unlimited.")]
 		public readonly int MaxStacks = 0;
 
+		[Desc("Number of stacks granted by this actor.")]
+		public readonly int Stacks = 1;
+
+		public override void RulesetLoaded(Ruleset rules, ActorInfo ai)
+		{
+			base.RulesetLoaded(rules, ai);
+
+			if (AllowMultiple)
+				throw new YamlException($"Stackable support powers are incompatible with AllowMultiple. Set AllowMultiple to false on {ai.Name}.");
+		}
+
 		public override object Create(ActorInitializer init) { return new StackableParatroopersPower(init.Self, this); }
 	}
 
-	public class StackableParatroopersPower : ParatroopersPowerCA
+	public class StackableParatroopersPower : ParatroopersPowerCA, INotifyAddedToWorld, INotifyRemovedFromWorld, INotifyActorDisposing, INotifyOwnerChanged
 	{
 		readonly StackableParatroopersPowerInfo info;
+		readonly List<string> registeredStackIds = new();
+		Player registeredOwner;
 
 		public StackableParatroopersPower(Actor self, StackableParatroopersPowerInfo info)
 			: base(self, info)
@@ -61,6 +75,73 @@ namespace OpenRA.Mods.CA.Traits
 		public override SupportPowerInstance CreateInstance(string key, SupportPowerManager manager)
 		{
 			return new StackableSupportPowerInstance(key, info, manager);
+		}
+
+		protected override void TraitEnabled(Actor self)
+		{
+			AddStacks(self, self.Owner);
+		}
+
+		protected override void TraitDisabled(Actor self)
+		{
+			RemoveStacks();
+		}
+
+		void INotifyAddedToWorld.AddedToWorld(Actor self)
+		{
+			AddStacks(self, self.Owner);
+		}
+
+		void INotifyRemovedFromWorld.RemovedFromWorld(Actor self)
+		{
+			RemoveStacks();
+		}
+
+		void INotifyActorDisposing.Disposing(Actor self)
+		{
+			RemoveStacks();
+		}
+
+		void INotifyOwnerChanged.OnOwnerChanged(Actor self, Player oldOwner, Player newOwner)
+		{
+			RemoveStacks();
+			AddStacks(self, newOwner);
+		}
+
+		void AddStacks(Actor self, Player owner)
+		{
+			if (IsTraitDisabled || !self.IsInWorld || registeredStackIds.Count > 0)
+				return;
+
+			var manager = owner.PlayerActor.TraitOrDefault<StackableSupportPowerManager>();
+			if (manager == null)
+				return;
+
+			for (var i = 0; i < info.Stacks; i++)
+			{
+				var stackId = $"{self.ActorID}:{info.OrderName}:{i}";
+				if (manager.AddStack(info.OrderName, stackId))
+					registeredStackIds.Add(stackId);
+			}
+
+			if (registeredStackIds.Count > 0)
+				registeredOwner = owner;
+		}
+
+		void RemoveStacks()
+		{
+			if (registeredOwner == null || registeredStackIds.Count == 0)
+				return;
+
+			var manager = registeredOwner.PlayerActor.TraitOrDefault<StackableSupportPowerManager>();
+			if (manager != null)
+			{
+				foreach (var stackId in registeredStackIds)
+					manager.RemoveStack(info.OrderName, stackId);
+			}
+
+			registeredStackIds.Clear();
+			registeredOwner = null;
 		}
 
 		sealed class StackableSupportPowerInstance : SupportPowerInstanceCA, IStackableSupportPowerInstance

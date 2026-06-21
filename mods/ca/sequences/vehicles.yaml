@@ -492,6 +492,29 @@ v2rl:
 	icon:
 		Filename: v2rlicon.shp
 
+v2arl:
+	Inherits: ^VehicleOverlays
+	idle:
+		Filename: v2arl.shp
+		Facings: 32
+		UseClassicFacings: True
+	empty-idle:
+		Filename: v2arl.shp
+		Start: 32
+		Facings: 32
+		UseClassicFacings: True
+	aim:
+		Filename: v2arl.shp
+		Facings: 32
+		UseClassicFacings: True
+	empty-aim:
+		Filename: v2arl.shp
+		Start: 32
+		Facings: 32
+		UseClassicFacings: True
+	icon:
+		Filename: v2rlicon.shp
+
 arty:
 	Inherits: ^VehicleOverlays
 	idle:

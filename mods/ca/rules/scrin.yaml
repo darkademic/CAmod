@@ -2366,14 +2366,14 @@ DEVO:
 	Armament@PRIMARY:
 		Weapon: DevourerLaser
 		PauseOnCondition: (ammo || charged-fire) && !uncharged-fire
-		LocalOffset: 850,0,208
+		LocalOffset: 850,0,160
 		MuzzleSequence: muzzle
 		MuzzlePalette: scrin
 	Armament@PRIMARYCHARGED:
 		Name: primary-charged
 		Weapon: DevourerLaserCharged
 		PauseOnCondition: !ammo || uncharged-fire
-		LocalOffset: 850,0,208
+		LocalOffset: 850,0,160
 		MuzzleSequence: muzzle
 		MuzzlePalette: scrin
 	WithMuzzleOverlay:

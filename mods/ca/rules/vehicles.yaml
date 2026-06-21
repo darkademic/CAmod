@@ -2,6 +2,13 @@ V2RL:
 	Inherits: ^Vehicle
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	RenderSprites:
+		FactionImages:
+			soviet: v2rl
+			russia: v2rl
+			ukraine: v2rl
+			iraq: v2arl
+			yuri: v2rl
 	Buildable:
 		Queue: VehicleSQ, VehicleMQ
 		BuildPaletteOrder: 180

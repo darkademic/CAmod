@@ -978,6 +978,12 @@ v2:
 		Facings: 32
 		ZOffset: 1023
 
+v2a:
+	idle:
+		Filename: v2a.shp
+		Facings: 32
+		ZOffset: 1023
+
 v3:
 	idle:
 		Filename: v3.shp

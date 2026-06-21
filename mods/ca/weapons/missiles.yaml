@@ -1095,6 +1095,8 @@ SCUD:
 
 SCUD.Iraq:
 	Inherits: SCUD
+	Projectile: Bullet
+		Image: V2A
 	Warhead@1Dam: SpreadDamage
 		DamageTypes: Prone50Percent, TriggerProne, RadiationDeath, FlakVestMitigatedMinor
 	Warhead@4Eff: CreateEffect

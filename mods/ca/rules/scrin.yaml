@@ -647,7 +647,7 @@ S4:
 		Weapon: IntruderDiscsBATF
 	ArmamentBurstCounter:
 	AttackFrontal:
-		PauseOnCondition: being-warped || blinded || reapersnare
+		PauseOnCondition: being-warped || blinded || reapersnare || blink
 		FacingTolerance: 0
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
@@ -660,15 +660,19 @@ S4:
 		ChronoshiftSound: scrinport.aud
 		RequiresCondition: blink-upgrade
 		TeleportCondition: blink
-		ConditionDuration: 3
+		ConditionDuration: 15
 		ShowSelectionBarWhenFull: false
 		CircleColor: c8b8ed66
 	GrantConditionOnPrerequisite@BLINKPACKS:
 		Condition: blink-upgrade
 		Prerequisites: blink.upgrade
+	GrantTimedCondition@BlinkFlash:
+		Condition: blinkflash
+		Duration: 3
+		RequiresCondition: blink
 	WithColoredOverlay@BLINKFLASH:
 		Color: ffffff80
-		RequiresCondition: blink
+		RequiresCondition: blinkflash
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 
@@ -707,7 +711,7 @@ MRDR:
 		Weapon: IntruderDiscsBATF
 	ArmamentBurstCounter:
 	AttackFrontal:
-		PauseOnCondition: being-warped || blinded || reapersnare
+		PauseOnCondition: being-warped || blinded || reapersnare || blink
 		FacingTolerance: 0
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
@@ -720,12 +724,16 @@ MRDR:
 		ChronoshiftSound: scrinport.aud
 		RequiresCondition: blink-upgrade
 		TeleportCondition: blink
-		ConditionDuration: 3
+		ConditionDuration: 15
 		ShowSelectionBarWhenFull: false
 		CircleColor: c8b8ed66
 	GrantConditionOnPrerequisite@BLINKPACKS:
 		Condition: blink-upgrade
 		Prerequisites: blink.upgrade
+	GrantTimedCondition@BlinkFlash:
+		Condition: blinkflash
+		Duration: 3
+		RequiresCondition: blink
 	WithColoredOverlay@BLINKFLASH:
 		Color: ffffff80
 		RequiresCondition: blink

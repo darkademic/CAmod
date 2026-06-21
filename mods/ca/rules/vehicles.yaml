@@ -8545,7 +8545,7 @@ PTNK:
 		Modifier: 75
 		RequiresCondition: !undeployed
 	RangeMultiplier@Deployed:
-		Modifier: 112
+		Modifier: 113
 		RequiresCondition: !undeployed
 	ChangesHealth:
 		PercentageStep: 1
@@ -8586,7 +8586,7 @@ PCAN:
 	Voiced:
 		VoiceSet: PrismCannonVoice
 	RangeMultiplier@Deployed:
-		Modifier: 109
+		Modifier: 110
 	-ReplacedInQueue:
 	-Upgradeable@PCAN:
 	-WithDecoration@UpgradeOverlay:

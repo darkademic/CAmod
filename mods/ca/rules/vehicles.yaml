@@ -3274,22 +3274,8 @@ HMMV:
 	WithProductionIconOverlay:
 		Types: Veterancy
 		Prerequisites: vehicles.upgraded
-	GrantConditionOnPrerequisite@GSHIELD:
-		Condition: pointdef-upgrade
-		Prerequisites: pointdef.upgrade, !tow.upgrade
-	TimedDamageMultiplier@GSHIELD:
-		ActiveCondition: gshield
-		ChargingColor: 008888
-		DrainingColor: 00ffff
-		Modifier: 50
-		Duration: 50
-		ChargeTime: 750
-		ActivateSound: gshieldup.aud
-		DeactivateSound: gshielddown.aud
-		RequiresCondition: pointdef-upgrade
 	WithIdleOverlay@NSHIELD:
 		Image: nshield-overlay-sm
-		RequiresCondition: (nshield || gshield) && !(empdisable || invulnerability || invisibility)
 	ReplacedInQueue:
 		Actors: hmmv.tow
 	Upgradeable@TOW:
@@ -3400,22 +3386,8 @@ GDRN:
 		Range: 6c0
 		DetectionTypes: Cloak, AirCloak
 		RequiresCondition: !(empdisable || being-warped)
-	GrantConditionOnPrerequisite@GSHIELD:
-		Condition: pointdef-upgrade
-		Prerequisites: pointdef.upgrade, !tow.upgrade
-	TimedDamageMultiplier@GSHIELD:
-		ActiveCondition: gshield
-		ChargingColor: 008888
-		DrainingColor: 00FFFF61
-		Modifier: 50
-		Duration: 25
-		ChargeTime: 750
-		ActivateSound: gshieldup.aud
-		DeactivateSound: gshielddown.aud
-		RequiresCondition: pointdef-upgrade
 	WithIdleOverlay@NSHIELD:
 		Image: nshield-overlay-sm
-		RequiresCondition: (nshield || gshield) && !(empdisable || invulnerability || invisibility)
 	ReplacedInQueue:
 		Actors: gdrn.tow
 	Upgradeable@TOW:

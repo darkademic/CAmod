@@ -4066,7 +4066,7 @@ YURI:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 18000
+		HP: 11000
 	Mobile:
 		Speed: 60
 		Voice: Move

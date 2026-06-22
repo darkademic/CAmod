@@ -2124,7 +2124,8 @@
 		TargetTypes: MiniDroneAttachable
 		RequiresCondition: !mdrn-attached
 	ChangesHealth@MINIDRONE:
-		Step: 1000
+		Step: 0
+		PercentageStep: 1
 		Delay: 25
 		StartIfBelow: 100
 		DamageCooldown: 100

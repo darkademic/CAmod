@@ -1320,7 +1320,7 @@ MAST:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 18000
+		HP: 11000
 	Mobile:
 		Speed: 60
 	RevealsShroud:
@@ -1495,7 +1495,7 @@ MAST:
 		AmmoCondition: mspk-ammo
 	ReloadAmmoPoolCA@MindSpark:
 		AmmoPool: mspk
-		Delay: 375
+		Delay: 625
 		Count: 1
 		ShowSelectionBar: true
 		SelectionBarColor: ff00ff

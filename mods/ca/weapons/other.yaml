@@ -3983,6 +3983,7 @@ TargetPainter:
 		Width: 70
 		Duration: 20
 		HitAnim: empty
+		GlowScale: 0
 	Warhead@UnitReveal: RevealShroud
 		Duration: 28
 		Radius: 5c0

@@ -1752,6 +1752,8 @@
 		SearchFromHarvesterRadius: 8
 		HarvestFacings: 8
 		EmptyCondition: no-ore
+	HarvesterAutoResume:
+		ResumeDelay: 250
 	DockClientManager:
 	WithStoresResourcesPipsDecoration:
 		Position: BottomLeft

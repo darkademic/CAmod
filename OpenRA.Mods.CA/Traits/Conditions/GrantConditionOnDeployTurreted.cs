@@ -57,6 +57,9 @@ namespace OpenRA.Mods.CA.Traits
 		[Desc("Play a randomly selected sound from this list when undeploying.")]
 		public readonly string[] UndeploySounds = null;
 
+		[Desc("If true, audible through fog/shroud.")]
+		public readonly bool AudibleThroughFog = false;
+
 		[Desc("Skip make/deploy animation?")]
 		public readonly bool SkipMakeAnimation = false;
 
@@ -300,7 +303,7 @@ namespace OpenRA.Mods.CA.Traits
 			if (!IsValidTerrain(self.Location))
 				return;
 
-			if (Info.DeploySounds != null && Info.DeploySounds.Length > 0)
+			if (Info.DeploySounds != null && Info.DeploySounds.Length > 0 && (Info.AudibleThroughFog || !self.World.FogObscures(self.CenterPosition)))
 				Game.Sound.Play(SoundType.World, Info.DeploySounds, self.World, self.CenterPosition);
 
 			// Revoke condition that is applied while undeployed.

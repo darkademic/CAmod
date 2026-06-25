@@ -848,7 +848,7 @@ APTusk:
 TOW:
 	Inherits: ^AntiGroundMissile
 	Range: 5c0
-	ValidTargets: Vehicle, Structure
+	ValidTargets: Vehicle, Ship, Structure
 	Report: tow1.aud, tow2.aud
 	ReloadDelay: 200
 	Projectile: MissileCA

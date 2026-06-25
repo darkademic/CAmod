@@ -279,7 +279,7 @@ NUKC:
 	WithEnabledAnimation@Deploying:
 		RequiresCondition: deployed
 		Sequence: make
-		Body: deployed
+		Body: body
 	WithEnabledAnimation@Undeploying:
 		RequiresCondition: undeployed
 		Sequence: undeploy
@@ -8449,6 +8449,7 @@ PTNK:
 		Voice: Move
 		ImmovableCondition: deployed
 		RequireForceMoveCondition: !undeployed
+		PauseOnCondition: being-captured || empdisable || being-warped || driver-dead || notmobile || deployed
 	Passenger:
 		Voice: Move
 	RevealsShroud:

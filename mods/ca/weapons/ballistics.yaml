@@ -568,6 +568,13 @@ TitanGun:
 		GlowFadeFrames: 30
 		GlowFadeInFrames: 12
 
+NukeCannonDeployer:
+	ReloadDelay: 10
+	MinRange: 4c0
+	Range: 18c0
+	TargetActorCenter: true
+	Projectile: InstantHit
+
 280mmAtomic:
 	Inherits: ^Artillery
 	ReloadDelay: 200
@@ -636,13 +643,6 @@ TitanGun:
 	Warhead@3Eff: CreateEffect
 		Explosions: fuelbomb1, fuelbomb2
 		ImpactSounds: gexpneua.aud, gexpneub.aud, gexpneuc.aud, gexpneud.aud
-
-NukeCannonDeployer:
-	ReloadDelay: 10
-	MinRange: 4c0
-	Range: 16c0
-	TargetActorCenter: true
-	Projectile: InstantHit
 
 8Inch:
 	Inherits: ^Artillery

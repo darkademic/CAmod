@@ -339,6 +339,16 @@ namespace OpenRA.Mods.CA.Traits
 			if (order.OrderID != "Attach" && order.OrderID != "MassAttach")
 				return null;
 
+			if (order.OrderID == "MassAttach")
+			{
+				var targetActor = target.Type == TargetType.Actor ? target.Actor : null;
+				var selectedActors = targetActor == null
+					? new[] { self }
+					: OrderedAttachablesForTarget(self, targetActor, self.World.Selection.Actors).Select(a => a.Actor).ToArray();
+
+				return new Order(order.OrderID, self, target, queued, selectedActors);
+			}
+
 			return new Order(order.OrderID, self, target, queued);
 		}
 
@@ -400,6 +410,18 @@ namespace OpenRA.Mods.CA.Traits
 			self.ShowTargetLines();
 		}
 
+		IEnumerable<TraitPair<Attachable>> OrderedAttachablesForTarget(Actor self, Actor targetActor, IEnumerable<Actor> actors)
+		{
+			return actors
+				.Where(a => a != null
+					&& a.Owner == self.Owner
+					&& !a.IsDead)
+				.Select(a => new TraitPair<Attachable>(a, a.TraitsImplementing<Attachable>().FirstOrDefault(t => t.Info.Type == Info.Type)))
+				.Where(a => a.Trait != null && a.Trait.CanAttachToActor(a.Actor, Target.FromActor(targetActor)))
+				.OrderBy(a => (a.Actor.CenterPosition - targetActor.CenterPosition).LengthSquared)
+				.ThenBy(a => a.Actor.ActorID);
+		}
+
 		void ResolveMassAttachOrder(Actor self, Order order)
 		{
 			// Enter orders are only valid for own/allied actors,
@@ -408,19 +430,11 @@ namespace OpenRA.Mods.CA.Traits
 				return;
 
 			var targetActor = order.Target.Actor;
+			if (targetActor == null || targetActor.IsDead)
+				return;
 
-			var selectedWithTrait = self.World.Selection.Actors
-				.Where(a => a.Info.TraitInfos<AttachableInfo>().Any(ai => ai.Type == Info.Type)
-					&& a.Owner == self.Owner
-					&& !a.IsDead)
-				.OrderBy(a => (a.CenterPosition - targetActor.CenterPosition).LengthSquared)
-				.Select(a => new TraitPair<Attachable>(a, a.TraitsImplementing<Attachable>().FirstOrDefault(a => a.Info.Type == Info.Type)));
-
-			// Find the closest actor to the target transport
-			var closestActor = selectedWithTrait.FirstOrDefault();
-
-			// Only perform allocation if the current actor is the closest actor
-			if (closestActor.Actor != self)
+			var selectedWithTrait = OrderedAttachablesForTarget(self, targetActor, order.ExtraActors ?? Array.Empty<Actor>()).ToArray();
+			if (!selectedWithTrait.Any(a => a.Actor == self))
 				return;
 
 			// Create a list of available transports
@@ -431,8 +445,10 @@ namespace OpenRA.Mods.CA.Traits
 					&& !a.IsDead
 					&& (a.CenterPosition - targetActor.CenterPosition).HorizontalLengthSquared <= WDist.FromCells(10).LengthSquared)
 				.Select(a => new TraitPair<AttachableTo>(a, a.TraitsImplementing<AttachableTo>().FirstOrDefault(a => a.Info.Type == Info.Type)))
-				.Where(t => closestActor.Trait.CanAttachToActor(closestActor.Actor, Target.FromActor(t.Actor)))
+				.Where(t => t.Trait != null && CanAttachToActor(self, Target.FromActor(t.Actor)))
 				.ToList();
+
+			Actor assignedTarget = null;
 
 			// Allocate passengers to the closest available transport
 			foreach (var pair in selectedWithTrait)
@@ -444,14 +460,21 @@ namespace OpenRA.Mods.CA.Traits
 					.OrderBy(t => (t.Actor.CenterPosition - pair.Actor.CenterPosition).LengthSquared)
 					.FirstOrDefault();
 
-				// can't queue an activity here because the selected units aren't known by all clients so causes a de-sync
-				// pair.Actor.QueueActivity(false, new Attach(pair.Actor, Target.FromActor(closestTarget.Actor), pair.Trait, Info.TargetLineColor));
-				self.World.IssueOrder(new Order("Attach", pair.Actor, Target.FromActor(closestTarget.Actor), order.Queued));
-				pair.Actor.ShowTargetLines();
+				if (closestTarget == null)
+					continue;
+
+				if (pair.Actor == self)
+					assignedTarget = closestTarget.Actor;
+
 				// todo: take into account AttachableTo.Info.Limit in the same way MassEntersCargo takes MaxWeight into account
 
 				availableTargets.Remove(closestTarget);
 			}
+
+			if (assignedTarget == null)
+				return;
+
+			self.QueueActivity(order.Queued, new Attach(self, Target.FromActor(assignedTarget), this, Info.TargetLineColor));
 		}
 	}
 

@@ -655,9 +655,9 @@ SilencedPPKBATF:
 
 Colt45:
 	Inherits: ^SnipeWeapon
-	ReloadDelay: 7
+	ReloadDelay: 10
 	Burst: 4
-	BurstDelays: 2,6,2
+	BurstDelays: 2,9,2
 	Range: 7c0
 	Warhead@1Dam: SpreadDamage
 		Damage: 4700
@@ -678,7 +678,7 @@ Colt45BATF:
 SMG:
 	Inherits: ^SnipeWeapon
 	Report: silppk.aud
-	ReloadDelay: 12
+	ReloadDelay: 16
 	Range: 7c0
 	Warhead@1Dam: SpreadDamage
 		Damage: 25000
@@ -731,7 +731,7 @@ MP5BATF:
 
 AKM:
 	StartBurstReport: mg11.aud
-	ReloadDelay: 10
+	ReloadDelay: 15
 	Burst: 3
 	BurstDelays: 2
 	Range: 7c0

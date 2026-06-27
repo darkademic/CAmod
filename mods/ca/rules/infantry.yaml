@@ -946,8 +946,6 @@ E7:
 	Targetable@ReaperSnareImmune:
 		TargetTypes: ReaperSnareImmune
 	-Crushable:
-	TakeCover:
-		SpeedModifier: 70
 	TargetSpecificOrderVoice:
 		Orders: Attack, ForceAttack
 		TargetTypeVoices:
@@ -2108,8 +2106,6 @@ RMBO:
 	Targetable@ReaperSnareImmune:
 		TargetTypes: ReaperSnareImmune
 	-Crushable:
-	TakeCover:
-		SpeedModifier: 70
 	TargetSpecificOrderVoice:
 		Orders: Attack, ForceAttack
 		TargetTypeVoices:
@@ -2373,8 +2369,6 @@ BORI:
 		TargetTypes: ChaosImmune
 	Targetable@ReaperSnareImmune:
 		TargetTypes: ReaperSnareImmune
-	TakeCover:
-		SpeedModifier: 70
 	AutoTargetPriority@DEFAULT:
 		ValidTargets: Infantry, Vehicle, Water, Underwater
 	ChangesHealth@ELITE:
@@ -4149,8 +4143,6 @@ YURI:
 	Voiced:
 		VoiceSet: YuriVoice
 	-Crushable:
-	TakeCover:
-		SpeedModifier: 70
 	WithInfantryBody:
 		IdleSequences: idle
 		StandSequences: stand
@@ -4340,8 +4332,6 @@ SEAL:
 	IgnoresDisguise:
 	Crushable:
 		CrushClasses: heavyinfantry
-	TakeCover:
-		SpeedModifier: 70
 	TargetSpecificOrderVoice:
 		Orders: Attack, ForceAttack
 		TargetTypeVoices:

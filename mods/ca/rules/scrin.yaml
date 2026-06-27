@@ -1417,8 +1417,6 @@ MAST:
 		Types: Veterancy
 		Prerequisites: barracks.upgraded
 	-Crushable:
-	TakeCover:
-		SpeedModifier: 70
 	ExternalCondition@PRODUCED:
 		Condition: produced
 	VoiceAnnouncement:

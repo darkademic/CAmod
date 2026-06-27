@@ -73,7 +73,7 @@ DisintegratorIFVBeamAA:
 
 EnslaveInfantry:
 	Range: 7c0
-	ReloadDelay: 40
+	ReloadDelay: 50
 	Projectile: InstantHit
 	ValidTargets: MindControllable
 	InvalidTargets: Vehicle, Ship, MindControlImmune

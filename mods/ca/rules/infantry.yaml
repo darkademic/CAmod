@@ -2631,6 +2631,16 @@ CONF:
 		ConcurrentLimit: 1
 		KillExcessDamageTypes: SmallExplosionDeath
 		AvoidActors: true
+	IssueOrderToBot:
+		RequiresCondition: !being-warped && !blinded && !reapersnare && !parachute && !berserk
+		OrderName: SpawnActorAbility
+		OrderTrigger: BecomingIdle, Attack
+		OrderChance: 100
+		OrderInterval: 760
+		TargetRangeInCell: 3
+		ValidTargets: Infantry, Cyborg
+		ValidRelationships: Ally
+		TargetDistance: Closest
 	WithSpawnedActorIdentifier:
 		Type: SelectionBox
 		BoundsMargin: 2,2
@@ -4474,6 +4484,18 @@ ENLI:
 	AmmoPool:
 		Armaments: secondary
 		Ammo: 1
+	IssueOrderToBot:
+		RequiresCondition: !being-warped && !empdisable && !blinded && !parachute && !reapersnare && !berserk
+		OrderName: TargetedAttackAbilityAttack
+		OrderTrigger: Attack
+		UseTargetLocation: false
+		OrderChance: 100
+		OrderInterval: 505
+		TargetRangeInCell: 7
+		ValidTargets: Vehicle, Ship, Building
+		InvalidTargets: Cyborg, EmpImmune
+		ValidRelationships: Enemy
+		TargetDistance: Random
 	ReloadAmmoPoolCA:
 		Delay: 500 # equal to reload time of weapon
 		Count: 1
@@ -5382,6 +5404,17 @@ REAP:
 		Count: 1
 		ShowSelectionBar: true
 		SelectionBarColor: 00cc00
+	IssueOrderToBot:
+		RequiresCondition: !being-warped && !empdisable && !blinded  && !parachute && !reapersnare && !berserk
+		OrderName: TargetedAttackAbilityAttack
+		OrderTrigger: Attack
+		UseTargetLocation: false
+		OrderChance: 100
+		OrderInterval: 380
+		TargetRangeInCell: 8
+		ValidTargets: Infantry, Cyborg
+		ValidRelationships: Enemy
+		TargetDistance: Random
 	Encyclopedia:
 		Category: Nod/Infantry
 	EncyclopediaExtras:

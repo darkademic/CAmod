@@ -1112,6 +1112,7 @@ Player:
 			flakarmor.upgrade: 1
 			carapace.upgrade: 1
 			advart.upgrade: 1
+			blink.upgrade: 1
 			hyper.upgrade: 1
 			shrw.upgrade: 1
 			loyalist.allegiance: 1
@@ -1386,6 +1387,7 @@ Player:
 			flakarmor.upgrade: 1
 			carapace.upgrade: 1
 			advart.upgrade: 1
+			blink.upgrade: 1
 			hyper.upgrade: 1
 			shrw.upgrade: 1
 			loyalist.allegiance: 1
@@ -1659,6 +1661,7 @@ Player:
 			flakarmor.upgrade: 1
 			carapace.upgrade: 1
 			advart.upgrade: 1
+			blink.upgrade: 1
 			hyper.upgrade: 1
 			shrw.upgrade: 1
 			loyalist.allegiance: 1
@@ -1932,6 +1935,7 @@ Player:
 			flakarmor.upgrade: 1
 			carapace.upgrade: 1
 			advart.upgrade: 1
+			blink.upgrade: 1
 			hyper.upgrade: 1
 			shrw.upgrade: 1
 			loyalist.allegiance: 1
@@ -2169,6 +2173,7 @@ Player:
 			flakarmor.upgrade: 1
 			carapace.upgrade: 1
 			advart.upgrade: 1
+			blink.upgrade: 1
 			hyper.upgrade: 1
 			shrw.upgrade: 1
 			loyalist.allegiance: 1

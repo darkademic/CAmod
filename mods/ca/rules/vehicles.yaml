@@ -9870,6 +9870,16 @@ XO:
 		CircleColor: ffaa0077
 		MaxDistance: 7
 		Speed: 140
+	IssueOrderToBot:
+		OrderName: TargetedLeapOrderLeap
+		OrderTrigger: Damage
+		RequiresCondition:  !being-warped && !reapersnare
+		OrderChance: 100
+		OrderInterval: 255
+		TargetRangeInCell: 7
+		ValidTargets: Ground, Air
+		ValidRelationships: Ally
+		TargetDistance: Furthest
 	Contrail@Jumping:
 		Offset: -30,0,350
 		StartColorUsePlayerColor: false

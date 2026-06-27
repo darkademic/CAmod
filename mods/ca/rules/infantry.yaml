@@ -4862,6 +4862,16 @@ ZTRP:
 		MaxDistance: 7
 		Speed: 175
 		RequiresCondition: !being-warped && !reapersnare
+	IssueOrderToBot:
+		OrderName: TargetedLeapOrderLeap
+		OrderTrigger: Damage
+		RequiresCondition:  !being-warped && !reapersnare && !parachute
+		OrderChance: 100
+		OrderInterval: 255
+		TargetRangeInCell: 7
+		ValidTargets: Ground, Air
+		ValidRelationships: Ally
+		TargetDistance: Furthest
 	Contrail@Jumping:
 		Offset: -30,0,350
 		StartColorUsePlayerColor: false
@@ -4913,6 +4923,8 @@ ZRAI:
 	TargetedLeapAbility:
 		MaxDistance: 10
 		Speed: 200
+	IssueOrderToBot:
+		TargetRangeInCell: 10
 	EncyclopediaExtras:
 		AdditionalInfo: Requires Seek & Destroy Strategy.
 
@@ -4937,6 +4949,7 @@ ZDEF:
 	Health:
 		HP: 20000
 	-TargetedLeapAbility:
+	-IssueOrderToBot:
 	-Contrail@Jumping:
 	-WithShadow@Jump:
 	-Targetable@Jump:

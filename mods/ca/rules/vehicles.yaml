@@ -3547,6 +3547,16 @@ BGGY:
 		RequiresCondition: player-blackh && decoy-upgrade && ammo && !(empdisable || being-warped)
 		AmmoPool: decoyspawner
 		FaceTarget: true
+	IssueOrderToBot:
+		RequiresCondition: decoy-upgrade && ammo && !(empdisable || being-warped)
+		OrderName: SpawnActorAbility
+		OrderTrigger: Attack
+		OrderChance: 100
+		OrderInterval: 760
+		TargetRangeInCell: 12
+		ValidTargets: Infantry, Vehicle, Defense
+		ValidRelationships: Enemy
+		TargetDistance: Random
 	ReplacedInQueue:
 		Actors: rbug
 	Upgradeable@Raider:

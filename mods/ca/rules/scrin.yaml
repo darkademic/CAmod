@@ -1486,6 +1486,16 @@ MAST:
 		Behavior: SpawnAtSelfAndSlavesAndMoveToTarget
 		RequiresCondition: !being-warped && mspk-ammo
 		AmmoPool: mspk
+	IssueOrderToBot:
+		RequiresCondition:  !being-warped && mspk-ammo && !parachute
+		OrderName: SpawnActorAbility
+		OrderTrigger: Attack
+		OrderChance: 100
+		OrderInterval: 80  ## When this trait is disabled, the countdown will stop
+		TargetRangeInCell: 12
+		ValidTargets: Infantry, Vehicle
+		ValidRelationships: Enemy
+		TargetDistance: Random
 	AmmoPool@MindSpark:
 		Name: mspk
 		Ammo: 1

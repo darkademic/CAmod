@@ -1070,6 +1070,7 @@ Player:
 			hazmat.upgrade: 1
 			hazmatsoviet.upgrade: 1
 			howi.upgrade: 1
+			decoy.upgrade: 1
 			microwave.upgrade: 1
 			blacknapalm.upgrade: 1
 			quantum.upgrade: 1
@@ -1341,6 +1342,7 @@ Player:
 			hazmat.upgrade: 1
 			hazmatsoviet.upgrade: 1
 			howi.upgrade: 1
+			decoy.upgrade: 1
 			microwave.upgrade: 1
 			blacknapalm.upgrade: 1
 			quantum.upgrade: 1
@@ -1611,6 +1613,7 @@ Player:
 			hazmat.upgrade: 1
 			hazmatsoviet.upgrade: 1
 			howi.upgrade: 1
+			decoy.upgrade: 1
 			microwave.upgrade: 1
 			blacknapalm.upgrade: 1
 			quantum.upgrade: 1
@@ -1881,6 +1884,7 @@ Player:
 			hazmat.upgrade: 1
 			hazmatsoviet.upgrade: 1
 			howi.upgrade: 1
+			decoy.upgrade: 1
 			microwave.upgrade: 1
 			blacknapalm.upgrade: 1
 			quantum.upgrade: 1
@@ -2115,6 +2119,7 @@ Player:
 			hazmat.upgrade: 1
 			hazmatsoviet.upgrade: 1
 			howi.upgrade: 1
+			decoy.upgrade: 1
 			microwave.upgrade: 1
 			blacknapalm.upgrade: 1
 			quantum.upgrade: 1

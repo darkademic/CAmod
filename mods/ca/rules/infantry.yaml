@@ -1857,7 +1857,6 @@ N4:
 		LocalOffset: 341,0,300
 		MuzzleSequence: muzzle
 		MuzzlePalette: tdeffect
-
 	Armament@BATF:
 		Name: batf
 		Weapon: FlamerTDBATF

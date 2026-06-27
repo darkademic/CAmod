@@ -258,6 +258,8 @@ NUKC:
 		ForceFireIgnoresActors: True
 		PersistentTargeting: false
 		RequiresCondition: !undeploying
+	IgnoreOutOfRangeAttackOrders:
+		RequiresCondition: !undeployed
 	GrantConditionOnDeployTurreted:
 		DeployedCondition: deployed
 		UndeployedCondition: undeployed
@@ -8449,7 +8451,6 @@ PTNK:
 		Voice: Move
 		ImmovableCondition: deployed
 		RequireForceMoveCondition: !undeployed
-		PauseOnCondition: being-captured || empdisable || being-warped || driver-dead || notmobile || deployed
 	Passenger:
 		Voice: Move
 	RevealsShroud:
@@ -8471,6 +8472,9 @@ PTNK:
 		TargetFrozenActors: True
 		PauseOnCondition: empdisable || being-warped || blinded
 		Voice: Attack
+		RangeMargin: 0
+	IgnoreOutOfRangeAttackOrders:
+		RequiresCondition: !undeployed
 	AttackMove:
 		Voice: Attack
 	WithSpriteTurret:

@@ -286,6 +286,12 @@ VEHICLES.SCRIN:
 		DischargeOnAttack: true
 		MaxTicksBeforeDischarge: 375
 		Instant: true
+	IssueOrderToBot:
+		RequiresCondition: hyper-upgrade && !being-warped && !empdisable
+		OrderName: GrantTimedConditionOnDeploy
+		OrderTrigger: Attack
+		OrderChance: 50
+		OrderInterval: 605
 	WithPalettedOverlay@HYPERCHARGE:
 		RequiresCondition: hypercharged && !(empdisable || invulnerability || invisibility)
 		Palette: hypercharge
@@ -1068,6 +1074,12 @@ STLK:
 		ChargingColor: 808080
 		DischargingColor: ffffff
 		Instant: true
+	IssueOrderToBot:
+		OrderName: GrantTimedConditionOnDeploy
+		RequiresCondition: !being-warped && !reapersnare && !parachute
+		OrderTrigger: Periodically
+		OrderChance: 100
+		OrderInterval: 880
 	Cloak@NORMAL:
 		InitialDelay: 0
 		CloakDelay: 750

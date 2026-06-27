@@ -6438,6 +6438,15 @@ IOK:
 		Instant: true
 		StartsFullyCharged: true
 		RequiresCondition: initialized
+	IssueOrderToBot:  ## works like AutoTarget for bots
+		RequiresCondition: initialized && !build-incomplete
+		OrderName: GrantTimedConditionOnDeploy
+		OrderTrigger: Periodically
+		TargetRangeInCell: 5
+		ValidTargets: Cyborg, Vehicle, Ship, Infantry
+		InvalidTargets: ChaosImmune
+		OrderChance: 100
+		OrderInterval: 60
 	WithColoredOverlay@Rage:
 		RequiresCondition: rage-active
 		Color: FF000033

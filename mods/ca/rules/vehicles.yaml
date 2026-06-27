@@ -2281,6 +2281,12 @@ JEEP:
 		DeploySound: optics-enable.aud
 		UndeploySound: optics-disable.aud
 		Instant: true
+	IssueOrderToBot:
+		RequiresCondition: optics-upgrade
+		OrderName: GrantTimedConditionOnDeploy
+		OrderTrigger: Periodically
+		OrderChance: 100
+		OrderInterval: 1505
 	GrantConditionOnPrerequisite@Optics:
 		Condition: optics-upgrade
 		Prerequisites: optics.upgrade
@@ -4845,6 +4851,12 @@ HTNK.Hover:
 		DischargingColor: ff6600
 		DeploySound: htnkabur.aud
 		Instant: true
+	IssueOrderToBot:
+		RequiresCondition: abur-upgrade && !being-warped && !empdisable
+		OrderName: GrantTimedConditionOnDeploy
+		OrderTrigger: Attack, Damage
+		OrderChance: 100
+		OrderInterval: 1705
 	GrantConditionOnPrerequisite@Afterburner:
 		Condition: abur-upgrade
 		Prerequisites: abur.upgrade

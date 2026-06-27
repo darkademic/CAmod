@@ -1095,6 +1095,7 @@ Player:
 			gattling.upgrade: 1
 			charv.upgrade: 1
 			pcan.upgrade: 1
+			optics.upgrade: 1
 			airborne.upgrade: 1
 			cryw.upgrade: 1
 			apb.upgrade: 1
@@ -1107,6 +1108,7 @@ Player:
 			flakarmor.upgrade: 1
 			carapace.upgrade: 1
 			advart.upgrade: 1
+			hyper.upgrade: 1
 			shrw.upgrade: 1
 			loyalist.allegiance: 1
 			rebel.allegiance: 1
@@ -1367,6 +1369,7 @@ Player:
 			gattling.upgrade: 1
 			charv.upgrade: 1
 			pcan.upgrade: 1
+			optics.upgrade: 1
 			airborne.upgrade: 1
 			cryw.upgrade: 1
 			apb.upgrade: 1
@@ -1379,6 +1382,7 @@ Player:
 			flakarmor.upgrade: 1
 			carapace.upgrade: 1
 			advart.upgrade: 1
+			hyper.upgrade: 1
 			shrw.upgrade: 1
 			loyalist.allegiance: 1
 			rebel.allegiance: 1
@@ -1638,6 +1642,7 @@ Player:
 			gattling.upgrade: 1
 			charv.upgrade: 1
 			pcan.upgrade: 1
+			optics.upgrade: 1
 			airborne.upgrade: 1
 			cryw.upgrade: 1
 			apb.upgrade: 1
@@ -1650,6 +1655,7 @@ Player:
 			flakarmor.upgrade: 1
 			carapace.upgrade: 1
 			advart.upgrade: 1
+			hyper.upgrade: 1
 			shrw.upgrade: 1
 			loyalist.allegiance: 1
 			rebel.allegiance: 1
@@ -1909,6 +1915,7 @@ Player:
 			gattling.upgrade: 1
 			charv.upgrade: 1
 			pcan.upgrade: 1
+			optics.upgrade: 1
 			airborne.upgrade: 1
 			cryw.upgrade: 1
 			apb.upgrade: 1
@@ -1921,6 +1928,7 @@ Player:
 			flakarmor.upgrade: 1
 			carapace.upgrade: 1
 			advart.upgrade: 1
+			hyper.upgrade: 1
 			shrw.upgrade: 1
 			loyalist.allegiance: 1
 			rebel.allegiance: 1
@@ -2144,6 +2152,7 @@ Player:
 			gattling.upgrade: 1
 			charv.upgrade: 1
 			pcan.upgrade: 1
+			optics.upgrade: 1
 			airborne.upgrade: 1
 			cryw.upgrade: 1
 			apb.upgrade: 1
@@ -2156,6 +2165,7 @@ Player:
 			flakarmor.upgrade: 1
 			carapace.upgrade: 1
 			advart.upgrade: 1
+			hyper.upgrade: 1
 			shrw.upgrade: 1
 			loyalist.allegiance: 1
 			rebel.allegiance: 1

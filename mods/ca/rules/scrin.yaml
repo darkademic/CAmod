@@ -669,6 +669,16 @@ S4:
 		ConditionDuration: 15
 		ShowSelectionBarWhenFull: false
 		CircleColor: c8b8ed66
+	IssueOrderToBot:
+		OrderName: PortableChronoTeleport
+		OrderTrigger: Damage
+		RequiresCondition:  blink-upgrade && !being-warped && !reapersnare && !parachute
+		OrderChance: 100
+		OrderInterval: 380
+		TargetRangeInCell: 15
+		ValidTargets: Ground, Air
+		ValidRelationships: Ally
+		TargetDistance: Furthest
 	GrantConditionOnPrerequisite@BLINKPACKS:
 		Condition: blink-upgrade
 		Prerequisites: blink.upgrade
@@ -733,6 +743,16 @@ MRDR:
 		ConditionDuration: 15
 		ShowSelectionBarWhenFull: false
 		CircleColor: c8b8ed66
+	IssueOrderToBot:
+		OrderName: PortableChronoTeleport
+		OrderTrigger: Damage
+		RequiresCondition:  blink-upgrade && !being-warped && !reapersnare && !parachute
+		OrderChance: 100
+		OrderInterval: 380
+		TargetRangeInCell: 15
+		ValidTargets: Ground, Air
+		ValidRelationships: Ally
+		TargetDistance: Furthest
 	GrantConditionOnPrerequisite@BLINKPACKS:
 		Condition: blink-upgrade
 		Prerequisites: blink.upgrade
@@ -832,6 +852,16 @@ WCHR:
 		ConditionDuration: 3
 		ShowSelectionBarWhenFull: false
 		CircleColor: c8b8ed66
+	IssueOrderToBot:
+		OrderName: PortableChronoTeleport
+		OrderTrigger: Damage
+		RequiresCondition:  blink-upgrade && !being-warped && !reapersnare && !parachute
+		OrderChance: 100
+		OrderInterval: 380
+		TargetRangeInCell: 15
+		ValidTargets: Ground, Air
+		ValidRelationships: Ally
+		TargetDistance: Furthest
 	GrantConditionOnPrerequisite@BLINKPACKS:
 		Condition: blink-upgrade
 		Prerequisites: blink.upgrade

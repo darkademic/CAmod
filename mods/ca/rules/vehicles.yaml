@@ -3063,6 +3063,16 @@ CTNK:
 		MaxInstantCircleBorderColor: 00000044
 		TeleportCondition: temporal-flux-init
 		ConditionDuration: 1
+	IssueOrderToBot:
+		OrderName: PortableChronoTeleport
+		OrderTrigger: Damage
+		RequiresCondition: !empdisable && !being-warped && !chronoshifted
+		OrderChance: 100
+		OrderInterval: 380
+		TargetRangeInCell: 12
+		ValidTargets: Ground, Air
+		ValidRelationships: Ally
+		TargetDistance: Furthest
 	WithIdleOverlay@PreCharge:
 		Sequence: idle
 		Image: chronoprep-overlay
@@ -9224,6 +9234,16 @@ CHPR:
 		ShowSelectionBarWhenFull: false
 		TeleportCondition: temporal-flux-init
 		ConditionDuration: 1
+	IssueOrderToBot:
+		OrderName: PortableChronoTeleport
+		OrderTrigger: Damage
+		RequiresCondition:  hp-below-50-perc && !(empdisable && being-warped) && !chronoshifted
+		OrderChance: 100
+		OrderInterval: 380
+		TargetRangeInCell: 12
+		ValidTargets: Ground, Air
+		ValidRelationships: Ally
+		TargetDistance: Furthest
 	GrantTimedCondition@TemporalFlux:
 		RequiresCondition: (temporal-flux-init || chronoshifted) && tflx-upgrade
 	RejectsOrders@AICHPR:

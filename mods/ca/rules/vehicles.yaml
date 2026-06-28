@@ -8435,6 +8435,7 @@ PTNK:
 	TooltipExtras:
 		Strengths: • Strong vs Infantry, Buildings, Defenses, Light Armor
 		Weaknesses: • Weak vs Heavy Armor\n• Cannot attack Aircraft
+		Attributes: • Can deploy for +1 range, -25% damage received and self-repair (France only)
 	Valued:
 		Cost: 1350
 	Tooltip:

@@ -3904,7 +3904,7 @@
 	MapEditorData:
 		Categories: Wall
 	ProductionCostMultiplier@FranceBonus:
-		Multiplier: 90
+		Multiplier: 60
 		Prerequisites: player.france
 	GrantExternalConditionToCrusher@CRUSHATTEMPTSLOW:
 		WarnCrushCondition: crush-attempt-slow

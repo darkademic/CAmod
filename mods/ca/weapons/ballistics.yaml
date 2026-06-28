@@ -514,7 +514,7 @@ TitanGun:
 	Range: 6c768
 	TargetActorCenter: true
 	Projectile: Bullet
-		Speed: 145
+		Speed: 160
 		Image: 380mm
 		Inaccuracy: 1c138
 	Warhead@1Dam: SpreadDamage

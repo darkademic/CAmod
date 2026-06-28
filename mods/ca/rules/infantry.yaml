@@ -536,12 +536,12 @@ U3:
 		VoiceSet: GGIVoice
 	Crushable:
 		RequiresCondition: !invulnerability && !being-warped && undeployed
-	AutoDeployer@AI:
-		RequiresCondition: botowner && !deployed && !parachute
-		DeployChance: 100
-		DeployTrigger: Attack
-		DeployTicks: 5
-		UndeployTicks: 50
+	IssueOrderToBot:
+		RequiresCondition: undeployed && !parachute
+		OrderName: GrantConditionOnDeploy
+		OrderChance: 100
+		OrderTrigger: Attack
+		OrderInterval: 35
 	Encyclopedia:
 		Category: Allies/Infantry
 	EncyclopediaExtras:
@@ -3208,12 +3208,12 @@ DESO:
 		Sequence: deploy
 		BodyNames: deployed
 	-ReplacedInQueue:
-	AutoDeployer@AI:
-		RequiresCondition: botowner && !deployed && !parachute
-		DeployChance: 20
-		DeployTrigger: Attack
-		DeployTicks: 5
-		UndeployTicks: 50
+	IssueOrderToBot:
+		RequiresCondition: undeployed && !parachute
+		OrderName: GrantConditionOnDeploy
+		OrderChance: 20
+		OrderTrigger: Attack
+		OrderInterval: 55
 	GrantConditionOnBotOwner@IAMBOT:
 		Condition: botowner
 		Bots: brutal, vhard, hard, normal, easy, naval, campaign
@@ -4194,11 +4194,12 @@ YURI:
 		RequiresCondition: botowner
 		ArmamentNames: aidummy
 		RevokeDelay: 60
-	AutoDeployer@AI:
-		RequiresCondition: aiattack && botowner && !deployed && !parachute
-		DeployChance: 100
-		DeployTrigger: Attack
-		DeployTicks: 100
+	IssueOrderToBot:
+		RequiresCondition: aiattack && !deployed && !parachute
+		OrderName: GrantTimedConditionOnDeploy
+		OrderChance: 100
+		OrderTrigger: Attack
+		OrderInterval: 31
 	GrantConditionOnBotOwner@IAMBOT:
 		Condition: botowner
 		Bots: brutal, vhard, hard, normal, easy, naval, campaign

@@ -677,6 +677,39 @@ explosion:
 		Filename: reap-snarehit.shp
 		BlendMode: Additive
 		Alpha: 0.75
+	pbomb_explosion:
+		Filename: pbomb-explode.shp
+		BlendMode: Alpha
+		Alpha: 0.6
+	pbomb_explosion2:
+		Filename: pbomb-explode.shp
+		BlendMode: Alpha
+		Alpha: 0.6
+		FlipX: true
+	pbomb_explosion3:
+		Filename: pbomb-explode.shp
+		BlendMode: Alpha
+		Alpha: 0.6
+		FlipY: true
+		FlipX: true
+	pbomb_explosion_sm:
+		Filename: pbomb-explode.shp
+		BlendMode: Alpha
+		Alpha: 0.6
+		Scale: 0.6
+	pbomb_explosion2_sm:
+		Filename: pbomb-explode.shp
+		BlendMode: Alpha
+		Alpha: 0.6
+		FlipX: true
+		Scale: 0.6
+	pbomb_explosion3_sm:
+		Filename: pbomb-explode.shp
+		BlendMode: Alpha
+		Alpha: 0.6
+		FlipY: true
+		FlipX: true
+		Scale: 0.6
 	empty:
 		Filename: empty.shp
 

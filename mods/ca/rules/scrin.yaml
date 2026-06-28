@@ -736,7 +736,7 @@ MRDR:
 		RequiresCondition: blink
 	WithColoredOverlay@BLINKFLASH:
 		Color: ffffff80
-		RequiresCondition: blink
+		RequiresCondition: blinkflash
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 	EncyclopediaExtras:
@@ -3787,7 +3787,7 @@ PAC:
 		TurnSpeed: 512
 		RealignDelay: 0
 	CarrierMaster@carr1:
-		Actors: inva, inva, inva, inva, inva, inva
+		Actors: inva, inva, invb, inva, inva, invb
 		RearmTicks: 0
 		RespawnTicks: 375
 		InstantRepair: true
@@ -3886,7 +3886,7 @@ INVA:
 		AttackType: Strafe
 		StrafeRunLength: 3c0
 	Aircraft:
-		CruiseAltitude: 2560
+		CruiseAltitude: 2c768
 		InitialFacing: 768
 		TurnSpeed: 32
 		Speed: 220
@@ -3936,6 +3936,13 @@ INVA:
 	GrantConditionOnDamageState@SmokeTrail:
 		Condition: enable-smoke
 	GivesExperienceToMaster:
+
+INVB:
+	Inherits: INVA
+	RenderSprites:
+		Image: inva
+	Armament@PRIMARY:
+		Weapon: PlasmaBomb
 
 MSHP:
 	Inherits: ^Helicopter

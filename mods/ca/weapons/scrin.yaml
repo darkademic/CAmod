@@ -994,7 +994,7 @@ InvaderLauncher:
 InvaderZap:
 	Range: 5c0
 	Report: gunwalker-fire1.aud, gunwalker-fire2.aud
-	ReloadDelay: 50
+	ReloadDelay: 60
 	Burst: 3
 	BurstDelays: 5
 	Projectile: Bullet
@@ -1003,21 +1003,15 @@ InvaderZap:
 		Palette: scrin
 		Blockable: false
 	Warhead@1Dam: SpreadDamage
-		Spread: 448
+		Spread: 128
 		Damage: 1000
-		InvalidTargets: Infantry
 		Versus:
-			None: 60
+			None: 80
 			Wood: 30
 			Concrete: 15
 			Light: 80
 			Heavy: 100
 			Brick: 20
-		DamageTypes: FireDeath, AirToGround
-	Warhead@2Dam: SpreadDamage
-		Spread: 128
-		ValidTargets: Infantry
-		Damage: 600
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath, AirToGround
 	Warhead@2Eff: CreateEffect
 		Explosions: idle
@@ -1043,7 +1037,6 @@ InvaderZapAA:
 		ValidTargets: Air
 		ValidRelationships: Enemy, Neutral
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath
-	-Warhead@2Dam:
 	Warhead@smallDamage: SpreadDamage
 		Damage: 235
 		Spread: 341
@@ -1868,6 +1861,32 @@ MothershipDiscs:
 			Concrete: 45
 			Light: 80
 			Heavy: 100
+	Warhead@3Eff: CreateEffect
+		Explosions: pbomb_explosion_sm, pbomb_explosion3_sm, pbomb_explosion3_sm
+		ImpactSounds: pbomb-hit1.aud, pbomb-hit2.aud
+		ExplosionPalette: caneon
+
+PlasmaBomb:
+	Inherits: MothershipDiscs
+	ReloadDelay: 60
+	Burst: 1
+	-ValidTargets:
+	Projectile: Bullet
+		Inaccuracy: 1c0
+	Warhead@1Dam: SpreadDamage
+		Spread: 512
+		Falloff: 1000, 448, 192, 64, 26, 10, 0
+		Damage: 400
+		Versus:
+			None: 20
+			Wood: 30
+			Concrete: 15
+			Light: 80
+			Heavy: 100
+			Brick: 20
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, AirToGround
+	Warhead@3Eff: CreateEffect
+		Explosions: pbomb_explosion, pbomb_explosion2, pbomb_explosion3
 
 LeecherBeam:
 	ValidTargets: Ground, Water

@@ -8545,6 +8545,12 @@ PTNK:
 		SmartDeploy: True
 		ValidFacings: 0, 256, 512, 768
 		RequiresCondition: player-france
+	IssueOrderToBot:
+		RequiresCondition: undeployed && player-france && !being-warped && !empdisable && !berserk
+		OrderName: GrantConditionOnDeployTurreted
+		OrderChance: 100
+		OrderTrigger: BecomingIdle, Attack
+		OrderInterval: 45
 	WithFacingSpriteBody@Deployed:
 		Sequence: fort
 		RequiresCondition: !undeployed

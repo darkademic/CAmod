@@ -1897,15 +1897,6 @@ satscan:
 		Tick: 80
 		ZOffset: 1023
 
-jamfield:
-	idle:
-		Filename: jamfield.shp
-		Length: *
-		BlendMode: Alpha
-		ZOffset: 1023
-		Alpha: 0.07
-		Scale: 1.2
-
 cryostorm:
 	Defaults:
 		Filename: cryostorm.shp

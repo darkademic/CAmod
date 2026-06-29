@@ -1248,17 +1248,10 @@ jamming.field:
 	Interactable:
 		Bounds: 64, 64
 	ScriptTriggers:
-	BodyOrientation:
-		QuantizedFacings: 1
-	WithSpriteBody:
-	HitShape:
 	HiddenUnderFog:
 		Type: GroundPosition
 	Immobile:
 		OccupiesSpace: false
-	RenderSprites:
-		Image: jamfield
-		Palette: effect
 	KillsSelf:
 		Delay: 225
 	WithRangeCircleCA@JAMMER:
@@ -1267,7 +1260,7 @@ jamming.field:
 		Visible: Always
 		ValidRelationships: Ally, Enemy, Neutral
 		UsePlayerColor: true
-		PlayerColorAlpha: 160
+		PlayerColorAlpha: 224
 	ProximityExternalCondition@WEAPJAMMER:
 		Range: 6c0
 		ValidRelationships: Enemy, Neutral
@@ -1276,6 +1269,17 @@ jamming.field:
 		Range: 6c0
 		ValidRelationships: Enemy, Neutral
 		Condition: jammed
+	WithDistortionHalo:
+		LineCount: 8
+		Distortion: 280
+		DistortionAnimation: 150
+		Radius: 6c0
+		Width: 64
+		MaxDistortion: 320
+		SegmentsPerLine: 64
+		Colors: aaaaaa22, aaaaaa22, aaaaaa33, 99aacc33, 8899cc55, 8899cc33
+		GlowColor: 55555555
+		Visible: Always
 
 cryostorm.init:
 	Interactable:

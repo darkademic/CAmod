@@ -881,6 +881,8 @@ BRST:
 		TargetTypes: Burster
 	AutoTarget:
 		ScanRadius: 4
+	Selectable:
+		DecorationBounds: 640, 896, -32, -256
 	TargetedAttackAbility:
 		TargetCursor: attack
 		ArmamentNames: primary

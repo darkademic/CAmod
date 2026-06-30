@@ -6152,21 +6152,10 @@ TRPC:
 		TargetTypes: MindControlImmune
 		RequiresCondition: loaded-cmdo
 	KeepsDistance:
+	AutoGuard:
+		ValidTargets: Infantry, Vehicle
 	AttackFrontal:
 	AttackMove:
-	AutoTarget:
-		ScanRadius: 3
-		InitialStance: HoldFire
-		InitialStanceAI: HoldFire
-	AutoTargetPriority@DEFAULT:
-		ValidTargets: Infantry
-		ValidRelationships: Ally
-	Armament:
-		Weapon: TroopCrawlerDummyWeapon
-		TargetRelationships: Ally
-		ForceTargetRelationships: None
-		Cursor: guard
-		OutsideRangeCursor: guard
 	ProximityExternalCondition@InspirationTrpc:
 		Range: 4c0
 		Condition: trpc-inspiration

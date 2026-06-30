@@ -2822,7 +2822,7 @@
 		DeathTypes: FireDeath
 	DeathSounds@ZAPPED:
 		Voice: Zapped
-		DeathTypes: ElectricityDeath, ChronoDeath, AtomizedDeath
+		DeathTypes: ElectricityDeath, AtomizedDeath
 	DeathSounds@POISONED:
 		Voice: Poisoned
 		DeathTypes: PoisonDeath, ToxinDeath, RadiationDeath, MutatedDeath

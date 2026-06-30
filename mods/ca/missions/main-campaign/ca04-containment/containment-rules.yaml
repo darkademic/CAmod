@@ -251,12 +251,10 @@ WEAP:
 HPAD:
 	-Targetable@GrantSupportPowerInfiltrate:
 	-InfiltrateToCreateProxyActor@SpySupportPower:
-	-InfiltrateForTimedCondition@SpySupportPower:
 
 AFLD:
 	-Targetable@GrantSupportPowerInfiltrate:
 	-InfiltrateToCreateProxyActor@SpySupportPower:
-	-InfiltrateForTimedCondition@SpySupportPower:
 
 POWR:
 	-Targetable@PowerOutageInfiltrate:

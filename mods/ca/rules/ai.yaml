@@ -35,6 +35,8 @@ Player:
 	GrantConditionOnBotOwner@NavalAI:
 		Condition: enable-naval-ai
 		Bots: naval
+	ExternalBotOrdersManager:
+		RequiresCondition: enable-brutal-ai || enable-vhard-ai || enable-hard-ai || enable-normal-ai || enable-easy-ai || enable-naval-ai
 	SupportPowerBotModule:
 		RequiresCondition: enable-brutal-ai || enable-vhard-ai || enable-hard-ai || enable-normal-ai || enable-easy-ai || enable-naval-ai
 		Decisions:
@@ -1068,6 +1070,7 @@ Player:
 			hazmat.upgrade: 1
 			hazmatsoviet.upgrade: 1
 			howi.upgrade: 1
+			decoy.upgrade: 1
 			microwave.upgrade: 1
 			blacknapalm.upgrade: 1
 			quantum.upgrade: 1
@@ -1092,6 +1095,7 @@ Player:
 			gattling.upgrade: 1
 			charv.upgrade: 1
 			pcan.upgrade: 1
+			optics.upgrade: 1
 			airborne.upgrade: 1
 			cryw.upgrade: 1
 			apb.upgrade: 1
@@ -1104,6 +1108,8 @@ Player:
 			flakarmor.upgrade: 1
 			carapace.upgrade: 1
 			advart.upgrade: 1
+			blink.upgrade: 1
+			hyper.upgrade: 1
 			shrw.upgrade: 1
 			loyalist.allegiance: 1
 			rebel.allegiance: 1
@@ -1339,6 +1345,7 @@ Player:
 			hazmat.upgrade: 1
 			hazmatsoviet.upgrade: 1
 			howi.upgrade: 1
+			decoy.upgrade: 1
 			microwave.upgrade: 1
 			blacknapalm.upgrade: 1
 			quantum.upgrade: 1
@@ -1363,6 +1370,7 @@ Player:
 			gattling.upgrade: 1
 			charv.upgrade: 1
 			pcan.upgrade: 1
+			optics.upgrade: 1
 			airborne.upgrade: 1
 			cryw.upgrade: 1
 			apb.upgrade: 1
@@ -1375,6 +1383,8 @@ Player:
 			flakarmor.upgrade: 1
 			carapace.upgrade: 1
 			advart.upgrade: 1
+			blink.upgrade: 1
+			hyper.upgrade: 1
 			shrw.upgrade: 1
 			loyalist.allegiance: 1
 			rebel.allegiance: 1
@@ -1609,6 +1619,7 @@ Player:
 			hazmat.upgrade: 1
 			hazmatsoviet.upgrade: 1
 			howi.upgrade: 1
+			decoy.upgrade: 1
 			microwave.upgrade: 1
 			blacknapalm.upgrade: 1
 			quantum.upgrade: 1
@@ -1633,6 +1644,7 @@ Player:
 			gattling.upgrade: 1
 			charv.upgrade: 1
 			pcan.upgrade: 1
+			optics.upgrade: 1
 			airborne.upgrade: 1
 			cryw.upgrade: 1
 			apb.upgrade: 1
@@ -1645,6 +1657,8 @@ Player:
 			flakarmor.upgrade: 1
 			carapace.upgrade: 1
 			advart.upgrade: 1
+			blink.upgrade: 1
+			hyper.upgrade: 1
 			shrw.upgrade: 1
 			loyalist.allegiance: 1
 			rebel.allegiance: 1
@@ -1879,6 +1893,7 @@ Player:
 			hazmat.upgrade: 1
 			hazmatsoviet.upgrade: 1
 			howi.upgrade: 1
+			decoy.upgrade: 1
 			microwave.upgrade: 1
 			blacknapalm.upgrade: 1
 			quantum.upgrade: 1
@@ -1903,6 +1918,7 @@ Player:
 			gattling.upgrade: 1
 			charv.upgrade: 1
 			pcan.upgrade: 1
+			optics.upgrade: 1
 			airborne.upgrade: 1
 			cryw.upgrade: 1
 			apb.upgrade: 1
@@ -1915,6 +1931,8 @@ Player:
 			flakarmor.upgrade: 1
 			carapace.upgrade: 1
 			advart.upgrade: 1
+			blink.upgrade: 1
+			hyper.upgrade: 1
 			shrw.upgrade: 1
 			loyalist.allegiance: 1
 			rebel.allegiance: 1
@@ -2113,6 +2131,7 @@ Player:
 			hazmat.upgrade: 1
 			hazmatsoviet.upgrade: 1
 			howi.upgrade: 1
+			decoy.upgrade: 1
 			microwave.upgrade: 1
 			blacknapalm.upgrade: 1
 			quantum.upgrade: 1
@@ -2137,6 +2156,7 @@ Player:
 			gattling.upgrade: 1
 			charv.upgrade: 1
 			pcan.upgrade: 1
+			optics.upgrade: 1
 			airborne.upgrade: 1
 			cryw.upgrade: 1
 			apb.upgrade: 1
@@ -2149,6 +2169,8 @@ Player:
 			flakarmor.upgrade: 1
 			carapace.upgrade: 1
 			advart.upgrade: 1
+			blink.upgrade: 1
+			hyper.upgrade: 1
 			shrw.upgrade: 1
 			loyalist.allegiance: 1
 			rebel.allegiance: 1

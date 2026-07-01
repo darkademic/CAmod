@@ -536,12 +536,12 @@ U3:
 		VoiceSet: GGIVoice
 	Crushable:
 		RequiresCondition: !invulnerability && !being-warped && undeployed
-	AutoDeployer@AI:
-		RequiresCondition: botowner && !deployed && !parachute
-		DeployChance: 100
-		DeployTrigger: Attack
-		DeployTicks: 5
-		UndeployTicks: 50
+	IssueOrderToBot:
+		RequiresCondition: undeployed && !parachute
+		OrderName: GrantConditionOnDeploy
+		OrderChance: 100
+		OrderTrigger: Attack
+		OrderInterval: 35
 	Encyclopedia:
 		Category: Allies/Infantry
 	EncyclopediaExtras:
@@ -1992,6 +1992,12 @@ N5:
 		ChargingColor: 008800
 		Instant: true
 		DeploySound: tibsurge.aud
+	IssueOrderToBot:
+		RequiresCondition: !being-warped && !reapersnare && !parachute
+		OrderName: GrantTimedConditionOnDeploy
+		OrderTrigger: Attack, Damage
+		OrderChance: 100
+		OrderInterval: 830
 	Targetable@ChemWarrior:
 		TargetTypes: ChemWarrior
 	SpeedMultiplier@BlackHand:
@@ -2631,6 +2637,16 @@ CONF:
 		ConcurrentLimit: 1
 		KillExcessDamageTypes: SmallExplosionDeath
 		AvoidActors: true
+	IssueOrderToBot:
+		RequiresCondition: !being-warped && !blinded && !reapersnare && !parachute
+		OrderName: SpawnActorAbility
+		OrderTrigger: BecomingIdle, Attack
+		OrderChance: 100
+		OrderInterval: 760
+		TargetRangeInCell: 3
+		ValidTargets: Infantry, Cyborg
+		ValidRelationships: Ally
+		TargetDistance: Closest
 	AmmoPool@IdolOfKane:
 		Name: idol
 		Armaments: none
@@ -3192,12 +3208,12 @@ DESO:
 		Sequence: deploy
 		BodyNames: deployed
 	-ReplacedInQueue:
-	AutoDeployer@AI:
-		RequiresCondition: botowner && !deployed && !parachute
-		DeployChance: 20
-		DeployTrigger: Attack
-		DeployTicks: 5
-		UndeployTicks: 50
+	IssueOrderToBot:
+		RequiresCondition: undeployed && !parachute
+		OrderName: GrantConditionOnDeploy
+		OrderChance: 20
+		OrderTrigger: Attack
+		OrderInterval: 55
 	GrantConditionOnBotOwner@IAMBOT:
 		Condition: botowner
 		Bots: brutal, vhard, hard, normal, easy, naval, campaign
@@ -4178,11 +4194,12 @@ YURI:
 		RequiresCondition: botowner
 		ArmamentNames: aidummy
 		RevokeDelay: 60
-	AutoDeployer@AI:
-		RequiresCondition: aiattack && botowner && !deployed && !parachute
-		DeployChance: 100
-		DeployTrigger: Attack
-		DeployTicks: 100
+	IssueOrderToBot:
+		RequiresCondition: aiattack && !deployed && !parachute
+		OrderName: GrantTimedConditionOnDeploy
+		OrderChance: 100
+		OrderTrigger: Attack
+		OrderInterval: 31
 	GrantConditionOnBotOwner@IAMBOT:
 		Condition: botowner
 		Bots: brutal, vhard, hard, normal, easy, naval, campaign
@@ -4469,6 +4486,18 @@ ENLI:
 	AmmoPool:
 		Armaments: secondary
 		Ammo: 1
+	IssueOrderToBot:
+		RequiresCondition: !being-warped && !empdisable && !blinded && !parachute
+		OrderName: TargetedAttackAbilityAttack
+		OrderTrigger: Attack
+		UseTargetLocation: false
+		OrderChance: 100
+		OrderInterval: 505
+		TargetRangeInCell: 7
+		ValidTargets: Vehicle, Ship, Building
+		InvalidTargets: Cyborg, EmpImmune
+		ValidRelationships: Enemy
+		TargetDistance: Random
 	ReloadAmmoPoolCA:
 		Delay: 500 # equal to reload time of weapon
 		Count: 1
@@ -4834,6 +4863,16 @@ ZTRP:
 		MaxDistance: 7
 		Speed: 175
 		RequiresCondition: !being-warped && !reapersnare
+	IssueOrderToBot:
+		OrderName: TargetedLeapOrderLeap
+		OrderTrigger: Damage
+		RequiresCondition:  !being-warped && !reapersnare && !parachute
+		OrderChance: 100
+		OrderInterval: 255
+		TargetRangeInCell: 7
+		ValidTargets: Ground, Air
+		ValidRelationships: Ally
+		TargetDistance: Furthest
 	Contrail@Jumping:
 		Offset: -30,0,350
 		StartColorUsePlayerColor: false
@@ -4885,6 +4924,8 @@ ZRAI:
 	TargetedLeapAbility:
 		MaxDistance: 10
 		Speed: 200
+	IssueOrderToBot:
+		TargetRangeInCell: 10
 	EncyclopediaExtras:
 		AdditionalInfo: Requires Seek & Destroy Strategy.
 
@@ -4909,6 +4950,7 @@ ZDEF:
 	Health:
 		HP: 20000
 	-TargetedLeapAbility:
+	-IssueOrderToBot:
 	-Contrail@Jumping:
 	-WithShadow@Jump:
 	-Targetable@Jump:
@@ -4931,6 +4973,12 @@ ZDEF:
 		UndeploySound: gshielddown.aud
 		Voice: Shield
 		Instant: true
+	IssueOrderToBot:
+		RequiresCondition: !being-warped && !reapersnare && !parachute
+		OrderName: GrantTimedConditionOnDeploy
+		OrderTrigger: Damage
+		OrderChance: 100
+		OrderInterval: 955
 	WithRadiatingCircle@ZoneDefenderShield:
 		EndRadius: 2c0
 		Color: 00eecc10
@@ -5377,6 +5425,17 @@ REAP:
 		Count: 1
 		ShowSelectionBar: true
 		SelectionBarColor: 00cc00
+	IssueOrderToBot:
+		RequiresCondition: !being-warped && !empdisable && !blinded  && !parachute
+		OrderName: TargetedAttackAbilityAttack
+		OrderTrigger: Attack
+		UseTargetLocation: false
+		OrderChance: 100
+		OrderInterval: 380
+		TargetRangeInCell: 8
+		ValidTargets: Infantry, Cyborg
+		ValidRelationships: Enemy
+		TargetDistance: Random
 	Encyclopedia:
 		Category: Nod/Infantry
 	EncyclopediaExtras:

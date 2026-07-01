@@ -2281,6 +2281,12 @@ JEEP:
 		DeploySound: optics-enable.aud
 		UndeploySound: optics-disable.aud
 		Instant: true
+	IssueOrderToBot:
+		RequiresCondition: optics-upgrade
+		OrderName: GrantTimedConditionOnDeploy
+		OrderTrigger: Periodically
+		OrderChance: 100
+		OrderInterval: 1505
 	GrantConditionOnPrerequisite@Optics:
 		Condition: optics-upgrade
 		Prerequisites: optics.upgrade
@@ -3057,6 +3063,16 @@ CTNK:
 		MaxInstantCircleBorderColor: 00000044
 		TeleportCondition: temporal-flux-init
 		ConditionDuration: 1
+	IssueOrderToBot:
+		OrderName: PortableChronoTeleport
+		OrderTrigger: Damage
+		RequiresCondition: !empdisable && !being-warped && !chronoshifted
+		OrderChance: 100
+		OrderInterval: 380
+		TargetRangeInCell: 12
+		ValidTargets: Ground, Air
+		ValidRelationships: Ally
+		TargetDistance: Furthest
 	WithIdleOverlay@PreCharge:
 		Sequence: idle
 		Image: chronoprep-overlay
@@ -3547,6 +3563,16 @@ BGGY:
 		RequiresCondition: player-blackh && decoy-upgrade && ammo && !(empdisable || being-warped)
 		AmmoPool: decoyspawner
 		FaceTarget: true
+	IssueOrderToBot:
+		RequiresCondition: decoy-upgrade && ammo && !(empdisable || being-warped)
+		OrderName: SpawnActorAbility
+		OrderTrigger: Attack
+		OrderChance: 100
+		OrderInterval: 760
+		TargetRangeInCell: 12
+		ValidTargets: Infantry, Vehicle, Defense
+		ValidRelationships: Enemy
+		TargetDistance: Random
 	ReplacedInQueue:
 		Actors: rbug
 	Upgradeable@Raider:
@@ -4835,6 +4861,12 @@ HTNK.Hover:
 		DischargingColor: ff6600
 		DeploySound: htnkabur.aud
 		Instant: true
+	IssueOrderToBot:
+		RequiresCondition: abur-upgrade && !being-warped && !empdisable
+		OrderName: GrantTimedConditionOnDeploy
+		OrderTrigger: Attack, Damage
+		OrderChance: 100
+		OrderInterval: 1705
 	GrantConditionOnPrerequisite@Afterburner:
 		Condition: abur-upgrade
 		Prerequisites: abur.upgrade
@@ -9191,6 +9223,16 @@ CHPR:
 		ShowSelectionBarWhenFull: false
 		TeleportCondition: temporal-flux-init
 		ConditionDuration: 1
+	IssueOrderToBot:
+		OrderName: PortableChronoTeleport
+		OrderTrigger: Damage
+		RequiresCondition:  hp-below-50-perc && !(empdisable && being-warped) && !chronoshifted
+		OrderChance: 100
+		OrderInterval: 380
+		TargetRangeInCell: 12
+		ValidTargets: Ground, Air
+		ValidRelationships: Ally
+		TargetDistance: Furthest
 	GrantTimedCondition@TemporalFlux:
 		RequiresCondition: (temporal-flux-init || chronoshifted) && tflx-upgrade
 	RejectsOrders@AICHPR:
@@ -9817,6 +9859,16 @@ XO:
 		CircleColor: ffaa0077
 		MaxDistance: 7
 		Speed: 140
+	IssueOrderToBot:
+		OrderName: TargetedLeapOrderLeap
+		OrderTrigger: Damage
+		RequiresCondition:  !being-warped && !reapersnare
+		OrderChance: 100
+		OrderInterval: 255
+		TargetRangeInCell: 7
+		ValidTargets: Ground, Air
+		ValidRelationships: Ally
+		TargetDistance: Furthest
 	Contrail@Jumping:
 		Offset: -30,0,350
 		StartColorUsePlayerColor: false

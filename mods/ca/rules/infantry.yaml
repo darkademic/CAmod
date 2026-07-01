@@ -97,7 +97,7 @@ DOG:
 		DeployCursor: move
 	KeepsDistance:
 	AutoGuard:
-		ValidOrders: AttackMove, AssaultMove, ForceAttack, KeepDistance
+		ValidOrders: KeepDistance
 		ValidTargets: Infantry, Vehicle
 	Encyclopedia:
 		Category: Soviets/Infantry

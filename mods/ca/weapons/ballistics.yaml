@@ -536,12 +536,12 @@ TitanGun:
 		ImpactSounds: artyhit.aud, artyhit2.aud, artyhit3.aud
 	Warhead@Concussion1: GrantExternalConditionCA
 		Range: 0c768
-		Duration: 150
+		Duration: 200
 		Condition: concussion
 		ValidTargets: Ground, Infantry, Vehicle, Ship
 	Warhead@Concussion2: GrantExternalConditionCA
 		Range: 1c768
-		Duration: 50
+		Duration: 75
 		Condition: concussion
 		ValidTargets: Ground, Infantry, Vehicle, Ship
 	Warhead@5Shake: ShakeScreen

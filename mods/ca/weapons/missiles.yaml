@@ -418,7 +418,7 @@ HindRockets.Ukraine:
 	Inherits: HindRockets
 	Warhead@Concussion: GrantExternalConditionCA
 		Range: 0c682
-		Duration: 100
+		Duration: 125
 		Condition: concussion
 
 HindRockets.UPG:

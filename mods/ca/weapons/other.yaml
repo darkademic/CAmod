@@ -1327,7 +1327,7 @@ EnlightenedBeam:
 		RecalculateColors: true
 		TrackTarget: false
 		MaxFacingDeviation: 64
-		GlowColor: 0eebf3
+		GlowScale: 0.3
 	Warhead@1Dam: HealthPercentageSpreadDamage
 		Spread: 341
 		Falloff: 100, 45, 25, 15, 0

@@ -600,7 +600,7 @@ Player:
 					Types: AtomicAmmoTargetable
 					Attractiveness: 1
 					CheckRadius: 2c0
-			advradarorder:
+			advradarpower:
 				OrderName: advradarorder
 				Consideration@1:
 					Against: Ally

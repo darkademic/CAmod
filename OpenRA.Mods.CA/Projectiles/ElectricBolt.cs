@@ -88,8 +88,8 @@ namespace OpenRA.Mods.CA.Projectiles
 		public readonly bool TrackTarget = false;
 
 		[Desc("Color of the screen-space glow halo drawn along the zap.",
-	"Only visible when the \"Weapon Glow Effects\" setting is enabled.")]
-		public readonly Color GlowColor = Color.FromArgb(255, 51, 255);
+			"Only visible when the \"Weapon Glow Effects\" setting is enabled.")]
+		public readonly Color? GlowColor = null;
 
 		[Desc("Scale multiplier for the glow halo's radius (also scales intensity).",
 			"Set to 0 to disable the glow for this zap.")]
@@ -291,7 +291,7 @@ namespace OpenRA.Mods.CA.Projectiles
 				{
 					var offsets = zap.Positions;
 					yield return new ElectricBoltRenderable(offsets, zOffset, info.Width, zap.Color,
-				info.GlowColor, info.GlowScale, info.GlowIntensity);
+						info.GlowColor ?? zap.Color, info.GlowScale, info.GlowIntensity);
 				}
 			}
 		}

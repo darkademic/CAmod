@@ -460,7 +460,7 @@ namespace OpenRA.Mods.CA.Traits
 					.OrderBy(t => (t.Actor.CenterPosition - pair.Actor.CenterPosition).LengthSquared)
 					.FirstOrDefault();
 
-				if (closestTarget == null)
+				if (closestTarget.Actor == null)
 					continue;
 
 				if (pair.Actor == self)

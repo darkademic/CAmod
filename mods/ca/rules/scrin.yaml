@@ -1370,9 +1370,9 @@ MAST:
 		DecorationBounds: 640, 896, -32, -256
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
-		RequiresCondition: !rank-elite && !being-warped
+		RequiresCondition: !rank-elite && !being-warped && !reapersnare
 	WithInfantryBody@Warped:
-		RequiresCondition: !rank-elite && being-warped
+		RequiresCondition: !rank-elite && being-warped && !reapersnare
 	WithDeathAnimation:
 		RequiresCondition: !rank-elite && !being-warped
 	WithInfantryBody@Prodigy:
@@ -1380,10 +1380,10 @@ MAST:
 		MoveSequence: pdgy-run
 		IdleSequences: pdgy-idle1, pdgy-idle2, pdgy-idle3, pdgy-idle4
 		DefaultAttackSequence: pdgy-shoot
-		RequiresCondition: rank-elite && !transforming && !being-warped
+		RequiresCondition: rank-elite && !transforming && !being-warped && !reapersnare
 	WithInfantryBody@ProdigyWarped:
 		StandSequences: pdgy-stand
-		RequiresCondition: rank-elite && !transforming && being-warped
+		RequiresCondition: rank-elite && !transforming && (being-warped || reapersnare)
 	WithDeathAnimation@PDGY:
 		DeathSequencePalette: playerscrin
 		CrushedSequencePalette: scrin
@@ -1438,8 +1438,6 @@ MAST:
 		TargetTypes: MindControlImmune
 	Targetable@ChaosImmune:
 		TargetTypes: ChaosImmune
-	Targetable@ReaperSnareImmune:
-		TargetTypes: ReaperSnareImmune
 	WithIdleOverlay@mindcontrolling:
 		Sequence: mc
 		Palette: scrin

@@ -28,7 +28,7 @@ DOG:
 	Mobile:
 		Speed: 94
 		Voice: Move
-		PauseOnCondition: attack-cooldown || eating || being-warped
+		PauseOnCondition: attack-cooldown || eating || being-warped || reapersnare
 	Guard:
 		Voice: Move
 	Passenger:
@@ -386,7 +386,7 @@ U3:
 	Mobile:
 		Speed: 41
 		Voice: Move
-		PauseOnCondition: !undeployed || being-warped
+		PauseOnCondition: !undeployed || being-warped || reapersnare
 		ImmovableCondition: deployed
 		RequireForceMoveCondition: !undeployed
 	Armament@PRIMARY:
@@ -463,7 +463,7 @@ U3:
 		Voice: Action
 		DeploySounds: igidepa.aud, igidepb.aud
 		UndeploySounds: igidepa.aud, igidepb.aud
-		PauseOnCondition: being-warped
+		PauseOnCondition: being-warped || reapersnare
 		SmartDeploy: True
 		Facing: 332
 	GrantCondition:
@@ -694,7 +694,7 @@ E6:
 		DeploySounds: igidepa.aud, igidepb.aud
 		UndeploySounds: igidepa.aud, igidepb.aud
 		UndeployOnMove: true
-		PauseOnCondition: being-warped
+		PauseOnCondition: being-warped || reapersnare
 		SmartDeploy: true
 		RequiresCondition: !parachute && entrench-upgrade
 	GrantTimedCondition@SETUP:
@@ -5297,10 +5297,10 @@ REAP:
 	Mobile:
 		Speed: 60
 		Voice: Move
-		PauseOnCondition: being-warped || empdisable
+		PauseOnCondition: being-warped || reapersnare || empdisable
 	AttackFrontal:
 		Voice: Attack
-		PauseOnCondition: being-warped || empdisable
+		PauseOnCondition: being-warped || reapersnare || empdisable
 		FacingTolerance: 0
 	AttackMove:
 		Voice: Move

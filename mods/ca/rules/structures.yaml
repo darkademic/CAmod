@@ -6043,9 +6043,6 @@ UPGC:
 	GrantConditionOnPrerequisite@SCAN:
 		Prerequisites: scan-active
 		Condition: scan-active
-	GrantConditionOnBotOwner@RADAR:
-		Condition: scan-active
-		Bots: brutal, vhard, hard, normal, easy, naval
 	GrantConditionOnPrerequisite@RADAR:
 		Prerequisites: radar-active
 		Condition: radar-active

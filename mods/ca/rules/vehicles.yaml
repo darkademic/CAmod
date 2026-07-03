@@ -8523,6 +8523,10 @@ PTNK:
 	GrantConditionOnPrerequisite@France:
 		Condition: player-france
 		Prerequisites: player.france
+	GrantCondition@France:
+		Condition: player-france
+		RequiresCondition: player-france
+		GrantPermanently: true
 
 PCAN:
 	Inherits: PTNK

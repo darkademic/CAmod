@@ -1714,6 +1714,8 @@
 	SpeedMultiplier@ReaperSnare:
 		Modifier: 0
 		RequiresCondition: reapersnare
+	RejectsOrders@ReaperSnare:
+		RequiresCondition: reapersnare
 
 ^HarvesterBase:
 	Inherits: ^Vehicle-NOUPG

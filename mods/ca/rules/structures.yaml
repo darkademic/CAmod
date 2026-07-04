@@ -3943,7 +3943,7 @@ HQ.UPG:
 	Tooltip:
 		Name: Internet Center
 	TooltipExtras:
-		Attributes: • Requires power to operate\n• Detects nearby enemy vehicles, aircraft and structures in fog of war (increases per garrisoned Hacker)\n• $25 delivered every 60 seconds (normal speed)\n• Income increased by $75 per garrisoned Hacker\n• Cannot be hacked
+		Attributes: • Requires power to operate\n• Detects nearby enemy vehicles, aircraft and structures in fog of war (increases per garrisoned Hacker)\n• $25 delivered every 15 seconds (normal speed)\n• Income increased by $75 per garrisoned Hacker\n• Cannot be hacked
 	-Targetable@HACKABLE:
 	-TransformOnCondition@UPG:
 	-GrantConditionOnPrerequisite@UPG:

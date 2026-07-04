@@ -798,9 +798,6 @@ WCHR:
 		Weapon: WatcherDartCollector
 		LocalOffset: 150,0,400
 		RequiresCondition: player-collector
-	AutoTarget:
-		InitialStance: HoldFire
-		InitialStanceAI: ReturnFire
 	Cloak@NORMAL:
 		InitialDelay: 250
 		CloakDelay: 120

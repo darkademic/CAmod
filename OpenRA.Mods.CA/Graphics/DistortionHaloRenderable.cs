@@ -58,18 +58,20 @@ namespace OpenRA.Mods.CA.Graphics
 		{
 			var screenWidth = wr.ScreenVector(new WVec(width, WDist.Zero, WDist.Zero))[0];
 			var cr = Game.Renderer.RgbaColorRenderer;
+			var glowRenderer = Game.Settings.Graphics.WeaponPostfx && glowScale > 0f
+				? wr.World.WorldActor.TraitOrDefault<GlowRenderer>()
+				: null;
+			var previousWorld = offsets[offsets.Length - 1];
+			var previousScreen = wr.Viewport.WorldToViewPx(wr.ScreenPosition(previousWorld));
 
 			for (var i = 0; i < offsets.Length; i++)
 			{
-				var a = offsets[i];
-				var b = offsets[(i + 1) % offsets.Length];
-				var screenA = wr.Viewport.WorldToViewPx(wr.ScreenPosition(a));
-				var screenB = wr.Viewport.WorldToViewPx(wr.ScreenPosition(b));
-				cr.DrawLine(screenA, screenB, screenWidth, color);
-
-				if (Game.Settings.Graphics.WeaponPostfx && glowScale > 0f)
-					wr.World.WorldActor.TraitOrDefault<GlowRenderer>()
-						?.RegisterGlow(a, b, glowColor, glowScale, intensity: glowIntensity);
+				var currentWorld = offsets[i];
+				var currentScreen = wr.Viewport.WorldToViewPx(wr.ScreenPosition(currentWorld));
+				cr.DrawLine(previousScreen, currentScreen, screenWidth, color);
+				glowRenderer?.RegisterGlow(previousWorld, currentWorld, glowColor, glowScale, intensity: glowIntensity);
+				previousWorld = currentWorld;
+				previousScreen = currentScreen;
 			}
 		}
 

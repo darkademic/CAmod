@@ -50,6 +50,7 @@ namespace OpenRA.Mods.CA.Effects
 		int ticks;
 		WAngle rotation;
 		WPos center;
+		readonly bool animated;
 
 		public DistortionHaloAnimation(MersenneTwister random, WPos center, WDist radius, int lineCount,
 			Color[] colors, WAngle lineArc, int segmentsPerLine, int distortion, int distortionAnimation,
@@ -63,6 +64,7 @@ namespace OpenRA.Mods.CA.Effects
 			this.distortionAnimation = Math.Max(0, distortionAnimation);
 			this.maxDistortion = Math.Max(0, maxDistortion);
 			this.rotationAnimation = rotationAnimation;
+			animated = this.distortionAnimation > 0 || this.rotationAnimation != WAngle.Zero;
 			pointsPerLine = Math.Max(MinimumPointsPerLine, segmentsPerLine);
 
 			var normalizedColors = colors != null && colors.Length > 0
@@ -83,6 +85,9 @@ namespace OpenRA.Mods.CA.Effects
 
 		public void Tick(WPos center)
 		{
+			if (!animated && center == this.center)
+				return;
+
 			this.center = center;
 			rotation += rotationAnimation;
 			UpdatePositions(false);

@@ -1987,7 +1987,7 @@ N5:
 		ShowSelectionBar: true
 		ShowSelectionBarWhenFull: false
 		StartsFullyCharged: true
-		PauseOnCondition: being-warped
+		PauseOnCondition: being-warped || reapersnare
 		DischargingColor: 00ff00
 		ChargingColor: 008800
 		Instant: true
@@ -3391,7 +3391,7 @@ RMBC:
 	Mobile:
 		Speed: 54
 		Voice: Move
-		PauseOnCondition: being-warped || empdisable
+		PauseOnCondition: being-warped || reapersnare || empdisable
 	RevealsShroud:
 		Range: 6c0
 	AttackFrontal:

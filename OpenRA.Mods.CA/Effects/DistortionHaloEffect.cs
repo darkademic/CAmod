@@ -199,7 +199,7 @@ namespace OpenRA.Mods.CA.Effects
 			this.glowScale = glowScale;
 			this.glowIntensity = glowIntensity;
 
-			halo = new DistortionHaloAnimation(world.SharedRandom, center, radius, lineCount, colors,
+			halo = new DistortionHaloAnimation(Game.CosmeticRandom, center, radius, lineCount, colors,
 				lineArc, segmentsPerLine, distortion, distortionAnimation, maxDistortion, rotationAnimation);
 		}
 

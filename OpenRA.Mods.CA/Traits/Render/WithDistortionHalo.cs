@@ -136,7 +136,7 @@ namespace OpenRA.Mods.CA.Traits.Render
 
 		protected override void TraitEnabled(Actor self)
 		{
-			halo = new DistortionHaloAnimation(self.World.SharedRandom, self.CenterPosition, Info.Radius,
+			halo = new DistortionHaloAnimation(Game.CosmeticRandom, self.CenterPosition, Info.Radius,
 				Info.LineCount, Info.Colors, Info.LineArc, Info.SegmentsPerLine, Info.Distortion,
 				Info.DistortionAnimation, Info.MaxDistortion, Info.RotationAnimation);
 		}

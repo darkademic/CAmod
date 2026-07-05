@@ -8232,7 +8232,7 @@ V3:
 TNKD:
 	Inherits: ^Tank
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
-	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMovePrioritizeVehicles
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Inherits@HeavyArmor: ^HeavyArmor
 	Buildable:
 		Queue: VehicleSQ, VehicleMQ

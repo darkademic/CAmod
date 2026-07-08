@@ -311,7 +311,7 @@ tow.upgrade:
 		Description: Hum-Vees and Guardian Drones will be produced with TOW missile launchers.\n\nReplaces: Hum-Vee\nReplaces: Guardian Drone
 	TooltipExtras:
 		Strengths: + Added TOW missile launcher (strong vs Heavy Armor)
-		Weaknesses: – Increased cost\n– Reduced speed\n– Disables Point Defense Shields for Hum-Vees and Guardian Drones
+		Weaknesses: – Increased cost\n– Reduced speed
 	Valued:
 		Cost: 1000
 	RenderSprites:

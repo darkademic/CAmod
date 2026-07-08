@@ -31,6 +31,9 @@ namespace OpenRA.Mods.CA.Warheads
 		[Desc("Whether the sequence of the impacts should be randomized.")]
 		public readonly bool RandomImpactSequence = false;
 
+		[Desc("Whether the first impact should be excluded from the random sequence.")]
+		public readonly bool ExcludeFirstImpactFromRandomSequence = false;
+
 		[Desc("Defines particle ownership (invoker if unset).")]
 		public readonly bool Neutral = false;
 
@@ -57,6 +60,11 @@ namespace OpenRA.Mods.CA.Warheads
 		bool IMultiWeaponImpactInfo.RandomImpactSequence
 		{
 			get { return RandomImpactSequence; }
+		}
+
+		bool IMultiWeaponImpactInfo.ExcludeFirstImpactFromRandomSequence
+		{
+			get { return ExcludeFirstImpactFromRandomSequence; }
 		}
 
 		int[] IMultiWeaponImpactInfo.Interval

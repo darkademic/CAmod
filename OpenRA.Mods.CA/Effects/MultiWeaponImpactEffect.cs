@@ -39,7 +39,17 @@ namespace OpenRA.Mods.CA.Effects
 			impacts = info.ImpactOffsets.ToList();
 
 			if (info.RandomImpactSequence)
-				impacts = impacts.Shuffle(world.SharedRandom).ToList();
+			{
+				if (info.ExcludeFirstImpactFromRandomSequence)
+				{
+					var firstImpact = impacts.First();
+					impacts.RemoveAt(0);
+					impacts = impacts.Shuffle(world.SharedRandom).ToList();
+					impacts.Insert(0, firstImpact);
+				}
+				else
+					impacts = impacts.Shuffle(world.SharedRandom).ToList();
+			}
 		}
 
 		public void Tick(World world)

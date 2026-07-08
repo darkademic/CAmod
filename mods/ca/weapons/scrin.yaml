@@ -1889,6 +1889,8 @@ PlasmaBomb:
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath, AirToGround
 	Warhead@3Eff: CreateEffect
 		Explosions: pbomb_explosion, pbomb_explosion2, pbomb_explosion3
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Crater
 
 LeecherBeam:
 	ValidTargets: Ground, Water

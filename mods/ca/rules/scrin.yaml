@@ -3855,6 +3855,7 @@ INVA:
 	Inherits@4: ^EmpDisable
 	Inherits@5: ^GDIStrategyBuffsAircraft
 	Inherits@ionsurge: ^IonSurgable
+	Inherits@WeaponJammable: ^WeaponJammable
 	Inherits@FleetRecallable: ^FleetRecallable
 	Valued:
 		Cost: 50

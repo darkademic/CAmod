@@ -2681,7 +2681,7 @@ MRJ:
 		Description: Support vehicle that can disrupt enemy targeting systems.
 	TooltipExtras:
 		Weaknesses: • Unarmed
-		Attributes: • Jamming fields reduce rate of fire and accuracy of enemy vehicles/defenses
+		Attributes: • Jamming fields reduce rate of fire and accuracy of enemy vehicles, aircraft & defenses
 	Health:
 		HP: 25000
 	Armor:

@@ -3420,6 +3420,7 @@
 	Inherits@ionsurge: ^IonSurgable
 	Inherits@atomize: ^Atomizable
 	Inherits@Blindable: ^Blindable
+	Inherits@WeaponJammable: ^WeaponJammable
 	Inherits@DevelopmentPolicyVeterancyBonus: ^DevelopmentPolicyVeterancyBonus
 	-GrantConditionOnPrerequisite@MunitionsPlantBoost:
 	-ReloadDelayMultiplier@MunitionsPlantBoost:

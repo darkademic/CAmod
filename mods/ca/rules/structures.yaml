@@ -5241,6 +5241,11 @@ SGEN:
 		MaximumVerticalOffset: 512
 		AffectsParent: true
 		RequiresCondition: !disabled && !empdisable && !being-warped && !cloak-force-disabled
+	ProximityExternalCondition@MSG2:
+		Range: 3c512
+		Condition: sgencloak
+		RequiresCondition: !disabled && !empdisable && !being-warped && !cloak-force-disabled
+		MaximumVerticalOffset: 3072
 	Encyclopedia:
 		Category: Nod/Buildings
 

@@ -2795,6 +2795,11 @@ MSG:
 		RequiresCondition: deployed && !cloak-force-disabled
 		MaximumVerticalOffset: 512
 		AffectsParent: true
+	ProximityExternalCondition@MSG2:
+		Range: 2c512
+		Condition: sgencloak
+		RequiresCondition: deployed && !cloak-force-disabled
+		MaximumVerticalOffset: 3072
 	Encyclopedia:
 		Category: Nod/Vehicles
 	EncyclopediaExtras:

@@ -3477,6 +3477,9 @@
 	-SpeedMultiplier@chilled10:
 	WithShadow:
 		RequiresCondition: !invisibility
+	WithShadow@CLOAKED:
+		ShadowColor: 00000033
+		RequiresCondition: invisibility
 	SoundOnDamageTransitionCA:
 		DestroyedSounds: vrapdiea.aud, vrapdieb.aud
 		RequiresCondition: airborne

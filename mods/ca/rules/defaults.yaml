@@ -4835,6 +4835,8 @@
 	HitShape:
 		Type: Circle
 			Radius: 427
+	GivesExperienceCA:
+		PlayerExperienceModifier: 0
 	MapEditorData:
 		Categories: Critter
 

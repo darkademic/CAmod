@@ -468,11 +468,11 @@ TitanGun:
 		Image: firetrail
 		TrailImage: smokey
 		TrailDelay: 1
-		Speed: 180
+		Speed: 220
 		Inaccuracy: 1c138
 		LaunchAngle: 90
 	Warhead@1Dam: SpreadDamage
-		Damage: 8500
+		Damage: 9500
 		Falloff: 100, 55, 20, 5
 		Versus:
 			None: 100
@@ -588,11 +588,11 @@ NukeCannonDeployer:
 		LaunchAngle: 92
 		Inaccuracy: 768
 	Warhead@1Dam: SpreadDamage
-		Spread: 512
-		Damage: 6000
-		Falloff: 1000, 448, 192, 50, 18, 7, 0
+		Spread: 1c512
+		Damage: 60000
+		Falloff: 100, 25, 0
 		Versus:
-			None: 60
+			None: 35
 			Wood: 100
 			Concrete: 100
 			Light: 70
@@ -627,7 +627,7 @@ NukeCannonDeployer:
 	Projectile: Bullet
 		Image: 280mmn
 	Warhead@1Dam: SpreadDamage
-		Damage: 3000
+		Damage: 30000
 	Warhead@3: ChangeOwnerToNeutral
 		ValidTargets: DriverKill
 		InvalidTargets: DriverKillImmune

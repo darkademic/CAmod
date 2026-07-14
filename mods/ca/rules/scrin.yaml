@@ -647,7 +647,7 @@ S4:
 		Weapon: IntruderDiscsBATF
 	ArmamentBurstCounter:
 	AttackFrontal:
-		PauseOnCondition: being-warped || blinded || reapersnare || blink
+		PauseOnCondition: being-warped || blinded || reapersnare
 		FacingTolerance: 0
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
@@ -711,7 +711,7 @@ MRDR:
 		Weapon: IntruderDiscsBATF
 	ArmamentBurstCounter:
 	AttackFrontal:
-		PauseOnCondition: being-warped || blinded || reapersnare || blink
+		PauseOnCondition: being-warped || blinded || reapersnare
 		FacingTolerance: 0
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded

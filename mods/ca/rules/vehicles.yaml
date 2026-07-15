@@ -8429,7 +8429,7 @@ PTNK:
 	TooltipExtras:
 		Strengths: • Strong vs Infantry, Buildings, Defenses, Light Armor
 		Weaknesses: • Weak vs Heavy Armor\n• Cannot attack Aircraft
-		Attributes: • Can deploy for +1 range, -25% damage received and self-repair (France only)
+		Attributes: • Can deploy for +2 range, -25% damage received and self-repair (France only)
 	Valued:
 		Cost: 1350
 	Tooltip:
@@ -8517,7 +8517,7 @@ PTNK:
 		Modifier: 75
 		RequiresCondition: !undeployed
 	RangeMultiplier@Deployed:
-		Modifier: 113
+		Modifier: 125
 		RequiresCondition: !undeployed
 	ChangesHealth:
 		PercentageStep: 1
@@ -8562,7 +8562,7 @@ PCAN:
 	Voiced:
 		VoiceSet: PrismCannonVoice
 	RangeMultiplier@Deployed:
-		Modifier: 110
+		Modifier: 119
 	-ReplacedInQueue:
 	-Upgradeable@PCAN:
 	-WithDecoration@UpgradeOverlay:

@@ -1270,7 +1270,7 @@ jamming.field:
 		ValidRelationships: Enemy, Neutral
 		Condition: jammed
 	WithDistortionHalo:
-		LineCount: 10
+		LineCount: 8
 		Distortion: 280
 		DistortionAnimation: 150
 		Radius: 6c0
@@ -1278,8 +1278,9 @@ jamming.field:
 		MaxDistortion: 320
 		SegmentsPerLine: 16
 		Colors: 77777722, aaaaaa22, aaaaaa33, 99aacc33, 8899cc55, 8899cc33
-		GlowColor: 55555555
+		GlowColor: 44444444
 		Visible: Always
+		ValidRelationships: Ally, Enemy, Neutral
 
 cryostorm.init:
 	Interactable:

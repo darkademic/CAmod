@@ -8496,6 +8496,8 @@ PTNK:
 		RequiresCondition: !mindcontrolled
 	Encyclopedia:
 		Category: Allies/Vehicles
+	EncyclopediaExtras:
+		RenderPreviewActor: ptnk.preview
 	GrantConditionOnDeployTurreted:
 		DeployedCondition: deployed
 		UndeployedCondition: undeployed
@@ -8566,6 +8568,26 @@ PCAN:
 	-ReplacedInQueue:
 	-Upgradeable@PCAN:
 	-WithDecoration@UpgradeOverlay:
+	EncyclopediaExtras:
+		RenderPreviewActor: pcan.preview
+
+PTNK.Preview:
+	Inherits: ^PreviewDummy
+	RenderSprites:
+		Image: ptnk
+	WithFacingSpriteBody:
+	WithSpriteTurret:
+		Sequence: turret
+	Turreted:
+
+PCAN.Preview:
+	Inherits: ^PreviewDummy
+	RenderSprites:
+		Image: pcan
+	WithFacingSpriteBody:
+	WithSpriteTurret:
+		Sequence: turret
+	Turreted:
 
 WTNK:
 	Inherits: ^TankTD

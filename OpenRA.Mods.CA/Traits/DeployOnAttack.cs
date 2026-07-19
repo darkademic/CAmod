@@ -29,6 +29,7 @@ namespace OpenRA.Mods.CA.Traits
 		private readonly GrantConditionOnDeploy trait;
 		private readonly GrantConditionOnDeployTurreted turretedTrait;
 		private readonly GrantTimedConditionOnDeploy timedTrait;
+		private readonly Mobile mobile;
 		bool pending;
 
 		public DeployOnAttack(ActorInitializer init, DeployOnAttackInfo info)
@@ -37,6 +38,7 @@ namespace OpenRA.Mods.CA.Traits
 			trait = init.Self.TraitOrDefault<GrantConditionOnDeploy>();
 			turretedTrait = init.Self.TraitOrDefault<GrantConditionOnDeployTurreted>();
 			timedTrait = init.Self.TraitOrDefault<GrantTimedConditionOnDeploy>();
+			mobile = init.Self.TraitOrDefault<Mobile>();
 			pending = false;
 		}
 
@@ -46,6 +48,9 @@ namespace OpenRA.Mods.CA.Traits
 				return;
 
 			if (IsTraitDisabled || IsTraitPaused)
+				return;
+
+			if (mobile != null && !mobile.CanStayInCell(self.Location))
 				return;
 
 			if (trait != null && trait.DeployState == DeployState.Undeployed)

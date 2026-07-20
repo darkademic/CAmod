@@ -194,6 +194,7 @@ Speech:
 		DropPodsAvailable: dpodrdy1
 		NaniteShieldReady: nanrdy1
 		NaniteShieldCharging: nanchg1
+		InterceptorsApproaching: intapp1
 		InterceptorsReady: intrdy1
 		NaniteRepairReady: nreprdy1
 		XODropAvailable: xoavail1

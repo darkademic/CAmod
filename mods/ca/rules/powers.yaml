@@ -1161,6 +1161,7 @@
 		SupportPowerPaletteOrder: 45
 		LaunchSound: interceptors.aud
 		IncomingSound: interceptors.aud
+		IncomingSpeechNotification: InterceptorsApproaching
 
 ^NaniteRepairPower:
 	GrantExternalConditionPowerCA@NREPAIR:

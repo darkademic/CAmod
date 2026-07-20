@@ -2909,11 +2909,11 @@ DisruptorPulse:
 DisruptorPulse.Amp:
 	Inherits: DisruptorPulse
 	Range: 6c0
+	Projectile: LinearPulse
+		ImpactAnimation@1:
+			Sequences: sonicwaveupg1, sonicwaveupg2
 	Warhead@1Dam: SpreadDamage
 		Damage: 3300
-	Warhead@2Eff: CreateFacingEffect
-		Explosions: sonicwaveupg1, sonicwaveupg2
-		ExplosionPalette: effect
 	Warhead@4Conc: GrantExternalConditionCA
 		Range: 0c768
 		Duration: 75

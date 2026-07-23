@@ -260,6 +260,11 @@ namespace OpenRA.Mods.CA.Traits
 			get { return ammoPool == null || ammoPool.HasAmmo; }
 		}
 
+		public IEnumerable<Actor> SpawnedActors
+		{
+			get { return spawns; }
+		}
+
 		public void ActorSpawned(Actor self, Actor spawned)
 		{
 			if (Info.ConcurrentLimit == 0)

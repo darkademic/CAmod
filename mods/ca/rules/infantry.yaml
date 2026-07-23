@@ -2631,6 +2631,9 @@ CONF:
 		ConcurrentLimit: 1
 		KillExcessDamageTypes: SmallExplosionDeath
 		AvoidActors: true
+	WithSpawnedActorIdentifier:
+		Type: SelectionBox
+		BoundsMargin: 2,2
 	AmmoPool@IdolOfKane:
 		Name: idol
 		Armaments: none

@@ -170,6 +170,9 @@ CHPR:
 	DamageMultiplier@NORMAL:
 		Modifier: 80
 		RequiresCondition: difficulty-normal
+	-PortableChronoCA:
+	DummyConditionGranter@TemporalFluxInit:
+		Condition: temporal-flux-init
 
 ^GDIPalette:
 	RenderSprites:

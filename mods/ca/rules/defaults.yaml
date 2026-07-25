@@ -675,6 +675,10 @@
 	TimedConditionBar@TEMPINC:
 		Condition: warpin
 		Color: FFFFFF
+	WithDecoration@Chronoshifted:
+		Sequence: incursion
+		Palette: effect-ignore-lighting-alpha50
+		RequiresCondition: !temporal-flux
 
 ^Blindable:
 	ExternalCondition@Blinded:

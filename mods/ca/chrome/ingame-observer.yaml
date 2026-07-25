@@ -505,6 +505,64 @@ Container@OBSERVER_WIDGETS:
 									Font: Bold
 									Text: Production
 									Shadow: True
+						Container@ECONOMY_DAMAGE_HEADERS:
+							X: 0
+							Y: 0
+							Width: 480
+							Height: PARENT_HEIGHT
+							Children:
+								ColorBlock@HEADER_COLOR:
+									X: 0
+									Y: 0
+									Color: 00000090
+									Width: PARENT_WIDTH - 200
+									Height: PARENT_HEIGHT
+								GradientColorBlock@HEADER_GRADIENT:
+									X: PARENT_WIDTH - 200
+									Y: 0
+									TopLeftColor: 00000090
+									BottomLeftColor: 00000090
+									Width: 200
+									Height: PARENT_HEIGHT
+								Label@PLAYER_HEADER:
+									X: 35
+									Width: 120
+									Height: PARENT_HEIGHT
+									Font: Bold
+									Text: Player
+									Shadow: True
+								Label@HARVESTERS_KILLED_HEADER:
+									X: 155
+									Width: 80
+									Height: PARENT_HEIGHT
+									Font: Bold
+									Text: Harv Killed
+									Align: Right
+									Shadow: True
+								Label@HARVESTERS_LOST_HEADER:
+									X: 235
+									Width: 80
+									Height: PARENT_HEIGHT
+									Font: Bold
+									Text: Harv Lost
+									Align: Right
+									Shadow: True
+								Label@REFINERIES_KILLED_HEADER:
+									X: 315
+									Width: 80
+									Height: PARENT_HEIGHT
+									Font: Bold
+									Text: Ref Killed
+									Align: Right
+									Shadow: True
+								Label@REFINERIES_LOST_HEADER:
+									X: 395
+									Width: 80
+									Height: PARENT_HEIGHT
+									Font: Bold
+									Text: Ref Lost
+									Align: Right
+									Shadow: True
 						Container@SUPPORT_POWERS_HEADERS:
 							X: 0
 							Y: 0
@@ -1055,6 +1113,61 @@ Container@OBSERVER_WIDGETS:
 									Width: 0
 									Height: PARENT_HEIGHT
 									TooltipContainer: TOOLTIP_CONTAINER
+						ScrollItem@ECONOMY_DAMAGE_PLAYER_TEMPLATE:
+							X: 0
+							Y: 0
+							Width: 480
+							Height: 25
+							Background: scrollitem-nohover
+							Children:
+								ColorBlock@PLAYER_COLOR:
+									X: 0
+									Y: 0
+									Width: PARENT_WIDTH - 200
+									Height: PARENT_HEIGHT
+								GradientColorBlock@PLAYER_GRADIENT:
+									X: PARENT_WIDTH - 200
+									Y: 0
+									Width: 200
+									Height: PARENT_HEIGHT
+								Image@FLAG:
+									X: 2
+									Y: 2
+									ImageName: random
+									ImageCollection: flags
+								Label@PLAYER:
+									X: 35
+									Y: 0
+									Width: 120
+									Height: PARENT_HEIGHT
+									Font: Bold
+									Shadow: True
+								Label@HARVESTERS_KILLED:
+									X: 155
+									Y: 0
+									Width: 80
+									Height: PARENT_HEIGHT
+									Align: Right
+									Shadow: True
+								Label@HARVESTERS_LOST:
+									X: 235
+									Y: 0
+									Width: 80
+									Height: PARENT_HEIGHT
+									Align: Right
+									Shadow: True
+								Label@REFINERIES_KILLED:
+									X: 315
+									Width: 80
+									Height: PARENT_HEIGHT
+									Align: Right
+									Shadow: True
+								Label@REFINERIES_LOST:
+									X: 395
+									Width: 80
+									Height: PARENT_HEIGHT
+									Align: Right
+									Shadow: True
 						ScrollItem@ARMY_PLAYER_TEMPLATE:
 							X: 0
 							Y: 0

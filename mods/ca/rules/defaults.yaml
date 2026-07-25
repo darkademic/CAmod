@@ -141,6 +141,10 @@
 # Refineries have an explicit BuildDuration so build time is unaffected by ProductionCostMultiplier
 ^Refinery:
 	Inherits@SendCash: ^SendCashPower
+	UpdatesCount@EconomyDamage:
+		Type: RefineryKilled
+		LossType: RefineryLost
+		UpdateOn: Killed
 	ProductionTimeMultiplier@brutalbonus:
 		Multiplier: 90
 		Prerequisites: is-brutal-ai
@@ -1824,6 +1828,10 @@
 		TargetTypes: Harvester
 	Targetable@MindControlResistant:
 		TargetTypes: MindControlResistant
+	UpdatesCount@EconomyDamage:
+		Type: HarvesterKilled
+		LossType: HarvesterLost
+		UpdateOn: Killed
 
 ^Veilable:
 	RangeMultiplier@VEILED:

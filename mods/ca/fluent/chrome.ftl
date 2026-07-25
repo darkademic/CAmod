@@ -17,6 +17,7 @@ options-observer-stats =
     .none = Information: None
     .basic = Basic
     .economy = Economy
+    .economy-damage = Economy Damage
     .production = Production
     .support-powers = Support Powers
     .combat = Combat

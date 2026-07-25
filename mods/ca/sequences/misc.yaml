@@ -3413,6 +3413,12 @@ blinded:
 		Tick: 500
 		Length: *
 
+tflx:
+	idle:
+		Filename: pip-tflx.shp
+		Tick: 80
+		Length: *
+
 watched:
 	idle:
 		Filename: watched.shp

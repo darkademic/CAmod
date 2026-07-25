@@ -447,7 +447,7 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 
 			SetupPlayerColor(player, template, playerColor, playerGradient);
 
-			template.Get<ObserverSupportPowerIconsWidget>("SUPPORT_POWER_ICONS").GetPlayer = () => player;
+			template.Get<ObserverSupportPowerIconsCAWidget>("SUPPORT_POWER_ICONS").GetPlayer = () => player;
 			template.IgnoreChildMouseOver = false;
 
 			return template;

@@ -3305,7 +3305,7 @@ HMMV.TOW:
 	Valued:
 		Cost: 575
 	Mobile:
-		Speed: 130
+		Speed: 126
 	Tooltip:
 		Name: TOW Hum-Vee
 	TooltipExtras:

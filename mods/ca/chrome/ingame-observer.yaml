@@ -1049,7 +1049,7 @@ Container@OBSERVER_WIDGETS:
 									Height: PARENT_HEIGHT
 									Font: Bold
 									Shadow: True
-								ObserverSupportPowerIcons@SUPPORT_POWER_ICONS:
+								ObserverSupportPowerIconsCA@SUPPORT_POWER_ICONS:
 									X: 155
 									Y: 0
 									Width: 0

@@ -596,6 +596,14 @@
 	SpeedMultiplier@CHRONO:
 		Modifier: 133
 		RequiresCondition: temporal-flux
+	WithDecoration@TemporalFlux:
+		Image: tflx
+		Sequence: idle
+		Palette: effect
+		Position: Top
+		ValidRelationships: Ally, Enemy, Neutral
+		Margin: 0, 12
+		RequiresCondition: temporal-flux
 
 ^NoUnloadWhenChronoshifted:
 	RejectsOrders@NOUNLOADCHRONO:

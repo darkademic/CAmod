@@ -677,6 +677,39 @@ explosion:
 		Filename: reap-snarehit.shp
 		BlendMode: Additive
 		Alpha: 0.75
+	pbomb_explosion:
+		Filename: pbomb-explode.shp
+		BlendMode: Alpha
+		Alpha: 0.6
+	pbomb_explosion2:
+		Filename: pbomb-explode.shp
+		BlendMode: Alpha
+		Alpha: 0.6
+		FlipX: true
+	pbomb_explosion3:
+		Filename: pbomb-explode.shp
+		BlendMode: Alpha
+		Alpha: 0.6
+		FlipY: true
+		FlipX: true
+	pbomb_explosion_sm:
+		Filename: pbomb-explode.shp
+		BlendMode: Alpha
+		Alpha: 0.6
+		Scale: 0.6
+	pbomb_explosion2_sm:
+		Filename: pbomb-explode.shp
+		BlendMode: Alpha
+		Alpha: 0.6
+		FlipX: true
+		Scale: 0.6
+	pbomb_explosion3_sm:
+		Filename: pbomb-explode.shp
+		BlendMode: Alpha
+		Alpha: 0.6
+		FlipY: true
+		FlipX: true
+		Scale: 0.6
 	empty:
 		Filename: empty.shp
 
@@ -1863,15 +1896,6 @@ satscan:
 		BlendMode: Alpha
 		Tick: 80
 		ZOffset: 1023
-
-jamfield:
-	idle:
-		Filename: jamfield.shp
-		Length: *
-		BlendMode: Alpha
-		ZOffset: 1023
-		Alpha: 0.07
-		Scale: 1.2
 
 cryostorm:
 	Defaults:
@@ -3387,6 +3411,23 @@ blinded:
 	idle:
 		Filename: blinded.shp
 		Tick: 500
+		Length: *
+
+chronoshifted:
+	idle:
+		Filename: pip-chrono.shp
+		Tick: 120
+		Frames: 0,1,2,3,4,5,6,7
+		Length: *
+	tflx:
+		Filename: pip-chrono.shp
+		Tick: 80
+		Frames: 8,9,10,11,12,13,14,15
+		Length: *
+	incursion:
+		Filename: pip-chrono.shp
+		Tick: 120
+		Frames: 16,17,18,19,20,21,22,23
 		Length: *
 
 watched:

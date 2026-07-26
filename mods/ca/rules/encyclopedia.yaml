@@ -2652,7 +2652,7 @@ encyclopedia.debuffs.jammed:
 	Encyclopedia:
 		Category: Other/Debuffs
 	EncyclopediaExtras:
-		Description: Applied by Allied Radar Jammers. Reduces vehicle weapon damage and rate of fire.
+		Description: Applied by Allied Radar Jammers. Reduces vehicle and aircraft weapon damage and rate of fire.
 	TooltipExtras:
 		Weaknesses: -10% damage dealt\n-20% rate of fire
 	WithIdleOverlay@WEAPJAMMED:

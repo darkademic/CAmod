@@ -52,7 +52,7 @@ namespace OpenRA.Mods.CA.Projectiles
 
 		[Desc("Color of the screen-space glow halo drawn along the zap.",
 			"Only visible when the \"Weapon Glow Effects\" setting is enabled.")]
-		public readonly Color GlowColor = Color.FromArgb(255, 0, 0);
+		public readonly Color? GlowColor = null;
 
 		[Desc("Scale multiplier for the glow halo's radius (also scales intensity).",
 			"Set to 0 to disable the glow for this zap.")]
@@ -90,7 +90,7 @@ namespace OpenRA.Mods.CA.Projectiles
 			target = args.PassiveTarget;
 			source = args.Source;
 
-			colors = new Color[info.Radius];	
+			colors = new Color[info.Radius];
 			for (var i = 0; i < info.Radius; i++)
 			{
 				var color = info.Color;
@@ -179,7 +179,7 @@ namespace OpenRA.Mods.CA.Projectiles
 
 			for (var i = 0; i < offsets.Length - 1; i++)
 				for (var j = 0; j < info.Radius; j++)
-					yield return new KKNDLaserRenderable(offsets, info.ZOffset, new WDist(32 + (info.Radius - j - 1) * 64), colors[j], info.GlowColor, info.GlowScale, info.GlowIntensity); ;
+					yield return new KKNDLaserRenderable(offsets, info.ZOffset, new WDist(32 + (info.Radius - j - 1) * 64), colors[j], info.GlowColor ?? colors[j], info.GlowScale, info.GlowIntensity); ;
 		}
 	}
 }

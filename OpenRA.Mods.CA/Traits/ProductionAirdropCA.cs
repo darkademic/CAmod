@@ -90,42 +90,42 @@ namespace OpenRA.Mods.CA.Traits
 			if (info.SpawnType == "ClosestEdgeToHome" || info.SpawnType == "ClosestEdgeToDestination")
 			{
 				var bounds = map.Bounds;
-				var center = new MPos(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2).ToCPos(map);
-				var spawnVec = owner.HomeLocation - center;
 
 				if (info.SpawnType == "ClosestEdgeToDestination")
 				{
-					var distFromTopEdge = self.Location.Y;
-					var distFromLeftEdge = self.Location.X;
-					var distFromBottomEdge = bounds.Height - self.Location.Y;
-					var distFromRightEdge = bounds.Width - self.Location.X;
+					var closestEdgeCell = map.ChooseClosestEdgeCell(self.Location);
+					var closestEdge = closestEdgeCell.ToMPos(map);
+					var location = self.Location.ToMPos(map);
 					var halfMapHeight = bounds.Height / 2;
 					var halfMapWidth = bounds.Width / 2;
 
-					if (distFromTopEdge <= distFromLeftEdge && distFromTopEdge <= distFromBottomEdge && distFromTopEdge <= distFromRightEdge)
+					if (closestEdge.V == bounds.Top)
 					{
-						unadjustedStartPos = new CPos(self.Location.X, self.Location.Y - halfMapHeight);
-						startPos = new CPos(unadjustedStartPos.X, unadjustedStartPos.Y - 10);
+						unadjustedStartPos = new MPos(location.U, location.V - halfMapHeight).ToCPos(map);
+						startPos = new MPos(location.U, location.V - halfMapHeight - 10).ToCPos(map);
 					}
-					else if (distFromRightEdge <= distFromBottomEdge && distFromRightEdge <= distFromLeftEdge)
+					else if (closestEdge.U == bounds.Right)
 					{
-						unadjustedStartPos = new CPos(self.Location.X + halfMapWidth, self.Location.Y);
-						startPos = new CPos(unadjustedStartPos.X + 29, unadjustedStartPos.Y);
+						unadjustedStartPos = new MPos(location.U + halfMapWidth, location.V).ToCPos(map);
+						startPos = new MPos(location.U + halfMapWidth + 29, location.V).ToCPos(map);
 					}
-					else if (distFromBottomEdge <= distFromLeftEdge)
+					else if (closestEdge.V == bounds.Bottom)
 					{
-						unadjustedStartPos = new CPos(self.Location.X, self.Location.Y + halfMapHeight);
-						startPos = new CPos(unadjustedStartPos.X, unadjustedStartPos.Y + 10);
+						unadjustedStartPos = new MPos(location.U, location.V + halfMapHeight).ToCPos(map);
+						startPos = new MPos(location.U, location.V + halfMapHeight + 10).ToCPos(map);
 					}
 					else
 					{
-						unadjustedStartPos = new CPos(self.Location.X - halfMapWidth, self.Location.Y);
-						startPos = new CPos(unadjustedStartPos.X, unadjustedStartPos.Y);
+						unadjustedStartPos = new MPos(location.U - halfMapWidth, location.V).ToCPos(map);
+						startPos = unadjustedStartPos;
 					}
 				}
 				else
 				{
-					unadjustedStartPos = startPos = owner.HomeLocation + spawnVec * (Exts.ISqrt((bounds.Height * bounds.Height + bounds.Width * bounds.Width) / (4 * spawnVec.LengthSquared)));
+					var center = new MPos(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2).ToCPos(map);
+					var spawnVec = owner.HomeLocation - center;
+					unadjustedStartPos = startPos = owner.HomeLocation + spawnVec
+						* (Exts.ISqrt((bounds.Height * bounds.Height + bounds.Width * bounds.Width) / (4 * spawnVec.LengthSquared)));
 				}
 
 				endPos = startPos;
@@ -172,7 +172,6 @@ namespace OpenRA.Mods.CA.Traits
 				if (info.ProportionalSpeed && info.ProportionalSpeedBaseDistance.Length > 0 && dynamicSpeedMultiplier != null)
 				{
 					var travelDistance = (float)((w.Map.CenterOfCell(unadjustedStartPos) - self.CenterPosition).Length);
-
 					var baseDistance = (float)info.ProportionalSpeedBaseDistance.Length;
 					var multiplier = (int)Math.Round(travelDistance / baseDistance * 100);
 

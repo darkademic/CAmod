@@ -28,7 +28,7 @@ DOG:
 	Mobile:
 		Speed: 94
 		Voice: Move
-		PauseOnCondition: attack-cooldown || eating || being-warped
+		PauseOnCondition: attack-cooldown || eating || being-warped || reapersnare
 	Guard:
 		Voice: Move
 	Passenger:
@@ -56,6 +56,8 @@ DOG:
 		TargetTypes: ChaosImmune
 	Targetable@MindControlImmune:
 		TargetTypes: MindControlImmune
+	Targetable@Dog:
+		TargetTypes: Dog
 	WithInfantryBody:
 		MoveSequence: walk
 		StandSequences: stand
@@ -95,7 +97,7 @@ DOG:
 		DeployCursor: move
 	KeepsDistance:
 	AutoGuard:
-		ValidOrders: AttackMove, AssaultMove, ForceAttack, KeepDistance
+		ValidOrders: KeepDistance
 		ValidTargets: Infantry, Vehicle
 	Encyclopedia:
 		Category: Soviets/Infantry
@@ -384,7 +386,7 @@ U3:
 	Mobile:
 		Speed: 41
 		Voice: Move
-		PauseOnCondition: !undeployed || being-warped
+		PauseOnCondition: !undeployed || being-warped || reapersnare
 		ImmovableCondition: deployed
 		RequireForceMoveCondition: !undeployed
 	Armament@PRIMARY:
@@ -461,7 +463,7 @@ U3:
 		Voice: Action
 		DeploySounds: igidepa.aud, igidepb.aud
 		UndeploySounds: igidepa.aud, igidepb.aud
-		PauseOnCondition: being-warped
+		PauseOnCondition: being-warped || reapersnare
 		SmartDeploy: True
 		Facing: 332
 	GrantCondition:
@@ -692,7 +694,7 @@ E6:
 		DeploySounds: igidepa.aud, igidepb.aud
 		UndeploySounds: igidepa.aud, igidepb.aud
 		UndeployOnMove: true
-		PauseOnCondition: being-warped
+		PauseOnCondition: being-warped || reapersnare
 		SmartDeploy: true
 		RequiresCondition: !parachute && entrench-upgrade
 	GrantTimedCondition@SETUP:
@@ -944,8 +946,6 @@ E7:
 	Targetable@ReaperSnareImmune:
 		TargetTypes: ReaperSnareImmune
 	-Crushable:
-	TakeCover:
-		SpeedModifier: 70
 	TargetSpecificOrderVoice:
 		Orders: Attack, ForceAttack
 		TargetTypeVoices:
@@ -1857,7 +1857,6 @@ N4:
 		LocalOffset: 341,0,300
 		MuzzleSequence: muzzle
 		MuzzlePalette: tdeffect
-
 	Armament@BATF:
 		Name: batf
 		Weapon: FlamerTDBATF
@@ -1988,7 +1987,7 @@ N5:
 		ShowSelectionBar: true
 		ShowSelectionBarWhenFull: false
 		StartsFullyCharged: true
-		PauseOnCondition: being-warped
+		PauseOnCondition: being-warped || reapersnare
 		DischargingColor: 00ff00
 		ChargingColor: 008800
 		Instant: true
@@ -2106,8 +2105,6 @@ RMBO:
 	Targetable@ReaperSnareImmune:
 		TargetTypes: ReaperSnareImmune
 	-Crushable:
-	TakeCover:
-		SpeedModifier: 70
 	TargetSpecificOrderVoice:
 		Orders: Attack, ForceAttack
 		TargetTypeVoices:
@@ -2371,8 +2368,6 @@ BORI:
 		TargetTypes: ChaosImmune
 	Targetable@ReaperSnareImmune:
 		TargetTypes: ReaperSnareImmune
-	TakeCover:
-		SpeedModifier: 70
 	AutoTargetPriority@DEFAULT:
 		ValidTargets: Infantry, Vehicle, Water, Underwater
 	ChangesHealth@ELITE:
@@ -2636,6 +2631,9 @@ CONF:
 		ConcurrentLimit: 1
 		KillExcessDamageTypes: SmallExplosionDeath
 		AvoidActors: true
+	WithSpawnedActorIdentifier:
+		Type: SelectionBox
+		BoundsMargin: 2,2
 	AmmoPool@IdolOfKane:
 		Name: idol
 		Armaments: none
@@ -2844,7 +2842,7 @@ JJET:
 	TooltipExtras:
 		Strengths: • Strong vs Infantry, Aircraft
 		Weaknesses: • Weak vs Heavy Armor, Buildings, Defenses
-		Attributes: • Detects cloaked ground units
+		Attributes: • Detects cloaked units (with upgrade)
 	Valued:
 		Cost: 350
 	Tooltip:
@@ -2944,8 +2942,9 @@ JJET:
 	Hovers@CRUISING:
 		RequiresCondition: cruising
 	DetectCloaked:
-		DetectionTypes: Cloak
-		Range: 2c0
+		DetectionTypes: Cloak, AirCloak
+		Range: 5c0
+		RequiresCondition: ejjet-upgrade
 	Selectable:
 		Bounds: 768, 768, 0, -256
 		DecorationBounds: 512, 725, 0, -256
@@ -3395,7 +3394,7 @@ RMBC:
 	Mobile:
 		Speed: 54
 		Voice: Move
-		PauseOnCondition: being-warped || empdisable
+		PauseOnCondition: being-warped || reapersnare || empdisable
 	RevealsShroud:
 		Range: 6c0
 	AttackFrontal:
@@ -4063,7 +4062,7 @@ YURI:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 18000
+		HP: 11000
 	Mobile:
 		Speed: 60
 		Voice: Move
@@ -4146,8 +4145,6 @@ YURI:
 	Voiced:
 		VoiceSet: YuriVoice
 	-Crushable:
-	TakeCover:
-		SpeedModifier: 70
 	WithInfantryBody:
 		IdleSequences: idle
 		StandSequences: stand
@@ -4337,8 +4334,6 @@ SEAL:
 	IgnoresDisguise:
 	Crushable:
 		CrushClasses: heavyinfantry
-	TakeCover:
-		SpeedModifier: 70
 	TargetSpecificOrderVoice:
 		Orders: Attack, ForceAttack
 		TargetTypeVoices:
@@ -5305,10 +5300,10 @@ REAP:
 	Mobile:
 		Speed: 60
 		Voice: Move
-		PauseOnCondition: being-warped || empdisable
+		PauseOnCondition: being-warped || reapersnare || empdisable
 	AttackFrontal:
 		Voice: Attack
-		PauseOnCondition: being-warped || empdisable
+		PauseOnCondition: being-warped || reapersnare || empdisable
 		FacingTolerance: 0
 	AttackMove:
 		Voice: Move

@@ -53,8 +53,7 @@ namespace OpenRA.Mods.CA.Traits
 
 		void INotifyAttachedTo.Attached(Actor self, Actor attachedActor, Attachable attachable)
 		{
-			if (!attachedTokens.ContainsKey(attachable))
-				attachedTokens.Add(attachable, Actor.InvalidConditionToken);
+			attachedTokens.TryAdd(attachable, Actor.InvalidConditionToken);
 
 			if (IsTraitDisabled)
 				return;

@@ -33,6 +33,9 @@ namespace OpenRA.Mods.CA.Traits
 		[Desc("Name of the counter to update.")]
 		public readonly string Type = null;
 
+		[Desc("Name of the owner counter to increment for the victim player when the actor is killed (requires UpdateOnType to include Killed).")]
+		public readonly string LossType = null;
+
 		[Desc("What triggers an update.")]
 		public readonly UpdateOnType UpdateOn = UpdateOnType.Owned;
 
@@ -123,6 +126,9 @@ namespace OpenRA.Mods.CA.Traits
 
 			var attackerCounter = attackingPlayer.PlayerActor.Trait<CountManager>();
 			attackerCounter.Increment(info.Type);
+
+			if (info.LossType != null)
+				self.Owner.PlayerActor.Trait<CountManager>().Increment(info.LossType);
 		}
 
 		void INotifySold.Selling(Actor self) { }

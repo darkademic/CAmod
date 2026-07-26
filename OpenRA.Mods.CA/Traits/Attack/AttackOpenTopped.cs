@@ -40,6 +40,7 @@ namespace OpenRA.Mods.CA.Traits
 	public class AttackOpenTopped : AttackFollow, IRender, INotifyPassengerEntered, INotifyPassengerExited
 	{
 		public readonly new AttackOpenToppedInfo Info;
+		INotifyAttack[] notifyAttacks;
 		readonly Lazy<BodyOrientation> coords;
 		readonly List<Actor> actors;
 		readonly List<Armament> armaments;
@@ -66,15 +67,24 @@ namespace OpenRA.Mods.CA.Traits
 			return () => armaments;
 		}
 
-		void OnActorEntered(Actor enterer)
+		protected override void Created(Actor self)
+		{
+			notifyAttacks = self.TraitsImplementing<INotifyAttack>().ToArray();
+			base.Created(self);
+		}
+
+		void OnActorEntered(Actor self, Actor enterer)
 		{
 			actors.Add(enterer);
 			paxFacing.Add(enterer, enterer.Trait<IFacing>());
 			paxPos.Add(enterer, enterer.Trait<IPositionable>());
 			paxRender.Add(enterer, enterer.Trait<RenderSprites>());
-			armaments.AddRange(
-				enterer.TraitsImplementing<Armament>()
-				.Where(a => Info.Armaments.Contains(a.Info.Name)));
+
+			foreach (var armament in enterer.TraitsImplementing<Armament>().Where(a => Info.Armaments.Contains(a.Info.Name)))
+			{
+				armament.AddNotifyAttacks(self, notifyAttacks);
+				armaments.Add(armament);
+			}
 		}
 
 		void OnActorExited(Actor exiter)
@@ -83,12 +93,17 @@ namespace OpenRA.Mods.CA.Traits
 			paxFacing.Remove(exiter);
 			paxPos.Remove(exiter);
 			paxRender.Remove(exiter);
-			armaments.RemoveAll(a => a.Actor == exiter);
+
+			foreach (var armament in armaments.Where(a => a.Actor == exiter).ToList())
+			{
+				armament.RemoveNotifyAttacks(notifyAttacks);
+				armaments.Remove(armament);
+			}
 		}
 
 		void INotifyPassengerEntered.OnPassengerEntered(Actor self, Actor passenger)
 		{
-			OnActorEntered(passenger);
+			OnActorEntered(self, passenger);
 		}
 
 		void INotifyPassengerExited.OnPassengerExited(Actor self, Actor passenger)

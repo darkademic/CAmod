@@ -24,6 +24,7 @@
 			Gems: 80
 			Tiberium: 70
 			BlueTiberium: 70
+			BlackTiberium: 70
 			Beach: 80
 	Locomotor@JUMPJET:
 		Name: jumpjet
@@ -39,6 +40,7 @@
 			Gems: 100
 			Tiberium: 100
 			BlueTiberium: 100
+			BlackTiberium: 100
 			Beach: 100
 			Water: 100
 			River: 100
@@ -59,6 +61,7 @@
 			Gems: 88
 			Tiberium: 88
 			BlueTiberium: 88
+			BlackTiberium: 88
 			Beach: 50
 	Locomotor@HEAVYWHEELED:
 		Name: heavywheeled
@@ -73,6 +76,7 @@
 			Gems: 88
 			Tiberium: 88
 			BlueTiberium: 88
+			BlackTiberium: 88
 			Beach: 45
 	Locomotor@LIGHTTRACKED:
 		Name: lighttracked
@@ -87,6 +91,7 @@
 			Gems: 88
 			Tiberium: 88
 			BlueTiberium: 88
+			BlackTiberium: 88
 			Beach: 88
 	Locomotor@TRACKED:
 		Name: tracked
@@ -101,6 +106,7 @@
 			Gems: 88
 			Tiberium: 88
 			BlueTiberium: 88
+			BlackTiberium: 88
 			Beach: 88
 	Locomotor@HEAVYTRACKED:
 		Name: heavytracked
@@ -115,6 +121,7 @@
 			Gems: 88
 			Tiberium: 88
 			BlueTiberium: 88
+			BlackTiberium: 88
 			Beach: 88
 	Locomotor@SHEAVYTRACKED:
 		Name: sheavytracked
@@ -129,6 +136,7 @@
 			Gems: 88
 			Tiberium: 88
 			BlueTiberium: 88
+			BlackTiberium: 88
 			Beach: 88
 	Locomotor@NAVAL:
 		Name: naval
@@ -160,6 +168,7 @@
 			Gems: 88
 			Tiberium: 88
 			BlueTiberium: 88
+			BlackTiberium: 88
 			Beach: 88
 			Water: 100
 			Tunnel: 100
@@ -176,6 +185,7 @@
 			Gems: 88
 			Tiberium: 88
 			BlueTiberium: 88
+			BlackTiberium: 88
 			Beach: 88
 			Water: 70
 			Tunnel: 100
@@ -192,6 +202,7 @@
 			Gems: 88
 			Tiberium: 88
 			BlueTiberium: 88
+			BlackTiberium: 88
 			Beach: 88
 			Water: 35
 	Locomotor@CLOUD:
@@ -208,6 +219,7 @@
 			Gems: 100
 			Tiberium: 100
 			BlueTiberium: 100
+			BlackTiberium: 100
 			Beach: 100
 			Tunnel: 100
 			Water: 100
@@ -232,6 +244,7 @@
 			Gems: 80
 			Tiberium: 70
 			BlueTiberium: 70
+			BlackTiberium: 70
 			Beach: 80
 			Water: 50
 	TerrainRenderer:
@@ -504,7 +517,7 @@ World:
 				MaxDensity: 8
 			BlackTiberium:
 				ResourceIndex: 5
-				TerrainType: Tiberium
+				TerrainType: BlackTiberium
 				AllowedTerrainTypes: Clear, Road
 				MaxDensity: 12
 	ResourceClaimLayer:
@@ -733,7 +746,7 @@ EditorWorld:
 				MaxDensity: 8
 			BlackTiberium:
 				ResourceIndex: 5
-				TerrainType: Tiberium
+				TerrainType: BlackTiberium
 				AllowedTerrainTypes: Clear, Road
 				MaxDensity: 12
 	MarkerLayerOverlay:

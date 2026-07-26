@@ -22,7 +22,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.CA.Traits
 {
 	[Desc("Copy of AirstrikePowerCA but has MinDistance instead of Cordon.")]
-	public class AirstrikePowerCAInfo : DirectionalSupportPowerInfo
+	public class AirstrikePowerCAInfo : StackableDirectionalSupportPowerInfo
 	{
 		[ActorReference(typeof(AircraftInfo))]
 		public readonly string UnitType = "badr.bomber";
@@ -58,7 +58,7 @@ namespace OpenRA.Mods.CA.Traits
 		public override object Create(ActorInitializer init) { return new AirstrikePowerCA(init.Self, this); }
 	}
 
-	public class AirstrikePowerCA : DirectionalSupportPower
+	public class AirstrikePowerCA : StackableDirectionalSupportPower
 	{
 		readonly AirstrikePowerCAInfo info;
 		TechTree techTree;

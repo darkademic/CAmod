@@ -41,6 +41,7 @@ namespace OpenRA.Mods.CA.Traits
 
 	public abstract class SpawnerSlaveBase : INotifyCreated, INotifyKilled, INotifyOwnerChanged
 	{
+		protected readonly Actor self;
 		protected AttackBase[] attackBases;
 
 		readonly SpawnerSlaveBaseInfo info;
@@ -60,6 +61,7 @@ namespace OpenRA.Mods.CA.Traits
 		public SpawnerSlaveBase(ActorInitializer init, SpawnerSlaveBaseInfo info)
 		{
 			this.info = info;
+			self = init.Self;
 		}
 
 		void INotifyCreated.Created(Actor self)
@@ -221,6 +223,16 @@ namespace OpenRA.Mods.CA.Traits
 		{
 			if (masterTraitDisabledConditionToken != Actor.InvalidConditionToken)
 				masterTraitDisabledConditionToken = self.RevokeCondition(masterTraitDisabledConditionToken);
+		}
+
+		public int GrantConditionFromMaster(string condition)
+		{
+			return self.GrantCondition(condition);
+		}
+
+		public void RevokeConditionFromMaster(int token)
+		{
+			self.RevokeCondition(token);
 		}
 	}
 }

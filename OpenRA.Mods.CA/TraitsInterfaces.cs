@@ -55,6 +55,7 @@ namespace OpenRA.Mods.CA.Traits
 		CVec[] ImpactOffsets { get; }
 		WDist RandomOffset { get; }
 		bool RandomImpactSequence { get; }
+		bool ExcludeFirstImpactFromRandomSequence { get; }
 		int[] Interval { get; }
 	}
 

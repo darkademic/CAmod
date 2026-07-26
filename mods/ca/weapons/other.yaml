@@ -1159,7 +1159,7 @@ BattleTankLaser:
 
 RaiderBuggyLaser:
 	Inherits: M60mgTD
-	Range: 5c0
+	Range: 4c512
 	ReloadDelay: 25
 	-Burst:
 	-StartBurstReport:
@@ -1327,7 +1327,7 @@ EnlightenedBeam:
 		RecalculateColors: true
 		TrackTarget: false
 		MaxFacingDeviation: 64
-		GlowColor: 0eebf3
+		GlowScale: 0.3
 	Warhead@1Dam: HealthPercentageSpreadDamage
 		Spread: 341
 		Falloff: 100, 45, 25, 15, 0
@@ -1533,7 +1533,7 @@ PrisLaser:
 PrisLaserSupport:
 	ValidTargets: Ground, Water
 	ReloadDelay: 3
-	Range: 5c0
+	Range: 7c512
 	Report: bpriat1a.aud
 	Projectile: LaserZapCA
 		Width: 35
@@ -2909,11 +2909,11 @@ DisruptorPulse:
 DisruptorPulse.Amp:
 	Inherits: DisruptorPulse
 	Range: 6c0
+	Projectile: LinearPulse
+		ImpactAnimation@1:
+			Sequences: sonicwaveupg1, sonicwaveupg2
 	Warhead@1Dam: SpreadDamage
 		Damage: 3300
-	Warhead@2Eff: CreateFacingEffect
-		Explosions: sonicwaveupg1, sonicwaveupg2
-		ExplosionPalette: effect
 	Warhead@4Conc: GrantExternalConditionCA
 		Range: 0c768
 		Duration: 75
@@ -3983,6 +3983,7 @@ TargetPainter:
 		Width: 70
 		Duration: 20
 		HitAnim: empty
+		GlowScale: 0
 	Warhead@UnitReveal: RevealShroud
 		Duration: 28
 		Radius: 5c0

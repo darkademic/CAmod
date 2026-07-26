@@ -32,7 +32,8 @@ faction-france =
 
     Bonuses:
       • Prism Tank/Cannon (deploy to fortify)
-      • Walls & Defenses (10% discount)
+      • Defenses (10% discount)
+      • Walls (30% discount)
 
 faction-germany =
     .name = Germany

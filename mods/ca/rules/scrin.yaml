@@ -660,15 +660,19 @@ S4:
 		ChronoshiftSound: scrinport.aud
 		RequiresCondition: blink-upgrade
 		TeleportCondition: blink
-		ConditionDuration: 3
+		ConditionDuration: 15
 		ShowSelectionBarWhenFull: false
 		CircleColor: c8b8ed66
 	GrantConditionOnPrerequisite@BLINKPACKS:
 		Condition: blink-upgrade
 		Prerequisites: blink.upgrade
+	GrantTimedCondition@BlinkFlash:
+		Condition: blinkflash
+		Duration: 3
+		RequiresCondition: blink
 	WithColoredOverlay@BLINKFLASH:
 		Color: ffffff80
-		RequiresCondition: blink
+		RequiresCondition: blinkflash
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 
@@ -720,15 +724,19 @@ MRDR:
 		ChronoshiftSound: scrinport.aud
 		RequiresCondition: blink-upgrade
 		TeleportCondition: blink
-		ConditionDuration: 3
+		ConditionDuration: 15
 		ShowSelectionBarWhenFull: false
 		CircleColor: c8b8ed66
 	GrantConditionOnPrerequisite@BLINKPACKS:
 		Condition: blink-upgrade
 		Prerequisites: blink.upgrade
+	GrantTimedCondition@BlinkFlash:
+		Condition: blinkflash
+		Duration: 3
+		RequiresCondition: blink
 	WithColoredOverlay@BLINKFLASH:
 		Color: ffffff80
-		RequiresCondition: blink
+		RequiresCondition: blinkflash
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 	EncyclopediaExtras:
@@ -790,9 +798,6 @@ WCHR:
 		Weapon: WatcherDartCollector
 		LocalOffset: 150,0,400
 		RequiresCondition: player-collector
-	AutoTarget:
-		InitialStance: HoldFire
-		InitialStanceAI: ReturnFire
 	Cloak@NORMAL:
 		InitialDelay: 250
 		CloakDelay: 120
@@ -873,6 +878,8 @@ BRST:
 		TargetTypes: Burster
 	AutoTarget:
 		ScanRadius: 4
+	Selectable:
+		DecorationBounds: 640, 896, -32, -256
 	TargetedAttackAbility:
 		TargetCursor: attack
 		ArmamentNames: primary
@@ -1312,7 +1319,7 @@ MAST:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 18000
+		HP: 11000
 	Mobile:
 		Speed: 60
 	RevealsShroud:
@@ -1360,9 +1367,9 @@ MAST:
 		DecorationBounds: 640, 896, -32, -256
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
-		RequiresCondition: !rank-elite && !being-warped
+		RequiresCondition: !rank-elite && !being-warped && !reapersnare
 	WithInfantryBody@Warped:
-		RequiresCondition: !rank-elite && being-warped
+		RequiresCondition: !rank-elite && being-warped && !reapersnare
 	WithDeathAnimation:
 		RequiresCondition: !rank-elite && !being-warped
 	WithInfantryBody@Prodigy:
@@ -1370,10 +1377,10 @@ MAST:
 		MoveSequence: pdgy-run
 		IdleSequences: pdgy-idle1, pdgy-idle2, pdgy-idle3, pdgy-idle4
 		DefaultAttackSequence: pdgy-shoot
-		RequiresCondition: rank-elite && !transforming && !being-warped
+		RequiresCondition: rank-elite && !transforming && !being-warped && !reapersnare
 	WithInfantryBody@ProdigyWarped:
 		StandSequences: pdgy-stand
-		RequiresCondition: rank-elite && !transforming && being-warped
+		RequiresCondition: rank-elite && !transforming && (being-warped || reapersnare)
 	WithDeathAnimation@PDGY:
 		DeathSequencePalette: playerscrin
 		CrushedSequencePalette: scrin
@@ -1409,8 +1416,6 @@ MAST:
 		Types: Veterancy
 		Prerequisites: barracks.upgraded
 	-Crushable:
-	TakeCover:
-		SpeedModifier: 70
 	ExternalCondition@PRODUCED:
 		Condition: produced
 	VoiceAnnouncement:
@@ -1430,8 +1435,6 @@ MAST:
 		TargetTypes: MindControlImmune
 	Targetable@ChaosImmune:
 		TargetTypes: ChaosImmune
-	Targetable@ReaperSnareImmune:
-		TargetTypes: ReaperSnareImmune
 	WithIdleOverlay@mindcontrolling:
 		Sequence: mc
 		Palette: scrin
@@ -1487,7 +1490,7 @@ MAST:
 		AmmoCondition: mspk-ammo
 	ReloadAmmoPoolCA@MindSpark:
 		AmmoPool: mspk
-		Delay: 375
+		Delay: 625
 		Count: 1
 		ShowSelectionBar: true
 		SelectionBarColor: ff00ff
@@ -3781,7 +3784,7 @@ PAC:
 		TurnSpeed: 512
 		RealignDelay: 0
 	CarrierMaster@carr1:
-		Actors: inva, inva, inva, inva, inva, inva
+		Actors: inva, inva, invb, inva, inva, invb
 		RearmTicks: 0
 		RespawnTicks: 375
 		InstantRepair: true
@@ -3852,6 +3855,7 @@ INVA:
 	Inherits@4: ^EmpDisable
 	Inherits@5: ^GDIStrategyBuffsAircraft
 	Inherits@ionsurge: ^IonSurgable
+	Inherits@WeaponJammable: ^WeaponJammable
 	Inherits@FleetRecallable: ^FleetRecallable
 	Valued:
 		Cost: 50
@@ -3880,7 +3884,7 @@ INVA:
 		AttackType: Strafe
 		StrafeRunLength: 3c0
 	Aircraft:
-		CruiseAltitude: 2560
+		CruiseAltitude: 2c768
 		InitialFacing: 768
 		TurnSpeed: 32
 		Speed: 220
@@ -3930,6 +3934,13 @@ INVA:
 	GrantConditionOnDamageState@SmokeTrail:
 		Condition: enable-smoke
 	GivesExperienceToMaster:
+
+INVB:
+	Inherits: INVA
+	RenderSprites:
+		Image: inva
+	Armament@PRIMARY:
+		Weapon: PlasmaBomb
 
 MSHP:
 	Inherits: ^Helicopter

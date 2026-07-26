@@ -3943,7 +3943,7 @@ HQ.UPG:
 	Tooltip:
 		Name: Internet Center
 	TooltipExtras:
-		Attributes: • Requires power to operate\n• Detects nearby enemy vehicles, aircraft and structures in fog of war (increases per garrisoned Hacker)\n• $25 delivered every 60 seconds (normal speed)\n• Income increased by $75 per garrisoned Hacker\n• Cannot be hacked
+		Attributes: • Requires power to operate\n• Detects nearby enemy vehicles, aircraft and structures in fog of war (increases per garrisoned Hacker)\n• $25 delivered every 15 seconds (normal speed)\n• Income increased by $75 per garrisoned Hacker\n• Cannot be hacked
 	-Targetable@HACKABLE:
 	-TransformOnCondition@UPG:
 	-GrantConditionOnPrerequisite@UPG:
@@ -4788,7 +4788,7 @@ PRIS:
 		Amount: -80
 	ProvidesPrerequisite@buildingname:
 	WithPrismLinkVisualization:
-		Range: 5c0
+		Range: 7c512
 		SelectedColor: 00FFFF77
 		PlacementColor: 00FFFFFF
 		RangeCircleColor: 00FFFF77
@@ -5241,6 +5241,11 @@ SGEN:
 		MaximumVerticalOffset: 512
 		AffectsParent: true
 		RequiresCondition: !disabled && !empdisable && !being-warped && !cloak-force-disabled
+	ProximityExternalCondition@MSG2:
+		Range: 3c512
+		Condition: sgencloak
+		RequiresCondition: !disabled && !empdisable && !being-warped && !cloak-force-disabled
+		MaximumVerticalOffset: 3072
 	Encyclopedia:
 		Category: Nod/Buildings
 
@@ -6043,9 +6048,6 @@ UPGC:
 	GrantConditionOnPrerequisite@SCAN:
 		Prerequisites: scan-active
 		Condition: scan-active
-	GrantConditionOnBotOwner@RADAR:
-		Condition: scan-active
-		Bots: brutal, vhard, hard, normal, easy, naval
 	GrantConditionOnPrerequisite@RADAR:
 		Prerequisites: radar-active
 		Condition: radar-active

@@ -141,6 +141,10 @@
 # Refineries have an explicit BuildDuration so build time is unaffected by ProductionCostMultiplier
 ^Refinery:
 	Inherits@SendCash: ^SendCashPower
+	UpdatesCount@EconomyDamage:
+		Type: RefineryKilled
+		LossType: RefineryLost
+		UpdateOn: Killed
 	ProductionTimeMultiplier@brutalbonus:
 		Multiplier: 90
 		Prerequisites: is-brutal-ai
@@ -596,6 +600,22 @@
 	SpeedMultiplier@CHRONO:
 		Modifier: 133
 		RequiresCondition: temporal-flux
+	WithDecoration@Chronoshifted:
+		Image: chronoshifted
+		Sequence: idle
+		Palette: effect
+		Position: Top
+		ValidRelationships: Ally, Enemy, Neutral
+		Margin: 0, 12
+		RequiresCondition: chronoshifted && !temporal-flux
+	WithDecoration@TemporalFlux:
+		Image: chronoshifted
+		Sequence: tflx
+		Palette: effect
+		Position: Top
+		ValidRelationships: Ally, Enemy, Neutral
+		Margin: 0, 12
+		RequiresCondition: temporal-flux
 
 ^NoUnloadWhenChronoshifted:
 	RejectsOrders@NOUNLOADCHRONO:
@@ -655,6 +675,10 @@
 	TimedConditionBar@TEMPINC:
 		Condition: warpin
 		Color: FFFFFF
+	WithDecoration@Chronoshifted:
+		Sequence: incursion
+		Palette: effect-ignore-lighting-alpha50
+		RequiresCondition: !temporal-flux
 
 ^Blindable:
 	ExternalCondition@Blinded:
@@ -1714,6 +1738,8 @@
 	SpeedMultiplier@ReaperSnare:
 		Modifier: 0
 		RequiresCondition: reapersnare
+	RejectsOrders@ReaperSnare:
+		RequiresCondition: reapersnare
 
 ^HarvesterBase:
 	Inherits: ^Vehicle-NOUPG
@@ -1814,6 +1840,10 @@
 		TargetTypes: Harvester
 	Targetable@MindControlResistant:
 		TargetTypes: MindControlResistant
+	UpdatesCount@EconomyDamage:
+		Type: HarvesterKilled
+		LossType: HarvesterLost
+		UpdateOn: Killed
 
 ^Veilable:
 	RangeMultiplier@VEILED:
@@ -2097,20 +2127,13 @@
 
 ^InfiltrateForSupportPower:
 	Targetable@GrantSupportPowerInfiltrate:
-		RequiresCondition: !being-warped && !spy-infiltrate-cooldown
+		RequiresCondition: !being-warped
 		TargetTypes: GrantSupportPowerInfiltrate
 	InfiltrateToCreateProxyActor@SpySupportPower:
 		Types: GrantSupportPowerInfiltrate
 		InfiltrationNotification: BuildingInfiltrated
 		InfiltratedNotification: BaseAttack
 		PlayerExperience: 15
-	InfiltrateForTimedCondition@SpySupportPower:
-		Condition: spy-infiltrate-cooldown
-		Duration: 1500
-		Types: GrantSupportPowerInfiltrate
-		ShowSelectionBar: true
-		SelectionBarColor: aaaaaa
-		ApplyToAllOfType: true
 
 ^GeneticallyMutatable:
 	ExternalCondition@GMUT:
@@ -2131,7 +2154,8 @@
 		TargetTypes: MiniDroneAttachable
 		RequiresCondition: !mdrn-attached
 	ChangesHealth@MINIDRONE:
-		Step: 1000
+		Step: 0
+		PercentageStep: 1
 		Delay: 25
 		StartIfBelow: 100
 		DamageCooldown: 100
@@ -2828,7 +2852,7 @@
 		DeathTypes: FireDeath
 	DeathSounds@ZAPPED:
 		Voice: Zapped
-		DeathTypes: ElectricityDeath, ChronoDeath, AtomizedDeath
+		DeathTypes: ElectricityDeath, AtomizedDeath
 	DeathSounds@POISONED:
 		Voice: Poisoned
 		DeathTypes: PoisonDeath, ToxinDeath, RadiationDeath, MutatedDeath
@@ -3424,6 +3448,7 @@
 	Inherits@ionsurge: ^IonSurgable
 	Inherits@atomize: ^Atomizable
 	Inherits@Blindable: ^Blindable
+	Inherits@WeaponJammable: ^WeaponJammable
 	Inherits@DevelopmentPolicyVeterancyBonus: ^DevelopmentPolicyVeterancyBonus
 	-GrantConditionOnPrerequisite@MunitionsPlantBoost:
 	-ReloadDelayMultiplier@MunitionsPlantBoost:
@@ -3480,6 +3505,9 @@
 	-SpeedMultiplier@chilled10:
 	WithShadow:
 		RequiresCondition: !invisibility
+	WithShadow@CLOAKED:
+		ShadowColor: 00000033
+		RequiresCondition: invisibility
 	SoundOnDamageTransitionCA:
 		DestroyedSounds: vrapdiea.aud, vrapdieb.aud
 		RequiresCondition: airborne
@@ -3910,7 +3938,7 @@
 	MapEditorData:
 		Categories: Wall
 	ProductionCostMultiplier@FranceBonus:
-		Multiplier: 90
+		Multiplier: 70
 		Prerequisites: player.france
 	GrantExternalConditionToCrusher@CRUSHATTEMPTSLOW:
 		WarnCrushCondition: crush-attempt-slow
@@ -4838,6 +4866,8 @@
 	HitShape:
 		Type: Circle
 			Radius: 427
+	GivesExperienceCA:
+		PlayerExperienceModifier: 0
 	MapEditorData:
 		Categories: Critter
 

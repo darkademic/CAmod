@@ -50,7 +50,7 @@ fi
 
 NAME="${Name:-"Dedicated Server"}"
 LAUNCH_MOD="${Mod:-"${MOD_ID}"}"
-MAP="${Mod:-""}"
+MAP="${Map:-""}"
 LISTEN_PORT="${ListenPort:-"1234"}"
 ADVERTISE_ONLINE="${AdvertiseOnline:-"True"}"
 PASSWORD="${Password:-""}"
@@ -97,5 +97,5 @@ while true; do
      Server.ShareAnonymizedIPs="${SHARE_ANONYMISED_IPS}" \
      Server.FloodLimitJoinCooldown="${FLOOD_LIMIT_JOIN_COOLDOWN}" \
      Server.QueryMapRepository="${QUERY_MAP_REPOSITORY}" \
-     Engine.SupportDir="${SUPPORT_DIR}"
+     Engine.SupportDir="${SUPPORT_DIR}" || :
 done

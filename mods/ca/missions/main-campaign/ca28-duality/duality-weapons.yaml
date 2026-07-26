@@ -1,4 +1,5 @@
 SMG:
+	ReloadDelay: 12
 	InvalidTargets: Structure
 	Warhead@1Dam: SpreadDamage
 		Versus:
@@ -6,7 +7,9 @@ SMG:
 			Heavy: 6
 
 Colt45:
-	ReloadDelay: 8
+	ReloadDelay: 7
+	Burst: 4
+	BurstDelays: 2,6,2
 	ValidTargets: Ground
 	InvalidTargets: Structure
 	Warhead@1Dam: SpreadDamage

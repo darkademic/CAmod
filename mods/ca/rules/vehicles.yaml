@@ -258,6 +258,8 @@ NUKC:
 		ForceFireIgnoresActors: True
 		PersistentTargeting: false
 		RequiresCondition: !undeploying
+	IgnoreOutOfRangeAttackOrders:
+		RequiresCondition: !undeployed
 	GrantConditionOnDeployTurreted:
 		DeployedCondition: deployed
 		UndeployedCondition: undeployed
@@ -279,7 +281,7 @@ NUKC:
 	WithEnabledAnimation@Deploying:
 		RequiresCondition: deployed
 		Sequence: make
-		Body: deployed
+		Body: body
 	WithEnabledAnimation@Undeploying:
 		RequiresCondition: undeployed
 		Sequence: undeploy
@@ -2679,7 +2681,7 @@ MRJ:
 		Description: Support vehicle that can disrupt enemy targeting systems.
 	TooltipExtras:
 		Weaknesses: • Unarmed
-		Attributes: • Jamming fields reduce rate of fire and accuracy of enemy vehicles/defenses
+		Attributes: • Jamming fields reduce rate of fire and accuracy of enemy vehicles, aircraft & defenses
 	Health:
 		HP: 25000
 	Armor:
@@ -2793,6 +2795,11 @@ MSG:
 		RequiresCondition: deployed && !cloak-force-disabled
 		MaximumVerticalOffset: 512
 		AffectsParent: true
+	ProximityExternalCondition@MSG2:
+		Range: 2c512
+		Condition: sgencloak
+		RequiresCondition: deployed && !cloak-force-disabled
+		MaximumVerticalOffset: 3072
 	Encyclopedia:
 		Category: Nod/Vehicles
 	EncyclopediaExtras:
@@ -3274,22 +3281,8 @@ HMMV:
 	WithProductionIconOverlay:
 		Types: Veterancy
 		Prerequisites: vehicles.upgraded
-	GrantConditionOnPrerequisite@GSHIELD:
-		Condition: pointdef-upgrade
-		Prerequisites: pointdef.upgrade, !tow.upgrade
-	TimedDamageMultiplier@GSHIELD:
-		ActiveCondition: gshield
-		ChargingColor: 008888
-		DrainingColor: 00ffff
-		Modifier: 50
-		Duration: 50
-		ChargeTime: 750
-		ActivateSound: gshieldup.aud
-		DeactivateSound: gshielddown.aud
-		RequiresCondition: pointdef-upgrade
 	WithIdleOverlay@NSHIELD:
 		Image: nshield-overlay-sm
-		RequiresCondition: (nshield || gshield) && !(empdisable || invulnerability || invisibility)
 	ReplacedInQueue:
 		Actors: hmmv.tow
 	Upgradeable@TOW:
@@ -3312,7 +3305,7 @@ HMMV.TOW:
 	Valued:
 		Cost: 575
 	Mobile:
-		Speed: 130
+		Speed: 126
 	Tooltip:
 		Name: TOW Hum-Vee
 	TooltipExtras:
@@ -3400,22 +3393,8 @@ GDRN:
 		Range: 6c0
 		DetectionTypes: Cloak, AirCloak
 		RequiresCondition: !(empdisable || being-warped)
-	GrantConditionOnPrerequisite@GSHIELD:
-		Condition: pointdef-upgrade
-		Prerequisites: pointdef.upgrade, !tow.upgrade
-	TimedDamageMultiplier@GSHIELD:
-		ActiveCondition: gshield
-		ChargingColor: 008888
-		DrainingColor: 00FFFF61
-		Modifier: 50
-		Duration: 25
-		ChargeTime: 750
-		ActivateSound: gshieldup.aud
-		DeactivateSound: gshielddown.aud
-		RequiresCondition: pointdef-upgrade
 	WithIdleOverlay@NSHIELD:
 		Image: nshield-overlay-sm
-		RequiresCondition: (nshield || gshield) && !(empdisable || invulnerability || invisibility)
 	ReplacedInQueue:
 		Actors: gdrn.tow
 	Upgradeable@TOW:
@@ -6178,21 +6157,10 @@ TRPC:
 		TargetTypes: MindControlImmune
 		RequiresCondition: loaded-cmdo
 	KeepsDistance:
+	AutoGuard:
+		ValidTargets: Infantry, Vehicle
 	AttackFrontal:
 	AttackMove:
-	AutoTarget:
-		ScanRadius: 3
-		InitialStance: HoldFire
-		InitialStanceAI: HoldFire
-	AutoTargetPriority@DEFAULT:
-		ValidTargets: Infantry
-		ValidRelationships: Ally
-	Armament:
-		Weapon: TroopCrawlerDummyWeapon
-		TargetRelationships: Ally
-		ForceTargetRelationships: None
-		Cursor: guard
-		OutsideRangeCursor: guard
 	ProximityExternalCondition@InspirationTrpc:
 		Range: 4c0
 		Condition: trpc-inspiration
@@ -8269,7 +8237,7 @@ V3:
 TNKD:
 	Inherits: ^Tank
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
-	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMovePrioritizeVehicles
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Inherits@HeavyArmor: ^HeavyArmor
 	Buildable:
 		Queue: VehicleSQ, VehicleMQ
@@ -8461,6 +8429,7 @@ PTNK:
 	TooltipExtras:
 		Strengths: • Strong vs Infantry, Buildings, Defenses, Light Armor
 		Weaknesses: • Weak vs Heavy Armor\n• Cannot attack Aircraft
+		Attributes: • Can deploy for +2 range, -25% damage received and self-repair (France only)
 	Valued:
 		Cost: 1350
 	Tooltip:
@@ -8498,6 +8467,9 @@ PTNK:
 		TargetFrozenActors: True
 		PauseOnCondition: empdisable || being-warped || blinded
 		Voice: Attack
+		RangeMargin: 0
+	IgnoreOutOfRangeAttackOrders:
+		RequiresCondition: !undeployed
 	AttackMove:
 		Voice: Attack
 	WithSpriteTurret:
@@ -8524,6 +8496,8 @@ PTNK:
 		RequiresCondition: !mindcontrolled
 	Encyclopedia:
 		Category: Allies/Vehicles
+	EncyclopediaExtras:
+		RenderPreviewActor: ptnk.preview
 	GrantConditionOnDeployTurreted:
 		DeployedCondition: deployed
 		UndeployedCondition: undeployed
@@ -8545,7 +8519,7 @@ PTNK:
 		Modifier: 75
 		RequiresCondition: !undeployed
 	RangeMultiplier@Deployed:
-		Modifier: 112
+		Modifier: 125
 		RequiresCondition: !undeployed
 	ChangesHealth:
 		PercentageStep: 1
@@ -8556,6 +8530,10 @@ PTNK:
 	GrantConditionOnPrerequisite@France:
 		Condition: player-france
 		Prerequisites: player.france
+	GrantCondition@France:
+		Condition: player-france
+		RequiresCondition: player-france
+		GrantPermanently: true
 
 PCAN:
 	Inherits: PTNK
@@ -8586,10 +8564,30 @@ PCAN:
 	Voiced:
 		VoiceSet: PrismCannonVoice
 	RangeMultiplier@Deployed:
-		Modifier: 109
+		Modifier: 119
 	-ReplacedInQueue:
 	-Upgradeable@PCAN:
 	-WithDecoration@UpgradeOverlay:
+	EncyclopediaExtras:
+		RenderPreviewActor: pcan.preview
+
+PTNK.Preview:
+	Inherits: ^PreviewDummy
+	RenderSprites:
+		Image: ptnk
+	WithFacingSpriteBody:
+	WithSpriteTurret:
+		Sequence: turret
+	Turreted:
+
+PCAN.Preview:
+	Inherits: ^PreviewDummy
+	RenderSprites:
+		Image: pcan
+	WithFacingSpriteBody:
+	WithSpriteTurret:
+		Sequence: turret
+	Turreted:
 
 WTNK:
 	Inherits: ^TankTD

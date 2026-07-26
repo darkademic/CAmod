@@ -23,7 +23,7 @@ using OpenRA.Widgets;
 
 namespace OpenRA.Mods.CA.Widgets.Logic
 {
-	public enum ObserverStatsPanel { None, Basic, Economy, Production, SupportPowers, Combat, Army, Upgrades, BuildOrder, UnitsProduced, Graph, ArmyGraph, TeamArmyGraph }
+	public enum ObserverStatsPanel { None, Basic, Economy, EconomyDamage, Production, SupportPowers, Combat, Army, Upgrades, BuildOrder, UnitsProduced, Graph, ArmyGraph, TeamArmyGraph }
 
 	[ChromeLogicArgsHotkeys("StatisticsBasicKey",
 		"StatisticsEconomyKey",
@@ -43,6 +43,9 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 
 		[FluentReference]
 		const string Economy = "options-observer-stats.economy";
+
+		[FluentReference]
+		const string EconomyDamage = "options-observer-stats.economy-damage";
 
 		[FluentReference]
 		const string Production = "options-observer-stats.production";
@@ -82,6 +85,7 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 
 		readonly ContainerWidget basicStatsHeaders;
 		readonly ContainerWidget economyStatsHeaders;
+		readonly ContainerWidget economyDamageHeaders;
 		readonly ContainerWidget productionStatsHeaders;
 		readonly ContainerWidget supportPowerStatsHeaders;
 		readonly ContainerWidget combatStatsHeaders;
@@ -92,6 +96,7 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 		readonly ScrollPanelWidget playerStatsPanel;
 		readonly ScrollItemWidget basicPlayerTemplate;
 		readonly ScrollItemWidget economyPlayerTemplate;
+		readonly ScrollItemWidget economyDamagePlayerTemplate;
 		readonly ScrollItemWidget productionPlayerTemplate;
 		readonly ScrollItemWidget supportPowersPlayerTemplate;
 		readonly ScrollItemWidget armyPlayerTemplate;
@@ -136,6 +141,7 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 
 			basicStatsHeaders = widget.Get<ContainerWidget>("BASIC_STATS_HEADERS");
 			economyStatsHeaders = widget.Get<ContainerWidget>("ECONOMY_STATS_HEADERS");
+			economyDamageHeaders = widget.Get<ContainerWidget>("ECONOMY_DAMAGE_HEADERS");
 			productionStatsHeaders = widget.Get<ContainerWidget>("PRODUCTION_STATS_HEADERS");
 			supportPowerStatsHeaders = widget.Get<ContainerWidget>("SUPPORT_POWERS_HEADERS");
 			armyHeaders = widget.Get<ContainerWidget>("ARMY_HEADERS");
@@ -154,6 +160,7 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 
 				AdjustHeader(basicStatsHeaders);
 				AdjustHeader(economyStatsHeaders);
+				AdjustHeader(economyDamageHeaders);
 				AdjustHeader(productionStatsHeaders);
 				AdjustHeader(supportPowerStatsHeaders);
 				AdjustHeader(combatStatsHeaders);
@@ -164,6 +171,7 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 
 			basicPlayerTemplate = playerStatsPanel.Get<ScrollItemWidget>("BASIC_PLAYER_TEMPLATE");
 			economyPlayerTemplate = playerStatsPanel.Get<ScrollItemWidget>("ECONOMY_PLAYER_TEMPLATE");
+			economyDamagePlayerTemplate = playerStatsPanel.Get<ScrollItemWidget>("ECONOMY_DAMAGE_PLAYER_TEMPLATE");
 			productionPlayerTemplate = playerStatsPanel.Get<ScrollItemWidget>("PRODUCTION_PLAYER_TEMPLATE");
 			supportPowersPlayerTemplate = playerStatsPanel.Get<ScrollItemWidget>("SUPPORT_POWERS_PLAYER_TEMPLATE");
 			armyPlayerTemplate = playerStatsPanel.Get<ScrollItemWidget>("ARMY_PLAYER_TEMPLATE");
@@ -224,6 +232,7 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 				},
 				CreateStatsOption(Basic, ObserverStatsPanel.Basic, basicPlayerTemplate, () => DisplayStats(BasicStats)),
 				CreateStatsOption(Economy, ObserverStatsPanel.Economy, economyPlayerTemplate, () => DisplayStats(EconomyStats)),
+				CreateStatsOption(EconomyDamage, ObserverStatsPanel.EconomyDamage, economyDamagePlayerTemplate, () => DisplayStats(EconomyDamageStats)),
 				CreateStatsOption(Production, ObserverStatsPanel.Production, productionPlayerTemplate, () => DisplayStats(ProductionStats)),
 				CreateStatsOption(SupportPowers, ObserverStatsPanel.SupportPowers, supportPowersPlayerTemplate, () => DisplayStats(SupportPowerStats)),
 				CreateStatsOption(Combat, ObserverStatsPanel.Combat, combatPlayerTemplate, () => DisplayStats(CombatStats)),
@@ -276,6 +285,7 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 			playerStatsPanel.Children.Clear();
 			basicStatsHeaders.Visible = false;
 			economyStatsHeaders.Visible = false;
+			economyDamageHeaders.Visible = false;
 			productionStatsHeaders.Visible = false;
 			supportPowerStatsHeaders.Visible = false;
 			armyHeaders.Visible = false;
@@ -447,7 +457,7 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 
 			SetupPlayerColor(player, template, playerColor, playerGradient);
 
-			template.Get<ObserverSupportPowerIconsWidget>("SUPPORT_POWER_ICONS").GetPlayer = () => player;
+			template.Get<ObserverSupportPowerIconsCAWidget>("SUPPORT_POWER_ICONS").GetPlayer = () => player;
 			template.IgnoreChildMouseOver = false;
 
 			return template;
@@ -588,6 +598,31 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 			if (derricks != null)
 				derricks.GetText = () => world.ActorsHavingTrait<UpdatesDerrickCount>()
 					.Count(a => a.Owner == player && !a.IsDead).ToString(NumberFormatInfo.CurrentInfo);
+
+			return template;
+		}
+
+		ScrollItemWidget EconomyDamageStats(Player player)
+		{
+			economyDamageHeaders.Visible = true;
+			var template = SetupPlayerScrollItemWidget(economyDamagePlayerTemplate, player);
+
+			AddPlayerFlagAndName(template, player);
+
+			var playerName = template.Get<LabelWidget>("PLAYER");
+			playerName.GetColor = () => Color.White;
+
+			var playerColor = template.Get<ColorBlockWidget>("PLAYER_COLOR");
+			var playerGradient = template.Get<GradientColorBlockWidget>("PLAYER_GRADIENT");
+			SetupPlayerColor(player, template, playerColor, playerGradient);
+
+			var counts = player.PlayerActor.Trait<CountManager>().Counts;
+			string Count(string type) => counts.TryGetValue(type, out var count) ? count.ToString(NumberFormatInfo.CurrentInfo) : "0";
+
+			template.Get<LabelWidget>("HARVESTERS_KILLED").GetText = () => Count("HarvesterKilled");
+			template.Get<LabelWidget>("HARVESTERS_LOST").GetText = () => Count("HarvesterLost");
+			template.Get<LabelWidget>("REFINERIES_KILLED").GetText = () => Count("RefineryKilled");
+			template.Get<LabelWidget>("REFINERIES_LOST").GetText = () => Count("RefineryLost");
 
 			return template;
 		}

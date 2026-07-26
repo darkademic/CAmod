@@ -418,7 +418,7 @@ HindRockets.Ukraine:
 	Inherits: HindRockets
 	Warhead@Concussion: GrantExternalConditionCA
 		Range: 0c682
-		Duration: 150
+		Duration: 125
 		Condition: concussion
 
 HindRockets.UPG:
@@ -848,7 +848,7 @@ APTusk:
 TOW:
 	Inherits: ^AntiGroundMissile
 	Range: 5c0
-	ValidTargets: Vehicle, Structure
+	ValidTargets: Vehicle, Ship, Structure
 	Report: tow1.aud, tow2.aud
 	ReloadDelay: 200
 	Projectile: MissileCA
@@ -2088,7 +2088,7 @@ ScrinTorpAA:
 ScrinTorpAA.UPG:
 	Inherits: ScrinTorpAA
 	Projectile: MissileCA
-		Image: scrintorpblue
+		Image: scrintorpred
 		Palette: caneon
 		TrailImage: smokey
 		TrailPalette: scrinplasma

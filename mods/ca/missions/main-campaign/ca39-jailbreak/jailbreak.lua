@@ -332,7 +332,7 @@ InitCruisers = function()
 
 		if Difficulty == "brutal" then
 			cruiserCount = 5
-		elseif Difficult == "vhard" then
+		elseif Difficulty == "vhard" then
 			cruiserCount = 4
 		elseif Difficulty == "hard" then
 			cruiserCount = 3
@@ -344,7 +344,10 @@ InitCruisers = function()
 
 		for i = 1, cruiserCount do
 			Trigger.AfterDelay(DateTime.Seconds(10 * (i - 1)) + 1, function()
-				if not AlliedNavalYard.IsDead and AlliedNavalYard.Owner == Greece then
+				if Difficulty == "brutal" then
+					local cruiser = Reinforcements.Reinforce(Greece, { "ca" }, { CruiserSpawn.Location, CruiserPatrol1.Location })[1]
+					cruiser.Patrol({ CruiserPatrol1.Location, CruiserPatrol2.Location })
+				elseif not AlliedNavalYard.IsDead and AlliedNavalYard.Owner == Greece then
 					AlliedNavalYard.Produce("ca")
 				end
 			end)

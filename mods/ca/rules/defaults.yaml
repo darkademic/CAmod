@@ -606,7 +606,7 @@
 		Palette: effect
 		Position: Top
 		ValidRelationships: Ally, Enemy, Neutral
-		Margin: 0, 12
+		Margin: 0, -12
 		RequiresCondition: chronoshifted && !temporal-flux
 	WithDecoration@TemporalFlux:
 		Image: chronoshifted
@@ -614,7 +614,7 @@
 		Palette: effect
 		Position: Top
 		ValidRelationships: Ally, Enemy, Neutral
-		Margin: 0, 12
+		Margin: 0, -12
 		RequiresCondition: temporal-flux
 
 ^NoUnloadWhenChronoshifted:

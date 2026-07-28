@@ -8041,7 +8041,7 @@ RTNK:
 	Health:
 		HP: 32000
 	Mobile:
-		Speed: 100
+		Speed: 113
 		Voice: Move
 	Passenger:
 		Voice: Move

@@ -1571,7 +1571,7 @@ WatcherDartCollector:
 		AimTargetStances: Enemy
 	Warhead@Suppression: GrantExternalConditionCA
 		Range: 0c42
-		Duration: 150
+		Duration: 75
 		Condition: suppression
 		ValidRelationships: Enemy, Neutral
 
@@ -1589,7 +1589,7 @@ WatcherDartArc:
 		ZOffset: 512
 	Warhead@Suppression: GrantExternalConditionCA
 		Range: 0c42
-		Duration: 150
+		Duration: 25
 		Condition: suppression
 		ValidRelationships: Enemy, Neutral
 

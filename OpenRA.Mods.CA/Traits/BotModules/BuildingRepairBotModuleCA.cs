@@ -1,36 +1,29 @@
 ﻿#region Copyright & License Information
-/**
- * Copyright (c) The OpenRA Combined Arms Developers (see CREDITS).
- * This file is part of OpenRA Combined Arms, which is free software.
- * It is made available to you under the terms of the GNU General Public License
- * as published by the Free Software Foundation, either version 3 of the License,
- * or (at your option) any later version. For more information, see COPYING.
+/*
+ * Copyright (c) The OpenRA Developers and Contributors
+ * This file is part of OpenRA, which is free software. It is made
+ * available to you under the terms of the GNU General Public License
+ * as published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version. For more
+ * information, see COPYING.
  */
 #endregion
 
-using OpenRA.Mods.Common.Traits;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.CA.Traits
+namespace OpenRA.Mods.Common.Traits
 {
+	[TraitLocation(SystemActors.Player)]
 	[Desc("Manages AI repairing base buildings.")]
 	public class BuildingRepairBotModuleCAInfo : ConditionalTraitInfo
 	{
-		public override object Create(ActorInitializer init) { return new BuildingRepairBotModuleCA(init.Self, this); }
+		public override object Create(ActorInitializer init) { return new BuildingRepairBotModuleCA(this); }
 	}
 
 	public class BuildingRepairBotModuleCA : ConditionalTrait<BuildingRepairBotModuleCAInfo>, IBotRespondToAttack
 	{
-		RepairableBuilding rb;
-
-		public BuildingRepairBotModuleCA(Actor self, BuildingRepairBotModuleCAInfo info)
+		public BuildingRepairBotModuleCA(BuildingRepairBotModuleCAInfo info)
 			: base(info) { }
-
-		protected override void Created(Actor self)
-		{
-			base.Created(self);
-			rb = self.TraitOrDefault<RepairableBuilding>();
-		}
 
 		void IBotRespondToAttack.RespondToAttack(IBot bot, Actor self, AttackInfo e)
 		{
@@ -40,14 +33,12 @@ namespace OpenRA.Mods.CA.Traits
 			if (self.IsDead || self.Owner.RelationshipWith(e.Attacker.Owner) == PlayerRelationship.Neutral)
 				return;
 
-			if (rb != null)
+			var rb = self.TraitOrDefault<RepairableBuilding>();
+			if (rb != null && e.DamageState > DamageState.Undamaged && e.PreviousDamageState < e.DamageState && !rb.RepairActive)
 			{
-				if (e.DamageState > DamageState.Undamaged && e.PreviousDamageState < e.DamageState && !rb.RepairActive)
-				{
-					AIUtils.BotDebug("{0} noticed damage {1} {2}->{3}, repairing.",
-						self.Owner, self, e.PreviousDamageState, e.DamageState);
-					bot.QueueOrder(new Order("RepairBuilding", self.Owner.PlayerActor, Target.FromActor(self), false));
-				}
+				AIUtils.BotDebug("{0} noticed damage {1} {2}->{3}, repairing.",
+					self.Owner, self, e.PreviousDamageState, e.DamageState);
+				bot.QueueOrder(new Order("RepairBuilding", self.Owner.PlayerActor, Target.FromActor(self), false));
 			}
 		}
 	}

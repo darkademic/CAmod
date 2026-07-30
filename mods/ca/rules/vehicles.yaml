@@ -588,7 +588,7 @@ GTNK.squad:
 		BuildAtProductionType: ParadropVehicle
 		BuildPaletteOrder: 400
 		Prerequisites: radaroraircraft, ~vehicles.usa, ~techlevel.medium
-		Description: Prepare a pair of  Grizzly Tanks for airdrop.
+		Description: Prepare a pair of Grizzly Tanks for airdrop.
 	TooltipExtras:
 		Strengths: • Strong vs Heavy Armor, Light Armor
 		Weaknesses: • Weak vs Infantry, Defenses\n• Cannot attack Aircraft
@@ -8041,7 +8041,7 @@ RTNK:
 	Health:
 		HP: 32000
 	Mobile:
-		Speed: 100
+		Speed: 113
 		Voice: Move
 	Passenger:
 		Voice: Move

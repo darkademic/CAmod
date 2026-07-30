@@ -1223,7 +1223,7 @@ HstkVoice:
 ConfessorVoice:
 	Inherits: ^InfantryDeaths
 	Voices:
-		Select: conf-select1, conf-select2, conf-select3, conf-select4
+		Select: conf-select1, conf-select2, conf-select3
 		Move: conf-move1, conf-move2, conf-move3, conf-move4, conf-move5
 		Action: conf-move1, conf-move2, conf-move3, conf-move4
 		Attack: confessor-attack1, confessor-attack2

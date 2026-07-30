@@ -128,7 +128,7 @@ Gatt:
 	Warhead@2Eff: CreateEffect
 		Explosions: piff, piff2
 		ValidTargets: Air, AirSmall, ICBM
-		ImpactSounds: sirodefa.aud, sirodefb.aud, sirodefc.aud, sirodefd
+		ImpactSounds: sirodefa.aud, sirodefb.aud, sirodefc.aud, sirodefd.aud
 		ImpactSoundChance: 60
 
 MGatt:
@@ -143,7 +143,7 @@ MGatt:
 	Warhead@2Eff: CreateEffect
 		Explosions: piff, piff2
 		ValidTargets: Air, AirSmall
-		ImpactSounds: sirodefa.aud, sirodefb.aud, sirodefc.aud, sirodefd
+		ImpactSounds: sirodefa.aud, sirodefb.aud, sirodefc.aud, sirodefd.aud
 		ImpactSoundChance: 60
 
 ^HeavyMG:

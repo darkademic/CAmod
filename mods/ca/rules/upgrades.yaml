@@ -1898,7 +1898,7 @@ tflx.upgrade:
 	Tooltip:
 		Name: Upgrade: Temporal Flux
 	Buildable:
-		BuildPaletteOrder: 40
+		BuildPaletteOrder: 30
 		Prerequisites: ~player.germany, atek, ~techlevel.high
 		Description: Units gain increased movement speed and rate of fire after being chronoshifted.\n\nUpgrades: Chronoshift\n\nUpgrades: Chrono Prison\nUpgrades: Chrono Tank
 	TooltipExtras:

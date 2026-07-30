@@ -606,7 +606,7 @@
 		Palette: effect
 		Position: Top
 		ValidRelationships: Ally, Enemy, Neutral
-		Margin: 0, 12
+		Margin: 0, -11
 		RequiresCondition: chronoshifted && !temporal-flux
 	WithDecoration@TemporalFlux:
 		Image: chronoshifted
@@ -614,7 +614,7 @@
 		Palette: effect
 		Position: Top
 		ValidRelationships: Ally, Enemy, Neutral
-		Margin: 0, 12
+		Margin: 0, -11
 		RequiresCondition: temporal-flux
 
 ^NoUnloadWhenChronoshifted:
@@ -1324,6 +1324,7 @@
 		Sequence: pip-ic
 		Palette: chrome
 		Position: Top
+		Margin: 0, -3
 		RequiresCondition: invulnerability
 		ValidRelationships: Ally, Neutral, Enemy
 	WithDecoration@Concussion:

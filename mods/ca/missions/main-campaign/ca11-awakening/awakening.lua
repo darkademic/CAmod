@@ -205,6 +205,11 @@ WorldLoaded = function()
 		end
 	end)
 
+	CyborgFactory1.RallyPoint = CyborgRally1.Location
+	CyborgFactory2.RallyPoint = CyborgRally2.Location
+	CyborgFactory3.RallyPoint = CyborgRally1.Location
+	CyborgFactory4.RallyPoint = CyborgRally2.Location
+
 	AfterWorldLoaded()
 end
 
@@ -417,13 +422,6 @@ DoHaloDrop = function()
 end
 
 DeployCyborgs = function()
-	if CyborgWaves == 0 then
-		CyborgFactory1.RallyPoint = CyborgRally1.Location
-		CyborgFactory2.RallyPoint = CyborgRally2.Location
-		CyborgFactory3.RallyPoint = CyborgRally1.Location
-		CyborgFactory4.RallyPoint = CyborgRally2.Location
-	end
-
 	Utils.Do(CyborgFactories, function(f)
 		if not f.IsDead then
 			local randomCyborg = Utils.Random(CyborgTypes)

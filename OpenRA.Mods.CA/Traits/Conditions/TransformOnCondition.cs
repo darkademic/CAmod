@@ -10,6 +10,7 @@
 
 using OpenRA.Mods.CA.Activities;
 using OpenRA.Mods.Common;
+using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Traits;
 
@@ -21,6 +22,9 @@ namespace OpenRA.Mods.CA.Traits
 		public readonly string IntoActor = null;
 		public readonly int ForceHealthPercentage = 0;
 		public readonly bool SkipMakeAnims = true;
+
+		[Desc("If true, the actor will take off after transforming (workaround for planes freezing after transform).")]
+		public readonly bool TakeOffAfterTransform = false;
 
 		public override object Create(ActorInitializer init) { return new TransformOnCondition(init, this); }
 	}
@@ -39,8 +43,12 @@ namespace OpenRA.Mods.CA.Traits
 
 		protected override void TraitEnabled(Actor self)
 		{
-			var transform = new InstantTransform(self, info.IntoActor) { ForceHealthPercentage = info.ForceHealthPercentage, Faction = faction };
-			transform.SkipMakeAnims = info.SkipMakeAnims;
+			var transform = new InstantTransform(self, info.IntoActor) {
+				ForceHealthPercentage = info.ForceHealthPercentage, Faction = faction,
+				SkipMakeAnims = info.SkipMakeAnims,
+				OnComplete = info.TakeOffAfterTransform ? actor => actor.QueueActivity(new TakeOff(actor)) : null
+			};
+
 			self.CancelActivity();
 			self.QueueActivity(transform);
 		}

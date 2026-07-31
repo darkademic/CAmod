@@ -1640,9 +1640,11 @@ A10:
 		Prerequisites: ceramic.upgrade
 	TransformOnCondition@Sidewinders:
 		IntoActor: a10.sw
+		TakeOffAfterTransform: true
 		RequiresCondition: sidewinders-upgrade && upgrade-complete
 	TransformOnCondition@Avenger:
 		IntoActor: a10.gau
+		TakeOffAfterTransform: true
 		RequiresCondition: avenger-upgrade && upgrade-complete
 	AmmoPool@Upgrade:
 		Name: upgrade

@@ -48,12 +48,14 @@ namespace OpenRA.Mods.CA.Traits
 			if (!info.ArmamentNames.Contains(a.Info.Name))
 				return;
 
+			if (self.CurrentActivity is AttackMoveActivity || self.CurrentActivity?.NextActivity != null)
+				return;
+
 			self.World.AddFrameEndTask(w => {
 				var totalAmmo = ammoPools.Sum(ap => ap.CurrentAmmoCount);
 
-				if (ammoPools.All(ap => !ap.HasAmmo)) {
+				if (ammoPools.All(ap => !ap.HasAmmo))
 					self.QueueActivity(new ReturnToBase(self));
-				}
 			});
 		}
 

@@ -3187,6 +3187,7 @@ STMR:
 		FacingTolerance: 512
 		OpportunityFire: true
 		PauseOnCondition: empdisable || being-warped || blinded
+		PersistentTargeting: false
 	Aircraft:
 		CruiseAltitude: 2560
 		TurnSpeed: 22

@@ -231,6 +231,8 @@ namespace OpenRA.Mods.CA.Traits
 				yield break;
 
 			var info = instance.Info as AttackOrderPowerCAInfo;
+			if (info == null)
+				yield break;
 
 			foreach (var a in instance.Instances.Where(i => !i.IsTraitPaused))
 			{

@@ -486,7 +486,7 @@
 		CircleSequence: circles
 		BeaconPoster: stormicon
 		TargetCircleRange: 6c512
-		TargetCircleColor: 0000FF90
+		TargetCircleColor: a2a2ea90
 		ActiveCondition: active
 		PaletteEffectType: LightningStorm
 		SupportPowerPaletteOrder: 10
@@ -1157,7 +1157,7 @@
 		DirectionArrowAnimation: paradirection
 		GuardDuration: 500
 		GuardRadius: 12c0
-		TargetCircleColor: 99999988
+		TargetCircleColor: 999999AA
 		SupportPowerPaletteOrder: 45
 		LaunchSound: interceptors.aud
 		IncomingSound: interceptors.aud
@@ -1992,7 +1992,7 @@
 		DisplayRadarPing: True
 		SupportPowerPaletteOrder: 50
 		TargetCircleRange: 7c511
-		TargetCircleColor: b070ff90
+		TargetCircleColor: b070ffaa
 
 ^BuzzerSwarmPower:
 	DetonateWeaponPower@BUZZERSWARM:

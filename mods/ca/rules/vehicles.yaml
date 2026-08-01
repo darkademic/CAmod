@@ -8389,7 +8389,7 @@ MSAR:
 		CargoCondition: passenger
 	ProximityExternalCondition@Bino:
 		Condition: bino
-		Range: 12c0
+		Range: 10c0
 		EnableSound: dsaping1.aud
 		AffectsParent: False
 		RequiresCondition: deployed && !(empdisable || being-warped) && !passenger
@@ -8401,6 +8401,11 @@ MSAR:
 		Range: 24c0
 		RequiresCondition: deployed && !(empdisable || being-warped)
 		TrailCount: 3
+	WithRangeCircle:
+		Range: 10c0
+		Type: MobileSensorArray
+		Color: bbbbbb80
+		RequiresCondition: deployed && !(empdisable || being-warped)
 	ExternalCondition@JAMMED:
 		Condition: jammed
 	ProvidesPrerequisite@radar-active:
@@ -9315,7 +9320,7 @@ PBUL:
 		BuildPaletteOrder: 252
 		IconPalette: chrometd
 		Prerequisites: gtek, ~vehicles.eagle, ~techlevel.high
-		Description: Fast scout vehicle with rockets that disrupts weapons and vision. Can designates targets, revealing them and increasing the damage they take.
+		Description: Fast scout vehicle with rockets that disrupts weapons and vision. Can designate targets, revealing them and increasing the damage they take.
 	TooltipExtras:
 		Strengths: • Strong vs Light Armor, Aircraft
 		Weaknesses: • Weak vs Infantry, Buildings, Defenses

@@ -750,6 +750,8 @@ COOPPROC:
 		Prerequisite: proc
 	ProvidesPrerequisite@anyrefinery:
 		Prerequisite: anyrefinery
+	ProvidesPrerequisiteIfAlliesExist:
+		Prerequisite: sendcash.enabled
 
 COOPHPAD:
 	Inherits@AIR: ^COOPProducesHelicopters
@@ -1409,6 +1411,8 @@ COOPPROC.TD:
 		Prerequisite: proc.td
 	ProvidesPrerequisite@anyrefinery:
 		Prerequisite: anyrefinery
+	ProvidesPrerequisiteIfAlliesExist:
+		Prerequisite: sendcash.enabled
 
 COOPAFLD.GDI:
 	Inherits@AIR: ^COOPProducesAircraft
@@ -1668,6 +1672,8 @@ COOPPROC.SCRIN:
 		Prerequisite: proc.scrin
 	ProvidesPrerequisite@anyrefinery:
 		Prerequisite: anyrefinery
+	ProvidesPrerequisiteIfAlliesExist:
+		Prerequisite: sendcash.enabled
 
 COOPPORT:
 	Inherits@INF: ^COOPProducesInfantry

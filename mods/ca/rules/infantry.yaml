@@ -4321,6 +4321,8 @@ SEAL:
 		Armaments: primary, secondary, tertiary
 		PauseOnCondition: being-warped || blinded || reapersnare
 		FacingTolerance: 0
+	AutoTarget:
+		AllowMovement: false
 	Demolition:
 		DetonationDelay: 45
 		Voice: Demolish

@@ -1939,7 +1939,7 @@ INTL:
 		TargetTypes: Water, Ship
 		RequiresCondition: onwater
 	DetectCloaked:
-		Range: 4c0
+		Range: 7c0
 		DetectionTypes: Mine
 		RequiresCondition: loaded-engi
 	-WithFacingSpriteBody@SHIELDS:

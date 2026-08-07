@@ -2515,7 +2515,7 @@ MNLY:
 		Margin: 4, 3
 		RequiresSelection: true
 	DetectCloaked:
-		Range: 5c0
+		Range: 7c0
 		DetectionTypes: Mine
 		RequiresCondition: !(empdisable || being-warped)
 	RenderDetectionCircle:
@@ -6187,7 +6187,7 @@ TRPC:
 		DetectionTypes: Cloak, AirCloak
 		RequiresCondition: !(empdisable || being-warped)
 	DetectCloaked@Mines:
-		Range: 4c0
+		Range: 7c0
 		DetectionTypes: Mine
 		RequiresCondition: !(empdisable || being-warped)
 	GivesBountyCA:

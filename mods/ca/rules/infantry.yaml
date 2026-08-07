@@ -75,7 +75,7 @@ DOG:
 		Range: 6c0
 	DetectCloaked@Mine:
 		DetectionTypes: Mine
-		Range: 5c0
+		Range: 7c0
 	RangedGpsRadarProvider:
 		Range: 10c0
 		TargetTypes: Infantry

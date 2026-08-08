@@ -8775,6 +8775,8 @@ BATF:
 			mort.cryo: loaded
 			mort.sonic: loaded
 			mort.chem: loaded
+			deso: loaded
+			ttrp: loaded
 			cmsr: loaded
 			spy: loaded-spy
 			snip: loaded

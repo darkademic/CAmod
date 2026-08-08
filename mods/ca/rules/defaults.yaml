@@ -2255,8 +2255,8 @@
 	AutoTarget:
 		AttackAnythingCondition: stance-attackanything
 	AutoTargetPriority@DEFAULT:
-		ValidTargets: Infantry, Vehicle, Water, Underwater, Defense
-		InvalidTargets: NoAutoTarget, WaterStructure, AntiAirDefense
+		ValidTargets: Infantry, Vehicle, Ship, Submarine, Defense
+		InvalidTargets: NoAutoTarget, AntiAirDefense
 	AutoTargetPriority@ATTACKANYTHING:
 		RequiresCondition: stance-attackanything
 		ValidTargets: Structure, AntiAirDefense, Mine
@@ -2272,7 +2272,7 @@
 ^AutoTargetGroundAssaultMovePrioritizeVehicles:
 	Inherits: ^AutoTargetGroundAssaultMove
 	AutoTargetPriority@DEFAULTVEH:
-		ValidTargets: Vehicle, Ship
+		ValidTargets: Vehicle, Ship, Submarine
 		InvalidTargets: NoAutoTarget
 		Priority: 10
 
@@ -2303,8 +2303,8 @@
 	AutoTarget:
 		AttackAnythingCondition: stance-attackanything
 	AutoTargetPriority@DEFAULT:
-		ValidTargets: Infantry, Vehicle, Water, Underwater, Air, AirSmall, Defense
-		InvalidTargets: NoAutoTarget, WaterStructure, AntiAirDefense
+		ValidTargets: Infantry, Vehicle, Ship, Submarine, Air, AirSmall, Defense
+		InvalidTargets: NoAutoTarget, AntiAirDefense
 	AutoTargetPriority@ATTACKANYTHING:
 		RequiresCondition: stance-attackanything
 		ValidTargets: Structure, AntiAirDefense, Mine
@@ -2320,7 +2320,7 @@
 ^AutoTargetAllAssaultMovePrioritizeGround:
 	Inherits: ^AutoTargetAllAssaultMove
 	AutoTargetPriority@DEFAULT:
-		ValidTargets: Infantry, Vehicle, Water, Underwater, Defense
+		ValidTargets: Infantry, Vehicle, Ship, Submarine, Defense
 	AutoTargetPriority@DeprioritizedAir:
 		ValidTargets: Air, AirSmall
 		InvalidTargets: NoAutoTarget

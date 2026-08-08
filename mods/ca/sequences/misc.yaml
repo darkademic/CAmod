@@ -860,6 +860,7 @@ pips:
 		Filename: pip-skull.shp
 		Offset: -2, 0
 		Length: 1
+		ZOffset: 2048
 	pip-seal:
 		Filename: pip-seal.shp
 		Offset: -2, 0

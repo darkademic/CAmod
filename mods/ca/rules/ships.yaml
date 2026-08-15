@@ -342,6 +342,7 @@ LST.Reinforce:
 	RejectsOrders:
 	Cargo:
 		MaxWeight: 50
+	-Encyclopedia:
 
 PT:
 	Inherits: ^Ship

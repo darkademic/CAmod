@@ -499,7 +499,7 @@ encyclopedia.power.surgicalstrike:
 	Encyclopedia:
 		Category: GDI/Support Powers
 	EncyclopediaExtras:
-		Description: Initiate an precision Ion Cannon strike which deals instant damage to a small area.
+		Description: Initiate a precision Ion Cannon strike which deals instant damage to a small area.
 		Subfaction: zocom
 
 encyclopedia.power.firestorm:

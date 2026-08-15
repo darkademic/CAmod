@@ -1091,9 +1091,6 @@
 	FirepowerMultiplier@CYBORGDAMAGE:
 		RequiresCondition: cyborgdmg-upgrade
 		Modifier: 110
-	ProductionTimeMultiplier@CYBORGPROD:
-		Multiplier: 90
-		Prerequisites: cyborgprod.upgrade
 	SpeedMultiplier@CYBORGSPEED:
 		RequiresCondition: cyborgspeed-upgrade
 		Modifier: 120
@@ -3100,7 +3097,7 @@
 		-BlinkPatterns:
 	AddsToReclaimableValue@Cyborg:
 		Type: Cyborg
-		ValuePercentage: 5
+		ValuePercentage: 15
 		RequiresCondition: reclaimed-fabrication
 	GrantConditionOnPrerequisite@ReclaimedFabrication:
 		Condition: reclaimed-fabrication

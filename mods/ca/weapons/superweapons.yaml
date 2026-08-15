@@ -1428,6 +1428,7 @@ OverlordsWrath:
 		Explosions: hit
 		ExplosionPalette: caneon
 		ImpactSounds: owrath-impact.aud
+		ImpactActors: false
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 		Size: 2

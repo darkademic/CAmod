@@ -22,7 +22,7 @@ namespace OpenRA.Mods.CA.Warheads
 		[Desc("Radius of the halo.")]
 		public readonly WDist Radius = new WDist(1024);
 
-		[Desc("Number of full distorted halo lines around the ring.")]
+		[Desc("Number of full distorted halo lines around the ring. Values above 32 are clamped.")]
 		public readonly int LineCount = 8;
 
 		[Desc("Width of each halo line.")]
@@ -53,7 +53,7 @@ namespace OpenRA.Mods.CA.Warheads
 		[Desc("Unused for full-ring halo lines. Retained for backwards compatibility.")]
 		public readonly WAngle LineArc = new WAngle(64);
 
-		[Desc("Number of points used to approximate each halo line around the full circumference.")]
+		[Desc("Number of points used to approximate each halo line around the full circumference. Values are clamped from 8 to 64.")]
 		public readonly int SegmentsPerLine = 32;
 
 		[Desc("Rotation added to the halo each tick.")]

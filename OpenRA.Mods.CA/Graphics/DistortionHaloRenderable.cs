@@ -8,7 +8,7 @@
  */
 #endregion
 
-using System.Linq;
+using System;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
@@ -17,7 +17,10 @@ namespace OpenRA.Mods.CA.Graphics
 {
 	public readonly struct DistortionHaloRenderable : IRenderable, IFinalizedRenderable
 	{
+		const int MaximumGlowSegmentsPerLine = 8;
+
 		readonly WPos[] offsets;
+		readonly float3[] screenPoints;
 		readonly int zOffset;
 		readonly WDist width;
 		readonly Color color;
@@ -25,10 +28,11 @@ namespace OpenRA.Mods.CA.Graphics
 		readonly float glowScale;
 		readonly float glowIntensity;
 
-		public DistortionHaloRenderable(WPos[] offsets, int zOffset, WDist width, Color color,
+		public DistortionHaloRenderable(WPos[] offsets, float3[] screenPoints, int zOffset, WDist width, Color color,
 			Color glowColor, float glowScale, float glowIntensity)
 		{
 			this.offsets = offsets;
+			this.screenPoints = screenPoints;
 			this.zOffset = zOffset;
 			this.width = width;
 			this.color = color;
@@ -43,11 +47,14 @@ namespace OpenRA.Mods.CA.Graphics
 		public bool IsDecoration => true;
 
 		public IRenderable WithPalette(PaletteReference newPalette) { return this; }
-		public IRenderable WithZOffset(int newOffset) { return new DistortionHaloRenderable(offsets, newOffset, width, color, glowColor, glowScale, glowIntensity); }
+		public IRenderable WithZOffset(int newOffset) { return new DistortionHaloRenderable(offsets, screenPoints, newOffset, width, color, glowColor, glowScale, glowIntensity); }
 		public IRenderable OffsetBy(in WVec offset)
 		{
-			var offsetBy = offset;
-			return new DistortionHaloRenderable(offsets.Select(o => o + offsetBy).ToArray(), zOffset, width, color, glowColor, glowScale, glowIntensity);
+			var translatedOffsets = new WPos[offsets.Length];
+			for (var i = 0; i < offsets.Length; i++)
+				translatedOffsets[i] = offsets[i] + offset;
+
+			return new DistortionHaloRenderable(translatedOffsets, new float3[offsets.Length + 1], zOffset, width, color, glowColor, glowScale, glowIntensity);
 		}
 
 		public IRenderable AsDecoration() { return this; }
@@ -57,21 +64,22 @@ namespace OpenRA.Mods.CA.Graphics
 		public void Render(WorldRenderer wr)
 		{
 			var screenWidth = wr.ScreenVector(new WVec(width, WDist.Zero, WDist.Zero))[0];
-			var cr = Game.Renderer.RgbaColorRenderer;
-			var glowRenderer = Game.Settings.Graphics.WeaponPostfx && glowScale > 0f
-				? wr.World.WorldActor.TraitOrDefault<GlowRenderer>()
-				: null;
-			var previousWorld = offsets[offsets.Length - 1];
-			var previousScreen = wr.Viewport.WorldToViewPx(wr.ScreenPosition(previousWorld));
-
 			for (var i = 0; i < offsets.Length; i++)
+				screenPoints[i] = wr.Viewport.WorldToViewPx(wr.ScreenPosition(offsets[i]));
+
+			screenPoints[offsets.Length] = screenPoints[0];
+			Game.Renderer.RgbaColorRenderer.DrawLine(screenPoints, screenWidth, color, false);
+
+			if (!Game.Settings.Graphics.WeaponPostfx || glowScale <= 0f)
+				return;
+
+			var glowRenderer = wr.World.WorldActor.TraitOrDefault<GlowRenderer>();
+			var glowSegments = Math.Min(MaximumGlowSegmentsPerLine, offsets.Length);
+			for (var i = 0; i < glowSegments; i++)
 			{
-				var currentWorld = offsets[i];
-				var currentScreen = wr.Viewport.WorldToViewPx(wr.ScreenPosition(currentWorld));
-				cr.DrawLine(previousScreen, currentScreen, screenWidth, color);
-				glowRenderer?.RegisterGlow(previousWorld, currentWorld, glowColor, glowScale, intensity: glowIntensity);
-				previousWorld = currentWorld;
-				previousScreen = currentScreen;
+				var startIndex = i * offsets.Length / glowSegments;
+				var endIndex = (i + 1) * offsets.Length / glowSegments % offsets.Length;
+				glowRenderer?.RegisterGlow(offsets[startIndex], offsets[endIndex], glowColor, glowScale, intensity: glowIntensity);
 			}
 		}
 

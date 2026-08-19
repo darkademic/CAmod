@@ -21,21 +21,25 @@ namespace OpenRA.Mods.CA.Effects
 	public sealed class DistortionHaloAnimation
 	{
 		const int MinimumPointsPerLine = 8;
+		const int MaximumLines = 32;
+		const int MaximumPointsPerLine = 64;
 
 		readonly struct HaloLine
 		{
-			public HaloLine(Color color, WAngle baseAngle, WPos[] positions, WVec[] distortions)
+			public HaloLine(Color color, WAngle baseAngle, WPos[] positions, WVec[] distortions, float3[] screenPoints)
 			{
 				Color = color;
 				BaseAngle = baseAngle;
 				Positions = positions;
 				Distortions = distortions;
+				ScreenPoints = screenPoints;
 			}
 
 			public Color Color { get; }
 			public WAngle BaseAngle { get; }
 			public WPos[] Positions { get; }
 			public WVec[] Distortions { get; }
+			public float3[] ScreenPoints { get; }
 		}
 
 		readonly MersenneTwister random;
@@ -65,22 +69,22 @@ namespace OpenRA.Mods.CA.Effects
 			this.maxDistortion = Math.Max(0, maxDistortion);
 			this.rotationAnimation = rotationAnimation;
 			animated = this.distortionAnimation > 0 || this.rotationAnimation != WAngle.Zero;
-			pointsPerLine = Math.Max(MinimumPointsPerLine, segmentsPerLine);
+			pointsPerLine = Math.Min(MaximumPointsPerLine, Math.Max(MinimumPointsPerLine, segmentsPerLine));
 
 			var normalizedColors = colors != null && colors.Length > 0
 				? colors
 				: new[] { Color.FromArgb(255, 255, 255, 255) };
 
-			var actualLineCount = Math.Max(1, lineCount);
+			var actualLineCount = Math.Min(MaximumLines, Math.Max(1, lineCount));
 			lines = new HaloLine[actualLineCount];
 			for (var i = 0; i < actualLineCount; i++)
 			{
 				var color = normalizedColors[i % normalizedColors.Length];
 				var angle = WAngle.FromDegrees(i * 360 / actualLineCount);
-				lines[i] = new HaloLine(color, angle, new WPos[pointsPerLine], new WVec[pointsPerLine]);
+				lines[i] = new HaloLine(color, angle, new WPos[pointsPerLine], new WVec[pointsPerLine], new float3[pointsPerLine + 1]);
 			}
 
-			UpdatePositions(true);
+			UpdatePositions();
 		}
 
 		public void Tick(WPos center)
@@ -90,17 +94,17 @@ namespace OpenRA.Mods.CA.Effects
 
 			this.center = center;
 			rotation += rotationAnimation;
-			UpdatePositions(false);
+			UpdatePositions();
 			ticks++;
 		}
 
 		public IEnumerable<IRenderable> Render(int zOffset, WDist width, Color glowColor, float glowScale, float glowIntensity)
 		{
 			foreach (var line in lines)
-				yield return new DistortionHaloRenderable(line.Positions, zOffset, width, line.Color, glowColor, glowScale, glowIntensity);
+				yield return new DistortionHaloRenderable(line.Positions, line.ScreenPoints, zOffset, width, line.Color, glowColor, glowScale, glowIntensity);
 		}
 
-		void UpdatePositions(bool initializing)
+		void UpdatePositions()
 		{
 			var shouldDistort = (ticks == 0 && distortion > 0) || (ticks > 0 && distortionAnimation > 0);
 
@@ -111,7 +115,8 @@ namespace OpenRA.Mods.CA.Effects
 				for (var pointIndex = 0; pointIndex < pointsPerLine; pointIndex++)
 				{
 					var angle = AngleFor(lines[lineIndex].BaseAngle, pointIndex);
-					var basePos = BasePosition(angle);
+					var radial = new WVec(angle.Cos(), angle.Sin(), 0);
+					var basePos = center + radius.Length * radial / 1024;
 
 					if (shouldDistort)
 					{
@@ -120,25 +125,16 @@ namespace OpenRA.Mods.CA.Effects
 							distortions[pointIndex] = ClampDistortion(distortions[pointIndex] + RandomDistortion(magnitudeLimit));
 					}
 
-					positions[pointIndex] = basePos + ProjectDistortion(angle, distortions[pointIndex]);
+					positions[pointIndex] = basePos + ProjectDistortion(radial, distortions[pointIndex]);
 				}
 			}
 		}
 
 		WAngle AngleFor(WAngle baseAngle, int pointIndex)
 		{
-			if (pointsPerLine <= 0)
-				return baseAngle + rotation;
-
 			var startAngle = baseAngle + rotation;
 			var step = 1024 / pointsPerLine;
 			return startAngle + new WAngle(step * pointIndex);
-		}
-
-		WPos BasePosition(WAngle angle)
-		{
-			var radial = new WVec(angle.Cos(), angle.Sin(), 0);
-			return center + radius.Length * radial / 1024;
 		}
 
 		WVec RandomDistortion(int magnitudeLimit)
@@ -154,10 +150,9 @@ namespace OpenRA.Mods.CA.Effects
 				0);
 		}
 
-		WVec ProjectDistortion(WAngle angle, WVec localDistortion)
+		WVec ProjectDistortion(WVec radial, WVec localDistortion)
 		{
-			var radial = new WVec(angle.Cos(), angle.Sin(), 0);
-			var tangent = new WVec(-angle.Sin(), angle.Cos(), 0);
+			var tangent = new WVec(-radial.Y, radial.X, 0);
 
 			return localDistortion.X * tangent / 1024
 				+ localDistortion.Y * radial / 1024;

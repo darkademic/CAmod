@@ -943,8 +943,6 @@ E7:
 		TargetTypes: MindControlImmune
 	Targetable@ChaosImmune:
 		TargetTypes: ChaosImmune
-	Targetable@ReaperSnareImmune:
-		TargetTypes: ReaperSnareImmune
 	-Crushable:
 	TargetSpecificOrderVoice:
 		Orders: Attack, ForceAttack
@@ -2102,8 +2100,6 @@ RMBO:
 		TargetTypes: MindControlImmune
 	Targetable@ChaosImmune:
 		TargetTypes: ChaosImmune
-	Targetable@ReaperSnareImmune:
-		TargetTypes: ReaperSnareImmune
 	-Crushable:
 	TargetSpecificOrderVoice:
 		Orders: Attack, ForceAttack
@@ -2366,8 +2362,6 @@ BORI:
 		TargetTypes: MindControlImmune
 	Targetable@ChaosImmune:
 		TargetTypes: ChaosImmune
-	Targetable@ReaperSnareImmune:
-		TargetTypes: ReaperSnareImmune
 	AutoTargetPriority@DEFAULT:
 		ValidTargets: Infantry, Vehicle, Water, Underwater
 	ChangesHealth@ELITE:
@@ -4174,8 +4168,6 @@ YURI:
 		TargetTypes: MindControlImmune
 	Targetable@ChaosImmune:
 		TargetTypes: ChaosImmune
-	Targetable@ReaperSnareImmune:
-		TargetTypes: ReaperSnareImmune
 	GrantConditionOnAttack@AI:
 		Condition: aiattack
 		RequiresCondition: botowner

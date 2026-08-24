@@ -509,6 +509,7 @@ HellfireAA.Cryo:
 		Duration: 75
 		Range: 0c341
 		ValidRelationships: Enemy, Neutral
+		ValidTargets: Air, AirSmall
 
 HellfireAA.Harrier:
 	Inherits: HellfireAA

@@ -2782,9 +2782,6 @@
 	Targetable:
 		RequiresCondition: !parachute && !being-warped
 		TargetTypes: Ground, Infantry
-	Targetable@Parachuting:
-		RequiresCondition: parachute
-		TargetTypes: AirSmall
 	Targetable@SpyDisguise:
 		TargetTypes: SpyDisguise
 	Targetable@TNTPlantable:

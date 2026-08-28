@@ -1747,7 +1747,8 @@
 	Inherits@HeavyArmor: ^HeavyArmor
 	Inherits@NodCovenantTarget: ^NodCovenantTarget
 	TooltipExtras:
-		Weaknesses: • Unarmed\n• Resistant to mind control
+		Weaknesses: • Unarmed
+		Attributes: • Resistant to mind control
 	Valued:
 		Cost: 1400
 	Tooltip:

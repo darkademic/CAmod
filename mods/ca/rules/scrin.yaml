@@ -286,6 +286,12 @@ VEHICLES.SCRIN:
 		DischargeOnAttack: true
 		MaxTicksBeforeDischarge: 375
 		Instant: true
+	IssueOrderToBot:
+		RequiresCondition: hyper-upgrade && !being-warped && !empdisable && !berserk
+		OrderName: GrantTimedConditionOnDeploy
+		OrderTrigger: Attack
+		OrderChance: 50
+		OrderInterval: 605
 	WithPalettedOverlay@HYPERCHARGE:
 		RequiresCondition: hypercharged && !(empdisable || invulnerability || invisibility)
 		Palette: hypercharge
@@ -663,6 +669,16 @@ S4:
 		ConditionDuration: 15
 		ShowSelectionBarWhenFull: false
 		CircleColor: c8b8ed66
+	IssueOrderToBot:
+		OrderName: PortableChronoTeleport
+		OrderTrigger: Damage
+		RequiresCondition:  blink-upgrade && !being-warped && !reapersnare && !parachute && !berserk
+		OrderChance: 100
+		OrderInterval: 380
+		TargetRangeInCell: 15
+		ValidTargets: Ground, Air
+		ValidRelationships: Ally
+		TargetDistance: Furthest
 	GrantConditionOnPrerequisite@BLINKPACKS:
 		Condition: blink-upgrade
 		Prerequisites: blink.upgrade
@@ -727,6 +743,16 @@ MRDR:
 		ConditionDuration: 15
 		ShowSelectionBarWhenFull: false
 		CircleColor: c8b8ed66
+	IssueOrderToBot:
+		OrderName: PortableChronoTeleport
+		OrderTrigger: Damage
+		RequiresCondition:  blink-upgrade && !being-warped && !reapersnare && !parachute && !berserk
+		OrderChance: 100
+		OrderInterval: 380
+		TargetRangeInCell: 15
+		ValidTargets: Ground, Air
+		ValidRelationships: Ally
+		TargetDistance: Furthest
 	GrantConditionOnPrerequisite@BLINKPACKS:
 		Condition: blink-upgrade
 		Prerequisites: blink.upgrade
@@ -823,6 +849,16 @@ WCHR:
 		ConditionDuration: 3
 		ShowSelectionBarWhenFull: false
 		CircleColor: c8b8ed66
+	IssueOrderToBot:
+		OrderName: PortableChronoTeleport
+		OrderTrigger: Damage
+		RequiresCondition:  blink-upgrade && !being-warped && !reapersnare && !parachute && !berserk
+		OrderChance: 100
+		OrderInterval: 380
+		TargetRangeInCell: 15
+		ValidTargets: Ground, Air
+		ValidRelationships: Ally
+		TargetDistance: Furthest
 	GrantConditionOnPrerequisite@BLINKPACKS:
 		Condition: blink-upgrade
 		Prerequisites: blink.upgrade
@@ -1067,6 +1103,12 @@ STLK:
 		ChargingColor: 808080
 		DischargingColor: ffffff
 		Instant: true
+	IssueOrderToBot:
+		OrderName: GrantTimedConditionOnDeploy
+		RequiresCondition: !being-warped && !reapersnare && !parachute && !berserk
+		OrderTrigger: Periodically
+		OrderChance: 100
+		OrderInterval: 880
 	Cloak@NORMAL:
 		InitialDelay: 0
 		CloakDelay: 750
@@ -1483,6 +1525,16 @@ MAST:
 		Behavior: SpawnAtSelfAndSlavesAndMoveToTarget
 		RequiresCondition: !being-warped && mspk-ammo
 		AmmoPool: mspk
+	IssueOrderToBot:
+		RequiresCondition:  !being-warped && mspk-ammo && !parachute && !reapersnare 
+		OrderName: SpawnActorAbility
+		OrderTrigger: Attack
+		OrderChance: 100
+		OrderInterval: 80  ## When this trait is disabled, the countdown will stop
+		TargetRangeInCell: 12
+		ValidTargets: Infantry, Vehicle
+		ValidRelationships: Enemy
+		TargetDistance: Random
 	AmmoPool@MindSpark:
 		Name: mspk
 		Ammo: 1

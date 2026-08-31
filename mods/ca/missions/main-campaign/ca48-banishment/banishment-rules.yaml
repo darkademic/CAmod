@@ -97,17 +97,6 @@ tflx.upgrade:
 
 # Misc
 
-STLK:
-	Cloak@NORMAL:
-		CloakDelay: 750
-		RequiresCondition: !cloak-force-disabled && !being-warped && !parachute
-	GrantTimedCondition@Uncloaked:
-		RequiresCondition: !hidden
-	DummyConditionConsumer@cloak-active:
-		Condition: cloak-active
-	DummyConditionConsumer@cloak-charging:
-		Condition: cloak-charging
-
 FLARE:
 	RevealsShroud:
 		Range: 12c0

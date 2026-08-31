@@ -609,6 +609,19 @@ KIRO:
 	FirepowerMultiplier@CampaignDamage:
 		Modifier: 110
 
+# Stalker with perma cloak (for AI)
+
+STLK:
+	Cloak@NORMAL:
+		CloakDelay: 750
+		RequiresCondition: !cloak-force-disabled && !being-warped && !parachute
+	GrantTimedCondition@Uncloaked:
+		RequiresCondition: !hidden
+	DummyConditionConsumer@cloak-active:
+		Condition: cloak-active
+	DummyConditionConsumer@cloak-charging:
+		Condition: cloak-charging
+
 # Special units/buildings
 
 TRAN.evac:
@@ -675,7 +688,7 @@ ETPD:
 		MuzzleSequence: muzzle
 		MuzzlePalette: scrin
 	AttackTurreted:
-		PauseOnCondition: empdisable || being-warped
+		PauseOnCondition: empdisable
 	Health:
 		HP: 900000
 	Shielded:
@@ -723,8 +736,10 @@ ETPD:
 	ReloadDelayMultiplier@TEMPORAL:
 		Modifier: 120
 		RequiresCondition: being-warped
+	-Capturable:
 	CaptureManager:
 		-BeingCapturedCondition:
+	-CaptureNotification:
 	-ExternalCondition@UNITSELL:
 	-Sellable:
 	ChangesHealth@THEAL:
@@ -778,7 +793,9 @@ VENG:
 		Speed: 10
 		Locomotor: sheavytracked
 		PauseOnCondition: empdisable || notmobile
-	-Crushable:
+		ImmovableCondition: alive
+	GrantCondition@ALIVE:
+		Condition: alive
 	WithShadow:
 		Offset: 43, 128, 0
 		ZOffset: -129
@@ -831,6 +848,13 @@ VENG:
 		TargetTypes: CampaignBoss
 	Targetable@VoidEngine:
 		TargetTypes: VoidEngine
+	-Crushable:
+	-Capturable:
+	CaptureManager:
+		-BeingCapturedCondition:
+	-CaptureNotification:
+	-ExternalCondition@UNITSELL:
+	-Sellable:
 	ExternalCondition@chilled:
 		TotalCap: 2
 	ChangesHealth:
@@ -960,10 +984,288 @@ WORMHOLEXXL:
 	MapEditorData:
 		Categories: System
 
+WORMHOLEUNSTABLE:
+	Inherits: ^WormholeBase
+	Tooltip:
+		Name: Unstable Wormhole
+	MapEditorData:
+		Categories: System
+
+OSPI:
+	Inherits: ^Defense
+	Inherits@AUTOTARGET: ^AutoTargetGround
+	Inherits@ActorDifficultyConditions: ^ActorDifficultyConditions
+	Targetable@CampaignBoss:
+		TargetTypes: CampaignBoss
+	RenderSprites:
+		PlayerPalette: playerscrin
+	Valued:
+		Cost: 15000
+	Tooltip:
+		Name: Overlord's Spire
+	Selectable:
+		Bounds: 3072, 4608, 0, -1024
+		DecorationBounds: 3114, 4608, 0, -1024
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+		LocalCenterOffset: 0,-512,0
+	Health:
+		HP: 1500000
+	Armor:
+		Type: Concrete
+	HitShape:
+		UseTargetableCellsOffsets: true
+		TargetableOffsets: 0,0,768
+	Armament:
+		Weapon: OverlordSpireZap
+		LocalOffset: 0,300,1800, 0,0,2200, 0,-300,1400, 0,0,2600, 0,300,1000
+	AttackOmni:
+		PauseOnCondition: empdisable || being-warped
+	DetectCloaked:
+		RequiresCondition: !(empdisable || being-warped)
+	SpawnActorOnDeath:
+		Actor: evis
+	WithBuildingBib:
+	WithMuzzleOverlay:
+	-Sellable:
+
+DOMI:
+	Inherits: ^Tank
+	Inherits@ActorDifficultyConditions: ^ActorDifficultyConditions
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@HeavyArmor: ^HeavyArmor
+	Inherits@SHRAPNEL: ^ThrowsShrapnelBig
+	Inherits@ScrinUnitPalette: ^ScrinUnitPalette
+	Inherits@A2GPROTECTION: ^AirToGroundProtection
+	Inherits@COMMANDOSKULL: ^CommandoSkull
+	Buildable:
+		Queue: VehicleSQ, VehicleMQ
+		Prerequisites: ~botplayer
+		Description: Psionic war machine.
+	TooltipExtras:
+		Strengths: • Unknown
+		Weaknesses: • Unknown
+	Valued:
+		Cost: 7500
+	Tooltip:
+		Name: Dominator
+		GenericName: Tank
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 400000
+	Mobile:
+		Speed: 40
+		TurnSpeed: 8
+		Locomotor: sheavytracked
+		PauseOnCondition: empdisable || notmobile || (triggered && !ammo)
+		ImmovableCondition: alive
+	GrantCondition@ALIVE:
+		Condition: alive
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 7c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Armament@PRIMARY:
+		Weapon: Dominate
+		LocalOffset: 150,0,400
+		PauseOnCondition: maxcontrolled
+	Armament@TARGETER:
+		Weapon: DominationWaveTargeter
+		LocalOffset: 150,0,400
+		Name: secondary
+		RequiresCondition: below-66
+	MindController:
+		ControlType: MindControl
+		ArmamentNames: primary
+		Capacity: 8
+		ControlSounds: iyurat1a.aud
+		ReleaseSounds: yuri-release.aud
+		MaxControlledCondition: maxcontrolled
+		ControlAtCapacityBehaviour: DetonateOldest
+		SlaveDeployEffect: Detonate
+		SlaveDetonateWeapon: DetonateSlave
+		SlaveKillDamageTypes: BulletDeath
+		ExperienceFromControl: 100
+	WithMindControlArc@MC:
+		ControlType: MindControl
+		Color: c71585
+		Transparency: 55
+		Offset: 0,0,511
+		Angle: 32
+		Width: 116
+	AttackTurreted:
+		PauseOnCondition: empdisable || (triggered && !ammo)
+	Turreted:
+	Selectable:
+		DecorationBounds: 2048, 2048, 0, -170
+	Targetable@CampaignBoss:
+		TargetTypes: CampaignBoss
+	Targetable@MindControlImmune:
+		TargetTypes: MindControlImmune
+	Targetable@ChaosImmune:
+		TargetTypes: ChaosImmune
+	Targetable@DriverKillImmune:
+		TargetTypes: DriverKillImmune
+	SpawnActorOnDeath:
+		Actor: DOMI.Husk
+	-Crushable:
+	-Capturable:
+	CaptureManager:
+		-BeingCapturedCondition:
+	-CaptureNotification:
+	-ExternalCondition@UNITSELL:
+	-Sellable:
+	RevealsShroudMultiplier@Blinded:
+		Modifier: 80
+	RangeMultiplier@Blinded:
+		Modifier: 75
+		RequiresCondition: blinded
+	GrantConditionOnHealth@DominationWave:
+		Condition: below-66
+		MinHP: 0
+		MaxHP: 264000
+		GrantPermanently: true
+	GrantConditionOnAttack@DominationWave:
+		Condition: triggered
+		RequiresCondition: below-66
+		ArmamentNames: secondary
+		RevokeDelay: 151
+	PeriodicExplosion@DominationWaveInit:
+		Weapon: DominationWaveInit
+		RequiresCondition: triggered
+	PeriodicExplosion@DominationWave:
+		Weapon: DominationWave
+		RequiresCondition: ammo
+		AmmoPoolName: primary
+	ReloadAmmoPoolCA@DominationWave:
+		Delay: 150
+		SelectionBarValidRelationships: Ally, Enemy, Neutral
+		RequiresCondition: triggered
+		SelectionBarColor: ff00ff
+	AmmoPool@DominationWave:
+		Armaments: none
+		AmmoCondition: ammo
+		InitialAmmo: 0
+	WithDistortionHalo@DominationWave:
+		LineCount: 4
+		Distortion: 200
+		DistortionAnimation: 100
+		Radius: 6c0
+		Width: 64
+		MaxDistortion: 300
+		SegmentsPerLine: 16
+		Colors: b102ba77, f300ff77, bd48c377, 9b48c377
+		Visible: Always
+		ValidRelationships: Ally, Enemy, Neutral
+		RequiresCondition: triggered && !ammo
+		GlowScale: 0
+		RotationAnimation: 6
+
+DOMI.Husk:
+	Inherits: ^Husk
+	Inherits@ScrinUnitPalette: ^ScrinUnitPalette
+	Tooltip:
+		Name: Husk (Dominator)
+	RenderSprites:
+		Image: domi.destroyed
+
+VANQ:
+	Inherits: ^Helicopter
+	Inherits@ActorDifficultyConditions: ^ActorDifficultyConditions
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Inherits@HULLREGEN: ^HullRegen
+	Inherits@SHIELDS: ^ScrinShields
+	Inherits@FleetRecallable: ^FleetRecallable
+	Inherits@COMMANDOSKULL: ^CommandoSkull
+	Targetable@CampaignBoss:
+		TargetTypes: CampaignBoss
+	RenderSprites:
+		PlayerPalette: playerscrin
+	TooltipExtras:
+		Description: Massive battleship with formidable firepower and shielding.
+		Strengths: • Strong vs everything
+	Valued:
+		Cost: 30000
+	Tooltip:
+		Name: Vanquisher Battleship
+		GenericName: Battleship
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 1500000
+	Shielded:
+		MaxStrength: 500000
+		RegenAmount: 1000
+	Armor:
+		Type: Aircraft
+	HitShape:
+		TargetableOffsets: 0,0,0, -512,0,0, -1024,0,0
+		Type: Circle
+			Radius: 1c256
+	Selectable:
+		Bounds: 4096, 3352, 0, -256
+		DecorationBounds: 4096, 3352, 0, -256
+	RevealsShroud:
+		Range: 10c0
+		MinRange: 8c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 8c0
+		Type: GroundPosition
+	Armament@PRIMARY:
+		Weapon: VanquisherBolts
+		LocalOffset: 780,400,100, 780,-400,100
+		MuzzleSequence: muzzle
+		MuzzlePalette: scrin
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: VanquisherAA
+		LocalOffset: -600,100,1100,-600,-100,1100
+		MuzzleSequence: muzzle2
+		MuzzlePalette: scrin
+	WithMuzzleOverlay:
+	AttackFrontal:
+		Armaments: primary, secondary
+		FacingTolerance: 8
+		TargetFrozenActors: True
+		PauseOnCondition: empdisable
+	Aircraft:
+		CruiseAltitude: 3c512
+		InitialFacing: 768
+		TurnSpeed: 8
+		Speed: 36
+		AltitudeVelocity: 0c50
+		CanForceLand: False
+	GrantCondition@SHIELDS:
+		Condition: shields-upgrade
+	SpawnActorOnDeath:
+		Actor: VANQ.Husk
+	-Hovers@CRUISING:
+	-EjectOnDeath:
+	Turreted@SHIELDS:
+		Offset: -64,0,0
+	GpsRadarDot:
+		Sequence: Plane
+	-SoundOnDamageTransitionCA:
+
+VANQ.Husk:
+	Inherits: ^Husk
+	Inherits@ScrinUnitPalette: ^ScrinUnitPalette
+	Tooltip:
+		Name: Husk (Vanquisher Battleship)
+	RenderSprites:
+		Image: vanq.destroyed
+
 # Smudge makers
 
-^WeaponDetonaterDummy:
-	Inherits@DUMMY: ^InvisibleDummy
+^EditorInvisibleDummy:
+	Inherits@InvisibleDummy: ^InvisibleDummy
 	Immobile:
 		OccupiesSpace: false
 	BodyOrientation:
@@ -971,14 +1273,17 @@ WORMHOLEXXL:
 	WithSpriteBody:
 	Interactable:
 		Bounds: 64, 64
-	KillsSelf:
-		Delay: 25
-		RemoveInstead: true
 	WithSpriteBody:
 	RenderSpritesEditorOnly:
 		Image: waypoint
 	MapEditorData:
 		Categories: System
+
+^WeaponDetonaterDummy:
+	Inherits@EditorInvisibleDummy: ^EditorInvisibleDummy
+	KillsSelf:
+		Delay: 25
+		RemoveInstead: true
 
 CraterMaker1:
 	Inherits: ^WeaponDetonaterDummy

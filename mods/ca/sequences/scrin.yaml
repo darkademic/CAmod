@@ -2046,6 +2046,75 @@ veng.destroyed:
 		ZOffset: -512
 		UseClassicFacings: True
 
+ospi:
+	Inherits: ^StructureOverlays
+	Defaults:
+		Filename: ospi.shp
+	idle:
+		Offset: 0,-24
+	damaged-idle:
+		Start: 1
+		Offset: 0,-24
+	make:
+		Length: 1
+		Offset: 0,-24
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+			JUNGLE: bib2.jun
+			WINTER: bib2.win
+			BARREN: bib2.bar
+		Length: *
+	shield:
+		Filename: ospishield.shp
+		Facings: 1
+		ZOffset: 1022
+		BlendMode: Additive
+		Offset: 0,-24
+		Scale: 1.1
+	muzzle:
+		Filename: scrinmuzz3.shp
+		Length: 5
+		BlendMode: Additive
+		IgnoreWorldTint: true
+	icon:
+		Filename: scolicon.shp
+
+vanq:
+	Inherits: ^VehicleOverlays
+	idle:
+		Filename: vanq.shp
+		Facings: 32
+		UseClassicFacings: True
+		ZOffset: 3072
+	shield:
+		Filename: vanqshield.shp
+		Facings: 32
+		UseClassicFacings: True
+		ZOffset: 3073
+		BlendMode: Additive
+		Scale: 2
+	muzzle:
+		Filename: scrinmuzz2.shp
+		Frames: 5,5,5,5,5,0,1,2,3,4,0,1,2,3,4,0,1,2,3,4
+		Facings: 4
+		Length: 5
+		ZOffset: 2816
+		BlendMode: Additive
+		IgnoreWorldTint: true
+	muzzle2:
+		Filename: scrinmuzz2.shp
+		Frames: 5,5,5,5,5,0,1,2,3,4,0,1,2,3,4,0,1,2,3,4
+		Facings: 4
+		Length: 5
+		ZOffset: 3584
+		BlendMode: Additive
+		IgnoreWorldTint: true
+	icon:
+		Filename: mshpicon.shp
+
 oblt:
 	Inherits: ^VehicleOverlays
 	idle:
@@ -3318,6 +3387,15 @@ bshard:
 		Facings: 32
 		ZOffset: 1023
 
+pshard:
+	Defaults:
+		ZOffset: 3584
+		IgnoreWorldTint: true
+		BlendMode: Additive
+	idle:
+		Filename: pshard.shp
+		Facings: 32
+
 leechhit:
 	idle:
 		Filename: leechhit.shp
@@ -3688,6 +3766,11 @@ wormholexxl:
 	Inherits: wormholexl
 	Defaults:
 		Filename: wormholexxl.shp
+
+wormholeunstable:
+	Inherits: wormhole
+	Defaults:
+		Filename: wormholeunstable.shp
 
 plasmatorp1:
 	Defaults:

@@ -89,7 +89,3 @@ HOSP.Rebuilt:
 WEAT:
 	Power:
 		Amount: 0
-
-# Hunt() requires only 1 AttackBase
-BATF.AI:
-	-AttackFrontal:

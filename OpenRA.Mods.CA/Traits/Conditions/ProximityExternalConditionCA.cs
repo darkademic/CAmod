@@ -251,6 +251,9 @@ namespace OpenRA.Mods.CA.Traits
 				return;
 
 			tokens.Remove(actor);
+			if (actor.Disposed)
+				return;
+
 			foreach (var external in actor.TraitsImplementing<ExternalCondition>())
 				if (external.TryRevokeCondition(actor, self, token))
 					break;

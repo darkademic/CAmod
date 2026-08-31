@@ -1847,3 +1847,27 @@ COOPRFGN:
 	Inherits: ^InvisibleDummy
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: rfgn
+
+COOPCSPK:
+	Inherits: ^InvisibleDummy
+	Inherits@BLD: ^COOPProducesBuildings
+	ValidFactions:
+		Factions: scrin, reaper, traveler, harbinger, collector
+	ProvidesPrerequisite@buildingname:
+		Prerequisite: cspk
+	ProvidesPrerequisite@scrin:
+		Prerequisite: structures.scrin
+	ProvidesPrerequisiteValidatedFaction@reaper:
+		Factions: reaper
+		Prerequisite: structures.reaper
+	ProvidesPrerequisiteValidatedFaction@traveler:
+		Factions: traveler
+		Prerequisite: structures.traveler
+	ProvidesPrerequisiteValidatedFaction@harbinger:
+		Factions: harbinger
+		Prerequisite: structures.harbinger
+	ProvidesPrerequisiteValidatedFaction@collector:
+		Factions: collector
+		Prerequisite: structures.collector
+	Production@SQBLD:
+		Produces: BuildingSQ

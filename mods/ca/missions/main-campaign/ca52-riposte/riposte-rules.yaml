@@ -1,0 +1,31 @@
+World:
+	LuaScript:
+		Scripts: campaign.lua, riposte.lua
+	MissionData:
+		Briefing: We have successfully reached Earth. Our control of the gateway on the homeworld is precarious due to continuing Malefic assaults, but for now it continues to provide a means of escape.\n\nKane has reunited with his commanders and has been apprised of the current situation. The Overlord was able to escape the homeworld with the ancient device before the Soviet gateway was closed by the Allies, and now has a significant presence here. The device has not yet been located. It must be found before the Overlord is able to fully unlock its secrets.\n\nThe GDI faction has splintered. One of their top generals regards Kane and the Brotherhood as a greater enemy than either the Overlord or the Soviets, and a significant portion of GDI forces have joined him in protest against the GDI leadership's decision to cooperate with Kane.\n\nThis splinter faction could make our efforts much more difficult if allowed to continue gaining support, so Kane has put a plan in motion.\n\nNod agents have supplied false intelligence that appears to reveal Kane's location. Once the general's forces are sufficiently amassed to attack this location, we will launch our own attack from a flank.\n\nYour mission is to establish your base and use it to launch this flanking attack, working with Nod to eliminate the general's forces.
+	MapOptions:
+		ShortGameCheckboxEnabled: False
+	MusicPlaylist:
+		StartingMusic: stopthem
+
+Player:
+	PlayerResources:
+		DefaultCash: 6000
+
+colonyspike.provider:
+	-UpdatesSupportPowerTimer:
+
+# Disable powers for AI
+
+^ClusterMissilePower:
+	NukePower@Cluster:
+		Prerequisites: ~!botplayer
+
+# Hunt() requires only 1 AttackBase
+DEVA:
+	-AttackFrontalCharged:
+	-Armament@PRIMARYUPG:
+	-AmbientSound@CHARGE:
+	-WithIdleOverlay@CHARGE1:
+	-WithIdleOverlay@CHARGE2:
+	-WithIdleOverlay@CHARGE3:

@@ -292,17 +292,3 @@ TTRA:
 
 APOC:
 	Inherits@CAMPAIGNDISABLED: ^Disabled
-
-E6:
-	Voiced:
-		VoiceSet: GenericVoice
-
-3TNK.YURI:
-	Voiced:
-		VoiceSet: VehicleVoice
-	AttackTurreted:
-		-Voice:
-	Mobile:
-		-Voice:
-	Passenger:
-		-Voice:

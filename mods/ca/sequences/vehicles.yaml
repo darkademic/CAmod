@@ -3322,3 +3322,19 @@ cust.destroyed:
 		Facings: 32
 		UseClassicFacings: True
 		ZOffset: -512
+
+domi:
+	Inherits: ^VehicleOverlays
+	idle:
+		Filename: domi.shp
+		Facings: 32
+		UseClassicFacings: True
+	icon:
+		Filename: yuriicon.shp
+
+domi.destroyed:
+	Inherits: ^VehicleOverlays
+	idle:
+		Filename: domi.shp
+		Facings: 32
+		UseClassicFacings: True

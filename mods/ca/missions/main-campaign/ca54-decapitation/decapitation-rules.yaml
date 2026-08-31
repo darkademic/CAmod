@@ -1,0 +1,34 @@
+^Palettes:
+	PaletteFromFile@terrain-temperat:
+		Filename: ca|missions/main-campaign/ca54-decapitation/decay.pal
+
+World:
+	LuaScript:
+		Scripts: campaign.lua, decapitation.lua
+	MissionData:
+		Briefing: The Overlord's Earth stronghold has been located, and the Overlord himself is overseeing the construction of several large structures there. Their purpose is unknown, but immense amounts of power are being channeled into them.\n\nThese structures must be extremely important to the his plans as he rarely oversees such things personally, and this presents us with a rare opportunity to eliminate him.\n\nWe must destroy these structures before they are made fully operational, and if the opportunity arises to kill the Overlord, we must take it.\n\nNod forces have begun their offensive already and are encountering massive resistance. We must establish our own forward base to assist them.
+	MapOptions:
+		ShortGameCheckboxEnabled: False
+	MusicPlaylist:
+		StartingMusic: nomercy
+
+Player:
+	PlayerResources:
+		DefaultCash: 6000
+
+colonyspike.provider:
+	-UpdatesSupportPowerTimer:
+
+recall.effect:
+	Inherits@WeaponDetonaterDummy: ^WeaponDetonaterDummy
+	PeriodicExplosion:
+		Weapon: FleetRecallEffect
+
+# Hunt() requires only 1 AttackBase
+DEVA:
+	-AttackFrontalCharged:
+	-Armament@PRIMARYUPG:
+	-AmbientSound@CHARGE:
+	-WithIdleOverlay@CHARGE1:
+	-WithIdleOverlay@CHARGE2:
+	-WithIdleOverlay@CHARGE3:

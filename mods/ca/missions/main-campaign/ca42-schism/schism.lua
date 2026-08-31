@@ -395,7 +395,7 @@ MaleficInit = function()
 
 		MediaCA.PlaySound("malefic.aud", 2)
 		Trigger.AfterDelay(DateTime.Seconds(8), function()
-			Media.DisplayMessage("Impossible! These Scrin are not..  Do not allow the device to be destroyed!", "Scrin Overlord", HSLColor.FromHex("7700FF"))
+			Media.DisplayMessage("Impossible! These Scrin are...  Do not allow the device to be destroyed!", "Scrin Overlord", HSLColor.FromHex("7700FF"))
 			MediaCA.PlaySound(MissionDir .. "/ovld_impossible.aud", 2)
 
 			Trigger.AfterDelay(DateTime.Seconds(8), function()

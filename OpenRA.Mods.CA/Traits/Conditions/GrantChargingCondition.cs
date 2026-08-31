@@ -15,7 +15,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.CA.Traits
 {
 	[Desc("Gives a condition to the actor that charges when enabled,",
-		"drains gradually when paused, and is revoked when fully drained or disabled.")]
+		"drains gradually when paused, and is revoked when disabled, or when charge is below required threshold.")]
 	public class GrantChargingConditionInfo : PausableConditionalTraitInfo
 	{
 		[FieldLoader.Require]
@@ -38,8 +38,14 @@ namespace OpenRA.Mods.CA.Traits
 		[Desc("Delay in ticks before charging after being enabled.")]
 		public readonly int ChargeDelay = 0;
 
+		[Desc("Delay in ticks before discharging after being paused.")]
+		public readonly int DischargeDelay = 0;
+
 		[Desc("Minimum charge before reactivating after being disabled.")]
 		public readonly int MinReactivationCharge = 0;
+
+		[Desc("Threshold of charge for condition to be granted.")]
+		public readonly int MinChargeForCondition = 1;
 
 		public readonly bool ShowSelectionBar = true;
 		public readonly bool ShowSelectionBarWhenFull = true;
@@ -54,10 +60,13 @@ namespace OpenRA.Mods.CA.Traits
 	{
 		int token = Actor.InvalidConditionToken;
 		int chargeDelay;
-		bool forceCharging = false;
+		int dischargeDelay;
+		bool awaitingReactivationCharge = false;
 
 		[Sync]
 		int charge;
+
+		public int ChargePercentage { get { return charge * 100 / Info.MaxCharge; } }
 
 		public GrantChargingCondition(ActorInitializer init, GrantChargingConditionInfo info)
 			: base(info) { }
@@ -67,8 +76,7 @@ namespace OpenRA.Mods.CA.Traits
 			charge = Info.InitialCharge;
 			chargeDelay = Info.ChargeDelay;
 
-			if (charge == Info.MaxCharge)
-				GrantCondition(self);
+			UpdateCondition(self);
 		}
 
 		void ITick.Tick(Actor self)
@@ -76,7 +84,7 @@ namespace OpenRA.Mods.CA.Traits
 			if (IsTraitDisabled)
 				return;
 
-			if (!IsTraitPaused || (forceCharging && charge < Info.MinReactivationCharge))
+			if (!IsTraitPaused || (awaitingReactivationCharge && charge < Info.MinReactivationCharge))
 			{
 				if (charge == Info.MaxCharge)
 					return;
@@ -89,32 +97,42 @@ namespace OpenRA.Mods.CA.Traits
 				if (charge > Info.MaxCharge)
 					charge = Info.MaxCharge;
 
-				if (forceCharging && charge < Info.MinReactivationCharge)
+				if (awaitingReactivationCharge && charge < Info.MinReactivationCharge)
 				{
 					RevokeCondition(self);
 					return;
 				}
 
-				GrantCondition(self);
+				UpdateCondition(self);
 			}
 			else
 			{
 				if (charge == 0)
 					return;
 
+				if (dischargeDelay > 0 && --dischargeDelay > 0)
+					return;
+
 				charge -= Info.DischargeRate;
 
 				if (charge <= 0)
-				{
 					charge = 0;
-					RevokeCondition(self);
-				}
+
+				UpdateCondition(self);
 			}
+		}
+
+		void UpdateCondition(Actor self)
+		{
+			if (charge >= Info.MinChargeForCondition)
+				GrantCondition(self);
+			else
+				RevokeCondition(self);
 		}
 
 		void GrantCondition(Actor self)
 		{
-			forceCharging = false;
+			awaitingReactivationCharge = false;
 
 			if (token == Actor.InvalidConditionToken)
 				token = self.GrantCondition(Info.Condition);
@@ -122,7 +140,7 @@ namespace OpenRA.Mods.CA.Traits
 
 		void RevokeCondition(Actor self)
 		{
-			forceCharging = true;
+			awaitingReactivationCharge = true;
 
 			if (token == Actor.InvalidConditionToken)
 				return;
@@ -140,7 +158,8 @@ namespace OpenRA.Mods.CA.Traits
 		protected override void TraitPaused(Actor self)
 		{
 			chargeDelay = Info.ChargeDelay;
-			forceCharging = true;
+			dischargeDelay = Info.DischargeDelay;
+			awaitingReactivationCharge = true;
 		}
 
 		float ISelectionBar.GetValue()

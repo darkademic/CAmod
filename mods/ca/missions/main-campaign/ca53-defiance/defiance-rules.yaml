@@ -1,0 +1,53 @@
+World:
+	LuaScript:
+		Scripts: campaign.lua, defiance.lua
+	MissionData:
+		Briefing: With Hawthorne out of the picture, at least for the time being, we must focus all of our attention on the Overlord and his Soviet allies.\n\nNod forces recently began an incursion into Soviet territory, but contact was suddenly lost. Recon units were sent to investigate and have witnessed a troubling development.\n\nThe Soviet forces in the area are overseen by the one known as Yuri, and the Nod incursion forces have been enslaved by his mind control powers.\n\nYuri is known to have been experimenting with Tiberium to enhance his already considerable powers, and we believe he has continued his experiments with the help of the Overlord's own psionic underlings, with the ancient device no doubt accelerated his progress.\n\nThe Prodigy that gained the ability to project immunity to Yuri's control remains loyal to the Overlord, so we have been working with Kane's scientists to develop our own means of resistance, but it is not yet ready. We need to analyze the psionic powers in the field to finalize this protection. \n\nYour goal is simple; eliminate Yuri's forces. If possible, it would also be beneficial to preserve the Nod base in the area so that it may be returned to Kane.\n\nWe don't know exactly what advances Yuri has made in empowering his arsenal of psionic weaponry, we just hope it's not too late to develop a way to combat them.
+	MapOptions:
+		ShortGameCheckboxEnabled: False
+	MusicPlaylist:
+		StartingMusic: chaos2
+
+Player:
+	PlayerResources:
+		DefaultCash: 6000
+
+colonyspike.provider:
+	-UpdatesSupportPowerTimer:
+
+YURI:
+	Tooltip:
+		Name: Yuri Clone
+
+CVAT:
+	CargoCloner@SQ:
+		-EmptyFallbackActor:
+	CargoCloner@MQ:
+		-EmptyFallbackActor:
+
+^ChaosBombsPower:
+	AirstrikePowerCA@ChaosBombs:
+		Prerequisites: ~ai.supportpowers.enabled
+
+^MutaBombPower:
+	AirstrikePowerCA@MutaBomb:
+		Prerequisites: ~ai.supportpowers.enabled
+
+# Disable powers for AI
+
+^SatHackPower:
+	SpawnActorPowerCA@sathack:
+		Prerequisites: ~radar.nod, ~!player.legion, ~!botplayer
+
+^NodAirdropPowers:
+	ParatroopersPowerCA@NodAirDrop:
+		Prerequisites: ~!botplayer
+
+# Hunt() requires only 1 AttackBase
+DEVA:
+	-AttackFrontalCharged:
+	-Armament@PRIMARYUPG:
+	-AmbientSound@CHARGE:
+	-WithIdleOverlay@CHARGE1:
+	-WithIdleOverlay@CHARGE2:
+	-WithIdleOverlay@CHARGE3:

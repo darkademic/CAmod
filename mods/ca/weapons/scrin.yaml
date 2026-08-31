@@ -1596,7 +1596,7 @@ WatcherDartArc:
 RiftInit:
 	ValidTargets: Ground, Water
 	Projectile: InstantExplode
-	ReloadDelay: 1
+	ReloadDelay: 999
 	Warhead@Spawn: SpawnActor
 		Actors: rift
 		Range: 1
@@ -1629,7 +1629,7 @@ Rift:
 
 SuppressionField:
 	Projectile: InstantExplode
-	ReloadDelay: 1
+	ReloadDelay: 999
 	ValidTargets: Ground, Air, AirSmall, Ship
 	# extra suppression range vs aircraft
 	Warhead@Suppression: GrantExternalConditionCA
@@ -1648,7 +1648,7 @@ SuppressionField:
 		FadeInFrames: 5
 
 BuzzerSpawner:
-	ReloadDelay: 1
+	ReloadDelay: 999
 	Projectile: InstantExplode
 	Warhead@1Dam: HealthPercentageDamage
 		Spread: 341
@@ -1716,7 +1716,7 @@ BuzzerTargeting:
 		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
 
 StormSpikeSpawner:
-	ReloadDelay: 1
+	ReloadDelay: 999
 	Projectile: InstantExplode
 	Warhead@spawn: SpawnBuilding
 		Buildings: sspk
@@ -1724,7 +1724,7 @@ StormSpikeSpawner:
 		ValidTargets: Ground, Water, Trees
 
 IchorSpikeSpawner:
-	ReloadDelay: 1
+	ReloadDelay: 999
 	Projectile: InstantExplode
 	Warhead@spawn: SpawnBuilding
 		Buildings: ispk
@@ -1732,7 +1732,7 @@ IchorSpikeSpawner:
 		ValidTargets: Ground, Water, Trees
 
 ColonySpikeSpawner:
-	ReloadDelay: 1
+	ReloadDelay: 999
 	Projectile: InstantExplode
 	Warhead@spawn: SpawnBuilding
 		Buildings: cspk
@@ -1740,7 +1740,7 @@ ColonySpikeSpawner:
 		ValidTargets: Ground, Water, Trees
 
 VoidSpikeSpawner:
-	ReloadDelay: 1
+	ReloadDelay: 999
 	Projectile: InstantExplode
 	Warhead@spawn: SpawnBuilding
 		Buildings: vspk
@@ -1748,7 +1748,7 @@ VoidSpikeSpawner:
 		ValidTargets: Ground, Water, Trees
 
 IonSurgeSpawner:
-	ReloadDelay: 1
+	ReloadDelay: 999
 	Projectile: InstantExplode
 	Warhead@Spawn: SpawnActor
 		Actors: ionsurge
@@ -1769,7 +1769,7 @@ IonSurge:
 		ValidRelationships: Ally
 
 GatewaySpawner:
-	ReloadDelay: 1
+	ReloadDelay: 999
 	Projectile: InstantExplode
 	Warhead@Spawn: SpawnActor
 		Actors: rebelgateway
@@ -1956,7 +1956,7 @@ LeecherOrbHealInit:
 		Damage: -5000
 
 GreaterCoalescenceSpawner:
-	ReloadDelay: 1
+	ReloadDelay: 999
 	Projectile: InstantExplode
 	Warhead@Spawn: SpawnActor
 		Actors: grcl

@@ -546,3 +546,15 @@ SCRINFLORA14:
 	Building:
 		Footprint: x
 		Dimensions: 1,1
+
+SCRINFLORA15:
+	Inherits: ^ScrinFlora
+	Building:
+		Footprint: xxx xxx xxx
+		Dimensions: 3,3
+
+SCRINFLORA16:
+	Inherits: ^ScrinFlora
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2

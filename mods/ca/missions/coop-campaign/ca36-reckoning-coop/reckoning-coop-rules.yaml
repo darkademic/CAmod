@@ -47,21 +47,3 @@ World:
 	LobbyMissionInfo@InitialObjectives:
 		Prefix: Initial Objectives
 		Text: • Destroy all Scrin forces loyal to the Overlord.
-
-Player:
-	ProvidesPrerequisitesOnCount@ScrinAllegiances:
-		-CountReachedNotifications:
-		-CountReachedTextNotifications:
-
-loyalist.allegiance:
-	Inherits@CAMPAIGNDISABLED: ^Disabled
-
-rebel.allegiance:
-	Inherits@CAMPAIGNDISABLED: ^Disabled
-
-malefic.allegiance:
-	Inherits@CAMPAIGNDISABLED: ^Disabled
-
-^ColonySpikePower:
-	DetonateWeaponPower@ColonySpike:
-		Prerequisites: ~disabled

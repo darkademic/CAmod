@@ -198,7 +198,7 @@ Actors:
 		Location: 11,72
 		Faction: Random
 		Owner: GDI
-	Gateway: wormhole
+	Gateway: wormholeunstable
 		Owner: GatewayOwner
 		Location: 17,8
 	Sensor2: msar
@@ -1965,7 +1965,5 @@ Actors:
 		Location: 39,94
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|missions/main-campaign/ca31-foothold/foothold-rules.yaml, ca|rules/custom/coop-rules.yaml, foothold-coop-rules.yaml
-
-Sequences: ca|missions/main-campaign/ca31-foothold/foothold-sequences.yaml
 
 Weapons: ca|weapons/custom/campaign.yaml

@@ -185,6 +185,16 @@ explosion:
 		Filename: mempfx.shp
 		BlendMode: Alpha
 		Tick: 40
+	domination_init:
+		Filename: pdfxcld.shp
+		BlendMode: Alpha
+		Tick: 60
+		ZOffset: 2048
+		Offset: 0, -48
+	domination_wave:
+		Filename: pdfxloc.shp
+		BlendMode: Alpha
+		Tick: 40
 	ion_ring:
 		Filename: ring1.shp
 		BlendMode: Alpha

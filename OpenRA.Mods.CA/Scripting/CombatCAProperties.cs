@@ -9,6 +9,7 @@
 #endregion
 
 using OpenRA.Mods.CA.Activities;
+using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Scripting;
 using OpenRA.Traits;
@@ -18,14 +19,28 @@ namespace OpenRA.Mods.CA.Scripting
 	[ScriptPropertyGroup("Combat")]
 	public class CombatCAProperties : ScriptActorProperties, Requires<AttackBaseInfo>, Requires<IMoveInfo>
 	{
+		private readonly IMove move;
+
 		public CombatCAProperties(ScriptContext context, Actor self)
-			: base(context, self) {}
+			: base(context, self)
+		{
+			move = self.Trait<IMove>();
+		}
 
 		[ScriptActorPropertyActivity]
 		[Desc("Ignoring visibility, find the closest hostile target and attack move to within 2 cells of it.")]
 		public void HuntCA()
 		{
 			Self.QueueActivity(new HuntCA(Self));
+		}
+
+		[ScriptActorPropertyActivity]
+		[Desc("Move to a cell, but stop and attack anything within range on the way. " +
+			"closeEnough defines an optional range (in cells) that will be considered " +
+			"close enough to complete the activity.")]
+		public void AttackMoveCA(CPos cell, int closeEnough = 0)
+		{
+			Self.QueueActivity(new AttackMoveActivity(Self, () => move.MoveTo(cell, closeEnough, evaluateNearestMovableCell: true)));
 		}
 	}
 }

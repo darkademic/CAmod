@@ -13,6 +13,7 @@
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Scripting;
+using OpenRA.Traits;
 using System.Linq;
 
 namespace OpenRA.Mods.CA.Scripting
@@ -93,6 +94,13 @@ namespace OpenRA.Mods.CA.Scripting
 				return false;
 
 			return pathFinder.PathExistsForLocomotor(locomotor, source, target);
+		}
+
+		[Desc("Detonates weapon at target location.")]
+		public void DetonateWeapon(string weaponName, WPos pos, Actor firedBy)
+		{
+			var weaponInfo = world.Map.Rules.Weapons[weaponName.ToLowerInvariant()];
+			weaponInfo.Impact(Target.FromPos(pos), firedBy);
 		}
     }
 }

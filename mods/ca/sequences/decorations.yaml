@@ -1501,3 +1501,15 @@ scrinflora14:
 		Filename: scrinflora14.shp
 	idle:
 		Offset: 2, -4
+
+scrinflora15:
+	Defaults:
+		Filename: scrinflora15.shp
+	idle:
+		Offset: 2, -2
+
+scrinflora16:
+	Defaults:
+		Filename: scrinflora16.shp
+	idle:
+		Offset: 0, -4

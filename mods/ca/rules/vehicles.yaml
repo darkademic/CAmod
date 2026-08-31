@@ -8909,6 +8909,7 @@ BATF.AI:
 		-EnterSounds:
 	-Encyclopedia:
 	-EncyclopediaExtras:
+	-AttackFrontal:
 
 MEMP:
 	Inherits: ^TankTD

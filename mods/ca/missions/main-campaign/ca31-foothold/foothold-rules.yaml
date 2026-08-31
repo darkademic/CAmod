@@ -66,14 +66,6 @@ SILO.SCRIN:
 	Power:
 		Amount: 0
 
-WORMHOLE:
-	-Targetable:
-	-RallyPoint:
-	-Selectable:
-	Interactable:
-	Tooltip:
-		Name: Unstable Wormhole
-
 WORMHOLEXL:
 	Tooltip:
 		Name: Stabilized Wormhole

@@ -77,7 +77,3 @@ OCAR.HTNK.ION:
 		InitialFacing: 768
 	Carryall:
 		InitialActor: htnk.ion
-
-# Hunt() requires only 1 AttackBase
-BATF.AI:
-	-AttackFrontal:

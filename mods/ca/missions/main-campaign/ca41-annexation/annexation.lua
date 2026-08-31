@@ -275,7 +275,7 @@ end
 InitSignalTransmittersObjective = function()
 	if ObjectiveSignalTransmitters == nil then
 		ObjectiveSignalTransmitters = USSR.AddObjective("Capture the three signal transmitters.")
-		Media.DisplayMessage("Capture the rebel Signal Transmiters, and I will unleash my forces to assist you.", "Scrin Overlord", HSLColor.FromHex("7700FF"))
+		Media.DisplayMessage("Capture the rebel Signal Transmitters, and I will unleash my forces to assist you.", "Scrin Overlord", HSLColor.FromHex("7700FF"))
 		MediaCA.PlaySound(MissionDir .. "/ovld_capture.aud", 2)
 
 		local transmitters = Utils.Where({ SignalTransmitter1, SignalTransmitter2, SignalTransmitter3 }, function(a)

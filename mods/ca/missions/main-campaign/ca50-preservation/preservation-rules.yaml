@@ -1,0 +1,115 @@
+^Palettes:
+	PaletteFromFile@terrain-temperat:
+		Filename: alien.pal
+	TintPostProcessEffect:
+		Red: 1.3
+		Green: 1
+		Blue: 1.5
+		Ambient: 0.5
+
+^BaseWorld:
+	TerrainLighting:
+
+World:
+	LuaScript:
+		Scripts: campaign.lua, preservation.lua
+	MissionData:
+		Briefing: Our forces have continued southward with the Overlord and Soviets in pursuit. An unknown number of enemy strongholds exist further south, and Malefic cultists have been scouted in the area as well.\n\nWe believe our best chance will be to open gateways to bypass these threats, but it will take time and resources to establish gateways from such a distance, so we will need to defend against our pursuers.\n\nNod's CABAL system had been analysing the ancient device, cross referencing its findings with data obtained from the Tacitus, prior to the device being lost. The analysis was incomplete, but significant progress had been made towards detailing the workings and potential uses of the device.\n\nKane warns that even this incomplete data would be extremely dangerous if it fell into the Overlord's hands. To this end, the data has been distributed across three data cores, each housed in a Temple of Nod at one of the three defensive positions we've established. The Overlord would need all three cores to gain access to the data.\n\nHowever, this also means all three must be preserved if we hope to complete the analysis.\n\nYour objective is to protect the temples while generating sufficient resources to allow us to open the gateways.
+	MapOptions:
+		ShortGameCheckboxEnabled: False
+	MusicPlaylist:
+		StartingMusic: chrg226m
+
+Player:
+	PlayerResources:
+		DefaultCash: 6000
+	GrantExternalConditionPowerCA@ChargeGateway:
+		OrderName: chargegateway
+		Icon: chargegateway
+		IconPalette: chromes
+		ChargeInterval: 125
+		Name: Charge Gateway
+		Condition: charge
+		Range: 1c0
+		MinTargets: 1
+		ValidTargets: ChargingGateway
+		ValidRelationships: Ally
+		Duration: 1
+		AllowMultiple: false
+		Description: \nSpend resources to increase the charge of targeted gateway.
+		OnFireSound: mastermind-fire.aud
+		SelectTargetSpeechNotification: SelectTarget
+		SelectTargetTextNotification: Select target.
+		InsufficientPowerSpeechNotification: InsufficientPower
+		EndChargeTextNotification: Charge Gateway ready.
+		DisplayRadarPing: True
+		Cursor: ability
+		SupportPowerPaletteOrder: 0
+		ShowSelectionBoxes: true
+		TargetTintColor: a400f266
+		SelectionBoxColor: a400f2
+		Cost: 2000
+
+WORMHOLEUNSTABLE:
+	Tooltip:
+		Name: Charging Gateway
+	Targetable@ChargingGateway:
+		TargetTypes: ChargingGateway
+	-Interactable:
+	Selectable:
+		Bounds: 2048, 2048
+		DecorationBounds: 2560, 2560
+	SelectionDecorations:
+	GrantChargingCondition@Charge:
+		Condition: charged
+		PauseOnCondition: !charge
+		MinChargeForCondition: 60000
+		InitialCharge: 0
+		MaxCharge: 60000
+		ChargeRate: 2000
+		DischargeRate: 0
+		DischargeDelay: 1500
+		ChargingColor: ff00ff
+		DischargingColor: ff00ff
+	ExternalCondition@Charge:
+		Condition: charge
+	TransformOnCondition@Charged:
+		IntoActor: wormholexl
+		RequiresCondition: charged
+	RevealsShroud:
+		Range: 8c0
+
+^ColonySpikePower:
+	DetonateWeaponPower@ColonySpike:
+		Prerequisites: ~disabled
+
+CSPK:
+	ReloadAmmoPoolCA@Charged:
+		Delay: 75
+
+# Disable powers for AI
+
+^ParabombsPower:
+	AirstrikePowerCA@Russianparabombs:
+		Prerequisites: ~support.parabombs, ~!botplayer
+
+^ParatroopersPower:
+	ParatroopersPowerCA@paratroopers:
+		Prerequisites: ~support.paratroopers, ~!botplayer
+
+^ClusterMissilePower:
+	NukePower@Cluster:
+		Prerequisites: ~!botplayer
+
+^TibStealthPower:
+	GrantExternalConditionPowerCA@SGEN:
+		Prerequisites: ~!botplayer
+
+# Hunt() requires only 1 AttackBase
+DEVA:
+	-AttackFrontalCharged:
+	-Armament@PRIMARYUPG:
+	-AmbientSound@CHARGE:
+	-WithIdleOverlay@CHARGE1:
+	-WithIdleOverlay@CHARGE2:
+	-WithIdleOverlay@CHARGE3:

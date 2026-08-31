@@ -3073,7 +3073,7 @@ U2Camera.Yuri:
 
 KillZoneSpawner:
 	Range: 1c0
-	ReloadDelay: 100
+	ReloadDelay: 999
 	Report: chute1.aud
 	Projectile: InstantHit
 	Warhead@Spawn: SpawnActor
@@ -3368,7 +3368,7 @@ MineDefuserCharger:
 	-Warhead@3Eff:
 
 DecoyFlameTankSpawner:
-	ReloadDelay: 1
+	ReloadDelay: 999
 	Projectile: InstantExplode
 	Warhead@Spawn: SpawnActor
 		Actors: ftnk.decoy, ftnk.decoy

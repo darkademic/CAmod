@@ -221,10 +221,6 @@ ATMZ:
 	Buildable:
 		Prerequisites: scrt, ~vehicles.scrin
 
-stellar.upgrade:
-	Buildable:
-		Prerequisites: scrt, ~player.scrin
-
 coalescence.upgrade:
 	Buildable:
 		Prerequisites: scrt, ~player.scrin

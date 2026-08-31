@@ -1,7 +1,0 @@
-wormhole:
-	idle:
-		Filename: wormholeunstable.shp
-	die:
-		Filename: wormholeunstable.shp
-	make:
-		Filename: wormholeunstable.shp

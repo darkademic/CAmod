@@ -157,6 +157,119 @@ VoidEngineRift:
 		ValidTargets: Vehicle, Ship
 		ValidRelationships: Enemy, Neutral
 
+Dominate:
+	Range: 7c0
+	ReloadDelay: 35
+	Projectile: InstantHit
+	ValidTargets: MindControllable
+	InvalidTargets: MindControlImmune
+	Warhead@2Eff: CreateEffect
+		Explosions: idle
+		ExplosionPalette: scrin
+		Image: mindcontrol
+		ValidTargets: Ground
+		ValidRelationships: Neutral, Enemy
+	Warhead@Flash: FlashTarget
+		Spread: 341
+		Color: ff00ff
+		Duration: 6
+		ValidTargets: MindControllable
+		ValidRelationships: Neutral, Enemy
+
+DominationWaveInit:
+	ReloadDelay: 750
+	ValidTargets: Ground, Water
+	Warhead@2Eff: CreateEffect
+		ExplosionPalette: ra2effect-ignore-lighting-alpha75
+		Explosions: domination_init
+		ImpactSounds: onewithyuri.aud
+		Delay: 25
+
+DominationWave:
+	ReloadDelay: 750
+	ValidTargets: Ground, Water
+	Warhead@2Eff: CreateEffect
+		ExplosionPalette: ra2effect-ignore-lighting-alpha75
+		Explosions: domination_wave
+		ImpactSounds: dominator.aud
+	Warhead@MC: ChangeOwner
+		Range: 6c0
+		ValidTargets: MindControllable
+		InvalidTargets: MindControlImmune
+
+DominationWaveTargeter:
+	ReloadDelay: 750
+	Range: 5c0
+	ValidTargets: Infantry, Vehicle
+	Projectile: InstantHit
+
+VanquisherBolts:
+	Range: 16c0
+	Report: mshp-zap1.aud, mshp-zap2.aud
+	TargetActorCenter: true
+	ReloadDelay: 150
+	Burst: 10
+	BurstDelays: 5
+	Projectile: Bullet
+		TrailImage: smokey
+		TrailPalette: scrinplasma
+		Blockable: false
+		Image: plasmatorp1
+		Inaccuracy: 1c512
+		Speed: 300
+		Palette: scrin
+		LaunchAngle: 0
+		Shadow: true
+		ShadowColor: 00000033
+	Warhead@1Dam: SpreadDamage
+		Spread: 341
+		Falloff: 500, 368, 135, 50, 18, 7, 0
+		Damage: 1400
+		Versus:
+			None: 100
+			Wood: 45
+			Concrete: 55
+			Light: 80
+			Heavy: 100
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, AirToGround
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Crater
+	Warhead@3Eff: CreateEffect
+		Explosions: pbomb_explosion, pbomb_explosion2, pbomb_explosion3
+		ImpactSounds: pbomb-hit1.aud, pbomb-hit2.aud
+		ExplosionPalette: caneon
+
+VanquisherAA:
+	Inherits: ShardLauncher
+	Range: 10c0
+	Projectile: MissileCA
+		Image: pshard
+		ContrailStartColor: FF00FF
+		ContrailStartColorAlpha: 170
+		Range: 14c0
+		ContrailZOffset: 3584
+	Warhead@3Eff: CreateEffect
+		Explosions: idle
+		ExplosionPalette: scrin
+		Image: enrvbolthit
+		ValidTargets: Air, AirSmall, ICBM, Ground, Water, Trees
+		Inaccuracy: 171
+		ImpactSounds: gshardhit1.aud, gshardhit2.aud
+		ImpactSoundChance: 100
+
+OverlordSpireZap:
+	Inherits: StormColumnZap
+	Burst: 11
+	Range: 12c0
+	Projectile: ElectricBolt
+		Colors: 00FF00E6, 5eff5eE6, 3bc350E6, 7ead85E6, 67be74E6, 009e18E6
+		Duration: 6
+		Width: 24
+		Angle: 45
+		Distortion: 96
+		DistortionAnimation: 96
+		ZOffset: 512
+
 # Super unit modifiers
 
 C4:
@@ -264,3 +377,19 @@ NeutronCannon:
 	Warhead@CampaignBoss: WarpDamage
 		Damage: 1000
 		ValidTargets: CampaignBoss
+
+# Effects
+
+FleetRecallEffect:
+	ReloadDelay: 10000
+	Projectile: InstantExplode
+	Warhead@1Eff: CreateEffect
+		Image: fleetrecall
+		Explosions: idle
+		ExplosionPalette: scrineffect
+		ImpactSounds: fleetrecall.aud
+		ValidTargets: Ground, Water, Air
+	Warhead@Shake: ShakeScreen
+		Duration: 20
+		Intensity: 5
+		Multiplier: 1,1

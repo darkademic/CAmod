@@ -1,0 +1,69 @@
+^Palettes:
+	PaletteFromFile@terrain-temperat:
+		Filename: alien.pal
+	TintPostProcessEffect:
+		Red: 1.3
+		Green: 1
+		Blue: 1.5
+		Ambient: 0.5
+
+^BaseWorld:
+	TerrainLighting:
+
+World:
+	LuaScript:
+		Scripts: campaign.lua, extraction.lua
+	MissionData:
+		Briefing: ———[    Chapter IX Introduction    ]———\n\nIn the aftermath of the Overlord's seizure of the purification device and the subsequent emergence of the Malefic cult, Kane and his remaining forces on the Scrin homeworld went into hiding, aided by the Scrin Rebels.\n\nDespite losing the device, much has already been learned about it and, aided by information gathered from the Tacitus, Kane is confident that a new device can be constructed.\n\nHowever, with the original device in the hands of the Overlord, it's only a matter of time before he is able to corrupt it and use it for his own ends.\n\nThe Malefic cult continues to spread across the Scrin homeworld, destroying all in their path. Their attempts to reach Earth have stalled, but their gateway remains open despite the Allied efforts to shut it down.\n\n———[    Mission Briefing   ]———\n\nSupervisor, we have received a brief communication from Kane. With Overlord and Soviet forces hunting for him, every communication increases the risk that they will locate him before we do, so no more are expected.\n\nKane seeks to reach the only remaining gateway to Earth that might feasibly be used; the one controlled by GDI, however Soviet and Overlord forces are blocking further movement towards it and are closing in.\n\nWe have the coordinates of Kane's last known position. His cloaking technology has protected him and his dwindling army thus far, but without assistance they will surely soon be found and eliminated.\n\nHe has set a deadline, after which he believes it is too risky to remain. We must reach him before then, as the enemy presence continues to grow and chances of him escaping without our assistance are remote.\n\nOur positions in the area were overrun some time ago, but we believe much of the infrastructure is salvageable. Pockets of Kane's forces are also scattered throughout the area, which will be a valuable addition to your forces if you can find them.\n\nReclaim our abandoned assets and gather whatever forces you can, then secure Kane's position before the deadline. There are two routes south, one blocked by an Overlord base, the other by a Soviet base. Destroy either of these bases to open a route further south.
+	MapOptions:
+		ShortGameCheckboxEnabled: False
+	MusicPlaylist:
+		StartingMusic: fist226m
+
+Player:
+	PlayerResources:
+		DefaultCash: 6000
+
+kanelocator:
+	Inherits@EditorInvisibleDummy: ^EditorInvisibleDummy
+	WithRadiatingCircle:
+		EndRadius: 12c0
+		Interval: 75
+		Duration: 50
+		ValidRelationships: Ally
+		Visible: Always
+		AlwaysShowMaxRange: true
+
+SMCV:
+	Inherits@CAMPAIGNDISABLED: ^Disabled
+
+^ColonySpikePower:
+	DetonateWeaponPower@ColonySpike:
+		Prerequisites: ~disabled
+
+# Disable powers for AI
+
+^ParabombsPower:
+	AirstrikePowerCA@Russianparabombs:
+		Prerequisites: ~support.parabombs, ~!botplayer
+
+^ParatroopersPower:
+	ParatroopersPowerCA@paratroopers:
+		Prerequisites: ~support.paratroopers, ~!botplayer
+
+^ClusterMissilePower:
+	NukePower@Cluster:
+		Prerequisites: ~!botplayer
+
+^TibStealthPower:
+	GrantExternalConditionPowerCA@SGEN:
+		Prerequisites: ~!botplayer
+
+# Hunt() requires only 1 AttackBase
+DEVA:
+	-AttackFrontalCharged:
+	-Armament@PRIMARYUPG:
+	-AmbientSound@CHARGE:
+	-WithIdleOverlay@CHARGE1:
+	-WithIdleOverlay@CHARGE2:
+	-WithIdleOverlay@CHARGE3:

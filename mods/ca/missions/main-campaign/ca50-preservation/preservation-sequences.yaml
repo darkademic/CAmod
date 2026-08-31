@@ -1,0 +1,9 @@
+icon:
+	chargegateway:
+		Filename: ca|missions/main-campaign/ca50-preservation/chargegatewayicon.shp
+
+wormholeunstable:
+	Inherits: wormhole
+	Defaults:
+		Scale: 1.25
+		Alpha: 0.4

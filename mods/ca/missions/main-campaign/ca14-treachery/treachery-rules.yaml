@@ -141,7 +141,3 @@ powerproxy.shockdrop:
 HALO.paradrop.invuln:
 	Inherits: HALO.paradrop
 	-Targetable@AIRBORNE:
-
-# Hunt() requires only 1 AttackBase
-BATF.AI:
-	-AttackFrontal:

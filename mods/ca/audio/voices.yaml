@@ -20,11 +20,11 @@ GenericVoice:
 		zocom: .c01,.c03
 		eagle: .c01,.c03
 		arc: .c01,.c03
-		scrin: .s01,.s03
-		reaper: .s01,.s03
-		traveler: .s01,.s03
-		harbinger: .s01,.s03
-		collector: .s01,.s03
+		scrin: .c01,.c03
+		reaper: .c01,.c03
+		traveler: .c01,.c03
+		harbinger: .c01,.c03
+		collector: .c01,.c03
 	Voices:
 		Select: await1,ready,report1,yessir1
 		Action: ackno,affirm1,noprob,overout,ritaway,roger,ugotit
@@ -56,11 +56,11 @@ VehicleVoice:
 		talon: .c00,.c02
 		eagle: .c00,.c02
 		arc: .c00,.c02
-		scrin: .s00,.s02
-		reaper: .s00,.s02
-		traveler: .s00,.s02
-		harbinger: .s00,.s02
-		collector: .s00,.s02
+		scrin: .c00,.c02
+		reaper: .c00,.c02
+		traveler: .c00,.c02
+		harbinger: .c00,.c02
+		collector: .c00,.c02
 	Voices:
 		Select: vehic1,yessir1,report1,await1,unit1
 		Attack: ackno,affirm1,movout1

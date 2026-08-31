@@ -248,10 +248,6 @@ FTUR:
 		Modifier: 5
 
 # Hunt() requires only 1 AttackBase
-
-BATF.AI:
-	-AttackFrontal:
-
 DEVA:
 	-AttackFrontalCharged:
 	-Armament@PRIMARYUPG:

@@ -12,33 +12,3 @@ malefic.allegiance:
 
 allegiance.upgrade:
 	Inherits@CAMPAIGNDISABLED: ^Disabled
-
-EVIS:
-	Inherits@CAMPAIGNDISABLED: ^Disabled
-
-IMPL:
-	Inherits@CAMPAIGNDISABLED: ^Disabled
-
-STLK:
-	Inherits@CAMPAIGNDISABLED: ^Disabled
-
-OBLT:
-	Inherits@CAMPAIGNDISABLED: ^Disabled
-
-NULL:
-	Inherits@CAMPAIGNDISABLED: ^Disabled
-
-TORM:
-	Inherits@CAMPAIGNDISABLED: ^Disabled
-
-^OverlordsWrathPower:
-	MeteorPower@OverlordsWrath:
-		Prerequisites: ~disabled
-
-^GatewayPower:
-	DetonateWeaponPower@Gateway:
-		Prerequisites: ~disabled
-
-^AnathemaPower:
-	GrantExternalConditionPowerCA@Anathema:
-		Prerequisites: ~disabled

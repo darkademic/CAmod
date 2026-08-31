@@ -1576,6 +1576,9 @@ SendAttackSquad = function(squad)
 		end)
 	end
 	squad.IdleUnits = { }
+	if squad.AfterSendSquad ~= nil then
+		squad.AfterSendSquad(squad)
+	end
 end
 
 ClearSquadLeader = function(squadLeader)

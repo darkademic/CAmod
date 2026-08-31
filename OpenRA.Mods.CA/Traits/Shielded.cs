@@ -54,6 +54,8 @@ namespace OpenRA.Mods.CA.Traits
 		int intervalTicks;
 		int delayTicks;
 
+		public int StrengthPercent { get { return strength * 100 / Info.MaxStrength; } }
+
 		public Shielded(ActorInitializer init, ShieldedInfo info)
 			: base(info)
 		{
@@ -96,6 +98,12 @@ namespace OpenRA.Mods.CA.Traits
 				conditionToken = self.GrantCondition(Info.ShieldsUpCondition);
 
 			intervalTicks = Info.RegenInterval;
+		}
+
+		public void RechargeToMaximum()
+		{
+			strength = Info.MaxStrength;
+			ResetRegen();
 		}
 
 		void INotifyDamage.Damaged(Actor self, AttackInfo e)

@@ -4896,6 +4896,6 @@ Actors:
 		Owner: Neutral
 		Location: 51,115
 
-Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|missions/main-campaign/ca36-reckoning/reckoning-rules.yaml, ca|rules/custom/coop-rules.yaml, reckoning-coop-rules.yaml
+Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|missions/main-campaign/ca36-reckoning/reckoning-rules.yaml, ca|rules/custom/coop-rules.yaml, ca|rules/custom/disable-allegiances.yaml, reckoning-coop-rules.yaml
 
 Weapons: ca|weapons/custom/campaign.yaml

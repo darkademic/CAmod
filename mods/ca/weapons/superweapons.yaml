@@ -661,7 +661,7 @@ FirestormBarrage:
 
 IronCurtain:
 	Projectile: InstantExplode
-	ReloadDelay: 1
+	ReloadDelay: 999
 	ValidTargets: Ground, Infantry, Water
 	Warhead@1Dam_impact: SpreadDamage
 		Range: 0, 1c1, 2c1, 2c512
@@ -720,7 +720,7 @@ IronCurtain:
 
 ForceShield:
 	Projectile: InstantExplode
-	ReloadDelay: 1
+	ReloadDelay: 999
 	ValidTargets: Ground, Structure
 	Warhead@1Dam_impact: SpreadDamage
 		Range: 0, 1c1, 2c1, 2c512
@@ -1265,7 +1265,7 @@ TimeWarp:
 
 ClusterMineSpawner:
 	ValidTargets: Ground, Water
-	ReloadDelay: 50
+	ReloadDelay: 999
 	Report: bwhis.aud
 	Range: 2c0
 	TargetActorCenter: true
@@ -1299,6 +1299,7 @@ ClusterMineSpawner:
 MineSpawner:
 	Range: 5c0
 	ValidTargets: Ground
+	ReloadDelay: 999
 	Projectile: BulletCA
 		Image: minvs
 		Sequences: idle
@@ -1460,7 +1461,7 @@ OverlordsWrath:
 		FlashType: OverlordsWrath
 
 SubterraneanStrikeSpawner:
-	ReloadDelay: 500
+	ReloadDelay: 999
 	Projectile: InstantExplode
 	Warhead@Spawn: SpawnActor
 		Actors: mole

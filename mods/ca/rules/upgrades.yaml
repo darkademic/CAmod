@@ -622,7 +622,7 @@ bdrone.upgrade:
 		Prerequisites: ~player.arc, gtek, ~techlevel.high
 		Description: Allows construction of remotely piloted Battle Tanks.\n\nReplaces: Battle Tank
 	TooltipExtras:
-		Strengths: + Reduced cost\n+ Increased rate of fire\n+ Self-repair\n• XP of losses reclaimed by replacements\n+ Immunity to crew kill, chaos gas and mind control
+		Strengths: + Reduced cost\n+ Increased rate of fire\n+ Self-repair\n+ XP of losses reclaimed by replacements\n+ Immunity to crew kill, chaos gas and mind control
 		Weaknesses: – Reduced HP\n– Reduced damage\n– Disabled if radar is down\n– Can be hacked
 	Valued:
 		Cost: 750
@@ -714,7 +714,7 @@ mdrone.upgrade:
 		Prerequisites: ~player.arc, upgc, ~techlevel.high
 		Description: Allows construction of remotely piloted Mammoth Tanks.\n\nReplaces: Mammoth Tank
 	TooltipExtras:
-		Strengths: + Reduced cost\n+ Increased rate of fire\n+ Improved self-repair\n• XP of losses reclaimed by replacements\n+ Immunity to crew kill, chaos gas and mind control
+		Strengths: + Reduced cost\n+ Increased rate of fire\n+ Improved self-repair\n+ XP of losses reclaimed by replacements\n+ Immunity to crew kill, chaos gas and mind control
 		Weaknesses: – Reduced HP\n– Reduced damage\n– Disabled if radar is down\n– Can be hacked
 	Valued:
 		Cost: 750

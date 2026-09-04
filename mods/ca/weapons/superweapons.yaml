@@ -555,19 +555,19 @@ EMPMissileLauncher:
 		Range: 1c512
 		Duration: 600
 		Condition: empdisable
-		ValidTargets: Vehicle, Ship, Structure, Air
+		ValidTargets: Vehicle, Ship, Structure, Air, AirSmall
 		InvalidTargets: EmpImmune
 	Warhead@emp2: GrantExternalConditionCA
 		Range: 3c0
 		Duration: 300
 		Condition: empdisable
-		ValidTargets: Vehicle, Ship, Structure, Air
+		ValidTargets: Vehicle, Ship, Structure, Air, AirSmall
 		InvalidTargets: EmpImmune
 	Warhead@emp3: GrantExternalConditionCA
 		Range: 4c512
 		Duration: 150
 		Condition: empdisable
-		ValidTargets: Vehicle, Ship, Structure, Air
+		ValidTargets: Vehicle, Ship, Structure, Air, AirSmall
 		InvalidTargets: EmpImmune
 	Warhead@2Smu_impact: LeaveSmudge
 		SmudgeType: Crater

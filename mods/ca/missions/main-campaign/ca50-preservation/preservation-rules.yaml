@@ -23,32 +23,19 @@ World:
 Player:
 	PlayerResources:
 		DefaultCash: 6000
-	GrantExternalConditionPowerCA@ChargeGateway:
+	GrantPrerequisiteResourceDrainPower@ChargeGateway:
 		OrderName: chargegateway
 		Icon: chargegateway
 		IconPalette: chromes
-		ChargeInterval: 125
+		ChargeInterval: 1
+		ResourceDrain: 4
+		Prerequisite: gatewaycharging
 		Name: Charge Gateway
-		Condition: charge
-		Range: 1c0
-		MinTargets: 1
-		ValidTargets: ChargingGateway
-		ValidRelationships: Ally
-		Duration: 1
 		AllowMultiple: false
-		Description: \nSpend resources to increase the charge of targeted gateway.
-		OnFireSound: mastermind-fire.aud
-		SelectTargetSpeechNotification: SelectTarget
-		SelectTargetTextNotification: Select target.
+		Description: \nToggleable: Spends resources over time to charge the 3 gateways.
+		LaunchSound: gatewaycharge.aud
 		InsufficientPowerSpeechNotification: InsufficientPower
-		EndChargeTextNotification: Charge Gateway ready.
-		DisplayRadarPing: True
-		Cursor: ability
 		SupportPowerPaletteOrder: 0
-		ShowSelectionBoxes: true
-		TargetTintColor: a400f266
-		SelectionBoxColor: a400f2
-		Cost: 2000
 
 WORMHOLEUNSTABLE:
 	Tooltip:
@@ -63,16 +50,19 @@ WORMHOLEUNSTABLE:
 	GrantChargingCondition@Charge:
 		Condition: charged
 		PauseOnCondition: !charge
-		MinChargeForCondition: 60000
+		MinChargeForCondition: 250000
 		InitialCharge: 0
-		MaxCharge: 60000
-		ChargeRate: 2000
+		MaxCharge: 250000
+		ChargeRate: 4
 		DischargeRate: 0
 		DischargeDelay: 1500
 		ChargingColor: ff00ff
-		DischargingColor: ff00ff
+		DischargingColor: 660066
 	ExternalCondition@Charge:
 		Condition: charge
+	GrantConditionOnPrerequisite@Charge:
+		Condition: charge
+		Prerequisites: gatewaycharging
 	TransformOnCondition@Charged:
 		IntoActor: wormholexl
 		RequiresCondition: charged
@@ -86,6 +76,9 @@ WORMHOLEUNSTABLE:
 CSPK:
 	ReloadAmmoPoolCA@Charged:
 		Delay: 75
+
+WORMHOLE:
+	-Targetable:
 
 # Disable powers for AI
 

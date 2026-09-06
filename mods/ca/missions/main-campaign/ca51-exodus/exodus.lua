@@ -14,9 +14,11 @@ table.insert(UnitCompositions.Scrin, {
 })
 
 MaleficAttackPaths = {
-	{ MaleficWaypoint1.Location, MaleficWaypoint4.Location, MaleficWaypoint5.Location },
-	{ MaleficWaypoint2.Location, MaleficWaypoint5.Location },
-	{ MaleficWaypoint3.Location, MaleficWaypoint6.Location }
+	{ MaleficWaypoint1.Location, MaleficWaypoint3.Location, MaleficWaypoint4.Location, MaleficWaypoint5.Location },
+	{ MaleficWaypoint2.Location, MaleficWaypoint6.Location, MaleficWaypoint5.Location },
+	{ MaleficWaypoint3.Location, MaleficWaypoint4.Location, MaleficWaypoint6.Location },
+	{ MaleficWaypoint2.Location, MaleficWaypoint4.Location, MaleficWaypoint5.Location },
+	{ MaleficWaypoint1.Location, MaleficWaypoint3.Location, MaleficWaypoint4.Location, MaleficWaypoint7.Location },
 }
 
 NumEvacConvoys = {
@@ -28,11 +30,11 @@ NumEvacConvoys = {
 }
 
 GatewayReorientationTime = {
-	easy = DateTime.Minutes(1),
+	easy = DateTime.Minutes(2),
 	normal = DateTime.Minutes(2),
-	hard = DateTime.Minutes(2),
+	hard = DateTime.Minutes(3),
 	vhard = DateTime.Minutes(3),
-	brutal = DateTime.Minutes(3)
+	brutal = DateTime.Minutes(4)
 }
 
 VoidspikeTargets = {
@@ -45,7 +47,10 @@ VoidspikeTargets = {
 	VoidspikeTarget7.Location,
 	VoidspikeTarget8.Location,
 	VoidspikeTarget9.Location,
-	VoidspikeTarget10.Location
+	VoidspikeTarget10.Location,
+	VoidspikeTarget11.Location,
+	VoidspikeTarget12.Location,
+	VoidspikeTarget13.Location
 }
 
 ConvoyUnits = {
@@ -96,7 +101,7 @@ WorldLoaded = function()
 	NextVoidspikeTargetIndex = 1
 	NextConvoyCompositionIndex = 1
 	NextConvoySpawnIndex = 1
-	EvacuationTimerTicks = (DateTime.Minutes(2) * NumEvacConvoys) + DateTime.Minutes(6)
+	EvacuationTimerTicks = (DateTime.Minutes(2) * NumEvacConvoys[Difficulty]) + DateTime.Minutes(6)
 	GatewayTimerTicks = 0
 	UpdateCountdown()
 	SetupGDIExit()
@@ -136,6 +141,8 @@ WorldLoaded = function()
 			EvacuationTimerTicks = 0
 			GatewayTimerTicks = GatewayReorientationTime[Difficulty]
 			UpdateCountdown()
+
+			Squads.MaleficMain.AttackPaths = { { MaleficWaypoint1.Location, MaleficWaypoint3.Location, MaleficWaypoint8.Location, MaleficWaypoint9.Location } }
 		end
 	end)
 
@@ -185,18 +192,17 @@ OncePerSecondChecks = function()
 			if GatewayTimerTicks > 0 then
 				if GatewayTimerTicks > 25 then
 					GatewayTimerTicks = GatewayTimerTicks - 25
-					if GatewayTimerTicks == 0 and not IsGatewayReoriented then
+				else
+					GatewayTimerTicks = 0
+					if not IsGatewayReoriented then
 						IsGatewayReoriented = true
 						Utils.Do({ WormholeSpawn1.Location, WormholeSpawn2.Location, WormholeSpawn3.Location }, function(location)
 							Actor.Create("rebelgateway", true, { Owner = ScrinRebels, Location = location })
 						end)
-
 						Trigger.AfterDelay(DateTime.Seconds(2), function()
 							ScrinRebels.MarkCompletedObjective(ObjectiveHoldNerveCenter)
 						end)
 					end
-				else
-					GatewayTimerTicks = 0
 				end
 			end
 			UpdateCountdown()
@@ -235,7 +241,7 @@ PlaceNextVoidspike = function()
 		NextVoidspikeTargetIndex = 1
 	end
 
-	Trigger.AfterDelay(DateTime.Minutes(3), function()
+	Trigger.AfterDelay(DateTime.Minutes(2) + DateTime.Seconds(30), function()
 		PlaceNextVoidspike()
 	end)
 end
@@ -277,10 +283,10 @@ end
 InitConvoys = function()
 	local spawnLocations = { EvacSpawn1.Location, EvacSpawn2.Location }
 
-	for convoyIndex = 1, NumEvacConvoys do
+	for convoyIndex = 1, NumEvacConvoys[Difficulty] do
 		Trigger.AfterDelay(DateTime.Minutes(2 * (convoyIndex - 1)), function()
 			local composition = ConvoyUnits[NextConvoyCompositionIndex]
-			local isLastConvoy = convoyIndex == NumEvacConvoys
+			local isLastConvoy = convoyIndex == NumEvacConvoys[Difficulty]
 			local spawnLocation = spawnLocations[NextConvoySpawnIndex]
 
 			if isLastConvoy then
@@ -359,7 +365,15 @@ EvacuateRemainingUnits = function()
 		evacuationDelay = evacuationDelay + DateTime.Seconds(1)
 	end)
 
-	Trigger.AfterDelay(DateTime.Minutes(4), function()
+	Trigger.AfterDelay(DateTime.Minutes(1) + DateTime.Seconds(30), function()
+		Utils.Do(GDI.GetActors(), function(a)
+			if a.HasProperty("Move") then
+				a.MoveCA(Gateway.Location)
+			end
+		end)
+	end)
+
+	Trigger.AfterDelay(DateTime.Minutes(2), function()
 		Utils.Do(GDI.GetActorsByTypes({ "cram", "atwr", "gtwr" }), function(a)
 			a.Sell()
 		end)

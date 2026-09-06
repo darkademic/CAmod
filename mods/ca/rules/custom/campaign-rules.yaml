@@ -1211,12 +1211,7 @@ VANQ:
 		Bounds: 4096, 3352, 0, -256
 		DecorationBounds: 4096, 3352, 0, -256
 	RevealsShroud:
-		Range: 10c0
-		MinRange: 8c0
-		Type: GroundPosition
-		RevealGeneratedShroud: False
-	RevealsShroud@GAPGEN:
-		Range: 8c0
+		Range: 18c0
 		Type: GroundPosition
 	Armament@PRIMARY:
 		Weapon: VanquisherBolts
@@ -1242,10 +1237,12 @@ VANQ:
 		Speed: 36
 		AltitudeVelocity: 0c50
 		CanForceLand: False
+		-CruisingCondition:
 	GrantCondition@SHIELDS:
 		Condition: shields-upgrade
 	SpawnActorOnDeath:
 		Actor: VANQ.Husk
+	-KillsSelf@Emp:
 	-Hovers@CRUISING:
 	-EjectOnDeath:
 	Turreted@SHIELDS:

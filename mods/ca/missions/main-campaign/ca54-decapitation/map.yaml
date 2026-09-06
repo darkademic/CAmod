@@ -28,7 +28,7 @@ Players:
 		Name: Creeps
 		NonCombatant: True
 		Faction: Random
-		Enemies: ScrinRebels, Nod1, Nod2, Scrin
+		Enemies: ScrinRebels, Nod1, Nod2, Nod3 Scrin
 	PlayerReference@ScrinRebels:
 		Name: ScrinRebels
 		AllowBots: False
@@ -40,28 +40,35 @@ Players:
 		Color: 2FB4A6
 		LockSpawn: True
 		LockTeam: True
-		Allies: Nod1, Nod2
+		Allies: Nod1, Nod2, Nod3
 		Enemies: Scrin, Creeps
 	PlayerReference@Nod1:
 		Name: Nod1
 		Bot: dormant
 		Faction: nod
 		Color: FE1100
-		Allies: ScrinRebels, Nod2
+		Allies: ScrinRebels, Nod2, Nod3
 		Enemies: Scrin, Creeps
 	PlayerReference@Nod2:
 		Name: Nod2
 		Bot: dormant
 		Faction: nod
 		Color: FE1100
-		Allies: ScrinRebels, Nod1
+		Allies: ScrinRebels, Nod1, Nod3
+		Enemies: Scrin, Creeps
+	PlayerReference@Nod3:
+		Name: Nod3
+		Bot: dormant
+		Faction: nod
+		Color: FE1100
+		Allies: ScrinRebels, Nod1, Nod2
 		Enemies: Scrin, Creeps
 	PlayerReference@Scrin:
 		Name: Scrin
 		Bot: campaign
 		Faction: scrin
 		Color: 7700FF
-		Enemies: ScrinRebels, Nod1, Nod2, Creeps
+		Enemies: ScrinRebels, Nod1, Nod2, Nod3, Creeps
 
 Actors:
 	Actor0: smcv
@@ -2664,12 +2671,6 @@ Actors:
 	Actor896: ptur
 		Owner: Scrin
 		Location: 157,115
-	Actor897: scol
-		Owner: Scrin
-		Location: 149,138
-	Actor898: scol
-		Owner: Scrin
-		Location: 139,133
 	Actor899: scol
 		Owner: Scrin
 		Location: 133,128
@@ -4927,8 +4928,8 @@ Actors:
 		Facing: 150
 	Actor34: oblt
 		Owner: Scrin
-		Facing: 256
 		Location: 61,175
+		Facing: 256
 	Nod2Waypoint1: waypoint
 		Owner: Neutral
 		Location: 150,127
@@ -5024,29 +5025,40 @@ Actors:
 		Owner: Scrin
 		Facing: 384
 		Location: 33,121
-	Actor1482: seek
+	Actor898: scol
 		Owner: Scrin
-		Location: 137,152
-		Facing: 566
-	Actor1483: seek
+		Location: 139,133
+	Actor897: scol
+		Owner: Scrin
+		Location: 149,138
+	Actor1482: tpod
+		Owner: Scrin
+		Location: 136,154
+		Facing: 538
+	Actor1483: s1
 		Owner: Scrin
 		Facing: 384
-		Location: 143,151
+		Location: 139,152
+		SubCell: 3
 	Actor1484: s1
 		Owner: Scrin
 		Facing: 384
-		Location: 143,152
+		Location: 143,153
 		SubCell: 3
 	Actor1485: s1
 		Owner: Scrin
 		Facing: 384
-		Location: 135,150
+		Location: 133,155
 		SubCell: 3
 	Actor1486: s1
 		Owner: Scrin
 		Facing: 384
-		Location: 131,153
+		Location: 134,154
 		SubCell: 3
+	Actor1487: ltnk
+		Owner: Nod2
+		Location: 139,156
+		Facing: 128
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, decapitation-rules.yaml
 

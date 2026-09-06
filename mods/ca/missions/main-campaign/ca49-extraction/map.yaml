@@ -432,11 +432,6 @@ Actors:
 	Actor132: nuk2
 		Owner: NodInactive
 		Location: 82,86
-	Actor134: msg
-		Owner: NodInactive
-		Facing: 384
-		DeployState: Deployed
-		Location: 70,6
 	Actor136: msg
 		Owner: NodInactive
 		DeployState: Deployed
@@ -482,7 +477,7 @@ Actors:
 	Actor145: grav
 		Owner: ScrinRebelsInactive
 		Location: 22,64
-		Health: 24
+		Health: 46
 	Actor146: srep
 		Owner: ScrinRebelsInactive
 		Location: 20,67
@@ -490,7 +485,7 @@ Actors:
 	Actor144: grav
 		Owner: ScrinRebelsInactive
 		Location: 15,66
-		Health: 29
+		Health: 44
 	Actor147: grav
 		Owner: ScrinRebelsInactive
 		Location: 23,70
@@ -498,7 +493,7 @@ Actors:
 	Actor148: rea2
 		Owner: ScrinRebelsInactive
 		Location: 10,62
-		Health: 18
+		Health: 45
 	Actor149: rea2
 		Owner: ScrinRebelsInactive
 		Location: 8,65
@@ -513,10 +508,6 @@ Actors:
 		Location: 27,68
 		Health: 36
 		TurretFacing: 702
-	Actor152: scol
-		Owner: ScrinRebelsInactive
-		Health: 28
-		Location: 20,72
 	Actor153: port
 		Owner: ScrinRebelsInactive
 		Location: 66,54
@@ -724,7 +715,7 @@ Actors:
 	Actor214: srep
 		Owner: ScrinRebelsInactive
 		Location: 66,47
-		Health: 40
+		Health: 44
 	Actor215: nerv
 		Owner: ScrinRebelsInactive
 		Location: 128,54
@@ -768,24 +759,6 @@ Actors:
 		Location: 137,9
 		TurretFacing: 491
 		Health: 81
-	Actor225: proc.scrin
-		Owner: ScrinRebelsInactive
-		Location: 98,3
-		FreeActor: False
-		Health: 32
-	Actor226: silo.scrin
-		Owner: ScrinRebelsInactive
-		Location: 98,2
-		Health: 29
-	Actor227: silo.scrin
-		Owner: ScrinRebelsInactive
-		Location: 101,3
-		Health: 44
-	Actor229: shar
-		Owner: ScrinRebelsInactive
-		Location: 102,8
-		TurretFacing: 600
-		Health: 60
 	Actor230: proc.scrin
 		Owner: ScrinRebelsInactive
 		Location: 72,43
@@ -876,7 +849,7 @@ Actors:
 		Owner: ScrinRebelsInactive
 		FreeActor: False
 		Location: 112,59
-		Health: 46
+		Health: 49
 	Actor257: ptur
 		Owner: ScrinRebelsInactive
 		Location: 29,37
@@ -1016,8 +989,8 @@ Actors:
 	Actor297: shar
 		Owner: ScrinRebelsInactive
 		Location: 69,51
-		TurretFacing: 192
 		Health: 41
+		TurretFacing: 192
 	Actor298: scol
 		Owner: ScrinRebelsInactive
 		Location: 55,52
@@ -2118,46 +2091,6 @@ Actors:
 		Location: 6,49
 		SubCell: 3
 		Facing: 682
-	Actor660: reap
-		Owner: NodInactive
-		Location: 72,5
-		SubCell: 3
-		Facing: 593
-	Actor661: reap
-		Owner: NodInactive
-		Location: 69,5
-		SubCell: 3
-		Facing: 593
-	Actor662: n1c
-		Owner: NodInactive
-		Location: 71,4
-		SubCell: 3
-		Facing: 606
-	Actor663: n1c
-		Owner: NodInactive
-		Location: 72,7
-		SubCell: 3
-		Facing: 593
-	Actor664: n1c
-		Owner: NodInactive
-		Location: 68,6
-		SubCell: 3
-		Facing: 545
-	Actor665: n1c
-		Owner: NodInactive
-		Location: 67,5
-		SubCell: 3
-		Facing: 572
-	Actor666: n3c
-		Owner: NodInactive
-		Location: 71,6
-		SubCell: 3
-		Facing: 586
-	Actor667: n3c
-		Owner: NodInactive
-		Location: 70,4
-		SubCell: 3
-		Facing: 586
 	Actor668: ltnk
 		Owner: NodInactive
 		Location: 7,47
@@ -4423,10 +4356,6 @@ Actors:
 		Location: 11,85
 		SubCell: 3
 		Facing: 566
-	Actor1277: ruin
-		Owner: Scrin
-		Location: 8,79
-		Facing: 531
 	Actor1275: s1
 		Owner: Scrin
 		SubCell: 3
@@ -4452,16 +4381,6 @@ Actors:
 		SubCell: 3
 		Facing: 688
 		Location: 8,81
-	Actor1278: evis
-		Owner: Scrin
-		Facing: 384
-		Location: 42,101
-		SubCell: 3
-	Actor1279: evis
-		Owner: Scrin
-		Facing: 384
-		Location: 42,102
-		SubCell: 3
 	Actor1280: shrw
 		Owner: Scrin
 		Location: 70,93
@@ -5264,9 +5183,6 @@ Actors:
 	RebelStructures5: waypoint
 		Owner: Neutral
 		Location: 65,50
-	RebelStructures6: waypoint
-		Owner: Neutral
-		Location: 101,4
 	RebelStructures7: waypoint
 		Owner: Neutral
 		Location: 134,34
@@ -5285,9 +5201,6 @@ Actors:
 	NodStrandedUnits1: waypoint
 		Owner: Neutral
 		Location: 6,47
-	NodStrandedUnits2: waypoint
-		Owner: Neutral
-		Location: 70,5
 	NodStrandedUnits3: waypoint
 		Owner: Neutral
 		Location: 120,23
@@ -5387,14 +5300,126 @@ Actors:
 		DeployState: Deployed
 		Facing: 384
 		Location: 83,85
+	Actor225: proc.scrin
+		Owner: ScrinRebelsInactive
+		FreeActor: False
+		Location: 81,1
+		Health: 32
 	Actor1445: nerv
 		Owner: ScrinRebelsInactive
-		Location: 103,1
 		Health: 36
+		Location: 85,1
 	Actor1448: rea2
 		Owner: ScrinRebelsInactive
-		Location: 103,4
+		Location: 87,1
 		Health: 43
+	Actor1449: shar
+		Owner: ScrinRebelsInactive
+		Location: 83,7
+		Health: 32
+		TurretFacing: 600
+	NodStrandedUnits2: waypoint
+		Owner: Neutral
+		Location: 98,2
+	Actor660: reap
+		Owner: NodInactive
+		Facing: 593
+		Location: 97,4
+		SubCell: 3
+	Actor661: reap
+		Owner: NodInactive
+		Facing: 593
+		Location: 97,2
+		SubCell: 3
+	Actor134: msg
+		Owner: NodInactive
+		DeployState: Deployed
+		Facing: 384
+		Location: 96,3
+	Actor665: n1c
+		Owner: NodInactive
+		Facing: 572
+		Location: 96,4
+		SubCell: 3
+	Actor664: n1c
+		Owner: NodInactive
+		Facing: 545
+		Location: 97,3
+		SubCell: 3
+	Actor662: n1c
+		Owner: NodInactive
+		Facing: 606
+		Location: 99,3
+		SubCell: 3
+	Actor666: n3c
+		Owner: NodInactive
+		Facing: 586
+		Location: 95,2
+		SubCell: 3
+	Actor663: n1c
+		Owner: NodInactive
+		Facing: 593
+		Location: 99,2
+		SubCell: 3
+	Actor667: n3c
+		Owner: NodInactive
+		Facing: 586
+		Location: 94,3
+		SubCell: 3
+	Actor227: silo.scrin
+		Owner: ScrinRebelsInactive
+		Health: 44
+		Location: 87,4
+	Actor226: silo.scrin
+		Owner: ScrinRebelsInactive
+		Health: 29
+		Location: 85,5
+	Actor1450: harv.scrin
+		Owner: ScrinRebelsInactive
+		Health: 59
+		Facing: 368
+		Location: 79,2
+	RebelStructures6: waypoint
+		Owner: Neutral
+		Location: 82,4
+	Actor1279: evis
+		Owner: Scrin
+		Location: 44,108
+		SubCell: 3
+		Facing: 0
+	Actor1278: evis
+		Owner: Scrin
+		Location: 45,109
+		SubCell: 3
+		Facing: 0
+	Actor1451: msg
+		Owner: NodInactive
+		DeployState: Deployed
+		Facing: 384
+		Location: 45,95
+	NodStrandedUnits5: waypoint
+		Owner: Neutral
+		Location: 46,95
+	Actor1452: avtr
+		Owner: NodInactive
+		Facing: 640
+		Location: 44,94
+	Actor1453: hftk
+		Owner: NodInactive
+		Location: 44,96
+		Facing: 640
+	Actor1454: hftk
+		Owner: NodInactive
+		Location: 45,93
+		Facing: 640
+	Actor152: scol
+		Owner: ScrinRebelsInactive
+		Health: 28
+		Location: 20,72
+	Actor1277: ruin
+		Owner: Scrin
+		Location: 14,83
+		Facing: 531
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, extraction-rules.yaml
 

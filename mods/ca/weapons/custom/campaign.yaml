@@ -246,7 +246,7 @@ VanquisherAA:
 		Image: pshard
 		ContrailStartColor: FF00FF
 		ContrailStartColorAlpha: 170
-		Range: 14c0
+		RangeLimit: 14c0
 		ContrailZOffset: 3584
 	Warhead@3Eff: CreateEffect
 		Explosions: idle

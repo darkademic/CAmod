@@ -18,7 +18,8 @@ NodStrandedUnits = {
     NodStrandedUnits1,
     NodStrandedUnits2,
     NodStrandedUnits3,
-    NodStrandedUnits4
+    NodStrandedUnits4,
+	NodStrandedUnits5
 }
 
 DeadlineTime = {

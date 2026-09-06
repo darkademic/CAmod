@@ -1,6 +1,24 @@
 ^Palettes:
 	PaletteFromFile@terrain-temperat:
 		Filename: ca|missions/main-campaign/ca54-decapitation/decay.pal
+	FlashPostProcessEffect@LIGHTNINGSTRIKE:
+		Type: LightningStrike
+	WeatherOverlay@RAIN:
+		WindTick: 150, 550
+		UseSquares: false
+		ScatterDirection: 0, 0
+		Gravity: 20, 25
+		SwingOffset: 0, 0
+		SwingSpeed: 0, 0
+		SwingAmplitude: 0, 0
+		ParticleColors: 72aaae, 72aea6, 5caea3, 6da69f
+		LineTailAlphaValue: 30
+		ParticleSize: 1, 1
+		ParticleDensityFactor: 10
+	TerrainLighting:
+	TintPostProcessEffect:
+		Blue: 1.1
+		Ambient: 0.8
 
 World:
 	LuaScript:

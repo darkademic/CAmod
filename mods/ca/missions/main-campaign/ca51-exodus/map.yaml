@@ -8,9 +8,9 @@ Author: Darkademic
 
 Tileset: TEMPERAT
 
-MapSize: 162,194
+MapSize: 162,226
 
-Bounds: 1,1,160,192
+Bounds: 1,1,160,224
 
 Visibility: MissionSelector
 
@@ -64,3308 +64,3662 @@ Players:
 Actors:
 	Actor706: scrinflora5
 		Owner: Neutral
-		Location: 31,101
+		Location: 31,133
 	Actor745: scrinflora4
 		Owner: Neutral
-		Location: 63,100
+		Location: 63,132
 	Actor746: scrinflora13
 		Owner: Neutral
-		Location: 65,100
+		Location: 65,132
 	Actor747: scrinflora11
 		Owner: Neutral
-		Location: 62,100
+		Location: 62,132
 	Actor748: scrinflora12
 		Owner: Neutral
-		Location: 72,105
+		Location: 72,137
 	Actor750: split2
 		Owner: Neutral
-		Location: 100,103
+		Location: 100,135
 	Actor751: split2
 		Owner: Neutral
-		Location: 94,99
+		Location: 94,131
 	Actor752: split2
 		Owner: Neutral
-		Location: 112,104
+		Location: 112,136
 	Actor753: split2
 		Owner: Neutral
-		Location: 125,105
+		Location: 125,137
 	Actor754: scrinflora2
 		Owner: Neutral
-		Location: 25,108
+		Location: 25,140
 	Actor755: scrinflora12
 		Owner: Neutral
-		Location: 24,106
+		Location: 24,138
 	Actor756: scrinflora11
 		Owner: Neutral
-		Location: 24,107
+		Location: 24,139
 	Actor757: scrinflora9
 		Owner: Neutral
-		Location: 24,108
+		Location: 24,140
 	Actor758: scrinflora10
 		Owner: Neutral
-		Location: 25,110
+		Location: 25,142
 	Actor759: scrinflora4
 		Owner: Neutral
-		Location: 28,115
+		Location: 28,147
 	Actor760: scrinflora11
 		Owner: Neutral
-		Location: 29,116
+		Location: 29,148
 	Actor761: scrinflora13
 		Owner: Neutral
-		Location: 26,108
+		Location: 26,140
 	Actor784: scrinflora1
 		Owner: Neutral
-		Location: 38,110
+		Location: 38,142
 	Actor785: scrinflora7
 		Owner: Neutral
-		Location: 40,116
+		Location: 40,148
 	Actor786: scrinflora10
 		Owner: Neutral
-		Location: 37,110
+		Location: 37,142
 	Actor787: scrinflora12
 		Owner: Neutral
-		Location: 38,111
+		Location: 38,143
 	Actor789: scrinflora3
 		Owner: Neutral
-		Location: 51,115
+		Location: 51,147
 	Actor792: scrinflora1
 		Owner: Neutral
-		Location: 62,114
+		Location: 62,146
 	Actor795: scrinflora1
 		Owner: Neutral
-		Location: 77,109
+		Location: 77,141
 	Actor796: scrinflora2
 		Owner: Neutral
-		Location: 76,108
+		Location: 76,140
 	Actor797: scrinflora13
 		Owner: Neutral
-		Location: 76,111
+		Location: 76,143
 	Actor798: scrinflora14
 		Owner: Neutral
-		Location: 71,112
+		Location: 71,144
 	Actor799: scrinflora8
 		Owner: Neutral
-		Location: 86,114
+		Location: 86,146
 	Actor800: scrinflora1
 		Owner: Neutral
-		Location: 87,113
+		Location: 87,145
 	Actor801: split2
 		Owner: Neutral
-		Location: 97,110
+		Location: 97,142
 	Actor806: split2
 		Owner: Neutral
-		Location: 105,108
+		Location: 105,140
 	Actor809: split2
 		Owner: Neutral
-		Location: 121,110
+		Location: 121,142
 	Actor819: scrinflora11
 		Owner: Neutral
-		Location: 40,117
+		Location: 40,149
 	Actor823: scrinflora5
 		Owner: Neutral
-		Location: 69,121
+		Location: 69,153
 	Actor827: scrinflora7
 		Owner: Neutral
-		Location: 71,126
+		Location: 71,158
 	Actor828: scrinflora14
 		Owner: Neutral
-		Location: 70,127
+		Location: 70,159
 	Actor829: scrinflora2
 		Owner: Neutral
-		Location: 79,127
+		Location: 79,159
 	Actor832: scrinflora4
 		Owner: Neutral
-		Location: 86,123
+		Location: 86,155
 	Actor833: scrinflora5
 		Owner: Neutral
-		Location: 82,117
+		Location: 82,149
 	Actor880: scrinflora8
 		Owner: Neutral
-		Location: 21,130
+		Location: 21,162
 	Actor883: scrinflora2
 		Owner: Neutral
-		Location: 30,137
+		Location: 30,169
 	Actor885: scrinflora7
 		Owner: Neutral
-		Location: 42,136
+		Location: 42,168
 	Actor886: scrinflora1
 		Owner: Neutral
-		Location: 41,137
+		Location: 41,169
 	Actor887: scrinflora1
 		Owner: Neutral
-		Location: 52,135
+		Location: 52,167
 	Actor888: scrinflora6
 		Owner: Neutral
-		Location: 56,133
+		Location: 56,165
 	Actor889: scrinflora13
 		Owner: Neutral
-		Location: 58,132
+		Location: 58,164
 	Actor890: scrinflora11
 		Owner: Neutral
-		Location: 55,133
+		Location: 55,165
 	Actor891: scrinflora2
 		Owner: Neutral
-		Location: 56,132
+		Location: 56,164
 	Actor897: scrinflora1
 		Owner: Neutral
-		Location: 80,132
+		Location: 80,164
 	Actor971: scrinflora1
 		Owner: Neutral
-		Location: 20,146
+		Location: 20,178
 	Actor975: scrinflora4
 		Owner: Neutral
-		Location: 30,147
+		Location: 30,179
 	Actor977: scrinflora5
 		Owner: Neutral
-		Location: 55,144
+		Location: 55,176
 	Actor983: scrinflora8
 		Owner: Neutral
-		Location: 62,140
+		Location: 62,172
 	Actor992: scrinflora3
 		Owner: Neutral
-		Location: 81,140
+		Location: 81,172
 	Actor996: scrinflora10
 		Owner: Neutral
-		Location: 93,148
+		Location: 93,180
 	Actor997: scrinflora1
 		Owner: Neutral
-		Location: 94,147
+		Location: 94,179
 	Actor998: scrinflora8
 		Owner: Neutral
-		Location: 95,148
+		Location: 95,180
 	Actor1000: scrinflora5
 		Owner: Neutral
-		Location: 105,144
+		Location: 105,176
 	Actor1001: scrinflora7
 		Owner: Neutral
-		Location: 106,142
+		Location: 106,174
 	Actor1004: scrinflora1
 		Owner: Neutral
-		Location: 116,142
+		Location: 116,174
 	Actor1011: scrinflora11
 		Owner: Neutral
-		Location: 33,151
+		Location: 33,183
 	Actor1016: scrinflora10
 		Owner: Neutral
-		Location: 44,160
+		Location: 44,192
 	Actor1020: scrinflora2
 		Owner: Neutral
-		Location: 57,154
+		Location: 57,186
 	Actor1021: scrinflora14
 		Owner: Neutral
-		Location: 58,154
+		Location: 58,186
 	Actor1022: scrinflora10
 		Owner: Neutral
-		Location: 56,154
+		Location: 56,186
 	Actor1024: scrinflora7
 		Owner: Neutral
-		Location: 69,157
+		Location: 69,189
 	Actor1025: scrinflora13
 		Owner: Neutral
-		Location: 61,155
+		Location: 61,187
 	Actor1026: scrinflora9
 		Owner: Neutral
-		Location: 60,155
+		Location: 60,187
 	Actor1027: scrinflora12
 		Owner: Neutral
-		Location: 61,154
+		Location: 61,186
 	Actor1041: scrinflora1
 		Owner: Neutral
-		Location: 71,153
+		Location: 71,185
 	Actor1042: scrinflora14
 		Owner: Neutral
-		Location: 70,153
+		Location: 70,185
 	Actor1074: scrinflora5
 		Owner: Neutral
-		Location: 96,157
+		Location: 96,189
 	Actor1076: scrinflora2
 		Owner: Neutral
-		Location: 109,152
+		Location: 109,184
 	Actor1077: scrinflora12
 		Owner: Neutral
-		Location: 123,158
+		Location: 123,190
 	Actor1078: scrinflora11
 		Owner: Neutral
-		Location: 118,154
+		Location: 118,186
 	Actor1079: scrinflora10
 		Owner: Neutral
-		Location: 123,151
+		Location: 123,183
 	Actor1081: scrinflora10
 		Owner: Neutral
-		Location: 126,159
+		Location: 126,191
 	Actor1106: split2
 		Owner: Neutral
-		Location: 51,164
+		Location: 51,196
 	Actor1123: scrinflora11
 		Owner: Neutral
-		Location: 80,166
+		Location: 80,198
 	Actor1147: scrinflora13
 		Owner: Neutral
-		Location: 81,166
+		Location: 81,198
 	Actor1148: scrinflora11
 		Owner: Neutral
-		Location: 86,171
+		Location: 86,203
 	Actor1149: scrinflora9
 		Owner: Neutral
-		Location: 87,171
+		Location: 87,203
 	Actor1151: scrinflora2
 		Owner: Neutral
-		Location: 115,166
+		Location: 115,198
 	Actor1152: scrinflora3
 		Owner: Neutral
-		Location: 123,161
+		Location: 123,193
 	Actor1153: split2
-		Location: 21,182
+		Location: 21,214
 		Owner: Neutral
 	Actor1155: split2
-		Location: 31,181
+		Location: 31,213
 		Owner: Neutral
 	Actor1157: scrinflora1
 		Owner: Neutral
-		Location: 40,177
+		Location: 40,209
 	Actor1164: scrinflora5
 		Owner: Neutral
-		Location: 55,180
+		Location: 55,212
 	Actor1165: scrinflora12
 		Owner: Neutral
-		Location: 54,180
+		Location: 54,212
 	Actor1183: scrinflora2
 		Owner: Neutral
-		Location: 60,179
+		Location: 60,211
 	Actor1184: scrinflora10
 		Owner: Neutral
-		Location: 61,179
+		Location: 61,211
 	Actor1200: scrinflora1
 		Owner: Neutral
-		Location: 74,182
+		Location: 74,214
 	Actor1201: scrinflora2
 		Owner: Neutral
-		Location: 80,180
+		Location: 80,212
 	Actor1202: scrinflora14
 		Owner: Neutral
-		Location: 73,182
+		Location: 73,214
 	Actor1209: scrinflora6
 		Owner: Neutral
-		Location: 100,177
+		Location: 100,209
 	Actor1210: scrinflora1
 		Owner: Neutral
-		Location: 100,176
+		Location: 100,208
 	Actor1211: scrinflora12
 		Owner: Neutral
-		Location: 99,178
+		Location: 99,210
 	Actor1212: scrinflora2
 		Owner: Neutral
-		Location: 99,177
+		Location: 99,209
 	Actor1213: scrinflora11
 		Owner: Neutral
-		Location: 98,177
+		Location: 98,209
 	Actor1215: split2
 		Owner: Neutral
-		Location: 104,181
+		Location: 104,213
 	Actor1216: scrinflora4
 		Owner: Neutral
-		Location: 120,182
+		Location: 120,214
 	Actor1217: scrinflora1
 		Owner: Neutral
-		Location: 117,182
+		Location: 117,214
 	Actor1219: scrinflora8
 		Owner: Neutral
-		Location: 126,180
+		Location: 126,212
 	Actor1220: split2
-		Location: 27,187
+		Location: 27,219
 		Owner: Neutral
 	Actor1221: split2
-		Location: 37,186
+		Location: 37,218
 		Owner: Neutral
 	Actor1222: scrinflora1
 		Owner: Neutral
-		Location: 49,189
+		Location: 49,221
 	Actor1223: scrinflora9
 		Owner: Neutral
-		Location: 50,189
+		Location: 50,221
 	Actor1228: scrinflora3
 		Owner: Neutral
-		Location: 61,186
+		Location: 61,218
 	Actor1229: scrinflora7
 		Owner: Neutral
-		Location: 68,190
+		Location: 68,222
 	Actor1244: scrinflora14
 		Owner: Neutral
-		Location: 70,189
+		Location: 70,221
 	Actor1245: scrinflora11
 		Owner: Neutral
-		Location: 71,190
+		Location: 71,222
 	Actor1268: scrinflora9
 		Owner: Neutral
-		Location: 97,187
+		Location: 97,219
 	Actor1269: split2
 		Owner: Neutral
-		Location: 97,183
+		Location: 97,215
 	Actor1270: scrinflora11
 		Owner: Neutral
-		Location: 108,183
+		Location: 108,215
 	Actor1271: scrinflora9
 		Owner: Neutral
-		Location: 107,183
+		Location: 107,215
 	Actor1272: scrinflora5
 		Owner: Neutral
-		Location: 104,188
+		Location: 104,220
 	Actor1273: scrinflora1
 		Owner: Neutral
-		Location: 105,187
+		Location: 105,219
 	Actor1274: scrinflora12
 		Owner: Neutral
-		Location: 114,186
+		Location: 114,218
 	Actor1275: scrinflora9
 		Owner: Neutral
-		Location: 115,187
+		Location: 115,219
 	Actor1276: scrinflora7
 		Owner: Neutral
-		Location: 123,189
+		Location: 123,221
 	Actor1277: scrinflora13
 		Owner: Neutral
-		Location: 125,188
+		Location: 125,220
 	Actor130: split2
 		Owner: Neutral
-		Location: 9,183
+		Location: 9,215
 	Actor131: scrinflora7
 		Owner: Neutral
-		Location: 109,58
+		Location: 109,90
 	Actor132: scrinflora8
 		Owner: Neutral
-		Location: 111,59
+		Location: 111,91
 	Actor133: scrinflora2
 		Owner: Neutral
-		Location: 111,57
+		Location: 111,89
 	Actor134: scrinflora1
 		Owner: Neutral
-		Location: 112,58
+		Location: 112,90
 	Actor135: scrinflora3
 		Owner: Neutral
-		Location: 113,59
+		Location: 113,91
 	Actor136: scrinflora13
 		Owner: Neutral
-		Location: 110,59
+		Location: 110,91
 	Actor137: scrinflora14
 		Owner: Neutral
-		Location: 109,60
+		Location: 109,92
 	Actor138: scrinflora10
 		Owner: Neutral
-		Location: 108,60
+		Location: 108,92
 	Actor139: scrinflora12
 		Owner: Neutral
-		Location: 108,59
+		Location: 108,91
 	Actor140: scrinflora12
 		Owner: Neutral
-		Location: 114,57
+		Location: 114,89
 	Actor141: scrinflora1
 		Owner: Neutral
-		Location: 106,62
+		Location: 106,94
 	Actor142: scrinflora9
 		Owner: Neutral
-		Location: 105,62
+		Location: 105,94
 	Actor143: scrinflora4
 		Owner: Neutral
-		Location: 121,57
+		Location: 121,89
 	Actor144: scrinflora14
 		Owner: Neutral
-		Location: 120,57
+		Location: 120,89
 	Actor145: scrinflora12
 		Owner: Neutral
-		Location: 123,58
+		Location: 123,90
 	Actor146: scrinflora5
 		Owner: Neutral
-		Location: 99,52
+		Location: 99,84
 	Actor147: scrinflora6
 		Owner: Neutral
-		Location: 103,46
+		Location: 103,78
 	Actor148: scrinflora12
 		Owner: Neutral
-		Location: 105,45
+		Location: 105,77
 	Actor149: scrinflora8
 		Owner: Neutral
-		Location: 108,27
+		Location: 108,59
 	Actor150: scrinflora4
 		Owner: Neutral
-		Location: 124,36
+		Location: 124,68
 	Actor151: scrinflora2
 		Owner: Neutral
-		Location: 125,34
+		Location: 125,66
 	Actor152: scrinflora2
 		Owner: Neutral
-		Location: 141,7
+		Location: 141,39
 	Actor153: scrinflora2
 		Owner: Neutral
-		Location: 96,18
+		Location: 96,50
 	Actor154: scrinflora2
 		Owner: Neutral
-		Location: 60,19
+		Location: 60,51
 	Actor155: scrinflora2
 		Owner: Neutral
-		Location: 34,34
+		Location: 34,66
 	Actor156: scrinflora7
 		Owner: Neutral
-		Location: 32,36
+		Location: 32,68
 	Actor157: scrinflora5
 		Owner: Neutral
-		Location: 35,32
+		Location: 35,64
 	Actor158: scrinflora1
 		Owner: Neutral
-		Location: 31,38
+		Location: 31,70
 	Actor159: scrinflora8
 		Owner: Neutral
-		Location: 34,37
+		Location: 34,69
 	Actor160: scrinflora13
 		Owner: Neutral
-		Location: 35,35
+		Location: 35,67
 	Actor161: scrinflora14
 		Owner: Neutral
-		Location: 35,33
+		Location: 35,65
 	Actor162: scrinflora11
 		Owner: Neutral
-		Location: 34,35
+		Location: 34,67
 	Actor163: scrinflora14
 		Owner: Neutral
-		Location: 32,34
+		Location: 32,66
 	Actor164: scrinflora10
 		Owner: Neutral
-		Location: 32,37
+		Location: 32,69
 	Actor165: scrinflora11
 		Owner: Neutral
-		Location: 30,38
+		Location: 30,70
 	Actor166: scrinflora12
 		Owner: Neutral
-		Location: 29,40
+		Location: 29,72
 	Actor167: scrinflora6
 		Owner: Neutral
-		Location: 21,37
+		Location: 21,69
 	Actor168: scrinflora3
 		Owner: Neutral
-		Location: 47,28
+		Location: 47,60
 	Actor169: scrinflora4
 		Owner: Neutral
-		Location: 73,17
+		Location: 73,49
 	Actor170: scrinflora7
 		Owner: Neutral
-		Location: 96,30
+		Location: 96,62
 	Actor171: scrinflora7
 		Owner: Neutral
-		Location: 144,24
+		Location: 144,56
 	Actor172: scrinflora7
 		Owner: Neutral
-		Location: 148,59
+		Location: 148,91
 	Actor173: scrinflora7
 		Owner: Neutral
-		Location: 138,78
+		Location: 138,110
 	Actor174: scrinflora7
 		Owner: Neutral
-		Location: 157,113
+		Location: 157,145
 	Actor175: scrinflora7
 		Owner: Neutral
-		Location: 149,153
+		Location: 149,185
 	Actor176: scrinflora13
 		Owner: Neutral
-		Location: 148,155
+		Location: 148,187
 	Actor177: scrinflora6
 		Owner: Neutral
-		Location: 134,144
+		Location: 134,176
 	Actor178: scrinflora7
 		Owner: Neutral
-		Location: 86,69
+		Location: 86,101
 	Actor179: scrinflora8
 		Owner: Neutral
-		Location: 58,78
+		Location: 58,110
 	Actor180: scrinflora8
 		Owner: Neutral
-		Location: 43,64
+		Location: 43,96
 	Actor181: scrinflora2
 		Owner: Neutral
-		Location: 45,63
+		Location: 45,95
 	Actor182: scrinflora13
 		Owner: Neutral
-		Location: 44,63
+		Location: 44,95
 	Actor183: scrinflora11
 		Owner: Neutral
-		Location: 43,62
+		Location: 43,94
 	Actor184: scrinflora10
 		Owner: Neutral
-		Location: 42,62
+		Location: 42,94
 	Actor185: scrinflora8
 		Owner: Neutral
-		Location: 6,62
+		Location: 6,94
 	Actor186: scrinflora1
 		Owner: Neutral
-		Location: 132,17
+		Location: 132,49
 	Actor187: scrinflora1
 		Owner: Neutral
-		Location: 144,51
+		Location: 144,83
 	Actor188: scrinflora1
 		Owner: Neutral
-		Location: 127,85
+		Location: 127,117
 	Actor189: scrinflora12
 		Owner: Neutral
-		Location: 128,86
+		Location: 128,118
 	Actor190: scrinflora4
 		Owner: Neutral
-		Location: 104,80
+		Location: 104,112
 	Actor191: scrinflora3
 		Owner: Neutral
-		Location: 108,82
+		Location: 108,114
 	Actor192: scrinflora2
 		Owner: Neutral
-		Location: 107,81
+		Location: 107,113
 	Actor193: scrinflora14
 		Owner: Neutral
-		Location: 109,80
+		Location: 109,112
 	Actor194: scrinflora9
 		Owner: Neutral
-		Location: 108,78
+		Location: 108,110
 	Actor195: scrinflora11
 		Owner: Neutral
-		Location: 108,79
+		Location: 108,111
 	Actor196: scrinflora14
 		Owner: Neutral
-		Location: 106,81
+		Location: 106,113
 	Actor197: scrinflora12
 		Owner: Neutral
-		Location: 89,83
+		Location: 89,115
 	Actor198: scrinflora14
 		Owner: Neutral
-		Location: 78,84
+		Location: 78,116
 	Actor199: scrinflora2
 		Owner: Neutral
-		Location: 67,33
+		Location: 67,65
 	Actor200: scrinflora14
 		Owner: Neutral
-		Location: 69,36
+		Location: 69,68
 	Actor201: scrinflora13
 		Owner: Neutral
-		Location: 68,33
+		Location: 68,65
 	Actor202: scrinflora10
 		Owner: Neutral
-		Location: 66,33
+		Location: 66,65
 	Actor203: scrinflora4
 		Owner: Neutral
-		Location: 61,54
+		Location: 61,86
 	Actor204: scrinflora1
 		Owner: Neutral
-		Location: 60,53
+		Location: 60,85
 	Actor205: scrinflora5
 		Owner: Neutral
-		Location: 50,49
+		Location: 50,81
 	Actor206: scrinflora8
 		Owner: Neutral
-		Location: 81,54
+		Location: 81,86
 	Actor207: scrinflora12
 		Owner: Neutral
-		Location: 82,53
+		Location: 82,85
 	Actor208: scrinflora13
 		Owner: Neutral
-		Location: 83,55
-	Actor209: scrinflora1
-		Owner: Neutral
-		Location: 12,18
+		Location: 83,87
 	Actor210: scrinflora1
 		Owner: Neutral
-		Location: 37,11
+		Location: 37,43
 	Actor211: scrinflora1
 		Owner: Neutral
-		Location: 22,73
+		Location: 22,105
 	Actor212: scrinflora5
 		Owner: Neutral
-		Location: 10,52
+		Location: 10,84
 	Actor213: scrinflora6
 		Owner: Neutral
-		Location: 2,56
+		Location: 2,88
 	Actor214: scrinflora7
 		Owner: Neutral
-		Location: 3,46
+		Location: 3,78
 	Actor216: brik
 		Owner: GDI
-		Location: 18,124
+		Location: 18,156
 	Actor217: brik
 		Owner: GDI
-		Location: 18,123
+		Location: 18,155
 	Actor218: brik
 		Owner: GDI
-		Location: 18,122
+		Location: 18,154
 	Actor219: brik
 		Owner: GDI
-		Location: 19,124
+		Location: 19,156
 	Actor220: brik
 		Owner: GDI
-		Location: 19,123
+		Location: 19,155
 	Actor221: brik
 		Owner: GDI
-		Location: 18,121
+		Location: 18,153
 	Actor222: brik
 		Owner: GDI
-		Location: 19,121
+		Location: 19,153
 	Actor223: brik
 		Owner: GDI
-		Location: 19,120
+		Location: 19,152
 	Actor224: brik
 		Owner: GDI
-		Location: 20,120
+		Location: 20,152
 	Actor225: brik
 		Owner: GDI
-		Location: 20,121
+		Location: 20,153
 	Actor226: brik
 		Owner: GDI
-		Location: 23,118
+		Location: 23,150
 	Actor227: brik
 		Owner: GDI
-		Location: 23,116
+		Location: 23,148
 	Actor228: brik
 		Owner: GDI
-		Location: 23,117
+		Location: 23,149
 	Actor229: brik
 		Owner: GDI
-		Location: 24,116
+		Location: 24,148
 	Actor230: brik
 		Owner: GDI
-		Location: 25,116
+		Location: 25,148
 	Actor231: brik
 		Owner: GDI
-		Location: 24,118
+		Location: 24,150
 	Actor232: brik
 		Owner: GDI
-		Location: 24,117
+		Location: 24,149
 	Actor233: brik
 		Owner: GDI
-		Location: 25,117
+		Location: 25,149
 	Actor234: brik
 		Owner: GDI
-		Location: 16,158
+		Location: 16,190
 	Actor235: brik
 		Owner: GDI
-		Location: 16,157
+		Location: 16,189
 	Actor236: brik
 		Owner: GDI
-		Location: 16,155
+		Location: 16,187
 	Actor237: brik
 		Owner: GDI
-		Location: 16,156
+		Location: 16,188
 	Actor238: brik
 		Owner: GDI
-		Location: 16,154
+		Location: 16,186
 	Actor239: brik
 		Owner: GDI
-		Location: 16,153
+		Location: 16,185
 	Actor240: brik
 		Owner: GDI
-		Location: 17,153
+		Location: 17,185
 	Actor241: brik
 		Owner: GDI
-		Location: 19,153
+		Location: 19,185
 	Actor242: brik
 		Owner: GDI
-		Location: 18,153
+		Location: 18,185
 	Actor243: brik
 		Owner: GDI
-		Location: 20,153
+		Location: 20,185
 	Actor244: brik
 		Owner: GDI
-		Location: 21,153
+		Location: 21,185
 	Actor245: brik
 		Owner: GDI
-		Location: 22,153
+		Location: 22,185
 	Actor246: brik
 		Owner: GDI
-		Location: 22,154
+		Location: 22,186
 	Actor247: brik
 		Owner: GDI
-		Location: 21,154
+		Location: 21,186
 	Actor248: brik
 		Owner: GDI
-		Location: 30,153
+		Location: 30,185
 	Actor250: brik
 		Owner: GDI
-		Location: 31,153
+		Location: 31,185
 	Actor252: brik
 		Owner: GDI
-		Location: 16,159
+		Location: 16,191
 	Actor253: brik
 		Owner: GDI
-		Location: 16,160
+		Location: 16,192
 	Actor254: brik
 		Owner: GDI
-		Location: 17,160
+		Location: 17,192
 	Actor255: brik
 		Owner: GDI
-		Location: 17,159
+		Location: 17,191
 	Actor256: brik
 		Owner: GDI
-		Location: 16,165
+		Location: 16,197
 	Actor257: brik
 		Owner: GDI
-		Location: 16,166
+		Location: 16,198
 	Actor258: brik
 		Owner: GDI
-		Location: 17,165
+		Location: 17,197
 	Actor259: brik
 		Owner: GDI
-		Location: 17,166
+		Location: 17,198
 	Actor260: brik
 		Owner: GDI
-		Location: 16,167
+		Location: 16,199
 	Actor261: brik
 		Owner: GDI
-		Location: 16,168
+		Location: 16,200
 	Actor262: brik
 		Owner: GDI
-		Location: 16,169
+		Location: 16,201
 	Actor263: brik
 		Owner: GDI
-		Location: 16,170
+		Location: 16,202
 	Actor264: brik
 		Owner: GDI
-		Location: 16,171
+		Location: 16,203
 	Actor265: brik
 		Owner: GDI
-		Location: 16,172
+		Location: 16,204
 	Actor266: brik
 		Owner: GDI
-		Location: 17,172
+		Location: 17,204
 	Actor267: brik
 		Owner: GDI
-		Location: 17,171
+		Location: 17,203
 	Actor268: brik
 		Owner: GDI
-		Location: 28,175
+		Location: 28,207
 	Actor269: brik
 		Owner: GDI
-		Location: 28,176
+		Location: 28,208
 	Actor270: brik
 		Owner: GDI
-		Location: 29,175
+		Location: 29,207
 	Actor271: brik
 		Owner: GDI
-		Location: 29,176
+		Location: 29,208
 	Actor272: brik
 		Owner: GDI
-		Location: 35,176
+		Location: 35,208
 	Actor273: brik
 		Owner: GDI
-		Location: 35,175
+		Location: 35,207
 	Actor274: brik
 		Owner: GDI
-		Location: 36,176
+		Location: 36,208
 	Actor275: brik
 		Owner: GDI
-		Location: 36,175
+		Location: 36,207
 	Actor276: brik
 		Owner: GDI
-		Location: 32,153
+		Location: 32,185
 	Actor277: brik
 		Owner: GDI
-		Location: 33,153
+		Location: 33,185
 	Actor278: brik
 		Owner: GDI
-		Location: 34,153
+		Location: 34,185
 	Actor279: brik
 		Owner: GDI
-		Location: 36,153
+		Location: 36,185
 	Actor280: brik
 		Owner: GDI
-		Location: 37,153
+		Location: 37,185
 	Actor281: brik
 		Owner: GDI
-		Location: 35,153
+		Location: 35,185
 	Actor282: brik
 		Owner: GDI
-		Location: 38,153
+		Location: 38,185
 	Actor283: brik
 		Owner: GDI
-		Location: 38,154
+		Location: 38,186
 	Actor284: brik
 		Owner: GDI
-		Location: 37,154
+		Location: 37,186
 	Actor286: brik
 		Owner: GDI
-		Location: 43,157
+		Location: 43,189
 	Actor287: brik
 		Owner: GDI
-		Location: 43,158
+		Location: 43,190
 	Actor289: brik
 		Owner: GDI
-		Location: 43,159
+		Location: 43,191
 	Actor290: brik
 		Owner: GDI
-		Location: 43,160
+		Location: 43,192
 	Actor291: brik
 		Owner: GDI
-		Location: 43,161
+		Location: 43,193
 	Actor292: brik
 		Owner: GDI
-		Location: 43,162
+		Location: 43,194
 	Actor293: brik
 		Owner: GDI
-		Location: 43,163
+		Location: 43,195
 	Actor294: brik
 		Owner: GDI
-		Location: 43,164
+		Location: 43,196
 	Actor295: brik
 		Owner: GDI
-		Location: 43,165
+		Location: 43,197
 	Actor296: brik
 		Owner: GDI
-		Location: 43,166
+		Location: 43,198
 	Actor297: brik
 		Owner: GDI
-		Location: 42,166
+		Location: 42,198
 	Actor298: brik
 		Owner: GDI
-		Location: 42,165
+		Location: 42,197
 	Actor299: brik
 		Owner: GDI
-		Location: 40,176
+		Location: 40,208
 	Actor300: brik
 		Owner: GDI
-		Location: 39,176
+		Location: 39,208
 	Actor301: brik
 		Owner: GDI
-		Location: 38,176
+		Location: 38,208
 	Actor302: brik
 		Owner: GDI
-		Location: 37,176
+		Location: 37,208
 	Actor303: brik
 		Owner: GDI
-		Location: 41,176
+		Location: 41,208
 	Actor304: brik
 		Owner: GDI
-		Location: 42,176
+		Location: 42,208
 	Actor305: brik
 		Owner: GDI
-		Location: 43,176
+		Location: 43,208
 	Actor306: brik
 		Owner: GDI
-		Location: 43,175
+		Location: 43,207
 	Actor307: brik
 		Owner: GDI
-		Location: 43,174
+		Location: 43,206
 	Actor308: brik
 		Owner: GDI
-		Location: 42,173
+		Location: 42,205
 	Actor309: brik
 		Owner: GDI
-		Location: 43,173
+		Location: 43,205
 	Actor310: brik
 		Owner: GDI
-		Location: 42,174
+		Location: 42,206
 	Actor311: brik
 		Owner: GDI
-		Location: 42,157
+		Location: 42,189
 	Actor312: brik
 		Owner: GDI
-		Location: 42,158
+		Location: 42,190
 	Actor317: sbag
 		Owner: GDI
-		Location: 71,163
+		Location: 71,195
 	Actor318: sbag
 		Owner: GDI
-		Location: 71,164
+		Location: 71,196
 	Actor319: sbag
 		Owner: GDI
-		Location: 71,165
+		Location: 71,197
 	Actor320: sbag
 		Owner: GDI
-		Location: 71,166
+		Location: 71,198
 	Actor321: sbag
 		Owner: GDI
-		Location: 71,167
+		Location: 71,199
 	Actor322: sbag
 		Owner: GDI
-		Location: 71,173
+		Location: 71,205
 	Actor323: sbag
 		Owner: GDI
-		Location: 71,174
+		Location: 71,206
 	Actor324: sbag
 		Owner: GDI
-		Location: 71,175
+		Location: 71,207
 	Actor337: sbag
 		Owner: GDI
-		Location: 47,187
+		Location: 47,219
 	Actor338: sbag
 		Owner: GDI
-		Location: 48,187
+		Location: 48,219
 	Actor339: sbag
 		Owner: GDI
-		Location: 49,187
+		Location: 49,219
 	Actor340: sbag
 		Owner: GDI
-		Location: 50,187
+		Location: 50,219
 	Actor341: sbag
 		Owner: GDI
-		Location: 50,186
+		Location: 50,218
 	Actor342: sbag
 		Owner: GDI
-		Location: 54,184
+		Location: 54,216
 	Actor343: sbag
 		Owner: GDI
-		Location: 55,184
+		Location: 55,216
 	Actor344: sbag
 		Owner: GDI
-		Location: 56,184
+		Location: 56,216
 	Actor345: sbag
 		Owner: GDI
-		Location: 56,183
+		Location: 56,215
 	Actor346: brik
 		Owner: GDI
-		Location: 97,117
+		Location: 97,149
 	Actor347: brik
 		Owner: GDI
-		Location: 96,117
+		Location: 96,149
 	Actor348: brik
 		Owner: GDI
-		Location: 95,117
+		Location: 95,149
 	Actor349: brik
 		Owner: GDI
-		Location: 95,118
+		Location: 95,150
 	Actor350: brik
 		Owner: GDI
-		Location: 91,118
+		Location: 91,150
 	Actor351: brik
 		Owner: GDI
-		Location: 93,118
+		Location: 93,150
 	Actor352: brik
 		Owner: GDI
-		Location: 94,118
+		Location: 94,150
 	Actor353: brik
 		Owner: GDI
-		Location: 92,118
+		Location: 92,150
 	Actor354: brik
 		Owner: GDI
-		Location: 91,119
+		Location: 91,151
 	Actor355: brik
 		Owner: GDI
-		Location: 91,120
+		Location: 91,152
 	Actor356: brik
 		Owner: GDI
-		Location: 89,125
+		Location: 89,157
 	Actor357: brik
 		Owner: GDI
-		Location: 89,126
+		Location: 89,158
 	Actor358: brik
 		Owner: GDI
-		Location: 89,127
+		Location: 89,159
 	Actor359: brik
 		Owner: GDI
-		Location: 90,125
+		Location: 90,157
 	Actor360: brik
 		Owner: GDI
-		Location: 91,125
+		Location: 91,157
 	Actor361: brik
 		Owner: GDI
-		Location: 91,124
+		Location: 91,156
 	Actor362: brik
 		Owner: GDI
-		Location: 92,124
+		Location: 92,156
 	Actor363: brik
 		Owner: GDI
-		Location: 92,123
+		Location: 92,155
 	Actor364: brik
 		Owner: GDI
-		Location: 92,121
+		Location: 92,153
 	Actor365: brik
 		Owner: GDI
-		Location: 92,120
+		Location: 92,152
 	Actor366: brik
 		Owner: GDI
-		Location: 92,122
+		Location: 92,154
 	Actor367: brik
 		Owner: GDI
-		Location: 90,127
+		Location: 90,159
 	Actor368: brik
 		Owner: GDI
-		Location: 90,128
+		Location: 90,160
 	Actor369: brik
 		Owner: GDI
-		Location: 90,129
+		Location: 90,161
 	Actor370: brik
 		Owner: GDI
-		Location: 91,129
+		Location: 91,161
 	Actor371: brik
 		Owner: GDI
-		Location: 91,128
+		Location: 91,160
 	Actor372: brik
 		Owner: GDI
-		Location: 93,134
+		Location: 93,166
 	Actor373: brik
 		Owner: GDI
-		Location: 93,133
+		Location: 93,165
 	Actor374: brik
 		Owner: GDI
-		Location: 94,134
+		Location: 94,166
 	Actor375: brik
 		Owner: GDI
-		Location: 94,133
+		Location: 94,165
 	Actor376: brik
 		Owner: GDI
-		Location: 95,134
+		Location: 95,166
 	Actor377: brik
 		Owner: GDI
-		Location: 95,135
+		Location: 95,167
 	Actor378: brik
 		Owner: GDI
-		Location: 95,136
+		Location: 95,168
 	Actor379: brik
 		Owner: GDI
-		Location: 95,137
+		Location: 95,169
 	Actor380: brik
 		Owner: GDI
-		Location: 96,137
+		Location: 96,169
 	Actor381: brik
 		Owner: GDI
-		Location: 97,138
+		Location: 97,170
 	Actor382: brik
 		Owner: GDI
-		Location: 96,138
+		Location: 96,170
 	Actor383: brik
 		Owner: GDI
-		Location: 97,139
+		Location: 97,171
 	Actor384: brik
 		Owner: GDI
-		Location: 98,139
+		Location: 98,171
 	Actor385: brik
 		Owner: GDI
-		Location: 102,139
+		Location: 102,171
 	Actor386: brik
 		Owner: GDI
-		Location: 101,139
+		Location: 101,171
 	Actor387: brik
 		Owner: GDI
-		Location: 100,139
+		Location: 100,171
 	Actor388: brik
 		Owner: GDI
-		Location: 99,139
+		Location: 99,171
 	Actor389: brik
 		Owner: GDI
-		Location: 103,139
+		Location: 103,171
 	Actor390: brik
 		Owner: GDI
-		Location: 103,138
+		Location: 103,170
 	Actor391: brik
 		Owner: GDI
-		Location: 102,138
+		Location: 102,170
 	Actor392: brik
 		Owner: GDI
-		Location: 111,138
+		Location: 111,170
 	Actor393: brik
 		Owner: GDI
-		Location: 111,139
+		Location: 111,171
 	Actor394: brik
 		Owner: GDI
-		Location: 112,138
+		Location: 112,170
 	Actor395: brik
 		Owner: GDI
-		Location: 112,139
+		Location: 112,171
 	Actor396: brik
 		Owner: GDI
-		Location: 113,139
+		Location: 113,171
 	Actor397: brik
 		Owner: GDI
-		Location: 114,139
+		Location: 114,171
 	Actor398: brik
 		Owner: GDI
-		Location: 115,139
+		Location: 115,171
 	Actor399: brik
 		Owner: GDI
-		Location: 115,138
+		Location: 115,170
 	Actor400: brik
 		Owner: GDI
-		Location: 116,138
+		Location: 116,170
 	Actor401: brik
 		Owner: GDI
-		Location: 117,138
+		Location: 117,170
 	Actor402: brik
 		Owner: GDI
-		Location: 118,138
+		Location: 118,170
 	Actor403: brik
 		Owner: GDI
-		Location: 119,138
+		Location: 119,170
 	Actor404: brik
 		Owner: GDI
-		Location: 119,137
+		Location: 119,169
 	Actor405: brik
 		Owner: GDI
-		Location: 120,137
+		Location: 120,169
 	Actor406: brik
 		Owner: GDI
-		Location: 121,137
+		Location: 121,169
 	Actor407: brik
 		Owner: GDI
-		Location: 121,136
+		Location: 121,168
 	Actor408: brik
 		Owner: GDI
-		Location: 121,135
+		Location: 121,167
 	Actor409: brik
 		Owner: GDI
-		Location: 121,134
+		Location: 121,166
 	Actor410: brik
 		Owner: GDI
-		Location: 121,133
+		Location: 121,165
 	Actor411: brik
 		Owner: GDI
-		Location: 122,133
+		Location: 122,165
 	Actor412: brik
 		Owner: GDI
-		Location: 122,132
+		Location: 122,164
 	Actor413: brik
 		Owner: GDI
-		Location: 122,130
+		Location: 122,162
 	Actor414: brik
 		Owner: GDI
-		Location: 122,131
+		Location: 122,163
 	Actor415: brik
 		Owner: GDI
-		Location: 122,129
+		Location: 122,161
 	Actor416: brik
 		Owner: GDI
-		Location: 123,129
+		Location: 123,161
 	Actor417: brik
 		Owner: GDI
-		Location: 123,128
+		Location: 123,160
 	Actor418: brik
 		Owner: GDI
-		Location: 123,127
+		Location: 123,159
 	Actor424: brik
 		Owner: GDI
-		Location: 120,117
+		Location: 120,149
 	Actor425: brik
 		Owner: GDI
-		Location: 119,117
+		Location: 119,149
 	Actor426: brik
 		Owner: GDI
-		Location: 119,118
+		Location: 119,150
 	Actor427: brik
 		Owner: GDI
-		Location: 120,118
+		Location: 120,150
 	Actor428: brik
 		Owner: GDI
-		Location: 118,117
+		Location: 118,149
 	Actor429: brik
 		Owner: GDI
-		Location: 117,117
+		Location: 117,149
 	Actor430: brik
 		Owner: GDI
-		Location: 116,117
+		Location: 116,149
 	Actor431: brik
 		Owner: GDI
-		Location: 116,116
+		Location: 116,148
 	Actor432: brik
 		Owner: GDI
-		Location: 115,116
+		Location: 115,148
 	Actor433: brik
 		Owner: GDI
-		Location: 114,116
+		Location: 114,148
 	Actor434: brik
 		Owner: GDI
-		Location: 114,115
+		Location: 114,147
 	Actor435: brik
 		Owner: GDI
-		Location: 114,114
+		Location: 114,146
 	Actor436: brik
 		Owner: GDI
-		Location: 113,114
+		Location: 113,146
 	Actor437: brik
 		Owner: GDI
-		Location: 113,113
+		Location: 113,145
 	Actor438: brik
 		Owner: GDI
-		Location: 113,112
+		Location: 113,144
 	Actor439: brik
 		Owner: GDI
-		Location: 112,112
+		Location: 112,144
 	Actor440: brik
 		Owner: GDI
-		Location: 112,113
+		Location: 112,145
 	Actor441: brik
 		Owner: GDI
-		Location: 111,113
+		Location: 111,145
 	Actor442: brik
 		Owner: GDI
-		Location: 111,114
+		Location: 111,146
 	Actor443: brik
 		Owner: GDI
-		Location: 110,114
+		Location: 110,146
 	Actor444: brik
 		Owner: GDI
-		Location: 110,115
+		Location: 110,147
 	Actor445: brik
 		Owner: GDI
-		Location: 109,115
+		Location: 109,147
 	Actor446: brik
 		Owner: GDI
-		Location: 108,115
+		Location: 108,147
 	Actor447: brik
 		Owner: GDI
-		Location: 108,116
+		Location: 108,148
 	Actor448: brik
 		Owner: GDI
-		Location: 107,116
+		Location: 107,148
 	Actor449: brik
 		Owner: GDI
-		Location: 106,116
+		Location: 106,148
 	Actor450: brik
 		Owner: GDI
-		Location: 105,116
+		Location: 105,148
 	Actor451: brik
 		Owner: GDI
-		Location: 105,117
+		Location: 105,149
 	Actor452: brik
 		Owner: GDI
-		Location: 106,117
+		Location: 106,149
 	Actor455: brik
 		Owner: GDI
-		Location: 98,117
+		Location: 98,149
 	Actor460: brik
 		Owner: GDI
-		Location: 97,118
+		Location: 97,150
 	Actor461: brik
 		Owner: GDI
-		Location: 98,118
+		Location: 98,150
 	Actor453: brik
 		Owner: GDI
-		Location: 120,119
+		Location: 120,151
 	Actor454: brik
 		Owner: GDI
-		Location: 120,120
+		Location: 120,152
 	Actor456: brik
 		Owner: GDI
-		Location: 120,121
+		Location: 120,153
 	Actor457: brik
 		Owner: GDI
-		Location: 119,121
+		Location: 119,153
 	Actor458: brik
 		Owner: GDI
-		Location: 119,120
+		Location: 119,152
 	Actor474: brik
 		Owner: GDI
-		Location: 121,126
+		Location: 121,158
 	Actor475: brik
 		Owner: GDI
-		Location: 121,127
+		Location: 121,159
 	Actor476: brik
 		Owner: GDI
-		Location: 122,127
+		Location: 122,159
 	Actor477: brik
 		Owner: GDI
-		Location: 122,126
+		Location: 122,158
 	Actor459: sbag
 		Owner: GDI
-		Location: 78,99
+		Location: 78,131
 	Actor462: sbag
 		Owner: GDI
-		Location: 77,99
+		Location: 77,131
 	Actor463: sbag
 		Owner: GDI
-		Location: 77,100
+		Location: 77,132
 	Actor464: sbag
 		Owner: GDI
-		Location: 77,101
+		Location: 77,133
 	Actor465: sbag
 		Owner: GDI
-		Location: 79,99
+		Location: 79,131
 	Actor466: sbag
 		Owner: GDI
-		Location: 80,99
+		Location: 80,131
 	Actor467: sbag
 		Owner: GDI
-		Location: 77,102
+		Location: 77,134
 	Actor468: sbag
 		Owner: GDI
-		Location: 131,98
+		Location: 131,130
 	Actor469: sbag
 		Owner: GDI
-		Location: 132,98
+		Location: 132,130
 	Actor470: sbag
 		Owner: GDI
-		Location: 134,98
+		Location: 134,130
 	Actor471: sbag
 		Owner: GDI
-		Location: 133,98
+		Location: 133,130
 	Actor478: sbag
 		Owner: GDI
-		Location: 131,99
+		Location: 131,131
 	Actor480: sbag
 		Owner: GDI
-		Location: 141,98
+		Location: 141,130
 	Actor481: sbag
 		Owner: GDI
-		Location: 141,99
+		Location: 141,131
 	Actor482: sbag
 		Owner: GDI
-		Location: 142,98
+		Location: 142,130
 	Actor483: sbag
 		Owner: GDI
-		Location: 143,98
+		Location: 143,130
 	Actor484: sbag
 		Owner: GDI
-		Location: 144,98
+		Location: 144,130
 	Actor485: sbag
 		Owner: GDI
-		Location: 144,99
+		Location: 144,131
 	Actor473: sbag
 		Owner: GDI
-		Location: 134,99
+		Location: 134,131
 	Actor472: barb
 		Owner: GDI
-		Location: 131,97
+		Location: 131,129
 	Actor479: barb
 		Owner: GDI
-		Location: 132,97
+		Location: 132,129
 	Actor486: barb
 		Owner: GDI
-		Location: 133,97
+		Location: 133,129
 	Actor487: barb
 		Owner: GDI
-		Location: 134,97
+		Location: 134,129
 	Actor488: barb
 		Owner: GDI
-		Location: 141,97
+		Location: 141,129
 	Actor489: barb
 		Owner: GDI
-		Location: 142,97
+		Location: 142,129
 	Actor490: barb
 		Owner: GDI
-		Location: 143,97
+		Location: 143,129
 	Actor491: barb
 		Owner: GDI
-		Location: 144,97
+		Location: 144,129
 	Actor492: barb
 		Owner: GDI
-		Location: 77,98
+		Location: 77,130
 	Actor493: barb
 		Owner: GDI
-		Location: 78,98
+		Location: 78,130
 	Actor494: barb
 		Owner: GDI
-		Location: 79,98
+		Location: 79,130
 	Actor495: barb
 		Owner: GDI
-		Location: 76,98
+		Location: 76,130
 	Actor496: barb
 		Owner: GDI
-		Location: 76,99
+		Location: 76,131
 	Actor497: barb
 		Owner: GDI
-		Location: 76,100
+		Location: 76,132
 	Actor498: atwr
 		Owner: GDI
-		Location: 78,100
+		Location: 78,132
 	Actor499: atwr
 		Owner: GDI
-		Location: 142,99
+		Location: 142,131
 	Actor500: atwr
 		Owner: GDI
-		Location: 133,99
+		Location: 133,131
 	Actor501: gtwr
 		Owner: GDI
-		Location: 133,96
+		Location: 133,128
 	Actor502: gtwr
 		Owner: GDI
-		Location: 142,96
+		Location: 142,128
 	Actor503: gtwr
 		Owner: GDI
-		Location: 75,97
+		Location: 75,129
 	Actor504: atwr
 		Owner: GDI
-		Location: 19,122
+		Location: 19,154
 	Actor505: atwr
 		Owner: GDI
-		Location: 25,118
+		Location: 25,150
 	Actor506: atwr
 		Owner: GDI
-		Location: 27,100
+		Location: 27,132
 	Actor507: atwr
 		Owner: GDI
-		Location: 35,99
+		Location: 35,131
 	Actor508: atwr
 		Owner: GDI
-		Location: 40,105
+		Location: 40,137
 	Actor509: atwr
 		Owner: GDI
-		Location: 43,113
+		Location: 43,145
 	Actor510: atwr
 		Owner: GDI
-		Location: 17,158
+		Location: 17,190
 	Actor511: atwr
 		Owner: GDI
-		Location: 17,167
+		Location: 17,199
 	Actor512: atwr
 		Owner: GDI
-		Location: 42,175
+		Location: 42,207
 	Actor513: atwr
 		Owner: GDI
-		Location: 42,164
+		Location: 42,196
 	Actor515: atwr
 		Owner: GDI
-		Location: 20,154
+		Location: 20,186
 	Actor514: gtwr
 		Owner: GDI
-		Location: 22,152
+		Location: 22,184
 	Actor516: gtwr
 		Owner: GDI
-		Location: 29,152
+		Location: 29,184
 	Actor517: brik
 		Owner: GDI
-		Location: 29,153
+		Location: 29,185
 	Actor518: brik
 		Owner: GDI
-		Location: 29,154
+		Location: 29,186
 	Actor519: brik
 		Owner: GDI
-		Location: 30,154
+		Location: 30,186
 	Actor520: atwr
 		Owner: GDI
-		Location: 91,127
+		Location: 91,159
 	Actor521: atwr
 		Owner: GDI
-		Location: 95,133
+		Location: 95,165
 	Actor522: atwr
 		Owner: GDI
-		Location: 96,118
+		Location: 96,150
 	Actor523: atwr
 		Owner: GDI
-		Location: 107,117
+		Location: 107,149
 	Actor524: atwr
 		Owner: GDI
-		Location: 119,119
+		Location: 119,151
 	Actor525: atwr
 		Owner: GDI
-		Location: 122,128
+		Location: 122,160
 	Actor526: atwr
 		Owner: GDI
-		Location: 113,138
+		Location: 113,170
 	Actor527: atwr
 		Owner: GDI
-		Location: 101,138
+		Location: 101,170
 	Actor528: gtwr
 		Owner: GDI
-		Location: 103,140
+		Location: 103,172
 	Actor529: gtwr
 		Owner: GDI
-		Location: 111,140
+		Location: 111,172
 	Actor530: gtwr
 		Owner: GDI
-		Location: 89,130
+		Location: 89,162
 	Actor531: gtwr
 		Owner: GDI
-		Location: 92,134
+		Location: 92,166
 	Actor532: gtwr
 		Owner: GDI
-		Location: 123,126
+		Location: 123,158
 	Actor533: gtwr
 		Owner: GDI
-		Location: 121,121
+		Location: 121,153
 	Actor534: gtwr
 		Owner: GDI
-		Location: 98,116
+		Location: 98,148
 	Actor535: gtwr
 		Owner: GDI
-		Location: 104,115
+		Location: 104,147
 	Actor536: afac
 		Owner: GDI
-		Location: 117,133
+		Location: 117,165
 	Actor537: gtek
 		Owner: GDI
-		Location: 105,126
+		Location: 105,158
 	Actor543: nuk2
 		Owner: GDI
-		Location: 111,119
+		Location: 111,151
 	Actor544: nuk2
 		Owner: GDI
-		Location: 113,119
+		Location: 113,151
 	Actor545: nuk2
 		Owner: GDI
-		Location: 115,119
+		Location: 115,151
 	Actor546: nuk2
 		Owner: GDI
-		Location: 111,123
+		Location: 111,155
 	Actor547: nuk2
 		Owner: GDI
-		Location: 113,123
+		Location: 113,155
 	Actor548: nuk2
 		Owner: GDI
-		Location: 115,123
+		Location: 115,155
 	Actor549: nuk2
 		Owner: GDI
-		Location: 31,154
+		Location: 31,186
 	Actor550: nuk2
 		Owner: GDI
-		Location: 33,154
+		Location: 33,186
 	Actor551: nuk2
 		Owner: GDI
-		Location: 35,154
+		Location: 35,186
 	Actor552: silo.td
 		Owner: GDI
-		Location: 93,121
+		Location: 93,153
 	Actor553: silo.td
 		Owner: GDI
-		Location: 93,123
+		Location: 93,155
 	Actor554: proc.td
 		Owner: GDI
-		Location: 104,119
+		Location: 104,151
 	Actor555: proc.td
 		Owner: GDI
-		Location: 58,162
+		Location: 58,194
 	Actor556: proc.td
 		Owner: GDI
-		Location: 31,170
+		Location: 31,202
 	Actor557: gtwr
 		Owner: GDI
-		Location: 51,187
+		Location: 51,219
 	Actor558: gtwr
 		Owner: GDI
-		Location: 55,185
+		Location: 55,217
 	Actor559: gtwr
 		Owner: GDI
-		Location: 72,173
+		Location: 72,205
 	Actor560: gtwr
 		Owner: GDI
-		Location: 72,168
+		Location: 72,200
 	Actor561: sbag
 		Owner: GDI
-		Location: 71,168
+		Location: 71,200
 	Actor563: pyle
 		Owner: GDI
-		Location: 22,159
+		Location: 22,191
 	Actor564: pyle
 		Owner: GDI
-		Location: 97,122
+		Location: 97,154
 	Actor565: weap.td
 		Owner: GDI
-		Location: 99,129
+		Location: 99,161
 	Actor566: weap.td
 		Owner: GDI
-		Location: 22,165
+		Location: 22,197
 	Actor568: nuk2
 		Owner: GDI
-		Location: 105,131
+		Location: 105,163
 	Actor569: nuk2
 		Owner: GDI
-		Location: 107,131
+		Location: 107,163
 	Actor570: nuk2
 		Owner: GDI
-		Location: 114,133
+		Location: 114,165
 	Actor571: nuk2
 		Owner: GDI
-		Location: 112,133
+		Location: 112,165
 	Actor572: nuk2
 		Owner: GDI
-		Location: 37,173
+		Location: 37,205
 	Actor573: nuk2
 		Owner: GDI
-		Location: 39,173
+		Location: 39,205
 	Actor574: afac
 		Owner: GDI
-		Location: 23,170
+		Location: 23,202
 	Actor576: hq
 		Owner: GDI
-		Location: 113,127
+		Location: 113,159
 	Actor540: afld.gdi
 		Owner: GDI
-		Location: 32,160
+		Location: 32,192
 	Actor539: afld.gdi
 		Owner: GDI
-		Location: 32,163
+		Location: 32,195
 	Actor538: afld.gdi
 		Owner: GDI
-		Location: 32,166
+		Location: 32,198
 	Actor541: rep
 		Owner: GDI
-		Location: 36,162
+		Location: 36,194
 	Actor575: patr
 		Owner: GDI
-		Location: 117,129
+		Location: 117,161
 	Actor577: cram
 		Owner: GDI
-		Location: 97,137
+		Location: 97,169
 	Actor578: cram
 		Owner: GDI
-		Location: 118,137
+		Location: 118,169
 	Actor579: cram
 		Owner: GDI
-		Location: 112,114
+		Location: 112,146
 	Actor580: cram
 		Owner: GDI
-		Location: 92,119
+		Location: 92,151
 	Actor581: cram
 		Owner: GDI
-		Location: 103,126
+		Location: 103,158
 	Actor582: cram
 		Owner: GDI
-		Location: 109,128
+		Location: 109,160
 	Actor583: cram
 		Owner: GDI
-		Location: 42,159
+		Location: 42,191
 	Actor584: cram
 		Owner: GDI
-		Location: 17,154
+		Location: 17,186
 	Actor585: cram
 		Owner: GDI
-		Location: 17,170
+		Location: 17,202
 	Actor586: cram
 		Owner: GDI
-		Location: 27,174
+		Location: 27,206
 	Actor587: cram
 		Owner: GDI
-		Location: 38,169
+		Location: 38,201
 	Actor588: cram
 		Owner: GDI
-		Location: 56,161
+		Location: 56,193
 	Actor589: cram
 		Owner: GDI
-		Location: 41,109
+		Location: 41,141
 	Actor590: nuk2
 		Owner: GDI
-		Location: 109,119
+		Location: 109,151
 	Actor591: nuk2
 		Owner: GDI
-		Location: 109,123
+		Location: 109,155
 	Actor592: nuk2
 		Owner: GDI
-		Location: 27,165
+		Location: 27,197
 	Actor593: nuk2
 		Owner: GDI
-		Location: 29,165
+		Location: 29,197
 	Actor594: nuke
 		Owner: GDI
-		Location: 63,161
+		Location: 63,193
 	Actor595: nuke
 		Owner: GDI
-		Location: 64,164
+		Location: 64,196
 	Actor596: gtwr
 		Owner: GDI
-		Location: 15,160
+		Location: 15,192
 	Actor597: gtwr
 		Owner: GDI
-		Location: 15,165
+		Location: 15,197
 	Actor598: sbag
 		Owner: GDI
-		Location: 63,179
+		Location: 63,211
 	Actor599: sbag
 		Owner: GDI
-		Location: 64,179
+		Location: 64,211
 	Actor600: sbag
 		Owner: GDI
-		Location: 65,179
+		Location: 65,211
 	Actor601: sbag
 		Owner: GDI
-		Location: 66,179
+		Location: 66,211
 	Actor602: sbag
 		Owner: GDI
-		Location: 67,179
+		Location: 67,211
 	Actor603: sbag
 		Owner: GDI
-		Location: 67,178
+		Location: 67,210
 	Actor604: sbag
 		Owner: GDI
-		Location: 68,178
+		Location: 68,210
 	Actor605: sbag
 		Owner: GDI
-		Location: 68,177
+		Location: 68,209
 	Actor606: sbag
 		Owner: GDI
-		Location: 68,176
+		Location: 68,208
 	Actor607: sbag
 		Owner: GDI
-		Location: 69,176
+		Location: 69,208
 	Actor608: sbag
 		Owner: GDI
-		Location: 69,175
+		Location: 69,207
 	Actor609: sbag
 		Owner: GDI
-		Location: 70,175
+		Location: 70,207
 	Actor610: sbag
 		Owner: GDI
-		Location: 62,179
+		Location: 62,211
 	Actor562: pyle
 		Owner: GDI
-		Location: 64,175
+		Location: 64,207
 	Actor611: silo.td
 		Owner: GDI
-		Location: 59,167
+		Location: 59,199
 	Actor612: silo.td
 		Owner: GDI
-		Location: 61,169
+		Location: 61,201
 	Actor613: silo.td
 		Owner: GDI
-		Location: 58,169
+		Location: 58,201
 	Actor614: gtwr
 		Owner: GDI
-		Location: 45,170
+		Location: 45,202
 	Actor615: sfac
 		Owner: ScrinRebels
-		Location: 92,5
+		Location: 92,37
 	Actor617: reac
 		Owner: ScrinRebels
-		Location: 87,6
-	Actor618: sfac
-		Owner: MaleficScrin
-		Location: 3,3
-	Actor619: rea2
-		Owner: MaleficScrin
-		Location: 2,21
-	Actor620: rea2
-		Owner: MaleficScrin
-		Location: 2,18
-	Actor621: rea2
-		Owner: MaleficScrin
-		Location: 2,15
-	Actor622: rea2
-		Owner: MaleficScrin
-		Location: 5,15
-	Actor623: rea2
-		Owner: MaleficScrin
-		Location: 5,18
-	Actor624: rea2
-		Owner: MaleficScrin
-		Location: 5,21
-	Actor625: scrt
-		Owner: MaleficScrin
-		Location: 7,3
-	Actor626: port
-		Owner: MaleficScrin
-		Location: 9,11
-	Actor627: wsph
-		Owner: MaleficScrin
-		Location: 12,6
-	Actor628: nerv
-		Owner: MaleficScrin
-		Location: 9,7
-	Actor629: scol
-		Owner: MaleficScrin
-		Location: 13,17
-	Actor630: scol
-		Owner: MaleficScrin
-		Location: 12,14
-	Actor631: scol
-		Owner: MaleficScrin
-		Location: 16,7
-	Actor632: scol
-		Owner: MaleficScrin
-		Location: 15,4
-	Actor633: scol
-		Owner: MaleficScrin
-		Location: 16,1
-	Actor634: scol
-		Owner: MaleficScrin
-		Location: 14,13
-	Actor636: ptur
-		Owner: MaleficScrin
-		Location: 18,6
-		TurretFacing: 593
-	Actor637: ptur
-		Owner: MaleficScrin
-		Location: 15,15
-		TurretFacing: 688
-	Actor635: grav
-		Owner: MaleficScrin
-		Location: 3,8
-	Actor638: srep
-		Owner: MaleficScrin
-		Location: 4,11
-	Actor639: shar
-		Owner: MaleficScrin
-		Location: 7,25
-	Actor640: shar
-		Owner: MaleficScrin
-		Location: 10,23
-	Actor641: shar
-		Owner: MaleficScrin
-		Location: 10,18
-	Actor642: shar
-		Owner: MaleficScrin
-		Location: 13,3
-	Actor643: dark
-		Owner: MaleficScrin
-		Location: 17,16
-		Facing: 641
-	Actor646: dark
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 20,4
-	Actor647: dark
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 20,15
-	Actor649: dark
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 22,3
-	Actor650: dark
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 17,19
-	Actor651: stlk
-		Owner: MaleficScrin
-		Location: 19,18
-		SubCell: 3
-		Facing: 641
-	Actor653: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 21,6
-	Actor654: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 24,3
-	Actor655: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 24,1
-	Actor659: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 25,6
-	Actor660: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 12,10
-	Actor661: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 6,7
-	Actor662: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 11,2
-	Actor663: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 3,14
-	Actor664: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 2,12
-	Actor665: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 2,7
-	Actor666: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 2,2
-	Actor667: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 9,2
-	Actor668: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 9,15
-	Actor671: gunw
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 16,17
-	Actor672: gunw
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 18,4
-	Actor674: gunw
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 10,3
-	Actor675: gunw
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 3,11
-	Actor676: gunw
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 9,19
-	Actor677: gunw
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 23,4
+		Location: 87,38
 	Actor678: htnk
 		Owner: GDI
-		Location: 135,98
+		Location: 135,130
 		Facing: 0
 	Actor679: htnk
 		Owner: GDI
-		Location: 140,98
+		Location: 140,130
 		Facing: 0
 	Actor681: htnk
 		Owner: GDI
-		Location: 75,100
+		Location: 75,132
 		Facing: 128
 	Actor680: htnk
 		Owner: GDI
 		Facing: 128
-		Location: 78,97
+		Location: 78,129
 	Actor682: vulc.ai
 		Owner: GDI
-		Location: 133,101
+		Location: 133,133
 		Facing: 0
 	Actor683: vulc.ai
 		Owner: GDI
-		Location: 143,101
+		Location: 143,133
 		Facing: 0
 	Actor684: vulc.ai
 		Owner: GDI
-		Location: 76,102
+		Location: 76,134
 		Facing: 128
 	Actor685: titn
 		Owner: GDI
 		Facing: 384
-		Location: 94,128
+		Location: 94,160
 	Actor686: titn
 		Owner: GDI
-		Location: 101,119
+		Location: 101,151
 		Facing: 0
 	Actor687: titn
 		Owner: GDI
-		Location: 124,123
+		Location: 124,155
 		Facing: 768
 	Actor689: msam
 		Owner: GDI
-		Location: 148,99
+		Location: 148,131
 		Facing: 128
 	Actor691: msam
 		Owner: GDI
-		Location: 150,98
+		Location: 150,130
 		Facing: 128
 	Actor690: msam
 		Owner: GDI
-		Location: 83,92
+		Location: 83,124
 		Facing: 128
 	Actor692: msam
 		Owner: GDI
 		Facing: 128
-		Location: 80,93
+		Location: 80,125
 	Actor693: msam
 		Owner: GDI
 		Facing: 128
-		Location: 95,94
+		Location: 95,126
 	Actor694: msam
 		Owner: GDI
 		Facing: 128
-		Location: 100,96
+		Location: 100,128
 	Actor695: msam
 		Owner: GDI
 		Facing: 128
-		Location: 117,100
+		Location: 117,132
 	Actor696: msam
 		Owner: GDI
 		Facing: 128
-		Location: 21,123
+		Location: 21,155
 	Actor697: msam
 		Owner: GDI
 		Facing: 128
-		Location: 27,119
+		Location: 27,151
 	Actor698: vulc.ai
 		Owner: GDI
 		Facing: 384
-		Location: 38,113
+		Location: 38,145
 	Actor699: vulc.ai
 		Owner: GDI
-		Location: 26,112
+		Location: 26,144
 		Facing: 642
 	Actor700: disr
 		Owner: GDI
-		Location: 11,158
+		Location: 11,190
 		Facing: 128
 	Actor701: disr
 		Owner: GDI
 		Facing: 384
-		Location: 36,114
+		Location: 36,146
 	Actor702: disr
 		Owner: GDI
-		Location: 137,104
+		Location: 137,136
 		Facing: 0
 	Actor703: htnk
 		Owner: GDI
-		Location: 12,162
+		Location: 12,194
 		Facing: 128
 	Actor704: xo
 		Owner: GDI
-		Location: 24,150
+		Location: 24,182
 		Facing: 512
 	Actor705: xo
 		Owner: GDI
-		Location: 27,150
+		Location: 27,182
 		Facing: 512
 	Actor707: titn
 		Owner: GDI
-		Location: 27,123
+		Location: 27,155
 		Facing: 128
 	Actor708: mtnk
 		Owner: GDI
-		Location: 71,90
+		Location: 71,122
 		Facing: 0
 	Actor709: mtnk
 		Owner: GDI
-		Location: 75,90
+		Location: 75,122
 		Facing: 0
 	Actor710: mtnk
 		Owner: GDI
-		Location: 131,94
+		Location: 131,126
 		Facing: 0
 	Actor711: mtnk
 		Owner: GDI
-		Location: 143,94
+		Location: 143,126
 		Facing: 0
 	Actor712: mtnk
 		Owner: GDI
-		Location: 75,167
+		Location: 75,199
 		Facing: 896
 	Actor713: mtnk
 		Owner: GDI
-		Location: 76,170
+		Location: 76,202
 		Facing: 896
 	Actor715: msar
 		Owner: GDI
 		DeployState: Deployed
 		Facing: 384
-		Location: 28,110
+		Location: 28,142
 	Actor716: msar
 		Owner: GDI
 		DeployState: Deployed
 		Facing: 384
-		Location: 51,149
+		Location: 51,181
 	Actor717: msar
 		Owner: GDI
 		DeployState: Deployed
 		Facing: 384
-		Location: 63,96
+		Location: 63,128
 	Actor567: eye
 		Owner: GDI
-		Location: 28,159
+		Location: 28,191
 	Actor718: chain
 		Owner: GDI
-		Location: 28,158
+		Location: 28,190
 	Actor719: chain
 		Owner: GDI
-		Location: 27,158
+		Location: 27,190
 	Actor720: chain
 		Owner: GDI
-		Location: 27,159
+		Location: 27,191
 	Actor721: chain
 		Owner: GDI
-		Location: 27,160
+		Location: 27,192
 	Actor722: chain
 		Owner: GDI
-		Location: 27,161
+		Location: 27,193
 	Actor723: chain
 		Owner: GDI
-		Location: 27,162
+		Location: 27,194
 	Actor724: chain
 		Owner: GDI
-		Location: 28,162
+		Location: 28,194
 	Actor725: chain
 		Owner: GDI
-		Location: 29,162
+		Location: 29,194
 	Actor726: chain
 		Owner: GDI
-		Location: 30,162
+		Location: 30,194
 	Actor727: chain
 		Owner: GDI
-		Location: 30,161
+		Location: 30,193
 	Actor728: chain
 		Owner: GDI
-		Location: 30,160
+		Location: 30,192
 	Actor729: chain
 		Owner: GDI
-		Location: 30,159
+		Location: 30,191
 	Actor730: chain
 		Owner: GDI
-		Location: 30,158
+		Location: 30,190
 	Actor731: chain
 		Owner: GDI
-		Location: 29,158
-	Actor733: scol
-		Owner: MaleficScrin
-		Location: 14,28
-	Actor735: rea2
-		Owner: MaleficScrin
-		Location: 1,29
-	Actor736: rea2
-		Owner: MaleficScrin
-		Location: 1,32
-	Actor737: rea2
-		Owner: MaleficScrin
-		Location: 1,35
-	Actor738: wsph
-		Owner: MaleficScrin
-		Location: 7,30
-	Actor739: port
-		Owner: MaleficScrin
-		Location: 7,35
-	Actor740: ptur
-		Owner: MaleficScrin
-		Location: 14,31
-		TurretFacing: 176
-	Actor732: scol
-		Owner: MaleficScrin
-		Location: 9,42
-	Actor741: ptur
-		Owner: MaleficScrin
-		Location: 12,40
-		TurretFacing: 709
-	Actor734: scol
-		Owner: MaleficScrin
-		Location: 12,34
-	Actor742: shar
-		Owner: MaleficScrin
-		Location: 10,28
-	Actor743: shar
-		Owner: MaleficScrin
-		Location: 6,41
+		Location: 29,190
 	Actor744: split2
 		Owner: Neutral
-		Location: 77,46
-	Actor749: split2
-		Owner: Neutral
-		Location: 138,45
-	Actor767: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 12,36
-	Actor769: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 14,33
-	Actor770: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 9,33
-	Actor771: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 5,29
-	Actor772: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 5,33
-	Actor773: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 3,39
-	Actor774: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 5,37
-	Actor775: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 9,39
-	Actor777: stlk
-		Owner: MaleficScrin
-		SubCell: 3
-		Facing: 641
-		Location: 16,28
+		Location: 77,78
 	Actor778: n3
 		Owner: GDI
 		Facing: 384
-		Location: 118,119
+		Location: 118,151
 		SubCell: 3
 	Actor779: n3
 		Owner: GDI
 		Facing: 384
-		Location: 112,116
+		Location: 112,148
 		SubCell: 3
 	Actor780: n3
 		Owner: GDI
 		Facing: 384
-		Location: 108,124
+		Location: 108,156
 		SubCell: 3
 	Actor781: n3
 		Owner: GDI
 		Facing: 384
-		Location: 119,132
+		Location: 119,164
 		SubCell: 3
 	Actor782: n3
 		Owner: GDI
 		Facing: 384
-		Location: 105,130
+		Location: 105,162
 		SubCell: 3
 	Actor783: n3
 		Owner: GDI
 		Facing: 384
-		Location: 100,134
+		Location: 100,166
 		SubCell: 3
 	Actor788: n3
 		Owner: GDI
 		Facing: 384
-		Location: 96,128
+		Location: 96,160
 		SubCell: 3
 	Actor790: n3
 		Owner: GDI
 		Facing: 384
-		Location: 95,127
+		Location: 95,159
 		SubCell: 3
 	Actor791: n3
 		Owner: GDI
 		Facing: 384
-		Location: 94,119
+		Location: 94,151
 		SubCell: 3
 	Actor793: n3
 		Owner: GDI
-		Location: 79,101
+		Location: 79,133
 		SubCell: 3
 		Facing: 128
 	Actor794: n3
 		Owner: GDI
-		Location: 81,95
+		Location: 81,127
 		SubCell: 3
 		Facing: 0
 	Actor802: n3
 		Owner: GDI
-		Location: 98,95
+		Location: 98,127
 		SubCell: 3
 		Facing: 128
 	Actor803: n3
 		Owner: GDI
-		Location: 133,103
+		Location: 133,135
 		SubCell: 3
 		Facing: 0
 	Actor804: n3
 		Owner: GDI
-		Location: 145,101
+		Location: 145,133
 		SubCell: 3
 		Facing: 0
 	Actor805: n3
 		Owner: GDI
-		Location: 144,102
+		Location: 144,134
 		SubCell: 3
 		Facing: 0
 	Actor807: n3
 		Owner: GDI
-		Location: 144,95
+		Location: 144,127
 		SubCell: 3
 		Facing: 0
 	Actor808: n1
 		Owner: GDI
-		Location: 134,100
+		Location: 134,132
 		SubCell: 3
 		Facing: 0
 	Actor810: n1
 		Owner: GDI
-		Location: 132,100
+		Location: 132,132
 		SubCell: 3
 		Facing: 0
 	Actor811: n1
 		Owner: GDI
-		Location: 95,95
+		Location: 95,127
 		SubCell: 3
 		Facing: 0
 	Actor812: n1
 		Owner: GDI
-		Location: 83,93
+		Location: 83,125
 		SubCell: 3
 		Facing: 128
 	Actor813: n1
 		Owner: GDI
-		Location: 71,92
+		Location: 71,124
 		SubCell: 3
 		Facing: 0
 	Actor814: n1
 		Owner: GDI
-		Location: 74,91
+		Location: 74,123
 		SubCell: 3
 		Facing: 0
 	Actor815: n1
 		Owner: GDI
-		Location: 80,100
+		Location: 80,132
 		SubCell: 3
 		Facing: 128
 	Actor816: n1
 		Owner: GDI
 		Facing: 384
-		Location: 88,130
+		Location: 88,162
 		SubCell: 3
 	Actor817: n1
 		Owner: GDI
 		Facing: 384
-		Location: 92,135
+		Location: 92,167
 		SubCell: 3
 	Actor818: n1
 		Owner: GDI
 		Facing: 384
-		Location: 91,136
+		Location: 91,168
 		SubCell: 3
 	Actor820: n1
 		Owner: GDI
 		Facing: 384
-		Location: 86,130
+		Location: 86,162
 		SubCell: 3
 	Actor821: n1
 		Owner: GDI
 		Facing: 384
-		Location: 102,140
+		Location: 102,172
 		SubCell: 3
 	Actor822: n1
 		Owner: GDI
 		Facing: 384
-		Location: 103,142
+		Location: 103,174
 		SubCell: 3
 	Actor824: n1
 		Owner: GDI
 		Facing: 384
-		Location: 112,142
+		Location: 112,174
 		SubCell: 3
 	Actor825: n1
 		Owner: GDI
 		Facing: 384
-		Location: 113,141
+		Location: 113,173
 		SubCell: 3
 	Actor826: n1
 		Owner: GDI
 		Facing: 384
-		Location: 133,126
+		Location: 133,158
 		SubCell: 3
 	Actor830: n1
 		Owner: GDI
-		Location: 140,114
+		Location: 140,146
 		SubCell: 3
 		Facing: 0
 	Actor831: n1
 		Owner: GDI
-		Location: 143,112
+		Location: 143,144
 		SubCell: 3
 		Facing: 0
 	Actor834: n1
 		Owner: GDI
-		Location: 141,111
+		Location: 141,143
 		SubCell: 3
 		Facing: 0
 	Actor835: n1
 		Owner: GDI
-		Location: 142,111
+		Location: 142,143
 		SubCell: 3
 		Facing: 0
 	Actor836: n1
 		Owner: GDI
 		Facing: 384
-		Location: 18,165
+		Location: 18,197
 		SubCell: 3
 	Actor837: n1
 		Owner: GDI
 		Facing: 384
-		Location: 21,163
+		Location: 21,195
 		SubCell: 3
 	Actor838: n1
 		Owner: GDI
 		Facing: 384
-		Location: 23,151
+		Location: 23,183
 		SubCell: 3
 	Actor839: n1
 		Owner: GDI
 		Facing: 384
-		Location: 28,152
+		Location: 28,184
 		SubCell: 3
 	Actor840: n1
 		Owner: GDI
 		Facing: 384
-		Location: 14,156
+		Location: 14,188
 		SubCell: 3
 	Actor841: n1
 		Owner: GDI
 		Facing: 384
-		Location: 8,159
+		Location: 8,191
 		SubCell: 3
 	Actor842: n1
 		Owner: GDI
 		Facing: 384
-		Location: 9,159
+		Location: 9,191
 		SubCell: 3
 	Actor843: n1
 		Owner: GDI
 		Facing: 384
-		Location: 10,158
+		Location: 10,190
 		SubCell: 3
 	Actor844: n1
 		Owner: GDI
-		Location: 2,129
+		Location: 2,161
 		SubCell: 3
 		Facing: 0
 	Actor845: n1
 		Owner: GDI
-		Location: 4,130
+		Location: 4,162
 		SubCell: 3
 		Facing: 0
 	Actor846: n1
 		Owner: GDI
-		Location: 10,129
+		Location: 10,161
 		SubCell: 3
 		Facing: 128
 	Actor847: n2
 		Owner: GDI
-		Location: 62,176
+		Location: 62,208
 		SubCell: 3
 		Facing: 777
 	Actor848: n2
 		Owner: GDI
 		Facing: 384
-		Location: 70,171
+		Location: 70,203
 		SubCell: 3
 	Actor849: n2
 		Owner: GDI
 		Facing: 384
-		Location: 40,162
+		Location: 40,194
 		SubCell: 3
 	Actor850: n2
 		Owner: GDI
 		Facing: 384
-		Location: 51,151
+		Location: 51,183
 		SubCell: 3
 	Actor851: n2
 		Owner: GDI
 		Facing: 384
-		Location: 49,150
+		Location: 49,182
 		SubCell: 3
 	Actor852: n2
 		Owner: GDI
 		Facing: 384
-		Location: 50,184
+		Location: 50,216
 		SubCell: 3
 	Actor853: n2
 		Owner: GDI
 		Facing: 384
-		Location: 37,167
+		Location: 37,199
 		SubCell: 3
 	Actor854: n3
 		Owner: GDI
 		Facing: 384
-		Location: 40,171
+		Location: 40,203
 		SubCell: 3
 	Actor855: n3
 		Owner: GDI
 		Facing: 384
-		Location: 27,157
+		Location: 27,189
 		SubCell: 3
 	Actor856: n3
 		Owner: GDI
 		Facing: 384
-		Location: 38,160
+		Location: 38,192
 		SubCell: 3
 	Actor857: n3
 		Owner: GDI
 		Facing: 384
-		Location: 32,152
+		Location: 32,184
 		SubCell: 3
 	Actor858: n3
 		Owner: GDI
 		Facing: 384
-		Location: 15,159
+		Location: 15,191
 		SubCell: 3
 	Actor859: n3
 		Owner: GDI
 		Facing: 384
-		Location: 18,167
+		Location: 18,199
 		SubCell: 3
 	Actor860: n3
 		Owner: GDI
 		Facing: 384
-		Location: 23,173
+		Location: 23,205
 		SubCell: 3
 	Actor861: n3
 		Owner: GDI
 		Facing: 384
-		Location: 27,170
+		Location: 27,202
 		SubCell: 3
 	Actor862: n3
 		Owner: GDI
 		Facing: 384
-		Location: 67,174
+		Location: 67,206
 		SubCell: 3
 	Actor863: n3
 		Owner: GDI
 		Facing: 384
-		Location: 65,168
+		Location: 65,200
 		SubCell: 3
 	Actor864: n1
 		Owner: GDI
 		Facing: 384
-		Location: 65,170
+		Location: 65,202
 		SubCell: 3
 	Actor865: n1
 		Owner: GDI
 		Facing: 384
-		Location: 63,168
+		Location: 63,200
 		SubCell: 3
 	Actor866: n1
 		Owner: GDI
 		Facing: 384
-		Location: 70,166
+		Location: 70,198
 		SubCell: 3
 	Actor867: n1
 		Owner: GDI
-		Location: 74,167
+		Location: 74,199
 		SubCell: 3
 		Facing: 892
 	Actor868: n1
 		Owner: GDI
-		Location: 77,172
+		Location: 77,204
 		SubCell: 3
 		Facing: 892
 	Actor869: n1
 		Owner: GDI
 		Facing: 384
-		Location: 46,169
+		Location: 46,201
 		SubCell: 3
 	Actor870: n1
 		Owner: GDI
 		Facing: 384
-		Location: 50,151
+		Location: 50,183
 		SubCell: 3
 	Actor871: n1
 		Owner: GDI
 		Facing: 384
-		Location: 36,112
+		Location: 36,144
 		SubCell: 3
 	Actor872: n1
 		Owner: GDI
 		Facing: 384
-		Location: 36,112
+		Location: 36,144
 		SubCell: 1
 	Actor873: n1
 		Owner: GDI
 		Facing: 384
-		Location: 35,111
+		Location: 35,143
 		SubCell: 3
 	Actor874: n1
 		Owner: GDI
 		Facing: 384
-		Location: 38,115
+		Location: 38,147
 		SubCell: 3
 	Actor875: ztrp
 		Owner: GDI
 		Facing: 384
-		Location: 30,112
+		Location: 30,144
 		SubCell: 3
 	Actor876: ztrp
 		Owner: GDI
 		Facing: 384
-		Location: 35,113
+		Location: 35,145
 		SubCell: 3
 	Actor877: ztrp
 		Owner: GDI
-		Location: 25,126
+		Location: 25,158
 		SubCell: 3
 		Facing: 128
 	Actor878: ztrp
 		Owner: GDI
-		Location: 25,126
+		Location: 25,158
 		SubCell: 1
 		Facing: 128
 	Actor879: ztrp
 		Owner: GDI
-		Location: 30,122
+		Location: 30,154
 		SubCell: 3
 		Facing: 128
 	Actor881: ztrp
 		Owner: GDI
-		Location: 3,130
+		Location: 3,162
 		SubCell: 3
 		Facing: 0
 	Actor882: ztrp
 		Owner: GDI
-		Location: 11,130
+		Location: 11,162
 		SubCell: 3
 		Facing: 128
 	Actor884: ztrp
 		Owner: GDI
 		Facing: 384
-		Location: 22,163
+		Location: 22,195
 		SubCell: 3
 	Actor892: ztrp
 		Owner: GDI
 		Facing: 384
-		Location: 19,157
+		Location: 19,189
 		SubCell: 3
 	Actor893: ztrp
 		Owner: GDI
 		Facing: 384
-		Location: 40,154
+		Location: 40,186
 		SubCell: 3
 	Actor894: ztrp
 		Owner: GDI
-		Location: 47,173
+		Location: 47,205
 		SubCell: 3
 		Facing: 634
 	Actor895: ztrp
 		Owner: GDI
 		Facing: 384
-		Location: 66,168
+		Location: 66,200
 		SubCell: 3
 	Actor896: ztrp
 		Owner: GDI
 		Facing: 384
-		Location: 96,129
+		Location: 96,161
 		SubCell: 3
 	Actor898: ztrp
 		Owner: GDI
 		Facing: 384
-		Location: 124,121
+		Location: 124,153
 		SubCell: 3
 	Actor899: medi
 		Owner: GDI
-		Location: 80,101
+		Location: 80,133
 		SubCell: 3
 		Facing: 128
 	Actor900: medi
 		Owner: GDI
 		Facing: 384
-		Location: 97,128
+		Location: 97,160
 		SubCell: 3
 	Actor901: medi
 		Owner: GDI
 		Facing: 384
-		Location: 39,165
+		Location: 39,197
 		SubCell: 3
 	Actor902: medi
 		Owner: GDI
-		Location: 7,132
+		Location: 7,164
 		SubCell: 3
 		Facing: 0
 	Actor903: sbag
 		Owner: GDI
-		Location: 149,134
+		Location: 149,166
 	Actor904: sbag
 		Owner: GDI
-		Location: 149,133
+		Location: 149,165
 	Actor905: sbag
 		Owner: GDI
-		Location: 149,132
+		Location: 149,164
 	Actor906: sbag
 		Owner: GDI
-		Location: 149,131
+		Location: 149,163
 	Actor907: sbag
 		Owner: GDI
-		Location: 150,130
+		Location: 150,162
 	Actor908: sbag
 		Owner: GDI
-		Location: 150,129
+		Location: 150,161
 	Actor909: sbag
 		Owner: GDI
-		Location: 150,131
+		Location: 150,163
 	Actor910: sbag
 		Owner: GDI
-		Location: 151,129
+		Location: 151,161
 	Actor911: sbag
 		Owner: GDI
-		Location: 152,129
+		Location: 152,161
 	Actor912: sbag
 		Owner: GDI
-		Location: 153,129
+		Location: 153,161
 	Actor913: sbag
 		Owner: GDI
-		Location: 155,129
+		Location: 155,161
 	Actor914: sbag
 		Owner: GDI
-		Location: 154,129
+		Location: 154,161
 	Actor915: sbag
 		Owner: GDI
-		Location: 156,129
+		Location: 156,161
 	Actor916: sbag
 		Owner: GDI
-		Location: 156,128
+		Location: 156,160
 	Actor917: sbag
 		Owner: GDI
-		Location: 156,127
+		Location: 156,159
 	Actor918: sbag
 		Owner: GDI
-		Location: 158,127
+		Location: 158,159
 	Actor919: sbag
 		Owner: GDI
-		Location: 157,127
+		Location: 157,159
 	Actor920: sbag
 		Owner: GDI
-		Location: 159,127
+		Location: 159,159
 	Actor921: sbag
 		Owner: GDI
-		Location: 160,127
+		Location: 160,159
 	Actor922: sbag
 		Owner: GDI
-		Location: 160,128
+		Location: 160,160
 	Actor923: sbag
 		Owner: GDI
-		Location: 160,129
+		Location: 160,161
 	Actor924: sbag
 		Owner: GDI
-		Location: 160,130
+		Location: 160,162
 	Actor925: sbag
 		Owner: GDI
-		Location: 160,131
+		Location: 160,163
 	Actor926: sbag
 		Owner: GDI
-		Location: 160,132
+		Location: 160,164
 	Actor927: sbag
 		Owner: GDI
-		Location: 160,133
+		Location: 160,165
 	Actor930: sbag
 		Owner: GDI
-		Location: 148,134
+		Location: 148,166
 	Actor931: sbag
 		Owner: GDI
-		Location: 148,135
+		Location: 148,167
 	Actor932: sbag
 		Owner: GDI
-		Location: 147,135
+		Location: 147,167
 	Actor933: sbag
 		Owner: GDI
-		Location: 146,135
+		Location: 146,167
 	Actor934: sbag
 		Owner: GDI
-		Location: 146,136
+		Location: 146,168
 	Actor929: sbag
 		Owner: GDI
-		Location: 144,142
+		Location: 144,174
 	Actor935: sbag
 		Owner: GDI
-		Location: 144,143
+		Location: 144,175
 	Actor936: sbag
 		Owner: GDI
-		Location: 144,144
+		Location: 144,176
 	Actor937: sbag
 		Owner: GDI
-		Location: 145,144
+		Location: 145,176
 	Actor938: sbag
 		Owner: GDI
-		Location: 145,145
+		Location: 145,177
 	Actor939: sbag
 		Owner: GDI
-		Location: 145,146
+		Location: 145,178
 	Actor940: sbag
 		Owner: GDI
-		Location: 146,146
+		Location: 146,178
 	Actor941: sbag
 		Owner: GDI
-		Location: 147,146
+		Location: 147,178
 	Actor943: sbag
 		Owner: GDI
-		Location: 148,146
+		Location: 148,178
 	Actor944: sbag
 		Owner: GDI
-		Location: 149,146
+		Location: 149,178
 	Actor942: sbag
 		Owner: GDI
-		Location: 153,146
+		Location: 153,178
 	Actor945: sbag
 		Owner: GDI
-		Location: 152,146
+		Location: 152,178
 	Actor946: sbag
 		Owner: GDI
-		Location: 151,146
+		Location: 151,178
 	Actor947: sbag
 		Owner: GDI
-		Location: 150,146
+		Location: 150,178
 	Actor948: sbag
 		Owner: GDI
-		Location: 154,146
+		Location: 154,178
 	Actor949: sbag
 		Owner: GDI
-		Location: 155,146
+		Location: 155,178
 	Actor950: sbag
 		Owner: GDI
-		Location: 155,147
+		Location: 155,179
 	Actor951: sbag
 		Owner: GDI
-		Location: 157,147
+		Location: 157,179
 	Actor952: sbag
 		Owner: GDI
-		Location: 158,147
+		Location: 158,179
 	Actor953: sbag
 		Owner: GDI
-		Location: 156,147
+		Location: 156,179
 	Actor954: sbag
 		Owner: GDI
-		Location: 159,147
+		Location: 159,179
 	Actor955: sbag
 		Owner: GDI
-		Location: 160,147
+		Location: 160,179
 	Actor956: sbag
 		Owner: GDI
-		Location: 160,134
+		Location: 160,166
 	Actor957: sbag
 		Owner: GDI
-		Location: 160,135
+		Location: 160,167
 	Actor958: sbag
 		Owner: GDI
-		Location: 160,136
+		Location: 160,168
 	Actor960: sbag
 		Owner: GDI
-		Location: 160,143
+		Location: 160,175
 	Actor961: sbag
 		Owner: GDI
-		Location: 160,144
+		Location: 160,176
 	Actor962: sbag
 		Owner: GDI
-		Location: 160,145
+		Location: 160,177
 	Actor963: sbag
 		Owner: GDI
-		Location: 160,146
+		Location: 160,178
 	Actor928: rep
 		Owner: GDI
-		Location: 147,143
+		Location: 147,175
 	Actor959: nuk2
 		Owner: GDI
-		Location: 158,144
+		Location: 158,176
 	Actor964: nuk2
 		Owner: GDI
-		Location: 156,144
+		Location: 156,176
 	Actor965: afld.gdi
 		Owner: GDI
-		Location: 152,144
+		Location: 152,176
 	Actor967: atwr
 		Owner: GDI
-		Location: 147,136
+		Location: 147,168
 	Actor968: atwr
 		Owner: GDI
-		Location: 145,143
+		Location: 145,175
 	Actor969: gtwr
 		Owner: GDI
-		Location: 143,142
+		Location: 143,174
 	Actor970: gtwr
 		Owner: GDI
-		Location: 145,136
+		Location: 145,168
 	Actor972: cram
 		Owner: GDI
-		Location: 157,128
+		Location: 157,160
 	Actor973: cram
 		Owner: GDI
-		Location: 150,132
+		Location: 150,164
 	Actor966: hq
 		Owner: GDI
-		Location: 152,130
+		Location: 152,162
 	Actor974: hosp
 		Owner: GDI
-		Location: 152,134
+		Location: 152,166
 	Actor976: macs
 		Owner: GDI
-		Location: 156,134
+		Location: 156,166
 	Actor978: brl3
 		Owner: GDI
-		Location: 156,130
+		Location: 156,162
 	Actor979: barl
 		Owner: GDI
-		Location: 156,131
+		Location: 156,163
 	Actor980: brl3
 		Owner: GDI
-		Location: 159,128
+		Location: 159,160
 	Actor981: brl3
 		Owner: GDI
-		Location: 157,131
+		Location: 157,163
 	Actor982: barl
 		Owner: GDI
-		Location: 158,130
+		Location: 158,162
 	Actor984: jugg
 		Owner: GDI
-		Location: 149,135
+		Location: 149,167
 		Facing: 128
 	Actor985: msam
 		Owner: GDI
-		Location: 146,145
+		Location: 146,177
 		Facing: 128
 	Actor986: vulc.ai
 		Owner: GDI
-		Location: 145,134
+		Location: 145,166
 		Facing: 128
 	Actor987: vulc.ai
 		Owner: GDI
 		Facing: 384
-		Location: 158,132
+		Location: 158,164
 	Actor988: mtnk
 		Owner: GDI
-		Location: 141,138
+		Location: 141,170
 		Facing: 128
 	Actor989: mtnk
 		Owner: GDI
-		Location: 145,132
+		Location: 145,164
 		Facing: 128
 	Actor991: n1
 		Owner: GDI
 		Facing: 384
-		Location: 155,135
+		Location: 155,167
 		SubCell: 3
 	Actor993: n1
 		Owner: GDI
 		Facing: 384
-		Location: 158,136
+		Location: 158,168
 		SubCell: 3
 	Actor990: n1
 		Owner: GDI
 		Facing: 384
-		Location: 150,136
+		Location: 150,168
 		SubCell: 3
 	Actor994: n1
 		Owner: GDI
 		Facing: 384
-		Location: 157,143
+		Location: 157,175
 		SubCell: 3
 	Actor995: n2
 		Owner: GDI
-		Location: 141,141
+		Location: 141,173
 		SubCell: 3
 		Facing: 128
 	Actor999: n3
 		Owner: GDI
 		Facing: 384
-		Location: 150,133
+		Location: 150,165
 		SubCell: 3
 	Actor1002: n3
 		Owner: GDI
 		Facing: 384
-		Location: 159,133
+		Location: 159,165
 		SubCell: 3
 	Actor1003: e3r1
 		Owner: GDI
-		Location: 144,106
+		Location: 144,138
 		SubCell: 3
 		Facing: 384
 	Actor616: proc.scrin
 		Owner: ScrinRebels
-		Location: 89,11
+		Location: 89,43
 	Actor1005: gunw
 		Owner: ScrinRebels
-		Location: 96,12
+		Location: 96,44
 		Facing: 642
 	Actor1006: gunw
 		Owner: ScrinRebels
-		Location: 99,11
+		Location: 99,43
 		Facing: 642
 	Actor1007: gunw
 		Owner: ScrinRebels
-		Location: 101,8
+		Location: 101,40
 		Facing: 642
 	Actor1008: intl
 		Owner: ScrinRebels
-		Location: 96,9
+		Location: 96,41
 		Facing: 512
 	Actor1009: intl
 		Owner: ScrinRebels
-		Location: 98,7
+		Location: 98,39
 		Facing: 512
 	Actor1010: seek
 		Owner: ScrinRebels
-		Location: 100,13
+		Location: 100,45
 		Facing: 642
 	Actor1012: seek
 		Owner: ScrinRebels
-		Location: 102,11
+		Location: 102,43
 		Facing: 642
 	Actor1013: impl
 		Owner: ScrinRebels
-		Location: 100,6
+		Location: 100,38
 		SubCell: 3
 		Facing: 512
 	Actor1014: impl
 		Owner: ScrinRebels
-		Location: 92,9
+		Location: 92,41
 		SubCell: 3
 		Facing: 512
 	Actor1015: null
 		Owner: ScrinRebels
-		Location: 97,5
+		Location: 97,37
 		Facing: 512
 	Actor1017: s1
 		Owner: ScrinRebels
 		Facing: 384
-		Location: 87,10
+		Location: 87,42
 		SubCell: 3
 	Actor1018: s1
 		Owner: ScrinRebels
 		Facing: 384
-		Location: 85,9
+		Location: 85,41
 		SubCell: 3
 	Actor1019: s1
 		Owner: ScrinRebels
 		Facing: 384
-		Location: 84,8
+		Location: 84,40
 		SubCell: 3
 	Actor1023: s1
 		Owner: ScrinRebels
 		Facing: 384
-		Location: 84,8
+		Location: 84,40
 		SubCell: 1
 	Actor1028: s1
 		Owner: ScrinRebels
 		Facing: 384
-		Location: 87,10
+		Location: 87,42
 		SubCell: 1
 	Actor1029: s1
 		Owner: ScrinRebels
 		Facing: 384
-		Location: 85,9
+		Location: 85,41
 		SubCell: 1
 	Actor1030: s1
 		Owner: ScrinRebels
 		Facing: 384
-		Location: 86,11
+		Location: 86,43
 		SubCell: 3
 	Actor1031: s1
 		Owner: ScrinRebels
 		Facing: 384
-		Location: 86,11
+		Location: 86,43
 		SubCell: 1
 	Actor1032: s1
 		Owner: ScrinRebels
 		Facing: 384
-		Location: 89,9
+		Location: 89,41
 		SubCell: 3
 	Actor1033: s1
 		Owner: ScrinRebels
 		Facing: 384
-		Location: 89,9
+		Location: 89,41
 		SubCell: 1
 	Actor1034: s3
 		Owner: ScrinRebels
 		Facing: 384
-		Location: 90,7
+		Location: 90,39
 		SubCell: 3
 	Actor1035: s3
 		Owner: ScrinRebels
 		Facing: 384
-		Location: 90,7
+		Location: 90,39
 		SubCell: 1
 	Actor1036: s3
 		Owner: ScrinRebels
 		Facing: 384
-		Location: 86,6
+		Location: 86,38
 		SubCell: 3
 	Actor1037: s3
 		Owner: ScrinRebels
 		Facing: 384
-		Location: 86,6
+		Location: 86,38
 		SubCell: 1
 	Actor1038: scrinflora15
 		Owner: Neutral
-		Location: 105,30
+		Location: 105,62
 	Actor1040: scrinflora15
 		Owner: Neutral
-		Location: 29,59
+		Location: 29,91
 	Actor1039: scrinflora15
 		Owner: Neutral
-		Location: 147,89
+		Location: 147,121
 	Actor1043: scrinflora16
 		Owner: Neutral
-		Location: 82,86
+		Location: 82,118
 	GDITerritoryBottomRight: waypoint
 		Owner: Neutral
-		Location: 160,192
+		Location: 160,224
 	VoidspikeTarget1: waypoint
 		Owner: Neutral
-		Location: 88,18
-	VoidspikeTarget2: waypoint
-		Owner: Neutral
-		Location: 67,10
-	VoidspikeTarget3: waypoint
-		Owner: Neutral
-		Location: 83,35
+		Location: 88,50
 	VoidspikeTarget4: waypoint
 		Owner: Neutral
-		Location: 130,8
+		Location: 130,40
 	VoidspikeTarget5: waypoint
 		Owner: Neutral
-		Location: 119,30
-	VoidspikeTarget6: waypoint
-		Owner: Neutral
-		Location: 141,42
-	VoidspikeTarget7: waypoint
-		Owner: Neutral
-		Location: 73,46
-	VoidspikeTarget8: waypoint
-		Owner: Neutral
-		Location: 113,66
-	VoidspikeTarget9: waypoint
-		Owner: Neutral
-		Location: 151,65
-	VoidspikeTarget10: waypoint
-		Owner: Neutral
-		Location: 42,73
+		Location: 119,62
 	GDITerritoryTopLeft: waypoint
 		Owner: Neutral
-		Location: 1,90
+		Location: 1,122
 	EvacSpawn1: waypoint
 		Owner: Neutral
-		Location: 160,139
+		Location: 160,171
 	EvacSpawn2: waypoint
 		Owner: Neutral
-		Location: 85,192
+		Location: 85,224
 	InitialCamera1: camera
 		Owner: ScrinRebels
-		Location: 75,93
+		Location: 75,125
 	InitialCamera2: camera
 		Owner: ScrinRebels
-		Location: 138,96
+		Location: 138,128
 	InitialCamera3: camera
 		Owner: ScrinRebels
-		Location: 32,106
-	Actor658: stlk
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 18,23
-		SubCell: 3
-	Actor657: stlk
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 18,18
-		SubCell: 3
-	Actor1044: veng
-		Owner: MaleficScrin
-		Location: 16,22
-		Facing: 642
-	Actor656: stlk
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 14,22
-		SubCell: 3
-	Actor766: gunw
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 19,30
-	Actor1045: veng
-		Owner: MaleficScrin
-		Location: 16,30
-		Facing: 642
-	Actor776: stlk
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 10,30
-		SubCell: 3
-	Actor768: stlk
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 10,39
-		SubCell: 3
-	Actor762: dark
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 15,32
-	Actor764: dark
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 19,32
-	Actor763: dark
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 17,33
-	Actor765: gunw
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 16,34
-	Actor688: veng
-		Owner: MaleficScrin
-		Location: 20,8
-		Facing: 642
-	Actor645: dark
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 23,6
-	Actor644: dark
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 19,17
-	Actor652: stlk
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 17,15
-		SubCell: 3
-	Actor670: gunw
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 17,20
-	Actor673: gunw
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 7,10
-	Actor669: stlk
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 5,14
-		SubCell: 3
-	Actor648: dark
-		Owner: MaleficScrin
-		Facing: 641
-		Location: 23,8
-	MaleficWaypoint1: waypoint
-		Owner: Neutral
-		Location: 36,25
-	MaleficWaypoint2: waypoint
-		Owner: Neutral
-		Location: 30,44
-	MaleficWaypoint3: waypoint
-		Owner: Neutral
-		Location: 26,66
-	MaleficWaypoint4: waypoint
-		Owner: Neutral
-		Location: 68,26
+		Location: 32,138
 	MaleficWaypoint5: waypoint
 		Owner: Neutral
-		Location: 101,36
-	MaleficWaypoint6: waypoint
-		Owner: Neutral
-		Location: 115,72
+		Location: 101,68
 	PlayerStart: waypoint
 		Owner: Neutral
-		Location: 94,11
+		Location: 94,43
 	Gateway: wormholexxl
 		Owner: GDI
-		Location: 32,103
+		Location: 32,135
 	GatewayNerveCenter: nerv
 		Owner: GDI
-		Location: 69,163
+		Location: 69,195
 	EvacDest1: waypoint
 		Owner: Neutral
-		Location: 153,139
+		Location: 153,171
 	EvacDest2: waypoint
 		Owner: Neutral
-		Location: 85,185
+		Location: 85,217
 	WormholeSpawn1: waypoint
 		Owner: Neutral
-		Location: 27,105
+		Location: 27,137
 	WormholeSpawn2: waypoint
 		Owner: Neutral
-		Location: 31,110
+		Location: 31,142
 	WormholeSpawn3: waypoint
 		Owner: Neutral
-		Location: 37,108
+		Location: 37,140
 	InitialCamera4: camera
 		Owner: ScrinRebels
-		Location: 69,165
+		Location: 69,197
 	Actor1046: wchr
 		Owner: ScrinRebels
-		Location: 68,157
+		Location: 68,189
 		SubCell: 3
 		Stance: HoldFire
 		Facing: 654
 	Actor1047: wchr
 		Owner: ScrinRebels
-		Location: 158,150
+		Location: 158,182
 		SubCell: 3
 		Facing: 252
 		Stance: HoldFire
 	Actor1048: wchr
 		Owner: ScrinRebels
-		Location: 33,139
+		Location: 33,171
 		SubCell: 3
 		Facing: 384
 		Stance: HoldFire
+	Actor1052: nerv
+		Owner: MaleficScrin
+		Location: 9,7
+	Actor1057: stlk
+		Owner: MaleficScrin
+		SubCell: 3
+		Facing: 641
+		Location: 2,2
+	Actor1059: gunw
+		Owner: MaleficScrin
+		Location: 10,3
+		Facing: 641
+	Actor1064: scol
+		Owner: MaleficScrin
+		Location: 15,4
+	Actor1066: ptur
+		Owner: MaleficScrin
+		TurretFacing: 593
+		Location: 18,6
+	Actor1067: shar
+		Owner: MaleficScrin
+		Location: 13,3
+	Actor1068: dark
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 20,4
+	Actor1069: stlk
+		Owner: MaleficScrin
+		SubCell: 3
+		Facing: 641
+		Location: 21,6
+	Actor1070: stlk
+		Owner: MaleficScrin
+		SubCell: 3
+		Facing: 641
+		Location: 12,10
+	Actor1071: stlk
+		Owner: MaleficScrin
+		SubCell: 3
+		Facing: 641
+		Location: 11,2
+	Actor1072: gunw
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 18,4
+	Actor1083: stlk
+		Owner: MaleficScrin
+		SubCell: 3
+		Facing: 641
+		Location: 25,6
+	Actor1085: dark
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 23,6
+	Actor1086: dark
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 23,8
+	Actor1087: rea2
+		Owner: MaleficScrin
+		Location: 2,21
+	Actor1088: rea2
+		Owner: MaleficScrin
+		Location: 2,18
+	Actor1089: rea2
+		Owner: MaleficScrin
+		Location: 2,15
+	Actor1090: rea2
+		Owner: MaleficScrin
+		Location: 5,15
+	Actor1091: rea2
+		Owner: MaleficScrin
+		Location: 5,18
+	Actor1092: rea2
+		Owner: MaleficScrin
+		Location: 5,21
+	Actor1093: shar
+		Owner: MaleficScrin
+		Location: 10,18
+	Actor1097: gunw
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 9,19
+	Actor1099: scrinflora1
+		Owner: Neutral
+		Location: 12,18
+	Actor1100: scol
+		Owner: MaleficScrin
+		Location: 13,17
+	Actor1103: ptur
+		Owner: MaleficScrin
+		TurretFacing: 688
+		Location: 15,15
+	Actor1104: dark
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 17,16
+	Actor1105: dark
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 20,15
+	Actor1107: dark
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 17,19
+	Actor1108: stlk
+		Owner: MaleficScrin
+		SubCell: 3
+		Facing: 641
+		Location: 19,18
+	Actor1109: gunw
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 16,17
+	Actor1110: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		SubCell: 3
+		Location: 18,18
+	Actor1113: dark
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 19,17
+	Actor1114: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		SubCell: 3
+		Location: 17,15
+	Actor1116: shar
+		Owner: MaleficScrin
+		Location: 7,25
+	Actor1117: shar
+		Owner: MaleficScrin
+		Location: 10,23
+	Actor1130: stlk
+		Owner: MaleficScrin
+		SubCell: 3
+		Facing: 641
+		Location: 16,28
+	Actor1131: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		SubCell: 3
+		Location: 18,23
+	Actor1065: scol
+		Owner: MaleficScrin
+		Location: 19,2
+	Actor1062: wsph
+		Owner: MaleficScrin
+		Location: 26,9
+	Actor1120: wsph
+		Owner: MaleficScrin
+		Location: 28,4
+	Actor1138: port
+		Owner: MaleficScrin
+		Location: 24,14
+	Actor1051: port
+		Owner: MaleficScrin
+		Location: 31,10
+	Actor1073: veng
+		Owner: MaleficScrin
+		Facing: 642
+		Location: 35,10
+	Actor1133: veng
+		Owner: MaleficScrin
+		Facing: 642
+		Location: 20,21
+	Actor1127: scol
+		Owner: MaleficScrin
+		Location: 23,24
+	Actor1145: scol
+		Owner: MaleficScrin
+		Location: 34,19
+	Actor1118: rea2
+		Owner: MaleficScrin
+		Location: 30,1
+	Actor1119: rea2
+		Owner: MaleficScrin
+		Location: 27,1
+	Actor1082: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 32,4
+		SubCell: 3
+	Actor1080: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 33,5
+		SubCell: 3
+	Actor1137: rea2
+		Owner: MaleficScrin
+		Location: 24,1
+	Actor1084: gunw
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 26,5
+	Actor1102: scol
+		Owner: MaleficScrin
+		Location: 37,9
+	Actor1101: scol
+		Owner: MaleficScrin
+		Location: 35,14
+	Actor1111: veng
+		Owner: MaleficScrin
+		Facing: 642
+		Location: 28,16
+	Actor1063: scol
+		Owner: MaleficScrin
+		Location: 28,20
+	Actor1144: ptur
+		Owner: MaleficScrin
+		TurretFacing: 709
+		Location: 38,12
+	Actor1128: ptur
+		Owner: MaleficScrin
+		Location: 37,19
+		TurretFacing: 682
+	Actor1121: shar
+		Owner: MaleficScrin
+		TurretFacing: 192
+		Location: 19,27
+	Actor1124: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 26,22
+		SubCell: 3
+	Actor1140: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 21,24
+		SubCell: 3
+	Actor1139: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 26,18
+		SubCell: 3
+	Actor1146: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 25,21
+		SubCell: 3
+	Actor1136: dark
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 27,21
+	Actor1135: dark
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 31,18
+	Actor1134: dark
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 33,14
+	Actor1132: gunw
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 24,19
+	Actor1150: gunw
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 32,8
+	Actor1142: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 22,17
+		SubCell: 3
+	Actor1122: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 12,13
+		SubCell: 3
+	Actor1141: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 27,7
+		SubCell: 3
+	Actor1044: rea2
+		Owner: MaleficScrin
+		Location: 21,1
+	Actor1045: rea2
+		Owner: MaleficScrin
+		Location: 14,23
+	Actor1115: gunw
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 18,25
+	Actor1112: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 13,22
+		SubCell: 3
+	Actor1143: rea2
+		Owner: MaleficScrin
+		Location: 16,20
+	Actor1096: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 13,6
+		SubCell: 3
+	Actor1126: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 28,13
+		SubCell: 3
+	Actor1075: dark
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 31,15
+	Actor1129: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 29,15
+		SubCell: 3
+	Actor1125: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 25,13
+		SubCell: 3
+	Actor1054: srep
+		Owner: MaleficScrin
+		Location: 21,9
+	Actor1053: grav
+		Owner: MaleficScrin
+		Location: 16,10
+	Actor1094: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 8,13
+		SubCell: 3
+	Actor1098: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 11,14
+		SubCell: 3
+	Actor1060: gunw
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 9,11
+	Actor1061: gunw
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 12,8
+	Actor1056: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 10,6
+		SubCell: 3
+	Actor1055: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 6,4
+		SubCell: 3
+	Actor1154: rea2
+		Owner: MaleficScrin
+		Location: 5,11
+	Actor1156: rea2
+		Owner: MaleficScrin
+		Location: 5,8
+	Actor1158: rea2
+		Owner: MaleficScrin
+		Location: 2,8
+	Actor1095: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 1,12
+		SubCell: 3
+	Actor1159: rea2
+		Owner: MaleficScrin
+		Location: 2,11
+	Actor1160: rea2
+		Owner: MaleficScrin
+		Location: 2,5
+	Actor1161: rea2
+		Owner: MaleficScrin
+		Location: 5,5
+	Actor1049: sfac
+		Owner: MaleficScrin
+		Location: 3,2
+	Actor1050: scrt
+		Owner: MaleficScrin
+		Location: 7,2
+	Actor1058: stlk
+		Owner: MaleficScrin
+		Facing: 641
+		Location: 15,8
+		SubCell: 3
+	MaleficWaypoint2: waypoint
+		Owner: Neutral
+		Location: 66,20
+	MaleficWaypoint1: waypoint
+		Owner: Neutral
+		Location: 32,34
+	MaleficWaypoint3: waypoint
+		Owner: Neutral
+		Location: 31,76
+	Actor1162: scrinflora4
+		Owner: Neutral
+		Location: 79,16
+	Actor1163: scrinflora8
+		Owner: Neutral
+		Location: 71,12
+	Actor1166: scrinflora7
+		Owner: Neutral
+		Location: 92,13
+	Actor1167: scrinflora15
+		Owner: Neutral
+		Location: 122,9
+	Actor1168: scrinflora16
+		Owner: Neutral
+		Location: 107,8
+	Actor1170: scrinflora1
+		Owner: Neutral
+		Location: 69,25
+	Actor1171: scrinflora13
+		Owner: Neutral
+		Location: 109,10
+	Actor1172: scrinflora3
+		Owner: Neutral
+		Location: 119,5
+	Actor1174: scrinflora1
+		Owner: Neutral
+		Location: 121,2
+	Actor1175: scrinflora14
+		Owner: Neutral
+		Location: 121,4
+	Actor1177: scrinflora12
+		Owner: Neutral
+		Location: 124,8
+	Actor1176: scrinflora13
+		Owner: Neutral
+		Location: 121,6
+	Actor1173: scrinflora2
+		Owner: Neutral
+		Location: 120,3
+	Actor1169: scrinflora11
+		Owner: Neutral
+		Location: 122,7
+	Actor1178: scrinflora5
+		Owner: Neutral
+		Location: 91,11
+	Actor1179: scrinflora1
+		Owner: Neutral
+		Location: 80,14
+	Actor1180: scrinflora2
+		Owner: Neutral
+		Location: 88,18
+	Actor1181: scrinflora2
+		Owner: Neutral
+		Location: 120,31
+	Actor1182: scrinflora12
+		Owner: Neutral
+		Location: 131,28
+	Actor1185: scrinflora13
+		Owner: Neutral
+		Location: 120,28
+	Actor1186: scrinflora8
+		Owner: Neutral
+		Location: 141,25
+	Actor1187: scrinflora1
+		Owner: Neutral
+		Location: 113,30
+	Actor1188: scrinflora2
+		Owner: Neutral
+		Location: 101,20
+	Actor1189: scrinflora13
+		Owner: Neutral
+		Location: 102,26
+	Actor1190: scrinflora1
+		Owner: Neutral
+		Location: 100,21
+	Actor1191: scrinflora14
+		Owner: Neutral
+		Location: 102,19
+	Actor1192: split2
+		Owner: Neutral
+		Location: 79,7
+	Actor1193: split2
+		Owner: Neutral
+		Location: 65,42
+	Actor1194: split2
+		Owner: Neutral
+		Location: 144,8
+	Actor1195: split2
+		Owner: Neutral
+		Location: 118,16
+	Actor1196: split2
+		Owner: Neutral
+		Location: 23,64
+	Actor1197: shar
+		Owner: MaleficScrin
+		Location: 30,8
+	Actor1198: shar
+		Owner: MaleficScrin
+		Location: 21,18
+	MaleficWaypoint6: waypoint
+		Owner: Neutral
+		Location: 99,33
+	MaleficWaypoint7: waypoint
+		Owner: Neutral
+		Location: 138,61
+	MaleficWaypoint4: waypoint
+		Owner: Neutral
+		Location: 119,18
+	VoidspikeTarget6: waypoint
+		Owner: Neutral
+		Location: 120,16
+	VoidspikeTarget8: waypoint
+		Owner: Neutral
+		Location: 148,97
+	VoidspikeTarget9: waypoint
+		Owner: Neutral
+		Location: 139,76
+	VoidspikeTarget7: waypoint
+		Owner: Neutral
+		Location: 113,98
+	VoidspikeTarget10: waypoint
+		Owner: Neutral
+		Location: 144,10
+	VoidspikeTarget3: waypoint
+		Owner: Neutral
+		Location: 79,73
+	VoidspikeTarget2: waypoint
+		Owner: Neutral
+		Location: 67,45
+	VoidspikeTarget11: waypoint
+		Owner: Neutral
+		Location: 42,105
+	VoidspikeTarget12: waypoint
+		Owner: Neutral
+		Location: 21,63
+	VoidspikeTarget13: waypoint
+		Owner: Neutral
+		Location: 77,6
+	Actor1199: stlk
+		Owner: MaleficScrin
+		Location: 79,66
+		SubCell: 3
+		Facing: 913
+	Actor1203: stlk
+		Owner: MaleficScrin
+		Location: 83,67
+		SubCell: 3
+		Facing: 0
+	Actor1204: stlk
+		Owner: MaleficScrin
+		Facing: 384
+		Location: 121,65
+		SubCell: 3
+	Actor1205: stlk
+		Owner: MaleficScrin
+		Facing: 384
+		Location: 123,61
+		SubCell: 3
+	Actor1206: stlk
+		Owner: MaleficScrin
+		Facing: 384
+		Location: 140,68
+		SubCell: 3
+	Actor1207: stlk
+		Owner: MaleficScrin
+		Facing: 384
+		Location: 144,74
+		SubCell: 3
+	Actor1208: stlk
+		Owner: MaleficScrin
+		Facing: 384
+		Location: 60,74
+		SubCell: 3
+	Actor1214: stlk
+		Owner: MaleficScrin
+		Location: 44,102
+		SubCell: 3
+		Facing: 384
+	Actor1218: stlk
+		Owner: MaleficScrin
+		Location: 47,105
+		SubCell: 3
+		Facing: 641
+	Actor1224: stlk
+		Owner: MaleficScrin
+		Facing: 384
+		Location: 121,13
+		SubCell: 3
+	Actor1225: stlk
+		Owner: MaleficScrin
+		Facing: 384
+		Location: 123,14
+		SubCell: 3
+	Actor1226: stlk
+		Owner: MaleficScrin
+		Facing: 384
+		Location: 148,9
+		SubCell: 3
+	Actor1227: stlk
+		Owner: MaleficScrin
+		Facing: 384
+		Location: 146,6
+		SubCell: 3
+	Actor1230: stlk
+		Owner: MaleficScrin
+		Facing: 384
+		Location: 85,7
+		SubCell: 3
+	Actor1231: stlk
+		Owner: MaleficScrin
+		Location: 74,14
+		SubCell: 3
+		Facing: 613
+	Actor1232: dark
+		Owner: MaleficScrin
+		Location: 27,67
+		Facing: 627
+	Actor1233: gunw
+		Owner: MaleficScrin
+		Facing: 384
+		Location: 29,63
+	Actor1234: gunw
+		Owner: MaleficScrin
+		Facing: 384
+		Location: 142,71
+	Actor1235: gunw
+		Owner: MaleficScrin
+		Location: 113,102
+		Facing: 0
+	Actor1236: stlk
+		Owner: MaleficScrin
+		Location: 110,103
+		SubCell: 3
+		Facing: 0
+	Actor1237: stlk
+		Owner: MaleficScrin
+		Location: 118,101
+		SubCell: 3
+		Facing: 0
+	Actor1238: stlk
+		Owner: MaleficScrin
+		Facing: 0
+		Location: 115,101
+		SubCell: 3
+	Actor1239: dark
+		Owner: MaleficScrin
+		Facing: 384
+		Location: 131,36
+	Actor1240: stlk
+		Owner: MaleficScrin
+		Facing: 384
+		Location: 134,39
+		SubCell: 3
+	Actor1241: stlk
+		Owner: MaleficScrin
+		Facing: 384
+		Location: 134,35
+		SubCell: 3
+	Actor1242: s1
+		Owner: MaleficScrin
+		Facing: 384
+		Location: 129,36
+		SubCell: 3
+	Actor1243: gunw
+		Owner: MaleficScrin
+		Facing: 384
+		Location: 147,8
+	Actor1246: tpod
+		Owner: MaleficScrin
+		Location: 46,102
+		Facing: 784
+	Actor1247: stlk
+		Owner: MaleficScrin
+		Location: 65,52
+		SubCell: 3
+		Facing: 859
+	Actor1248: stlk
+		Owner: MaleficScrin
+		Location: 62,48
+		SubCell: 3
+		Facing: 757
+	Actor1249: s1
+		Owner: MaleficScrin
+		Location: 30,10
+		SubCell: 3
+		Facing: 640
+	Actor1250: s1
+		Owner: MaleficScrin
+		Location: 30,10
+		SubCell: 1
+		Facing: 640
+	Actor1251: s1
+		Owner: MaleficScrin
+		Location: 30,10
+		SubCell: 2
+		Facing: 640
+	Actor1252: s1
+		Owner: MaleficScrin
+		SubCell: 3
+		Facing: 640
+		Location: 20,7
+	Actor1253: s1
+		Owner: MaleficScrin
+		SubCell: 1
+		Facing: 640
+		Location: 20,7
+	Actor1254: s1
+		Owner: MaleficScrin
+		SubCell: 2
+		Facing: 640
+		Location: 20,7
+	Actor1257: s1
+		Owner: MaleficScrin
+		SubCell: 2
+		Facing: 640
+		Location: 19,13
+	Actor1258: s1
+		Owner: MaleficScrin
+		SubCell: 2
+		Facing: 640
+		Location: 9,15
+	Actor1256: s1
+		Owner: MaleficScrin
+		SubCell: 1
+		Facing: 640
+		Location: 13,9
+	Actor1260: s1
+		Owner: MaleficScrin
+		SubCell: 2
+		Facing: 640
+		Location: 21,5
+	Actor1255: s1
+		Owner: MaleficScrin
+		SubCell: 3
+		Facing: 640
+		Location: 25,5
+	Actor1261: s1
+		Owner: MaleficScrin
+		SubCell: 1
+		Facing: 640
+		Location: 27,13
+	Actor1263: s1
+		Owner: MaleficScrin
+		SubCell: 2
+		Facing: 640
+		Location: 21,16
+	Actor1259: s1
+		Owner: MaleficScrin
+		SubCell: 3
+		Facing: 640
+		Location: 20,14
+	Actor1264: s1
+		Owner: MaleficScrin
+		SubCell: 2
+		Facing: 640
+		Location: 20,14
+	MaleficWaypoint8: waypoint
+		Owner: Neutral
+		Location: 72,112
+	MaleficWaypoint9: waypoint
+		Owner: Neutral
+		Location: 79,190
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, exodus-rules.yaml
 

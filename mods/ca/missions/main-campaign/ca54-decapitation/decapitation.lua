@@ -163,6 +163,7 @@ SetupPlayers = function()
 	Scrin = Player.GetPlayer("Scrin")
     Nod1 = Player.GetPlayer("Nod1")
 	Nod2 = Player.GetPlayer("Nod2")
+	Nod3 = Player.GetPlayer("Nod3")
 	Neutral = Player.GetPlayer("Neutral")
 	MissionPlayers = { ScrinRebels }
 	MissionEnemies = { Scrin }
@@ -180,11 +181,10 @@ WorldLoaded = function()
 	RemoveActorsBasedOnDifficultyTags()
 	InitScrin()
 	InitNod()
-
-    ObjectiveDestroyVanquisher = ScrinRebels.AddObjective("Destroy the Overlord's flagship.")
+	SetupLightning()
 
     Trigger.OnKilled(Vanquisher, function(self, killer)
-        if not ScrinRebels.IsObjectiveCompleted(ObjectiveDestroyVanquisher) then
+        if ObjectiveDestroyVanquisher ~= nil and not ScrinRebels.IsObjectiveCompleted(ObjectiveDestroyVanquisher) then
             ScrinRebels.MarkCompletedObjective(ObjectiveDestroyVanquisher)
         end
     end)
@@ -221,13 +221,14 @@ OncePerSecondChecks = function()
 		Scrin.Resources = Scrin.ResourceCapacity - 500
 		Nod1.Resources = Nod1.ResourceCapacity - 500
 		Nod2.Resources = Nod2.ResourceCapacity - 500
+		Nod3.Resources = Nod3.ResourceCapacity - 500
 
 		if MissionPlayersHaveNoRequiredUnits() then
-			if not ScrinRebels.IsObjectiveCompleted(ObjectiveDestroyVanquisher) then
-				ScrinRebels.MarkFailedObjective(ObjectiveDestroyVanquisher)
-			end
 			if not ScrinRebels.IsObjectiveCompleted(ObjectiveDestroySpires) then
 				ScrinRebels.MarkFailedObjective(ObjectiveDestroySpires)
+			end
+			if ObjectiveDestroyVanquisher ~= nil and not ScrinRebels.IsObjectiveCompleted(ObjectiveDestroyVanquisher) then
+				ScrinRebels.MarkFailedObjective(ObjectiveDestroyVanquisher)
 			end
 		end
 	end
@@ -288,7 +289,7 @@ InitScrin = function()
 				if healthPercentage < 50 then
 					local destinationLoc = CPos.New(spire.Location.X + 1, spire.Location.Y)
 					TeleportVanquisher(destinationLoc)
-					NextSpireSummonAvailable = DateTime.GameTime + DateTime.Seconds(60)
+					NextSpireSummonAvailable = DateTime.GameTime + DateTime.Seconds(120)
 					Vanquisher.Hunt()
 					MediaCA.PlaySound(MissionDir .. "/vanquisher.aud", 1.5)
 
@@ -297,6 +298,13 @@ InitScrin = function()
 							FirstTauntUsed = true
 							Media.DisplayMessage("Traitors, meet your end!", "Scrin Overlord", HSLColor.FromHex("7700FF"))
 							MediaCA.PlaySound(MissionDir .. "/ovld_traitors.aud", 2)
+
+							Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(5)), function()
+								ObjectiveDestroyVanquisher = ScrinRebels.AddObjective("Destroy the Overlord's flagship.")
+								Notification("The Overlord is protecting the spires with his flagship, the Vanquisher. In turn, the spires are acting as shield batteries and recall nodes for the battleship. Destroy all the spires, then you will be able to eliminate the Vanquisher.")
+								MediaCA.PlaySound(MissionDir .. "/s_vanquisher.aud", 2)
+							end)
+
 						elseif not SecondTauntUsed then
 							SecondTauntUsed = true
 							Media.DisplayMessage("Feel my wrath!", "Scrin Overlord", HSLColor.FromHex("7700FF"))
@@ -311,7 +319,6 @@ end
 
 InitNod = function()
 	Utils.Do({ InitialBike1, InitialBike2, InitialBike3, InitialBike4 }, function(bike)
-		bike.AttackMove(PlayerStart.Location)
 		bike.Hunt()
 	end)
 
@@ -354,4 +361,28 @@ TeleportVanquisher = function(destinationLoc)
 		Vanquisher.Stop()
 		Vanquisher.Teleport(destinationLoc)
 	end
+end
+
+SetupLightning = function()
+	local nextStrikeDelay = Utils.RandomInteger(DateTime.Seconds(4), DateTime.Seconds(30))
+	Trigger.AfterDelay(nextStrikeDelay, function()
+		LightningStrike()
+		SetupLightning()
+	end)
+end
+
+LightningStrike = function()
+	local duration = Utils.RandomInteger(5, 8)
+	local thunderDelay = Utils.RandomInteger(5, 65)
+	local soundNumber
+	Lighting.Flash("LightningStrike", duration)
+
+	repeat
+		soundNumber = Utils.RandomInteger(1, 7)
+	until(soundNumber ~= LastSoundNumber)
+	LastSoundNumber = soundNumber
+
+	Trigger.AfterDelay(thunderDelay, function()
+		Media.PlaySound("thunder" .. soundNumber .. ".aud")
+	end)
 end

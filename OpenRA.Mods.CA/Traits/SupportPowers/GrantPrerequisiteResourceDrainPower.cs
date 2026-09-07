@@ -11,6 +11,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Primitives;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.CA.Traits
@@ -30,6 +31,24 @@ namespace OpenRA.Mods.CA.Traits
 
 		[Desc("Label to display over the support power icon and in its tooltip while the power is active.")]
 		public readonly string ActiveText = "ACTIVE";
+
+		[Desc("Label to display over the support power icon and in its tooltip while the power is inactive.")]
+		public readonly string InactiveText = "READY";
+
+		[Desc("Color of the support power icon text while the power is active.")]
+		public readonly Color ActiveIconOverlayColor = Color.Lime;
+
+		[Desc("Color of the support power icon text while the power is inactive.")]
+		public readonly Color InactiveIconOverlayColor = Color.White;
+
+		[Desc("Color of the border drawn around the support power icon while the power is active.")]
+		public readonly Color ActiveIconBorderColor = Color.Lime;
+
+		[Desc("Width of the border drawn around the support power icon while the power is active. Set to 0 to disable.")]
+		public readonly int ActiveIconBorderWidth = 1;
+
+		[Desc("Number of ticks between active-status color changes. Set to 0 to disable flashing.")]
+		public readonly int ActiveStatusBorderInterval = 0;
 
 		public override object Create(ActorInitializer init) { return new GrantPrerequisiteResourceDrainPower(init.Self, this); }
 
@@ -85,11 +104,19 @@ namespace OpenRA.Mods.CA.Traits
 
 		IEnumerable<string> ITechTreePrerequisite.ProvidesPrerequisites => active ? prerequisites : Enumerable.Empty<string>();
 
-		public class ResourceDrainSupportPowerInstance : SupportPowerInstance
+		public class ResourceDrainSupportPowerInstance : SupportPowerInstance, IActiveStateSupportPowerInstance
 		{
 			readonly GrantPrerequisiteResourceDrainPowerInfo info;
 			readonly PlayerResources playerResources;
 			bool active;
+
+			public bool IsActive => active;
+			public bool IsActiveStatusBorderVisible => !active || info.ActiveStatusBorderInterval == 0
+				|| Manager.Self.World.WorldTick / info.ActiveStatusBorderInterval % 2 == 0;
+			public Color ActiveIconOverlayColor => info.ActiveIconOverlayColor;
+			public Color InactiveIconOverlayColor => info.InactiveIconOverlayColor;
+			public Color ActiveIconBorderColor => info.ActiveIconBorderColor;
+			public int ActiveIconBorderWidth => info.ActiveIconBorderWidth;
 
 			public ResourceDrainSupportPowerInstance(string key, GrantPrerequisiteResourceDrainPowerInfo info, SupportPowerManager manager)
 				: base(key, info, manager)
@@ -144,12 +171,12 @@ namespace OpenRA.Mods.CA.Traits
 
 			public override string IconOverlayTextOverride()
 			{
-				return Active && active ? info.ActiveText : null;
+				return Active ? active ? info.ActiveText : info.InactiveText : null;
 			}
 
 			public override string TooltipTimeTextOverride()
 			{
-				return Active && active ? info.ActiveText : null;
+				return Active ? active ? info.ActiveText : info.InactiveText : null;
 			}
 		}
 	}

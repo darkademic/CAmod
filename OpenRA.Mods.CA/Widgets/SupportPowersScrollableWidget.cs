@@ -246,6 +246,16 @@ namespace OpenRA.Mods.CA.Widgets
 
 				clock.Tick();
 				WidgetUtils.DrawSpriteCentered(clock.Image, p.IconClockPalette, p.Pos + iconOffset);
+
+				if (sp is IActiveStateSupportPowerInstance activeStatePower && activeStatePower.IsActive && activeStatePower.ActiveIconBorderWidth > 0)
+				{
+					var borderTopLeft = p.Pos + IconSpriteOffset;
+					var borderBottomRight = borderTopLeft + IconSize.ToFloat2() - new float2(activeStatePower.ActiveIconBorderWidth, activeStatePower.ActiveIconBorderWidth);
+					var borderColor = activeStatePower.IsActiveStatusBorderVisible
+						? activeStatePower.ActiveIconBorderColor : Color.Transparent;
+					Game.Renderer.RgbaColorRenderer.DrawRect(borderTopLeft, borderBottomRight,
+						activeStatePower.ActiveIconBorderWidth, borderColor);
+				}
 			}
 
 			Game.Renderer.DisableAntialiasingFilter();
@@ -265,9 +275,12 @@ namespace OpenRA.Mods.CA.Widgets
 				if (customText != null)
 				{
 					var customOffset = iconOffset - overlayFont.Measure(customText) / 2;
+					var customColor = p.Power is IActiveStateSupportPowerInstance activeStatePower
+						? activeStatePower.IsActive ? activeStatePower.ActiveIconOverlayColor : activeStatePower.InactiveIconOverlayColor
+						: Color.White;
 					overlayFont.DrawTextWithContrast(customText,
 						p.Pos + customOffset,
-						Color.White, Color.Black, 1);
+						customColor, Color.Black, 1);
 				}
 				else if (p.Power.Ready)
 				{

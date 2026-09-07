@@ -1,6 +1,6 @@
 icon:
-	chargegateway:
-		Filename: ca|missions/main-campaign/ca50-preservation/chargegatewayicon.shp
+	chargegateways:
+		Filename: ca|missions/main-campaign/ca50-preservation/chargegatewaysicon.shp
 
 wormholeunstable:
 	Inherits: wormhole

@@ -23,19 +23,20 @@ World:
 Player:
 	PlayerResources:
 		DefaultCash: 6000
-	GrantPrerequisiteResourceDrainPower@ChargeGateway:
-		OrderName: chargegateway
-		Icon: chargegateway
+	GrantPrerequisiteResourceDrainPower@ChargeGateways:
+		OrderName: chargegateways
+		Icon: chargegateways
 		IconPalette: chromes
 		ChargeInterval: 1
 		ResourceDrain: 4
-		Prerequisite: gatewaycharging
-		Name: Charge Gateway
+		Prerequisite: gatewayscharging
+		Name: Charge Gateways
 		AllowMultiple: false
 		Description: \nToggleable: Spends resources over time to charge the 3 gateways.
 		LaunchSound: gatewaycharge.aud
 		InsufficientPowerSpeechNotification: InsufficientPower
 		SupportPowerPaletteOrder: 0
+		ActiveStatusBorderInterval: 10
 
 WORMHOLEUNSTABLE:
 	Tooltip:
@@ -56,13 +57,13 @@ WORMHOLEUNSTABLE:
 		ChargeRate: 4
 		DischargeRate: 0
 		DischargeDelay: 1500
-		ChargingColor: ff00ff
-		DischargingColor: 660066
+		ChargingColor: 00ff00
+		DischargingColor: 00cc00
 	ExternalCondition@Charge:
 		Condition: charge
 	GrantConditionOnPrerequisite@Charge:
 		Condition: charge
-		Prerequisites: gatewaycharging
+		Prerequisites: gatewayscharging
 	TransformOnCondition@Charged:
 		IntoActor: wormholexl
 		RequiresCondition: charged

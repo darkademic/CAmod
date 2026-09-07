@@ -195,41 +195,25 @@ InitUSSRAttacks = function()
 end
 
 UpdateGatewayStatus = function()
-    local westCharge = 100
-    if not WestGateway.IsDead then
-        westCharge = WestGateway.ChargePercentage
-    end
-
-    local middleCharge = 100
+    local chargePerc = 100
     if not MiddleGateway.IsDead then
-        middleCharge = MiddleGateway.ChargePercentage
+        chargePerc = MiddleGateway.ChargePercentage
     end
 
-    local eastCharge = 100
-    if not EastGateway.IsDead then
-        eastCharge = EastGateway.ChargePercentage
-    end
+	local isCharging = ScrinRebels.HasPrerequisites({ "gatewayscharging" })
+	local text = "Gateway charge progress: " .. chargePerc .. "%"
+	local textColor = HSLColor.Yellow
 
-    UserInterface.SetMissionText("Gateway progress: Western: " .. westCharge .. "% -- Central: " .. middleCharge .. "% -- Eastern: " .. eastCharge .. "%", HSLColor.Yellow)
-
-	if not WestGatewayCharged and westCharge == 100 then
-		WestGatewayCharged = true
-		Notification("Western gateway fully charged.")
-		MediaCA.PlaySound(MissionDir .. "/s_westcharged.aud", 2)
+	if isCharging then
+		text = text .. " (Charging)"
+		textColor = HSLColor.Lime
+	else
+		text = text .. " (Not Charging)"
 	end
 
-	if not MiddleGatewayCharged and middleCharge == 100 then
-		MiddleGatewayCharged = true
-		Notification("Central gateway fully charged.")
-		MediaCA.PlaySound(MissionDir .. "/s_centralcharged.aud", 2)
-	end
-	if not EastGatewayCharged and eastCharge == 100 then
-		EastGatewayCharged = true
-		Notification("Eastern gateway fully charged.")
-		MediaCA.PlaySound(MissionDir .. "/s_eastcharged.aud", 2)
-	end
+    UserInterface.SetMissionText(text, textColor)
 
-    if westCharge == 100 and middleCharge == 100 and eastCharge == 100 then
+    if middleCharge == 100 then
         ScrinRebels.MarkCompletedObjective(ObjectiveProtectTemples)
     end
 end

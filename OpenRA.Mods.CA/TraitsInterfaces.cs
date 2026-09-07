@@ -85,6 +85,16 @@ namespace OpenRA.Mods.CA.Traits
 
 	public interface INotifyPrismCharging { void Charging(Actor self, in Target target); }
 
+	public interface IActiveStateSupportPowerInstance
+	{
+		bool IsActive { get; }
+		bool IsActiveStatusBorderVisible { get; }
+		Color ActiveIconOverlayColor { get; }
+		Color InactiveIconOverlayColor { get; }
+		Color ActiveIconBorderColor { get; }
+		int ActiveIconBorderWidth { get; }
+	}
+
 	[RequireExplicitImplementation]
 	public interface INotifyEnterTeleporter { void Charging(Actor self, Actor teleporter); }
 	public interface INotifyExitTeleporter { void Arrived(Actor self); }

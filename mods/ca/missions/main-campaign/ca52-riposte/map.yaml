@@ -44,8 +44,8 @@ Players:
 		Enemies: HawthorneGDI, Creeps
 	PlayerReference@Nod:
 		Name: Nod
-		Faction: nod
 		Bot: dormant
+		Faction: nod
 		Color: FE1100
 		Allies: ScrinRebels
 		Enemies: HawthorneGDI, Creeps
@@ -288,18 +288,9 @@ Actors:
 	Actor87: brik
 		Owner: HawthorneGDI
 		Location: 10,1
-	Actor88: brik
-		Owner: HawthorneGDI
-		Location: 12,1
-	Actor89: brik
-		Owner: HawthorneGDI
-		Location: 14,1
 	Actor90: brik
 		Owner: HawthorneGDI
 		Location: 13,1
-	Actor91: brik
-		Owner: HawthorneGDI
-		Location: 16,1
 	Actor92: brik
 		Owner: HawthorneGDI
 		Location: 15,1
@@ -867,9 +858,6 @@ Actors:
 	Actor282: brik
 		Owner: HawthorneGDI
 		Location: 160,113
-	Actor283: brik
-		Owner: HawthorneGDI
-		Location: 160,112
 	Actor284: brik
 		Owner: HawthorneGDI
 		Location: 160,114
@@ -1556,8 +1544,8 @@ Actors:
 		Location: 118,29
 	Actor534: smcv
 		Owner: ScrinRebels
-		Facing: 384
 		Location: 20,156
+		Facing: 384
 	Actor535: null
 		Owner: ScrinRebels
 		Location: 23,158
@@ -1949,6 +1937,7 @@ Actors:
 	Actor657: atwr
 		Owner: HawthorneGDI
 		Location: 63,112
+		ScriptTags: HardAndAbove
 	Actor661: atwr
 		Owner: HawthorneGDI
 		Location: 65,109
@@ -2179,28 +2168,32 @@ Actors:
 		Facing: 640
 	Actor738: mtnk
 		Owner: HawthorneGDI
-		Facing: 384
 		Location: 62,137
+		Facing: 384
+		ScriptTags: HardAndAbove
 	Actor739: mtnk
 		Owner: HawthorneGDI
-		Facing: 384
 		Location: 65,138
+		Facing: 384
 	Actor740: mtnk
 		Owner: HawthorneGDI
 		Facing: 384
 		Location: 16,112
 	Actor741: mtnk
 		Owner: HawthorneGDI
-		Facing: 384
 		Location: 18,114
+		Facing: 384
+		ScriptTags: HardAndAbove
 	Actor742: msam
 		Owner: HawthorneGDI
-		Facing: 384
 		Location: 65,133
+		Facing: 384
+		ScriptTags: HardAndAbove
 	Actor743: msam
 		Owner: HawthorneGDI
-		Facing: 384
 		Location: 19,109
+		Facing: 384
+		ScriptTags: HardAndAbove
 	Actor744: wolv
 		Owner: HawthorneGDI
 		Facing: 384
@@ -2698,11 +2691,14 @@ Actors:
 		Location: 7,11
 		SubCell: 3
 		Facing: 512
+		ScriptTags: VeryHardAndAbove
 	Actor849: rmbo
 		Owner: HawthorneGDI
-		Facing: 384
 		Location: 151,122
 		SubCell: 3
+		TurretFacing: 0
+		Facing: 384
+		ScriptTags: VeryHardAndAbove
 	Actor850: n1
 		Owner: HawthorneGDI
 		Location: 5,25
@@ -2811,12 +2807,12 @@ Actors:
 		Location: 136,40
 	Actor874: avtr
 		Owner: Nod
-		Facing: 384
 		Location: 134,26
+		Facing: 384
 	Actor875: avtr
 		Owner: Nod
-		Facing: 384
 		Location: 127,22
+		Facing: 384
 	Actor876: avtr
 		Owner: Nod
 		Facing: 384
@@ -3320,6 +3316,7 @@ Actors:
 		Owner: HawthorneGDI
 		Location: 30,49
 		Facing: 512
+		ScriptTags: HardAndAbove
 	Actor980: htnk
 		Owner: HawthorneGDI
 		Location: 33,52
@@ -3328,6 +3325,7 @@ Actors:
 		Owner: HawthorneGDI
 		Location: 100,98
 		Facing: 0
+		ScriptTags: HardAndAbove
 	Actor982: htnk
 		Owner: HawthorneGDI
 		Location: 100,95
@@ -3473,10 +3471,12 @@ Actors:
 		Owner: HawthorneGDI
 		Location: 86,63
 		Facing: 896
+		ScriptTags: HardAndAbove
 	Actor1003: jugg
 		Owner: HawthorneGDI
 		Location: 88,64
 		Facing: 896
+		ScriptTags: HardAndAbove
 	Actor1004: disr
 		Owner: HawthorneGDI
 		Facing: 896
@@ -3491,8 +3491,9 @@ Actors:
 		Location: 60,32
 	Actor1005: htnk
 		Owner: HawthorneGDI
-		Facing: 768
 		Location: 57,32
+		Facing: 768
+		ScriptTags: HardAndAbove
 	Actor1008: ztrp
 		Owner: HawthorneGDI
 		SubCell: 3
@@ -3529,6 +3530,114 @@ Actors:
 	NodWaypoint2: waypoint
 		Owner: Neutral
 		Location: 128,67
+	Actor1023: waypoint
+		Owner: Neutral
+		Location: 12,1
+	Actor1024: waypoint
+		Owner: Neutral
+		Location: 14,1
+	Actor1025: waypoint
+		Owner: Neutral
+		Location: 16,1
+	WestWolvSpawn1: brik
+		Owner: HawthorneGDI
+		Location: 12,1
+	WestWolvSpawn2: brik
+		Owner: HawthorneGDI
+		Location: 14,1
+	WestWolvSpawn3: brik
+		Owner: HawthorneGDI
+		Location: 16,1
+	WestWolvDest1: waypoint
+		Owner: Neutral
+		Location: 12,91
+	WestWolvDest2: waypoint
+		Owner: Neutral
+		Location: 14,91
+	WestWolvDest3: waypoint
+		Owner: Neutral
+		Location: 16,91
+	EastWolvSpawn1: waypoint
+		Owner: Neutral
+		Location: 160,152
+	EastWolvSpawn2: waypoint
+		Owner: Neutral
+		Location: 160,154
+	EastWolvSpawn3: waypoint
+		Owner: Neutral
+		Location: 160,156
+	EastWolvDest1: waypoint
+		Owner: Neutral
+		Location: 73,152
+	EastWolvDest2: waypoint
+		Owner: Neutral
+		Location: 73,154
+	EastWolvDest3: waypoint
+		Owner: Neutral
+		Location: 73,156
+	Actor1014: waypoint
+		Owner: Neutral
+		Location: 160,112
+	CommandoDropSpawn: brik
+		Owner: HawthorneGDI
+		Location: 160,112
+	CommandoDropDest: waypoint
+		Owner: Neutral
+		Location: 75,89
+	Actor1015: camera
+		Owner: HawthorneGDI
+		Location: 95,20
+	Actor1016: camera
+		Owner: HawthorneGDI
+		Location: 104,33
+	Actor1017: camera
+		Owner: HawthorneGDI
+		Location: 132,47
+	Actor1018: camera
+		Owner: HawthorneGDI
+		Location: 143,47
+	Actor1019: camera
+		Owner: HawthorneGDI
+		Location: 48,21
+	Actor1020: camera
+		Owner: HawthorneGDI
+		Location: 33,35
+	Actor1021: camera
+		Owner: HawthorneGDI
+		Location: 139,95
+	Actor1022: camera
+		Owner: HawthorneGDI
+		Location: 115,114
+	Actor1026: camera
+		Owner: HawthorneGDI
+		Location: 65,130
+	Actor1027: camera
+		Owner: HawthorneGDI
+		Location: 14,110
+	Actor1028: camera
+		Owner: HawthorneGDI
+		Location: 47,113
+	Actor1029: camera
+		Owner: HawthorneGDI
+		Location: 75,114
+	Actor1030: camera
+		Owner: HawthorneGDI
+		Location: 52,82
+	Actor1031: camera
+		Owner: HawthorneGDI
+		Location: 78,74
+	Actor1032: camera
+		Owner: HawthorneGDI
+		Location: 93,142
+	Actor1033: camera
+		Owner: HawthorneGDI
+		Location: 123,148
+	Actor1034: camera
+		Owner: HawthorneGDI
+		Location: 85,49
+	Actor1035: camera
+		Owner: HawthorneGDI
+		Location: 24,61
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, riposte-rules.yaml
 

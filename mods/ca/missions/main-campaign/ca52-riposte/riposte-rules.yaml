@@ -15,11 +15,59 @@ Player:
 colonyspike.provider:
 	-UpdatesSupportPowerTimer:
 
+# Enable subfaction specific tech
+
+STCR:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.scrin
+
+LCHR:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.scrin
+
+OBLT:
+	Buildable:
+		Prerequisites: scrt, ~vehicles.scrin
+
+ATMZ:
+	Buildable:
+		Prerequisites: scrt, ~vehicles.scrin
+
+ENRV:
+	Buildable:
+		Prerequisites: scrt, ~aircraft.scrin
+
+coalescence.upgrade:
+	Buildable:
+		Prerequisites: scrt
+
 # Disable powers for AI
 
 ^ClusterMissilePower:
 	NukePower@Cluster:
 		Prerequisites: ~!botplayer
+
+# AI powers
+
+UPGC:
+	ExternalCondition@Bombardment:
+		Condition: tower-rocket
+
+^FirestormPower:
+	AttackOrderPowerCA@ROCKET:
+		Prerequisites: ~ai.minor.superweapons.enabled
+
+^XODropPower:
+	ParatroopersPowerCA@xodrop:
+		Prerequisites: ~ai.supportpowers.enabled
+
+# Misc
+
+OCAR.WOLV:
+	Inherits: OCAR
+	-Buildable:
+	Carryall:
+		InitialActor: wolv
 
 # Hunt() requires only 1 AttackBase
 DEVA:

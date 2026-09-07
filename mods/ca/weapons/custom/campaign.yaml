@@ -159,7 +159,7 @@ VoidEngineRift:
 
 Dominate:
 	Range: 7c0
-	ReloadDelay: 35
+	ReloadDelay: 50
 	Projectile: InstantHit
 	ValidTargets: MindControllable
 	InvalidTargets: MindControlImmune
@@ -197,11 +197,28 @@ DominationWave:
 		ValidTargets: MindControllable
 		InvalidTargets: MindControlImmune
 
-DominationWaveTargeter:
-	ReloadDelay: 750
-	Range: 5c0
-	ValidTargets: Infantry, Vehicle
-	Projectile: InstantHit
+DominatorAA:
+	ReloadDelay: 50
+	ValidTargets: Air, AirSmall
+	Range: 7c512
+	Report: iyurat1a.aud
+	Projectile: LaserZapCA
+		Width: 56
+		Color: FF00FF80
+		ZOffset: 512
+		SecondaryBeam: true
+		SecondaryBeamWidth: 90
+		SecondaryBeamZOffset: 511
+		SecondaryBeamColor: FF00FF40
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: Air, AirSmall
+		Spread: 42
+		Damage: 10000
+		DamageTypes: FireDeath
+	Warhead@3Eff: CreateEffect
+		Explosions: small_air_explosion
+		Inaccuracy: 256
+		ValidTargets: Air, AirSmall
 
 VanquisherBolts:
 	Range: 16c0

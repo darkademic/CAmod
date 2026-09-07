@@ -2339,26 +2339,11 @@ Actors:
 		Facing: 384
 		Location: 148,104
 		SubCell: 3
-	Actor734: e1
-		Owner: USSR
-		Location: 115,132
-		SubCell: 3
-		Facing: 768
 	Actor735: e1
 		Owner: USSR
 		SubCell: 3
 		Facing: 768
 		Location: 116,131
-	Actor733: e1
-		Owner: USSR
-		SubCell: 3
-		Facing: 768
-		Location: 114,134
-	Actor732: e1
-		Owner: USSR
-		SubCell: 3
-		Facing: 768
-		Location: 113,138
 	Actor736: e1
 		Owner: USSR
 		SubCell: 3
@@ -2576,10 +2561,6 @@ Actors:
 		Owner: Nod
 		Location: 60,124
 		Facing: 896
-	Actor780: ltnk
-		Owner: Nod
-		Location: 113,132
-		Facing: 769
 	Actor781: apoc
 		Owner: USSR
 		Facing: 384
@@ -2858,6 +2839,67 @@ Actors:
 	PlayerStart: waypoint
 		Owner: Neutral
 		Location: 134,137
+	Actor826: camera
+		Owner: USSR
+		Location: 113,130
+	Actor827: camera
+		Owner: USSR
+		Location: 142,99
+	Actor828: camera
+		Owner: USSR
+		Location: 171,97
+	Actor829: camera
+		Owner: USSR
+		Location: 128,87
+	Actor830: camera
+		Owner: USSR
+		Location: 91,88
+	Actor831: camera
+		Owner: USSR
+		Location: 97,70
+	Actor832: camera
+		Owner: USSR
+		Location: 90,110
+	Actor833: camera
+		Owner: USSR
+		Location: 48,95
+	Actor834: camera
+		Owner: USSR
+		Location: 56,122
+	Actor835: camera
+		Owner: USSR
+		Location: 21,132
+	Actor836: camera
+		Owner: USSR
+		Location: 37,74
+	Actor837: camera
+		Owner: USSR
+		Location: 139,70
+	Actor838: camera
+		Owner: USSR
+		Location: 76,38
+	Actor839: camera
+		Owner: USSR
+		Location: 28,40
+	Actor780: ltnk
+		Owner: Nod
+		Facing: 769
+		Location: 116,133
+	Actor732: e1
+		Owner: USSR
+		Facing: 768
+		Location: 114,139
+		SubCell: 3
+	Actor733: e1
+		Owner: USSR
+		Facing: 768
+		Location: 115,135
+		SubCell: 3
+	Actor734: e1
+		Owner: USSR
+		Facing: 768
+		Location: 116,132
+		SubCell: 3
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, defiance-rules.yaml
 

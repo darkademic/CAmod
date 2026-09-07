@@ -1610,9 +1610,11 @@ Actors:
 	Actor502: tsla
 		Owner: USSR
 		Location: 96,122
+		ScriptTags: NormalAndAbove
 	Actor503: tsla
 		Owner: USSR
 		Location: 107,120
+		ScriptTags: NormalAndAbove
 	Actor504: sam
 		Owner: USSR
 		Location: 104,126
@@ -1877,9 +1879,11 @@ Actors:
 	Actor591: scol
 		Owner: Scrin
 		Location: 63,106
+		ScriptTags: NormalAndAbove
 	Actor592: tsla
 		Owner: USSR
 		Location: 85,111
+		ScriptTags: NormalAndAbove
 	Actor593: tpwr
 		Owner: USSR
 		Location: 90,168
@@ -1931,9 +1935,11 @@ Actors:
 	Actor609: scol
 		Owner: Scrin
 		Location: 34,164
+		ScriptTags: VeryHardAndAbove
 	Actor610: scol
 		Owner: Scrin
 		Location: 36,164
+		ScriptTags: VeryHardAndAbove
 	Actor611: scol
 		Owner: Scrin
 		Location: 11,162
@@ -3036,6 +3042,7 @@ Actors:
 		Owner: Scrin
 		Location: 26,163
 		Facing: 913
+		ScriptTags: VeryHardAndAbove
 	Actor977: pac
 		Owner: Scrin
 		Location: 19,162
@@ -3052,6 +3059,7 @@ Actors:
 		Owner: Scrin
 		Location: 48,171
 		Facing: 941
+		ScriptTags: HardAndAbove
 	Actor981: pac
 		Owner: Scrin
 		Location: 26,177
@@ -3104,6 +3112,7 @@ Actors:
 		Owner: Scrin
 		Location: 51,166
 		Facing: 988
+		ScriptTags: VeryHardAndAbove
 	Actor994: tpod
 		Owner: Scrin
 		Location: 67,165
@@ -3438,6 +3447,7 @@ Actors:
 		Owner: Scrin
 		Location: 52,122
 		Facing: 0
+		ScriptTags: HardAndAbove
 	Actor1067: s4
 		Owner: Scrin
 		Location: 29,120
@@ -3510,14 +3520,17 @@ Actors:
 		Owner: USSR
 		Location: 109,154
 		Facing: 109
+		ScriptTags: VeryHardAndAbove
 	Actor1079: apoc
 		Owner: USSR
 		Location: 134,154
 		Facing: 0
+		ScriptTags: VeryHardAndAbove
 	Actor1080: ovld
 		Owner: USSR
 		Location: 87,158
 		Facing: 0
+		ScriptTags: HardAndAbove
 	Actor1081: 4tnk
 		Owner: USSR
 		Location: 112,153
@@ -3530,6 +3543,7 @@ Actors:
 		Owner: USSR
 		Location: 99,161
 		Facing: 0
+		ScriptTags: HardAndAbove
 	Actor1084: v2rl
 		Owner: USSR
 		Location: 104,158
@@ -3570,6 +3584,7 @@ Actors:
 		Owner: USSR
 		Location: 99,141
 		Facing: 0
+		ScriptTags: HardAndAbove
 	Actor1094: 3tnk.rhino
 		Owner: USSR
 		Location: 101,142
@@ -3586,6 +3601,7 @@ Actors:
 		Owner: USSR
 		Location: 101,116
 		Facing: 259
+		ScriptTags: HardAndAbove
 	Actor1098: btr.ai
 		Owner: USSR
 		Location: 120,121
@@ -3869,11 +3885,13 @@ Actors:
 		Location: 16,176
 		SubCell: 3
 		Facing: 0
+		ScriptTags: VeryHardAndAbove
 	Actor1168: bori
 		Owner: USSR
 		Location: 131,174
 		SubCell: 3
 		Facing: 0
+		ScriptTags: VeryHardAndAbove
 	Actor1169: e1
 		Owner: USSR
 		Location: 100,115
@@ -4101,10 +4119,6 @@ Actors:
 		Owner: Scrin
 		Facing: 384
 		Location: 46,15
-	Actor1218: intl
-		Owner: Scrin
-		Location: 19,31
-		Facing: 0
 	Actor1219: gunw
 		Owner: Scrin
 		Location: 21,33
@@ -4309,14 +4323,11 @@ Actors:
 		Owner: Scrin
 		Facing: 384
 		Location: 78,14
-	Actor1262: rtpd
-		Owner: Scrin
-		Location: 81,34
-		Facing: 0
 	Actor1263: oblt
 		Owner: Scrin
 		Location: 45,83
 		Facing: 0
+		ScriptTags: HardAndAbove
 	Actor1264: mrdr
 		Owner: Scrin
 		Location: 43,82
@@ -4533,6 +4544,7 @@ Actors:
 		Owner: USSR
 		Location: 110,81
 		Facing: 109
+		ScriptTags: NormalAndAbove
 	Actor1313: 4tnk
 		Owner: USSR
 		Location: 115,78
@@ -4541,11 +4553,7 @@ Actors:
 		Owner: USSR
 		Location: 114,80
 		Facing: 109
-	Actor1315: nukc
-		Owner: USSR
-		Location: 108,105
-		Facing: 384
-		DeployState: Deployed
+		ScriptTags: HardAndAbove
 	Actor1316: ttra
 		Owner: USSR
 		Facing: 384
@@ -4590,10 +4598,6 @@ Actors:
 		Owner: USSR
 		Facing: 384
 		Location: 117,7
-	Actor1327: apoc
-		Owner: USSR
-		Location: 123,90
-		Facing: 109
 	Actor1328: btr.ai
 		Owner: USSR
 		Location: 125,88
@@ -4606,6 +4610,7 @@ Actors:
 		Owner: USSR
 		Location: 98,97
 		Facing: 900
+		ScriptTags: HardAndAbove
 	Actor1331: e1
 		Owner: USSR
 		Location: 99,98
@@ -4803,9 +4808,10 @@ Actors:
 		SubCell: 3
 	Actor1370: shok
 		Owner: USSR
-		Facing: 384
 		Location: 118,6
 		SubCell: 3
+		Facing: 384
+		ScriptTags: HardAndAbove
 	Actor1371: shok
 		Owner: USSR
 		Facing: 384
@@ -4970,6 +4976,7 @@ Actors:
 		Owner: Scrin
 		Location: 25,68
 		Facing: 757
+		ScriptTags: HardAndAbove
 	Actor1404: evis
 		Owner: Scrin
 		Facing: 384
@@ -4990,6 +4997,7 @@ Actors:
 		Location: 27,64
 		SubCell: 3
 		Facing: 384
+		ScriptTags: HardAndAbove
 	Actor1408: s1
 		Owner: Scrin
 		Location: 15,63
@@ -5100,6 +5108,7 @@ Actors:
 		Owner: Scrin
 		Facing: 0
 		Location: 64,146
+		ScriptTags: HardAndAbove
 	Actor1431: s4
 		Owner: Scrin
 		SubCell: 3
@@ -5416,10 +5425,73 @@ Actors:
 		Owner: ScrinRebelsInactive
 		Health: 28
 		Location: 20,72
+	Actor1455: camera
+		Owner: Scrin
+		Location: 74,80
+	Actor1456: camera
+		Owner: Scrin
+		Location: 92,81
+	Actor1457: camera
+		Owner: Scrin
+		Location: 21,67
+	Actor1458: camera
+		Owner: Scrin
+		Location: 9,86
+	Actor1459: camera
+		Owner: Scrin
+		Location: 115,61
+	Actor1460: camera
+		Owner: Scrin
+		Location: 130,58
+	Actor1461: camera
+		Owner: Scrin
+		Location: 62,52
+	Actor1462: camera
+		Owner: Scrin
+		Location: 84,5
+	Actor1463: camera
+		Owner: Scrin
+		Location: 138,5
+	Actor1464: camera
+		Owner: Scrin
+		Location: 130,34
+	Actor1465: camera
+		Owner: Scrin
+		Location: 5,28
+	Actor1466: camera
+		Owner: Scrin
+		Location: 47,13
+	Actor1467: camera
+		Owner: Scrin
+		Location: 57,106
+	Actor1468: camera
+		Owner: Scrin
+		Location: 87,109
+	HardAndAbove: intl
+		Owner: Scrin
+		Location: 19,31
+		Facing: 0
+	Actor1262: rtpd
+		Owner: Scrin
+		Location: 81,34
+		Facing: 0
+		ScriptTags: HardAndAbove
+	VeryHardAndAbove: apoc
+		Owner: USSR
+		Location: 123,90
+		Facing: 109
+		ScriptTags: HardAndAbove
+	Actor1315: nukc
+		Owner: USSR
+		Location: 108,105
+		DeployState: Deployed
+		Facing: 384
+		ScriptTags: HardAndAbove
 	Actor1277: ruin
 		Owner: Scrin
 		Location: 14,83
 		Facing: 531
+		ScriptTags: HardAndAbove
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, extraction-rules.yaml
 

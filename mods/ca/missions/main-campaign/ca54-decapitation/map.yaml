@@ -223,6 +223,7 @@ Actors:
 		Owner: Scrin
 		Location: 89,183
 		Facing: 768
+		ScriptTags: VeryHardAndAbove
 	Actor36: corr
 		Owner: Scrin
 		Location: 71,165
@@ -3686,8 +3687,9 @@ Actors:
 		Location: 10,81
 	Actor1179: ruin
 		Owner: Scrin
-		Facing: 384
 		Location: 98,91
+		Facing: 384
+		ScriptTags: VeryHardAndAbove
 	Actor1180: ruin
 		Owner: Scrin
 		Facing: 384
@@ -3698,20 +3700,23 @@ Actors:
 		Location: 101,71
 	Actor1182: ruin
 		Owner: Scrin
-		Facing: 384
 		Location: 135,128
+		Facing: 384
+		ScriptTags: VeryHardAndAbove
 	Actor1183: ruin
 		Owner: Scrin
-		Facing: 384
 		Location: 151,137
+		ScriptTags: VeryHardAndAbove
+		Facing: 384
 	Actor1184: rtpd
 		Owner: Scrin
-		Facing: 384
 		Location: 138,137
+		Facing: 384
 	Actor1185: rtpd
 		Owner: Scrin
 		Location: 146,141
 		Facing: 384
+		ScriptTags: HardAndAbove
 	Actor1186: rtpd
 		Owner: Scrin
 		Location: 128,124
@@ -3744,30 +3749,36 @@ Actors:
 		Owner: Scrin
 		Location: 7,15
 		Facing: 512
+		ScriptTags: VeryHardAndAbove
 	Actor1194: pac
 		Owner: Scrin
-		Facing: 512
 		Location: 15,7
+		Facing: 512
 	Actor1195: pac
 		Owner: Scrin
-		Facing: 512
 		Location: 20,14
+		Facing: 512
+		ScriptTags: VeryHardAndAbove
 	Actor1196: pac
 		Owner: Scrin
-		Facing: 512
 		Location: 28,8
+		Facing: 512
+		ScriptTags: VeryHardAndAbove
 	Actor1197: pac
 		Owner: Scrin
-		Facing: 512
 		Location: 31,16
+		Facing: 512
+		ScriptTags: HardAndAbove
 	Actor1198: pac
 		Owner: Scrin
-		Facing: 512
 		Location: 38,8
+		Facing: 512
+		ScriptTags: HardAndAbove
 	Actor1199: rtpd
 		Owner: Scrin
 		Location: 5,25
 		Facing: 512
+		ScriptTags: HardAndAbove
 	Actor1200: rtpd
 		Owner: Scrin
 		Location: 11,27
@@ -3776,6 +3787,7 @@ Actors:
 		Owner: Scrin
 		Location: 48,20
 		Facing: 640
+		ScriptTags: HardAndAbove
 	Actor1202: rtpd
 		Owner: Scrin
 		Location: 52,15
@@ -3798,12 +3810,14 @@ Actors:
 		TurretFacing: 512
 	Actor1207: ruin
 		Owner: Scrin
-		Facing: 384
 		Location: 25,24
+		Facing: 384
+		ScriptTags: VeryHardAndAbove
 	Actor1208: ruin
 		Owner: Scrin
 		Location: 26,24
 		Facing: 384
+		ScriptTags: VeryHardAndAbove
 	Actor1209: ruin
 		Owner: Scrin
 		Location: 42,20
@@ -4352,8 +4366,9 @@ Actors:
 		Facing: 128
 	Actor1331: rtpd
 		Owner: Scrin
-		Facing: 384
 		Location: 137,61
+		Facing: 384
+		ScriptTags: HardAndAbove
 	Actor1332: rtpd
 		Owner: Scrin
 		Location: 133,54
@@ -4730,16 +4745,19 @@ Actors:
 		Facing: 384
 	Actor1417: pac
 		Owner: Scrin
-		Facing: 384
 		Location: 151,62
+		Facing: 384
+		ScriptTags: VeryHardAndAbove
 	Actor1418: pac
 		Owner: Scrin
-		Facing: 384
 		Location: 156,50
+		Facing: 384
+		ScriptTags: HardAndAbove
 	Actor1419: pac
 		Owner: Scrin
-		Facing: 384
 		Location: 143,44
+		Facing: 384
+		ScriptTags: HardAndAbove
 	Actor1420: split2
 		Owner: Neutral
 		Location: 37,45
@@ -4930,6 +4948,7 @@ Actors:
 		Owner: Scrin
 		Location: 61,175
 		Facing: 256
+		ScriptTags: HardAndAbove
 	Nod2Waypoint1: waypoint
 		Owner: Neutral
 		Location: 150,127

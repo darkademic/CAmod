@@ -178,9 +178,13 @@ OncePerSecondChecks = function()
 
 		if not PlayerHasBuildings(Scrin) or not PlayerHasBuildings(USSR) then
 			ScrinRebels.MarkCompletedObjective(ObjectiveDestroyEitherBase)
+			ScrinRebels.MarkCompletedObjective(ObjectiveProtectTemple)
 		end
 
 		if MissionPlayersHaveNoRequiredUnits() then
+			if ObjectivePrepare ~= nil and not ScrinRebels.IsObjectiveCompleted(ObjectivePrepare) then
+				ScrinRebels.MarkFailedObjective(ObjectivePrepare)
+			end
 			if ObjectiveDestroyEitherBase ~= nil and not ScrinRebels.IsObjectiveCompleted(ObjectiveDestroyEitherBase) then
 				ScrinRebels.MarkFailedObjective(ObjectiveDestroyEitherBase)
 			end

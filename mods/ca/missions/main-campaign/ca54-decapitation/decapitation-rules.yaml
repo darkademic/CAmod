@@ -42,6 +42,65 @@ recall.effect:
 	PeriodicExplosion:
 		Weapon: FleetRecallEffect
 
+# Enable subfaction specific tech
+
+STCR:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.scrin
+
+LCHR:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.scrin
+
+OBLT:
+	Buildable:
+		Prerequisites: scrt, ~vehicles.scrin
+
+ATMZ:
+	Buildable:
+		Prerequisites: scrt, ~vehicles.scrin
+
+ENRV:
+	Buildable:
+		Prerequisites: scrt, ~aircraft.scrin
+
+coalescence.upgrade:
+	Buildable:
+		Prerequisites: scrt
+
+# Difficulty modifiers
+
+OSPI:
+	FirepowerMultiplier@NORMAL:
+		Modifier: 75
+		RequiresCondition: difficulty-normal
+	FirepowerMultiplier@EASY:
+		Modifier: 50
+		RequiresCondition: difficulty-easy
+	DamageMultiplier@NORMAL:
+		Modifier: 125
+		RequiresCondition: difficulty-normal
+	DamageMultiplier@EASY:
+		Modifier: 150
+		RequiresCondition: difficulty-easy
+	DamageTypeDamageMultiplier@A2GPROTECTION:
+		Modifier: 75
+		RequiresCondition: !difficulty-easy
+
+VANQ:
+	FirepowerMultiplier@NORMAL:
+		Modifier: 75
+		RequiresCondition: difficulty-normal
+	FirepowerMultiplier@EASY:
+		Modifier: 50
+		RequiresCondition: difficulty-easy
+	DamageMultiplier@NORMAL:
+		Modifier: 125
+		RequiresCondition: difficulty-normal
+	DamageMultiplier@EASY:
+		Modifier: 150
+		RequiresCondition: difficulty-easy
+
 # Hunt() requires only 1 AttackBase
 DEVA:
 	-AttackFrontalCharged:

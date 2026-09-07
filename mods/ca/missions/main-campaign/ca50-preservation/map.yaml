@@ -5066,24 +5066,28 @@ Actors:
 		Location: 196,36
 	Actor545: grad
 		Owner: USSR
-		Facing: 384
 		Location: 147,52
+		Facing: 384
 	Actor546: grad
 		Owner: USSR
-		Facing: 384
 		Location: 152,53
+		ScriptTags: HardAndAbove
+		Facing: 384
 	Actor1158: deva
 		Owner: Scrin
-		Facing: 384
 		Location: 128,47
+		Facing: 384
+		ScriptTags: HardAndAbove
 	Actor1159: deva
 		Owner: Scrin
-		Facing: 384
 		Location: 62,43
+		Facing: 384
+		ScriptTags: HardAndAbove
 	Actor1155: deva
 		Owner: Scrin
-		Facing: 384
 		Location: 226,39
+		Facing: 384
+		ScriptTags: HardAndAbove
 	Actor1624: n1
 		Owner: Nod
 		Location: 206,57
@@ -5418,6 +5422,39 @@ Actors:
 		SubCell: 3
 		Facing: 0
 		Location: 206,64
+	Actor1673: camera
+		Owner: Scrin
+		Location: 141,70
+	Actor1674: camera
+		Owner: Scrin
+		Location: 44,65
+	Actor1675: camera
+		Owner: Scrin
+		Location: 41,89
+	Actor1676: camera
+		Owner: Scrin
+		Location: 59,75
+	Actor1677: camera
+		Owner: Scrin
+		Location: 137,94
+	Actor1678: camera
+		Owner: Scrin
+		Location: 211,60
+	Actor1679: camera
+		Owner: Scrin
+		Location: 221,69
+	Actor1680: camera
+		Owner: Scrin
+		Location: 196,71
+	Actor1681: camera
+		Owner: Scrin
+		Location: 119,59
+	Actor1682: camera
+		Owner: Scrin
+		Location: 25,59
+	Actor1683: camera
+		Owner: Scrin
+		Location: 195,50
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, preservation-rules.yaml
 

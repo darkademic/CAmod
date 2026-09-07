@@ -995,6 +995,7 @@ OSPI:
 	Inherits: ^Defense
 	Inherits@AUTOTARGET: ^AutoTargetGround
 	Inherits@ActorDifficultyConditions: ^ActorDifficultyConditions
+	Inherits@A2GPROTECTION: ^AirToGroundProtection
 	Targetable@CampaignBoss:
 		TargetTypes: CampaignBoss
 	RenderSprites:
@@ -1034,7 +1035,7 @@ DOMI:
 	Inherits: ^Tank
 	Inherits@ActorDifficultyConditions: ^ActorDifficultyConditions
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
-	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMovePrioritizeGround
 	Inherits@HeavyArmor: ^HeavyArmor
 	Inherits@SHRAPNEL: ^ThrowsShrapnelBig
 	Inherits@ScrinUnitPalette: ^ScrinUnitPalette
@@ -1055,12 +1056,12 @@ DOMI:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 400000
+		HP: 600000
 	Mobile:
 		Speed: 40
 		TurnSpeed: 8
 		Locomotor: sheavytracked
-		PauseOnCondition: empdisable || notmobile || (triggered && !ammo)
+		PauseOnCondition: empdisable || notmobile || charging
 		ImmovableCondition: alive
 	GrantCondition@ALIVE:
 		Condition: alive
@@ -1073,19 +1074,16 @@ DOMI:
 	Armament@PRIMARY:
 		Weapon: Dominate
 		LocalOffset: 150,0,400
-		PauseOnCondition: maxcontrolled
-	Armament@TARGETER:
-		Weapon: DominationWaveTargeter
+	Armament@AA:
+		Weapon: DominatorAA
 		LocalOffset: 150,0,400
 		Name: secondary
-		RequiresCondition: below-66
 	MindController:
 		ControlType: MindControl
 		ArmamentNames: primary
-		Capacity: 8
+		Capacity: -1
 		ControlSounds: iyurat1a.aud
 		ReleaseSounds: yuri-release.aud
-		MaxControlledCondition: maxcontrolled
 		ControlAtCapacityBehaviour: DetonateOldest
 		SlaveDeployEffect: Detonate
 		SlaveDetonateWeapon: DetonateSlave
@@ -1099,7 +1097,8 @@ DOMI:
 		Angle: 32
 		Width: 116
 	AttackTurreted:
-		PauseOnCondition: empdisable || (triggered && !ammo)
+		Armaments: primary, secondary
+		PauseOnCondition: empdisable || charging
 	Turreted:
 	Selectable:
 		DecorationBounds: 2048, 2048, 0, -170
@@ -1125,32 +1124,29 @@ DOMI:
 	RangeMultiplier@Blinded:
 		Modifier: 75
 		RequiresCondition: blinded
-	GrantConditionOnHealth@DominationWave:
-		Condition: below-66
-		MinHP: 0
-		MaxHP: 264000
-		GrantPermanently: true
-	GrantConditionOnAttack@DominationWave:
-		Condition: triggered
-		RequiresCondition: below-66
-		ArmamentNames: secondary
-		RevokeDelay: 151
-	PeriodicExplosion@DominationWaveInit:
-		Weapon: DominationWaveInit
-		RequiresCondition: triggered
-	PeriodicExplosion@DominationWave:
-		Weapon: DominationWave
-		RequiresCondition: ammo
-		AmmoPoolName: primary
-	ReloadAmmoPoolCA@DominationWave:
-		Delay: 150
-		SelectionBarValidRelationships: Ally, Enemy, Neutral
-		RequiresCondition: triggered
-		SelectionBarColor: ff00ff
-	AmmoPool@DominationWave:
-		Armaments: none
-		AmmoCondition: ammo
-		InitialAmmo: 0
+	GrantConditionOnEnemiesNearby@DominationWaveInit:
+		Condition: enemies-nearby
+		Range: 6c0
+		EnemyCount: 3
+		TickInterval: 15
+		TargetTypes: Infantry, Vehicle
+	GrantTimedCondition@Triggered:
+		Condition: charging
+		Duration: 150
+		ForceFullDuration: true
+		RequiresCondition: enemies-nearby && !wave-reloading
+	GrantChargingCondition@DominationWaveCharge:
+		Condition: charged
+		RequiresCondition: enemies-nearby && !wave-reloading
+		MaxCharge: 150
+		MinChargeForCondition: 150
+		ChargingColor: ff00ff
+		ShowSelectionBarWhenEmpty: false
+	GrantTimedCondition@WaveReloading:
+		Condition: wave-reloading
+		Duration: 750
+		ForceFullDuration: true
+		RequiresCondition: charged
 	WithDistortionHalo@DominationWave:
 		LineCount: 4
 		Distortion: 200
@@ -1162,9 +1158,15 @@ DOMI:
 		Colors: b102ba77, f300ff77, bd48c377, 9b48c377
 		Visible: Always
 		ValidRelationships: Ally, Enemy, Neutral
-		RequiresCondition: triggered && !ammo
+		RequiresCondition: charging
 		GlowScale: 0
 		RotationAnimation: 6
+	PeriodicExplosion@DominationWaveInit:
+		Weapon: DominationWaveInit
+		RequiresCondition: charging
+	PeriodicExplosion@DominationWave:
+		Weapon: DominationWave
+		RequiresCondition: charged
 
 DOMI.Husk:
 	Inherits: ^Husk
@@ -1197,9 +1199,9 @@ VANQ:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 1500000
+		HP: 1750000
 	Shielded:
-		MaxStrength: 500000
+		MaxStrength: 600000
 		RegenAmount: 1000
 	Armor:
 		Type: Aircraft

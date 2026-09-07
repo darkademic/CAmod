@@ -213,7 +213,7 @@ UpdateGatewayStatus = function()
 
     UserInterface.SetMissionText(text, textColor)
 
-    if middleCharge == 100 then
+    if chargePerc == 100 then
         ScrinRebels.MarkCompletedObjective(ObjectiveProtectTemples)
     end
 end

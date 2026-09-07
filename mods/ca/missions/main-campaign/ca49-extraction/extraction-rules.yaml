@@ -41,6 +41,32 @@ SMCV:
 	DetonateWeaponPower@ColonySpike:
 		Prerequisites: ~disabled
 
+# Enable subfaction specific tech
+
+STCR:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.scrin
+
+LCHR:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.scrin
+
+OBLT:
+	Buildable:
+		Prerequisites: scrt, ~vehicles.scrin
+
+ATMZ:
+	Buildable:
+		Prerequisites: scrt, ~vehicles.scrin
+
+ENRV:
+	Buildable:
+		Prerequisites: scrt, ~aircraft.scrin
+
+coalescence.upgrade:
+	Buildable:
+		Prerequisites: scrt
+
 # Disable powers for AI
 
 ^ParabombsPower:

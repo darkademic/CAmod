@@ -3506,6 +3506,7 @@ Actors:
 		Location: 83,67
 		SubCell: 3
 		Facing: 0
+		ScriptTags: HardAndAbove
 	Actor1204: stlk
 		Owner: MaleficScrin
 		Facing: 384
@@ -3575,6 +3576,7 @@ Actors:
 		Owner: MaleficScrin
 		Location: 27,67
 		Facing: 627
+		ScriptTags: HardAndAbove
 	Actor1233: gunw
 		Owner: MaleficScrin
 		Facing: 384
@@ -3604,8 +3606,9 @@ Actors:
 		SubCell: 3
 	Actor1239: dark
 		Owner: MaleficScrin
-		Facing: 384
 		Location: 131,36
+		Facing: 384
+		ScriptTags: HardAndAbove
 	Actor1240: stlk
 		Owner: MaleficScrin
 		Facing: 384
@@ -3629,6 +3632,7 @@ Actors:
 		Owner: MaleficScrin
 		Location: 46,102
 		Facing: 784
+		ScriptTags: HardAndAbove
 	Actor1247: stlk
 		Owner: MaleficScrin
 		Location: 65,52
@@ -3639,6 +3643,7 @@ Actors:
 		Location: 62,48
 		SubCell: 3
 		Facing: 757
+		ScriptTags: HardAndAbove
 	Actor1249: s1
 		Owner: MaleficScrin
 		Location: 30,10
@@ -3720,6 +3725,60 @@ Actors:
 	MaleficWaypoint9: waypoint
 		Owner: Neutral
 		Location: 79,190
+	Actor1262: wchr
+		Owner: ScrinRebels
+		Facing: 384
+		Location: 94,180
+		SubCell: 3
+	Actor1265: wchr
+		Owner: ScrinRebels
+		Facing: 763
+		Location: 75,144
+		SubCell: 3
+	Actor1266: wchr
+		Owner: ScrinRebels
+		Facing: 384
+		Location: 153,137
+		SubCell: 3
+	Actor1267: camera
+		Owner: MaleficScrin
+		Location: 94,40
+	Actor1278: camera
+		Owner: MaleficScrin
+		Location: 73,20
+	Actor1279: camera
+		Owner: MaleficScrin
+		Location: 95,23
+	Actor1280: camera
+		Owner: MaleficScrin
+		Location: 98,68
+	Actor1281: camera
+		Owner: MaleficScrin
+		Location: 53,86
+	Actor1282: camera
+		Owner: MaleficScrin
+		Location: 120,47
+	Actor1283: camera
+		Owner: MaleficScrin
+		Location: 125,26
+	Actor1284: camera
+		Owner: MaleficScrin
+		Location: 103,6
+	Actor1285: camera
+		Owner: MaleficScrin
+		Location: 137,89
+	Actor1286: camera
+		Owner: MaleficScrin
+		Location: 89,106
+	Actor1287: camera
+		Owner: MaleficScrin
+		Location: 20,92
+	Actor1288: camera
+		Owner: MaleficScrin
+		Location: 28,41
+	Actor1289: camera
+		Owner: MaleficScrin
+		Location: 46,15
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, exodus-rules.yaml
 

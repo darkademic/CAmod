@@ -8,6 +8,12 @@ SuperweaponsEnabledTime = {
 	brutal = DateTime.Seconds((60 * 15) + 17)
 }
 
+WolverineDropInterval = {
+	hard = DateTime.Minutes(11),
+	vhard = DateTime.Minutes(9),
+	brutal = DateTime.Minutes(7)
+}
+
 AdjustedGDICompositions = AdjustCompositionsForDifficulty(UnitCompositions.GDI)
 AdjustedNodCompositions = AdjustCompositionsForDifficulty(UnitCompositions.Nod)
 
@@ -141,6 +147,7 @@ OncePerSecondChecks = function()
 
 		if not PlayerHasBuildings(HawthorneGDI) then
 			ScrinRebels.MarkCompletedObjective(ObjectiveEliminateHawthorne)
+			ScrinRebels.MarkCompletedObjective(ObjectiveProtectTemple)
 		end
 
 		if MissionPlayersHaveNoRequiredUnits() then
@@ -196,7 +203,62 @@ InitHawthorneGDI = function()
 		Actor.Create("ai.minor.superweapons.enabled", true, { Owner = HawthorneGDI })
 	end)
 
+	if IsHardOrAbove() then
+		Trigger.AfterDelay(DateTime.Minutes(20), DoCommandoDrop)
+		Trigger.AfterDelay(WolverineDropInterval[Difficulty], DoWolverineDrop)
+	end
+
 	InitHawthorneGDIAttacks()
+end
+
+DoCommandoDrop = function()
+	local entryPath = { CommandoDropSpawn.Location, CommandoDropDest.Location }
+	DoHelicopterDrop(HawthorneGDI, entryPath, "tran.paradrop", { "rmbo" }, AssaultPlayerBaseOrHunt, function(t)
+		Trigger.AfterDelay(DateTime.Seconds(5), function()
+			if not t.IsDead then
+				t.Move(CommandoDropSpawn.Location)
+				t.Destroy()
+			end
+		end)
+	end)
+end
+
+DoWolverineDrop = function()
+	local spawns
+	local destinations
+	local entryPaths
+
+	if WolverineDropFromWest then
+		entryPaths = {
+			{ WestWolvSpawn1.Location, WestWolvDest1.Location },
+			{ WestWolvSpawn2.Location, WestWolvDest2.Location },
+			{ WestWolvSpawn3.Location, WestWolvDest3.Location }
+		}
+	else
+		entryPaths = {
+			{ EastWolvSpawn1.Location, EastWolvDest1.Location },
+			{ EastWolvSpawn2.Location, EastWolvDest2.Location },
+			{ EastWolvSpawn3.Location, EastWolvDest3.Location }
+		}
+	end
+
+	WolverineDropFromWest = not WolverineDropFromWest
+	local delay = 1
+
+	Utils.Do(entryPaths, function(entryPath)
+		Trigger.AfterDelay(delay, function()
+			ReinforcementsCA.ReinforceWithTransport(HawthorneGDI, "ocar.wolv", nil, entryPath, { entryPath[1] })
+		end)
+		delay = delay + DateTime.Seconds(1)
+		Trigger.OnEnteredFootprint({ entryPath[2] }, function(a, id)
+			if a.Owner == HawthorneGDI and a.Type == "wolv" and not a.IsDead then
+				Trigger.RemoveFootprintTrigger(id)
+				AssaultPlayerBaseOrHunt(a)
+			end
+		end)
+	end)
+
+	Trigger.AfterDelay(WolverineDropInterval[Difficulty], DoWolverineDrop)
 end
 
 InitHawthorneGDIAttacks = function()

@@ -34,7 +34,7 @@ RecalculateBetaSquad = function(squad)
 	local activeBases = {}
 
 	local centralFactories = Map.ActorsInBox(CentralProdTopLeft.CenterPosition, CentralProdBottomRight.CenterPosition, function(a)
-		return a.Owner == Scrin and a.Type ~= "wsph"
+		return a.Owner == Scrin and a.Type == "wsph"
 	end)
 
 	local centralPortals = Map.ActorsInBox(CentralProdTopLeft.CenterPosition, CentralProdBottomRight.CenterPosition, function(a)
@@ -46,7 +46,7 @@ RecalculateBetaSquad = function(squad)
 	end)
 
 	local eastFactories = Map.ActorsInBox(EastProdTopLeft.CenterPosition, EastProdBottomRight.CenterPosition, function(a)
-		return a.Owner == Scrin and a.Type ~= "wsph"
+		return a.Owner == Scrin and a.Type == "wsph"
 	end)
 
 	local eastPortals = Map.ActorsInBox(EastProdTopLeft.CenterPosition, EastProdBottomRight.CenterPosition, function(a)
@@ -58,7 +58,7 @@ RecalculateBetaSquad = function(squad)
 	end)
 
 	local westFactories = Map.ActorsInBox(WestProdTopLeft.CenterPosition, WestProdBottomRight.CenterPosition, function(a)
-		return a.Owner == Scrin and a.Type ~= "wsph"
+		return a.Owner == Scrin and a.Type == "wsph"
 	end)
 
 	local westPortals = Map.ActorsInBox(WestProdTopLeft.CenterPosition, WestProdBottomRight.CenterPosition, function(a)
@@ -309,6 +309,11 @@ InitScrin = function()
 							SecondTauntUsed = true
 							Media.DisplayMessage("Feel my wrath!", "Scrin Overlord", HSLColor.FromHex("7700FF"))
 							MediaCA.PlaySound(MissionDir .. "/ovld_wrath.aud", 2)
+
+						elseif not ThirdTauntUsed then
+							ThirdTauntUsed = true
+							Media.DisplayMessage("Earth will fall!", "Scrin Overlord", HSLColor.FromHex("7700FF"))
+							MediaCA.PlaySound(MissionDir .. "/ovld_earth.aud", 2)
 						end
 					end)
 				end

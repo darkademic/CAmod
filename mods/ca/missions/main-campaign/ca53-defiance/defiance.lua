@@ -70,7 +70,7 @@ DominatorStartTime = {
 	normal = DateTime.Minutes(8),
 	hard = DateTime.Minutes(6),
 	vhard = DateTime.Minutes(6),
-	brutal = DateTime.Minutes(6)
+	brutal = DateTime.Minutes(5)
 }
 
 DominatorInterval = {
@@ -108,15 +108,15 @@ RecalculateSquad = function(squad)
 	local activeBases = {}
 
 	local northProducers = Map.ActorsInBox(NorthProdTopLeft.CenterPosition, NorthProdBottomRight.CenterPosition, function(a)
-		return a.Owner == USSR and (a.Type ~= "weap" or a.Type == "barr")
+		return a.Owner == USSR and (a.Type == "weap" or a.Type == "barr")
 	end)
 
 	local eastProducers = Map.ActorsInBox(EastProdTopLeft.CenterPosition, EastProdBottomRight.CenterPosition, function(a)
-		return a.Owner == USSR and (a.Type ~= "weap" or a.Type == "barr")
+		return a.Owner == USSR and (a.Type == "weap" or a.Type == "barr")
 	end)
 
 	local westProducers = Map.ActorsInBox(WestProdTopLeft.CenterPosition, WestProdBottomRight.CenterPosition, function(a)
-		return a.Owner == USSR and (a.Type ~= "weap" or a.Type == "barr")
+		return a.Owner == USSR and (a.Type == "weap" or a.Type == "barr")
 	end)
 
 	if #northProducers > 0 then
@@ -281,7 +281,21 @@ WorldLoaded = function()
 				Notification("Warning, powerful psionic signature detected.")
 				MediaCA.PlaySound(MissionDir .. "/s_psionic.aud", 2)
 			end)
+			if not YuriDispleased then
+				YuriDispleased = true
+				Trigger.OnKilled(produced, function(self, killer)
+					Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(3)), function()
+						Media.DisplayMessage("Your defiance is most displeasing.", "Yuri", HSLColor.FromHex("FF00BB"))
+						MediaCA.PlaySound(MissionDir .. "/yuri_defiance.aud", 2)
+					end)
+				end)
+			end
 		end
+	end)
+
+	Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(4)), function()
+		Media.DisplayMessage("Ah, new test subjects. The Scrin will make excellent slaves.", "Yuri", HSLColor.FromHex("FF00BB"))
+		MediaCA.PlaySound(MissionDir .. "/yuri_testsubjects.aud", 2)
 	end)
 
     AfterWorldLoaded()

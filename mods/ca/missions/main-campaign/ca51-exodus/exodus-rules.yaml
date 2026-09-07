@@ -14,7 +14,7 @@ World:
 	LuaScript:
 		Scripts: campaign.lua, exodus.lua
 	MissionData:
-		Briefing: We have reached the gateway. GDI have a strong presence surrounding it, but are currently in the process of evacuating.\n\nThe bulk of our forces are holding back the Overlord and Soviets from the north, your goal is to use what forces we can spare to secure the gateway.\n\nWe have also detected Malefic forces amassing nearby, so you have a choice to make.\n\nYou can attempt to hold the Malefic forces back long enough for GDI to retreat through the gateway, or you can attempt to fight your way through GDI to take control of the gateway by force. Analyse the situation and use your best judgement.
+		Briefing: We have reached the gateway. GDI have a strong presence surrounding it, but are currently in the process of evacuating.\n\nThe bulk of our forces are holding back the Overlord and Soviets from the north, your goal is to use what forces we can spare to secure the gateway.\n\nWe have also detected Malefic forces amassing nearby, so you have a choice to make.\n\nYou can attempt to hold the Malefic forces back long enough for GDI to retreat through the gateway, or you can attempt to fight your way through GDI to take control of the gateway by force.\n\nOur Watchers have infiltrated the GDI base to observe their evacuation. Analyse the situation and use your best judgement.
 	MapOptions:
 		ShortGameCheckboxEnabled: False
 	MusicPlaylist:
@@ -65,6 +65,32 @@ HQ:
 EYE:
 	ExternalCondition@PowerDown:
 		Condition: powerdown
+
+# Enable subfaction specific tech
+
+STCR:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.scrin
+
+LCHR:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.scrin
+
+OBLT:
+	Buildable:
+		Prerequisites: scrt, ~vehicles.scrin
+
+ATMZ:
+	Buildable:
+		Prerequisites: scrt, ~vehicles.scrin
+
+ENRV:
+	Buildable:
+		Prerequisites: scrt, ~aircraft.scrin
+
+coalescence.upgrade:
+	Buildable:
+		Prerequisites: scrt
 
 # Hunt() requires only 1 AttackBase
 DEVA:

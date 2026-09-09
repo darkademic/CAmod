@@ -62,11 +62,19 @@ ATMZ:
 
 stellar.upgrade:
 	Buildable:
-		Prerequisites: scrt
+		Prerequisites: scrt, ~player.scrin
+
+advart.upgrade:
+	Buildable:
+		Prerequisites: anyradar, ~player.scrin
+
+ioncon.upgrade:
+	Buildable:
+		Prerequisites: scrt, ~player.scrin
 
 coalescence.upgrade:
 	Buildable:
-		Prerequisites: scrt
+		Prerequisites: scrt, ~player.scrin
 
 # Triggered access to Reaper Tripods, Enervators, Devastators, Carriers
 

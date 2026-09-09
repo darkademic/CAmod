@@ -31,15 +31,15 @@ HFTK:
 
 quantum.upgrade:
 	Buildable:
-		Prerequisites: tmpl
+		Prerequisites: tmpl, ~player.nod
 
 hstk.upgrade:
 	Buildable:
-		Prerequisites: tmpl
+		Prerequisites: tmpl, ~player.nod
 
 blacknapalm.upgrade:
 	Buildable:
-		Prerequisites: tmpl
+		Prerequisites: tmpl, ~player.nod
 
 # Make non-cyborg infantry available with Temple Prime
 

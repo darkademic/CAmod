@@ -89,15 +89,15 @@ WEAP.TD:
 
 blacknapalm.upgrade:
 	Buildable:
-		Prerequisites: tmpl
+		Prerequisites: tmpl, ~player.nod
 
 quantum.upgrade:
 	Buildable:
-		Prerequisites: tmpl
+		Prerequisites: tmpl, ~player.nod
 
 hstk.upgrade:
 	Buildable:
-		Prerequisites: tmpl
+		Prerequisites: tmpl, ~player.nod
 
 LQTF:
 	Inherits: ^Building

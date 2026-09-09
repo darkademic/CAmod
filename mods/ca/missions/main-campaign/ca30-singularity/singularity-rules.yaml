@@ -442,15 +442,15 @@ AURO:
 
 gyro.upgrade:
 	Buildable:
-		Prerequisites: gtek
+		Prerequisites: gtek, ~player.gdi
 
 abur.upgrade:
 	Buildable:
-		Prerequisites: gtek
+		Prerequisites: gtek, ~player.gdi
 
 bdrone.upgrade:
 	Buildable:
-		Prerequisites: gtek
+		Prerequisites: gtek, ~player.gdi
 
 railgun.upgrade:
 	Buildable:

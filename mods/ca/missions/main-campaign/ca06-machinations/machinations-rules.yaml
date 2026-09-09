@@ -67,7 +67,7 @@ NHAW:
 
 apb.upgrade:
 	Buildable:
-		Prerequisites: atek
+		Prerequisites: atek, ~player.allies
 
 # Misc
 

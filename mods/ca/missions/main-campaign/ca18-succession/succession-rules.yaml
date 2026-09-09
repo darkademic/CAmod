@@ -72,8 +72,8 @@ DISC:
 
 lasher.upgrade:
 	Buildable:
-		Prerequisites: anyradar
+		Prerequisites: anyradar, ~player.soviet
 
 gattling.upgrade:
 	Buildable:
-		Prerequisites: anyradar
+		Prerequisites: anyradar, ~player.soviet

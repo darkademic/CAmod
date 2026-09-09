@@ -58,15 +58,15 @@ HTUR:
 
 entrench.upgrade:
 	Buildable:
-		Prerequisites: anyradar, ~radar.allies
+		Prerequisites: anyradar, ~player.allies
 
 apb.upgrade:
 	Buildable:
-		Prerequisites: atek
+		Prerequisites: atek, ~player.allies
 
 tflx.upgrade:
 	Buildable:
-		Prerequisites: pdox
+		Prerequisites: atek, ~player.allies
 
 # Misc
 

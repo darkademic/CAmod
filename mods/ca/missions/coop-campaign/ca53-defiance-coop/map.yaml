@@ -67,7 +67,7 @@ Players:
 		LockTeam: True
 		Team: 1
 		Faction: scrin
-		Color: 0B7310
+		Color: D83CE5
 		LockColor: True
 		Allies: ScrinRebels, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: Nod, USSR, Creeps
@@ -79,7 +79,7 @@ Players:
 		LockTeam: True
 		Team: 1
 		Faction: scrin
-		Color: 134691
+		Color: 0B7310
 		LockColor: True
 		Allies: ScrinRebels, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: Nod, USSR, Creeps
@@ -103,7 +103,7 @@ Players:
 		LockTeam: True
 		Team: 1
 		Faction: scrin
-		Color: 994050
+		Color: 82C900
 		LockColor: True
 		Allies: ScrinRebels, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: Nod, USSR, Creeps

@@ -37,6 +37,9 @@ kanelocator:
 SMCV:
 	Inherits@CAMPAIGNDISABLED: ^Disabled
 
+AMCV:
+	Inherits@CAMPAIGNDISABLED: ^Disabled
+
 ^ColonySpikePower:
 	DetonateWeaponPower@ColonySpike:
 		Prerequisites: ~disabled

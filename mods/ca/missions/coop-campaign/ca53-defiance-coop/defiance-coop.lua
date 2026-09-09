@@ -12,14 +12,16 @@ SetupPlayers = function()
 	MissionPlayers = Utils.Where({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 }, function(p) return p ~= nil end)
 	MissionEnemies = { USSR, Nod }
 	SinglePlayerPlayer = ScrinRebels
-	Utils.Do(MissionPlayers, function(p)
-		Actor.Create("rebel.allegiance", true, { Owner = p })
-	end)
 	CoopInit()
 end
 
 AfterWorldLoaded = function()
 	StartCashSpread(3500)
+	TransferMcvsToPlayers()
+
+	Utils.Do(MissionPlayers, function(p)
+		Actor.Create("rebel.allegiance", true, { Owner = p })
+	end)
 end
 
 AfterTick = function()

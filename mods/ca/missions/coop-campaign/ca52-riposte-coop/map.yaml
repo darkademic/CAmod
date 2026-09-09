@@ -51,6 +51,7 @@ Players:
 	PlayerReference@Multi0:
 		Name: Multi0
 		Playable: True
+		Required: True
 		LockFaction: True
 		LockSpawn: True
 		LockTeam: True
@@ -67,8 +68,8 @@ Players:
 		LockSpawn: True
 		LockTeam: True
 		Team: 1
-		Faction: scrin
-		Color: 0B7310
+		Faction: nod
+		Color: FE1100
 		LockColor: True
 		Allies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: HawthorneGDI, Creeps
@@ -80,7 +81,7 @@ Players:
 		LockTeam: True
 		Team: 1
 		Faction: scrin
-		Color: 134691
+		Color: D83CE5
 		LockColor: True
 		Allies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: HawthorneGDI, Creeps
@@ -92,7 +93,7 @@ Players:
 		LockTeam: True
 		Team: 1
 		Faction: scrin
-		Color: 775A12
+		Color: 0B7310
 		LockColor: True
 		Allies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: HawthorneGDI, Creeps
@@ -104,7 +105,7 @@ Players:
 		LockTeam: True
 		Team: 1
 		Faction: scrin
-		Color: 994050
+		Color: 775A12
 		LockColor: True
 		Allies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: HawthorneGDI, Creeps
@@ -116,7 +117,7 @@ Players:
 		LockTeam: True
 		Team: 1
 		Faction: scrin
-		Color: EEA8A8
+		Color: 82C900
 		LockColor: True
 		Allies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: HawthorneGDI, Creeps

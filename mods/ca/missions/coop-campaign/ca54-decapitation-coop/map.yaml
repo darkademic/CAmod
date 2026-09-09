@@ -65,6 +65,7 @@ Players:
 	PlayerReference@Multi0:
 		Name: Multi0
 		Playable: True
+		Required: True
 		LockFaction: True
 		LockSpawn: True
 		LockTeam: True
@@ -81,8 +82,8 @@ Players:
 		LockSpawn: True
 		LockTeam: True
 		Team: 1
-		Faction: scrin
-		Color: 0B7310
+		Faction: nod
+		Color: FE1100
 		LockColor: True
 		Allies: ScrinRebels, Nod1, Nod2, Nod3, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: Scrin, Creeps
@@ -93,8 +94,8 @@ Players:
 		LockSpawn: True
 		LockTeam: True
 		Team: 1
-		Faction: scrin
-		Color: 134691
+		Faction: gdi
+		Color: F2CF74
 		LockColor: True
 		Allies: ScrinRebels, Nod1, Nod2, Nod3, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: Scrin, Creeps
@@ -105,8 +106,8 @@ Players:
 		LockSpawn: True
 		LockTeam: True
 		Team: 1
-		Faction: scrin
-		Color: 775A12
+		Faction: allies
+		Color: 99ACF2
 		LockColor: True
 		Allies: ScrinRebels, Nod1, Nod2, Nod3, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: Scrin, Creeps
@@ -118,7 +119,7 @@ Players:
 		LockTeam: True
 		Team: 1
 		Faction: scrin
-		Color: 994050
+		Color: D83CE5
 		LockColor: True
 		Allies: ScrinRebels, Nod1, Nod2, Nod3, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: Scrin, Creeps
@@ -129,8 +130,8 @@ Players:
 		LockSpawn: True
 		LockTeam: True
 		Team: 1
-		Faction: scrin
-		Color: EEA8A8
+		Faction: nod
+		Color: 134691
 		LockColor: True
 		Allies: ScrinRebels, Nod1, Nod2, Nod3, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: Scrin, Creeps
@@ -3284,7 +3285,7 @@ Actors:
 		Location: 2,146
 		Owner: Nod1
 	Actor1066: rep
-		Owner: Nod2
+		Owner: Nod1
 		Location: 17,135
 	Actor1067: hpad
 		Location: 15,140
@@ -5143,6 +5144,18 @@ Actors:
 		Owner: Nod2
 		Location: 139,156
 		Facing: 128
+	ExtraMcvSpawn: waypoint
+		Owner: Neutral
+		Location: 111,192
+	ExtraMcvDest: waypoint
+		Owner: Neutral
+		Location: 111,185
+	McvSpawn: waypoint
+		Owner: Neutral
+		Location: 74,192
+	McvDest: waypoint
+		Owner: Neutral
+		Location: 74,186
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, ca|missions/main-campaign/ca54-decapitation/decapitation-rules.yaml, ca|rules/custom/coop-rules.yaml, decapitation-coop-rules.yaml
 

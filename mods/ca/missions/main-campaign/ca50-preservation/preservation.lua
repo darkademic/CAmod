@@ -200,20 +200,24 @@ UpdateGatewayStatus = function()
         chargePerc = MiddleGateway.ChargePercentage
     end
 
-	local isCharging = ScrinRebels.HasPrerequisites({ "gatewayscharging" })
 	local text = "Gateway charge progress: " .. chargePerc .. "%"
 	local textColor = HSLColor.Yellow
 
+	text = AppendChargeStatus(text, chargePerc)
+    UserInterface.SetMissionText(text, textColor)
+
+    if chargePerc == 100 then
+        ScrinRebels.MarkCompletedObjective(ObjectiveProtectTemples)
+    end
+end
+
+-- overridden in co-op version
+AppendChargeStatus = function(text, chargePerc)
+	local isCharging = ScrinRebels.HasPrerequisites({ "gatewayscharging" })
 	if isCharging then
 		text = text .. " (Charging)"
 		textColor = HSLColor.Lime
 	else
 		text = text .. " (Not Charging)"
 	end
-
-    UserInterface.SetMissionText(text, textColor)
-
-    if chargePerc == 100 then
-        ScrinRebels.MarkCompletedObjective(ObjectiveProtectTemples)
-    end
 end

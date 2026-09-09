@@ -51,16 +51,14 @@ WORMHOLEUNSTABLE:
 	GrantChargingCondition@Charge:
 		Condition: charged
 		PauseOnCondition: !charge
-		MinChargeForCondition: 250000
+		MinChargeForCondition: 240000
 		InitialCharge: 0
-		MaxCharge: 250000
-		ChargeRate: 4
+		MaxCharge: 240000
+		ChargeRate: 8
 		DischargeRate: 0
 		DischargeDelay: 1500
 		ChargingColor: 00ff00
 		DischargingColor: 00cc00
-	ExternalCondition@Charge:
-		Condition: charge
 	GrantConditionOnPrerequisite@Charge:
 		Condition: charge
 		Prerequisites: gatewayscharging

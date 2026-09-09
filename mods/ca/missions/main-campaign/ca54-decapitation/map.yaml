@@ -3219,7 +3219,7 @@ Actors:
 		Location: 2,146
 		Owner: Nod1
 	Actor1066: rep
-		Owner: Nod2
+		Owner: Nod1
 		Location: 17,135
 	Actor1067: hpad
 		Location: 15,140
@@ -5078,6 +5078,18 @@ Actors:
 		Owner: Nod2
 		Location: 139,156
 		Facing: 128
+	ExtraMcvSpawn: waypoint
+		Owner: Neutral
+		Location: 111,192
+	ExtraMcvDest: waypoint
+		Owner: Neutral
+		Location: 111,185
+	McvSpawn: waypoint
+		Owner: Neutral
+		Location: 74,192
+	McvDest: waypoint
+		Owner: Neutral
+		Location: 74,186
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, decapitation-rules.yaml
 

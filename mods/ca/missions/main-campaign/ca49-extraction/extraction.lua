@@ -124,6 +124,8 @@ WorldLoaded = function()
                 local nodUnits = Map.ActorsInCircle(w.CenterPosition, WDist.New(6 * 1024), function(a)
                     return a.Owner == NodInactive
                 end)
+				Notification("Nod units located.")
+				MediaCA.PlaySound(MissionDir .. "/s_nodunitslocated.aud", 2)
                 TransferStrandedNodUnits(nodUnits)
             end
         end)
@@ -136,6 +138,8 @@ WorldLoaded = function()
                 local rebelStructures = Map.ActorsInCircle(w.CenterPosition, WDist.New(11 * 1024), function(a)
                     return a.Owner == ScrinRebelsInactive
                 end)
+				Notification("Rebel structures reclaimed.")
+				MediaCA.PlaySound(MissionDir .. "/s_rebstrucreclaimed.aud", 2)
                 TransferRebelStructures(rebelStructures)
             end
         end)
@@ -221,18 +225,16 @@ RendezvousComplete = function()
         return a.Owner == NodInactive and not a.IsDead and not a.HasProperty("AttackMove") and a.Type ~= "msg"
     end)
 
+	TransferNodBaseStructures(nodBaseStructures)
+
+
     local nodBaseUnits = Map.ActorsInCircle(KaneLocator.CenterPosition, WDist.FromCells(13), function(a)
         return a.Owner == NodInactive and not a.IsDead and (a.HasProperty("AttackMove") or a.Type == "msg")
     end)
 
-	Utils.Do(nodBaseStructures, function(a)
-		a.Owner = Nod
-	end)
-
-	AutoRepairBuildings(Nod)
+	TransferNodBaseUnits(nodBaseUnits)
 
     KaneLocator.Destroy()
-    TransferNodBaseUnits(nodBaseUnits)
 
 	Trigger.AfterDelay(DateTime.Seconds(2), function()
 		Media.DisplayMessage("Not a moment too soon, supervisor. Our enemies are closing in. We must break through the defenses to the south.", "Kane", HSLColor.FromHex("FF0000"))
@@ -252,9 +254,14 @@ TransferNodBaseUnits = function(units)
     end)
 end
 
+TransferNodBaseStructures = function(structures)
+	Utils.Do(structures, function(a)
+		a.Owner = Nod
+	end)
+	AutoRepairBuildings(Nod)
+end
+
 TransferStrandedNodUnits = function(units)
-    Notification("Nod units located.")
-	MediaCA.PlaySound(MissionDir .. "/s_nodunitslocated.aud", 2)
     Utils.Do(units, function(a)
         a.Owner = ScrinRebels
 		if a.Type == "msg" then
@@ -264,8 +271,6 @@ TransferStrandedNodUnits = function(units)
 end
 
 TransferRebelStructures = function(structures)
-    Notification("Rebel structures reclaimed.")
-	MediaCA.PlaySound(MissionDir .. "/s_rebstrucreclaimed.aud", 2)
     Utils.Do(structures, function(a)
         a.Owner = ScrinRebels
     end)

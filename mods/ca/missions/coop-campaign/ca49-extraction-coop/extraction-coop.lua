@@ -15,14 +15,25 @@ SetupPlayers = function()
 	MissionPlayers = Utils.Where({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 }, function(p) return p ~= nil end)
 	MissionEnemies = { USSR, Scrin }
 	SinglePlayerPlayer = ScrinRebels
-	Utils.Do(MissionPlayers, function(p)
-		Actor.Create("rebel.allegiance", true, { Owner = p })
-	end)
+	ScrinRebelPlayers = Utils.Where({ Multi0, Multi2, Multi3, Multi5 }, function(p) return p ~= nil end)
+	NodPlayers = Utils.Where({ Multi1, Multi4 }, function(p) return p ~= nil end)
+	StopSpread = true
 	CoopInit()
 end
 
 AfterWorldLoaded = function()
 	StartCashSpread(3500)
+
+	Utils.Do(ScrinRebelPlayers, function(p)
+		Actor.Create("rebel.allegiance", true, { Owner = p })
+	end)
+
+	local actors = GetSpreadableUnits(SinglePlayerPlayer)
+	AssignToCoopPlayers(actors, ScrinRebelPlayers)
+
+	Trigger.AfterDelay(1, function()
+		StopSpread = false
+	end)
 end
 
 AfterTick = function()
@@ -30,7 +41,15 @@ AfterTick = function()
 end
 
 TransferNodBaseUnits = function(units)
-	AssignToCoopPlayers(units)
+	local recipientPlayers
+	if #NodPlayers > 0 then
+		recipientPlayers = NodPlayers
+	else
+		recipientPlayers = nil
+	end
+
+	AssignToCoopPlayers(units, recipientPlayers)
+
 	Utils.Do(units, function(a)
 		if a.Type == "msg" then
 			a.Undeploy()
@@ -38,10 +57,27 @@ TransferNodBaseUnits = function(units)
 	end)
 end
 
+TransferNodBaseStructures = function(structures)
+	if #NodPlayers > 0 then
+		AssignToCoopPlayers(structures, NodPlayers)
+	else
+		Utils.Do(structures, function(a)
+			a.Owner = Nod
+		end)
+		AutoRepairBuildings(Nod)
+	end
+end
+
 TransferStrandedNodUnits = function(units)
-	Notification("Nod units located.")
-	MediaCA.PlaySound(MissionDir .. "/s_nodunitslocated.aud", 2)
-	AssignToCoopPlayers(units)
+	local recipientPlayers
+	if #NodPlayers > 0 then
+		recipientPlayers = NodPlayers
+	else
+		recipientPlayers = nil
+	end
+
+	AssignToCoopPlayers(units, recipientPlayers)
+
 	Utils.Do(units, function(a)
 		if a.Type == "msg" then
 			a.Undeploy()
@@ -50,13 +86,11 @@ TransferStrandedNodUnits = function(units)
 end
 
 TransferRebelStructures = function(structures)
-	Notification("Rebel structures reclaimed.")
-	MediaCA.PlaySound(MissionDir .. "/s_rebstrucreclaimed.aud", 2)
 	local recipientPlayer = GetFirstActivePlayer()
 	Utils.Do(structures, function(a)
 		a.Owner = recipientPlayer
 	end)
 	Trigger.AfterDelay(1, function()
-		Actor.Create("QueueUpdaterDummy", true, { Owner = recipientPlayer })
+		CACoopQueueSyncer()
 	end)
 end

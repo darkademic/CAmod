@@ -4,3 +4,14 @@ World:
 	LobbyMissionInfo@InitialObjectives:
 		Prefix: Initial Objectives
 		Text: • Protect the Nod Temples until the gateways are operational.
+
+Player:
+	-GrantPrerequisiteResourceDrainPower@ChargeGateways:
+
+WORMHOLEUNSTABLE:
+	GrantChargingCondition@Charge:
+		-PauseOnCondition:
+		MinChargeForCondition: 60000
+		MaxCharge: 60000
+		ChargeRate: 1
+	-GrantConditionOnPrerequisite@Charge:

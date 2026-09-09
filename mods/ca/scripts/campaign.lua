@@ -2196,15 +2196,15 @@ AdjustCompositionForDifficulty = function(composition, difficulty)
 			end
 		else
 			if k == "MinTime" or k == "MaxTime" then
-
 				if difficulty == "easy" then
 					updatedComposition[k] = v * 1.4
 				elseif difficulty == "normal" then
 					updatedComposition[k] = v * 1.2
 				elseif difficulty == "brutal" then
 					updatedComposition[k] = v * 0.9
+				else
+					updatedComposition[k] = v
 				end
-
 			else
 				updatedComposition[k] = v
 			end

@@ -1,0 +1,6 @@
+World:
+	LuaScript:
+		Scripts: campaign.lua, coop.lua, ca|missions/main-campaign/ca49-extraction/extraction.lua, extraction-coop.lua
+	LobbyMissionInfo@InitialObjectives:
+		Prefix: Initial Objectives
+		Text: • Gather forces and rendezvous with Kane before the deadline.\n• Eliminate either the Scrin or Soviet base.\n• Protect Kane's Temple.

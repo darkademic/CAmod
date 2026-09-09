@@ -291,7 +291,7 @@ InitScrin = function()
 					TeleportVanquisher(destinationLoc)
 					NextSpireSummonAvailable = DateTime.GameTime + DateTime.Seconds(120)
 					Vanquisher.Hunt()
-					MediaCA.PlaySound(MissionDir .. "/vanquisher.aud", 1.5)
+					MediaCA.PlaySound(MissionDir .. "/vanquisher.aud", 1)
 
 					Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(3)), function()
 						if not FirstTauntUsed then

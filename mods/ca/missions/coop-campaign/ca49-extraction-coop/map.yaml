@@ -2,7 +2,7 @@ MapFormat: 12
 
 RequiresMod: ca
 
-Title: 49: Extraction
+Title: 49: Extraction Co-op
 
 Author: Darkademic
 
@@ -12,9 +12,9 @@ MapSize: 146,194
 
 Bounds: 1,1,144,192
 
-Visibility: MissionSelector
+Visibility: Lobby
 
-Categories: Campaign
+Categories: Co-op Mission
 
 LockPreview: True
 
@@ -28,19 +28,12 @@ Players:
 		Name: Creeps
 		NonCombatant: True
 		Faction: Random
-		Enemies: ScrinRebels
+		Enemies: ScrinRebels, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 	PlayerReference@ScrinRebels:
 		Name: ScrinRebels
-		AllowBots: False
-		Playable: True
-		Required: True
-		LockFaction: True
 		Faction: scrin
-		LockColor: True
 		Color: 2FB4A6
-		LockSpawn: True
-		LockTeam: True
-		Allies: Nod
+		Allies: Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: USSR, Scrin, Creeps
 	PlayerReference@Scrin:
 		Name: Scrin
@@ -48,19 +41,19 @@ Players:
 		Faction: scrin
 		Color: 7700FF
 		Allies: USSR
-		Enemies: ScrinRebels, Nod, Creeps
+		Enemies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5, Creeps
 	PlayerReference@USSR:
 		Name: USSR
 		Bot: campaign
 		Faction: soviet
 		Color: FE1100
 		Allies: Scrin
-		Enemies: ScrinRebels, Nod, Creeps
+		Enemies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5, Creeps
 	PlayerReference@Nod:
 		Name: Nod
 		Faction: nod
 		Color: 6D738C
-		Allies: ScrinRebels
+		Allies: ScrinRebels, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: USSR, Scrin, Creeps
 	PlayerReference@NodInactive:
 		Name: NodInactive
@@ -70,6 +63,78 @@ Players:
 		Name: ScrinRebelsInactive
 		Faction: scrin
 		Color: 618884
+	PlayerReference@Multi0:
+		Name: Multi0
+		Playable: True
+		LockFaction: True
+		LockSpawn: True
+		LockTeam: True
+		Team: 1
+		Faction: scrin
+		Color: 2FB4A6
+		LockColor: True
+		Allies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+		Enemies: USSR, Scrin, Creeps
+	PlayerReference@Multi1:
+		Name: Multi1
+		Playable: True
+		LockFaction: True
+		LockSpawn: True
+		LockTeam: True
+		Team: 1
+		Faction: scrin
+		Color: 0B7310
+		LockColor: True
+		Allies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+		Enemies: USSR, Scrin, Creeps
+	PlayerReference@Multi2:
+		Name: Multi2
+		Playable: True
+		LockFaction: True
+		LockSpawn: True
+		LockTeam: True
+		Team: 1
+		Faction: scrin
+		Color: 134691
+		LockColor: True
+		Allies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+		Enemies: USSR, Scrin, Creeps
+	PlayerReference@Multi3:
+		Name: Multi3
+		Playable: True
+		LockFaction: True
+		LockSpawn: True
+		LockTeam: True
+		Team: 1
+		Faction: scrin
+		Color: 775A12
+		LockColor: True
+		Allies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+		Enemies: USSR, Scrin, Creeps
+	PlayerReference@Multi4:
+		Name: Multi4
+		Playable: True
+		LockFaction: True
+		LockSpawn: True
+		LockTeam: True
+		Team: 1
+		Faction: scrin
+		Color: 994050
+		LockColor: True
+		Allies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+		Enemies: USSR, Scrin, Creeps
+	PlayerReference@Multi5:
+		Name: Multi5
+		Playable: True
+		LockFaction: True
+		LockSpawn: True
+		LockTeam: True
+		Team: 1
+		Faction: scrin
+		Color: EEA8A8
+		LockColor: True
+		Allies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+		Enemies: USSR, Scrin, Creeps
 
 Actors:
 	Actor40: null
@@ -5493,6 +5558,6 @@ Actors:
 		Facing: 531
 		ScriptTags: HardAndAbove
 
-Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, extraction-rules.yaml
+Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, ca|missions/main-campaign/ca49-extraction/extraction-rules.yaml, ca|rules/custom/coop-rules.yaml, extraction-coop-rules.yaml
 
 Weapons: ca|weapons/custom/campaign.yaml

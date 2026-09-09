@@ -1258,8 +1258,51 @@ VANQ.Husk:
 	Inherits@ScrinUnitPalette: ^ScrinUnitPalette
 	Tooltip:
 		Name: Husk (Vanquisher Battleship)
+
+VANQ.Husk:
+	Inherits: ^HelicopterHusk
+	Inherits@ScrinUnitPalette: ^ScrinUnitPalette
+	Tooltip:
+		Name: Vanquisher Battleship
+		GenericName: Destroyed Aircraft
+	Aircraft:
+		TurnSpeed: 8
+		Speed: 30
+	FallsToEarth:
+		MaximumSpinSpeed: 0
+		Velocity: 35
+		Explosion: MothershipExplode
 	RenderSprites:
-		Image: vanq.destroyed
+		Image: vanq
+	SpawnActorOnDeath:
+		Actor: VANQ.Husk.Ground
+	WithShadow:
+		ZOffset: -3072
+
+VANQ.Husk.Ground:
+	Inherits: ^Husk
+	Inherits@ScrinUnitPalette: ^ScrinUnitPalette
+	Inherits@SHRAPNEL: ^ThrowsShrapnelBig
+	RenderSprites:
+		Image: vanq
+	Tooltip:
+		Name: Husk (Vanquisher Battleship)
+	KillsSelf:
+		Delay: 1
+		-RequiresCondition:
+	FireWarheadsOnDeath:
+		Weapon: MothershipExplode
+	-OwnerLostAction:
+	-CaptureManager:
+	-Capturable:
+	-CapturableProgressBar:
+	-CapturableProgressBlink:
+	-GivesCashOnCaptureCA:
+	-GrantConditionOnCapture:
+	WithIdleOverlay@Burns:
+		-RequiresCondition:
+	ChangesHealth:
+		-RequiresCondition:
 
 # Smudge makers
 

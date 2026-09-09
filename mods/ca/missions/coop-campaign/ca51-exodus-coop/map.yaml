@@ -2,7 +2,7 @@ MapFormat: 12
 
 RequiresMod: ca
 
-Title: 51: Exodus
+Title: 51: Exodus Co-op
 
 Author: Darkademic
 
@@ -12,9 +12,9 @@ MapSize: 162,226
 
 Bounds: 1,1,160,224
 
-Visibility: MissionSelector
+Visibility: Lobby
 
-Categories: Campaign
+Categories: Co-op Mission
 
 LockPreview: True
 
@@ -28,38 +28,103 @@ Players:
 		Name: Creeps
 		NonCombatant: True
 		Faction: Random
-		Enemies: ScrinRebels
+		Enemies: ScrinRebels, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 	PlayerReference@ScrinRebels:
 		Name: ScrinRebels
-		AllowBots: False
-		Playable: True
-		Required: True
-		LockFaction: True
 		Faction: scrin
-		LockColor: True
 		Color: 2FB4A6
-		LockSpawn: True
-		LockTeam: True
-		Allies: Nod
+		Allies: Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: MaleficScrin, GDI, Creeps
 	PlayerReference@GDI:
 		Name: GDI
 		Bot: dormant
 		Faction: gdi
 		Color: F2CF74
-		Enemies: MaleficScrin, ScrinRebels, Nod, Creeps
+		Enemies: MaleficScrin, ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5, Creeps
 	PlayerReference@Nod:
 		Name: Nod
 		Faction: nod
 		Color: 6D738C
-		Allies: ScrinRebels
+		Allies: ScrinRebels, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: MaleficScrin, GDI, Creeps
 	PlayerReference@MaleficScrin:
 		Name: MaleficScrin
 		Bot: campaign
 		Faction: scrin
 		Color: 3E4549
-		Enemies: ScrinRebels, Nod, GDI, Creeps
+		Enemies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5, GDI, Creeps
+	PlayerReference@Multi0:
+		Name: Multi0
+		Playable: True
+		LockFaction: True
+		LockSpawn: True
+		LockTeam: True
+		Team: 1
+		Faction: scrin
+		Color: 2FB4A6
+		LockColor: True
+		Allies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+		Enemies: MaleficScrin, GDI, Creeps
+	PlayerReference@Multi1:
+		Name: Multi1
+		Playable: True
+		LockFaction: True
+		LockSpawn: True
+		LockTeam: True
+		Team: 1
+		Faction: scrin
+		Color: 0B7310
+		LockColor: True
+		Allies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+		Enemies: MaleficScrin, GDI, Creeps
+	PlayerReference@Multi2:
+		Name: Multi2
+		Playable: True
+		LockFaction: True
+		LockSpawn: True
+		LockTeam: True
+		Team: 1
+		Faction: scrin
+		Color: 134691
+		LockColor: True
+		Allies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+		Enemies: MaleficScrin, GDI, Creeps
+	PlayerReference@Multi3:
+		Name: Multi3
+		Playable: True
+		LockFaction: True
+		LockSpawn: True
+		LockTeam: True
+		Team: 1
+		Faction: scrin
+		Color: 775A12
+		LockColor: True
+		Allies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+		Enemies: MaleficScrin, GDI, Creeps
+	PlayerReference@Multi4:
+		Name: Multi4
+		Playable: True
+		LockFaction: True
+		LockSpawn: True
+		LockTeam: True
+		Team: 1
+		Faction: scrin
+		Color: 994050
+		LockColor: True
+		Allies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+		Enemies: MaleficScrin, GDI, Creeps
+	PlayerReference@Multi5:
+		Name: Multi5
+		Playable: True
+		LockFaction: True
+		LockSpawn: True
+		LockTeam: True
+		Team: 1
+		Faction: scrin
+		Color: EEA8A8
+		LockColor: True
+		Allies: ScrinRebels, Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+		Enemies: MaleficScrin, GDI, Creeps
 
 Actors:
 	Actor706: scrinflora5
@@ -3780,6 +3845,6 @@ Actors:
 		Owner: MaleficScrin
 		Location: 46,15
 
-Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, exodus-rules.yaml
+Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, ca|missions/main-campaign/ca51-exodus/exodus-rules.yaml, ca|rules/custom/coop-rules.yaml, exodus-coop-rules.yaml
 
 Weapons: ca|weapons/custom/campaign.yaml

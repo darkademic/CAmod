@@ -1,0 +1,6 @@
+World:
+	LuaScript:
+		Scripts: campaign.lua, coop.lua, ca|missions/main-campaign/ca53-defiance/defiance.lua, defiance-coop.lua
+	LobbyMissionInfo@InitialObjectives:
+		Prefix: Initial Objectives
+		Text: • Destroy all Soviet forces.\n• [Optional] Do not destroy any Nod structures.

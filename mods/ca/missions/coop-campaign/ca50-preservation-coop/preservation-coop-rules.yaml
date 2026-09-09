@@ -1,0 +1,6 @@
+World:
+	LuaScript:
+		Scripts: campaign.lua, coop.lua, ca|missions/main-campaign/ca50-preservation/preservation.lua, preservation-coop.lua
+	LobbyMissionInfo@InitialObjectives:
+		Prefix: Initial Objectives
+		Text: • Protect the Nod Temples until the gateways are operational.

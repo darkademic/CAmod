@@ -1,0 +1,6 @@
+World:
+	LuaScript:
+		Scripts: campaign.lua, coop.lua, ca|missions/main-campaign/ca52-riposte/riposte.lua, riposte-coop.lua
+	LobbyMissionInfo@InitialObjectives:
+		Prefix: Initial Objectives
+		Text: • Eliminate Hawthorne's forces.\n• Protect Nod Temple Prime.

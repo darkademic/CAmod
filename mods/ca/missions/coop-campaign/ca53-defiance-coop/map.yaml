@@ -2,7 +2,7 @@ MapFormat: 12
 
 RequiresMod: ca
 
-Title: 53: Defiance
+Title: 53: Defiance Co-op
 
 Author: Darkademic
 
@@ -12,9 +12,9 @@ MapSize: 194,150
 
 Bounds: 1,1,192,148
 
-Visibility: MissionSelector
+Visibility: Lobby
 
-Categories: Campaign
+Categories: Co-op Mission
 
 LockPreview: True
 
@@ -28,32 +28,97 @@ Players:
 		Name: Creeps
 		NonCombatant: True
 		Faction: Random
-		Enemies: ScrinRebels, Nod, USSR
+		Enemies: ScrinRebels, Nod, USSR, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 	PlayerReference@ScrinRebels:
 		Name: ScrinRebels
-		AllowBots: False
-		Playable: True
-		Required: True
-		LockFaction: True
 		Faction: scrin
-		LockColor: True
 		Color: 2FB4A6
-		LockSpawn: True
-		LockTeam: True
 		Enemies: Nod, USSR, Creeps
 	PlayerReference@Nod:
 		Name: Nod
 		Faction: nod
 		Color: FE1100
 		Allies: USSR
-		Enemies: ScrinRebels, Creeps
+		Enemies: ScrinRebels, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5, Creeps
 	PlayerReference@USSR:
 		Name: USSR
 		Bot: campaign
 		Faction: yuri
 		Color: FE1100
 		Allies: Nod
-		Enemies: ScrinRebels, Creeps
+		Enemies: ScrinRebels, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5, Creeps
+	PlayerReference@Multi0:
+		Name: Multi0
+		Playable: True
+		LockFaction: True
+		LockSpawn: True
+		LockTeam: True
+		Team: 1
+		Faction: scrin
+		Color: 2FB4A6
+		LockColor: True
+		Allies: ScrinRebels, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+		Enemies: Nod, USSR, Creeps
+	PlayerReference@Multi1:
+		Name: Multi1
+		Playable: True
+		LockFaction: True
+		LockSpawn: True
+		LockTeam: True
+		Team: 1
+		Faction: scrin
+		Color: 0B7310
+		LockColor: True
+		Allies: ScrinRebels, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+		Enemies: Nod, USSR, Creeps
+	PlayerReference@Multi2:
+		Name: Multi2
+		Playable: True
+		LockFaction: True
+		LockSpawn: True
+		LockTeam: True
+		Team: 1
+		Faction: scrin
+		Color: 134691
+		LockColor: True
+		Allies: ScrinRebels, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+		Enemies: Nod, USSR, Creeps
+	PlayerReference@Multi3:
+		Name: Multi3
+		Playable: True
+		LockFaction: True
+		LockSpawn: True
+		LockTeam: True
+		Team: 1
+		Faction: scrin
+		Color: 775A12
+		LockColor: True
+		Allies: ScrinRebels, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+		Enemies: Nod, USSR, Creeps
+	PlayerReference@Multi4:
+		Name: Multi4
+		Playable: True
+		LockFaction: True
+		LockSpawn: True
+		LockTeam: True
+		Team: 1
+		Faction: scrin
+		Color: 994050
+		LockColor: True
+		Allies: ScrinRebels, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+		Enemies: Nod, USSR, Creeps
+	PlayerReference@Multi5:
+		Name: Multi5
+		Playable: True
+		LockFaction: True
+		LockSpawn: True
+		LockTeam: True
+		Team: 1
+		Faction: scrin
+		Color: EEA8A8
+		LockColor: True
+		Allies: ScrinRebels, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+		Enemies: Nod, USSR, Creeps
 
 Actors:
 	Actor0: t18
@@ -2901,6 +2966,6 @@ Actors:
 		Location: 116,132
 		SubCell: 3
 
-Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, defiance-rules.yaml
+Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, ca|missions/main-campaign/ca53-defiance/defiance-rules.yaml, ca|rules/custom/coop-rules.yaml, defiance-coop-rules.yaml
 
 Weapons: ca|weapons/custom/campaign.yaml

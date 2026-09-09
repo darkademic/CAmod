@@ -1204,7 +1204,7 @@ HIND:
 	TooltipExtras:
 		Strengths: • Strong vs Infantry, Heavy Armor, Light Armor
 		Weaknesses: • Weak vs Defenses\n• Cannot attack Aircraft
-		Attributes: • Reduces enemy speed and rare of fire (Ukraine only)
+		Attributes: • Reduces enemy speed and rate of fire (Ukraine only)
 	Valued:
 		Cost: 1600
 	Tooltip:

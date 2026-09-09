@@ -195,14 +195,14 @@ WorldLoaded = function()
 		if not ScrinRebels.IsObjectiveCompleted(ObjectiveDestroySpires) then
 			ScrinRebels.MarkCompletedObjective(ObjectiveDestroySpires)
 			Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(2)), function()
-				Media.DisplayMessage("My will is eternal! The Scrin will be unified!", "Scrin Overlord", HSLColor.FromHex("7700FF"))
+				Media.DisplayMessage("My will is eternal! As will be your suffering!", "Scrin Overlord", HSLColor.FromHex("7700FF"))
 				MediaCA.PlaySound(MissionDir .. "/ovld_eternal.aud", 2)
 			end)
 		end
 	end)
 
 	Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(4)), function()
-		Media.DisplayMessage("The total destruction of your treacherous kind is at hand! Your rebellion dies here!", "Scrin Overlord", HSLColor.FromHex("7700FF"))
+		Media.DisplayMessage("The total destruction of your treacherous kind is at hand! The rebellion will burn!", "Scrin Overlord", HSLColor.FromHex("7700FF"))
 		MediaCA.PlaySound(MissionDir .. "/ovld_totaldestruction.aud", 2)
 	end)
 

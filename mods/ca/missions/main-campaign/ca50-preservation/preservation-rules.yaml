@@ -113,6 +113,86 @@ coalescence.upgrade:
 	Buildable:
 		Prerequisites: scrt, ~player.scrin
 
+# Enable Nod subfaction specific tech
+
+TMPL:
+	GrantExternalConditionPowerCA@Frenzy:
+		-Prerequisites:
+
+ACOL:
+	Buildable:
+		Prerequisites: obliortmpl, anyradar, ~infantry.nod, ~!tmpp
+
+TPLR:
+	Buildable:
+		Prerequisites: obliortmpl, anyradar, ~infantry.nod, ~tmpp
+
+BH:
+	Buildable:
+		Prerequisites: anyradar, ~infantry.nod
+
+LTNK:
+	Buildable:
+		Prerequisites: ~vehicles.nod, ~!lastnk.upgrade
+
+LTNK.Laser:
+	Buildable:
+		Prerequisites: ~vehicles.nod, ~lastnk.upgrade
+
+MTNK:
+	Buildable:
+		Prerequisites: ~!bdrone.upgrade, ~vehicles.gdi
+
+MTNK.Laser:
+	Inherits@CAMPAIGNDISABLED: ^Disabled
+
+FTNK:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.nod
+
+HFTK:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.nod
+
+WTNK:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.nod
+
+MLRS:
+	Buildable:
+		Prerequisites: tmpl, ~vehicles.nod
+
+SPEC:
+	Buildable:
+		Prerequisites: tmpl, ~vehicles.nod
+
+VENM:
+	Buildable:
+		Prerequisites: ~aircraft.nod
+
+APC2:
+	Buildable:
+		Prerequisites: ~vehicles.gdi, ~!vulcan.upgrade
+
+AIRS:
+	Inherits@CAMPAIGNDISABLED: ^Disabled
+
+WEAP.TD:
+	Buildable:
+		Prerequisites: anyrefinery, ~structures.td
+
+blacknapalm.upgrade:
+	Buildable:
+		Prerequisites: ~player.nod, tmpl
+
+quantum.upgrade:
+	Buildable:
+		Prerequisites: ~player.nod, tmpl
+
+hstk.upgrade:
+	Buildable:
+		Prerequisites: ~player.nod, tmpl
+
 # Disable powers for AI
 
 ^ParabombsPower:

@@ -14,7 +14,7 @@ SetupPlayers = function()
 	ScrinRebels3 = Player.GetPlayer("ScrinRebels3")
 	SignalTransmittersPlayer = Player.GetPlayer("SignalTransmittersPlayer") -- separate player to prevent AI from attacking it
 	Neutral = Player.GetPlayer("Neutral")
-	MissionPlayers = Utils.Where({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 }, function(p) return p ~= nil end)
+	MissionPlayers = GetActiveCoopPlayers({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 })
 	MissionEnemies = { ScrinRebels1, ScrinRebels2, ScrinRebels3 }
 	SinglePlayerPlayer = USSR
 	CoopInit()

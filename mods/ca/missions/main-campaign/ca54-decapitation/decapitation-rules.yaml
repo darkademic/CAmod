@@ -76,6 +76,197 @@ coalescence.upgrade:
 	Buildable:
 		Prerequisites: scrt, ~player.scrin
 
+# Enable GDI subfaction specific tech
+
+STWR:
+	Buildable:
+		Prerequisites: vehicles.any, ~structures.gdi
+
+TITN:
+	Buildable:
+		Prerequisites: gtek, ~!railgun.upgrade, ~vehicles.gdi
+
+TITN.RAIL:
+	Buildable:
+		Prerequisites: gtek, ~railgun.upgrade, ~vehicles.gdi
+
+JUGG:
+	Buildable:
+		Prerequisites: gtek, ~vehicles.gdi
+
+HSAM:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.gdi
+
+MDRN:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.gdi
+
+GDRN:
+	Buildable:
+		Prerequisites: ~vehicles.gdi, ~!tow.upgrade
+
+GDRN.TOW:
+	Buildable:
+		Prerequisites: ~vehicles.gdi, ~tow.upgrade
+
+WOLV:
+	Buildable:
+		Prerequisites: gtek, ~vehicles.gdi
+
+XO:
+	Buildable:
+		Prerequisites: gtek, ~vehicles.gdi
+
+PBUL:
+	Buildable:
+		Prerequisites: gtek, ~vehicles.gdi
+
+AURO:
+	Buildable:
+		Prerequisites: afld.gdi, gtek, ~aircraft.gdi
+
+gyro.upgrade:
+	Buildable:
+		Prerequisites: gtek, ~player.gdi
+
+abur.upgrade:
+	Buildable:
+		Prerequisites: gtek, ~player.gdi
+
+bdrone.upgrade:
+	Buildable:
+		Prerequisites: gtek, ~player.gdi
+
+railgun.upgrade:
+	Buildable:
+		Prerequisites: upgc, ~player.gdi
+
+ionmam.upgrade:
+	Buildable:
+		Prerequisites: upgc, !mdrone.upgrade, !hovermam.upgrade, ~player.gdi
+	TooltipExtras:
+		Attributes: \n(!) Only ONE Mammoth Tank upgrade can be chosen
+
+hovermam.upgrade:
+	Buildable:
+		Prerequisites: upgc, !ionmam.upgrade, !mdrone.upgrade, ~player.gdi
+	TooltipExtras:
+		Attributes: \n(!) Only ONE Mammoth Tank upgrade can be chosen
+
+mdrone.upgrade:
+	Buildable:
+		Prerequisites: upgc, !ionmam.upgrade, !hovermam.upgrade, ~player.gdi
+	TooltipExtras:
+		Attributes: \n(!) Only ONE Mammoth Tank upgrade can be chosen
+
+# Enable Nod subfaction specific tech
+
+TMPL:
+	GrantExternalConditionPowerCA@Frenzy:
+		-Prerequisites:
+
+ACOL:
+	Buildable:
+		Prerequisites: obliortmpl, anyradar, ~infantry.nod, ~!tmpp
+
+TPLR:
+	Buildable:
+		Prerequisites: obliortmpl, anyradar, ~infantry.nod, ~tmpp
+
+BH:
+	Buildable:
+		Prerequisites: anyradar, ~infantry.nod
+
+FTNK:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.nod
+
+HFTK:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.nod
+
+WTNK:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.nod
+
+MLRS:
+	Buildable:
+		Prerequisites: tmpl, ~vehicles.nod
+
+SPEC:
+	Buildable:
+		Prerequisites: tmpl, ~vehicles.nod
+
+VENM:
+	Buildable:
+		Prerequisites: ~aircraft.nod
+
+blacknapalm.upgrade:
+	Buildable:
+		Prerequisites: ~player.nod, tmpl
+
+quantum.upgrade:
+	Buildable:
+		Prerequisites: ~player.nod, tmpl
+
+hstk.upgrade:
+	Buildable:
+		Prerequisites: ~player.nod, tmpl
+
+# Enable Allied subfaction specific tech
+
+SNIP:
+	Buildable:
+		Prerequisites: ~tent, anyradar
+
+RTNK:
+	Buildable:
+		Prerequisites: ~vehicles.allies
+
+TNKD:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.allies
+
+CHPR:
+	Buildable:
+		Prerequisites: atek, ~vehicles.allies
+
+BATF:
+	Buildable:
+		Prerequisites: atek, ~vehicles.allies
+
+NHAW:
+	Buildable:
+		Prerequisites: ~aircraft.allies
+
+HTUR:
+	Buildable:
+		Prerequisites: ~structures.allies, anyradar
+
+entrench.upgrade:
+	Buildable:
+		Prerequisites: anyradar, ~player.allies
+
+apb.upgrade:
+	Buildable:
+		Prerequisites: atek, ~player.allies
+
+tflx.upgrade:
+	Buildable:
+		Prerequisites: atek, ~player.allies
+
+^VeilOfWarPower:
+	SpawnActorPowerCA@VeilOfWar:
+		Prerequisites: ~radar.allies
+
+# AI Powers
+
+^StormSpikePower:
+	DetonateWeaponPower@STORMSPIKE:
+		Prerequisites: botplayer, player.scrin
+		ChargeInterval: 8250
+
 # Difficulty modifiers
 
 OSPI:

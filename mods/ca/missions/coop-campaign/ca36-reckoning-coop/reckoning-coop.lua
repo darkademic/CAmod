@@ -19,7 +19,7 @@ SetupPlayers = function()
 	GDIHostile = Player.GetPlayer("GDIHostile")
 	GDI = Player.GetPlayer("GDI")
 	Neutral = Player.GetPlayer("Neutral")
-	MissionPlayers = Utils.Where({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 }, function(p) return p ~= nil end)
+	MissionPlayers = GetActiveCoopPlayers({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 })
 	MissionEnemies = { Scrin }
 	SinglePlayerPlayer = Nod
 	StopSpread = true
@@ -28,7 +28,7 @@ SetupPlayers = function()
 end
 
 AfterWorldLoaded = function()
-	Utils.Do(Utils.Where({ Multi2, Multi5 }, function(p) return p ~= nil end), function(p)
+	Utils.Do(GetActiveCoopPlayers({ Multi2, Multi5 }), function(p)
 		Actor.Create("rebel.allegiance", true, { Owner = p })
 	end)
 
@@ -60,7 +60,7 @@ DistributeUnitsAndBases = function()
 			return a.HasProperty("Move") and not IsHarvester(a) and not IsMcv(a)
 		end)
 
-		AssignToCoopPlayers(nodUnits, Utils.Where({ Multi0, Multi3 }, function(p) return p ~= nil end))
+		AssignToCoopPlayers(nodUnits, GetActiveCoopPlayers({ Multi0, Multi3 }))
 
 		-- if there are 2 Nod players, send MCV for second Nod player
 		if Multi0 ~= nil and Multi3 ~= nil then
@@ -82,7 +82,7 @@ DistributeUnitsAndBases = function()
 			return a.HasProperty("Move") and not IsHarvester(a) and not IsMcv(a)
 		end)
 
-		local activeGdiPlayers = Utils.Where({ Multi1, Multi4 }, function(p) return p ~= nil end)
+		local activeGdiPlayers = GetActiveCoopPlayers({ Multi1, Multi4 })
 		AssignToCoopPlayers(gdiUnits, activeGdiPlayers)
 
 		-- if there are 2 GDI players,  send MCV for second GDI player
@@ -128,7 +128,7 @@ DistributeUnitsAndBases = function()
 				end)
 			end
 
-			local activeRebelPlayers = Utils.Where({ Multi1, Multi4 }, function(p) return p ~= nil end)
+			local activeRebelPlayers = GetActiveCoopPlayers({ Multi2, Multi5 })
 			Squads.ScrinRebelKiller.AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 40, Max = 80 })
 			InitAttackSquad(Squads.ScrinRebelKiller, Scrin, activeRebelPlayers)
 			CACoopQueueSyncer()

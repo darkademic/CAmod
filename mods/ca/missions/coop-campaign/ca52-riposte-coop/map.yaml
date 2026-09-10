@@ -3578,18 +3578,18 @@ Actors:
 	Actor1011: zdef
 		Owner: HawthorneGDI
 		SubCell: 3
-		Facing: 102
 		Location: 93,66
+		Facing: 896
 	Actor1012: zdef
 		Owner: HawthorneGDI
 		SubCell: 3
-		Facing: 102
 		Location: 84,62
+		Facing: 896
 	Actor1013: zdef
 		Owner: HawthorneGDI
 		SubCell: 3
-		Facing: 102
 		Location: 83,59
+		Facing: 896
 	NodWaypoint1: waypoint
 		Owner: Neutral
 		Location: 69,23
@@ -3704,6 +3704,152 @@ Actors:
 	Actor1035: camera
 		Owner: HawthorneGDI
 		Location: 24,61
+	Actor1036: vulc.ai
+		Owner: HawthorneGDI
+		Location: 139,66
+		Facing: 0
+	Actor1037: vulc.ai
+		Owner: HawthorneGDI
+		Location: 142,66
+		Facing: 0
+	Actor1038: msam
+		Owner: HawthorneGDI
+		Location: 143,69
+		Facing: 0
+	Actor1039: msam
+		Owner: HawthorneGDI
+		Location: 138,70
+		Facing: 0
+	Actor1040: mtnk
+		Owner: HawthorneGDI
+		Facing: 0
+		Location: 130,66
+	Actor1041: mtnk
+		Owner: HawthorneGDI
+		Facing: 0
+		Location: 132,66
+	Actor1042: mtnk
+		Owner: HawthorneGDI
+		Facing: 0
+		Location: 134,66
+	Actor1043: htnk.ion
+		Owner: HawthorneGDI
+		Facing: 0
+		Location: 131,68
+	Actor1047: htnk.ion
+		Owner: HawthorneGDI
+		Facing: 0
+		Location: 131,70
+	Actor1048: htnk.ion
+		Owner: HawthorneGDI
+		Facing: 0
+		Location: 133,68
+	Actor1049: htnk.ion
+		Owner: HawthorneGDI
+		Facing: 0
+		Location: 133,70
+	Actor1044: n1
+		Owner: HawthorneGDI
+		Location: 129,65
+		SubCell: 3
+		Facing: 0
+	Actor1045: n1
+		Owner: HawthorneGDI
+		Location: 148,68
+		SubCell: 3
+		Facing: 0
+	Actor1046: n3
+		Owner: HawthorneGDI
+		Location: 145,70
+		SubCell: 3
+		Facing: 0
+	Actor1050: n3
+		Owner: HawthorneGDI
+		Location: 136,71
+		SubCell: 3
+		Facing: 0
+	Actor1051: n1
+		Owner: HawthorneGDI
+		SubCell: 3
+		Facing: 0
+		Location: 147,67
+	Actor1052: n1
+		Owner: HawthorneGDI
+		SubCell: 3
+		Facing: 0
+		Location: 131,65
+	Actor1053: n1
+		Owner: HawthorneGDI
+		SubCell: 3
+		Facing: 0
+		Location: 133,65
+	Actor1054: n1
+		Owner: HawthorneGDI
+		SubCell: 3
+		Facing: 0
+		Location: 129,69
+	Actor1055: n1
+		Owner: HawthorneGDI
+		SubCell: 3
+		Facing: 0
+		Location: 142,71
+	Actor1056: n1
+		Owner: HawthorneGDI
+		SubCell: 3
+		Facing: 0
+		Location: 149,70
+	Actor1057: n1
+		Owner: HawthorneGDI
+		SubCell: 3
+		Facing: 0
+		Location: 127,69
+	Actor1059: titn.rail
+		Owner: HawthorneGDI
+		Location: 65,21
+		Facing: 768
+	Actor1060: titn.rail
+		Owner: HawthorneGDI
+		Facing: 768
+		Location: 65,23
+	Actor1058: titn.rail
+		Owner: HawthorneGDI
+		Facing: 768
+		Location: 65,19
+	Actor1061: titn.rail
+		Owner: HawthorneGDI
+		Facing: 768
+		Location: 65,17
+	Actor1062: xo
+		Owner: HawthorneGDI
+		Location: 67,23
+		Facing: 768
+	Actor1063: xo
+		Owner: HawthorneGDI
+		Facing: 768
+		Location: 67,21
+	Actor1064: xo
+		Owner: HawthorneGDI
+		Facing: 768
+		Location: 67,19
+	Actor1065: xo
+		Owner: HawthorneGDI
+		Facing: 768
+		Location: 67,17
+	Actor1066: ztrp
+		Owner: HawthorneGDI
+		SubCell: 3
+		Facing: 640
+		Location: 66,15
+	Actor1067: ztrp
+		Owner: HawthorneGDI
+		SubCell: 3
+		Facing: 640
+		Location: 63,19
+	Actor1068: ztrp
+		Owner: HawthorneGDI
+		SubCell: 3
+		Facing: 640
+		Location: 66,13
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, ca|missions/main-campaign/ca52-riposte/riposte-rules.yaml, ca|rules/custom/coop-rules.yaml, riposte-coop-rules.yaml
 

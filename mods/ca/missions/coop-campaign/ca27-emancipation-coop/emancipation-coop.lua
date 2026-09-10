@@ -10,7 +10,7 @@ SetupPlayers = function()
 	Scrin = Player.GetPlayer("Scrin")
 	GDISlaves = Player.GetPlayer("GDISlaves")
 	Neutral = Player.GetPlayer("Neutral")
-	MissionPlayers = Utils.Where({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 }, function(p) return p ~= nil end)
+	MissionPlayers = GetActiveCoopPlayers({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 })
 	MissionEnemies = { Scrin }
 	SinglePlayerPlayer = GDI
 	CoopInit()

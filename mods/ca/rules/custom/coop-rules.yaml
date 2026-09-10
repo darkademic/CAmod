@@ -350,6 +350,7 @@ HQ.UPG:
 		ProxyNamePrefix: coop
 		UseLocation: True
 		LinkedToParent: True
+		RequireSameFactionAs: Player
 		RequireValidFaction: True
 		RequiresPlayableOwner: True
 		RequiresCondition: base-sharing-enabled

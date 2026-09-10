@@ -28,14 +28,14 @@ Squads = {
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40, RampDuration = DateTime.Minutes(15) }),
 		FollowLeader = true,
 		AttackPaths = ScrinAttackPaths,
-		Delay = AdjustDelayForDifficulty(DateTime.Minutes(3)),
+		Delay = AdjustDelayForDifficulty(DateTime.Minutes(2)),
 	},
 	SovietMain = {
 		Compositions = AdjustCompositionsForDifficulty(UnitCompositions.Soviet),
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40, RampDuration = DateTime.Minutes(15) }),
 		FollowLeader = true,
 		AttackPaths = SovietAttackPaths,
-		Delay = AdjustDelayForDifficulty(DateTime.Minutes(4)),
+		Delay = AdjustDelayForDifficulty(DateTime.Minutes(3)),
 	},
 	ScrinAir = {
 		Delay = AdjustAirDelayForDifficulty(DateTime.Minutes(13)),

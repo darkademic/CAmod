@@ -3098,9 +3098,6 @@ Actors:
 	Actor998: hand
 		Owner: Nod1
 		Location: 7,127
-	Actor999: hq
-		Owner: Nod1
-		Location: 20,143
 	Actor1000: obli
 		Owner: Nod1
 		Location: 19,123
@@ -3137,12 +3134,6 @@ Actors:
 	Actor1010: nsam
 		Owner: Nod1
 		Location: 23,141
-	Actor1011: tmpp
-		Owner: Nod1
-		Location: 5,140
-	Actor1012: tmpl
-		Owner: Nod1
-		Location: 8,132
 	Actor1013: proc.td
 		Owner: Nod1
 		Location: 14,126
@@ -3337,9 +3328,6 @@ Actors:
 	Actor1085: nsam
 		Owner: Nod2
 		Location: 134,161
-	Actor1086: hq
-		Owner: Nod2
-		Location: 136,168
 	Actor919: rea2
 		Owner: Scrin
 		Location: 99,87
@@ -3781,8 +3769,8 @@ Actors:
 	Actor1185: rtpd
 		Owner: Scrin
 		Location: 146,141
-		Facing: 384
 		ScriptTags: HardAndAbove
+		Facing: 384
 	Actor1186: rtpd
 		Owner: Scrin
 		Location: 128,124
@@ -5156,6 +5144,21 @@ Actors:
 	McvDest: waypoint
 		Owner: Neutral
 		Location: 74,186
+	NodEastBase: waypoint
+		Owner: Neutral
+		Location: 142,164
+	NodTemplePrime: tmpp
+		Owner: Nod1
+		Location: 5,140
+	NodTemple: tmpl
+		Owner: Nod1
+		Location: 8,132
+	NodComms: hq
+		Owner: Nod1
+		Location: 20,143
+	Nod2Comms: hq
+		Owner: Nod2
+		Location: 136,168
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, ca|missions/main-campaign/ca54-decapitation/decapitation-rules.yaml, ca|rules/custom/coop-rules.yaml, decapitation-coop-rules.yaml
 

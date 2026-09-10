@@ -11,7 +11,7 @@ SetupPlayers = function()
 	USSR = Player.GetPlayer("USSR")
 	Civilians = Player.GetPlayer("Civilians")
 	Neutral = Player.GetPlayer("Neutral")
-	MissionPlayers = Utils.Where({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 }, function(p) return p ~= nil end)
+	MissionPlayers = GetActiveCoopPlayers({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 })
 	MissionEnemies = { USSR }
 	SinglePlayerPlayer = Greece
 	CoopInit()

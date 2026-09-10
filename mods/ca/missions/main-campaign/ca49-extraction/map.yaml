@@ -41,27 +41,27 @@ Players:
 		LockSpawn: True
 		LockTeam: True
 		Allies: Nod
-		Enemies: USSR, Scrin, Creeps
+		Enemies: USSR, USSR2, Scrin, Scrin2, Creeps
 	PlayerReference@Scrin:
 		Name: Scrin
 		Bot: campaign
 		Faction: scrin
 		Color: 7700FF
-		Allies: USSR
+		Allies: USSR, USSR2, Scrin2
 		Enemies: ScrinRebels, Nod, Creeps
 	PlayerReference@USSR:
 		Name: USSR
 		Bot: campaign
 		Faction: soviet
 		Color: FE1100
-		Allies: Scrin
+		Allies: Scrin, Scrin2, USSR2
 		Enemies: ScrinRebels, Nod, Creeps
 	PlayerReference@Nod:
 		Name: Nod
 		Faction: nod
 		Color: 6D738C
 		Allies: ScrinRebels
-		Enemies: USSR, Scrin, Creeps
+		Enemies: USSR, USSR2, Scrin, Scrin2, Creeps
 	PlayerReference@NodInactive:
 		Name: NodInactive
 		Faction: nod
@@ -70,6 +70,18 @@ Players:
 		Name: ScrinRebelsInactive
 		Faction: scrin
 		Color: 618884
+	PlayerReference@Scrin2:
+		Name: Scrin2
+		Faction: scrin
+		Color: 7700FF
+		Allies: Scrin, USSR, USSR2
+		Enemies: ScrinRebels, Nod, Creeps
+	PlayerReference@USSR2:
+		Name: USSR2
+		Faction: soviet
+		Color: FE1100
+		Allies: Scrin, Scrin2, USSR
+		Enemies: ScrinRebels, Nod, Creeps
 
 Actors:
 	Actor40: null
@@ -716,10 +728,6 @@ Actors:
 		Owner: ScrinRebelsInactive
 		Location: 66,47
 		Health: 44
-	Actor215: nerv
-		Owner: ScrinRebelsInactive
-		Location: 128,54
-		Health: 46
 	Actor216: ptur
 		Owner: ScrinRebelsInactive
 		Location: 126,61
@@ -734,14 +742,11 @@ Actors:
 		Owner: ScrinRebelsInactive
 		Location: 124,53
 		Health: 47
-	Actor219: rea2
-		Owner: ScrinRebelsInactive
-		Location: 131,55
-		Health: 34
 	Actor220: shar
 		Owner: ScrinRebelsInactive
 		Location: 129,59
 		TurretFacing: 525
+		Health: 86
 	Actor221: scrt
 		Owner: ScrinRebelsInactive
 		Location: 142,6
@@ -762,8 +767,8 @@ Actors:
 	Actor230: proc.scrin
 		Owner: ScrinRebelsInactive
 		Location: 72,43
-		Health: 39
 		FreeActor: False
+		Health: 46
 	Actor231: proc.scrin
 		Owner: ScrinRebelsInactive
 		Location: 131,33
@@ -858,8 +863,8 @@ Actors:
 	Actor258: proc.scrin
 		Owner: ScrinRebelsInactive
 		Location: 2,26
-		Health: 32
 		FreeActor: False
+		Health: 44
 	Actor259: reac
 		Owner: ScrinRebelsInactive
 		Location: 2,22
@@ -1811,11 +1816,11 @@ Actors:
 		Owner: Scrin
 		Location: 73,110
 	Actor569: proc.scrin
-		Owner: Scrin
 		Location: 61,106
+		Owner: Scrin2
 	Actor570: proc
-		Owner: USSR
 		Location: 83,111
+		Owner: USSR2
 	Actor571: fenc
 		Owner: USSR
 		Location: 86,113
@@ -4191,9 +4196,9 @@ Actors:
 		SubCell: 3
 	Actor1234: s3
 		Owner: Scrin
-		Facing: 384
 		Location: 46,13
 		SubCell: 3
+		Facing: 384
 	Actor1235: s3
 		Owner: Scrin
 		Location: 20,34
@@ -4917,11 +4922,6 @@ Actors:
 		Facing: 384
 		Location: 109,48
 		SubCell: 3
-	Actor1392: e3
-		Owner: USSR
-		Facing: 384
-		Location: 130,57
-		SubCell: 3
 	Actor1393: e3
 		Owner: USSR
 		Location: 112,82
@@ -4962,11 +4962,6 @@ Actors:
 		Location: 97,61
 		SubCell: 3
 		Facing: 156
-	Actor1401: e2
-		Owner: USSR
-		Facing: 384
-		Location: 110,59
-		SubCell: 3
 	Actor1402: e2
 		Owner: USSR
 		Facing: 384
@@ -5492,6 +5487,60 @@ Actors:
 		Location: 14,83
 		Facing: 531
 		ScriptTags: HardAndAbove
+	Actor1469: harv.scrin
+		Owner: ScrinRebelsInactive
+		Location: 130,38
+		Health: 62
+		Facing: 143
+	Actor1470: shok
+		Owner: USSR
+		Facing: 384
+		Location: 108,59
+		SubCell: 3
+	Actor1471: wsph
+		Owner: ScrinRebelsInactive
+		Location: 131,57
+		Health: 45
+	Actor219: rea2
+		Owner: ScrinRebelsInactive
+		Location: 131,54
+		Health: 34
+	Actor215: nerv
+		Owner: ScrinRebelsInactive
+		Health: 46
+		Location: 128,53
+	Actor1392: e3
+		Owner: USSR
+		Facing: 384
+		Location: 127,58
+		SubCell: 3
+	Actor1472: port
+		Owner: ScrinRebelsInactive
+		Location: 4,77
+	Actor1473: btr.ai
+		Owner: USSR
+		Location: 97,170
+		Facing: 128
+	Actor1474: btr.ai
+		Owner: USSR
+		Facing: 128
+		Location: 117,169
+	Actor1475: btr.ai
+		Owner: USSR
+		Facing: 128
+		Location: 123,165
+	Actor1476: btr.ai
+		Owner: USSR
+		Facing: 128
+		Location: 124,175
+	Actor1477: btr.ai
+		Owner: USSR
+		Facing: 128
+		Location: 104,183
+	Actor1478: btr.ai
+		Owner: USSR
+		Facing: 128
+		Location: 94,177
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, extraction-rules.yaml
 

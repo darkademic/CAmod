@@ -1,3 +1,6 @@
+GDIVsNod1.AttackValuesPerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40 })
+GDIVsNod2.AttackValuesPerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40 })
+
 SetupPlayers = function()
 	Multi0 = Player.GetPlayer("Multi0")
 	Multi1 = Player.GetPlayer("Multi1")
@@ -9,16 +12,21 @@ SetupPlayers = function()
 	HawthorneGDI = Player.GetPlayer("HawthorneGDI")
 	Nod = Player.GetPlayer("Nod")
 	Neutral = Player.GetPlayer("Neutral")
-	MissionPlayers = Utils.Where({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 }, function(p) return p ~= nil end)
+	MissionPlayers = GetActiveCoopPlayers({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 })
 	MissionEnemies = { HawthorneGDI }
 	SinglePlayerPlayer = ScrinRebels
-	ScrinRebelPlayers = Utils.Where({ Multi0, Multi2, Multi3, Multi5, Multi4 }, function(p) return p ~= nil end)
-	NodPlayers = Utils.Where({ Multi1 }, function(p) return p ~= nil end)
+	ScrinRebelPlayers = GetActiveCoopPlayers({ Multi0, Multi2, Multi3, Multi5, Multi4 })
+	NodPlayers = GetActiveCoopPlayers({ Multi1 })
 	StopSpread = true
 	CoopInit()
 end
 
 AfterWorldLoaded = function()
+	local nodExcessUnits = Nod.GetActorsByTypes({ "avtr", "reap", "bh", "enli", "rmbc", "stnk.nod" })
+	Utils.Do(nodExcessUnits, function(u)
+		u.Destroy()
+	end)
+
 	StartCashSpread(3500)
 	TransferMcvsToPlayers(ScrinRebelPlayers)
 	AssignToCoopPlayers(GetSpreadableUnits(SinglePlayerPlayer), ScrinRebelPlayers)

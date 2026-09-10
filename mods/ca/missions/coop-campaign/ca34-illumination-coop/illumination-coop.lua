@@ -10,7 +10,7 @@ SetupPlayers = function()
 	Nod = Player.GetPlayer("Nod")
 	TibLifeforms = Player.GetPlayer("TibLifeforms")
 	Neutral = Player.GetPlayer("Neutral")
-	MissionPlayers = Utils.Where({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 }, function(p) return p ~= nil end)
+	MissionPlayers = GetActiveCoopPlayers({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 })
 	MissionEnemies = { Scrin }
 	SinglePlayerPlayer = Nod
 	CoopInit()

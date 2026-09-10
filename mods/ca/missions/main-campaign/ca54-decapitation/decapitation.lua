@@ -1,5 +1,13 @@
 MissionDir = "ca|missions/main-campaign/ca54-decapitation"
 
+SuperweaponsEnabledTime = {
+	easy = DateTime.Seconds((60 * 50) + 17),
+	normal = DateTime.Seconds((60 * 35) + 17),
+	hard = DateTime.Seconds((60 * 25) + 17),
+	vhard = DateTime.Seconds((60 * 20) + 17),
+	brutal = DateTime.Seconds((60 * 15) + 17)
+}
+
 ScrinNorthAttackPaths = {
 	{ ScrinWaypoint1.Location, ScrinWaypoint3.Location, ScrinWaypoint5.Location, ScrinWaypoint8.Location },
 	{ ScrinWaypoint2.Location, ScrinWaypoint4.Location, ScrinWaypoint6.Location, ScrinWaypoint9.Location },
@@ -278,6 +286,11 @@ InitScrin = function()
 				RecallVanquisher()
 			end
 		end
+	end)
+
+	Trigger.AfterDelay(SuperweaponsEnabledTime[Difficulty], function()
+		Actor.Create("ai.minor.superweapons.enabled", true, { Owner = Scrin })
+		Actor.Create("ai.superweapons.enabled", true, { Owner = Scrin })
 	end)
 
 	Utils.Do(Spires, function(spire, attacker, damage)

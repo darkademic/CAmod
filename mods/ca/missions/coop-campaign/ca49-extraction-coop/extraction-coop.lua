@@ -12,11 +12,11 @@ SetupPlayers = function()
 	Nod = Player.GetPlayer("Nod")
 	NodInactive = Player.GetPlayer("NodInactive")
 	Neutral = Player.GetPlayer("Neutral")
-	MissionPlayers = Utils.Where({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 }, function(p) return p ~= nil end)
+	MissionPlayers = GetActiveCoopPlayers({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 })
 	MissionEnemies = { USSR, Scrin }
 	SinglePlayerPlayer = ScrinRebels
-	ScrinRebelPlayers = Utils.Where({ Multi0, Multi2, Multi3, Multi5 }, function(p) return p ~= nil end)
-	NodPlayers = Utils.Where({ Multi1, Multi4 }, function(p) return p ~= nil end)
+	ScrinRebelPlayers = GetActiveCoopPlayers({ Multi0, Multi2, Multi3, Multi5 })
+	NodPlayers = GetActiveCoopPlayers({ Multi1, Multi4 })
 	StopSpread = true
 	CoopInit()
 end

@@ -10,7 +10,7 @@ SetupPlayers = function()
 	Greece = Player.GetPlayer("Greece")
 	GDI = Player.GetPlayer("GDI")
 	Neutral = Player.GetPlayer("Neutral")
-	MissionPlayers = Utils.Where({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 }, function(p) return p ~= nil end)
+	MissionPlayers = GetActiveCoopPlayers({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 })
 	MissionEnemies = { GDI, Greece }
 	SinglePlayerPlayer = Nod
 	CoopInit()
@@ -23,17 +23,6 @@ AfterWorldLoaded = function()
 		StealthTankDeathTrigger(ExtraStealthTank)
 		ExtraStealthTank.Scatter()
 	end
-	--[[ --Just some Debug Trigger to test the Ending Sequence
-	Trigger.OnDamaged(Hacker1,function()
-		if Hacker1.Health < Hacker1.MaxHealth then
-			Hacker1.Health = Hacker1.MaxHealth
-		end
-	end)
-	Trigger.OnDamaged(Hacker2,function()
-		if Hacker2.Health < Hacker2.MaxHealth then
-			Hacker2.Health = Hacker2.MaxHealth
-		end
-	end)]]
 end
 
 AfterTick = function()

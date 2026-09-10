@@ -11,16 +11,21 @@ SetupPlayers = function()
 	Nod2 = Player.GetPlayer("Nod2")
 	Nod3 = Player.GetPlayer("Nod3")
 	Neutral = Player.GetPlayer("Neutral")
-	MissionPlayers = Utils.Where({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 }, function(p) return p ~= nil end)
+	MissionPlayers = GetActiveCoopPlayers({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 })
 	MissionEnemies = { Scrin }
 	SinglePlayerPlayer = ScrinRebels
-	ScrinRebelPlayers = Utils.Where({ Multi0, Multi4 }, function(p) return p ~= nil end)
-	NodPlayers = Utils.Where({ Multi1, Multi5 }, function(p) return p ~= nil end)
+	ScrinRebelPlayers = GetActiveCoopPlayers({ Multi0, Multi4 })
+	NodPlayers = GetActiveCoopPlayers({ Multi1, Multi5 })
 	StopSpread = true
 	CoopInit()
 end
 
 AfterWorldLoaded = function()
+	NodTemplePrime.Destroy()
+	NodTemple.Destroy()
+	NodComms.Destroy()
+	Nod2Comms.Destroy()
+
 	StartCashSpread(3500)
 	TransferMcvsToPlayers(ScrinRebelPlayers)
 	AssignToCoopPlayers(GetSpreadableUnits(SinglePlayerPlayer), ScrinRebelPlayers)
@@ -29,6 +34,10 @@ AfterWorldLoaded = function()
 	if Multi1 ~= nil then
 		TransferBaseToPlayer(Nod1, Multi1)
 		AssignToCoopPlayers(GetSpreadableUnits(Nod1), { Multi1 })
+
+		if Multi1.IsLocalPlayer then
+			Camera.Position = ScrinWaypoint8.CenterPosition
+		end
 
 		if Multi5 == nil then
 			TransferBaseToPlayer(Nod2, Multi1)
@@ -39,8 +48,9 @@ AfterWorldLoaded = function()
 	--gdi
 	if Multi2 ~= nil then
 		if Multi2.IsLocalPlayer then
-			Media.PlaySpeechNotification(p, "ReinforcementsArrived")
+			Media.PlaySpeechNotification(Multi2, "ReinforcementsArrived")
 			Notification("Reinforcements have arrived.")
+			Camera.Position = ExtraMcvDest.CenterPosition
 		end
 		Reinforcements.Reinforce(Multi2, { "amcv" }, { ExtraMcvSpawn.Location, ExtraMcvDest.Location })
 	end
@@ -49,8 +59,9 @@ AfterWorldLoaded = function()
 	if Multi3 ~= nil then
 		Trigger.AfterDelay(DateTime.Seconds(1), function()
 			if Multi3.IsLocalPlayer then
-				Media.PlaySpeechNotification(p, "ReinforcementsArrived")
+				Media.PlaySpeechNotification(Multi3, "ReinforcementsArrived")
 				Notification("Reinforcements have arrived.")
+				Camera.Position = ExtraMcvDest.CenterPosition
 			end
 			Reinforcements.Reinforce(Multi3, { "mcv" }, { ExtraMcvSpawn.Location, ExtraMcvDest.Location })
 		end)
@@ -60,6 +71,9 @@ AfterWorldLoaded = function()
 	if Multi5 ~= nil then
 		TransferBaseToPlayer(Nod2, Multi5)
 		AssignToCoopPlayers(GetSpreadableUnits(Nod2), { Multi5 })
+		if Multi5.IsLocalPlayer then
+			Camera.Position = NodEastBase.CenterPosition
+		end
 	end
 
 	Utils.Do(ScrinRebelPlayers, function(p)

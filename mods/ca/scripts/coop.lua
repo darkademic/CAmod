@@ -140,6 +140,14 @@ IsPlayerInList = function(player, players)
 	end)
 end
 
+---@param playerSlots player[]
+---@return player[]
+GetActiveCoopPlayers = function(playerSlots)
+	return Utils.Where(playerSlots, function(player)
+		return player ~= nil
+	end)
+end
+
 GetCoopGroundAttackers = function()
 	local attackers = { }
 
@@ -223,6 +231,7 @@ AssignToCoopPlayers = function(units, specificPlayers, ignoreBlackList)
 		units = Utils.Where(units, CanSplitAmongPlayers)
 	end
 
+	local players
 	local ownerID
 
 	if specificPlayers then
@@ -437,6 +446,11 @@ PlayerDefeatedOrDisconnected = function(player)
 
 	Trigger.AfterDelay(DateTime.Seconds(8), function()
 		AssignToCoopPlayers(player.GetActors(), CoopPlayers)
+		if #CoopPlayers == 0 then
+			MessageCooldown = false
+			return
+		end
+
 		local estateCash = player.Cash + player.Resources
 		local estateCashShare = estateCash / #CoopPlayers
 		Utils.Do(CoopPlayers, function(player)
@@ -997,6 +1011,7 @@ end
 
 TransferMcvsToPlayers = function(players)
 	local mcvs = SinglePlayerPlayer.GetActorsByTypes(McvTypes)
+	local toPlayers
 	if players ~= nil then
 		toPlayers = players
 	else

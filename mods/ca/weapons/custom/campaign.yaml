@@ -298,6 +298,9 @@ C4:
 	Warhead@VoidEngine: SpreadDamage
 		Damage: 80000
 		ValidTargets: VoidEngine
+	Warhead@OverlordSpire: SpreadDamage
+		Damage: 80000
+		ValidTargets: OverlordSpire
 
 ^VsCampaignBossEmp:
 	Warhead@bossEmp: GrantExternalConditionCA

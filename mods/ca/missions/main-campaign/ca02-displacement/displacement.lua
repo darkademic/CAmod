@@ -52,6 +52,9 @@ MaxLosses = {
 NavalReinforcementsDelay = {
 	easy = DateTime.Minutes(2),
 	normal = DateTime.Minutes(4),
+	hard = DateTime.Minutes(4), -- not used
+	vhard = DateTime.Minutes(4), -- not used
+	brutal = DateTime.Minutes(4), -- not used
 }
 
 TimeBetweenConvoys = {

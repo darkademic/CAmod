@@ -49,6 +49,60 @@ coalescence.upgrade:
 	Buildable:
 		Prerequisites: scrt, ~player.scrin
 
+# Enable Nod subfaction specific tech
+
+TMPL:
+	GrantExternalConditionPowerCA@Frenzy:
+		-Prerequisites:
+
+ACOL:
+	Buildable:
+		Prerequisites: obliortmpl, anyradar, ~infantry.nod, ~!tmpp
+
+TPLR:
+	Buildable:
+		Prerequisites: obliortmpl, anyradar, ~infantry.nod, ~tmpp
+
+BH:
+	Buildable:
+		Prerequisites: anyradar, ~infantry.nod
+
+FTNK:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.nod
+
+HFTK:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.nod
+
+WTNK:
+	Buildable:
+		Prerequisites: anyradar, ~vehicles.nod
+
+MLRS:
+	Buildable:
+		Prerequisites: tmpl, ~vehicles.nod
+
+SPEC:
+	Buildable:
+		Prerequisites: tmpl, ~vehicles.nod
+
+VENM:
+	Buildable:
+		Prerequisites: ~aircraft.nod
+
+blacknapalm.upgrade:
+	Buildable:
+		Prerequisites: ~player.nod, tmpl
+
+quantum.upgrade:
+	Buildable:
+		Prerequisites: ~player.nod, tmpl
+
+hstk.upgrade:
+	Buildable:
+		Prerequisites: ~player.nod, tmpl
+
 # Disable powers for AI
 
 ^ClusterMissilePower:
@@ -58,8 +112,8 @@ coalescence.upgrade:
 # AI powers
 
 UPGC:
-	ExternalCondition@Bombardment:
-		Condition: tower-rocket
+	ExternalCondition@Shield:
+		Condition: tower-shield
 
 ^FirestormPower:
 	AttackOrderPowerCA@ROCKET:
@@ -70,6 +124,10 @@ UPGC:
 		Prerequisites: ~ai.supportpowers.enabled
 
 # Misc
+
+TMPP:
+	Health:
+		HP: 250000
 
 OCAR.WOLV:
 	Inherits: OCAR

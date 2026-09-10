@@ -47,7 +47,7 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 			if (counter == null)
 			{
 				countImage.GetImageName = () => DisabledImage;
-				countImage.IsVisible = () => true;
+				countImage.IsVisible = () => world.LocalPlayer.Faction.Side == "Scrin";
 
 				countImageGlow.GetImageName = () => DisabledImage;
 				countImageGlow.IsVisible = () => false;

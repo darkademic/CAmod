@@ -103,6 +103,12 @@ WorldLoaded = function()
 	InitUSSR()
 	InitScrin()
 
+	if IsNormalOrBelow() then
+		Utils.Do(MissionPlayers, function(p)
+			Actor.Create("mcv.allowed", true, { Owner = p })
+		end)
+	end
+
     ObjectivePrepare = ScrinRebels.AddObjective("Gather forces and rendezvous with Kane before deadline.")
     ObjectiveDestroyEitherBase = ScrinRebels.AddObjective("Eliminate either Scrin or Soviet base.")
     ObjectiveProtectTemple = ScrinRebels.AddObjective("Kane's Temple must survive.")

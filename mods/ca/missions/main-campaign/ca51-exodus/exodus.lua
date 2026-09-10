@@ -23,10 +23,10 @@ MaleficAttackPaths = {
 
 NumEvacConvoys = {
 	easy = 8,
-	normal = 9,
-	hard = 10,
-	vhard = 11,
-	brutal = 12
+	normal = 10,
+	hard = 12,
+	vhard = 14,
+	brutal = 16
 }
 
 GatewayReorientationTime = {
@@ -101,7 +101,7 @@ WorldLoaded = function()
 	NextVoidspikeTargetIndex = 1
 	NextConvoyCompositionIndex = 1
 	NextConvoySpawnIndex = 1
-	EvacuationTimerTicks = (DateTime.Minutes(2) * NumEvacConvoys[Difficulty]) + DateTime.Minutes(6)
+	EvacuationTimerTicks = (DateTime.Minutes(2) * NumEvacConvoys[Difficulty]) + DateTime.Minutes(4)
 	GatewayTimerTicks = 0
 	UpdateCountdown()
 	SetupGDIExit()
@@ -127,10 +127,6 @@ WorldLoaded = function()
 			ScrinRebels.MarkCompletedObjective(ObjectiveCaptureNerveCenter)
 			Gateway.Owner = ScrinRebels
 
-			Utils.Do(MaleficAttackPaths, function(path)
-				table.insert(path, self.Location)
-			end)
-
 			local gdiUnits = Utils.Where(GDI.GetActors(), function(a)
 				return a.HasProperty("AttackMove")
 			end)
@@ -142,7 +138,10 @@ WorldLoaded = function()
 			GatewayTimerTicks = GatewayReorientationTime[Difficulty]
 			UpdateCountdown()
 
-			Squads.MaleficMain.AttackPaths = { { MaleficWaypoint1.Location, MaleficWaypoint3.Location, MaleficWaypoint8.Location, MaleficWaypoint9.Location } }
+			Squads.MaleficMain.AttackPaths = {
+				{ MaleficWaypoint1.Location, MaleficWaypoint3.Location, MaleficWaypoint8.Location, MaleficWaypoint9.Location },
+				{ MaleficWaypoint2.Location, MaleficWaypoint8.Location, MaleficWaypoint9.Location },
+			}
 		end
 	end)
 
@@ -286,13 +285,7 @@ InitConvoys = function()
 	for convoyIndex = 1, NumEvacConvoys[Difficulty] do
 		Trigger.AfterDelay(DateTime.Minutes(2 * (convoyIndex - 1)), function()
 			local composition = ConvoyUnits[NextConvoyCompositionIndex]
-			local isLastConvoy = convoyIndex == NumEvacConvoys[Difficulty]
 			local spawnLocation = spawnLocations[NextConvoySpawnIndex]
-
-			if isLastConvoy then
-				Trigger.AfterDelay(DateTime.Minutes(2), EvacuateRemainingUnits)
-			end
-
 			local unitDelay = 0
 			local firstVehicle = true
 
@@ -336,6 +329,8 @@ InitConvoys = function()
 				NextConvoySpawnIndex = 1
 			end
 		end)
+
+		Trigger.AfterDelay(DateTime.Minutes(2 * NumEvacConvoys[Difficulty]), EvacuateRemainingUnits)
 	end
 end
 

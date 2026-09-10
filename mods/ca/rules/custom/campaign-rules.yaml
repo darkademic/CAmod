@@ -998,6 +998,8 @@ OSPI:
 	Inherits@A2GPROTECTION: ^AirToGroundProtection
 	Targetable@CampaignBoss:
 		TargetTypes: CampaignBoss
+	Targetable@OverlordSpire:
+		TargetTypes: OverlordSpire
 	RenderSprites:
 		PlayerPalette: playerscrin
 	Valued:

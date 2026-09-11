@@ -44,6 +44,9 @@ namespace OpenRA.Mods.CA.Effects
 
 		readonly MersenneTwister random;
 		readonly HaloLine[] lines;
+		readonly WPos[][] linePositions;
+		readonly float3[][] lineScreenPoints;
+		readonly Color[] lineColors;
 		readonly WDist radius;
 		readonly int distortion;
 		readonly int distortionAnimation;
@@ -77,11 +80,19 @@ namespace OpenRA.Mods.CA.Effects
 
 			var actualLineCount = Math.Min(MaximumLines, Math.Max(1, lineCount));
 			lines = new HaloLine[actualLineCount];
+			linePositions = new WPos[actualLineCount][];
+			lineScreenPoints = new float3[actualLineCount][];
+			lineColors = new Color[actualLineCount];
 			for (var i = 0; i < actualLineCount; i++)
 			{
 				var color = normalizedColors[i % normalizedColors.Length];
 				var angle = WAngle.FromDegrees(i * 360 / actualLineCount);
-				lines[i] = new HaloLine(color, angle, new WPos[pointsPerLine], new WVec[pointsPerLine], new float3[pointsPerLine + 1]);
+				var positions = new WPos[pointsPerLine];
+				var screenPoints = new float3[pointsPerLine + 1];
+				lines[i] = new HaloLine(color, angle, positions, new WVec[pointsPerLine], screenPoints);
+				linePositions[i] = positions;
+				lineScreenPoints[i] = screenPoints;
+				lineColors[i] = color;
 			}
 
 			UpdatePositions();
@@ -100,8 +111,7 @@ namespace OpenRA.Mods.CA.Effects
 
 		public IEnumerable<IRenderable> Render(int zOffset, WDist width, Color glowColor, float glowScale, float glowIntensity)
 		{
-			foreach (var line in lines)
-				yield return new DistortionHaloRenderable(line.Positions, line.ScreenPoints, zOffset, width, line.Color, glowColor, glowScale, glowIntensity);
+			yield return new DistortionHaloRenderable(linePositions, lineScreenPoints, zOffset, width, lineColors, glowColor, glowScale, glowIntensity);
 		}
 
 		void UpdatePositions()

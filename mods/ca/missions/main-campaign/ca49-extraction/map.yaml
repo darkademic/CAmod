@@ -58,16 +58,19 @@ Players:
 		Enemies: ScrinRebels, Nod, Creeps
 	PlayerReference@Nod:
 		Name: Nod
+		Bot: dormant
 		Faction: nod
 		Color: 6D738C
 		Allies: ScrinRebels
 		Enemies: USSR, USSR2, Scrin, Scrin2, Creeps
 	PlayerReference@NodInactive:
 		Name: NodInactive
+		Bot: dormant
 		Faction: nod
 		Color: 6D738C
 	PlayerReference@ScrinRebelsInactive:
 		Name: ScrinRebelsInactive
+		Bot: dormant
 		Faction: scrin
 		Color: 618884
 	PlayerReference@Scrin2:

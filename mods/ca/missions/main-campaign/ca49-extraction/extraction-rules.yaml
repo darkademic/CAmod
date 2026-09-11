@@ -46,6 +46,12 @@ mcv.allowed:
 	Inherits@DUMMY: ^InvisibleDummy
 	ProvidesPrerequisite:
 
+MAST:
+	-Buildable:
+
+RMBO:
+	-Buildable:
+
 ^ColonySpikePower:
 	DetonateWeaponPower@ColonySpike:
 		Prerequisites: ~disabled

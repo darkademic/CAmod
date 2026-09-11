@@ -72,6 +72,7 @@ Players:
 		Enemies: ScrinRebels, Nod, ScrinRebelWestWormholes, ScrinRebelEastWormholes, Creeps
 	PlayerReference@Nod:
 		Name: Nod
+		Bot: dormant
 		Faction: nod
 		Color: 6D738C
 		Allies: ScrinRebels

@@ -117,7 +117,7 @@ WorldLoaded = function()
     UpdateDeadlineCountdown()
 
     Trigger.OnEnteredProximityTrigger(KaneLocator.CenterPosition, WDist.New(12 * 1024), function(a, id)
-        if IsMissionPlayer(a.Owner) and a.Type ~= "kanelocator" and not ScrinRebels.IsObjectiveCompleted(ObjectivePrepare) then
+        if IsMissionPlayer(a.Owner) and a.HasProperty("Move") and not ScrinRebels.IsObjectiveCompleted(ObjectivePrepare) then
             Trigger.RemoveProximityTrigger(id)
             RendezvousComplete()
         end
@@ -125,7 +125,7 @@ WorldLoaded = function()
 
     Utils.Do(NodStrandedUnits, function(w)
         Trigger.OnEnteredProximityTrigger(w.CenterPosition, WDist.New(6 * 1024), function(a, id)
-            if IsMissionPlayer(a.Owner) then
+            if IsMissionPlayer(a.Owner) and a.HasProperty("Move") then
                 Trigger.RemoveProximityTrigger(id)
                 local nodUnits = Map.ActorsInCircle(w.CenterPosition, WDist.New(6 * 1024), function(a)
                     return a.Owner == NodInactive
@@ -139,7 +139,7 @@ WorldLoaded = function()
 
     Utils.Do(RebelStructures, function(w)
         Trigger.OnEnteredProximityTrigger(w.CenterPosition, WDist.New(11 * 1024), function(a, id)
-            if IsMissionPlayer(a.Owner) then
+            if IsMissionPlayer(a.Owner) and a.HasProperty("Move") then
                 Trigger.RemoveProximityTrigger(id)
                 local rebelStructures = Map.ActorsInCircle(w.CenterPosition, WDist.New(11 * 1024), function(a)
                     return a.Owner == ScrinRebelsInactive

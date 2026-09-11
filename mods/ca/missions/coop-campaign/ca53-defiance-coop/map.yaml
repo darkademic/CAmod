@@ -36,6 +36,7 @@ Players:
 		Enemies: Nod, USSR, Creeps
 	PlayerReference@Nod:
 		Name: Nod
+		Bot: dormant
 		Faction: nod
 		Color: FE1100
 		Allies: USSR
@@ -1923,14 +1924,15 @@ Actors:
 		SubCell: 3
 	Actor628: brut
 		Owner: USSR
-		Facing: 384
 		Location: 166,56
 		SubCell: 3
+		Facing: 768
 	Actor629: brut
 		Owner: USSR
-		Facing: 384
 		Location: 158,55
 		SubCell: 3
+		Facing: 512
+		ScriptTags: VeryHardAndAbove
 	Actor632: brut
 		Owner: USSR
 		Facing: 384
@@ -1999,8 +2001,8 @@ Actors:
 	Actor630: brut
 		Owner: USSR
 		SubCell: 3
-		Facing: 640
 		Location: 159,53
+		Facing: 640
 	Actor631: brut
 		Owner: USSR
 		SubCell: 3
@@ -2965,6 +2967,209 @@ Actors:
 		Facing: 768
 		Location: 116,132
 		SubCell: 3
+	Actor840: brut
+		Owner: USSR
+		Facing: 384
+		Location: 175,64
+		SubCell: 3
+	Actor841: brut
+		Owner: USSR
+		Location: 178,61
+		SubCell: 3
+		Facing: 384
+		ScriptTags: VeryHardAndAbove
+	Actor842: brut
+		Owner: USSR
+		Location: 178,61
+		SubCell: 1
+		Facing: 384
+		ScriptTags: VeryHardAndAbove
+	Actor843: brut
+		Owner: USSR
+		Location: 176,60
+		SubCell: 3
+		Facing: 512
+	Actor844: brut
+		Owner: USSR
+		Location: 172,58
+		SubCell: 3
+		Facing: 512
+		ScriptTags: VeryHardAndAbove
+	Actor845: brut
+		Owner: USSR
+		Location: 172,58
+		SubCell: 1
+		Facing: 384
+		ScriptTags: VeryHardAndAbove
+	Actor846: brut
+		Owner: USSR
+		Location: 171,59
+		SubCell: 3
+		Facing: 512
+	Actor847: brut
+		Owner: USSR
+		Location: 169,61
+		SubCell: 3
+		Facing: 512
+	Actor848: brut
+		Owner: USSR
+		Facing: 384
+		Location: 166,58
+		SubCell: 3
+	Actor849: brut
+		Owner: USSR
+		Facing: 384
+		Location: 158,57
+		SubCell: 3
+	Actor850: brut
+		Owner: USSR
+		Location: 157,53
+		SubCell: 3
+		ScriptTags: VeryHardAndAbove
+		Facing: 384
+	Actor851: brut
+		Owner: USSR
+		Location: 157,53
+		SubCell: 1
+		ScriptTags: VeryHardAndAbove
+		Facing: 256
+	Actor852: brut
+		Owner: USSR
+		Location: 157,51
+		SubCell: 3
+		Facing: 384
+	Actor853: brut
+		Owner: USSR
+		Facing: 384
+		Location: 157,51
+		SubCell: 1
+	Actor854: brut
+		Owner: USSR
+		Location: 167,51
+		SubCell: 3
+		Facing: 384
+	Actor855: brut
+		Owner: USSR
+		Location: 161,57
+		SubCell: 3
+		Facing: 384
+	Actor856: brut
+		Owner: USSR
+		Location: 151,48
+		SubCell: 3
+		Facing: 384
+		ScriptTags: VeryHardAndAbove
+	Actor857: brut
+		Owner: USSR
+		Facing: 384
+		Location: 151,48
+		SubCell: 1
+	Actor858: brut
+		Owner: USSR
+		Facing: 384
+		Location: 181,60
+		SubCell: 3
+	Actor859: brut
+		Owner: USSR
+		Facing: 384
+		Location: 180,56
+		SubCell: 3
+	Actor860: brut
+		Owner: USSR
+		Facing: 384
+		Location: 170,48
+		SubCell: 3
+	Actor861: brut
+		Owner: USSR
+		Location: 165,40
+		SubCell: 3
+		Facing: 384
+		ScriptTags: VeryHardAndAbove
+	Actor862: brut
+		Owner: USSR
+		Facing: 384
+		Location: 165,40
+		SubCell: 1
+	Actor863: brut
+		Owner: USSR
+		Facing: 384
+		Location: 177,38
+		SubCell: 3
+	Actor864: brut
+		Owner: USSR
+		Facing: 384
+		Location: 181,39
+		SubCell: 3
+	Actor865: brut
+		Owner: USSR
+		Location: 175,45
+		SubCell: 3
+		Facing: 566
+	Actor866: brut
+		Owner: USSR
+		Location: 157,41
+		SubCell: 3
+		Facing: 512
+		ScriptTags: VeryHardAndAbove
+	Actor867: brut
+		Owner: USSR
+		Facing: 384
+		Location: 157,41
+		SubCell: 1
+	Actor868: brut
+		Owner: USSR
+		Facing: 384
+		Location: 156,42
+		SubCell: 3
+	Actor869: brut
+		Owner: USSR
+		Facing: 384
+		Location: 157,43
+		SubCell: 3
+	Actor870: brut
+		Owner: USSR
+		Facing: 384
+		Location: 178,54
+		SubCell: 3
+	Actor871: brut
+		Owner: USSR
+		Location: 183,49
+		SubCell: 3
+		Facing: 384
+	Actor872: disc
+		Owner: USSR
+		Location: 93,20
+		Facing: 384
+		ScriptTags: VeryHardAndAbove
+	Actor873: disc
+		Owner: USSR
+		Location: 97,23
+		Facing: 384
+		ScriptTags: HardAndAbove
+	Actor874: disc
+		Owner: USSR
+		Location: 102,24
+		Facing: 384
+	Actor875: disc
+		Owner: USSR
+		Location: 108,24
+		Facing: 384
+		ScriptTags: HardAndAbove
+	Actor876: disc
+		Owner: USSR
+		Location: 116,21
+		Facing: 384
+		ScriptTags: VeryHardAndAbove
+	Actor877: disc
+		Owner: USSR
+		Location: 117,16
+		Facing: 384
+		ScriptTags: VeryHardAndAbove
+	Actor878: disc
+		Owner: USSR
+		Location: 92,15
+		Facing: 384
+		ScriptTags: VeryHardAndAbove
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, ca|missions/main-campaign/ca53-defiance/defiance-rules.yaml, ca|rules/custom/coop-rules.yaml, defiance-coop-rules.yaml
 

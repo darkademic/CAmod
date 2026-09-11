@@ -193,7 +193,9 @@ WorldLoaded = function()
 
     Trigger.OnKilled(Vanquisher, function(self, killer)
         if ObjectiveDestroyVanquisher ~= nil and not ScrinRebels.IsObjectiveCompleted(ObjectiveDestroyVanquisher) then
-            ScrinRebels.MarkCompletedObjective(ObjectiveDestroyVanquisher)
+			Trigger.AfterDelay(DateTime.Seconds(3), function()
+            	ScrinRebels.MarkCompletedObjective(ObjectiveDestroyVanquisher)
+			end)
         end
     end)
 

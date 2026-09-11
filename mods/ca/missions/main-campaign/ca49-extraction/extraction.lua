@@ -75,6 +75,22 @@ Squads = {
 		Delay = AdjustAirDelayForDifficulty(DateTime.Minutes(13)),
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 12, Max = 12 }),
 		Compositions = AirCompositions.Soviet,
+	},
+	ScrinCommandoKillers = {
+		ActiveCondition = function(squad)
+			local commandos = GetMissionPlayersActorsByTypes({ "mast", "rmbo" })
+			return #commandos > 0
+		end,
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 15, Max = 20 }),
+		Compositions = { { Aircraft = { "stmr", "stmr" } } }
+	},
+	SovietCommandoKillers = {
+		ActiveCondition = function(squad)
+			local commandos = GetMissionPlayersActorsByTypes({ "mast", "rmbo" })
+			return #commandos > 0
+		end,
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 15, Max = 20 }),
+		Compositions = { { Aircraft = { "yak", "yak" } } }
 	}
 }
 
@@ -296,6 +312,10 @@ InitScrin = function()
 		TargetSwapChance(a, 10)
 		CallForHelpOnDamagedOrKilled(a, WDist.New(5120), IsScrinGroundHunterUnit)
 	end)
+
+	if IsVeryHardOrAbove() then
+		InitAirAttackSquad(Squads.ScrinCommandoKillers, Scrin, MissionPlayers, { "mast", "rmbo" })
+	end
 end
 
 InitScrinAttacks = function()
@@ -320,6 +340,10 @@ InitUSSR = function()
 		TargetSwapChance(a, 10)
 		CallForHelpOnDamagedOrKilled(a, WDist.New(5120), IsUSSRGroundHunterUnit)
 	end)
+
+	if IsVeryHardOrAbove() then
+		InitAirAttackSquad(Squads.SovietCommandoKillers, USSR, MissionPlayers, { "mast", "rmbo" })
+	end
 end
 
 InitUSSRAttacks = function()

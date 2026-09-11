@@ -304,6 +304,9 @@ InitAttackAircraft = function(aircraft, targetPlayers, targetList, targetType)
 		local typeKey = string.gsub(aircraft.Type, "%.", "_")
 		local fallbackTargetList = nil
 		local fallbackTargetType = nil
+		if targetList ~= nil and targetType == nil then
+			targetType = "ActorType"
+		end
 		if targetList == nil and AircraftTargets[typeKey] ~= nil then
 			fallbackTargetList = AircraftTargets[typeKey].TargetList
 		end

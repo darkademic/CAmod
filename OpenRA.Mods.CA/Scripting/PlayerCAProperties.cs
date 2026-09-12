@@ -19,8 +19,13 @@ namespace OpenRA.Mods.Common.Scripting
 	[ScriptPropertyGroup("PlayerCA")]
 	public class PlayerCAProperties : ScriptPlayerProperties
 	{
+		private readonly PlayerStatistics playerStatistics;
+
 		public PlayerCAProperties(ScriptContext context, Player player)
-			: base(context, player) { }
+			: base(context, player)
+		{
+			playerStatistics = player.PlayerActor.TraitOrDefault<PlayerStatistics>();
+		}
 
 		[Desc("Returns all living actors of the specified target types of this player.")]
 		public Actor[] GetActorsByTargetTypes(string[] targetTypes)
@@ -66,5 +71,8 @@ namespace OpenRA.Mods.Common.Scripting
 				return true;
 			}
 		}
+
+		[Desc("Returns the player's statistics.")]
+		public int ArmyValue => playerStatistics.ArmyValue;
 	}
 }

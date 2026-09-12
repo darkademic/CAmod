@@ -4426,6 +4426,7 @@ MTNK.Nod.Preview:
 		Category: Nod/Vehicles
 	EncyclopediaExtras:
 		Subfaction: legion
+	-MapEditorData:
 
 MTNK.Laser:
 	Inherits: MTNK

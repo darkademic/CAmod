@@ -1130,6 +1130,11 @@ InitAttackWave = function(squad)
 	-- make sure ActiveCondition function returns true (if it exists)
 	local isActive = squad.ActiveCondition == nil or squad.ActiveCondition(squad)
 
+	-- on easy difficulty we don't send waves if player has less than 3000 army value
+	if Difficulty == "easy" and squad.TargetPlayer.ArmyValue < 3000 then
+		isActive = false
+	end
+
 	if isActive then
 		local allCompositions
 

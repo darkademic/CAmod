@@ -77,7 +77,8 @@ CSPK:
 		Delay: 75
 
 WORMHOLE:
-	-Targetable:
+	Targetable:
+		TargetTypes: Wormhole
 
 # Enable subfaction specific tech
 

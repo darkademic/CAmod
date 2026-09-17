@@ -117,7 +117,7 @@ if IsHardOrAbove() then
 	if IsVeryHardOrAbove() then
 		table.insert(UnitCompositions.Scrin, {
 			Infantry = { "evis", "evis", "evis", "evis", "evis", "evis", "evis", "evis", "evis", "evis", "evis", "evis", "evis", "evis", "evis", "evis", "evis" },
-			Vehicles = { "shrw", "shrw", "ruin", "ruin", "ruin", "ruin", "rptp", "rptp" },
+			Vehicles = { "shrw", "shrw", "ruin", "ruin", "ruin", "ruin", "rtpd", "rtpd" },
 			Aircraft = { "deva" },
 			MinTime = DateTime.Minutes(18),
 			RequiredTargetCharacteristics = { "MassInfantry" }

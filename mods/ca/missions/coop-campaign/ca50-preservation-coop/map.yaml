@@ -2832,9 +2832,6 @@ Actors:
 	Actor1025: brik
 		Owner: USSR
 		Location: 88,1
-	Actor1026: cspk
-		Owner: ScrinRebels
-		Location: 215,77
 	Actor1027: fact
 		Owner: USSR
 		Location: 200,2
@@ -5879,6 +5876,9 @@ Actors:
 	EastToMiddleWormhole: wormhole
 		Owner: ScrinRebelEastWormholes
 		Location: 198,69
+	EastColonySpike: cspk
+		Owner: ScrinRebels
+		Location: 215,77
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, ca|missions/main-campaign/ca50-preservation/preservation-rules.yaml, ca|rules/custom/coop-rules.yaml, preservation-coop-rules.yaml
 

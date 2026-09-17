@@ -41,6 +41,10 @@ AfterWorldLoaded = function()
 		Actor.Create("rebel.allegiance", true, { Owner = p })
 	end)
 
+	if Multi1 ~= nil and Multi1.IsLocalPlayer then
+		Camera.Position = TemplePrime.CenterPosition
+	end
+
 	Trigger.AfterDelay(1, function()
 		StopSpread = false
 	end)

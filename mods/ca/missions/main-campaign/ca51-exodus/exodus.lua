@@ -22,11 +22,11 @@ MaleficAttackPaths = {
 }
 
 NumEvacConvoys = {
-	easy = 8,
-	normal = 10,
-	hard = 12,
-	vhard = 14,
-	brutal = 16
+	easy = 8, -- total time to evacuate = 20 mins
+	normal = 10, -- total time to evacuate = 24 mins
+	hard = 12, -- total time to evacuate = 28 mins
+	vhard = 14, -- total time to evacuate = 32 mins
+	brutal = 16 -- total time to evacuate = 36 mins
 }
 
 GatewayReorientationTime = {
@@ -38,11 +38,11 @@ GatewayReorientationTime = {
 }
 
 VoidspikeInterval = {
-	easy = DateTime.Minutes(4),
-	normal = DateTime.Minutes(3) + DateTime.Seconds(30),
-	hard = DateTime.Minutes(3),
-	vhard = DateTime.Minutes(2) + DateTime.Seconds(30),
-	brutal = DateTime.Minutes(2) + DateTime.Seconds(30),
+	easy = DateTime.Minutes(4), -- 52 mins to finish
+	normal = DateTime.Minutes(3) + DateTime.Seconds(30), -- 48.5 mins to finish
+	hard = DateTime.Minutes(3) + DateTime.Seconds(30), -- 45.5 min to finish
+	vhard = DateTime.Minutes(3), -- 39 min to finish
+	brutal = DateTime.Minutes(2) + DateTime.Seconds(30), -- 32.5 min to finish
 }
 
 VoidspikeTargets = {
@@ -133,6 +133,7 @@ WorldLoaded = function()
 	end)
 
 	ObjectiveCaptureNerveCenter = ScrinRebels.AddObjective("Capture the gateway Nerve Center.")
+	GatewayNerveCenter.GrantCondition("is-objective")
 
 	Trigger.OnCapture(GatewayNerveCenter, function(self, captor, oldOwner, newOwner)
 		if IsMissionPlayer(newOwner) then

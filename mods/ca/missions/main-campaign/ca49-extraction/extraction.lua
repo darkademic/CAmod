@@ -175,6 +175,8 @@ WorldLoaded = function()
 		end
 	end)
 
+	KanesTemple.GrantCondition("is-objective")
+
 	local harvs = Utils.Where(ScrinRebelsInactive.GetActors(), function(a) return a.Type == "harv.scrin" end)
 	Utils.Do(harvs, function(h)
 		h.Stop()

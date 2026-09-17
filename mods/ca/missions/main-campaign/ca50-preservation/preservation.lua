@@ -203,6 +203,10 @@ WorldLoaded = function()
         end
     end)
 
+	WestTemple.GrantCondition("is-objective")
+	MiddleTemple.GrantCondition("is-objective")
+	EastTemple.GrantCondition("is-objective")
+
     local initialAttackWaves = Utils.Shuffle({ SovietInitialAttack1, SovietInitialAttack2, SovietInitialAttack3, ScrinInitialAttack1, ScrinInitialAttack2, ScrinInitialAttack3 })
     local initialAttackDelay = 0
 
@@ -218,9 +222,7 @@ WorldLoaded = function()
         initialAttackDelay = initialAttackDelay + DateTime.Seconds(20)
     end)
 
-    Trigger.AfterDelay(DateTime.Seconds(5), function()
-        Tip("Use the Charge Gateway power to use resources to charge the three gateways.")
-    end)
+	ShowGatewayChargeTip()
 
 	Trigger.AfterDelay(MaleficFleetSpawnDelay[Difficulty], function()
 		Notification("Warning, Malefic fleet detected, approaching from the south.")
@@ -391,4 +393,11 @@ SetChargeStatusText = function(chargePerc)
 	end
 
 	UserInterface.SetMissionText(text, textColor)
+end
+
+-- overridden in co-op version
+ShowGatewayChargeTip = function()
+    Trigger.AfterDelay(DateTime.Seconds(5), function()
+        Tip("Use the Charge Gateway power to use resources to charge the three gateways.")
+    end)
 end

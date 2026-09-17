@@ -1,3 +1,5 @@
+GatewayChargeTicks = 60000
+
 SetupPlayers = function()
 	Multi0 = Player.GetPlayer("Multi0")
 	Multi1 = Player.GetPlayer("Multi1")
@@ -98,9 +100,13 @@ AfterWorldLoaded = function()
 end
 
 AfterTick = function()
-
+	GatewayChargeTicks = GatewayChargeTicks - 1
 end
 
 SetChargeStatusText = function(chargePerc)
-	UserInterface.SetMissionText("Gateway charge progress: " .. chargePerc .. "%", HSLColor.Yellow)
+	UserInterface.SetMissionText("Gateway charge progress: " .. chargePerc .. "% - Time remaining: " .. UtilsCA.FormatTimeForGameSpeed(GatewayChargeTicks), HSLColor.Yellow)
+end
+
+ShowGatewayChargeTip = function()
+	-- do nothing, charging is passive
 end

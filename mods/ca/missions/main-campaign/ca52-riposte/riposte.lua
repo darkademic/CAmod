@@ -111,6 +111,7 @@ WorldLoaded = function()
 
     ObjectiveEliminateHawthorne = ScrinRebels.AddObjective("Eliminate Hawthorne's forces.")
 	ObjectiveProtectTemple = ScrinRebels.AddObjective("Nod Temple Prime must survive.")
+	TemplePrime.GrantCondition("is-objective")
 
     Trigger.OnKilled(TemplePrime, function(self, killer)
         if not ScrinRebels.IsObjectiveCompleted(ObjectiveProtectTemple) then

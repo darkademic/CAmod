@@ -1,5 +1,5 @@
-GDIVsNod1.AttackValuesPerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40 })
-GDIVsNod2.AttackValuesPerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40 })
+Squads.GDIVsNod1.AttackValuesPerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40 })
+Squads.GDIVsNod2.AttackValuesPerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40 })
 
 SetupPlayers = function()
 	Multi0 = Player.GetPlayer("Multi0")

@@ -140,6 +140,24 @@ World:
 		Position: Top
 		Margin: 0,-15
 
+^ObjectiveDecorations:
+	ExternalCondition@Objective:
+		Condition: is-objective
+	WithColoredSelectionBox@Objective:
+		RequiresCondition: is-objective
+		Color: 00FF00
+		Thickness: 3
+		BoundsPadding: 256
+		ValidRelationships: Ally, Neutral, Enemy
+	WithDecoration@Objective:
+		RequiresCondition: is-objective
+		Image: objective-text
+		Palette: chrome
+		Sequence: green
+		Position: Top
+		Margin: 0, -12
+		ValidRelationships: Ally, Neutral, Enemy
+
 # Assigned to actors in missions, assigned in lua dynamically
 # (so we use DummyConditionConsumer to prevent yaml warnings)
 

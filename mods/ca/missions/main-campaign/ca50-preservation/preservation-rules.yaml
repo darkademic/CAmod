@@ -80,6 +80,9 @@ WORMHOLE:
 	Targetable:
 		TargetTypes: Wormhole
 
+TMPL:
+	Inherits@Objective: ^ObjectiveDecorations
+
 # Enable subfaction specific tech
 
 STCR:

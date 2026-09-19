@@ -298,6 +298,13 @@ WorldLoaded = function()
 		MediaCA.PlaySound(MissionDir .. "/yuri_testsubjects.aud", 2)
 	end)
 
+	if IsVeryHardOrAbove() then
+		local yuriProductionBuildings = USSR.GetActorsByTypes({ "fact", "weap", "barr", "afld" })
+		for _, b in pairs(yuriProductionBuildings) do
+			BuildDefenseOnCaptureAttempt(b, "ftur", true)
+		end
+	end
+
     AfterWorldLoaded()
 end
 

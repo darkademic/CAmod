@@ -132,6 +132,13 @@ WorldLoaded = function()
 		end)
 	end)
 
+	if IsVeryHardOrAbove() then
+		local gdiProductionBuildings = HawthorneGDI.GetActorsByTypes({ "afac", "weap.td", "pyle", "afld.gdi" })
+		for _, b in pairs(gdiProductionBuildings) do
+			BuildDefenseOnCaptureAttempt(b, "gtwr", true)
+		end
+	end
+
     AfterWorldLoaded()
 end
 

@@ -1012,6 +1012,16 @@ VCAN:
 	-WithMakeAnimation:
 	-Sellable:
 	-Targetable@HACKABLE:
+	GrantConditionOnDamageStateCA:
+		Condition: angry
+		GrantPermanently: true
+		ValidDamageStates: Medium, Heavy, Critical
+	RangeMultiplier@Angry:
+		Modifier: 200
+		RequiresCondition: angry
+	ReloadDelayMultiplier@Angry:
+		Modifier: 50
+		RequiresCondition: angry
 
 VoidCannonRift:
 	Inherits: Rift

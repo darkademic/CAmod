@@ -158,6 +158,14 @@ Squads = {
 			a.Patrol({ A2APatrol1.Location, A2APatrol2.Location, A2APatrol3.Location, A2APatrol4.Location, A2APatrol5.Location, A2APatrol6.Location, A2APatrol7.Location, A2APatrol8.Location })
 		end
 	),
+	ScrinCommandoKillers = {
+		ActiveCondition = function(squad)
+			local commandos = GetMissionPlayersActorsByTypes({ "mast", "rmbo" })
+			return #commandos > 0
+		end,
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 15, Max = 30 }),
+		Compositions = { { Aircraft = { "stmr", "stmr" } } }
+	},
 	Nod1 = {
 		Delay = DateTime.Minutes(2),
 		AttackValuePerSecond = { Min = 10, Max = 20 },
@@ -226,6 +234,13 @@ WorldLoaded = function()
 		MediaCA.PlaySound(MissionDir .. "/ovld_totaldestruction.aud", 2)
 	end)
 
+	if IsVeryHardOrAbove() then
+		local scrinProductionBuildings = Scrin.GetActorsByTypes({ "port", "wsph", "sfac", "grav" })
+		for _, b in pairs(scrinProductionBuildings) do
+			BuildDefenseOnCaptureAttempt(b, "ptur", true)
+		end
+	end
+
     AfterWorldLoaded()
 end
 
@@ -288,6 +303,10 @@ InitScrin = function()
 
 	if IsHardOrAbove() then
 		InitAirAttackSquad(Squads.ScrinAirToAir, Scrin, MissionPlayers, { "Aircraft" }, "ArmorType")
+	end
+
+	if IsVeryHardOrAbove() then
+		InitAirAttackSquad(Squads.ScrinCommandoKillers, Scrin, MissionPlayers, { "mast", "rmbo" })
 	end
 
 	TargetSwapChance(Vanquisher, 10)

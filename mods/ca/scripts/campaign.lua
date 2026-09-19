@@ -1776,10 +1776,13 @@ BuildDefenseOnCaptureAttempt = function(buildings, defenseType, fallbackSell)
 				if not b.IsDead and b.Owner == originalOwner then
 					triggerCells = Utils.Shuffle(triggerCells)
 					local defense
-					for _, cell in pairs(triggerCells) do
-						if UtilsCA.CanPlaceBuilding(defenseType, cell) then
-							defense = Actor.Create(defenseType, true, { Owner = b.Owner, Location = cell })
-							break
+
+					if HasConyard(b.Owner) then
+						for _, cell in pairs(triggerCells) do
+							if UtilsCA.CanPlaceBuilding(defenseType, cell) then
+								defense = Actor.Create(defenseType, true, { Owner = b.Owner, Location = cell })
+								break
+							end
 						end
 					end
 

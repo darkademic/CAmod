@@ -181,6 +181,18 @@ WorldLoaded = function()
 		MediaCA.PlaySound(MissionDir .. "/g_attention.aud", 2)
 	end)
 
+	if IsVeryHardOrAbove() then
+		local gdiProductionBuildings = GDI.GetActorsByTypes({ "afac", "weap.td", "pyle", "afld.gdi" })
+		for _, b in pairs(gdiProductionBuildings) do
+			BuildDefenseOnCaptureAttempt(b, "gtwr", true)
+		end
+
+		local maleficProductionBuildings = MaleficScrin.GetActorsByTypes({ "port", "wsph", "sfac", "grav" })
+		for _, b in pairs(maleficProductionBuildings) do
+			BuildDefenseOnCaptureAttempt(b, "ptur", true)
+		end
+	end
+
     AfterWorldLoaded()
 end
 
@@ -302,6 +314,8 @@ CreateNextVoidCannonRift = function()
 end
 
 InitMaleficScrin = function()
+	RebuildExcludes.MaleficScrin = { Types = { "vcan" } }
+
 	AutoRepairAndRebuildBuildings(MaleficScrin)
 	SetupRefAndSilosCaptureCredits(MaleficScrin)
 	AutoReplaceHarvesters(MaleficScrin)
@@ -385,9 +399,9 @@ InitConvoys = function()
 				NextConvoySpawnIndex = 1
 			end
 		end)
-
-		Trigger.AfterDelay(DateTime.Minutes(2 * NumEvacConvoys[Difficulty]), EvacuateRemainingUnits)
 	end
+
+	Trigger.AfterDelay(DateTime.Minutes(2 * NumEvacConvoys[Difficulty]), EvacuateRemainingUnits)
 end
 
 EvacuateRemainingUnits = function()

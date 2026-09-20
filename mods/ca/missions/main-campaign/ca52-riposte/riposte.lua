@@ -181,13 +181,6 @@ InitNod = function()
 	SetupRefAndSilosCaptureCredits(Nod)
 	AutoReplaceHarvesters(Nod)
 
-	local nodGroundAttackers = Nod.GetGroundAttackers()
-
-	Utils.Do(nodGroundAttackers, function(a)
-		TargetSwapChance(a, 10)
-		CallForHelpOnDamagedOrKilled(a, WDist.New(5120), IsNodGroundHunterUnit)
-	end)
-
 	InitAttackSquad(Squads.Nod, Nod, HawthorneGDI)
 	InitAirAttackSquad(Squads.NodAir, Nod, HawthorneGDI)
 end
@@ -198,13 +191,7 @@ InitHawthorneGDI = function()
 	AutoReplaceHarvesters(HawthorneGDI)
 	AutoRebuildConyards(HawthorneGDI)
 	InitAiUpgrades(HawthorneGDI)
-
-	local gdiGroundAttackers = HawthorneGDI.GetGroundAttackers()
-
-	Utils.Do(gdiGroundAttackers, function(a)
-		TargetSwapChance(a, 10)
-		CallForHelpOnDamagedOrKilled(a, WDist.New(5120), IsGDIGroundHunterUnit)
-	end)
+	SetupUnitDefenders(HawthorneGDI)
 
 	Trigger.AfterDelay(SuperweaponsEnabledTime[Difficulty], function()
 		Actor.Create("ai.superweapons.enabled", true, { Owner = HawthorneGDI })

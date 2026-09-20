@@ -1537,6 +1537,22 @@ sonic.upgrade:
 	Buildable:
 		Prerequisites: gtek, ~player.gdi, ~techlevel.high
 
+# Increase vision of longer range vehicles for non-playable players
+
+^NonPlayableVisionBoost:
+	GrantConditionOnNonPlayableOwner@NonPlayableVisionBoost:
+		Condition: has-non-playable-owner
+		RequireNoPlayableAllies: true
+	GrantConditionOnActorTypes@NonPlayableVisionBoost:
+		Condition: is-long-range-unit
+		Types: arty, arty.nod, katy, grad, ptnk, pcan, cryo, msam, hsam, mlrs, spec, zeus, mgg, mrj, tigr, v2rl, v3rl, ttra, nukc, thwk, jugg, deva, ruin, obli, null
+	RevealsShroudMultiplier@NonPlayableVisionBoost:
+		Modifier: 200
+		RequiresCondition: is-long-range-unit && has-non-playable-owner
+
+^Vehicle-NOUPG:
+	Inherits@NonPlayableVisionBoost: ^NonPlayableVisionBoost
+
 # For attack interval calculations, factoring in extra value from cargo
 
 SAPC.AI:

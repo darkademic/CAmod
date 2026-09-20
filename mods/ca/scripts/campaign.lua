@@ -136,6 +136,8 @@ CashRewardOnCaptureTypes = { "proc", "proc.td", "proc.scrin", "silo", "silo.td",
 
 WallTypes = { "sbag", "fenc", "brik", "cycl", "barb" }
 
+ProductionTypes = Utils.Concat(ConyardTypes, Utils.Concat(BarracksTypes, Utils.Concat(FactoryTypes, AirProductionTypes)))
+
 KeyStructures = { "fact", "afac", "sfac", "proc", "proc.td", "proc.scrin", "weap", "weap.td", "airs", "wsph", "dome", "hq", "nerv", "atek", "stek", "gtek", "tmpl", "scrt", "mcv", "amcv", "smcv" }
 
 DefaultQueueProducers = {
@@ -1864,6 +1866,67 @@ SetupReveals = function(revealPoints, cameraType)
 				end)
 			end
 		end)
+	end)
+end
+
+SetupUnitDefenders = function(player, customRange, customFilter, validAttackingPlayerFunc)
+	local range = customRange or WDist.New(5120)
+	local groundAttackers = player.GetGroundAttackers()
+
+	local filtersByFaction = {
+		allies = IsGreeceGroundHunterUnit,
+		soviet = IsUSSRGroundHunterUnit,
+		gdi = IsGDIGroundHunterUnit,
+		nod = IsNodGroundHunterUnit,
+		scrin = IsScrinGroundHunterUnit,
+		yuri = IsUSSRGroundHunterUnit,
+		arc = IsGDIGroundHunterUnit
+	}
+
+	local filter
+
+	if customFilter ~= nil then
+		filter = customFilter
+	elseif filtersByFaction[player.Faction] ~= nil then
+		filter = filtersByFaction[player.Faction]
+	else
+		filter = IsGroundHunterUnit
+	end
+
+	Utils.Do(groundAttackers, function(a)
+		if not filter or filter(a) then
+			TargetSwapChance(a, 10)
+			CallForHelpOnDamagedOrKilled(a, range, filter, validAttackingPlayerFunc)
+		end
+	end)
+end
+
+SetupBuildingDefenders = function(player, customFilter, customRange, validAttackingPlayerFunc)
+	local range = customRange or WDist.New(8192)
+	local productionStructures = player.GetActorsByTypes(ProductionTypes)
+
+	local filtersByFaction = {
+		allies = IsGreeceGroundHunterUnit,
+		soviet = IsUSSRGroundHunterUnit,
+		gdi = IsGDIGroundHunterUnit,
+		nod = IsNodGroundHunterUnit,
+		scrin = IsScrinGroundHunterUnit,
+		yuri = IsUSSRGroundHunterUnit,
+		arc = IsGDIGroundHunterUnit
+	}
+
+	local filter
+
+	if customFilter ~= nil then
+		filter = customFilter
+	elseif filtersByFaction[player.Faction] ~= nil then
+		filter = filtersByFaction[player.Faction]
+	else
+		filter = IsGroundHunterUnit
+	end
+
+	Utils.Do(productionStructures, function(a)
+		CallForHelpOnDamagedOrKilled(a, range, filter, validAttackingPlayerFunc)
 	end)
 end
 

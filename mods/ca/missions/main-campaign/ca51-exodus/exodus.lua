@@ -320,12 +320,7 @@ InitMaleficScrin = function()
 	SetupRefAndSilosCaptureCredits(MaleficScrin)
 	AutoReplaceHarvesters(MaleficScrin)
 	AutoRebuildConyards(MaleficScrin)
-
-	local scrinGroundAttackers = MaleficScrin.GetGroundAttackers()
-	Utils.Do(scrinGroundAttackers, function(a)
-		TargetSwapChance(a, 10)
-		CallForHelpOnDamagedOrKilled(a, WDist.New(5120), IsScrinGroundHunterUnit)
-	end)
+	SetupUnitDefenders(MaleficScrin)
 
     InitMaleficScrinAttacks()
 end
@@ -339,12 +334,7 @@ end
 InitGDI = function()
 	AutoRepairBuildings(GDI)
 	SetupRefAndSilosCaptureCredits(GDI)
-
-	local gdiGroundAttackers = GDI.GetGroundAttackers()
-	Utils.Do(gdiGroundAttackers, function(a)
-		TargetSwapChance(a, 10)
-		CallForHelpOnDamagedOrKilled(a, WDist.New(5120), IsGDIGroundHunterUnit)
-	end)
+	SetupUnitDefenders(GDI)
 
 	InitConvoys()
 end

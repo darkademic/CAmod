@@ -354,6 +354,7 @@ InitUSSR = function()
 	InitAirAttackSquad(Squads.AirMain, USSR)
 	InitAttackSquad(Squads.Discs, USSR)
 	InitAttackSquad(Squads.Dominators, USSR)
+	SetupUnitDefenders(USSR)
 
 	if IsVeryHardOrAbove() then
 		SellOnCaptureAttempt({ NorthConyard, WestConyard, EastConyard })
@@ -373,13 +374,6 @@ InitUSSR = function()
 		InitAirAttackSquad(Squads.TripodKillers, USSR, MissionPlayers, { "tpod", "rtpd" })
 	end
 
-	local ussrGroundAttackers = USSR.GetGroundAttackers()
-
-	Utils.Do(ussrGroundAttackers, function(a)
-		TargetSwapChance(a, 10)
-		CallForHelpOnDamagedOrKilled(a, WDist.New(5120), IsUSSRGroundHunterUnit)
-	end)
-
 	Trigger.AfterDelay(IronCurtainEnabledDelay[Difficulty], function()
 		Actor.Create("ai.minor.superweapons.enabled", true, { Owner = USSR })
 	end)
@@ -395,13 +389,7 @@ InitNod = function()
 	AutoReplaceHarvesters(Nod)
 	AutoRebuildConyards(Nod)
 	InitAiUpgrades(Nod)
-
-	local nodGroundAttackers = Nod.GetGroundAttackers()
-
-	Utils.Do(nodGroundAttackers, function(a)
-		TargetSwapChance(a, 10)
-		CallForHelpOnDamagedOrKilled(a, WDist.New(5120), IsNodGroundHunterUnit)
-	end)
+	SetupUnitDefenders(Nod)
 
 	InitAttackSquad(Squads.Nod, Nod)
 end

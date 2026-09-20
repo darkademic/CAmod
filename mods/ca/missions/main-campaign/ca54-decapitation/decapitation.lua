@@ -289,13 +289,7 @@ InitScrin = function()
 	AutoReplaceHarvesters(Scrin)
 	AutoRebuildConyards(Scrin)
 	InitAiUpgrades(Scrin)
-
-	local scrinGroundAttackers = Scrin.GetGroundAttackers()
-
-	Utils.Do(scrinGroundAttackers, function(a)
-		TargetSwapChance(a, 10)
-		CallForHelpOnDamagedOrKilled(a, WDist.New(5120), IsScrinGroundHunterUnit)
-	end)
+	SetupUnitDefenders(Scrin)
 
 	InitAttackSquad(Squads.ScrinAlpha, Scrin)
 	InitAttackSquad(Squads.ScrinBeta, Scrin)
@@ -377,13 +371,7 @@ InitNod = function()
 		AutoReplaceHarvesters(p)
 		AutoRebuildConyards(p)
 		InitAiUpgrades(p)
-
-		local groundAttackers = p.GetGroundAttackers()
-
-		Utils.Do(groundAttackers, function(a)
-			TargetSwapChance(a, 10)
-			CallForHelpOnDamagedOrKilled(a, WDist.New(5120), IsNodGroundHunterUnit)
-		end)
+		SetupUnitDefenders(p, nil, nil, function(p) return p == Scrin end)
 	end)
 
 	InitAttackSquad(Squads.Nod1, Nod1, Scrin)

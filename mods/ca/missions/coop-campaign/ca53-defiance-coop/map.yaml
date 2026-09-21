@@ -1631,9 +1631,6 @@ Actors:
 	Actor544: airs
 		Owner: Nod
 		Location: 41,130
-	Actor547: proc.td
-		Owner: Nod
-		Location: 39,139
 	Actor548: hq
 		Owner: Nod
 		Location: 55,136
@@ -2618,8 +2615,8 @@ Actors:
 		Facing: 896
 	Actor777: ftnk
 		Owner: Nod
-		Facing: 384
 		Location: 53,122
+		Facing: 896
 	Actor778: ltnk
 		Owner: Nod
 		Location: 54,119
@@ -3200,6 +3197,9 @@ Actors:
 		Location: 22,66
 		SubCell: 3
 		Facing: 640
+	Actor547: proc.td
+		Owner: Nod
+		Location: 38,135
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, ca|missions/main-campaign/ca53-defiance/defiance-rules.yaml, ca|rules/custom/coop-rules.yaml, defiance-coop-rules.yaml
 

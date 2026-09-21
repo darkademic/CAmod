@@ -99,6 +99,8 @@ DOG:
 	AutoGuard:
 		ValidOrders: KeepDistance
 		ValidTargets: Infantry, Vehicle
+	ReplacedInQueue:
+		Actors: tdog
 	Encyclopedia:
 		Category: Soviets/Infantry
 

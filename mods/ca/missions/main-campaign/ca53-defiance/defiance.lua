@@ -66,10 +66,10 @@ IronCurtainEnabledDelay = {
 }
 
 DominatorStartTime = {
-	easy = DateTime.Minutes(10),
-	normal = DateTime.Minutes(8),
-	hard = DateTime.Minutes(6),
-	vhard = DateTime.Minutes(6),
+	easy = DateTime.Minutes(13),
+	normal = DateTime.Minutes(11),
+	hard = DateTime.Minutes(9),
+	vhard = DateTime.Minutes(7),
 	brutal = DateTime.Minutes(5)
 }
 
@@ -79,6 +79,14 @@ DominatorInterval = {
 	hard = DateTime.Minutes(5),
 	vhard = DateTime.Minutes(4),
 	brutal = DateTime.Minutes(3) + DateTime.Seconds(20)
+}
+
+DominatorRevealDelay = {
+	easy = DateTime.Seconds(5),
+	normal = DateTime.Seconds(5),
+	hard = DateTime.Seconds(30),
+	vhard = DateTime.Seconds(999),
+	brutal = DateTime.Seconds(999)
 }
 
 UnitCompositions.Soviet = Utils.Concat(UnitCompositions.Soviet, {
@@ -280,6 +288,15 @@ WorldLoaded = function()
 			Trigger.AfterDelay(DateTime.Seconds(1), function()
 				Notification("Warning, powerful psionic signature detected.")
 				MediaCA.PlaySound(MissionDir .. "/s_psionic.aud", 2)
+				if IsHardOrBelow() then
+					Trigger.AfterDelay(DominatorRevealDelay[Difficulty], function()
+						if not produced.IsDead then
+							Beacon.New(ScrinRebels, produced.CenterPosition)
+							Media.PlaySound("beacon.aud")
+							a.GrantCondition("domi-reveal")
+						end
+					end)
+				end
 			end)
 			if not YuriDispleased then
 				YuriDispleased = true
@@ -302,6 +319,11 @@ WorldLoaded = function()
 		local yuriProductionBuildings = USSR.GetActorsByTypes({ "fact", "weap", "barr", "afld" })
 		for _, b in pairs(yuriProductionBuildings) do
 			BuildDefenseOnCaptureAttempt(b, "ftur", true)
+		end
+
+		local nodConyards = Nod.GetActorsByType("afac")
+		for _, c in pairs(nodConyards) do
+			BuildDefenseOnCaptureAttempt(c, "ltur", false)
 		end
 	end
 

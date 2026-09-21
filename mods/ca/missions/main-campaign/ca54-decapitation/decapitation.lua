@@ -8,6 +8,20 @@ SuperweaponsEnabledTime = {
 	brutal = DateTime.Seconds((60 * 15) + 17)
 }
 
+AirFleetKillersThreshold = {
+	normal = 6,
+	hard = 4,
+	vhard = 3,
+	brutal = 2
+}
+
+MaxFleetKillers = {
+	normal = 6,
+	hard = 8,
+	vhard = 12,
+	brutal = 16
+}
+
 ScrinNorthAttackPaths = {
 	{ ScrinWaypoint1.Location, ScrinWaypoint3.Location, ScrinWaypoint5.Location, ScrinWaypoint8.Location },
 	{ ScrinWaypoint2.Location, ScrinWaypoint4.Location, ScrinWaypoint6.Location, ScrinWaypoint9.Location },
@@ -122,6 +136,14 @@ if IsHardOrAbove() then
 			MinTime = DateTime.Minutes(18),
 			RequiredTargetCharacteristics = { "MassInfantry" }
 		})
+
+		table.insert(UnitCompositions.Scrin, {
+			Infantry = { "s2", "s2", "s2", "s2", "s2", "s2", "s2", "s2", "evis", "evis", "s2", "s2", "s2", "s2" },
+			Vehicles = { "shrw", "shrw", "shrw", "shrw", "shrw", "shrw", "shrw", "shrw", "shrw", "shrw" },
+			MinTime = DateTime.Minutes(16),
+			RequiredTargetCharacteristics = { "MassAir" },
+			IsSpecial = true
+		})
 	end
 end
 
@@ -155,9 +177,24 @@ Squads = {
 		{ "stmr", "enrv", "torm" },
 		AdjustAirDelayForDifficulty(DateTime.Minutes(8)),
 		function(a)
-			a.Patrol({ A2APatrol1.Location, A2APatrol2.Location, A2APatrol3.Location, A2APatrol4.Location, A2APatrol5.Location, A2APatrol6.Location, A2APatrol7.Location, A2APatrol8.Location })
+			a.Patrol({ A2APatrol1.Location, A2APatrol2.Location, A2APatrol3.Location, A2APatrol4.Location, A2APatrol5.Location, A2APatrol6.Location })
 		end
 	),
+	ScrinFleetKillers = {
+		ActiveCondition = function(squad)
+			local scrinFleet = GetMissionPlayersActorsByTypes({ "pac", "deva" })
+			return #scrinFleet > AirFleetKillersThreshold[Difficulty]
+		end,
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 50, Max = 50 }),
+		Compositions = function(squad)
+			local tormentors = { "torm" }
+			local numFleetShips = #GetMissionPlayersActorsByTypes({ "pac", "deva" })
+			for i = 1, math.min(numFleetShips * 2, MaxFleetKillers[Difficulty]) do
+				table.insert(tormentors, "torm")
+			end
+			return { { Aircraft = tormentors } }
+		end
+	},
 	ScrinCommandoKillers = {
 		ActiveCondition = function(squad)
 			local commandos = GetMissionPlayersActorsByTypes({ "mast", "rmbo" })
@@ -295,6 +332,10 @@ InitScrin = function()
 	InitAttackSquad(Squads.ScrinBeta, Scrin)
 	InitAirAttackSquad(Squads.ScrinAir, Scrin)
 
+	if Difficulty ~= "easy" then
+		InitAirAttackSquad(Squads.ScrinFleetKillers, Scrin, MissionPlayers, { "pac", "deva" })
+	end
+
 	if IsHardOrAbove() then
 		InitAirAttackSquad(Squads.ScrinAirToAir, Scrin, MissionPlayers, { "Aircraft" }, "ArmorType")
 	end
@@ -303,7 +344,7 @@ InitScrin = function()
 		InitAirAttackSquad(Squads.ScrinCommandoKillers, Scrin, MissionPlayers, { "mast", "rmbo" })
 	end
 
-	TargetSwapChance(Vanquisher, 10)
+	TargetSwapChance(Vanquisher, 2)
 
 	Trigger.OnDamaged(Vanquisher, function(self, attacker, damage)
 		if IsMissionPlayer(attacker.Owner) then

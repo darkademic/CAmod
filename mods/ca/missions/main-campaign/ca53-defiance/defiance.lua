@@ -389,7 +389,7 @@ InitUSSR = function()
 	end
 
 	if Difficulty ~= "easy" then
-		InitAirAttackSquad(Squads.AirFleetKillers, USSR, MissionPlayers, { "pac", "deva", "stmr", "enrv", "torm" })
+		InitAirAttackSquad(Squads.AirFleetKillers, USSR, MissionPlayers, { "pac", "deva" })
 	end
 
 	if Difficulty ~= "easy" then

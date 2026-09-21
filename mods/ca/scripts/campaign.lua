@@ -2852,14 +2852,14 @@ SpecialistAirSquad = function(unitTypes, characteristic, characteristicValue, de
 	return squad
 end
 
-AirToAirSquad = function(unitTypes, delay)
+AirToAirSquad = function(unitTypes, delay, onProducedAction)
 	return SpecialistAirSquad(unitTypes, "MassAir", "AirValue", delay, onProducedAction)
 end
 
-AntiHeavyAirSquad = function(unitTypes, delay)
+AntiHeavyAirSquad = function(unitTypes, delay, onProducedAction)
 	return SpecialistAirSquad(unitTypes, "MassHeavy", "HeavyValue", delay, onProducedAction)
 end
 
-AntiInfAirSquad = function(unitTypes, delay)
+AntiInfAirSquad = function(unitTypes, delay, onProducedAction)
 	return SpecialistAirSquad(unitTypes, "MassInfantry", "InfantryValue", delay, onProducedAction)
 end

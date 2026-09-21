@@ -5182,6 +5182,24 @@ Actors:
 		Location: 71,41
 		Facing: 384
 		ScriptTags: BrutalOnly
+	A2APatrol1: waypoint
+		Owner: Neutral
+		Location: 131,33
+	A2APatrol2: waypoint
+		Owner: Neutral
+		Location: 32,37
+	A2APatrol3: waypoint
+		Owner: Neutral
+		Location: 24,14
+	A2APatrol4: waypoint
+		Owner: Neutral
+		Location: 56,8
+	A2APatrol5: waypoint
+		Owner: Neutral
+		Location: 107,8
+	A2APatrol6: waypoint
+		Owner: Neutral
+		Location: 139,16
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, ca|missions/main-campaign/ca54-decapitation/decapitation-rules.yaml, ca|rules/custom/coop-rules.yaml, decapitation-coop-rules.yaml
 

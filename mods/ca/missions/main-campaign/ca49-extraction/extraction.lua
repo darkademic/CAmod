@@ -38,6 +38,20 @@ SuperweaponsEnabledTime = {
 	brutal = DateTime.Seconds((60 * 15) + 17)
 }
 
+AirFleetKillersThreshold = {
+	normal = 6,
+	hard = 4,
+	vhard = 3,
+	brutal = 2
+}
+
+MaxFleetKillers = {
+	normal = 3,
+	hard = 5,
+	vhard = 8,
+	brutal = 12
+}
+
 ScrinAttackPaths = {
 	{ ScrinWaypoint1.Location, ScrinWaypoint3.Location, NodBaseCenter.Location },
     { ScrinWaypoint2.Location, ScrinWaypoint4.Location, NodBaseCenter.Location },
@@ -77,6 +91,21 @@ Squads = {
 		Delay = AdjustAirDelayForDifficulty(DateTime.Minutes(13)),
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 12, Max = 12 }),
 		Compositions = AirCompositions.Soviet,
+	},
+	ScrinFleetKillers = {
+		ActiveCondition = function(squad)
+			local scrinFleet = GetMissionPlayersActorsByTypes({ "pac", "deva" })
+			return #scrinFleet > AirFleetKillersThreshold[Difficulty]
+		end,
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 50, Max = 50 }),
+		Compositions = function(squad)
+			local enervators = { "enrv" }
+			local numFleetShips = #GetMissionPlayersActorsByTypes({ "pac", "deva" })
+			for i = 1, math.min(numFleetShips, MaxFleetKillers[Difficulty]) do
+				table.insert(enervators, "enrv")
+			end
+			return { { Aircraft = enervators } }
+		end
 	},
 	ScrinCommandoKillers = {
 		ActiveCondition = function(squad)
@@ -312,8 +341,12 @@ InitScrin = function()
 	AutoRebuildConyards(Scrin)
 	SetupUnitDefenders(Scrin)
 
-	if IsVeryHardOrAbove() then
-		InitAirAttackSquad(Squads.ScrinCommandoKillers, Scrin, MissionPlayers, { "mast", "rmbo" })
+	if IsHardOrAbove() then
+		InitAirAttackSquad(Squads.ScrinFleetKillers, Scrin, MissionPlayers, { "pac", "deva" })
+
+		if IsVeryHardOrAbove() then
+			InitAirAttackSquad(Squads.ScrinCommandoKillers, Scrin, MissionPlayers, { "mast", "rmbo" })
+		end
 	end
 end
 

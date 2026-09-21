@@ -1087,7 +1087,7 @@ WORMHOLEUNSTABLE:
 
 OSPI:
 	Inherits: ^Defense
-	Inherits@AUTOTARGET: ^AutoTargetGround
+	Inherits@AUTOTARGET: ^AutoTargetAll
 	Inherits@ActorDifficultyConditions: ^ActorDifficultyConditions
 	Inherits@A2GPROTECTION: ^AirToGroundProtection
 	Targetable@CampaignBoss:

@@ -14,6 +14,20 @@ WolverineDropInterval = {
 	brutal = DateTime.Minutes(7)
 }
 
+AirFleetKillersThreshold = {
+	normal = 6,
+	hard = 4,
+	vhard = 3,
+	brutal = 2
+}
+
+MaxFleetKillers = {
+	normal = 3,
+	hard = 5,
+	vhard = 8,
+	brutal = 12
+}
+
 AdjustedGDICompositions = AdjustCompositionsForDifficulty(UnitCompositions.GDI)
 AdjustedNodCompositions = AdjustCompositionsForDifficulty(UnitCompositions.Nod)
 
@@ -66,6 +80,21 @@ Squads = {
 		Delay = AdjustAirDelayForDifficulty(DateTime.Minutes(13)),
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 12, Max = 12 }),
 		Compositions = AirCompositions.GDI,
+	},
+	GDIFleetKillers = {
+		ActiveCondition = function(squad)
+			local scrinFleet = GetMissionPlayersActorsByTypes({ "pac", "deva" })
+			return #scrinFleet > AirFleetKillersThreshold[Difficulty]
+		end,
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 50, Max = 50 }),
+		Compositions = function(squad)
+			local orcas = { "orca" }
+			local numFleetShips = #GetMissionPlayersActorsByTypes({ "pac", "deva" })
+			for i = 1, math.min(numFleetShips, MaxFleetKillers[Difficulty]) do
+				table.insert(orcas, "orca")
+			end
+			return { { Aircraft = orcas } }
+		end
 	},
 	AntiHeavyAir = AntiHeavyAirSquad({ "orcb" }, AdjustAirDelayForDifficulty(DateTime.Minutes(10))),
 	AirToAir = AirToAirSquad({ "orca" }, AdjustAirDelayForDifficulty(DateTime.Minutes(10))),
@@ -201,6 +230,7 @@ InitHawthorneGDI = function()
 	if IsHardOrAbove() then
 		Trigger.AfterDelay(DateTime.Minutes(20), DoCommandoDrop)
 		Trigger.AfterDelay(WolverineDropInterval[Difficulty], DoWolverineDrop)
+		InitAirAttackSquad(Squads.GDIFleetKillers, HawthorneGDI, MissionPlayers, { "pac", "deva" })
 	end
 
 	InitHawthorneGDIAttacks()

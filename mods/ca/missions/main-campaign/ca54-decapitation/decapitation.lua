@@ -8,6 +8,32 @@ SuperweaponsEnabledTime = {
 	brutal = DateTime.Seconds((60 * 15) + 17)
 }
 
+MeteorStartTime = DateTime.Minutes(4)
+
+MeteorInitialInterval = {
+	easy = DateTime.Minutes(9),
+	normal = DateTime.Minutes(8),
+	hard = DateTime.Minutes(7),
+	vhard = DateTime.Minutes(6),
+	brutal = DateTime.Minutes(5),
+}
+
+MeteorIntervalDecrement = {
+	easy = DateTime.Seconds(15),
+	normal = DateTime.Seconds(15),
+	hard = DateTime.Seconds(15),
+	vhard = DateTime.Seconds(20),
+	brutal = DateTime.Seconds(20),
+}
+
+MeteorMinInterval = {
+	easy = DateTime.Minutes(6),
+	normal = DateTime.Minutes(5),
+	hard = DateTime.Minutes(4),
+	vhard = DateTime.Minutes(3),
+	brutal = DateTime.Minutes(2),
+}
+
 AirFleetKillersThreshold = {
 	normal = 6,
 	hard = 4,
@@ -256,6 +282,12 @@ WorldLoaded = function()
 
 	ObjectiveDestroySpires = ScrinRebels.AddObjective("Destroy all Overlord spires.")
 
+	Utils.Do(Spires, function(spire)
+		Trigger.OnKilled(spire, function(self, killer)
+			NextMeteorInterval = NextMeteorInterval + DateTime.Seconds(60)
+		end)
+	end)
+
 	Trigger.OnAllKilled(Spires, function(self)
 		if not ScrinRebels.IsObjectiveCompleted(ObjectiveDestroySpires) then
 			ScrinRebels.MarkCompletedObjective(ObjectiveDestroySpires)
@@ -275,6 +307,14 @@ WorldLoaded = function()
 		local scrinProductionBuildings = Scrin.GetActorsByTypes({ "port", "wsph", "sfac", "grav" })
 		for _, b in pairs(scrinProductionBuildings) do
 			BuildDefenseOnCaptureAttempt(b, "ptur", true)
+		end
+	end
+
+	if IsVeryHardOrAbove() then
+		SWTibTree1.Destroy()
+
+		if Difficulty == "brutal" then
+			STibTree.Destroy()
 		end
 	end
 
@@ -399,6 +439,20 @@ InitScrin = function()
 			end
 		end)
 	end)
+
+	Actor.Create("loyalist.allegiance", true, { Owner = Scrin })
+
+	Trigger.AfterDelay(MeteorStartTime, function()
+		Actor.Create("owrath.provider", true, { Owner = Scrin })
+
+		Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(8)), function()
+			Notification("The Overlord's spires are pulling down Tiberium meteors with increasing frequency. We must destroy the spires before we are overwhelmed.")
+			MediaCA.PlaySound(MissionDir .. "/s_meteors.aud", 2)
+		end)
+
+		NextMeteorInterval = MeteorInitialInterval[Difficulty]
+		QueueNextMeteor()
+	end)
 end
 
 InitNod = function()
@@ -439,6 +493,16 @@ TeleportVanquisher = function(destinationLoc)
 		Vanquisher.Stop()
 		Vanquisher.Teleport(destinationLoc)
 	end
+end
+
+QueueNextMeteor = function()
+	Trigger.AfterDelay(NextMeteorInterval, function()
+		if ObjectiveDestroySpires ~= nil and not ScrinRebels.IsObjectiveCompleted(ObjectiveDestroySpires) then
+			Actor.Create("owrath.provider", true, { Owner = Scrin })
+			NextMeteorInterval = math.max(NextMeteorInterval - MeteorIntervalDecrement[Difficulty], MeteorMinInterval[Difficulty])
+			QueueNextMeteor()
+		end
+	end)
 end
 
 SetupLightning = function()

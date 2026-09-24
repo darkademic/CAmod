@@ -293,7 +293,7 @@ WorldLoaded = function()
 						if not produced.IsDead then
 							Beacon.New(ScrinRebels, produced.CenterPosition)
 							Media.PlaySound("beacon.aud")
-							a.GrantCondition("domi-reveal")
+							produced.GrantCondition("domi-reveal")
 						end
 					end)
 				end

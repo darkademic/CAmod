@@ -50,7 +50,11 @@ namespace OpenRA.Mods.CA.Traits.Render
 			if (renderPlayer != null && !Info.ValidRelationships.HasRelationship(self.Owner.RelationshipWith(renderPlayer)))
 				yield break;
 
-			var network = self.Trait<TeleportNetwork>();
+			var network = self.TraitOrDefault<TeleportNetwork>();
+
+			if (network == null)
+				yield break;
+
 			var selectedMembers = self.World.Selection.Actors
 				.Where(a => a.Owner == self.Owner && a.TraitOrDefault<TeleportNetwork>()?.Info.Type == network.Info.Type)
 				.ToArray();

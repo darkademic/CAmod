@@ -67,7 +67,7 @@ SovietAttackPaths = {
 
 Squads = {
 	ScrinMain = {
-		InitTimeAdjustment = -DateTime.Minutes(7),
+		InitTimeAdjustment = -DateTime.Minutes(3),
 		Compositions = AdjustCompositionsForDifficulty(UnitCompositions.Scrin),
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40, RampDuration = DateTime.Minutes(15) }),
 		FollowLeader = true,
@@ -75,7 +75,7 @@ Squads = {
 		Delay = AdjustDelayForDifficulty(DateTime.Minutes(2)),
 	},
 	SovietMain = {
-		InitTimeAdjustment = -DateTime.Minutes(7),
+		InitTimeAdjustment = -DateTime.Minutes(3),
 		Compositions = AdjustCompositionsForDifficulty(UnitCompositions.Soviet),
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40, RampDuration = DateTime.Minutes(15) }),
 		FollowLeader = true,
@@ -97,7 +97,7 @@ Squads = {
 			local scrinFleet = GetMissionPlayersActorsByTypes({ "pac", "deva" })
 			return #scrinFleet > AirFleetKillersThreshold[Difficulty]
 		end,
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 50, Max = 50 }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 30, Max = 30 }),
 		Compositions = function(squad)
 			local enervators = { "enrv" }
 			local numFleetShips = #GetMissionPlayersActorsByTypes({ "pac", "deva" })
@@ -112,7 +112,7 @@ Squads = {
 			local commandos = GetMissionPlayersActorsByTypes({ "mast", "rmbo" })
 			return #commandos > 0
 		end,
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 15, Max = 20 }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 5, Max = 10 }),
 		Compositions = { { Aircraft = { "stmr", "stmr" } } }
 	},
 	SovietCommandoKillers = {
@@ -120,7 +120,7 @@ Squads = {
 			local commandos = GetMissionPlayersActorsByTypes({ "mast", "rmbo" })
 			return #commandos > 0
 		end,
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 15, Max = 20 }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 5, Max = 10 }),
 		Compositions = { { Aircraft = { "yak", "yak" } } }
 	}
 }

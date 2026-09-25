@@ -211,7 +211,7 @@ Squads = {
 			local scrinFleet = GetMissionPlayersActorsByTypes({ "pac", "deva" })
 			return #scrinFleet > AirFleetKillersThreshold[Difficulty]
 		end,
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 50, Max = 50 }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 30, Max = 30 }),
 		Compositions = function(squad)
 			local tormentors = { "torm" }
 			local numFleetShips = #GetMissionPlayersActorsByTypes({ "pac", "deva" })
@@ -226,7 +226,7 @@ Squads = {
 			local commandos = GetMissionPlayersActorsByTypes({ "mast", "rmbo" })
 			return #commandos > 0
 		end,
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 15, Max = 30 }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 10, Max = 20 }),
 		Compositions = { { Aircraft = { "stmr", "stmr" } } }
 	},
 	Nod1 = {

@@ -86,7 +86,7 @@ Squads = {
 			local scrinFleet = GetMissionPlayersActorsByTypes({ "pac", "deva" })
 			return #scrinFleet > AirFleetKillersThreshold[Difficulty]
 		end,
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 50, Max = 50 }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 30, Max = 30 }),
 		Compositions = function(squad)
 			local orcas = { "orca" }
 			local numFleetShips = #GetMissionPlayersActorsByTypes({ "pac", "deva" })

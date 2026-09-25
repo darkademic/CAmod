@@ -113,7 +113,6 @@ DOMI:
 	DummyConditionGranter@INVULNERABILITY:
 		Condition: invulnerability
 
-
 # Hunt() requires only 1 AttackBase
 DEVA:
 	-AttackFrontalCharged:

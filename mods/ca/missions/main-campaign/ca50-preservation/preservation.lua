@@ -120,12 +120,12 @@ Squads = {
 	},
 	ScrinAir = {
 		Delay = AdjustAirDelayForDifficulty(DateTime.Minutes(13)),
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 12, Max = 12 }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 6, Max = 12 }),
 		Compositions = AirCompositions.Scrin,
 	},
 	SovietAir = {
 		Delay = AdjustAirDelayForDifficulty(DateTime.Minutes(13)),
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 12, Max = 12 }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 6, Max = 12 }),
 		Compositions = AirCompositions.Soviet,
 	},
 	ScrinAirToAir = AirToAirSquad({ "stmr", "enrv", "torm" }, AdjustAirDelayForDifficulty(DateTime.Minutes(10))),

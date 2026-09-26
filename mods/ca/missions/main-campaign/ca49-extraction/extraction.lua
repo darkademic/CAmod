@@ -83,13 +83,13 @@ Squads = {
 		Delay = AdjustDelayForDifficulty(DateTime.Minutes(2)),
 	},
 	ScrinAir = {
-		Delay = AdjustAirDelayForDifficulty(DateTime.Minutes(13)),
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 12, Max = 12 }),
+		Delay = AdjustAirDelayForDifficulty(DateTime.Minutes(12)),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 6, Max = 6 }),
 		Compositions = AirCompositions.Scrin,
 	},
 	SovietAir = {
 		Delay = AdjustAirDelayForDifficulty(DateTime.Minutes(13)),
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 12, Max = 12 }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 6, Max = 6 }),
 		Compositions = AirCompositions.Soviet,
 	},
 	ScrinFleetKillers = {
@@ -113,7 +113,7 @@ Squads = {
 			return #commandos > 0
 		end,
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 5, Max = 10 }),
-		Compositions = { { Aircraft = { "stmr", "stmr" } } }
+		Compositions = { { Aircraft = { "stmr" } } }
 	},
 	SovietCommandoKillers = {
 		ActiveCondition = function(squad)
@@ -121,7 +121,7 @@ Squads = {
 			return #commandos > 0
 		end,
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 5, Max = 10 }),
-		Compositions = { { Aircraft = { "yak", "yak" } } }
+		Compositions = { { Aircraft = { "yak" } } }
 	}
 }
 
@@ -154,6 +154,10 @@ WorldLoaded = function()
 		Utils.Do(MissionPlayers, function(p)
 			Actor.Create("mcv.allowed", true, { Owner = p })
 		end)
+	end
+
+	if IsVeryHardOrAbove() then
+		NorthTree.Destroy()
 	end
 
     ObjectivePrepare = ScrinRebels.AddObjective("Gather forces and rendezvous with Kane before deadline.")
@@ -225,6 +229,8 @@ OncePerSecondChecks = function()
 	if DateTime.GameTime > 1 and DateTime.GameTime % 25 == 0 then
 		Scrin.Resources = Scrin.ResourceCapacity - 500
         USSR.Resources = USSR.ResourceCapacity - 500
+		Scrin2.Resources = Scrin2.ResourceCapacity - 500
+		USSR2.Resources = USSR2.ResourceCapacity - 500
 
 		if TimerTicks > 0 then
 			if TimerTicks > 25 then

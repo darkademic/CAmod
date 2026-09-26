@@ -82,6 +82,14 @@ Squads = {
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 12, Max = 12 }),
 		Compositions = AirCompositions.Scrin,
 	},
+	MaleficCommandoKillers = {
+		ActiveCondition = function(squad)
+			local commandos = GetMissionPlayersActorsByTypes({ "mast", "rmbo" })
+			return #commandos > 0
+		end,
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 5, Max = 10 }),
+		Compositions = { { Aircraft = { "stmr" } } }
+	},
 }
 
 SetupPlayers = function()
@@ -329,6 +337,10 @@ InitMaleficScrinAttacks = function()
 	InitAiUpgrades(MaleficScrin)
 	InitAttackSquad(Squads.MaleficMain, MaleficScrin)
 	InitAirAttackSquad(Squads.MaleficAir, MaleficScrin)
+
+	if IsVeryHardOrAbove() then
+		InitAirAttackSquad(Squads.MaleficCommandoKillers, Scrin, MissionPlayers, { "mast", "rmbo" })
+	end
 end
 
 InitGDI = function()

@@ -130,7 +130,7 @@ camera.resourcescan:
 	RevealsShroud:
 		Range: 4c0
 
-MISS:
+MISS.CAMPAIGN:
 	Inherits@AUTOTARGET: ^AutoTargetAll
 	Tooltip:
 		Name: Yuri's Command Center

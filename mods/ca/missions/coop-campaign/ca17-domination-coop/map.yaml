@@ -515,7 +515,7 @@ Actors:
 	Actor166: lasp
 		Owner: Nod
 		Location: 38,21
-	CyberneticsLab: miss
+	CyberneticsLab: miss.campaign
 		Owner: Nod
 		Location: 44,44
 	CenterSAM1: nsam

@@ -16,7 +16,7 @@ Player:
 	PlayerResources:
 		DefaultCash: 6000
 
-MISS:
+MISS.CAMPAIGN:
 	Tooltip:
 		Name: Prison
 	TooltipDescription:

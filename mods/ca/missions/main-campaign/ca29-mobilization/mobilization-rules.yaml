@@ -62,7 +62,7 @@ AGUN:
 	Power:
 		Amount: 0
 
-MISS:
+MISS.CAMPAIGN:
 	Tooltip:
 		Name: Command Center
 	Health:

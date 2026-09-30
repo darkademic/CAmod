@@ -110,7 +110,7 @@ sweden.coalition:
 korea.coalition:
 	Inherits@CAMPAIGNDISABLED: ^Disabled
 
-MISS:
+MISS.CAMPAIGN:
 	Tooltip:
 		Name: Hawthorne's Command Center
 	TooltipDescription:

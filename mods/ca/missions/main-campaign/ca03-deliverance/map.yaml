@@ -937,7 +937,7 @@ Actors:
 	Actor407: chain
 		Owner: USSR
 		Location: 127,19
-	SovietPrison: miss
+	SovietPrison: miss.campaign
 		Owner: USSR
 		Location: 123,20
 	Actor410: chain

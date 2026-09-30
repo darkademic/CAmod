@@ -529,7 +529,7 @@ Actors:
 	Actor153: brik
 		Owner: USSR
 		Location: 46,50
-	YuriHQ: miss
+	YuriHQ: miss.campaign
 		Owner: USSR
 		Location: 48,50
 	Actor155: brik

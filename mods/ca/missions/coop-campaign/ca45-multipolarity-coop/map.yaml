@@ -3432,7 +3432,7 @@ Actors:
 		Facing: 384
 		Location: 72,51
 		SubCell: 3
-	HawthorneHQ: miss
+	HawthorneHQ: miss.campaign
 		Owner: GDI
 		Location: 65,43
 	Actor1382: chain

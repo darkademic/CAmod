@@ -417,6 +417,13 @@ HIDDENSPAWNER:
 	ExternalCondition@FIX2:
 		Condition: being-warped
 
+# MISS for campaign objectives
+
+MISS.CAMPAIGN:
+	Inherits: MISS
+	-TransformOnCapture:
+	-WithMakeAnimation:
+
 # Prevent AI Hospitals/Machine Shops spawning units
 
 HOSP:

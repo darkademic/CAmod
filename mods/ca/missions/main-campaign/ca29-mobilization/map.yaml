@@ -6076,7 +6076,7 @@ Actors:
 	Actor1699: t06
 		Owner: Neutral
 		Location: 144,80
-	HQ: miss
+	HQ: miss.campaign
 		Owner: GDI
 		Location: 76,66
 	Actor2019: brik

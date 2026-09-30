@@ -101,7 +101,7 @@ Actors:
 	Actor37: brik
 		Owner: Greece
 		Location: 23,69
-	Prison: miss
+	Prison: miss.campaign
 		Owner: Greece
 		Location: 25,69
 	Actor39: brik

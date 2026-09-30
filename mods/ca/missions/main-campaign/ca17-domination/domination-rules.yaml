@@ -148,7 +148,7 @@ TPLR:
 		Modifier: 60
 		RequiresCondition: mindcontrolled
 
-MISS:
+MISS.CAMPAIGN:
 	Tooltip:
 		Name: Cybernetics Lab
 	TooltipDescription:

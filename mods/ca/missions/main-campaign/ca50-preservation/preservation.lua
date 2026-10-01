@@ -6,12 +6,16 @@ ScrinAttackPaths = {
     { ScrinWaypoint5.Location, ScrinWaypoint6.Location },
     { ScrinWaypoint5.Location, ScrinWaypoint6.Location, ScrinWaypoint7.Location },
     { ScrinWaypoint5.Location, ScrinWaypoint8.Location },
+	{ ScrinWaypoint1.Location, ScrinWaypoint9.Location },
+	{ ScrinWaypoint5.Location, ScrinWaypoint8.Location, ScrinWaypoint10.Location },
 }
 
 SovietAttackPaths = {
 	{ SovietWaypoint1.Location, SovietWaypoint2.Location },
     { SovietWaypoint1.Location, SovietWaypoint2.Location },
     { SovietWaypoint4.Location, SovietWaypoint5.Location },
+	{ SovietWaypoint6.Location, SovietWaypoint7.Location },
+	{ SovietWaypoint1.Location, SovietWaypoint3.Location, SovietWaypoint8.Location },
 }
 
 SuperweaponsEnabledTime = {
@@ -96,6 +100,13 @@ if IsHardOrAbove() then
 			MinTime = DateTime.Minutes(18),
 			RequiredTargetCharacteristics = { "MassInfantry" }
 		})
+		table.insert(UnitCompositions.Scrin, {
+			Infantry = { "s2", "s2", "s2", "s2", "s2", "s2", "s2", "s2", "evis", "evis", "s2", "s2", "s2", "s2" },
+			Vehicles = { "shrw", "shrw", "shrw", "shrw", "shrw", "shrw", "shrw", "shrw", "shrw", "shrw" },
+			MinTime = DateTime.Minutes(16),
+			RequiredTargetCharacteristics = { "MassAir" },
+			IsSpecial = true
+		})
 	end
 end
 
@@ -108,7 +119,7 @@ Squads = {
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40, RampDuration = DateTime.Minutes(15) }),
 		FollowLeader = true,
 		AttackPaths = ScrinAttackPaths,
-		Delay = AdjustDelayForDifficulty(DateTime.Minutes(1)),
+		Delay = AdjustDelayForDifficulty(DateTime.Minutes(2)),
 	},
 	SovietMain = {
 		InitTimeAdjustment = -DateTime.Minutes(4),
@@ -116,7 +127,28 @@ Squads = {
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40, RampDuration = DateTime.Minutes(15) }),
 		FollowLeader = true,
 		AttackPaths = SovietAttackPaths,
-		Delay = AdjustDelayForDifficulty(DateTime.Minutes(2)),
+		Delay = AdjustDelayForDifficulty(DateTime.Minutes(3)),
+	},
+	ScrinMeatWaves = {
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 10, Max = 30, RampDuration = DateTime.Minutes(20) }),
+		Compositions = {
+			{ Infantry = { "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s3" } },
+			{ Infantry = { "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s3" } },
+			{ Infantry = { "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s3", "evis" }, MinTime = DateTime.Minutes(6) },
+		},
+		FollowLeader = true,
+		AttackPaths = ScrinAttackPaths,
+	},
+	SovietMeatWaves = {
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 10, Max = 30, RampDuration = DateTime.Minutes(20) }),
+		Compositions = {
+			{ Infantry = { "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3" } },
+			{ Infantry = { "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3" } },
+			{ Infantry = { "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "cmsr" }, MinTime = DateTime.Minutes(6) },
+		},
+		FollowLeader = true,
+		AttackPaths = SovietAttackPaths,
+		Delay = AdjustDelayForDifficulty(DateTime.Minutes(1)),
 	},
 	ScrinAir = {
 		Delay = AdjustAirDelayForDifficulty(DateTime.Minutes(13)),
@@ -302,6 +334,10 @@ InitScrinAttacks = function()
 	if IsHardOrAbove() then
 		InitAirAttackSquad(Squads.AirFleetKillers, Scrin, MissionPlayers, { "pac", "deva" })
 		InitAirAttackSquad(Squads.ScrinAirToAir, Scrin, MissionPlayers, { "Aircraft" }, "ArmorType")
+
+		if IsVeryHardOrAbove() then
+			InitAttackSquad(Squads.ScrinMeatWaves, Scrin)
+		end
 	end
 end
 
@@ -329,6 +365,7 @@ InitUSSRAttacks = function()
 		InitAirAttackSquad(Squads.TripodKillers, USSR, MissionPlayers, { "tpod", "rtpd" })
 
 		if IsVeryHardOrAbove() then
+			InitAttackSquad(Squads.SovietMeatWaves, USSR)
 			InitAirAttackSquad(Squads.SovietCommandoKillers, USSR, MissionPlayers, { "mast", "rmbo" })
 		end
 	end

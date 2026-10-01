@@ -1543,11 +1543,6 @@ Actors:
 		Facing: 384
 		Location: 37,31
 		SubCell: 3
-	Actor614: e1
-		Owner: USSR
-		Facing: 384
-		Location: 37,34
-		SubCell: 3
 	Actor615: e1
 		Owner: USSR
 		Facing: 384
@@ -4081,9 +4076,6 @@ Actors:
 	ScrinWaypoint6: waypoint
 		Owner: Neutral
 		Location: 65,44
-	ScrinWaypoint7: waypoint
-		Owner: Neutral
-		Location: 72,57
 	ScrinWaypoint8: waypoint
 		Owner: Neutral
 		Location: 32,35
@@ -5813,6 +5805,29 @@ Actors:
 	EastColonySpike: cspk
 		Owner: ScrinRebels
 		Location: 215,77
+	Actor614: e1
+		Owner: USSR
+		Facing: 384
+		Location: 37,34
+		SubCell: 1
+	SovietWaypoint6: waypoint
+		Owner: Neutral
+		Location: 229,26
+	SovietWaypoint7: waypoint
+		Owner: Neutral
+		Location: 237,64
+	SovietWaypoint8: waypoint
+		Owner: Neutral
+		Location: 168,76
+	ScrinWaypoint7: waypoint
+		Owner: Neutral
+		Location: 71,64
+	ScrinWaypoint9: waypoint
+		Owner: Neutral
+		Location: 111,96
+	ScrinWaypoint10: waypoint
+		Owner: Neutral
+		Location: 19,85
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, preservation-rules.yaml
 

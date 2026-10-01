@@ -181,6 +181,7 @@ end
 OncePerSecondChecks = function()
 	if DateTime.GameTime > 1 and DateTime.GameTime % 25 == 0 then
 		HawthorneGDI.Resources = HawthorneGDI.ResourceCapacity - 500
+		Nod.Resources = Nod.ResourceCapacity - 500
 
 		if not PlayerHasBuildings(HawthorneGDI) then
 			ScrinRebels.MarkCompletedObjective(ObjectiveEliminateHawthorne)

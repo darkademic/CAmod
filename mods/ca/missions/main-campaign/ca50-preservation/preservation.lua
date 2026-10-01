@@ -251,6 +251,7 @@ OncePerSecondChecks = function()
 	if DateTime.GameTime > 1 and DateTime.GameTime % 25 == 0 then
 		Scrin.Resources = Scrin.ResourceCapacity - 500
         USSR.Resources = USSR.ResourceCapacity - 500
+		Nod.Resources = Nod.ResourceCapacity - 500
 
         UpdateGatewayStatus()
 

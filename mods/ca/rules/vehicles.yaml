@@ -1364,6 +1364,17 @@ GTNK.squad:
 		LocalYaw: -100,100
 		Recoil: 43
 		MuzzleSequence: muzzle
+		ReloadingCondition: tusk-reloading-ground
+		PauseOnCondition: tusk-reloading-air
+	Armament@SECONDARYAA:
+		Name: secondary
+		Weapon: MammothTuskAA
+		LocalOffset: -85,384,340, -85,-384,340
+		LocalYaw: -100,100
+		Recoil: 43
+		MuzzleSequence: muzzle
+		ReloadingCondition: tusk-reloading-air
+		PauseOnCondition: tusk-reloading-ground
 	AttackTurreted:
 		PauseOnCondition: empdisable || being-warped || blinded
 		Voice: Attack
@@ -1491,6 +1502,7 @@ GTNK.squad:
 		-ReloadingCondition:
 	-Armament@ATOMICAMMO:
 	-Armament@SECONDARY:
+	-Armament@SECONDARYAA:
 	SpawnActorOnDeath:
 		Actor: 4TNK.ERAD.Husk
 		RequiresCondition: !being-warped
@@ -1550,6 +1562,7 @@ GTNK.squad:
 	-ReloadAmmoPoolCA@ATOMICAMMODECAY:
 	-Armament@ATOMICAMMO:
 	-Armament@SECONDARY:
+	-Armament@SECONDARYAA:
 	Voiced:
 		VoiceSet: EradVoice
 	ReplacedInQueue:
@@ -4713,6 +4726,17 @@ HTNK:
 		LocalYaw: -100,100
 		Recoil: 43
 		MuzzleSequence: muzzle
+		ReloadingCondition: tusk-reloading-ground
+		PauseOnCondition: tusk-reloading-air
+	Armament@SECONDARYAA:
+		Name: secondary
+		Weapon: MammothTuskAA
+		LocalOffset: -85,384,340, -85,-384,340
+		LocalYaw: -100,100
+		Recoil: 43
+		MuzzleSequence: muzzle
+		ReloadingCondition: tusk-reloading-air
+		PauseOnCondition: tusk-reloading-ground
 	AttackTurreted:
 		PauseOnCondition: empdisable || being-warped || blinded
 		Voice: Attack
@@ -4779,6 +4803,8 @@ HTNK.Ion:
 	Armament@PRIMARY:
 		Weapon: IonZap
 		LocalOffset: 870,0,360
+	Armament@SECONDARY:
+		Weapon: IonMammothTusk
 	SpawnActorOnDeath:
 		Actor: HTNK.Ion.Husk
 	-ReplacedInQueue:
@@ -4892,7 +4918,9 @@ HTNK.Drone:
 	Armament@PRIMARY:
 		Weapon: 130mmTD.Drone
 	Armament@SECONDARY:
-		Weapon: MammothTusk.Drone
+		Weapon: MammothDroneTusk
+	Armament@SECONDARYAA:
+		Weapon: MammothDroneTuskAA
 	AttackTurreted:
 		PauseOnCondition: !radarenabled || empdisable || being-warped || blinded
 		Voice: Attack
@@ -7537,15 +7565,17 @@ TITN:
 		LocalYaw: -100,100
 		Recoil: 43
 		MuzzleSequence: muzzle
-		PauseOnCondition: gyrostabilizers
-	Armament@SECONDARYGYRO:
+		ReloadingCondition: tusk-reloading-ground
+		PauseOnCondition: tusk-reloading-air
+	Armament@SECONDARYAA:
 		Name: secondary
-		Weapon: TitanTusk.Gyro
+		Weapon: TitanTuskAA
 		LocalOffset: -85,-384,340
 		LocalYaw: -100,100
 		Recoil: 43
 		MuzzleSequence: muzzle
-		PauseOnCondition: !gyrostabilizers
+		ReloadingCondition: tusk-reloading-air
+		PauseOnCondition: tusk-reloading-ground
 	Turreted:
 		TurnSpeed: 10
 		Offset: 0,0,0
@@ -7612,6 +7642,8 @@ TITN.RAIL:
 	Armament@PRIMARYUPGDIRECT:
 		Weapon: TitanRailgunImpact
 		LocalOffset: 830,290,170
+	Armament@SECONDARY:
+		Weapon: RailgunTitanTusk
 	SpawnActorOnDeath:
 		Actor: TITN.RAIL.Husk
 	-ReplacedInQueue:

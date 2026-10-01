@@ -548,15 +548,13 @@ WidowAA:
 MammothTusk:
 	Inherits: ^AntiGroundMissile
 	ReloadDelay: 70
-	Range: 6c512
+	Range: 4c768
 	Burst: 2
-	ValidTargets: Air, AirSmall, Infantry
+	ValidTargets: Infantry
 	Projectile: MissileCA
 		Speed: 230
 		HorizontalRateOfTurn: 60
-		RangeLimit: 9c614
 	Warhead@1Dam: SpreadDamage
-		ValidTargets: Ground, Water, Air
 		Spread: 256
 		Versus:
 			None: 100
@@ -564,6 +562,18 @@ MammothTusk:
 			Heavy: 50
 			Aircraft: 50
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath, FlakVestMitigated
+	Warhead@3Eff: CreateEffect
+		ImpactSounds: kaboom15.aud
+		ValidTargets: Ground, Trees
+
+MammothTuskAA:
+	Inherits: MammothTusk
+	Range: 6c512
+	ValidTargets: Air, AirSmall
+	Projectile: MissileCA
+		RangeLimit: 9c614
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: Air
 	Warhead@smallDamage: SpreadDamage
 		Damage: 2000
 		Spread: 128
@@ -571,21 +581,60 @@ MammothTusk:
 		ValidTargets: AirSmall
 		ValidRelationships: Enemy, Neutral
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath, FlakVestMitigated
-	Warhead@3Eff: CreateEffect
-		ImpactSounds: kaboom15.aud
-		ValidTargets: Ground, Trees
 	Warhead@5EffAir: CreateEffect
 		Explosions: med_explosion_air
 		ImpactSounds: kaboom25.aud
 		ValidTargets: Air, AirSmall
 
-MammothTusk.Drone:
+MammothDroneTusk:
 	Inherits: MammothTusk
 	Warhead@1Dam: SpreadDamage
 		Damage: 3750
 
-ApocalypseTusk:
+MammothDroneTuskAA:
+	Inherits: MammothTuskAA
+	Warhead@1Dam: SpreadDamage
+		Damage: 3750
+	Warhead@smallDamage: SpreadDamage
+		Damage: 1520
+
+IonMammothTusk:
 	Inherits: MammothTusk
+	Range: 5c256
+	Projectile: MissileCA
+		RangeLimit: 7c512
+
+TitanTusk:
+	Inherits: MammothTusk
+	Burst: 1
+	Report: samshot1.aud
+	Range: 5c0
+	Projectile: MissileCA
+		Image: MISSILE
+		RangeLimit: 7c256
+	Warhead@1Dam: SpreadDamage
+		Damage: 10000
+
+TitanTuskAA:
+	Inherits: MammothTuskAA
+	Burst: 1
+	Report: samshot1.aud
+	Projectile: MissileCA
+		Image: MISSILE
+		RangeLimit: 10c614
+	Warhead@1Dam: SpreadDamage
+		Damage: 10000
+	Warhead@smallDamage: SpreadDamage
+		Damage: 4000
+
+RailgunTitanTusk:
+	Inherits: TitanTusk
+	Range: 5c768
+	Projectile: MissileCA
+		RangeLimit: 8c0
+
+ApocalypseTusk:
+	Inherits: MammothTuskAA
 	Report: vapoat2a.aud, vapoat2b.aud, vapoat2c.aud
 	ValidTargets: Air, AirSmall
 	ReloadDelay: 60
@@ -598,23 +647,6 @@ ApocalypseTusk:
 		Damage: 4000
 	Warhead@smallDamage: SpreadDamage
 		Damage: 4000
-
-TitanTusk:
-	Inherits: MammothTusk
-	Burst: 1
-	Report: samshot1.aud
-	Projectile: MissileCA
-		Image: MISSILE
-		RangeLimit: 10c614
-	Warhead@1Dam: SpreadDamage
-		Damage: 10000
-	Warhead@smallDamage: SpreadDamage
-		Damage: 4000
-
-TitanTusk.Gyro:
-	Inherits: TitanTusk
-	ReloadDelay: 38
-	Range: 4c901
 
 APCTusk:
 	Inherits: MammothTusk

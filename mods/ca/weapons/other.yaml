@@ -2167,7 +2167,7 @@ OrcaBomb:
 	ReloadDelay: 50
 	Report: chute1.aud
 	Burst: 3
-	BurstDelays: 7
+	BurstDelays: 9
 	Range: 2c0
 	TargetActorCenter: true
 	Projectile: GravityBomb
@@ -3584,7 +3584,7 @@ PeacemakerBombs:
 	TargetActorCenter: true
 	Projectile: GravityBomb
 		Image: medbomb
-		Velocity: 20, 0, -60
+		Velocity: 30, 0, -85
 		Acceleration: 0, 0, 0
 		Shadow: true
 	Warhead@1Dam: SpreadDamage

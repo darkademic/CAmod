@@ -5061,7 +5061,7 @@ NERV:
 	Inherits@STORMSPIKEPOWER: ^StormSpikePower
 	Inherits@BUZZERSWARMPOWER: ^BuzzerSwarmPower
 	Inherits@TECHLOCKABLE: ^TechLockable
-	Inherits@ProductionOptimizer1: ^ProductionOptimizer1
+	Inherits@OptimizedProductionRadar: ^OptimizedProductionRadar
 	Buildable:
 		Queue: BuildingSQ, BuildingMQ
 		BuildPaletteOrder: 90
@@ -5163,7 +5163,7 @@ SCRT:
 	Inherits@IONSURGEPOWER: ^IonSurgePower
 	Inherits@GREATERCOALESCENCEPOWER: ^GreaterCoalescencePower
 	Inherits@TECHLOCKABLE: ^TechLockable
-	Inherits@ProductionOptimizer2: ^ProductionOptimizer2
+	Inherits@OptimizedProductionTechCenter: ^OptimizedProductionTechCenter
 	Inherits@OverlordsWrath: ^OverlordsWrathPower
 	Inherits@GatewayPower: ^GatewayPower
 	Inherits@AnathemaPower: ^AnathemaPower
@@ -5390,7 +5390,7 @@ SIGN:
 
 SREP:
 	Inherits: ^ScrinBuilding
-	Inherits@ProductionOptimizer1: ^ProductionOptimizer1
+	Inherits@OptimizedProductionSD: ^OptimizedProductionSD
 	HitShape:
 		TargetableOffsets: 840,0,0, 598,-640,0, 598,640,0, -1060,0,0, -768,-640,0, -768,640,0
 		Type: Polygon

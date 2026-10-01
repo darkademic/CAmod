@@ -1476,16 +1476,6 @@ SHAB:
 	KillsSelf:
 		RequiresCondition: !active
 
-optimized.production1:
-	Inherits@DUMMY: ^InvisibleDummy
-	ProvidesPrerequisite:
-	PopControlled:
-
-optimized.production2:
-	Inherits@DUMMY: ^InvisibleDummy
-	ProvidesPrerequisite:
-	PopControlled:
-
 scrin.allegiances.available:
 	AlwaysVisible:
 	Interactable:

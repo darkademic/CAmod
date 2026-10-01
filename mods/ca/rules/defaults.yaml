@@ -4945,19 +4945,21 @@
 		Condition: global-multiqueue
 		Prerequisites: global.multiqueuescaled
 
-^ProductionOptimizer1:
-	FreeActor@ProductionOptimizer1:
-		Actor: optimized.production1
-	SpawnActorOnCapture@ProductionOptimizer1:
-		Actor: optimized.production1
-		Delay: 1
+^OptimizedProductionSD:
+	UpdatesCount@OptimizedProductionSD:
+		Type: OptimizedProductionSD
 
-^ProductionOptimizer2:
-	FreeActor@ProductionOptimizer2:
-		Actor: optimized.production2
-	SpawnActorOnCapture@ProductionOptimizer2:
-		Actor: optimized.production2
-		Delay: 1
+^OptimizedProductionRadar:
+	UpdatesCount@OptimizedProductionRadar:
+		Type: OptimizedProductionRadar
+
+^OptimizedProductionAlliedHQ:
+	UpdatesCount@OptimizedProductionAlliedHQ:
+		Type: OptimizedProductionAlliedHQ
+
+^OptimizedProductionTechCenter:
+	UpdatesCount@OptimizedProductionTechCenter:
+		Type: OptimizedProductionTechCenter
 
 ^ProducesBuildings:
 	Inherits@QUEUEUPDATER: ^QueueUpdater

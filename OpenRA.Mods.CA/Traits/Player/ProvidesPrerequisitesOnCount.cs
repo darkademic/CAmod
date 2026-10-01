@@ -23,7 +23,10 @@ namespace OpenRA.Mods.CA.Traits
 	{
 		[Desc("Identifier for the counts.")]
 		[FieldLoader.Require]
-		public readonly string Type;
+		public readonly HashSet<string> Types;
+
+		[Desc("Maximum contribution of each count type to the total count.")]
+		public readonly int LimitPerType = int.MaxValue;
 
 		[Desc("Prerequisites provided at specific counts.")]
 		public readonly Dictionary<int, string> Prerequisites = null;
@@ -78,9 +81,11 @@ namespace OpenRA.Mods.CA.Traits
 		{
 			get
 			{
-				if (countManager != null && countManager.Counts.TryGetValue(Info.Type, out var count))
-					return count;
-				return 0;
+				if (countManager == null)
+					return 0;
+
+				var limitPerType = Math.Max(0, Info.LimitPerType);
+				return Info.Types.Sum(type => countManager.Counts.TryGetValue(type, out var count) ? Math.Min(count, limitPerType) : 0);
 			}
 		}
 
@@ -221,12 +226,13 @@ namespace OpenRA.Mods.CA.Traits
 		// Invoked by CountManager when a count is incremented
 		void HandleIncremented(string type, int newCount)
 		{
-			if (!Enabled || type != Info.Type)
+			if (!Enabled || !Info.Types.Contains(type))
 				return;
 
+			var currentCount = CurrentCount;
 			var maxThreshold = Info.Prerequisites.Keys.Max();
 
-			if (newCount > maxThreshold)
+			if (currentCount > maxThreshold)
 				return;
 
 			// Return early if all prerequisites have been permanently unlocked
@@ -243,14 +249,16 @@ namespace OpenRA.Mods.CA.Traits
 				Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Sounds", Info.IncrementSound, self.Owner.Faction.InternalName);
 			}
 
-			HandleCountThreshold(newCount);
+			HandleCountThreshold(currentCount);
 		}
 
 		// Invoked by CountManager when a count is decremented
 		void HandleDecremented(string type, int newCount)
 		{
-			if (!Enabled || type != Info.Type)
+			if (!Enabled || !Info.Types.Contains(type))
 				return;
+
+			var currentCount = CurrentCount;
 
 			// Remove prerequisites that are no longer valid due to count decrease
 			// but keep permanent prerequisites
@@ -264,7 +272,7 @@ namespace OpenRA.Mods.CA.Traits
 					var prerequisite = kvp.Value;
 
 					// If the count threshold is no longer met and the prerequisite is not permanent, remove it
-					if (newCount < count && prerequisitesGranted.Contains(prerequisite) && !permanentPrerequisites.Contains(prerequisite))
+					if (currentCount < count && prerequisitesGranted.Contains(prerequisite) && !permanentPrerequisites.Contains(prerequisite))
 					{
 						prerequisitesToRemove.Add(prerequisite);
 						thresholdsPassed.Remove(count);

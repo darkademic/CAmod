@@ -44,7 +44,7 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 			}
 
 			counter = world.LocalPlayer.PlayerActor.TraitsImplementing<ProvidesPrerequisitesOnCount>()
-				.FirstOrDefault(c => c.Info.Type == CountType);
+				.FirstOrDefault(c => c.Info.Types.Contains(CountType));
 
 			if (counter == null)
 			{

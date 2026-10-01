@@ -405,6 +405,14 @@ Player:
 		MaxCounts:
 			NodCovenant: 3
 			ScrinAllegiance: 4
+	ProvidesPrerequisitesOnCount@OptimizedProduction:
+		Types: OptimizedProductionSD, OptimizedProductionRadar, OptimizedProductionAlliedHQ, OptimizedProductionTechCenter
+		LimitPerType: 1
+		Prerequisites:
+			1: optimized.production1
+			2: optimized.production2
+		PermanentWhenReached: true
+		DummyActor: QueueUpdaterDummy
 	ProvidesPrerequisitesOnTimeline:
 		Type: AlliedInfluence
 		Factions: allies, england, france, germany, usa
@@ -421,7 +429,7 @@ Player:
 		Prerequisite: charv.upgrade
 		RequiresPrerequisites: influence.level3, economy.policy
 	ProvidesPrerequisitesOnCount@NodCovenants:
-		Type: NodCovenant
+		Types: NodCovenant
 		Factions: nod, blackh, marked, legion, shadow
 		Prerequisites:
 			1: covenant.level1
@@ -437,7 +445,7 @@ Player:
 		NotificationDelay: 40
 		AddToUpgradesTab: true
 	ProvidesPrerequisitesOnCount@ScrinAllegiances:
-		Type: ScrinAllegiance
+		Types: ScrinAllegiance
 		Factions: scrin, reaper, traveler, harbinger, collector
 		Prerequisites:
 			4: scrin.allegiances.available

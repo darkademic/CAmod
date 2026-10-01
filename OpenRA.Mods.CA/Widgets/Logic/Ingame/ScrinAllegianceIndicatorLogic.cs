@@ -37,7 +37,7 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 		public ScrinAllegianceIndicatorLogic(Widget widget, World world)
 		{
 			counter = world.LocalPlayer.PlayerActor.TraitsImplementing<ProvidesPrerequisitesOnCount>()
-				.FirstOrDefault(c => c.Info.Type == CountType);
+				.FirstOrDefault(c => c.Info.Types.Contains(CountType));
 
 			var container = widget.Get<ContainerWidget>("SCRIN_ALLEGIANCE");
 			var countImage = container.Get<ImageWidget>("SCRIN_ALLEGIANCE_LEVEL");

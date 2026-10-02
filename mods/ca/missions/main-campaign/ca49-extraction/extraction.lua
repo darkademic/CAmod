@@ -274,7 +274,7 @@ end
 
 UpdateDeadlineCountdown = function()
 	if not IsKaneReached and ObjectivePrepare ~= nil and not ScrinRebels.IsObjectiveCompleted(ObjectivePrepare) then
-		UserInterface.SetMissionText("Rendezvous with Kane before the deadline: " .. UtilsCA.FormatTimeForGameSpeed(TimerTicks), HSLColor.Yellow)
+		UserInterface.SetMissionText("Gather forces and rendezvous with Kane before the deadline: " .. UtilsCA.FormatTimeForGameSpeed(TimerTicks), HSLColor.Yellow)
         if TimerTicks <= 0 then
             ScrinRebels.MarkFailedObjective(ObjectivePrepare)
         end

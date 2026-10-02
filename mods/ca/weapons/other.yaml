@@ -2095,7 +2095,7 @@ TitanRailgunImpact:
 
 IonZap:
 	ReloadDelay: 85
-	Range: 5c256
+	Range: 5c512
 	Report: ion1.aud
 	Projectile: Railgun
 		Duration: 7

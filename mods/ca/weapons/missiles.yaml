@@ -548,12 +548,13 @@ WidowAA:
 MammothTusk:
 	Inherits: ^AntiGroundMissile
 	ReloadDelay: 70
-	Range: 4c768
+	Range: 5c256
 	Burst: 2
 	ValidTargets: Infantry
 	Projectile: MissileCA
 		Speed: 230
 		HorizontalRateOfTurn: 60
+		RangeLimit: 7c256
 	Warhead@1Dam: SpreadDamage
 		Spread: 256
 		Versus:
@@ -571,7 +572,8 @@ MammothTuskAA:
 	Range: 6c512
 	ValidTargets: Air, AirSmall
 	Projectile: MissileCA
-		RangeLimit: 9c614
+		RangeLimit: 9c512
+		Speed: 298
 	Warhead@1Dam: SpreadDamage
 		ValidTargets: Air
 	Warhead@smallDamage: SpreadDamage
@@ -600,7 +602,7 @@ MammothDroneTuskAA:
 
 IonMammothTusk:
 	Inherits: MammothTusk
-	Range: 5c256
+	Range: 5c512
 	Projectile: MissileCA
 		RangeLimit: 7c512
 
@@ -608,10 +610,8 @@ TitanTusk:
 	Inherits: MammothTusk
 	Burst: 1
 	Report: samshot1.aud
-	Range: 5c0
 	Projectile: MissileCA
 		Image: MISSILE
-		RangeLimit: 7c256
 	Warhead@1Dam: SpreadDamage
 		Damage: 10000
 
@@ -621,7 +621,6 @@ TitanTuskAA:
 	Report: samshot1.aud
 	Projectile: MissileCA
 		Image: MISSILE
-		RangeLimit: 10c614
 	Warhead@1Dam: SpreadDamage
 		Damage: 10000
 	Warhead@smallDamage: SpreadDamage
@@ -631,7 +630,7 @@ RailgunTitanTusk:
 	Inherits: TitanTusk
 	Range: 5c768
 	Projectile: MissileCA
-		RangeLimit: 8c0
+		RangeLimit: 7c768
 
 ApocalypseTusk:
 	Inherits: MammothTuskAA

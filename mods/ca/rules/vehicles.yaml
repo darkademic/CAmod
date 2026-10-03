@@ -3368,7 +3368,7 @@ GDRN:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 15000
+		HP: 13000
 	Armor:
 		Type: Light
 	Mobile:
@@ -3478,13 +3478,13 @@ BGGY:
 		Weaknesses: • Weak vs Heavy Armor, Buildings, Defenses\n• Cannot attack Aircraft
 		Attributes: • Detects cloaked units and spies
 	Valued:
-		Cost: 350
+		Cost: 300
 	Tooltip:
 		Name: Buggy
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 13250
+		HP: 13000
 	Armor:
 		Type: Light
 	Mobile:
@@ -3578,11 +3578,14 @@ BGGY:
 
 RBUG:
 	Inherits: BGGY
-	Inherits@HeavyArmor: ^HeavyArmor
 	Buildable:
 		Prerequisites: ~vehicles.nod, ~rbug.upgrade, ~techlevel.low
 	Tooltip:
 		Name: Raider Buggy
+	TooltipExtras:
+		Attributes: • Special Ability: Raider Frenzy
+	Health:
+		HP: 14000
 	Valued:
 		Cost: 400
 	Armament:
@@ -3590,11 +3593,7 @@ RBUG:
 		MuzzleSequence: muzzle
 		MuzzlePalette: caneon
 		LocalOffset: 250,0,300
-	Mobile:
-		Speed: 126
-		TurnSpeed: 36
 	Turreted:
-		TurnSpeed: 36
 		Offset: -100,0,0
 	-ReplacedInQueue:
 	-Upgradeable@Raider:
@@ -3602,6 +3601,18 @@ RBUG:
 	-WithEjectedCasings:
 	EncyclopediaExtras:
 		AdditionalInfo: Requires Zeal Covenant.
+	GrantTimedConditionOnDeploy@RaiderFrenzy:
+		DeployedTicks: 125
+		CooldownTicks: 1000
+		DeployedCondition: frenzy
+		ShowSelectionBar: true
+		ShowSelectionBarWhenFull: false
+		StartsFullyCharged: true
+		PauseOnCondition: being-warped || empdisable
+		DischargingColor: ff3300
+		ChargingColor: a03b00
+		DeploySound: rbug-frenzy.aud
+		Instant: true
 
 ^DecoyUnit:
 	Inherits@selection: ^SelectableSupportUnit
@@ -4503,18 +4514,12 @@ MDRN:
 	Selectable:
 		DecorationBounds: 682, 682, 0, -341
 	Health:
-		HP: 13000
+		HP: 9000
 	Armor:
 		Type: Light
 	HitShape:
 		Type: Circle
 			Radius: 128
-	DamageTypeDamageMultiplier@FLAKARMOR:
-		DamageTypes: FlakVestMitigated
-		Modifier: 60
-	DamageTypeDamageMultiplier@FLAKARMORMINOR:
-		DamageTypes: FlakVestMitigatedMinor
-		Modifier: 80
 	RevealsShroud:
 		MinRange: 4c0
 		Range: 5c0
@@ -9362,11 +9367,11 @@ PBUL:
 		BuildPaletteOrder: 252
 		IconPalette: chrometd
 		Prerequisites: gtek, ~vehicles.eagle, ~techlevel.high
-		Description: Fast scout vehicle with rockets that disrupts weapons and vision. Can designate targets, revealing them and increasing the damage they take.
+		Description: Fast scout vehicle with rockets that disrupts weapons and vision.
 	TooltipExtras:
 		Strengths: • Strong vs Light Armor, Aircraft
 		Weaknesses: • Weak vs Infantry, Buildings, Defenses
-		Attributes: • Detects cloaked units and spies\n• Special Ability: Target Painter
+		Attributes: • Detects cloaked units and spies
 	Valued:
 		Cost: 850
 	Tooltip:
@@ -9403,16 +9408,9 @@ PBUL:
 		LocalOffset: 0,-100,250, 0,100,250
 		PauseOnCondition: reloading-primary
 		ReloadingCondition: reloading-secondary
-	Armament@TERTIARY:
-		Name: tertiary
-		Weapon: TargetPainter
-		LocalOffset: 0,0,250
-		RequiresCondition: target-painting
 	AttackTurreted:
 		PauseOnCondition: empdisable || being-warped || blinded
 		Voice: Attack
-		Armaments: primary, secondary, tertiary
-		TargetFrozenActors: true
 	AttackMove:
 		Voice: Attack
 	WithSpriteTurret:
@@ -9428,15 +9426,6 @@ PBUL:
 	WithProductionIconOverlay:
 		Types: Veterancy
 		Prerequisites: vehicles.upgraded
-	TargetedAttackAbility:
-		ActiveCondition: target-painting
-		ArmamentNames: tertiary
-		CircleColor: ffffff88
-		Type: PitbullTargetPainter
-		TargetModifiedCursor: ability2
-		ActiveUntilCancelled: true
-		UseDisabledArmaments: true
-		TargetFrozenActors: true
 	Encyclopedia:
 		Category: GDI/Vehicles
 	EncyclopediaExtras:

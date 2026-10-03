@@ -1070,8 +1070,8 @@ rbug.upgrade:
 		Prerequisites: ~player.nod, covenant.level2, ~zeal.covenant, ~techlevel.high
 		Description: Replaces: Buggy
 	TooltipExtras:
-		Strengths: + Heavy armor\n+ Increased damage\n+ Increased range
-		Weaknesses: – Increased cost\n– Reduced speed
+		Strengths: + Increased damage\n+ Increased range\n+ Increased health\n+ Frenzy ability
+		Weaknesses: – Increased cost
 	Valued:
 		Cost: 750
 	RenderSprites:

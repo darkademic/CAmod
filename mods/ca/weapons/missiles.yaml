@@ -882,7 +882,7 @@ TOW:
 	Range: 5c0
 	ValidTargets: Vehicle, Ship, Structure
 	Report: tow1.aud, tow2.aud
-	ReloadDelay: 200
+	ReloadDelay: 140
 	Projectile: MissileCA
 		Speed: 180
 		Inaccuracy: 0
@@ -896,7 +896,7 @@ TOW:
 		MinimumLaunchAngle: 0
 		MaximumLaunchAngle: 48
 	Warhead@1Dam: SpreadDamage
-		Damage: 12500
+		Damage: 8750
 		Versus:
 			Wood: 40
 			Concrete: 30

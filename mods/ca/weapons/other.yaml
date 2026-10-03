@@ -1160,7 +1160,7 @@ BattleTankLaser:
 RaiderBuggyLaser:
 	Inherits: M60mgTD
 	Range: 4c512
-	ReloadDelay: 25
+	ReloadDelay: 20
 	-Burst:
 	-StartBurstReport:
 	Report: rbug-fire1.aud
@@ -1177,7 +1177,7 @@ RaiderBuggyLaser:
 		Blockable: true
 	Warhead@1Dam: SpreadDamage
 		Spread: 42
-		Damage: 2750
+		Damage: 3000
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 	-Warhead@2Eff:
 	Warhead@2Smu: LeaveSmudge

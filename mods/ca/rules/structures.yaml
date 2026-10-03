@@ -3910,7 +3910,7 @@ HQ:
 	TransformOnCondition@UPG:
 		IntoActor: hq.upg
 		SkipMakeAnims: false
-		RequiresCondition: unity-upgrade && !build-incomplete
+		RequiresCondition: unity-upgrade && !build-incomplete && !hacked
 	GrantChargingCondition@ArcBackupPower:
 		Condition: backup-power
 		RequiresCondition: arc-built

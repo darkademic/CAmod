@@ -3,11 +3,14 @@ MissionDir = "ca|missions/main-campaign/ca50-preservation"
 ScrinAttackPaths = {
 	{ ScrinWaypoint1.Location, ScrinWaypoint2.Location },
     { ScrinWaypoint3.Location, ScrinWaypoint4.Location },
+	{ ScrinWaypoint3.Location, ScrinWaypoint4.Location, ScrinWaypoint13.Location },
     { ScrinWaypoint5.Location, ScrinWaypoint6.Location },
     { ScrinWaypoint5.Location, ScrinWaypoint6.Location, ScrinWaypoint7.Location },
     { ScrinWaypoint5.Location, ScrinWaypoint8.Location },
 	{ ScrinWaypoint1.Location, ScrinWaypoint9.Location },
 	{ ScrinWaypoint5.Location, ScrinWaypoint8.Location, ScrinWaypoint10.Location },
+	{ ScrinWaypoint5.Location, ScrinWaypoint8.Location, ScrinWaypoint10.Location, ScrinWaypoint11.Location },
+	{ ScrinWaypoint5.Location, ScrinWaypoint6.Location, ScrinWaypoint7.Location, ScrinWaypoint12.Location },
 }
 
 SovietAttackPaths = {
@@ -16,6 +19,8 @@ SovietAttackPaths = {
     { SovietWaypoint4.Location, SovietWaypoint5.Location },
 	{ SovietWaypoint6.Location, SovietWaypoint7.Location },
 	{ SovietWaypoint1.Location, SovietWaypoint3.Location, SovietWaypoint8.Location },
+	{ SovietWaypoint6.Location, SovietWaypoint7.Location, SovietWaypoint9.Location },
+	{ SovietWaypoint6.Location, SovietWaypoint7.Location, SovietWaypoint9.Location, SovietWaypoint10.Location },
 }
 
 SuperweaponsEnabledTime = {
@@ -132,9 +137,9 @@ Squads = {
 	ScrinMeatWaves = {
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 10, Max = 30, RampDuration = DateTime.Minutes(20) }),
 		Compositions = {
-			{ Infantry = { "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s3" } },
-			{ Infantry = { "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s3" } },
-			{ Infantry = { "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s3", "evis" }, MinTime = DateTime.Minutes(6) },
+			{ Infantry = { "s3", "s1", "s1", "s1", "s1", "s1", "s1", "s3" } },
+			{ Infantry = { "s3", "s1", "s1", "s1", "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s3" } },
+			{ Infantry = { "s3", "s1", "s1", "s1", "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s3", "evis" }, MinTime = DateTime.Minutes(6) },
 		},
 		FollowLeader = true,
 		AttackPaths = ScrinAttackPaths,
@@ -142,9 +147,9 @@ Squads = {
 	SovietMeatWaves = {
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 10, Max = 30, RampDuration = DateTime.Minutes(20) }),
 		Compositions = {
-			{ Infantry = { "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3" } },
-			{ Infantry = { "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3" } },
-			{ Infantry = { "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "cmsr" }, MinTime = DateTime.Minutes(6) },
+			{ Infantry = { "e3", "e1", "e1", "e1", "e1", "e1", "e1", "e3" } },
+			{ Infantry = { "e3", "e1", "e1", "e1", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3" } },
+			{ Infantry = { "e3", "e1", "e1", "e1", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3", "cmsr" }, MinTime = DateTime.Minutes(6) },
 		},
 		FollowLeader = true,
 		AttackPaths = SovietAttackPaths,
@@ -317,6 +322,12 @@ InitScrin = function()
 	AutoReplaceHarvesters(Scrin)
 	AutoRebuildConyards(Scrin)
 	SetupUnitDefenders(Scrin)
+	SetupBuildingDefenders(Scrin)
+
+	local scrinProductionBuildings = Scrin.GetActorsByTypes({ "port", "wsph", "sfac", "grav" })
+	for _, b in pairs(scrinProductionBuildings) do
+		BuildDefenseOnCaptureAttempt(b, "ptur", true)
+	end
 
     InitScrinAttacks()
 end
@@ -347,6 +358,12 @@ InitUSSR = function()
 	AutoReplaceHarvesters(USSR)
 	AutoRebuildConyards(USSR)
 	SetupUnitDefenders(USSR)
+	SetupBuildingDefenders(USSR)
+
+	local ussrProductionBuildings = USSR.GetActorsByTypes({ "fact", "weap", "barr", "afld" })
+	for _, b in pairs(ussrProductionBuildings) do
+		BuildDefenseOnCaptureAttempt(b, "ftur", true)
+	end
 
     InitUSSRAttacks()
 end

@@ -339,7 +339,7 @@ InitMaleficScrinAttacks = function()
 	InitAirAttackSquad(Squads.MaleficAir, MaleficScrin)
 
 	if IsVeryHardOrAbove() then
-		InitAirAttackSquad(Squads.MaleficCommandoKillers, Scrin, MissionPlayers, { "mast", "rmbo" })
+		InitAirAttackSquad(Squads.MaleficCommandoKillers, MaleficScrin, MissionPlayers, { "mast", "rmbo" })
 	end
 end
 

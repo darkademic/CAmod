@@ -2855,8 +2855,8 @@ Actors:
 		Owner: ScrinRebels
 		Location: 158,182
 		SubCell: 3
-		Facing: 252
 		Stance: HoldFire
+		Facing: 252
 	Actor1048: wchr
 		Owner: ScrinRebels
 		Location: 33,171
@@ -3555,19 +3555,16 @@ Actors:
 		Location: 79,190
 	Actor1262: wchr
 		Owner: ScrinRebels
-		Facing: 384
 		Location: 94,180
 		SubCell: 3
+		Facing: 384
+		Stance: HoldFire
 	Actor1265: wchr
 		Owner: ScrinRebels
-		Facing: 763
 		Location: 75,144
 		SubCell: 3
-	Actor1266: wchr
-		Owner: ScrinRebels
-		Facing: 384
-		Location: 153,137
-		SubCell: 3
+		Facing: 763
+		Stance: HoldFire
 	Actor1267: camera
 		Owner: MaleficScrin
 		Location: 94,40
@@ -3952,6 +3949,12 @@ Actors:
 		SubCell: 3
 		Facing: 384
 		Location: 26,194
+	Actor1266: wchr
+		Owner: ScrinRebels
+		Location: 155,142
+		SubCell: 3
+		Facing: 384
+		Stance: HoldFire
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, ca|missions/main-campaign/ca51-exodus/exodus-rules.yaml, ca|rules/custom/coop-rules.yaml, exodus-coop-rules.yaml
 

@@ -378,7 +378,6 @@ Player:
 	TeleportNetworkManager:
 		Type: Wormhole
 		RandomExit: true
-	AutoDeployManager:
 	CapturedFactionsManager:
 	UpgradesManager:
 	ProductionTracker:

@@ -545,22 +545,21 @@
 		Modifier: 170
 
 ^IdolOfKane:
-	ExternalCondition@IdolOfKaneBuff:
-		Condition: iokbuff
-	SpeedMultiplier@IdolOfKaneBuff:
-		RequiresCondition: iokbuff
-		Modifier: 130
-	ReloadDelayMultiplier@IdolOfKaneBuff:
-		RequiresCondition: iokbuff
-		Modifier: 85
+	ExternalCondition@IdolOfKaneBuff1:
+		Condition: iokbuff1
+	ExternalCondition@IdolOfKaneBuff1:
+		Condition: iokbuff2
+	SpeedMultiplier@IdolOfKaneBuff1:
+		RequiresCondition: iokbuff1
+		Modifier: 125
+	SpeedMultiplier@IdolOfKaneBuff2:
+		RequiresCondition: iokbuff2
+		Modifier: 150
 	ExternalCondition@IdolOfKaneDebuff:
 		Condition: iokdebuff
 	SpeedMultiplier@IdolOfKaneDebuff:
 		RequiresCondition: iokdebuff
 		Modifier: 80
-	ReloadDelayMultiplier@IdolOfKaneDebuff:
-		RequiresCondition: iokdebuff
-		Modifier: 120
 
 ^Chronoshiftable:
 	ChronoshiftableCA:

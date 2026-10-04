@@ -6395,8 +6395,13 @@ IOK:
 	SoundOnDamageTransition:
 		-DamagedSounds:
 		DestroyedSounds: kaboom15.aud
-	ProximityExternalCondition@IdolOfKaneBuff:
-		Condition: iokbuff
+	ProximityExternalCondition@IdolOfKaneBuff1:
+		Condition: iokbuff1
+		Range: 5c0
+		ValidRelationships: Ally
+		RequiresCondition: !initialized
+	ProximityExternalCondition@IdolOfKaneBuff2:
+		Condition: iokbuff2
 		Range: 5c0
 		ValidRelationships: Ally
 		RequiresCondition: initialized
@@ -6421,7 +6426,7 @@ IOK:
 		MaxRadiusFlashColor: 66666660
 		Color: 66666630
 		Width: 2
-		RequiresCondition: !rage-active && initialized
+		RequiresCondition: !rage-active
 	WithRadiatingCircle@Rage:
 		EndRadius: 5c0
 		Interval: 5
@@ -6450,7 +6455,7 @@ IOK:
 		RequiresCondition: rage-active
 		Color: FF000033
 	ReloadAmmoPoolCA@InitialRage:
-		Delay: 125
+		Delay: 200
 		SelectionBarColor: 770000
 	AmmoPool@InitialRage:
 		Ammo: 1

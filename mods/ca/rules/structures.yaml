@@ -6361,7 +6361,7 @@ IOK:
 	Tooltip:
 		Name: Idol of Kane
 	TooltipExtras:
-		Strengths: • Increases damage and movement speed of friendly infantry\n• Reduces damage and movement speed of enemy infantry\n• Provides vision
+		Strengths: • Increases damage and movement speed of friendly ground units\n• Reduces damage and movement speed of enemy ground units\n• Provides vision
 		Weaknesses: • Cannot attack
 		Attributes: • Special Ability: Rage Generator (enemy units within range go berserk)
 	Armor:

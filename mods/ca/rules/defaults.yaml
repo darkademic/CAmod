@@ -2504,6 +2504,7 @@
 	Inherits@KillZoneTargetable: ^KillZoneTargetable
 	Inherits@Anathema: ^Anathema
 	Inherits@Berserk: ^Berserk
+	Inherits@IdolOfKane: ^IdolOfKane
 	Inherits@DevelopmentPolicyVeterancyBonus: ^DevelopmentPolicyVeterancyBonus
 	Inherits@ConditionIcons: ^ConditionIcons
 	RevealsFaction:

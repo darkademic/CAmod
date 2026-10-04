@@ -1386,7 +1386,6 @@ HonestJohnTargeting:
 
 BikeRockets:
 	Inherits: Dragon
-	Range: 5c0
 	Report: bazook1.aud
 	Burst: 2
 	BurstDelays: 5
@@ -1736,6 +1735,7 @@ IFVRocketsAAE.TibCore:
 StnkMissile:
 	Inherits: ^AntiGroundMissile
 	ReloadDelay: 70
+	Range: 6c0
 	Report: rocket1.aud
 	Burst: 2
 	BurstDelays: 4
@@ -1793,7 +1793,6 @@ StnkMissile.TibCore:
 	ReloadDelay: 75
 	Burst: 4
 	BurstDelays: 4, 7, 4
-	Range: 6c0
 	Projectile: MissileCA
 		Speed: 266
 		Image: tibcoremsl

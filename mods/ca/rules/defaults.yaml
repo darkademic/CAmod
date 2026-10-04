@@ -1104,7 +1104,7 @@
 		Modifier: 95
 
 ^CustodianBuff:
-	ExternalCondition@InspirationCmsr:
+	ExternalCondition@MachineLearning:
 		Condition: machine-learning
 	GainsExperienceMultiplier@MachineLearning1:
 		Modifier: 125
@@ -3098,7 +3098,11 @@
 	AddsToReclaimableValue@Cyborg:
 		Type: Cyborg
 		ValuePercentage: 15
-		RequiresCondition: reclaimed-fabrication
+		RequiresCondition: reclaimed-fabrication && !machine-learning
+	AddsToReclaimableValue@Custodian:
+		Type: Cyborg
+		ValuePercentage: 30
+		RequiresCondition: reclaimed-fabrication && machine-learning
 	GrantConditionOnPrerequisite@ReclaimedFabrication:
 		Condition: reclaimed-fabrication
 		Prerequisites: cyborgprod.upgrade

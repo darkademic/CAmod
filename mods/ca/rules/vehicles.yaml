@@ -10884,7 +10884,7 @@ CUST:
 		Description: Heavy transport that repairs cyborgs and vehicles and empowers cyborg machine learning.
 	TooltipExtras:
 		Weaknesses: • Unarmed
-		Attributes: • Repairs cyborgs and vehicles\n• Nearby cyborgs gain experience faster
+		Attributes: • Repairs cyborgs and vehicles\n• Nearby cyborgs gain experience faster\n• Doubles the Reclaimed Fabrication effect for cyborgs killed nearby
 	Selectable:
 		DecorationBounds: 1536, 1536, 0, -128
 	Valued:

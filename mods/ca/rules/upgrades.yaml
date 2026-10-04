@@ -915,7 +915,7 @@ tibcore.upgrade:
 		Description: Upgrade to Tiberium Core missiles.\n\nUpgrades: Recon Bike\nUpgrades: Stealth Tank\nUpgrades: Cyborg Rocket Soldier\nUpgrades: Rocket Soldier
 		IconPalette: chrometd
 	TooltipExtras:
-		Strengths: + Increased range\n+ Increased damage\n+ Increased projectile speed
+		Strengths: + Increased damage\n+ Increased projectile speed
 	Valued:
 		Cost: 1000
 	RenderSprites:
@@ -1105,7 +1105,7 @@ covenant.upgrade2:
 		BuildPaletteOrder: 40
 		Prerequisites: ~player.nod, anycovenant, tmpp, covenant.level3, ~!wrath.covenant, ~!unity.covenant, ~!zeal.covenant, ~techlevel.high
 		IconPalette: chrometd
-		Description: Upgrade depends on chosen covenant.\n\n• Wrath: Cyborg Firepower\n• Unity: Augmented Fabrication\n• Zeal: Cyborg Speed
+		Description: Upgrade depends on chosen covenant.\n\n• Wrath: Cyborg Firepower\n• Unity: Reclaimed Fabrication\n• Zeal: Cyborg Speed
 	Valued:
 		Cost: 1000
 	RenderSprites:
@@ -1144,7 +1144,7 @@ cyborgprod.upgrade:
 		IconPalette: chrometd
 		Description: Leverage CABAL AI to reclaim components from lost cyborgs to replacements.
 	TooltipExtras:
-		Strengths: + 15% of lost cyborgs value is reclaimed to create new Cyborgs from Temple Prime
+		Strengths: + 15% of lost cyborgs value is reclaimed to create new Cyborgs from Temple Prime\n+ Custodian doubles reclamation value within its radius
 	Valued:
 		Cost: 1000
 	RenderSprites:

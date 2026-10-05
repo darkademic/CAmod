@@ -609,6 +609,12 @@ MGattG:
 		Explosions: piff, piff2
 		Inaccuracy: 171
 
+MGattG.Yuri:
+	Inherits: MGattG
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			Light: 175
+
 ^SnipeWeapon:
 	ReloadDelay: 80
 	Range: 5c512

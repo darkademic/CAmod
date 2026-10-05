@@ -2745,7 +2745,7 @@ MSG:
 		Description: Support unit that projects a cloaking field.
 	TooltipExtras:
 		Weaknesses: • Unarmed
-		Attributes: • Special Ability: Deploys to cloak nearby units and structures
+		Attributes: • Cloaks nearby units and structures\n• Special Ability: Deploys to additionally cloak itself
 	Valued:
 		Cost: 1100
 	Tooltip:
@@ -2799,19 +2799,17 @@ MSG:
 		UndeployOnPickup: true
 	WithRangeCircleCA@MSG:
 		Type: StealthGenerator
-		RequiresCondition: deployed
 		Range: 6c512
 		Color: 7681a0
 	ProximityExternalCondition@MSG:
 		Range: 6c512
 		Condition: sgencloak
-		RequiresCondition: deployed && !cloak-force-disabled
+		RequiresCondition: !cloak-force-disabled
 		MaximumVerticalOffset: 512
-		AffectsParent: true
 	ProximityExternalCondition@MSG2:
 		Range: 2c512
 		Condition: sgencloak
-		RequiresCondition: deployed && !cloak-force-disabled
+		RequiresCondition: !cloak-force-disabled
 		MaximumVerticalOffset: 3072
 	Encyclopedia:
 		Category: Nod/Vehicles
@@ -3527,9 +3525,6 @@ BGGY:
 	SpeedMultiplier@ZealBonus:
 		Modifier: 115
 		RequiresCondition: zeal-covenant
-	GrantConditionOnPrerequisite@BlackHandPlayer:
-		Condition: player-blackh
-		Prerequisites: player.blackh
 	GrantConditionOnPrerequisite@Decoy:
 		Condition: decoy-upgrade
 		Prerequisites: decoy.upgrade
@@ -3549,20 +3544,11 @@ BGGY:
 		SelectionBarColor: aaaaaa
 	SpawnActorAbility@Decoy:
 		Type: Decoy
-		Actors: ftnk.decoy, ftnk.decoy
+		Actors: bike.decoy, bike.decoy
 		SpawnSounds: decoyspawn.aud
 		TargetModifiedCursor: ability2
 		Behavior: SpawnAtSelfAndMoveToTarget
-		RequiresCondition: !player-blackh && decoy-upgrade && ammo && !(empdisable || being-warped)
-		AmmoPool: decoyspawner
-		FaceTarget: true
-	SpawnActorAbility@BlackHandDecoy:
-		Type: BlackHandDecoy
-		Actors: hftk.decoy, hftk.decoy
-		SpawnSounds: decoyspawn.aud
-		TargetModifiedCursor: ability2
-		Behavior: SpawnAtSelfAndMoveToTarget
-		RequiresCondition: player-blackh && decoy-upgrade && ammo && !(empdisable || being-warped)
+		RequiresCondition: decoy-upgrade && ammo && !(empdisable || being-warped)
 		AmmoPool: decoyspawner
 		FaceTarget: true
 	ReplacedInQueue:
@@ -3582,10 +3568,10 @@ RBUG:
 		Prerequisites: ~vehicles.nod, ~rbug.upgrade, ~techlevel.low
 	Tooltip:
 		Name: Raider Buggy
-	TooltipExtras:
-		Attributes: • Special Ability: Raider Frenzy
-	Health:
-		HP: 14000
+	RevealsShroud:
+		Range: 10c0
+	Mobile:
+		Speed: 170
 	Valued:
 		Cost: 400
 	Armament:
@@ -3601,18 +3587,6 @@ RBUG:
 	-WithEjectedCasings:
 	EncyclopediaExtras:
 		AdditionalInfo: Requires Zeal Covenant.
-	GrantTimedConditionOnDeploy@RaiderFrenzy:
-		DeployedTicks: 125
-		CooldownTicks: 1000
-		DeployedCondition: frenzy
-		ShowSelectionBar: true
-		ShowSelectionBarWhenFull: false
-		StartsFullyCharged: true
-		PauseOnCondition: being-warped || empdisable
-		DischargingColor: ff3300
-		ChargingColor: a03b00
-		DeploySound: rbug-frenzy.aud
-		Instant: true
 
 ^DecoyUnit:
 	Inherits@selection: ^SelectableSupportUnit
@@ -3647,67 +3621,32 @@ RBUG:
 	SpawnActorOnDeath:
 		Actor: camera.decoy
 
-FTNK.Decoy:
-	Inherits: FTNK
+BIKE.Decoy:
+	Inherits: BIKE
 	Inherits@Decoy: ^DecoyUnit
 	RenderSprites:
-		Image: ftnk
+		Image: bike
 	Health:
-		HP: 50
+		HP: 500
 	Mobile:
 		Locomotor: wheeled
+	RevealsShroud:
+		Range: 2c0
 	Armament@PRIMARY:
-		Weapon: BigFlamerTD.Decoy
-	FireWarheadsOnDeath:
-		Weapon: DecoyDespawn
-		EmptyWeapon: DecoyDespawn
-		-RequiresCondition:
-	-ActorLostNotification:
-	-Buildable:
-	-ProducibleWithLevel:
-	-WithProductionIconOverlay:
-	-RevealsShroud:
-	-RevealsShroud@GAPGEN:
-	-Repairable:
-	-Passenger:
-	-Berserkable@BERSERK:
-	-RejectsOrders@BERSERK:
-	-GivesExperienceCA:
-	-GrantConditionOnPrerequisite@GLOBALBOUNTY:
-	-GivesBountyCA:
-	-Targetable@REPAIR:
-	-GrantConditionOnHealingReceived@REPAIRCOOLDOWN:
-	-UpdatesPlayerStatistics:
-	-RevealOnDeath:
-	-Sellable:
-	-ExternalCondition@UNITSELL:
-	-MapEditorData:
-	-Encyclopedia:
-
-HFTK.Decoy:
-	Inherits: HFTK
-	Inherits@Decoy: ^DecoyUnit
-	RenderSprites:
-		Image: hftk
-	Armor:
-		Type: Light
-	Health:
-		HP: 50
-	Mobile:
-		Locomotor: wheeled
-	Armament@PRIMARY:
-		Weapon: HeavyFlameTankFlamer.Decoy
+		Weapon: BikeRockets.Decoy
+	Armament@SECONDARY:
+		Weapon: BikeRocketsAA.Decoy
 	Armament@PRIMARYUPG:
-		Weapon: HeavyFlameTankFlamer.UPG.Decoy
+		Weapon: BikeRockets.TibCore.Decoy
+	Armament@SECONDARYUPG:
+		Weapon: BikeRocketsAA.TibCore.Decoy
 	FireWarheadsOnDeath:
 		Weapon: DecoyDespawn
 		EmptyWeapon: DecoyDespawn
-		-RequiresCondition:
 	-ActorLostNotification:
 	-Buildable:
 	-ProducibleWithLevel:
 	-WithProductionIconOverlay:
-	-RevealsShroud:
 	-RevealsShroud@GAPGEN:
 	-Repairable:
 	-Passenger:
@@ -5973,7 +5912,7 @@ BTR.YURI:
 	RenderSprites:
 		Image: btry
 	Valued:
-		Cost: 750
+		Cost: 700
 	Buildable:
 		Queue: VehicleSQ, VehicleMQ
 		BuildPaletteOrder: 31
@@ -6000,7 +5939,7 @@ BTR.YURI:
 		RequiresCondition: gattling >= 12
 	Armament@GROUND:
 		Name: secondary
-		Weapon: MGattG
+		Weapon: MGattG.Yuri
 		LocalOffset: 421,50,165, 421,-50,165
 		MuzzleSequence: muzzle
 		PauseOnCondition: reload-air
@@ -6008,7 +5947,7 @@ BTR.YURI:
 		RequiresCondition: gattling-ground < 14
 	Armament@GROUND2:
 		Name: secondary
-		Weapon: MGattG
+		Weapon: MGattG.Yuri
 		LocalOffset: 421,50,165, 421,-50,165
 		MuzzleSequence: muzzle-huge
 		PauseOnCondition: reload-air

@@ -547,7 +547,7 @@
 ^IdolOfKane:
 	ExternalCondition@IdolOfKaneBuff1:
 		Condition: iokbuff1
-	ExternalCondition@IdolOfKaneBuff1:
+	ExternalCondition@IdolOfKaneBuff2:
 		Condition: iokbuff2
 	SpeedMultiplier@IdolOfKaneBuff1:
 		RequiresCondition: iokbuff1
@@ -2164,24 +2164,12 @@
 		LimitCondition: mdrn-attached
 
 ^ObserverAttachable:
-	GrantTimedCondition@ObserverIcon:
-		Condition: observer-icon-hidden
-		Duration: 750
-		RequiresCondition: observer-attached
-	WithDecoration@ObserverIconWatched:
+	WithDecoration@ObserverIcon:
 		Image: watched
 		Sequence: idle
 		Palette: scrineffect
 		Position: Top
-		ValidRelationships: Ally
-		Margin: 0, 8
-		RequiresCondition: observer-attached && !observer-icon-hidden
-	WithDecoration@ObserverIconWatcher:
-		Image: watched
-		Sequence: idle
-		Palette: scrineffect
-		Position: Top
-		ValidRelationships: Enemy, Neutral
+		ValidRelationships: Ally, Enemy, Neutral
 		Margin: 0, 8
 		RequiresCondition: observer-attached
 

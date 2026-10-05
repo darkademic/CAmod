@@ -257,15 +257,6 @@ BigFlamerTD:
 			Light: 85
 			Concrete: 45
 
-BigFlamerTD.Decoy:
-	Inherits: BigFlamerTD
-	Projectile: LinearPulse
-		-SmudgeType:
-		-DamageFalloff@1:
-		-DamageFalloff@2:
-	Warhead@1Dam: SpreadDamage
-		Damage: 0
-
 FlamerTDBATF:
 	Inherits: BigFlamerTD
 	Burst: 1
@@ -306,15 +297,6 @@ HeavyFlameTankFlamer:
 	Warhead@1Dam: SpreadDamage
 		Damage: 1140
 
-HeavyFlameTankFlamer.Decoy:
-	Inherits: HeavyFlameTankFlamer
-	Projectile: LinearPulse
-		-SmudgeType:
-		-DamageFalloff@1:
-		-DamageFalloff@2:
-	Warhead@1Dam: SpreadDamage
-		Damage: 0
-
 HeavyFlameTankFlamer.UPG:
 	Inherits: HeavyFlameTankFlamer
 	ReloadDelay: 95
@@ -328,15 +310,6 @@ HeavyFlameTankFlamer.UPG:
 		Versus:
 			Heavy: 70
 			Concrete: 90
-
-HeavyFlameTankFlamer.UPG.Decoy:
-	Inherits: HeavyFlameTankFlamer.UPG
-	Projectile: LinearPulse
-		-SmudgeType:
-		-DamageFalloff@1:
-		-DamageFalloff@2:
-	Warhead@1Dam: SpreadDamage
-		Damage: 0
 
 AvatarFlamer:
 	Inherits: HeavyFlameTankFlamer
@@ -3366,22 +3339,6 @@ MineDefuserCharger:
 	-Warhead@1Dam:
 	-Warhead@1Def:
 	-Warhead@3Eff:
-
-DecoyFlameTankSpawner:
-	ReloadDelay: 999
-	Projectile: InstantExplode
-	Warhead@Spawn: SpawnActor
-		Actors: ftnk.decoy, ftnk.decoy
-		Range: 3
-		ForceGround: false
-		MatchSourceFacing: true
-		ValidTargets: Ground, Water
-		ImpactActors: false
-
-DecoyHeavyFlameTankSpawner:
-	Inherits: DecoyFlameTankSpawner
-	Warhead@Spawn: SpawnActor
-		Actors: hftk.decoy, hftk.decoy
 
 DecoyDespawn:
 	Report: decoydespawn.aud

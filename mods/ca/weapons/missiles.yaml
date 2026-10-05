@@ -1473,6 +1473,27 @@ BikeRocketsAA.TibCore:
 		Color: 00ff00
 		ValidTargets: Air, AirSmall
 
+BikeRockets.Decoy:
+	Inherits: BikeRockets
+	-Warhead@1Dam:
+	-Warhead@2Smu:
+
+BikeRocketsAA.Decoy:
+	Inherits: BikeRocketsAA
+	-Warhead@1Dam:
+	-Warhead@smallDamage:
+
+BikeRockets.TibCore.Decoy:
+	Inherits: BikeRockets.TibCore
+	-Warhead@1Dam:
+	-Warhead@antiHeavySplash:
+	-Warhead@2Smu:
+
+BikeRocketsAA.TibCore.Decoy:
+	Inherits: BikeRocketsAA.TibCore
+	-Warhead@1Dam:
+	-Warhead@smallDamage:
+
 SBRockets:
 	Inherits: BikeRockets
 	Range: 5c0

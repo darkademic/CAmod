@@ -1568,33 +1568,9 @@ WatcherDart:
 
 WatcherDartCollector:
 	Inherits: WatcherDart
-	Warhead@Arc: FireShrapnel
-		Weapon: WatcherDartArc
-		AimChance: 100
-		Amount: 5
-		ThrowWithoutTarget: false
-		AimTargetStances: Enemy
 	Warhead@Suppression: GrantExternalConditionCA
 		Range: 0c42
 		Duration: 75
-		Condition: suppression
-		ValidRelationships: Enemy, Neutral
-
-WatcherDartArc:
-	Range: 3c0
-	Projectile: PlasmaBeam
-		Duration: 7
-		Colors: ad76c408
-		InnerLightness: 200
-		OuterLightness: 100
-		Radius: 2
-		Distortion: 150
-		DistortionAnimation: 150
-		SegmentLength: 350
-		ZOffset: 512
-	Warhead@Suppression: GrantExternalConditionCA
-		Range: 0c42
-		Duration: 25
 		Condition: suppression
 		ValidRelationships: Enemy, Neutral
 

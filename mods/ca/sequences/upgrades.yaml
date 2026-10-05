@@ -144,7 +144,7 @@ tibcore.upgrade:
 
 decoy.upgrade:
 	icon:
-		Filename: upg-decoyicon.shp
+		Filename: upg-decoyicnh.shp
 
 avenger.upgrade:
 	icon:

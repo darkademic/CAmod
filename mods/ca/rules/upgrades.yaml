@@ -877,7 +877,8 @@ decoy.upgrade:
 	Buildable:
 		BuildPaletteOrder: 20
 		Prerequisites: ~player.nod, anyradar, ~techlevel.medium
-		Description: Grant Buggies the ability to project a pair of decoy Flame Tanks. Decoys provide small area of vision for a short time after being killed.\n\nUpgrades: Buggy\nUpgrades: Raider Buggy
+		Description: Grant Buggies the ability to project a pair of decoy Recon Bikes. Decoys provide small area of vision for a short time after being killed.\n\nUpgrades: Buggy\nUpgrades: Raider Buggy
+		IconPalette: chrometd
 	TooltipExtras:
 		Strengths: + Decoy projection ability
 	Valued:
@@ -1070,7 +1071,7 @@ rbug.upgrade:
 		Prerequisites: ~player.nod, covenant.level2, ~zeal.covenant, ~techlevel.high
 		Description: Replaces: Buggy
 	TooltipExtras:
-		Strengths: + Increased damage\n+ Increased range\n+ Increased health\n+ Frenzy ability
+		Strengths: + Increased damage\n+ Increased range\n+ Increased speed\n+ Increased vision
 		Weaknesses: – Increased cost
 	Valued:
 		Cost: 750

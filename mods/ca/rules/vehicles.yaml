@@ -2797,6 +2797,8 @@ MSG:
 		UndeploySounds: clicky1.aud
 		UndeployOnMove: true
 		UndeployOnPickup: true
+	Cloak@SGENCLOAK:
+		RequiresCondition: (sgencloak > 2 || deployed) && !cloak-force-disabled
 	WithRangeCircleCA@MSG:
 		Type: StealthGenerator
 		Range: 6c512
@@ -2806,11 +2808,13 @@ MSG:
 		Condition: sgencloak
 		RequiresCondition: !cloak-force-disabled
 		MaximumVerticalOffset: 512
+		AffectsParent: true
 	ProximityExternalCondition@MSG2:
 		Range: 2c512
 		Condition: sgencloak
 		RequiresCondition: !cloak-force-disabled
 		MaximumVerticalOffset: 3072
+		AffectsParent: true
 	Encyclopedia:
 		Category: Nod/Vehicles
 	EncyclopediaExtras:
@@ -3631,7 +3635,8 @@ BIKE.Decoy:
 	Mobile:
 		Locomotor: wheeled
 	RevealsShroud:
-		Range: 2c0
+		Range: 2c512
+		-MinRange:
 	Armament@PRIMARY:
 		Weapon: BikeRockets.Decoy
 	Armament@SECONDARY:

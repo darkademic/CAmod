@@ -51,9 +51,7 @@ namespace OpenRA.Mods.CA.Traits
 
 		void ITick.Tick(Actor self)
 		{
-			ticks++;
-
-			if (ticks < info.TickInterval)
+			if (++ticks < info.TickInterval)
 				return;
 
 			var actorsInRange = self.World.FindActorsInCircle(self.CenterPosition, info.Range)
@@ -64,7 +62,7 @@ namespace OpenRA.Mods.CA.Traits
 
 			if (numEnemiesNearby >= info.EnemyCount && token == Actor.InvalidConditionToken)
 				token = self.GrantCondition(info.Condition);
-			else if (token != Actor.InvalidConditionToken)
+			else if (numEnemiesNearby < info.EnemyCount && token != Actor.InvalidConditionToken)
 				token = self.RevokeCondition(token);
 
 			ticks = 0;

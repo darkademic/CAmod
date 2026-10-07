@@ -87,9 +87,10 @@ Squads = {
 			local commandos = GetMissionPlayersActorsByTypes({ "mast", "rmbo" })
 			return #commandos > 0
 		end,
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 5, Max = 10 }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 5, Max = 15 }),
 		Compositions = { { Aircraft = { "stmr" } } }
 	},
+	MaleficAirToAir = AirToAirSquad({ "stmr", "enrv", "torm" }, AdjustAirDelayForDifficulty(DateTime.Minutes(10))),
 }
 
 SetupPlayers = function()
@@ -338,8 +339,12 @@ InitMaleficScrinAttacks = function()
 	InitAttackSquad(Squads.MaleficMain, MaleficScrin)
 	InitAirAttackSquad(Squads.MaleficAir, MaleficScrin)
 
-	if IsVeryHardOrAbove() then
-		InitAirAttackSquad(Squads.MaleficCommandoKillers, MaleficScrin, MissionPlayers, { "mast", "rmbo" })
+	if IsHardOrAbove() then
+		InitAirAttackSquad(Squads.MaleficAirToAir, MaleficScrin, MissionPlayers, { "Aircraft" }, "ArmorType")
+
+		if IsVeryHardOrAbove() then
+			InitAirAttackSquad(Squads.MaleficCommandoKillers, MaleficScrin, MissionPlayers, { "mast", "rmbo" })
+		end
 	end
 end
 

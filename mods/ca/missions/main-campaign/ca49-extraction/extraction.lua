@@ -108,20 +108,12 @@ Squads = {
 			return { { Aircraft = enervators } }
 		end
 	},
-	ScrinCommandoKillers = {
-		ActiveCondition = function(squad)
-			local commandos = GetMissionPlayersActorsByTypes({ "mast", "rmbo" })
-			return #commandos > 0
-		end,
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 5, Max = 10 }),
-		Compositions = { { Aircraft = { "stmr" } } }
-	},
 	SovietCommandoKillers = {
 		ActiveCondition = function(squad)
 			local commandos = GetMissionPlayersActorsByTypes({ "mast", "rmbo" })
 			return #commandos > 0
 		end,
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 5, Max = 10 }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 5, Max = 15 }),
 		Compositions = { { Aircraft = { "yak" } } }
 	}
 }

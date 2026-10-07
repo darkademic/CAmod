@@ -226,7 +226,7 @@ Squads = {
 			local commandos = GetMissionPlayersActorsByTypes({ "mast", "rmbo" })
 			return #commandos > 0
 		end,
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 10, Max = 20 }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 5, Max = 15 }),
 		Compositions = { { Aircraft = { "stmr", "stmr" } } }
 	},
 	Nod1 = {

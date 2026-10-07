@@ -81,6 +81,15 @@ EYE:
 NERV:
 	Inherits@Objective: ^ObjectiveDecorations
 
+WORMHOLEXXL:
+	-HiddenUnderFog:
+	-Immobile:
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+		TerrainTypes: Clear,Road
+	FrozenUnderFog:
+
 # Enable subfaction specific tech
 
 STCR:

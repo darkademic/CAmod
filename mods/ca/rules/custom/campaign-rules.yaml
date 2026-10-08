@@ -158,6 +158,13 @@ World:
 		Margin: 0, -12
 		ValidRelationships: Ally, Neutral, Enemy
 
+^ObjectiveDecorationsRed:
+	Inherits@Objective: ^ObjectiveDecorations
+	WithColoredSelectionBox@Objective:
+		Color: FF0000
+	WithDecoration@Objective:
+		Sequence: red
+
 # Assigned to actors in missions, assigned in lua dynamically
 # (so we use DummyConditionConsumer to prevent yaml warnings)
 
@@ -421,6 +428,8 @@ HIDDENSPAWNER:
 
 MISS.CAMPAIGN:
 	Inherits: MISS
+	RenderSprites:
+		Image: miss
 	-TransformOnCapture:
 	-WithMakeAnimation:
 

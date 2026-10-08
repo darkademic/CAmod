@@ -564,24 +564,6 @@ Actors:
 		Owner: ScrinRebelsInactive
 		Location: 8,65
 		Health: 45
-	Actor150: shar
-		Owner: ScrinRebelsInactive
-		Location: 19,65
-		Health: 46
-		TurretFacing: 347
-	Actor151: shar
-		Owner: ScrinRebelsInactive
-		Location: 27,68
-		Health: 36
-		TurretFacing: 702
-	Actor153: port
-		Owner: ScrinRebelsInactive
-		Location: 66,54
-		Health: 45
-	Actor155: rea2
-		Owner: ScrinRebelsInactive
-		Location: 63,51
-		Health: 34
 	Actor143: wsph
 		Owner: ScrinRebelsInactive
 		Location: 58,50
@@ -778,10 +760,6 @@ Actors:
 	Actor213: swal
 		Owner: ScrinRebelsInactive
 		Location: 55,53
-	Actor214: srep
-		Owner: ScrinRebelsInactive
-		Location: 66,47
-		Health: 44
 	Actor216: ptur
 		Owner: ScrinRebelsInactive
 		Location: 126,61
@@ -801,42 +779,15 @@ Actors:
 		Location: 129,59
 		TurretFacing: 525
 		Health: 86
-	Actor221: scrt
-		Owner: ScrinRebelsInactive
-		Location: 142,6
-		Health: 38
-	Actor222: rea2
-		Owner: ScrinRebelsInactive
-		Location: 140,2
-		Health: 34
 	Actor223: rea2
 		Owner: ScrinRebelsInactive
 		Location: 136,1
 		Health: 44
-	Actor224: ptur
-		Owner: ScrinRebelsInactive
-		Location: 137,9
-		TurretFacing: 491
-		Health: 81
-	Actor230: proc.scrin
-		Owner: ScrinRebelsInactive
-		Location: 72,43
-		FreeActor: False
-		Health: 46
 	Actor231: proc.scrin
 		Owner: ScrinRebelsInactive
 		Location: 131,33
 		FreeActor: False
 		Health: 34
-	Actor232: shar
-		Owner: ScrinRebelsInactive
-		Location: 129,35
-		Health: 26
-		TurretFacing: 388
-	Actor233: rea2
-		Owner: ScrinRebelsInactive
-		Location: 135,32
-		Health: 38
 	Actor236: swal
 		Owner: ScrinRebelsInactive
 		Location: 115,56
@@ -900,10 +851,6 @@ Actors:
 	Actor256: swal
 		Owner: ScrinRebelsInactive
 		Location: 116,64
-	Actor235: reac
-		Owner: ScrinRebelsInactive
-		Health: 38
-		Location: 116,59
 	Actor234: proc.scrin
 		Owner: ScrinRebelsInactive
 		FreeActor: False
@@ -1040,16 +987,6 @@ Actors:
 		Location: 140,6
 		TurretFacing: 375
 		Health: 76
-	Actor296: shar
-		Owner: ScrinRebelsInactive
-		Location: 64,57
-		Health: 36
-		TurretFacing: 627
-	Actor297: shar
-		Owner: ScrinRebelsInactive
-		Location: 69,51
-		Health: 41
-		TurretFacing: 192
 	Actor298: scol
 		Owner: ScrinRebelsInactive
 		Location: 55,52
@@ -4936,11 +4873,6 @@ Actors:
 		Location: 97,61
 		SubCell: 3
 		Facing: 156
-	Actor1402: e2
-		Owner: USSR
-		Facing: 384
-		Location: 112,58
-		SubCell: 3
 	Actor1403: devo
 		Owner: Scrin
 		Location: 25,68
@@ -5235,11 +5167,6 @@ Actors:
 	ScrinWaypoint5: waypoint
 		Owner: Neutral
 		Location: 48,41
-	Actor53: reap
-		Owner: NodInactive
-		Location: 87,75
-		SubCell: 3
-		Facing: 620
 	Actor92: s3
 		Owner: ScrinRebels
 		Location: 18,19
@@ -5284,10 +5211,6 @@ Actors:
 		Owner: ScrinRebelsInactive
 		Health: 36
 		Location: 85,1
-	Actor1448: rea2
-		Owner: ScrinRebelsInactive
-		Location: 87,1
-		Health: 43
 	Actor1449: shar
 		Owner: ScrinRebelsInactive
 		Location: 83,7
@@ -5377,10 +5300,6 @@ Actors:
 		Owner: NodInactive
 		Location: 45,93
 		Facing: 640
-	Actor152: scol
-		Owner: ScrinRebelsInactive
-		Health: 28
-		Location: 20,72
 	Actor1455: camera
 		Owner: Scrin
 		Location: 74,80
@@ -5447,11 +5366,6 @@ Actors:
 		Location: 130,38
 		Health: 62
 		Facing: 143
-	Actor1470: shok
-		Owner: USSR
-		Facing: 384
-		Location: 108,59
-		SubCell: 3
 	Actor1471: wsph
 		Owner: ScrinRebelsInactive
 		Location: 131,57
@@ -5472,6 +5386,7 @@ Actors:
 	Actor1472: port
 		Owner: ScrinRebelsInactive
 		Location: 4,77
+		Health: 44
 	Actor1473: btr.ai
 		Owner: USSR
 		Location: 97,170
@@ -5545,18 +5460,6 @@ Actors:
 		Owner: ScrinRebelsInactive
 		Location: 50,75
 		Health: 41
-	Actor1483: swal
-		Owner: ScrinRebelsInactive
-		Location: 50,80
-	Actor1484: swal
-		Owner: ScrinRebelsInactive
-		Location: 50,81
-	Actor1485: swal
-		Owner: ScrinRebelsInactive
-		Location: 51,80
-	Actor1486: swal
-		Owner: ScrinRebelsInactive
-		Location: 51,81
 	Actor1487: swal
 		Owner: ScrinRebelsInactive
 		Location: 52,80
@@ -5635,6 +5538,171 @@ Actors:
 		Owner: NodInactive
 		Facing: 384
 		Location: 138,64
+	Actor230: proc.scrin
+		Owner: ScrinRebelsInactive
+		FreeActor: False
+		Health: 46
+		Location: 72,43
+	Actor297: shar
+		Owner: ScrinRebelsInactive
+		Health: 41
+		TurretFacing: 192
+		Location: 68,57
+	Actor296: shar
+		Owner: ScrinRebelsInactive
+		Health: 36
+		TurretFacing: 627
+		Location: 59,58
+	Actor155: rea2
+		Owner: ScrinRebelsInactive
+		Location: 63,51
+		Health: 34
+	Actor153: port
+		Owner: ScrinRebelsInactive
+		Health: 45
+		Location: 68,50
+	Actor214: srep
+		Owner: ScrinRebelsInactive
+		Health: 44
+		Location: 67,46
+	Actor1467: rea2
+		Owner: ScrinRebelsInactive
+		Location: 63,55
+		Health: 36
+	Actor1402: e2
+		Owner: USSR
+		Facing: 384
+		Location: 108,60
+		SubCell: 3
+	Actor1470: shok
+		Owner: USSR
+		Facing: 384
+		Location: 110,59
+		SubCell: 3
+	Actor1468: nerv
+		Owner: ScrinRebelsInactive
+		Location: 20,71
+	Actor152: scol
+		Owner: ScrinRebelsInactive
+		Health: 28
+		Location: 18,74
+	Actor151: shar
+		Owner: ScrinRebelsInactive
+		Health: 36
+		TurretFacing: 702
+		Location: 24,75
+	Actor150: shar
+		Owner: ScrinRebelsInactive
+		Health: 46
+		TurretFacing: 347
+		Location: 29,70
+	Actor1495: ptur
+		Owner: ScrinRebelsInactive
+		Location: 19,65
+		TurretFacing: 176
+	Actor1496: scol
+		Owner: ScrinRebelsInactive
+		Location: 63,60
+		Health: 38
+	Actor222: rea2
+		Owner: ScrinRebelsInactive
+		Health: 34
+		Location: 142,7
+	Actor221: scrt
+		Owner: ScrinRebelsInactive
+		Location: 140,2
+		Health: 38
+	Actor1497: reac
+		Owner: ScrinRebelsInactive
+		Location: 143,3
+		Health: 29
+	Actor224: ptur
+		Owner: ScrinRebelsInactive
+		Location: 136,8
+		Health: 81
+		TurretFacing: 491
+	Actor1498: port
+		Owner: ScrinRebelsInactive
+		Location: 118,59
+		Health: 46
+	Actor235: reac
+		Owner: ScrinRebelsInactive
+		Health: 38
+		Location: 115,58
+	Actor1499: wsph
+		Owner: ScrinRebelsInactive
+		Location: 135,32
+		Health: 34
+	Actor233: rea2
+		Owner: ScrinRebelsInactive
+		Health: 38
+		Location: 139,33
+	Actor232: shar
+		Owner: ScrinRebelsInactive
+		Location: 129,36
+		Health: 26
+		TurretFacing: 388
+	Actor1500: shar
+		Owner: ScrinRebelsInactive
+		Location: 140,37
+		Health: 33
+		TurretFacing: 395
+	Actor1503: nsam
+		Owner: Nod
+		Location: 73,84
+	Actor1502: nsam
+		Owner: Nod
+		Location: 89,86
+	Actor1501: nuk2
+		Owner: Nod
+		Location: 87,72
+	Actor53: reap
+		Owner: NodInactive
+		Facing: 620
+		Location: 86,75
+		SubCell: 3
+	Actor1504: ptur
+		Owner: ScrinRebelsInactive
+		Health: 40
+		TurretFacing: 627
+		Location: 49,80
+	Actor1483: reac
+		Owner: ScrinRebelsInactive
+		Location: 46,4
+		Health: 34
+	Actor1448: rea2
+		Owner: ScrinRebelsInactive
+		Health: 43
+		Location: 88,1
+	Actor1484: shar
+		Owner: Scrin
+		Location: 67,172
+	Actor1485: shar
+		Owner: Scrin
+		Location: 49,170
+	Actor1486: shar
+		Owner: Scrin
+		Location: 57,179
+	Actor1505: shar
+		Owner: Scrin
+		Location: 31,165
+	Actor1508: shar
+		Owner: Scrin
+		Location: 4,168
+	Actor1509: shar
+		Owner: Scrin
+		Location: 2,177
+	Actor1510: shar
+		Owner: Scrin
+		Location: 6,183
+	Actor1507: shar
+		Owner: Scrin
+		TurretFacing: 192
+		Location: 15,161
+	Actor1506: shar
+		Owner: Scrin
+		TurretFacing: 192
+		Location: 21,157
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, ca|missions/main-campaign/ca49-extraction/extraction-rules.yaml, ca|rules/custom/coop-rules.yaml, extraction-coop-rules.yaml
 

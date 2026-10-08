@@ -41,9 +41,9 @@ SuperweaponsEnabledTime = {
 
 AirFleetKillersThreshold = {
 	normal = 6,
-	hard = 4,
-	vhard = 3,
-	brutal = 2
+	hard = 5,
+	vhard = 4,
+	brutal = 3
 }
 
 MaxFleetKillers = {
@@ -70,7 +70,7 @@ Squads = {
 	ScrinMain = {
 		InitTimeAdjustment = -DateTime.Minutes(5),
 		Compositions = AdjustCompositionsForDifficulty(UnitCompositions.Scrin),
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40, RampDuration = DateTime.Minutes(15) }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40 }),
 		FollowLeader = true,
 		AttackPaths = ScrinAttackPaths,
 		Delay = AdjustDelayForDifficulty(DateTime.Minutes(2)),
@@ -78,7 +78,7 @@ Squads = {
 	SovietMain = {
 		InitTimeAdjustment = -DateTime.Minutes(5),
 		Compositions = AdjustCompositionsForDifficulty(UnitCompositions.Soviet),
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40, RampDuration = DateTime.Minutes(15) }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40 }),
 		FollowLeader = true,
 		AttackPaths = SovietAttackPaths,
 		Delay = AdjustDelayForDifficulty(DateTime.Minutes(2)),

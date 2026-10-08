@@ -46,7 +46,8 @@ namespace OpenRA.Mods.CA.Traits
 		readonly World world;
 		readonly RevealedFactionsManagerInfo info;
 		readonly RevealPlayerFactionType revealCondition;
-		public HashSet<Player> PlayersWithRandomFaction { get; }
+		readonly bool blindPickEnabled;
+		public HashSet<Player> PlayersToReveal { get; }
 		public HashSet<Player> RevealedPlayers { get; }
 		bool allPlayersRevealed;
 		bool isValidPlayer;
@@ -57,17 +58,18 @@ namespace OpenRA.Mods.CA.Traits
 			this.self = self;
 			world = self.World;
 			RevealedPlayers = new HashSet<Player>();
-			PlayersWithRandomFaction = new HashSet<Player>();
 			rescanInterval = 0;
 			allPlayersRevealed = false;
 			isValidPlayer = false;
 			this.info = info;
+			PlayersToReveal = new HashSet<Player>();
 
 			var blindPickDefault = world.Map.Rules.Actors[SystemActors.World].TraitInfo<MapOptionsInfo>().BlindPickModeCheckboxEnabled;
-			var blindPickEnabled = world.LobbyInfo.GlobalSettings.OptionOrDefault("blindpick", blindPickDefault);
+			blindPickEnabled = world.LobbyInfo.GlobalSettings.OptionOrDefault("blindpick", blindPickDefault);
 			revealCondition = blindPickEnabled ? info.BlindPickRevealCondition : info.RevealCondition;
 		}
 
+		public bool BlindPickEnabled => blindPickEnabled;
 		public bool RevealOnGameStart => revealCondition == RevealPlayerFactionType.OnGameStart;
 
 		public void RevealPlayer(Player player)
@@ -93,14 +95,17 @@ namespace OpenRA.Mods.CA.Traits
 				.Select(f => f.InternalName)
 				.ToList();
 
-			foreach (var player in world.Players.Where(p => p != self.Owner
+			var playersToReveal = world.Players.Where(p => p != self.Owner
 				&& p.Playable
 				&& !p.NonCombatant
-				&& randomFactions.Contains(p.DisplayFaction.InternalName)
-				&& self.Owner.RelationshipWith(p) != PlayerRelationship.Ally))
-				PlayersWithRandomFaction.Add(player);
+				&& self.Owner.RelationshipWith(p) != PlayerRelationship.Ally);
 
-			if (PlayersWithRandomFaction.Count == 0)
+			if (!blindPickEnabled)
+				playersToReveal = playersToReveal.Where(p => randomFactions.Contains(p.DisplayFaction.InternalName));
+
+			PlayersToReveal.UnionWith(playersToReveal);
+
+			if (PlayersToReveal.Count == 0)
 				allPlayersRevealed = true;
 		}
 
@@ -118,7 +123,7 @@ namespace OpenRA.Mods.CA.Traits
 			var players = world.Selection.Actors
 				.Where(a => a.IsInWorld
 					&& IsRevealed(a.Owner)
-					&& PlayersWithRandomFaction.Contains(a.Owner))
+					&& PlayersToReveal.Contains(a.Owner))
 				.Select(a => a.Owner);
 
 			// for each selected player
@@ -148,7 +153,7 @@ namespace OpenRA.Mods.CA.Traits
 
 			foreach (var actor in self.World.ActorsWithTrait<RevealsFaction>())
 			{
-				if (!PlayersWithRandomFaction.Contains(actor.Actor.Owner) || IsRevealed(actor.Actor.Owner))
+				if (!PlayersToReveal.Contains(actor.Actor.Owner) || IsRevealed(actor.Actor.Owner))
 					continue;
 
 				// We don't want notifications for allied actors or actors disguised as such
@@ -165,7 +170,7 @@ namespace OpenRA.Mods.CA.Traits
 				RevealPlayer(actor.Actor.Owner);
 			}
 
-			if (PlayersWithRandomFaction.All(p => IsRevealed(p)))
+			if (PlayersToReveal.All(p => IsRevealed(p)))
 				allPlayersRevealed = true;
 
 			rescanInterval = info.ScanInterval;

@@ -447,21 +447,6 @@ Actors:
 	Actor132: nuk2
 		Owner: NodInactive
 		Location: 82,86
-	Actor136: msg
-		Owner: NodInactive
-		DeployState: Deployed
-		Location: 5,47
-		Facing: 384
-	Actor133: msg
-		Owner: NodInactive
-		DeployState: Deployed
-		Facing: 384
-		Location: 120,24
-	Actor135: msg
-		Owner: NodInactive
-		DeployState: Deployed
-		Facing: 384
-		Location: 139,64
 	Actor137: port
 		Owner: ScrinRebelsInactive
 		Location: 27,31
@@ -2100,15 +2085,6 @@ Actors:
 		Location: 4,46
 		SubCell: 3
 		Facing: 593
-	Actor659: enli
-		Owner: NodInactive
-		Location: 6,49
-		SubCell: 3
-		Facing: 682
-	Actor668: ltnk
-		Owner: NodInactive
-		Location: 7,47
-		Facing: 647
 	Actor669: ltnk
 		Owner: NodInactive
 		Location: 3,48
@@ -2125,49 +2101,15 @@ Actors:
 		Owner: NodInactive
 		Facing: 384
 		Location: 141,64
-	Actor673: bggy
-		Owner: NodInactive
-		Facing: 384
-		Location: 137,64
 	Actor674: mlrs
 		Owner: NodInactive
 		Location: 118,23
 		Facing: 893
-	Actor675: mlrs
-		Owner: NodInactive
-		Location: 122,25
-		Facing: 879
-	Actor679: bike
-		Owner: NodInactive
-		Location: 123,23
-		Facing: 872
-	Actor680: bh
-		Owner: NodInactive
-		Location: 119,25
-		SubCell: 3
-		Facing: 770
 	Actor681: bh
 		Owner: NodInactive
 		Location: 120,26
 		SubCell: 3
 		Facing: 777
-	Actor682: bh
-		Owner: NodInactive
-		Location: 118,25
-		SubCell: 3
-		Facing: 716
-	Actor676: bike
-		Owner: NodInactive
-		Facing: 859
-		Location: 120,22
-	Actor677: bike
-		Owner: NodInactive
-		Facing: 845
-		Location: 121,23
-	Actor678: bike
-		Owner: NodInactive
-		Facing: 838
-		Location: 122,24
 	Actor683: swal
 		Owner: Scrin
 		Location: 50,128
@@ -5171,9 +5113,6 @@ Actors:
 	NodStrandedUnits1: waypoint
 		Owner: Neutral
 		Location: 6,47
-	NodStrandedUnits3: waypoint
-		Owner: Neutral
-		Location: 120,23
 	NodStrandedUnits4: waypoint
 		Owner: Neutral
 		Location: 140,63
@@ -5291,21 +5230,11 @@ Actors:
 	NodStrandedUnits2: waypoint
 		Owner: Neutral
 		Location: 98,2
-	Actor660: reap
-		Owner: NodInactive
-		Facing: 593
-		Location: 97,4
-		SubCell: 3
 	Actor661: reap
 		Owner: NodInactive
 		Facing: 593
 		Location: 97,2
 		SubCell: 3
-	Actor134: msg
-		Owner: NodInactive
-		DeployState: Deployed
-		Facing: 384
-		Location: 96,3
 	Actor665: n1c
 		Owner: NodInactive
 		Facing: 572
@@ -5589,6 +5518,57 @@ Actors:
 	RebelStructures12: waypoint
 		Owner: Neutral
 		Location: 49,75
+	Actor668: ltnk
+		Owner: NodInactive
+		Facing: 647
+		Location: 5,47
+	Actor659: enli
+		Owner: NodInactive
+		Facing: 682
+		Location: 5,49
+		SubCell: 3
+	Actor660: reap
+		Owner: NodInactive
+		Facing: 593
+		Location: 96,3
+		SubCell: 3
+	Actor680: bh
+		Owner: NodInactive
+		Facing: 770
+		Location: 119,25
+		SubCell: 3
+	Actor682: bh
+		Owner: NodInactive
+		Facing: 716
+		Location: 118,25
+		SubCell: 3
+	NodStrandedUnits3: waypoint
+		Owner: Neutral
+		Location: 120,24
+	Actor677: bike
+		Owner: NodInactive
+		Facing: 845
+		Location: 120,23
+	Actor676: bike
+		Owner: NodInactive
+		Facing: 859
+		Location: 119,22
+	Actor679: bike
+		Owner: NodInactive
+		Facing: 872
+		Location: 122,23
+	Actor678: bike
+		Owner: NodInactive
+		Facing: 838
+		Location: 121,24
+	Actor675: mlrs
+		Owner: NodInactive
+		Facing: 879
+		Location: 121,25
+	Actor673: bggy
+		Owner: NodInactive
+		Facing: 384
+		Location: 138,64
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, extraction-rules.yaml
 

@@ -272,9 +272,9 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 					}
 					else
 					{
-						flag.GetImageName = () => pp.DisplayFaction.InternalName;
-						factionAndLabel.GetTooltipText = () => factionName;
-						factionAndLabel.GetTooltipDesc = () => "Select a unit belonging to this player\\nto reveal their faction/sub-faction.";
+						flag.GetImageName = () => "Random";
+						factionAndLabel.GetTooltipText = () => "Unknown";
+						factionAndLabel.GetTooltipDesc = () => "Gain vision of a unit/structure belonging to this player\\nto reveal their faction.";
 					}
 
 					var factionLabel = item.Get<LabelWidget>("FACTION");

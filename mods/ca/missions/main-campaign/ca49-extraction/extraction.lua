@@ -344,10 +344,6 @@ InitScrin = function()
 
 	if IsHardOrAbove() then
 		InitAirAttackSquad(Squads.ScrinFleetKillers, Scrin, MissionPlayers, { "pac", "deva" })
-
-		if IsVeryHardOrAbove() then
-			InitAirAttackSquad(Squads.ScrinCommandoKillers, Scrin, MissionPlayers, { "mast", "rmbo" })
-		end
 	end
 end
 

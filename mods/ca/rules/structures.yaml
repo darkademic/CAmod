@@ -6361,7 +6361,7 @@ IOK:
 	Tooltip:
 		Name: Idol of Kane
 	TooltipExtras:
-		Strengths: • Increases damage and movement speed of friendly ground units\n• Reduces damage and movement speed of enemy ground units\n• Provides vision
+		Strengths: • Increases movement speed of friendly ground units\n• Reduces movement speed of enemy ground units\n• Provides vision
 		Weaknesses: • Cannot attack
 		Attributes: • Special Ability: Rage Generator (enemy units within range go berserk)
 	Armor:
@@ -6419,7 +6419,7 @@ IOK:
 		EndRadius: 5c0
 		Interval: 40
 		Duration: 30
-		ValidRelationships: Ally, Enemy, Neutral
+		ValidRelationships: Ally
 		AlwaysShowMaxRange: true
 		Visible: Always
 		MaxRadiusColor: 66666660
@@ -6427,6 +6427,18 @@ IOK:
 		Color: 66666630
 		Width: 2
 		RequiresCondition: !rage-active
+	WithRadiatingCircle@Enemy:
+		EndRadius: 5c0
+		Interval: 40
+		Duration: 30
+		ValidRelationships: Enemy, Neutral
+		AlwaysShowMaxRange: true
+		Visible: Always
+		MaxRadiusColor: 66666660
+		MaxRadiusFlashColor: 66666660
+		Color: 66666630
+		Width: 2
+		RequiresCondition: !rage-active && enemies-nearby
 	WithRadiatingCircle@Rage:
 		EndRadius: 5c0
 		Interval: 5
@@ -6461,3 +6473,9 @@ IOK:
 		Ammo: 1
 		InitialAmmo: 0
 		AmmoCondition: initialized
+	GrantConditionOnEnemiesNearby@EnemiesNearby:
+		Condition: enemies-nearby
+		Range: 7c0
+		RequiresCondition: initialized
+		TargetTypes: Ground, Water, Air, AirSmall
+		TickInterval: 25

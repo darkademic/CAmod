@@ -1278,7 +1278,7 @@ jamming.field:
 		MaxDistortion: 320
 		SegmentsPerLine: 16
 		Colors: 77777722, 99999922, 88888833, 99aacc33, 8899cc55, 8899cc33
-		GlowColor: 44444444
+		GlowScale: 0
 		Visible: Always
 		ValidRelationships: Ally, Enemy, Neutral
 

@@ -2531,6 +2531,9 @@ UnitCompositions = {
 		------ Anti-infantry
 		{ Infantry = { "e3", "enfo", "e1", "e1", "e1", "enfo", "e1", "e1", "enfo", "e3", "e1", "e1", "enfo", "e1", "e1", "e1", "e1", "e1", "e1", "enfo", "enfo" }, Vehicles = { "ptnk", "ptnk", "ptnk", "cryo", "ptnk", "ptnk" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassInfantry" } },
 
+		------ Anti-air
+		{ Infantry = { "e3", "e1", "e3", "e1", "e3", "e1", "e3", "e1", "e3", "e1", "e3", "e1", "e3", "e1", "e3", "e1" }, Vehicles = { "2tnk", "ifv", "ifv", "ifv", "ifv.ai", "ifv", "ifv", "ifv" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassAir" } },
+
 		-- Specials
 		{ Infantry = {}, Vehicles = { "ctnk", "ctnk", "ctnk", "ctnk", "ctnk", "ctnk"  }, MinTime = DateTime.Minutes(18), IsSpecial = true },
 		{ Infantry = { "seal", "seal", "seal", "seal", "seal", "seal", "e7" }, Vehicles = { }, MinTime = DateTime.Minutes(18), IsSpecial = true },
@@ -2555,6 +2558,9 @@ UnitCompositions = {
 
 		------ Anti-infantry
 		{ Infantry = { "e3", "e1", "e1", "e1", "e1", "shok", "shok", "ttrp", "e1", "e1", "e1", "e1", "e1", "e1", "e1", "e1", "e1" }, Vehicles = { "btr", "btr", "ttnk", "v2rl", "ttnk", "btr", "v2rl", "v2rl" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassInfantry" } },
+
+		------ Anti-air
+		{ Infantry = { "e3", "e1", "e3", "e1", "e3", "e1", "e3", "e1", "e3", "e1", "e3", "e1", "e3", "e1", "e3", "e1" }, Vehicles = { "3tnk", "btr", "btr", "btr", "btr", "btr", "btr", "btr", "btr" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassAir" } },
 
 		-- Specials
 		{ Infantry = { "ttrp", "ttrp", "ttrp", "ttrp", "ttrp", "ttrp", "ttrp", "ttrp" }, Vehicles = { "ttnk", "ttra", "ttnk", "ttra", "ttnk", "ttnk", "ttra" }, MinTime = DateTime.Minutes(18), IsSpecial = true },
@@ -2588,6 +2594,9 @@ UnitCompositions = {
 		------ Anti-infantry
 		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n1", "n1", "n3", "n1", "n1", "n1", "n1", "n1", "n1", "n1", "n1" }, Vehicles = { "wolv", "wolv", "vulc", "vulc.ai", "wolv", "disr", "jugg", "wolv" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassInfantry" } },
 
+		------ Anti-air
+		{ Infantry = { "n3", "n1", "n3", "n1", "n3", "n1", "n3", "n1", "n3", "n1", "n3", "n1", "n3", "n1", "n3", "n1" }, Vehicles = { "mtnk", "vulc", "vulc", "vulc", "vulc", "vulc", "vulc", "vulc" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassAir" } },
+
 		-- Specials
 		{ Infantry = { "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2", "n2" }, Vehicles = { "htnk.ion", "htnk.ion", "htnk.ion" }, MinTime = DateTime.Minutes(18), IsSpecial = true },
 		{ Infantry = {}, Vehicles = { "memp", "memp", "memp", "memp", "memp" }, MinTime = DateTime.Minutes(18), IsSpecial = true },
@@ -2618,6 +2627,9 @@ UnitCompositions = {
 		------ Anti-infantry
 		{ Infantry = { "n4", "n4", "n1", "n1", "n1", "n1", "n1", "n1", "n4", "n4", "n4", "n4", "n1", "n1", "n1", "n1", "n4", "n4" }, Vehicles = { "ltnk.laser", "ltnk.laser", "mlrs", FlameTankHeavyFlameTankOrHowitzer, FlameTankHeavyFlameTankOrHowitzer, "mlrs" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassInfantry" } },
 
+		------ Anti-air
+		{ Infantry = { "n3c", "n1c", "n3c", "n1c", "n3c", "n1c", "n3c", "n1c", "n3c", "n1c", "n3c", "n1c" }, Vehicles = { "bike", "bike", "bike", "stnk.nod", "bike", "bike", "bike", "reap" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassAir" } },
+
 		-- Specials
 		{ Infantry = { "bh", "bh", "bh", "bh", "bh", "bh", "bh", "bh", "bh" }, Vehicles = { "hftk", "hftk", "hftk", "hftk", "hftk", "hftk" }, MinTime = DateTime.Minutes(18), IsSpecial = true },
 		{ Infantry = { "n3", "n1", "n1", "n1", "n4", "n1", "n3", "n1", "n1", "n1", "n1", "n1", "n1", "n3", "n1", "n1" }, Vehicles = { "wtnk", "wtnk", "wtnk", "wtnk", "wtnk" }, MinTime = DateTime.Minutes(18), IsSpecial = true },
@@ -2640,6 +2652,9 @@ UnitCompositions = {
 
 		------ Anti-tank
 		{ Infantry = { "s3", "s4", "s1", "s4", "s4", "s1", "s4", "s4", "s3", "s1", "s4", "s1", "s4", "s4", "s4" }, Vehicles = { "gunw", "devo", "devo", "gunw", "devo", "atmz", "devo", "tpod", "atmz", "devo" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassHeavy" } },
+
+		------ Anti-air
+		{ Infantry = { "s3", "s1", "s3", "s1", "s3", "s1", "s3", "s1", "s3", "s1", "s3", "s1", "s3", "s3" }, Vehicles = { "gunw", "gunw", "gunw", "gunw", "gunw", "gunw", "shrw", "shrw", "shrw" }, MinTime = DateTime.Minutes(16), RequiredTargetCharacteristics = { "MassAir" } },
 
 		-- 19 minutes onwards
 		{ Infantry = { "s3", "s1", "s1", "s1", "s1", "s1", "s2", "s2", "s3", "s3", "s3", "s4", "s4" }, Vehicles = { "intl.ai2", GunWalkerSeekerOrLacerator, "intl.ai2", CorrupterOrDevourer, GunWalkerSeekerOrLacerator, TripodVariant, AtomizerObliteratorOrRuiner }, Aircraft = { PacOrDevastator, "pac" }, MinTime = DateTime.Minutes(19), },

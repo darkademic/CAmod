@@ -2968,7 +2968,7 @@ DTRK:
 		Prerequisites: stek, ~vehicles.soviet, ~techlevel.high
 		Description: Truck carrying nuclear explosives.
 	TooltipExtras:
-		Weaknesses: • Very weak armor
+		Weaknesses: • Very weak armor\n• Cannot be Iron Curtained, Chronoshifted or cloaked
 		Attributes: • Special Ability: Detonate
 	Valued:
 		Cost: 2000
@@ -3000,9 +3000,13 @@ DTRK:
 		DeployedCondition: triggered
 	-DamageMultiplier@IRONCURTAIN:
 	KillsSelf:
-		RequiresCondition: invulnerability || tibstealth || triggered || berserk
+		RequiresCondition: triggered || berserk
 	ChronoshiftableCA:
 		ExplodeInstead: true
+	Targetable@IronCurtainImmune:
+		TargetTypes: IronCurtainImmune
+	GrantCondition@NoCloak:
+		Condition: cloak-force-disabled
 	Passenger:
 		Voice: Move
 	Voiced:
@@ -9039,7 +9043,7 @@ CDRN:
 		Description: Drone armed with Chaos Gas which causes units to become frenzied and attack indiscriminately.
 	TooltipExtras:
 		Strengths: • Strong vs Heavy Armor, Light Armor, Infantry
-		Weaknesses: • Cannot attack Aircraft, Buildings, Defenses
+		Weaknesses: • Cannot attack Aircraft, Buildings, Defenses\n• Cannot be Iron Curtained or cloaked
 		Attributes: • Special Ability: Expel Chaos Gas
 	Valued:
 		Cost: 850
@@ -9095,8 +9099,6 @@ CDRN:
 		Weapon: ChaosGas
 		RequiresCondition: triggered && ammo
 		AmmoPoolName: explosion
-	KillsSelf:
-		RequiresCondition: invulnerability
 	-Capturable:
 	Targetable@MindControlImmune:
 		TargetTypes: MindControlImmune
@@ -9104,6 +9106,10 @@ CDRN:
 		TargetTypes: ChaosImmune
 	Targetable@DriverKillImmune:
 		TargetTypes: DriverKillImmune
+	Targetable@IronCurtainImmune:
+		TargetTypes: IronCurtainImmune
+	GrantCondition@NoCloak:
+		Condition: cloak-force-disabled
 	Voiced:
 		VoiceSet: ChaosDroneVoice
 	Sellable:

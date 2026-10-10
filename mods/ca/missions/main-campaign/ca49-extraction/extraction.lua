@@ -95,13 +95,13 @@ Squads = {
 	},
 	ScrinFleetKillers = {
 		ActiveCondition = function(squad)
-			local scrinFleet = GetMissionPlayersActorsByTypes({ "pac", "deva" })
+			local scrinFleet = GetMissionPlayersActorsByTypes({ "pac", "deva", "mshp" })
 			return #scrinFleet > AirFleetKillersThreshold[Difficulty]
 		end,
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 30, Max = 30 }),
 		Compositions = function(squad)
 			local enervators = { "enrv" }
-			local numFleetShips = #GetMissionPlayersActorsByTypes({ "pac", "deva" })
+			local numFleetShips = #GetMissionPlayersActorsByTypes({ "pac", "deva", "mshp" })
 			for i = 1, math.min(numFleetShips, MaxFleetKillers[Difficulty]) do
 				table.insert(enervators, "enrv")
 			end
@@ -343,7 +343,7 @@ InitScrin = function()
 	SetupUnitDefenders(Scrin)
 
 	if IsHardOrAbove() then
-		InitAirAttackSquad(Squads.ScrinFleetKillers, Scrin, MissionPlayers, { "pac", "deva" })
+		InitAirAttackSquad(Squads.ScrinFleetKillers, Scrin, MissionPlayers, { "pac", "deva", "mshp" })
 	end
 end
 

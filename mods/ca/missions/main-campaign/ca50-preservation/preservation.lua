@@ -121,7 +121,7 @@ Squads = {
 	ScrinMain = {
 		InitTimeAdjustment = -DateTime.Minutes(4),
 		Compositions = AdjustCompositionsForDifficulty(UnitCompositions.Scrin),
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40, RampDuration = DateTime.Minutes(15) }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40 }),
 		FollowLeader = true,
 		AttackPaths = ScrinAttackPaths,
 		Delay = AdjustDelayForDifficulty(DateTime.Minutes(2)),
@@ -129,7 +129,7 @@ Squads = {
 	SovietMain = {
 		InitTimeAdjustment = -DateTime.Minutes(4),
 		Compositions = AdjustCompositionsForDifficulty(UnitCompositions.Soviet),
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40, RampDuration = DateTime.Minutes(15) }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40 }),
 		FollowLeader = true,
 		AttackPaths = SovietAttackPaths,
 		Delay = AdjustDelayForDifficulty(DateTime.Minutes(3)),
@@ -168,13 +168,13 @@ Squads = {
 	ScrinAirToAir = AirToAirSquad({ "stmr", "enrv", "torm" }, AdjustAirDelayForDifficulty(DateTime.Minutes(10))),
 	AirFleetKillers = {
 		ActiveCondition = function(squad)
-			local scrinFleet = GetMissionPlayersActorsByTypes({ "pac", "deva" })
+			local scrinFleet = GetMissionPlayersActorsByTypes({ "pac", "deva", "mshp" })
 			return #scrinFleet > AirFleetKillersThreshold[Difficulty]
 		end,
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 30, Max = 30 }),
 		Compositions = function(squad)
 			local enervators = { "enrv" }
-			local numFleetShips = #GetMissionPlayersActorsByTypes({ "pac", "deva" })
+			local numFleetShips = #GetMissionPlayersActorsByTypes({ "pac", "deva", "mshp" })
 			for i = 1, math.min(numFleetShips, MaxFleetKillers[Difficulty]) do
 				table.insert(enervators, "enrv")
 			end
@@ -343,7 +343,7 @@ InitScrinAttacks = function()
 	end)
 
 	if IsHardOrAbove() then
-		InitAirAttackSquad(Squads.AirFleetKillers, Scrin, MissionPlayers, { "pac", "deva" })
+		InitAirAttackSquad(Squads.AirFleetKillers, Scrin, MissionPlayers, { "pac", "deva", "mshp" })
 		InitAirAttackSquad(Squads.ScrinAirToAir, Scrin, MissionPlayers, { "Aircraft" }, "ArmorType")
 
 		if IsVeryHardOrAbove() then

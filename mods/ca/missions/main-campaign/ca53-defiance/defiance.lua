@@ -181,13 +181,13 @@ Squads = {
 	},
 	AirFleetKillers = {
 		ActiveCondition = function(squad)
-			local scrinFleet = GetMissionPlayersActorsByTypes({ "pac", "deva" })
+			local scrinFleet = GetMissionPlayersActorsByTypes({ "pac", "deva", "mshp" })
 			return #scrinFleet > AirFleetKillersThreshold[Difficulty]
 		end,
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 30, Max = 30 }),
 		Compositions = function(squad)
 			local migs = { "mig" }
-			local numFleetShips = #GetMissionPlayersActorsByTypes({ "pac", "deva" })
+			local numFleetShips = #GetMissionPlayersActorsByTypes({ "pac", "deva", "mshp" })
 			for i = 1, math.min(numFleetShips, MaxFleetKillers[Difficulty]) do
 				table.insert(migs, "mig")
 			end
@@ -389,7 +389,7 @@ InitUSSR = function()
 	end
 
 	if Difficulty ~= "easy" then
-		InitAirAttackSquad(Squads.AirFleetKillers, USSR, MissionPlayers, { "pac", "deva" })
+		InitAirAttackSquad(Squads.AirFleetKillers, USSR, MissionPlayers, { "pac", "deva", "mshp" })
 	end
 
 	if Difficulty ~= "easy" then

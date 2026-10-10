@@ -83,13 +83,13 @@ Squads = {
 	},
 	GDIFleetKillers = {
 		ActiveCondition = function(squad)
-			local scrinFleet = GetMissionPlayersActorsByTypes({ "pac", "deva" })
+			local scrinFleet = GetMissionPlayersActorsByTypes({ "pac", "deva", "mshp" })
 			return #scrinFleet > AirFleetKillersThreshold[Difficulty]
 		end,
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 30, Max = 30 }),
 		Compositions = function(squad)
 			local orcas = { "orca" }
-			local numFleetShips = #GetMissionPlayersActorsByTypes({ "pac", "deva" })
+			local numFleetShips = #GetMissionPlayersActorsByTypes({ "pac", "deva", "mshp" })
 			for i = 1, math.min(numFleetShips, MaxFleetKillers[Difficulty]) do
 				table.insert(orcas, "orca")
 			end
@@ -231,7 +231,7 @@ InitHawthorneGDI = function()
 	if IsHardOrAbove() then
 		Trigger.AfterDelay(DateTime.Minutes(20), DoCommandoDrop)
 		Trigger.AfterDelay(WolverineDropInterval[Difficulty], DoWolverineDrop)
-		InitAirAttackSquad(Squads.GDIFleetKillers, HawthorneGDI, MissionPlayers, { "pac", "deva" })
+		InitAirAttackSquad(Squads.GDIFleetKillers, HawthorneGDI, MissionPlayers, { "pac", "deva", "mshp" })
 	end
 
 	InitHawthorneGDIAttacks()

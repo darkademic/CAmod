@@ -1915,7 +1915,6 @@ LeecherBeam:
 LeecherOrbHeal:
 	ReloadDelay: 25
 	Range: 1c0
-	ValidTargets: Ground, Water
 	Projectile: InstantHit
 	Warhead@1Dam: SpreadDamage
 		Spread: 1c768
@@ -1929,9 +1928,9 @@ LeecherOrbHeal:
 		ValidRelationships: Ally
 
 LeecherOrbHealInit:
+	Inherits: LeecherOrbHeal
 	ReloadDelay: 1500
 	Warhead@1Dam: SpreadDamage
-		Damage: -5000
 
 GreaterCoalescenceSpawner:
 	ReloadDelay: 999

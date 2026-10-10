@@ -554,7 +554,7 @@ TerrorDogJaw:
 CyberdogJaw:
 	Inherits: DogJaw
 	ReloadDelay: 10
-	Range: 4c512
+	Range: 4c0
 	Report: cdog-attack1.aud
 	Warhead@1Dam: TargetDamage
 		-InvalidTargets:

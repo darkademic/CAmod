@@ -4572,13 +4572,11 @@ CDOG:
 	Armor:
 		Type: Light
 	Health:
-		HP: 14000
+		HP: 12000
 	Voiced:
 		VoiceSet: CyberdogVoice
 	Armament:
 		Weapon: CyberdogJaw
-	GrantConditionOnAttack:
-		RevokeDelay: 25
 	Targetable@Cyborg:
 		TargetTypes: Cyborg
 		RequiresCondition: !parachute && !being-warped

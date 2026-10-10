@@ -1719,8 +1719,12 @@ N2:
 	GrantConditionOnPrerequisite@EMPUPG:
 		Condition: empgren-upgrade
 		Prerequisites: empgren.upgrade
-	RangeMultiplier@HeroOfTheUnion:
-		RequiresCondition: herooftheunion && !empgren-upgrade
+	RangeMultiplier@HeroOfTheUnion1:
+		RequiresCondition: herooftheunion && rank-veteran == 1 && !empgren-upgrade
+	RangeMultiplier@HeroOfTheUnion2:
+		RequiresCondition: herooftheunion && rank-veteran == 2 && !empgren-upgrade
+	RangeMultiplier@HeroOfTheUnion3:
+		RequiresCondition: herooftheunion && rank-veteran >= 3 && !empgren-upgrade
 	Encyclopedia:
 		Category: GDI/Infantry
 
@@ -1896,10 +1900,9 @@ N4:
 		SpawnActors: N5
 	ReplacedInQueue:
 		Actors: n5
-	-RangeMultiplier@HeroOfTheUnion:
-	FirepowerMultiplier@HeroOfTheUnion:
-		RequiresCondition: herooftheunion
-		Modifier: 120
+	-RangeMultiplier@HeroOfTheUnion1:
+	-RangeMultiplier@HeroOfTheUnion2:
+	-RangeMultiplier@HeroOfTheUnion3:
 	SpeedMultiplier@BlackHand:
 		RequiresCondition: player-blackh
 		Modifier: 120

@@ -832,7 +832,7 @@
 		ValidTargets: HeroOfUnionTargetable
 		Duration: 0
 		AllowMultiple: false
-		Description: Targeted basic infantry units become Heroes of the Union, significantly increasing their damage, speed, range and resilience.\n\nCan affect Rifle Infantry, Rocket Soldiers, Grenadiers and Flamethrowers.
+		Description: Targeted basic infantry units become Heroes of the Union, granting one level's worth of experience, and significantly increasing the bonuses they gain from veterancy.\n\nCan affect Rifle Infantry, Rocket Soldiers, Grenadiers and Flamethrowers.
 		Prerequisites: ~infantry.doctrine, playerxp.level2
 		OnFireSound: heroes.aud
 		SelectTargetSpeechNotification: SelectTarget

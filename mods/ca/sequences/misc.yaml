@@ -3203,8 +3203,21 @@ hero-overlay:
 		BlendMode: Additive
 		Offset: 0, -12
 		Alpha: 0.35
-	star:
+	star1:
 		Filename: herostar.shp
+		Length: 1
+		ZOffset: 2047
+		Offset: 0, -22
+	star2:
+		Filename: herostar.shp
+		Length: 1
+		Start: 1
+		ZOffset: 2047
+		Offset: 0, -22
+	star3:
+		Filename: herostar.shp
+		Length: 1
+		Start: 2
 		ZOffset: 2047
 		Offset: 0, -22
 

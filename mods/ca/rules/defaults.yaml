@@ -502,47 +502,74 @@
 		RequiresCondition: !herooftheunion
 	ExternalCondition@HeroOfTheUnion:
 		Condition: herooftheunion
-	FlatHealthDamageMultiplier@HeroOfTheUnion:
-		HP: 28000
+	GainsExperienceOnCondition@HeroOfTheUnion:
 		RequiresCondition: herooftheunion
+		ValuePercentageExperience: 300
 	SpeedMultiplier@HeroOfTheUnion:
 		Modifier: 120
 		RequiresCondition: herooftheunion
-	ReloadDelayMultiplier@HeroOfTheUnion:
-		Modifier: 66
-		RequiresCondition: herooftheunion
-	ReloadAmmoDelayMultiplier@HeroOfTheUnion:
-		Modifier: 66
-		RequiresCondition: herooftheunion
-	RangeMultiplier@HeroOfTheUnion:
+	RangeMultiplier@HeroOfTheUnion1:
+		Modifier: 130
+		RequiresCondition: herooftheunion && rank-veteran == 1
+	RangeMultiplier@HeroOfTheUnion2:
+		Modifier: 140
+		RequiresCondition: herooftheunion && rank-veteran == 2
+	RangeMultiplier@HeroOfTheUnion3:
 		Modifier: 150
-		RequiresCondition: herooftheunion
+		RequiresCondition: herooftheunion && rank-veteran >= 3
+	FlatHealthDamageMultiplier@HeroOfTheUnion1:
+		HP: 8000
+		RequiresCondition: herooftheunion && rank-veteran == 1
+	FlatHealthDamageMultiplier@HeroOfTheUnion2:
+		HP: 12000
+		RequiresCondition: herooftheunion && rank-veteran == 2
+	FlatHealthDamageMultiplier@HeroOfTheUnion3:
+		HP: 16000
+		RequiresCondition: herooftheunion && rank-veteran >= 3
+	FirepowerMultiplier@HeroOfTheUnion1:
+		RequiresCondition: herooftheunion && rank-veteran == 1
+		Modifier: 133
+	FirepowerMultiplier@HeroOfTheUnion2:
+		RequiresCondition: herooftheunion && rank-veteran == 2
+		Modifier: 166
+	FirepowerMultiplier@HeroOfTheUnion3:
+		RequiresCondition: herooftheunion && rank-veteran >= 3
+		Modifier: 200
 	WithIdleOverlay@HeroOfTheUnionLight:
 		Sequence: light
 		Image: hero-overlay
 		Palette: effect
 		RequiresCondition: herooftheunion
 		IsDecoration: True
-	WithIdleOverlay@HeroOfTheUnionCrest:
-		Sequence: star
+	WithIdleOverlay@HeroOfTheUnionCrest1:
+		Sequence: star1
 		Image: hero-overlay
 		Palette: effect
-		RequiresCondition: herooftheunion
+		RequiresCondition: herooftheunion && rank-veteran == 1
+		IsDecoration: True
+	WithIdleOverlay@HeroOfTheUnionCrest2:
+		Sequence: star2
+		Image: hero-overlay
+		Palette: effect
+		RequiresCondition: herooftheunion && rank-veteran == 2
+		IsDecoration: True
+	WithIdleOverlay@HeroOfTheUnionCrest3:
+		Sequence: star3
+		Image: hero-overlay
+		Palette: effect
+		RequiresCondition: herooftheunion && rank-veteran >= 3
 		IsDecoration: True
 	TakeCover:
 		RequiresCondition: !herooftheunion && !reapersnare
-	GrantCondition@HeroElite:
-		RequiresCondition: herooftheunion
-		Condition: rank-elite
 
 ^HeroOfTheUnionTargetableGrenFlamer:
 	Inherits: ^HeroOfTheUnionTargetable
-	FlatHealthDamageMultiplier@HeroOfTheUnion:
-		HP: 5000
-	ReloadDelayMultiplier@HeroOfTheUnion:
-		Modifier: 90
-	RangeMultiplier@HeroOfTheUnion:
-		Modifier: 170
+	FlatHealthDamageMultiplier@HeroOfTheUnion1:
+		HP: 2000
+	FlatHealthDamageMultiplier@HeroOfTheUnion2:
+		HP: 4000
+	FlatHealthDamageMultiplier@HeroOfTheUnion3:
+		HP: 6000
 
 ^IdolOfKane:
 	ExternalCondition@IdolOfKaneBuff1:

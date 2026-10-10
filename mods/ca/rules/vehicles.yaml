@@ -7084,7 +7084,7 @@ IFV:
 		Modifier: 115
 	DamageMultiplier@Enforcer:
 		RequiresCondition: enfoturr
-		Modifier: 50
+		Modifier: 54
 	SpeedMultiplier@EnfoTigr:
 		RequiresCondition: tigrturr || enfoturr
 		Modifier: 60

@@ -1101,8 +1101,12 @@ EnforcerShotgun:
 			Spread: 4c0
 			Falloff: 100, 33
 			FalloffBasis: DistanceFromSource
+		DamageFalloff@2:
+			Spread: 1c0
+			Falloff: 100, 66
+			FalloffBasis: DistanceFromCenterLine
 	Warhead@1Dam: SpreadDamage
-		Damage: 7000
+		Damage: 6250
 		Versus:
 			None: 100
 			Wood: 40
@@ -1116,6 +1120,8 @@ EnforcerIFVShotgun:
 	Inherits: EnforcerShotgun
 	Burst: 2
 	BurstDelays: 5
+	Warhead@1Dam: SpreadDamage
+		Damage: 5250
 
 ConfessorGun:
 	Inherits: M1Carbine

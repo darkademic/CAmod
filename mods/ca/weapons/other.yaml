@@ -749,7 +749,7 @@ Demolish:
 		Footprint: xxx xxx xxx
 
 PlaceC4:
-	ReloadDelay: 25
+	ReloadDelay: 50
 	Range: 1c849
 	Projectile: InstantHit
 	Report: icolseta.aud

@@ -907,12 +907,17 @@ E7:
 		Cursor: c4
 		OutsideRangeCursor: c4
 		Name: secondary
+		PauseOnCondition: disembarked
 	AttackFrontal:
 		PauseOnCondition: being-warped || blinded || reapersnare
 		Armaments: primary, secondary
 		FacingTolerance: 0
 	AutoTarget:
 		AllowMovement: false
+	GrantTimedCondition@ExitCargo:
+		Condition: disembarked
+		RequiresCondition: !passenger
+		Duration: 75
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 		StandSequences: stand
@@ -2078,6 +2083,7 @@ RMBO:
 		Cursor: c4
 		OutsideRangeCursor: c4
 		Name: secondary
+		PauseOnCondition: disembarked
 	AttackFrontal:
 		Voice: Attack
 		Armaments: primary, secondary
@@ -2085,6 +2091,10 @@ RMBO:
 		FacingTolerance: 0
 	AutoTarget:
 		AllowMovement: false
+	GrantTimedCondition@ExitCargo:
+		Condition: disembarked
+		RequiresCondition: !passenger
+		Duration: 75
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 		IdleSequences: idle1,idle2,idle3
@@ -4140,7 +4150,7 @@ YURI:
 		ShowSelectionBarWhenFull: false
 		StartsFullyCharged: true
 		Voice: Demolish
-		PauseOnCondition: being-warped || parachute
+		PauseOnCondition: being-warped || parachute || disembarked
 		DischargingColor: bb0000
 		ChargingColor: cc00cc
 		Instant: true
@@ -4148,6 +4158,10 @@ YURI:
 		PauseOnCondition: !ammo || being-warped || blinded || reapersnare || parachute
 		Armaments: primary, secondary, aidummy
 		FacingTolerance: 0
+	GrantTimedCondition@ExitCargo:
+		Condition: disembarked
+		RequiresCondition: !passenger
+		Duration: 75
 	RevealsShroud:
 		Range: 7c0
 	Passenger:

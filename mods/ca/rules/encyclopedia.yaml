@@ -2378,7 +2378,7 @@ encyclopedia.buffs.hotu:
 	TooltipExtras:
 		Strengths: Effective health boosted to 28k\n+20% movement speed\n+50% range\n+50% rate of fire
 	WithIdleOverlay@HeroOfTheUnionCrest:
-		Sequence: star
+		Sequence: star3
 		Image: hero-overlay
 		Palette: effect
 		IsDecoration: True

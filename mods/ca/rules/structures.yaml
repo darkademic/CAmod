@@ -6476,6 +6476,5 @@ IOK:
 	GrantConditionOnEnemiesNearby@EnemiesNearby:
 		Condition: enemies-nearby
 		Range: 7c0
-		RequiresCondition: initialized
 		TargetTypes: Ground, Water, Air, AirSmall
 		TickInterval: 25

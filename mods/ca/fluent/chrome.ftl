@@ -150,6 +150,9 @@ button-top-buttons-repair-tooltip = Repair
 
 ## SupportPowerTimerWidget
 support-power-timer = { $support-power }: { $time }
+support-power-timer-name = { $support-power }:
+support-power-timer-enemy = Enemy Powers
+support-power-timer-allied = Friendly Powers
 
 supportpowers-support-powers-palette =
     .ready = READY

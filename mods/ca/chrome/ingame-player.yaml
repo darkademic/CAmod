@@ -97,10 +97,11 @@ Container@PLAYER_WIDGETS:
 					Y: 22
 					Height: 23
 					Font: Bold
-		SupportPowerTimer@SUPPORT_POWER_TIMER:
+		SupportPowerTimerCA@SUPPORT_POWER_TIMER:
 			X: 80
 			Y: 10
-			Order: Descending
+			Width: 300
+			HeadingFont: Regular
 		Image@COMMAND_BAR_BACKGROUND:
 			Logic: AddFactionSuffixLogic
 			X: 5

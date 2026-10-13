@@ -38,6 +38,7 @@ namespace OpenRA.Mods.CA.Widgets
 		public readonly string Font = "Bold";
 		public readonly string HeadingFont = "Bold";
 		public readonly TextAlign Align = TextAlign.Left;
+		public readonly string[] Superweapons = { "Lightning Storm", "Atom Bomb", "Ion Cannon", "Chemical Missile", "Rift" };
 
 		readonly SpriteFont font;
 		SpriteFont headingFont;
@@ -95,6 +96,9 @@ namespace OpenRA.Mods.CA.Widgets
 				var time = WidgetUtils.FormatTime(power.RemainingTicks, false, self.World.Timestep);
 				var name = FluentProvider.GetMessage(NameFormat, "support-power", power.Name);
 
+				if (Superweapons.Contains(power.Info.Name))
+					name = $"★ {name}";
+
 				var ownerColor = self.OwnerColor();
 				var timeColor = !power.Ready || Game.LocalTick % 50 < 25 ? ownerColor : Lighten(ownerColor);
 				if (relationship == PlayerRelationship.Enemy)
@@ -123,10 +127,10 @@ namespace OpenRA.Mods.CA.Widgets
 
 			var heading = FluentProvider.GetMessage(headingKey);
 			var icon = getIcon.Update(expanded ? "down" : "right");
-			WidgetUtils.DrawSprite(icon, new int2(RenderOrigin.X + 4, RenderOrigin.Y + y + 7));
+			WidgetUtils.DrawSprite(icon, new int2(RenderOrigin.X, RenderOrigin.Y + y + 7));
 
 			var headingSize = headingFont.Measure(heading);
-			var headingLocation = new int2(RenderOrigin.X + 24, RenderOrigin.Y + y + (HeaderHeight - headingSize.Y) / 2);
+			var headingLocation = new int2(RenderOrigin.X + 20, RenderOrigin.Y + y + (HeaderHeight - headingSize.Y) / 2);
 			headingFont.DrawTextWithShadow(heading, headingLocation, Color.White, bgDark, bgLight, 1);
 
 			if (!expanded)
@@ -143,7 +147,7 @@ namespace OpenRA.Mods.CA.Widgets
 				var timeSize = font.Measure(t.Time);
 				var separatorWidth = font.Measure(" ").X;
 				var rowWidth = nameSize.X + separatorWidth + timeSize.X;
-				var x = RenderOrigin.X + 24;
+				var x = RenderOrigin.X;
 
 				if (Align == TextAlign.Center)
 					x += (Bounds.Width - 24 - rowWidth) / 2;

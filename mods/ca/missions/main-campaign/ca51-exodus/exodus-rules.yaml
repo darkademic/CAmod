@@ -51,10 +51,6 @@ VoidCannonTarget:
 	DetonateWeaponPower@IonStorm:
 		DisplayTimerRelationships: Ally
 
-^ColonySpikePower:
-	DetonateWeaponPower@ColonySpike:
-		Prerequisites: ~disabled
-
 colonyspike.provider:
 	-UpdatesSupportPowerTimer:
 

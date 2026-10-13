@@ -37,6 +37,8 @@ INTL.Loaded.IMPL:
 
 TMPP:
 	Inherits@Objective: ^ObjectiveDecorations
+	Sellable:
+		RequiresCondition: !build-incomplete && !c4 && !being-warped && !is-objective
 
 # Enable subfaction specific tech
 

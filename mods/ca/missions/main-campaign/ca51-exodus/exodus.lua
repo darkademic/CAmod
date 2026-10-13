@@ -352,6 +352,7 @@ InitGDI = function()
 	AutoRepairBuildings(GDI)
 	SetupRefAndSilosCaptureCredits(GDI)
 	SetupUnitDefenders(GDI)
+	SetupBuildingDefenders(GDI)
 
 	InitConvoys()
 end

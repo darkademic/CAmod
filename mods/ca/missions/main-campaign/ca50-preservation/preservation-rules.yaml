@@ -68,9 +68,8 @@ WORMHOLEUNSTABLE:
 	RevealsShroud:
 		Range: 8c0
 
-^ColonySpikePower:
-	DetonateWeaponPower@ColonySpike:
-		Prerequisites: ~disabled
+colonyspike.provider:
+	-UpdatesSupportPowerTimer:
 
 CSPK:
 	ReloadAmmoPoolCA@Charged:
@@ -82,6 +81,8 @@ WORMHOLE:
 
 TMPL:
 	Inherits@Objective: ^ObjectiveDecorations
+	Sellable:
+		RequiresCondition: !build-incomplete && !c4 && !being-captured && !being-warped && !hacked && !is-objective
 
 # Enable subfaction specific tech
 

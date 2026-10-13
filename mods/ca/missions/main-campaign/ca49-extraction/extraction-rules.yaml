@@ -52,6 +52,8 @@ mcv.allowed:
 
 TMPL:
 	Inherits@Objective: ^ObjectiveDecorations
+	Sellable:
+		RequiresCondition: !build-incomplete && !c4 && !being-captured && !being-warped && !hacked && !is-objective
 
 # Enable subfaction specific tech
 

@@ -3564,7 +3564,7 @@ BRUT:
 	TooltipExtras:
 		Strengths: • Strong vs Heavy Armor, Light Armor, Infantry
 		Weaknesses: • Cannot attack Aircraft
-		Attributes: • Immune to mind control\n• Self heals to 50% out of combat
+		Attributes: • Immune to mind control\n• Self heals to 50% out of combat\n• Controllable while affected by chaos gas
 	RenderSprites:
 	Valued:
 		Cost: 450
@@ -3587,8 +3587,6 @@ BRUT:
 		DecorationBounds: 640, 896, 0, -341
 	Targetable@MindControlImmune:
 		TargetTypes: MindControlImmune
-	Targetable@ChaosImmune:
-		TargetTypes: ChaosImmune
 	Targetable@DogImmune:
 		TargetTypes: DogImmune
 	Voiced:
@@ -3643,6 +3641,18 @@ BRUT:
 	SpeedMultiplier@Improved:
 		RequiresCondition: impmuta-upgrade
 		Modifier: 120
+	-Berserkable@BERSERK:
+	-RejectsOrders@BERSERK:
+	WithIdleOverlay@BERSERK:
+		Sequence: infantry
+		Image: frenzy-overlay
+		Palette: frenzyoverlay
+		RequiresCondition: berserkactive
+		IsDecoration: True
+	GrantConditionOnDamageState@CriticalBerserk:
+		Condition: berserkactive
+		ValidDamageStates: Critical
+		RequiresCondition: impmuta-upgrade
 	-TakeCover:
 	-Captures@DRIVER_KILL:
 	-CaptureManager:

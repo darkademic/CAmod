@@ -1468,7 +1468,7 @@ impmuta.upgrade:
 		Prerequisites: playerxp.level2, ~player.yuri, ~infantry.doctrine, ~techlevel.medium
 		Description: Enhances Genetic Mutation Bomb and Brutes.\n\nUpgrades: Genetic Mutation Bomb\nUpgrades: Brute
 	TooltipExtras:
-		Strengths: + Increased area of effect (Mutation Bomb)\n+ Increased maximum number of targets (Mutation Bomb)\n+ Increased movement speed (Brute)
+		Strengths: + Increased area of effect (Mutation Bomb)\n+ Increased maximum number of targets (Mutation Bomb)\n+ Increased movement speed (Brute)\n+ Berserk when near-death (Brute)
 	Valued:
 		Cost: 750
 	RenderSprites:

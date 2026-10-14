@@ -163,6 +163,7 @@ WorldLoaded = function()
 
 	TimerTicks = 0
 	Camera.Position = McvLanding.CenterPosition
+	ResearchLab.GrantCondition("is-objective")
 
 	InitObjectives(Greece)
 	AdjustPlayerStartingCashForDifficulty()

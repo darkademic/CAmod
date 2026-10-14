@@ -110,6 +110,10 @@ WorldLoaded = function()
 	ObjectiveDestroyAirfields = Scrin.AddObjective("Destroy all airfields and helipads.")
 	ObjectiveDestroyAntiAir = Scrin.AddObjective("Destroy or disable all air defense structures.")
 
+	Utils.Do(Utils.Concat(AircraftStructures, AntiAir), function(a)
+		a.GrantCondition("is-objective")
+	end)
+
 	Utils.Do(MissionPlayers, function(p)
 		Actor.Create("radar.dummy", true, { Owner = p })
 		Actor.Create("blink.upgrade", true, { Owner = p })

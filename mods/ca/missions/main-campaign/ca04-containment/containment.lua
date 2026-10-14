@@ -67,6 +67,16 @@ WorldLoaded = function()
 
 	TimerTicks = 0
 	Camera.Position = PlayerStart.CenterPosition
+	Chronosphere.GrantCondition("is-objective")
+	Utils.Do(Reactors, function(a)
+		a.GrantCondition("is-objective")
+	end)
+	Utils.Do(ShoreSAMs, function(a)
+		a.GrantCondition("is-objective")
+	end)
+	Utils.Do(MissileSilos, function(a)
+		a.GrantCondition("is-objective")
+	end)
 
 	Lighting.Ambient = 0.22
 	Lighting.Red = 2.5

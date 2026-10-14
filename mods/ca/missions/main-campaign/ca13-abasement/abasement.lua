@@ -102,6 +102,7 @@ WorldLoaded = function()
 	NodAbandoned.Cash = 0
 	NodAbandoned.Resources = 0
 	Camera.Position = PlayerStart.CenterPosition
+	SignalTransmitter.GrantCondition("is-objective")
 
 	InitObjectives(USSR)
 	AdjustPlayerStartingCashForDifficulty()

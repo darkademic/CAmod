@@ -44,6 +44,9 @@ NERV:
 	DetonateWeaponPower@IONSURGE:
 		-Prerequisites:
 
+SAM:
+	Inherits@ObjectiveDecorationsMinor: ^ObjectiveDecorationsMinor
+
 # Enable subfaction specific tech
 
 STCR:

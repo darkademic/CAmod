@@ -392,6 +392,7 @@ HQ.UPG:
 
 ^COOPProducesUnits:
 	Inherits@COOPProducer: ^COOPProducer
+	Inherits@PRIMARY: ^PrimaryBuilding
 	AlwaysVisible:
 	Selectable:
 		Priority: 1
@@ -404,6 +405,7 @@ HQ.UPG:
 
 ^COOPProducesBuildings:
 	Inherits@COOPProducer: ^COOPProducer
+	Inherits@PRIMARY: ^PrimaryBuilding
 	Production@SQBLD:
 		Produces: BuildingSQ, DefenseSQ
 		RequiresCondition: !global-multiqueuefull
@@ -839,6 +841,8 @@ COOPPOWR:
 		Prerequisite: anypower
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: powr
+	Power:
+		Amount: 100
 
 COOPAPWR:
 	Inherits: ^InvisibleDummy
@@ -846,6 +850,8 @@ COOPAPWR:
 		Prerequisite: anypower
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: apwr
+	Power:
+		Amount: 200
 
 COOPNPWR:
 	Inherits: ^InvisibleDummy
@@ -854,6 +860,8 @@ COOPNPWR:
 		Prerequisite: anypower
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: npwr
+	Power:
+		Amount: 1000
 
 COOPTPWR:
 	Inherits: ^InvisibleDummy
@@ -861,6 +869,8 @@ COOPTPWR:
 		Prerequisite: anypower
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: tpwr
+	Power:
+		Amount: 300
 
 COOPSTEK:
 	Inherits: ^InvisibleDummy
@@ -1224,6 +1234,8 @@ COOPNUKE:
 		Prerequisite: anypower
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: nuke
+	Power:
+		Amount: 100
 
 COOPNUK2:
 	Inherits: ^InvisibleDummy
@@ -1231,6 +1243,8 @@ COOPNUK2:
 		Prerequisite: anypower
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: nuk2
+	Power:
+		Amount: 200
 
 COOPAFAC:
 	Inherits: ^InvisibleDummy
@@ -1659,6 +1673,8 @@ COOPREAC:
 		Prerequisite: anypower
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: reac
+	Power:
+		Amount: 100
 
 COOPREA2:
 	Inherits: ^InvisibleDummy
@@ -1666,6 +1682,8 @@ COOPREA2:
 		Prerequisite: anypower
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: rea2
+	Power:
+		Amount: 200
 
 COOPPROC.SCRIN:
 	Inherits: ^InvisibleDummy

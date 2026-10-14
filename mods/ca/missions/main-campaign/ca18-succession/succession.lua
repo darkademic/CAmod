@@ -110,9 +110,11 @@ WorldLoaded = function()
     ObjectiveCaptureTemplePrime = USSR.AddObjective("Capture Temple Prime.")
     ObjectiveCaptureFactories = USSR.AddObjective("Capture all four cyborg manufacturing facilities.")
 	ObjectiveYuriMustSurvive = USSR.AddSecondaryObjective("Protect Yuri.")
+	TemplePrime.GrantCondition("is-objective")
 
     local factories = { CyborgFactory1, CyborgFactory2, CyborgFactory3, CyborgFactory4 }
     Utils.Do(factories, function(f)
+		f.GrantCondition("is-objective")
         Trigger.OnCapture(f, function(self, captor, oldOwner, newOwner)
             NumFactoriesCaptured = NumFactoriesCaptured + 1
             if NumFactoriesCaptured == 4 then

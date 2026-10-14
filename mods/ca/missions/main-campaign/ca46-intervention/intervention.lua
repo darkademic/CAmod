@@ -104,8 +104,12 @@ WorldLoaded = function()
 		end)
 
 		Utils.Do(silos, function(s)
+			local objectiveToken = s.GrantCondition("is-objective")
 			Trigger.OnKilledOrCaptured(s, function()
 				UpdateMissionText()
+				if not s.IsDead then
+					s.RevokeCondition(objectiveToken)
+				end
 			end)
 		end)
 	end)

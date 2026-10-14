@@ -52,6 +52,7 @@ WorldLoaded = function()
 
 	TimerTicks = 0
 	Camera.Position = Commando.CenterPosition
+	IonControl.GrantCondition("is-objective")
 
 	InitObjectives(Nod)
 	InitGDI()

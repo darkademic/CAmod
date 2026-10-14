@@ -134,6 +134,7 @@ WorldLoaded = function()
 	end)
 
 	Utils.Do(nerveCenters, function(n)
+		n.GrantCondition("is-objective")
 		Trigger.OnKilled(n, function()
 			UpdateMissionText()
 		end)

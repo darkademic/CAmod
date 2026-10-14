@@ -283,6 +283,7 @@ WorldLoaded = function()
 	ObjectiveDestroySpires = ScrinRebels.AddObjective("Destroy all Overlord spires.")
 
 	Utils.Do(Spires, function(spire)
+		spire.GrantCondition("is-objective")
 		Trigger.OnKilled(spire, function(self, killer)
 			NextMeteorInterval = NextMeteorInterval + DateTime.Seconds(60)
 		end)

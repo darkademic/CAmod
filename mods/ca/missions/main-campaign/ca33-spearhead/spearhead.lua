@@ -47,6 +47,7 @@ WorldLoaded = function()
 
 	ObjectiveDestroyShardLaunchers = GDI.AddObjective("Destroy Scrin Shard Launchers.")
     ObjectiveCaptureComms = GDI.AddObjective("Locate and capture Nod Communications Center.")
+	NodCommsCenter.GrantCondition("is-objective")
 
 	if IsHardOrBelow() then
 		HardOnlyTripod.Destroy()

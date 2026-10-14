@@ -111,6 +111,7 @@ WorldLoaded = function()
 
 	ObjectiveDestroyWormholes = GDI.AddObjective("Destroy all Scrin wormholes.")
 	ObjectiveDefendHQ = GDI.AddObjective("Protect the Command Center.")
+	HQ.GrantCondition("is-objective")
 
 	Trigger.OnKilled(HQ, function()
 		GDI.MarkFailedObjective(ObjectiveDefendHQ)

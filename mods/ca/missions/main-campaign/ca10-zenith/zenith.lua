@@ -111,6 +111,10 @@ WorldLoaded = function()
 	TimerTicks = 0
 	Camera.Position = PlayerStart.CenterPosition
 
+	Utils.Do(NukeSilos, function(a)
+		a.GrantCondition("is-objective")
+	end)
+
 	InitObjectives(Nod)
 	AdjustPlayerStartingCashForDifficulty()
 	InitUSSR()

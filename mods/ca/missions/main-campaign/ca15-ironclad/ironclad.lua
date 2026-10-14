@@ -89,6 +89,7 @@ WorldLoaded = function()
 
 	ObjectiveDestroyBases = USSR.AddObjective("Break the siege and destroy the enemy bases.")
 	ObjectiveProtectIronCurtain = USSR.AddObjective("Do not lose the Iron Curtain.")
+	IronCurtain.GrantCondition("is-objective")
 	EngineerDrop()
 
 	Trigger.AfterDelay(5, function()

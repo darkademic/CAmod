@@ -124,3 +124,18 @@ LCHR.Orb:
 		HP: 15000
 	ReloadAmmoPoolCA:
 		Delay: 250
+
+AFLD.GDI:
+	Inherits@ObjectiveDecorationsMinor: ^ObjectiveDecorationsMinor
+
+HPAD:
+	Inherits@ObjectiveDecorationsMinor: ^ObjectiveDecorationsMinor
+
+HPAD.TD:
+	Inherits@ObjectiveDecorationsMinor: ^ObjectiveDecorationsMinor
+
+AGUN:
+	Inherits@ObjectiveDecorationsMinor: ^ObjectiveDecorationsMinor
+
+CRAM:
+	Inherits@ObjectiveDecorationsMinor: ^ObjectiveDecorationsMinor

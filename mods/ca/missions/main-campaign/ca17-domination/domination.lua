@@ -73,6 +73,7 @@ WorldLoaded = function()
 	InitNod()
 
 	ObjectiveStealCodes = USSR.AddObjective("Steal Nod cyborg encryption codes.")
+	CyberneticsLabObjectiveToken = CyberneticsLab.GrantCondition("is-objective")
 
 	if Difficulty == "easy" then
 		StartLightTank.Destroy()
@@ -168,7 +169,10 @@ WorldLoaded = function()
 	Trigger.OnInfiltrated(CyberneticsLab, function(self, infiltrator)
 		Actor.Create("cyborgsdecrypted", true, { Owner = Nod })
 		ObjectiveDestroyTemple = USSR.AddObjective("Locate and destroy the Temple of Nod.")
+		TempleOfNod.GrantCondition("is-objective")
+
 		USSR.MarkCompletedObjective(ObjectiveStealCodes)
+		CyberneticsLab.RevokeCondition(CyberneticsLabObjectiveToken)
 
 		if TempleOfNod.IsDead then
 			USSR.MarkCompletedObjective(ObjectiveDestroyTemple)

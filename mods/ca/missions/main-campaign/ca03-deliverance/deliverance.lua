@@ -166,6 +166,7 @@ WorldLoaded = function()
 	TimerTicks = 0
 	GDICommanderAlive = true
 	Camera.Position = PlayerStart.CenterPosition
+	SovietPrison.GrantCondition("is-objective")
 
 	InitObjectives(Greece)
 	AdjustPlayerStartingCashForDifficulty()

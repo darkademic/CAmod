@@ -143,13 +143,13 @@ World:
 ^ObjectiveDecorations:
 	ExternalCondition@Objective:
 		Condition: is-objective
-	WithColoredSelectionBox@Objective:
+	WithColoredSelectionBox@ObjectiveDecorations:
 		RequiresCondition: is-objective
 		Color: 00FF00
 		Thickness: 3
 		BoundsPadding: 256
 		ValidRelationships: Ally, Neutral, Enemy
-	WithDecoration@Objective:
+	WithDecoration@ObjectiveDecorations:
 		RequiresCondition: is-objective
 		Image: objective-text
 		Palette: chrome
@@ -159,11 +159,20 @@ World:
 		ValidRelationships: Ally, Neutral, Enemy
 
 ^ObjectiveDecorationsRed:
-	Inherits@Objective: ^ObjectiveDecorations
-	WithColoredSelectionBox@Objective:
+	Inherits@ObjectiveDecorations: ^ObjectiveDecorations
+	WithColoredSelectionBox@ObjectiveDecorations:
 		Color: FF0000
-	WithDecoration@Objective:
+	WithDecoration@ObjectiveDecorations:
 		Sequence: red
+
+^ObjectiveDecorationsMinor:
+	Inherits@ObjectiveDecorations: ^ObjectiveDecorations
+	WithColoredSelectionBox@ObjectiveDecorations:
+		Thickness: 2
+		BoundsPadding: 128
+
+^BasicBuilding:
+	Inherits@ObjectiveDecorations: ^ObjectiveDecorations
 
 # Assigned to actors in missions, assigned in lua dynamically
 # (so we use DummyConditionConsumer to prevent yaml warnings)

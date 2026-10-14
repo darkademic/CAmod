@@ -148,6 +148,7 @@ WorldLoaded = function()
 	end)
 
 	ObjectiveSecurePurifier = USSR.AddObjective("Use the Exterminator Tripod to secure\nthe purification device.")
+	Purifier.GrantCondition("is-objective")
 	UpdateMissionText()
 
 	local spyPlaneDummy1 = Actor.Create("spy.plane.dummy", true, { Owner = SpyPlaneProvider })

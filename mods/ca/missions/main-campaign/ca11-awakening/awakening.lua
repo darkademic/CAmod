@@ -183,6 +183,8 @@ WorldLoaded = function()
 	CyborgWaves = 0
 	Camera.Position = PlayerStart.CenterPosition
 
+	TemplePrime.GrantCondition("is-objective")
+
 	InitObjectives(Nod)
 	AdjustPlayerStartingCashForDifficulty()
 	InitUSSR()

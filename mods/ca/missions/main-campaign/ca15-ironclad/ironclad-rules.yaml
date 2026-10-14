@@ -28,6 +28,7 @@ Player:
 		DefaultCash: 0
 
 IRON:
+	Inherits@ObjectiveDecorationsMinor: ^ObjectiveDecorationsMinor
 	GrantExternalConditionPowerCA@IRONCURTAIN:
 		StartFullyCharged: True
 

@@ -710,12 +710,14 @@ end
 InitCaptureHQObjective = function()
 	if not ObjectiveCaptureHQ then
 		ObjectiveCaptureHQ = Greece.AddObjective("Capture Gen. Hawthorne's Command Center.")
+		HawthorneHQObjectiveToken = HawthorneHQ.GrantCondition("is-objective")
 	end
 end
 
 DoFinale = function()
 	Media.DisplayMessage("This is far from over! You will regret making an enemy of me!", "Gen. Hawthorne", HSLColor.FromHex("F2CF74"))
 	MediaCA.PlaySound(MissionDir .. "/hth_farfromover.aud", 2)
+	HawthorneHQ.RevokeCondition(HawthorneHQObjectiveToken)
 
 	Hawthorne = Actor.Create("xo.hawthorne", true, { Owner = GDI, Location = HawthorneSpawn.Location })
 	Hawthorne.GrantCondition("invulnerability")

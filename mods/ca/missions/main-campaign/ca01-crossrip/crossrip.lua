@@ -192,6 +192,7 @@ WorldLoaded = function()
 
 	TimerTicks = 0
 	Camera.Position = PlayerMcv.CenterPosition
+	SovietChronosphere.GrantCondition("is-objective")
 
 	InitObjectives(Greece)
 	AdjustPlayerStartingCashForDifficulty()

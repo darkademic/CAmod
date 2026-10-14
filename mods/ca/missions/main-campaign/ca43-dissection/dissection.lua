@@ -135,12 +135,20 @@ WorldLoaded = function()
 	SovietDomes = USSR.GetActorsByType("dome")
 
 	Utils.Do(SovietDomes, function(d)
+		local objectiveToken = d.GrantCondition("is-objective")
 		Trigger.OnKilled(d, function(self, killer)
 			DomeDisabled(d)
 		end)
 		Trigger.OnInfiltrated(d, function(self, infiltrator)
 			if IsMissionPlayer(infiltrator.Owner) then
 				DomeDisabled(d)
+				d.RevokeCondition(objectiveToken)
+			end
+		end)
+		Trigger.OnCapture(d, function(self, captor, oldOwner, newOwner)
+			if IsMissionPlayer(newOwner) then
+				DomeDisabled(d)
+				d.RevokeCondition(objectiveToken)
 			end
 		end)
 	end)
@@ -397,7 +405,7 @@ DomeDisabled = function(d)
 
 	DomesDisabled[actorId] = true
 
-	if not d.IsDead then
+	if not d.IsDead and d.Owner == USSR then
 		d.GrantCondition("powerdown")
 	end
 

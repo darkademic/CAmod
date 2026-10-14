@@ -181,6 +181,10 @@ WorldLoaded = function()
 	ObjectiveDestroyUncrewed = Scrin.AddObjective("Destroy all uncrewed Soviet vehicles.")
 	ObjectiveDestroySAMs = Scrin.AddSecondaryObjective("Destroy front line of Soviet SAM Sites.")
 
+	Utils.Do(ForwardSAMs, function(a)
+		a.GrantCondition("is-objective")
+	end)
+
 	Trigger.AfterDelay(DateTime.Seconds(5), function()
 		PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")
 		Notification("Reinforcements have arrived.")

@@ -89,6 +89,7 @@ WorldLoaded = function()
 
 	ObjectiveClearPath = USSR.AddObjective("Clear one of the two paths for reinforcements.")
 	ObjectiveCapturePrison = USSR.AddObjective("Capture Allied prison to free Yuri.")
+	Prison.GrantCondition("is-objective")
 
 	Trigger.AfterDelay(1, function()
 		local topPathUnits = Map.ActorsInBox(TopPathTopLeft.CenterPosition, TopPathBottomRight.CenterPosition, function(a)

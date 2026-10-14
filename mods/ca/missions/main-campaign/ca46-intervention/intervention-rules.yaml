@@ -96,3 +96,6 @@ sweden.coalition:
 
 korea.coalition:
 	Inherits@CAMPAIGNDISABLED: ^Disabled
+
+SILO.TD:
+	Inherits@ObjectiveDecorationsMinor: ^ObjectiveDecorationsMinor

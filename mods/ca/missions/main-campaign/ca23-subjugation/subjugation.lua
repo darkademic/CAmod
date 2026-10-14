@@ -158,6 +158,8 @@ WorldLoaded = function()
 	end)
 
 	Utils.Do(TibFacilities, function(a)
+		local objectiveToken = a.GrantCondition("is-objective")
+
 		Trigger.OnKilled(a, function(self, killer)
 			if not IsMissionPlayer(self.Owner) then
 				Scrin.MarkFailedObjective(ObjectiveCaptureTibFacilities)
@@ -169,11 +171,13 @@ WorldLoaded = function()
 				TibFacilitiesCaptured = TibFacilitiesCaptured + 1
 				Mastermind.GrantCondition("rank-veteran")
 				Mastermind.Health = Mastermind.MaxHealth
+				a.RevokeCondition(objectiveToken)
 			end
 
 			if TibFacilitiesCaptured == 3 then
 				if ObjectiveCaptureYuriHQ == nil then
 					ObjectiveCaptureYuriHQ = Scrin.AddObjective("Capture Yuri's command center.")
+					YuriHQ.GrantCondition("is-objective")
 				end
 				Scrin.MarkCompletedObjective(ObjectiveCaptureTibFacilities)
 				Trigger.AfterDelay(DateTime.Seconds(2), function()

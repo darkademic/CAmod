@@ -73,6 +73,7 @@ TSLA:
 	-Targetable@TeslaBoost:
 
 MSLO:
+	Inherits@ObjectiveDecorationsMinor: ^ObjectiveDecorationsMinor
 	NukePower@ABomb:
 		DisplayTimerRelationships: Ally
 		ChargeInterval: 25

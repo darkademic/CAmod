@@ -124,6 +124,8 @@ WorldLoaded = function()
 
 	ObjectiveDestroyAdvComms = Scrin.AddObjective("Destroy GDI Advanced Communications Center.")
 	ObjectiveDestroyWeatherControl = Scrin.AddObjective("Destroy Allied Weather Control Device.")
+	AdvancedComms.GrantCondition("is-objective")
+	WeatherControl.GrantCondition("is-objective")
 
 	Trigger.OnKilledOrCaptured(AdvancedComms, function()
 		Scrin.MarkCompletedObjective(ObjectiveDestroyAdvComms)

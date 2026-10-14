@@ -182,6 +182,7 @@ WorldLoaded = function()
 	CurrentDelivery = 1
 	McvArrived = false
 	Camera.Position = Spy.CenterPosition
+	StalinHQ.GrantCondition("is-objective")
 
 	InitObjectives(GDI)
 	AdjustPlayerStartingCashForDifficulty()

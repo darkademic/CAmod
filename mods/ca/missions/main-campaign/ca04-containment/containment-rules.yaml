@@ -120,6 +120,7 @@ TSLA:
 	-Targetable@TeslaBoost:
 
 SAM:
+	Inherits@ObjectiveDecorationsMinor: ^ObjectiveDecorationsMinor
 	-SpawnActorOnDeath:
 	-SpawnRandomActorOnDeath:
 
@@ -208,6 +209,7 @@ SAPC:
 	-Targetable:
 
 MSLO:
+	Inherits@ObjectiveDecorationsMinor: ^ObjectiveDecorationsMinor
 	NukePower@ABomb:
 		DisplayTimerRelationships: None
 		AllowMultiple: true

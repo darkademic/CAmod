@@ -300,11 +300,11 @@ InitConvoy = function()
 
 		local trucks = Reinforcements.Reinforce(England, ConvoyUnits, nextConvoy.Spawn, 50, function(truck)
 			Utils.Do(nextConvoy.Path, function(waypoint)
-				truck.Move(waypoint)
+				truck.ScriptedMove(waypoint)
 			end)
 			Trigger.OnIdle(truck, function(self)
 				if not self.IsDead then
-					self.Move(Utils.Random(ExitCells))
+					self.ScriptedMove(Utils.Random(ExitCells))
 				end
 			end)
 		end)

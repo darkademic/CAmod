@@ -118,6 +118,7 @@ WorldLoaded = function()
 		end)
 	end)
 
+	GatewayNerveCenter.GrantCondition("is-objective")
 	GatewayNerveCenter.GrantCondition("nerv-damage-reduction")
 	GatewayNerveCenter.GrantCondition("no-auto-target")
 
@@ -273,6 +274,7 @@ InitSignalTransmittersObjective = function()
 		Utils.Do(transmitters, function(t)
 			local transmitterLocation = t.Location
 			local transmitterFlare = Actor.Create("flare", true, { Owner = USSR, Location = transmitterLocation })
+			local objectiveToken = t.GrantCondition("is-objective")
 
 			Beacon.New(USSR, t.CenterPosition)
 			Trigger.AfterDelay(DateTime.Seconds(20), function()
@@ -281,6 +283,10 @@ InitSignalTransmittersObjective = function()
 
 			Trigger.OnCapture(t, function(self, captor, oldOwner, newOwner)
 				NumTransmittersCaptured = NumTransmittersCaptured + 1
+
+				if objectiveToken then
+					t.RevokeCondition(objectiveToken)
+				end
 
 				if NumTransmittersCaptured == #transmitters and not USSR.IsObjectiveCompleted(ObjectiveSignalTransmitters) then
 					USSR.MarkCompletedObjective(ObjectiveSignalTransmitters)

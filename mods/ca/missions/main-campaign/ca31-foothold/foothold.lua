@@ -102,6 +102,7 @@ WorldLoaded = function()
 
 	ObjectiveDeploySensorArrays = GDI.AddObjective("Deploy Sensor Arrays at target locations.")
 	ObjectiveCaptureNerveCenter = GDI.AddObjective("Capture Scrin Nerve Center.")
+	NerveCenterObjectiveToken = NerveCenter1.GrantCondition("is-objective")
 	SetupReveals({ Reveal1, Reveal2 })
 	CheckSensors()
 
@@ -150,6 +151,9 @@ WorldLoaded = function()
 		ObjectiveProtectNerveCenter = GDI.AddObjective("Protect the captured Nerve Center.")
 		ObjectiveDestroyScrinBase = GDI.AddObjective("Destroy the Scrin base.")
 		GDI.MarkCompletedObjective(ObjectiveCaptureNerveCenter)
+		if NerveCenterObjectiveToken then
+			NerveCenter1.RevokeCondition(NerveCenterObjectiveToken)
+		end
 		BeginScrinAttacks()
 		PeriodicReinforcements()
 

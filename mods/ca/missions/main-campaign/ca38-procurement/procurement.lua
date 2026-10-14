@@ -268,6 +268,10 @@ InitCommsCenterObjective = function()
 	Media.DisplayMessage("Comrade General, we have reason to believe vital information can be found within the GDI comms network. Capture one of their Communications Centers at all costs!", "Premier Cherdenko", HSLColor.FromHex("FF0000"))
 
 	ObjectiveCaptureComms = USSR.AddObjective("Capture a GDI Communications Center.")
+	CommsObjectiveToken1 = CommsCenter1.GrantCondition("is-objective")
+	CommsObjectiveToken2 = CommsCenter2.GrantCondition("is-objective")
+	AdvCommsToken = AdvancedComms.GrantCondition("is-objective")
+
 	Media.PlaySound("beacon.aud")
 
 	Utils.Do(CommsCenters, function(c)
@@ -280,6 +284,15 @@ InitCommsCenterObjective = function()
 		Trigger.OnCapture(c, function(self, captor, oldOwner, newOwner)
 			if ObjectiveCaptureComms ~= nil and not USSR.IsObjectiveCompleted(ObjectiveCaptureComms) then
 				USSR.MarkCompletedObjective(ObjectiveCaptureComms)
+				if CommsObjectiveToken1 then
+					CommsCenter1.RevokeCondition(CommsObjectiveToken1)
+				end
+				if CommsObjectiveToken2 then
+					CommsCenter2.RevokeCondition(CommsObjectiveToken2)
+				end
+				if AdvCommsToken then
+					AdvancedComms.RevokeCondition(AdvCommsToken)
+				end
 			end
 		end)
 	end)

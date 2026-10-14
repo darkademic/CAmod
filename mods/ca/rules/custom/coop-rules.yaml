@@ -392,7 +392,6 @@ HQ.UPG:
 
 ^COOPProducesUnits:
 	Inherits@COOPProducer: ^COOPProducer
-	Inherits@PRIMARY: ^PrimaryBuilding
 	AlwaysVisible:
 	Selectable:
 		Priority: 1
@@ -405,7 +404,6 @@ HQ.UPG:
 
 ^COOPProducesBuildings:
 	Inherits@COOPProducer: ^COOPProducer
-	Inherits@PRIMARY: ^PrimaryBuilding
 	Production@SQBLD:
 		Produces: BuildingSQ, DefenseSQ
 		RequiresCondition: !global-multiqueuefull

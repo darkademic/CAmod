@@ -127,7 +127,7 @@ namespace OpenRA.Mods.CA.Traits
 			var sourcePos = self.World.Map.CenterOfCell(sourceCell);
 			var targetDelta = targetCell - sourceCell;
 
-			var actorsToTeleport = selectedActors.Where(a => IsValidTarget(a));
+			var actorsToTeleport = selectedActors.Where(a => IsValidTarget(a, checkVisibility: false));
 
 			foreach (var actor in actorsToTeleport)
 			{
@@ -206,7 +206,7 @@ namespace OpenRA.Mods.CA.Traits
 				return actorsInRange;
 		}
 
-		public bool IsValidTarget(Actor a)
+		public bool IsValidTarget(Actor a, bool checkVisibility = true)
 		{
 			if (a == null || !a.IsInWorld || a.IsDead)
 				return false;
@@ -218,10 +218,7 @@ namespace OpenRA.Mods.CA.Traits
 			if (targetTypes.Overlaps(info.InvalidTargetTypes))
 				return false;
 
-			if (!Self.Owner.Shroud.IsVisible(a.Location))
-				return false;
-
-			if (!a.CanBeViewedByPlayer(Self.Owner))
+			if (checkVisibility && (!Self.Owner.Shroud.IsVisible(a.Location) || !a.CanBeViewedByPlayer(Self.Owner)))
 				return false;
 
 			return true;

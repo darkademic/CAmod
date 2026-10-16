@@ -3158,6 +3158,8 @@
 	Tooltip@COMBATANT:
 		Name: Technician
 		RequiresCondition: owned-by-combatant
+	TooltipExtras:
+		Description: Armed with a handgun.
 	GrantConditionOnCombatantOwner@COMBATANT:
 		Condition: owned-by-combatant
 	Convertible:

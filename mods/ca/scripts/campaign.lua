@@ -975,7 +975,7 @@ RestoreSquadProduction = function(oldBuilding, newBuilding)
 end
 
 -- make specified units have a chance to swap targets when attacked instead of chasing one target endlessly
-TargetSwapChance = function(unit, chance, isMissionPlayerFunc)
+TargetSwapChance = function(unit, chance, isMissionPlayerFunc, afterAttackFunc)
 	if isMissionPlayerFunc == nil then
 		isMissionPlayerFunc = function(p) return IsMissionPlayer(p) end
 	end
@@ -988,6 +988,9 @@ TargetSwapChance = function(unit, chance, isMissionPlayerFunc)
 			if not unit.IsDead and not attacker.IsDead and unit.HasProperty("Attack") and unit.CanTarget(attacker) then
 				unit.Stop()
 				unit.Attack(attacker)
+				if afterAttackFunc ~= nil then
+					afterAttackFunc(unit)
+				end
 			end
 		end
 	end)

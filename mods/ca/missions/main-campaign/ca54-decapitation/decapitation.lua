@@ -78,6 +78,28 @@ Spires = {
 
 NextSpireSummonAvailable = 0
 
+SpireSummonsUsed = {}
+
+VanquisherDefendingSpire = false
+VanquisherAttacking = false
+VanquisherFinalAttack = false
+
+VanquisherAttacksDelay = {
+	easy = DateTime.Minutes(28),
+	normal = DateTime.Minutes(24),
+	hard = DateTime.Minutes(20),
+	vhard = DateTime.Minutes(16),
+	brutal = DateTime.Minutes(12),
+}
+
+VanquisherAttacksInterval = {
+	easy = DateTime.Minutes(7),
+	normal = DateTime.Minutes(6),
+	hard = DateTime.Minutes(5),
+	vhard = DateTime.Minutes(4),
+	brutal = DateTime.Minutes(3),
+}
+
 RecalculateBetaSquad = function(squad)
 	local activeBases = {}
 
@@ -385,7 +407,10 @@ InitScrin = function()
 		InitAirAttackSquad(Squads.ScrinCommandoKillers, Scrin, MissionPlayers, { "mast", "rmbo" })
 	end
 
-	TargetSwapChance(Vanquisher, 2)
+	TargetSwapChance(Vanquisher, 2, nil, function(a)
+		VanquisherAttacking = false
+		VanquisherAttack()
+	end)
 
 	Trigger.OnDamaged(Vanquisher, function(self, attacker, damage)
 		if IsMissionPlayer(attacker.Owner) then
@@ -400,18 +425,27 @@ InitScrin = function()
 		Actor.Create("ai.superweapons.enabled", true, { Owner = Scrin })
 	end)
 
+	if IsHardOrAbove() then
+		Trigger.AfterDelay(VanquisherAttacksDelay[Difficulty], function()
+			VanquisherAttack()
+		end)
+	end
+
 	Utils.Do(Spires, function(spire, attacker, damage)
 		Trigger.OnDamaged(spire, function(self, attacker, damage)
-			if NextSpireSummonAvailable < DateTime.GameTime and IsMissionPlayer(attacker.Owner) then
+			if NextSpireSummonAvailable < DateTime.GameTime and IsMissionPlayer(attacker.Owner) and not SpireSummonsUsed[tostring(spire)] then
+				SpireSummonsUsed[tostring(spire)] = true
 				local maxHp = self.MaxHealth
 				local currentHp = self.Health
 				local healthPercentage = (currentHp / maxHp) * 100
 				if healthPercentage < 50 then
 					local destinationLoc = CPos.New(spire.Location.X + 1, spire.Location.Y)
 					TeleportVanquisher(destinationLoc)
-					NextSpireSummonAvailable = DateTime.GameTime + DateTime.Seconds(120)
+					NextSpireSummonAvailable = DateTime.GameTime + DateTime.Seconds(60)
 					Vanquisher.Hunt()
 					MediaCA.PlaySound(MissionDir .. "/vanquisher.aud", 1)
+					VanquisherAttacking = false
+					VanquisherDefendingSpire = true
 
 					Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(3)), function()
 						if not FirstTauntUsed then
@@ -474,17 +508,37 @@ InitNod = function()
 	InitAttackSquad(Squads.Nod2, Nod2, Scrin)
 end
 
+VanquisherAttack = function()
+	if not VanquisherDefending and not VanquisherAttacking and not VanquisherFinalAttack then
+		local possibleTargets = GetMissionPlayersActorsByTypes({ "afac", "fact", "sfac", "proc", "proc.td", "proc.scrin" })
+		if #possibleTargets > 0 then
+			VanquisherAttacking = true
+			local target = Utils.Random(possibleTargets)
+			Vanquisher.Attack(target)
+			Vanquisher.Hunt()
+		end
+	end
+	Trigger.AfterDelay(VanquisherAttacksInterval[Difficulty], function()
+		VanquisherAttack()
+	end)
+end
+
 RecallVanquisher = function()
 	for _, spire in ipairs(Spires) do
 		if not spire.IsDead then
 			TeleportVanquisher(spire.Location)
 			Vanquisher.FullyRestoreShields()
+			VanquisherDefendingSpire = false
+			VanquisherAttacking = false
 			return
 		end
 	end
 
 	-- if no spires left
-	Vanquisher.Hunt()
+	if not VanquisherFinalAttack then
+		VanquisherFinalAttack = true
+		Vanquisher.Hunt()
+	end
 end
 
 TeleportVanquisher = function(destinationLoc)

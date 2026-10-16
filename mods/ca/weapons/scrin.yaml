@@ -736,6 +736,19 @@ RuinerCannonCharged:
 		AimChance: 0
 		ValidTargets: Ground, Water, Infantry, Vehicle
 		ThrowWithoutTarget: true
+	Warhead@18Radio: CreateTintedCells
+		Spread: 2c0
+		Level: 200
+		Falloff: 100, 32
+		LayerName: radioactivity.weak
+		GlowScale: 1.5
+		GlowFadeFrames: 30
+		GlowFadeInFrames: 12
+	Warhead@2irrad: GrantExternalConditionCA
+		Range: 0c512
+		Duration: 250
+		Condition: irradiated
+		ValidTargets: Vehicle, Ship
 
 TripodLaser:
 	Inherits: ^ScrinPlasmaBeam

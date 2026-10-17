@@ -2528,7 +2528,7 @@ MNLY:
 		Margin: 4, 3
 		RequiresSelection: true
 	DetectCloaked:
-		Range: 7c0
+		Range: 6c0
 		DetectionTypes: Mine
 		RequiresCondition: !(empdisable || being-warped)
 	RenderDetectionCircle:
@@ -2536,6 +2536,9 @@ MNLY:
 		Weapon: ATMine
 	Rearmable:
 		RearmActors: fix, rep
+	PaidRearmClient:
+		CostPerAmmo: 25
+		ValidHostTypes: fix, rep
 	Armament@PRIMARY:
 		Weapon: MineDefuser
 		Cursor: goldwrench
@@ -6173,7 +6176,7 @@ TRPC:
 		DetectionTypes: Cloak, AirCloak
 		RequiresCondition: !(empdisable || being-warped)
 	DetectCloaked@Mines:
-		Range: 7c0
+		Range: 6c0
 		DetectionTypes: Mine
 		RequiresCondition: !(empdisable || being-warped)
 	GivesBountyCA:

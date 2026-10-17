@@ -4827,7 +4827,7 @@
 		PauseOnCondition: being-warped
 		FacingTolerance: 0
 	DetectCloaked:
-		Range: 7c0
+		Range: 6c0
 		DetectionTypes: Mine
 	MineImmune:
 

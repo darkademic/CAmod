@@ -20,7 +20,7 @@ namespace OpenRA.Mods.CA.Traits
 		public override object Create(ActorInitializer init) { return new PaidRearmHost(); }
 	}
 
-	public class PaidRearmHost : INotifyResupply, ISync
+	public class PaidRearmHost : INotifyResupply
 	{
 		readonly Dictionary<Actor, Dictionary<AmmoPool, int>> previousAmmoCounts = new();
 

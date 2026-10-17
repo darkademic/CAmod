@@ -84,7 +84,7 @@ Dragon.CRYO:
 	Warhead@chill: GrantExternalConditionCA
 		ValidRelationships: Enemy, Neutral, Ally
 
-MiniRift:
+DarkenerRift:
 	Warhead@1Dam: SpreadDamage
 		ValidRelationships: Enemy, Neutral, Ally
 	-Warhead@2Dam:

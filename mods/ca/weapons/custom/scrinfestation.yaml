@@ -70,7 +70,7 @@ RiftCannon:
 		Versus:
 			None: 0
 
-MiniRift:
+DarkenerRift:
 	Warhead@1Dam: SpreadDamage
 		Spread: 512
 		Delay: 75
@@ -117,3 +117,10 @@ BruteAttack:
 			Heavy: 75
 			Concrete: 35
 			Wood: 25
+
+ObliteratorBolt:
+	Projectile: LinearPulse
+		Speed: 384
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			None: 100

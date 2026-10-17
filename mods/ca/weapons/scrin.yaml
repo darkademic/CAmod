@@ -520,13 +520,24 @@ RiftCannon:
 		Damage: 1
 		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
 	Warhead@Spawn: SpawnActor
-		Actors: riftminor
-		Range: 1
+		Actors: darkenerrift
 		ForceGround: false
 		ValidTargets: Ground, Water
 		ImpactActors: false
+		AvoidActors: true
+		AvoidActorTypes: darkenerrift
+	Warhead@Refresh: GrantExternalConditionCA
+		Range: 256
+		Duration: 144
+		Condition: rift-active
+		ValidTargets: DarkenerRift
+	Warhead@Intensify: GrantExternalConditionCA
+		Range: 256
+		Condition: rift-intensity
+		ValidTargets: DarkenerRift
+		Delay: 1
 
-MiniRift:
+DarkenerRift:
 	ReloadDelay: 10
 	Range: 1c0
 	Projectile: InstantHit
@@ -571,6 +582,17 @@ MiniRift:
 		Scale: 0.3
 		FadeFrames: 180
 		FadeInFrames: 15
+
+DarkenerRift2:
+	Inherits: DarkenerRift
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c0
+	Warhead@2Dam: SpreadDamage
+		Spread: 1c0
+	Warhead@3Slow: GrantExternalConditionCA
+		Range: 1c512
+	Warhead@4Slow: GrantExternalConditionCA
+		Range: 3c0
 
 CyberscrinLaser:
 	Inherits: DevourerLaser

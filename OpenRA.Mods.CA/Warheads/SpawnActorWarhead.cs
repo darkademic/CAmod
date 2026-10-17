@@ -9,6 +9,7 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using OpenRA.GameRules;
 using OpenRA.Mods.CA.Activities;
@@ -26,8 +27,8 @@ namespace OpenRA.Mods.CA.Warheads
 	[Desc("Spawn actors upon explosion. Don't use this with buildings.")]
 	public class SpawnActorWarhead : WarheadAS, IRulesetLoaded<WeaponInfo>
 	{
-		[Desc("The cell range to try placing the actors within.")]
-		public readonly int Range = 10;
+		[Desc("The cell range to try placing the actors within. Zero for target cell only.")]
+		public readonly int Range = 0;
 
 		[Desc("Actors to spawn.")]
 		public readonly string[] Actors = { };
@@ -65,6 +66,9 @@ namespace OpenRA.Mods.CA.Warheads
 		[Desc("For non-positionable actors only, whether to avoid spawning on top of existing actors.")]
 		public readonly bool AvoidActors = false;
 
+		[Desc("If AvoidActors is true, avoid these actors (defaults to avoiding all actors).")]
+		public readonly HashSet<string> AvoidActorTypes = new HashSet<string>();
+
 		[Desc("For actors with facing, match the facing of the source (if the source also has a facing) .")]
 		public readonly bool MatchSourceFacing = false;
 
@@ -101,7 +105,17 @@ namespace OpenRA.Mods.CA.Warheads
 			if (!IsValidImpact(target.CenterPosition, firedBy))
 				return;
 
-			var targetCells = map.FindTilesInCircle(targetCell, Range);
+			IEnumerable<CPos> targetCells;
+
+			if (Range == 0)
+			{
+				targetCells = new[] { targetCell };
+			}
+			else
+			{
+				targetCells = map.FindTilesInCircle(targetCell, Range);
+			}
+
 			var cell = targetCells.GetEnumerator();
 
 			foreach (var a in Actors)
@@ -124,9 +138,12 @@ namespace OpenRA.Mods.CA.Warheads
 						{
 							while (cell.MoveNext() && !placed)
 							{
-								var actorsInCell = firedBy.World.ActorMap.GetActorsAt(cell.Current);
+								var actorsInCell = firedBy.World.ActorMap.GetActorsAt(cell.Current).Concat(
+									firedBy.World.Actors
+										.Where(actor => actor.OccupiesSpace != null && map.CellContaining(actor.CenterPosition) == cell.Current))
+									.Distinct();
 
-								if (actorsInCell.Any())
+								if (actorsInCell.Any(actor => AvoidActorTypes.Count == 0 || AvoidActorTypes.Contains(actor.Info.Name.ToLowerInvariant())))
 									continue;
 
 								placed = true;

@@ -52,10 +52,8 @@ BRST2:
 	Inherits: S1
 	RenderSprites:
 		Image: brst
-	ConvertsDamageToHealth:
-		DamagePercentConverted: 225
 	Armament@PRIMARY:
-		Weapon: LeecherBeam
+		Weapon: BursterTargeting
 		LocalOffset: 150,0,200
 		-MuzzleSequence:
 	-Armament@BATF:
@@ -111,9 +109,12 @@ LCHR:
 	ConvertsDamageToHealth:
 		DamagePercentConverted: 225
 
-RiftMinor:
+DarkenerRift:
 	KillsSelf:
 		Delay: 875
+		-RequiresCondition:
+	DummyConditionConsumer@RiftActive:
+		Condition: rift-active
 
 BRIK:
 	-RenderSprites:

@@ -6454,6 +6454,7 @@ TBCL:
 ^RiftBase:
 	Interactable:
 		Bounds: 64, 64
+	SelectionDecorations:
 	ScriptTriggers:
 	RenderSprites:
 	WithSpriteBody:
@@ -6503,35 +6504,80 @@ RiftFade:
 	-PeriodicExplosion:
 	-AmbientSound:
 
-RiftMinor:
+DarkenerRift:
 	Inherits: ^RiftBase
 	EditorOnlyTooltip:
 		Name: (Minor Rift)
 	RenderSprites:
 		Image: riftsm
+	WithSpriteBody:
+		StartSequence: make
+		RequiresCondition: rift-intensity < 4
+	WithSpriteBody@Intensified:
+		Name: intensified
+		Sequence: idle2
+		RequiresCondition: rift-intensity >= 4
 	PeriodicExplosion:
-		Weapon: MiniRift
+		Weapon: DarkenerRift
+		ApplyModifiers: true
+		RequiresCondition: rift-intensity < 4
+	PeriodicExplosion@Intensified:
+		Weapon: DarkenerRift2
+		ApplyModifiers: true
+		RequiresCondition: rift-intensity >= 4
+	GrantTimedCondition@ActiveInitial:
+		Duration: 144
+		Condition: rift-active
 	KillsSelf:
-		Delay: 144
+		Delay: 0
+		RequiresCondition: !rift-active
+	ExternalCondition@Intensity:
+		Condition: rift-intensity
+		SourceCap: 1
+	ExternalCondition@Active:
+		Condition: rift-active
+	Targetable@DarkenerRift:
+		TargetTypes: DarkenerRift
+	FirepowerMultiplier@Intensity2:
+		Modifier: 200
+		RequiresCondition: rift-intensity == 2
+	FirepowerMultiplier@Intensity3:
+		Modifier: 300
+		RequiresCondition: rift-intensity == 3
+	FirepowerMultiplier@Intensity4:
+		Modifier: 400
+		RequiresCondition: rift-intensity >= 4
 	# required for spawning actor on death
 	Health:
 		HP: 1
-	WithSpriteBody:
-		StartSequence: make
 	SpawnActorOnDeath:
-		Actor: riftminorfade
+		Actor: darkenerriftfade
 		SkipMakeAnimations: false
+		RequiresCondition: rift-intensity < 4
+	SpawnActorOnDeath@Intensified:
+		Actor: darkenerriftfade2
+		SkipMakeAnimations: false
+		RequiresCondition: rift-intensity >= 4
 
-RiftMinorFade:
-	Inherits: RiftMinor
+DarkenerRiftFade:
+	Inherits: ^RiftBase
+	EditorOnlyTooltip:
+		Name: (Minor Rift)
+	RenderSprites:
+		Image: riftsm
 	WithSpriteBody:
 		Sequence: dead
 	WithMakeAnimation:
 		Sequence: die
 	KillsSelf:
 		Delay: 24
-	-SpawnActorOnDeath:
-	-PeriodicExplosion:
+
+DarkenerRiftFade2:
+	Inherits: DarkenerRiftFade
+	WithSpriteBody:
+		Sequence: dead
+	WithMakeAnimation:
+		Sequence: die2
 
 camera.resourcescan:
 	Inherits: ^CameraBase

@@ -4076,7 +4076,7 @@ Actors:
 		SubCell: 3
 		Location: 66,64
 		Facing: 182
-	Actor1353: dark
+	Actor1353: oblt
 		Owner: Scrin
 		Facing: 126
 		Location: 89,61

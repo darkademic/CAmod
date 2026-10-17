@@ -3652,9 +3652,11 @@ BRUT:
 		RequiresCondition: berserkactive
 		IsDecoration: True
 	GrantConditionOnDamageState@CriticalBerserk:
-		Condition: berserkactive
+		Condition: critically-damaged
 		ValidDamageStates: Critical
-		RequiresCondition: impmuta-upgrade
+	GrantCondition@CriticalBerserk:
+		Condition: berserkactive
+		RequiresCondition: impmuta-upgrade && critically-damaged
 	-TakeCover:
 	-Captures@DRIVER_KILL:
 	-CaptureManager:

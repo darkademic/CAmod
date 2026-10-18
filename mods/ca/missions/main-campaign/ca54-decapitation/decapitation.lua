@@ -302,6 +302,7 @@ WorldLoaded = function()
         end
     end)
 
+	NextMeteorInterval = MeteorInitialInterval[Difficulty]
 	ObjectiveDestroySpires = ScrinRebels.AddObjective("Destroy all Overlord spires.")
 
 	Utils.Do(Spires, function(spire)
@@ -485,7 +486,6 @@ InitScrin = function()
 			MediaCA.PlaySound(MissionDir .. "/s_meteors.aud", 2)
 		end)
 
-		NextMeteorInterval = MeteorInitialInterval[Difficulty]
 		QueueNextMeteor()
 	end)
 end

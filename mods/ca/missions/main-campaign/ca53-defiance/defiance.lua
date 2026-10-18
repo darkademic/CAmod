@@ -340,11 +340,14 @@ end
 OncePerSecondChecks = function()
 	if DateTime.GameTime > 1 and DateTime.GameTime % 25 == 0 then
         USSR.Resources = USSR.ResourceCapacity - 500
+        Nod.Resources = Nod.ResourceCapacity - 500
 
 		if not PlayerHasBuildings(USSR) then
 			ScrinRebels.MarkCompletedObjective(ObjectiveDestroySoviets)
 			if not NodStructureDestroyed then
 				ScrinRebels.MarkCompletedObjective(ObjectiveDestroyNoNodStructures)
+			else
+				ScrinRebels.MarkFailedObjective(ObjectiveDestroyNoNodStructures)
 			end
 		end
 

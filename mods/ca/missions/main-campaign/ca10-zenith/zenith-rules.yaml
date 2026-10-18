@@ -94,12 +94,12 @@ MSLO:
 NukeDummyEasy:
 	Inherits: ^NukeDummy
 	NukePower@ABomb:
-		ChargeInterval: 90000
+		ChargeInterval: 180000
 
 NukeDummyNormal:
 	Inherits: ^NukeDummy
 	NukePower@ABomb:
-		ChargeInterval: 67500
+		ChargeInterval: 90000
 
 NukeDummyHard:
 	Inherits: ^NukeDummy

@@ -4954,7 +4954,7 @@ MSAM:
 	Passenger:
 		Voice: Move
 	Health:
-		HP: 22000
+		HP: 19000
 	Armor:
 		Type: Light
 	RevealsShroud:

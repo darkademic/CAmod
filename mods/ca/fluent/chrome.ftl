@@ -158,6 +158,10 @@ supportpowers-support-powers-palette =
     .ready = READY
     .hold = ON HOLD
 
+## ingame-observer.yaml, ingame-player.yaml
+label-mute-indicator = Audio Muted
+button-top-buttons-options-tooltip = Options
+
 ## IngameMenuLogic
 menu-ingame =
     .leave = Leave

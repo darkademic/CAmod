@@ -2901,7 +2901,7 @@ JJET:
 		CruiseAltitude: 1c0
 		IdealSeparation: 0c384
 		InitialFacing: 92
-		Speed: 118
+		Speed: 92
 		LandableTerrainTypes: Clear,Road,Rough,Ore,Gems,Tiberium,BlueTiberium,BlackTiberium,Beach,Bridge,Tunnel,Ford
 		AirborneCondition: airborne
 		CruisingCondition: cruising
@@ -3005,8 +3005,6 @@ BJET:
 		Weaknesses: • Weak vs Heavy Armor\n• Has difficulty hitting moving targets\n• Cannot attack Aircraft
 	Tooltip:
 		Name: Bombardier
-	Aircraft:
-		Speed: 100
 	Armament@AIRBORNE:
 		Weapon: GrenadeJJ
 		LocalOffset: 0,0,180

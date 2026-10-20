@@ -18,7 +18,7 @@ end
 
 AfterWorldLoaded = function()
 	StartCashSpread(3500)
-	TransferMcvsToPlayers()
+	TransferBaseToPlayer(SinglePlayerPlayer, GetFirstActivePlayer())
 
 	Utils.Do(MissionPlayers, function(p)
 		Actor.Create("rebel.allegiance", true, { Owner = p })

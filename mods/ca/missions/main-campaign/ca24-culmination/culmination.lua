@@ -387,7 +387,11 @@ SetupMainObjectives = function(conyards)
 	ConyardsCaptured = 0
 
 	Utils.Do(conyards, function(c)
+		local objectiveToken = c.GrantCondition("is-objective")
+
 		Trigger.OnCapture(c, function(self, captor, oldOwner, newOwner)
+			c.RevokeCondition(objectiveToken)
+
 			if IsMissionPlayer(newOwner) then
 				ConyardsCaptured = ConyardsCaptured + 1
 				if ConyardsCaptured == 2 then

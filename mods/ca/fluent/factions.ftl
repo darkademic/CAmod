@@ -423,3 +423,7 @@ faction-nod =
 faction-scrin =
     .name = Scrin
     .description = Scrin
+
+faction-unknown =
+    .name = Unknown
+    .description = Gain vision of a unit/structure belonging to this player to reveal their faction.

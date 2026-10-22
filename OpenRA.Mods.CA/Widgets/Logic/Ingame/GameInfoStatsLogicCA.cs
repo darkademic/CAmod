@@ -49,6 +49,12 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 		const string Spectators = "label-spectators";
 
 		[FluentReference]
+		const string UnknownFactionName = "faction-unknown.name";
+
+		[FluentReference]
+		const string UnknownFactionDesc = "faction-unknown.desc";
+
+		[FluentReference]
 		const string Gone = "label-client-state-disconnected";
 
 		[FluentReference]
@@ -136,6 +142,8 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 			var spectatorTemplate = playerPanel.Get("SPECTATOR_TEMPLATE");
 			var unmuteTooltip = FluentProvider.GetMessage(Unmute);
 			var muteTooltip = FluentProvider.GetMessage(Mute);
+			var unknownFactionName = FluentProvider.GetMessage(UnknownFactionName);
+			var unknownFactionDesc = FluentProvider.GetMessage(UnknownFactionDesc);
 			var kickTooltip = FluentProvider.GetMessage(KickTooltip);
 			var voteKickTooltip = FluentProvider.GetMessage(KickVoteTooltip);
 			playerPanel.RemoveChildren();
@@ -272,9 +280,10 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 					}
 					else
 					{
+						factionName = unknownFactionName;
 						flag.GetImageName = () => "Random";
-						factionAndLabel.GetTooltipText = () => "Unknown";
-						factionAndLabel.GetTooltipDesc = () => "Gain vision of a unit/structure belonging to this player\\nto reveal their faction.";
+						factionAndLabel.GetTooltipText = () => unknownFactionName;
+						factionAndLabel.GetTooltipDesc = () => unknownFactionDesc;
 					}
 
 					var factionLabel = item.Get<LabelWidget>("FACTION");

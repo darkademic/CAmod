@@ -243,11 +243,9 @@ Squads = {
 	Dominators = {
 		Delay = DominatorStartTime,
 		Interval = DominatorInterval,
-		ProducerActors = { Vehicles = { SovietNorthFactory1, SovietNorthFactory2 } },
 		Compositions = {
 			{ Vehicles = { "domi" } }
 		},
-		AttackPaths = NorthAttackPaths,
 		AfterSendSquad = RecalculateSquad
 	}
 }
@@ -279,7 +277,7 @@ WorldLoaded = function()
 
 	local nodStructures = Utils.Where(Nod.GetActors(), function(a) return a.HasProperty("StartBuildingRepairs") end)
 	Trigger.OnAnyKilled(nodStructures, function(self)
-		NodStructureDestroyed = true
+		ScrinRebels.MarkFailedObjective(ObjectiveDestroyNoNodStructures)
 	end)
 
 	Trigger.OnAnyProduction(function(producer, produced, productionType)
@@ -344,10 +342,8 @@ OncePerSecondChecks = function()
 
 		if not PlayerHasBuildings(USSR) then
 			ScrinRebels.MarkCompletedObjective(ObjectiveDestroySoviets)
-			if not NodStructureDestroyed then
+			if not ScrinRebels.IsObjectiveFailed(ObjectiveDestroyNoNodStructures) then
 				ScrinRebels.MarkCompletedObjective(ObjectiveDestroyNoNodStructures)
-			else
-				ScrinRebels.MarkFailedObjective(ObjectiveDestroyNoNodStructures)
 			end
 		end
 

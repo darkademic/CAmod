@@ -8012,7 +8012,7 @@ RTNK:
 	TooltipExtras:
 		Strengths: • Strong vs Light Armor, Heavy Armor
 		Weaknesses: • Weak vs Defenses, Infantry\n• Cannot attack Aircraft
-		Attributes: • Disguised when not moving\n• Deals additional damage firing from disguised state
+		Attributes: • Disguised when not moving\n• Deals +50% damage firing from disguised state\n• +2 range and +1 vision while disguised
 	Valued:
 		Cost: 750
 	Tooltip:
@@ -8100,6 +8100,12 @@ RTNK:
 		ColorSource: Player
 	FirepowerMultiplier@Ambush:
 		Modifier: 150
+		RequiresCondition: hidden
+	RangeMultiplier@Ambush:
+		Modifier: 142
+		RequiresCondition: hidden
+	RevealsShroudMultiplier@Ambush:
+		Modifier: 117
 		RequiresCondition: hidden
 	GrantConditionToAttached@Cloak:
 		Condition: inherited-cloak

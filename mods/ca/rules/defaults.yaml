@@ -1590,7 +1590,7 @@
 		UncloakSound: appear1md.aud
 		UncloakOn: Attack, Unload, Infiltrate, Demolish
 	DamageMultiplier@TIBSTEALTH:
-		Modifier: 90
+		Modifier: 85
 		RequiresCondition: tibstealth
 	ExternalCondition@TIBSTEALTH:
 		Condition: tibstealth

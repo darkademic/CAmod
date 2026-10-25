@@ -3400,6 +3400,8 @@ SCRN:
 		DecorationBounds: 1536, 1194
 	Voiced:
 		VoiceSet: ScrinVoice
+	DeathSounds:
+		VolumeMultiplier: 4
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
 	WithProductionIconOverlay:

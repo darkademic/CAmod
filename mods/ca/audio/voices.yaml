@@ -524,7 +524,7 @@ ScrinVoice:
 		Move: 32-i002, 32-i004
 		Attack: 32-i006
 		Action: 32-i002, 32-i004
-		Die: 32-i008
+		Die: 32-i008, empty, empty, empty
 
 OxannaVoice:
 	Voices:

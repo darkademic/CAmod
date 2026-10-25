@@ -767,6 +767,7 @@ PlaceC4:
 
 PlaceC4Seal:
 	Inherits: PlaceC4
+	ReloadDelay: 25
 	InvalidTargets: Vehicle, C4Attached, TNTAttached, C4Immune
 	Warhead@AttachDelayedWeapon: AttachDelayedWeapon
 		TriggerTime: 20

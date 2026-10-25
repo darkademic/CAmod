@@ -4350,7 +4350,7 @@ SEAL:
 	GrantConditionOnAttack@PreparingC4:
 		Condition: preparing-c4
 		ArmamentNames: tertiary
-		RevokeDelay: 26
+		RevokeDelay: 27
 	AttackFrontal:
 		Voice: Attack
 		Armaments: primary, secondary, tertiary

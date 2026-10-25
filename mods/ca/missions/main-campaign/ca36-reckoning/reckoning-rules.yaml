@@ -257,10 +257,10 @@ SPLITBLUE:
 
 ETPD:
 	FirepowerMultiplier@NORMAL:
-		Modifier: 75
+		Modifier: 66
 		RequiresCondition: difficulty-normal
 	FirepowerMultiplier@EASY:
-		Modifier: 50
+		Modifier: 33
 		RequiresCondition: difficulty-easy
 	DamageMultiplier@NORMAL:
 		Modifier: 125

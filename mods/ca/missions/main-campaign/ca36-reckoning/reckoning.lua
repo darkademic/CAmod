@@ -333,7 +333,7 @@ InitScrinRebels = function()
 
 		AutoRepairAndRebuildBuildings(ScrinRebels, 15)
 		AutoReplaceHarvesters(ScrinRebels)
-		AutoRebuildConyards(Scrin, true)
+		AutoRebuildConyards(ScrinRebels, true)
 		InitAiUpgrades(ScrinRebels)
 		InitAirAttackSquad(Squads.ScrinRebelsAir, ScrinRebels, Scrin)
 		InitAttackSquad(Squads.ScrinRebelsMain, ScrinRebels, Scrin)

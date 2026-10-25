@@ -1300,6 +1300,7 @@ FACT:
 	Inherits: ^Building
 	Inherits@BOTI: ^BotFallbackInsurance
 	Inherits@BLD: ^ProducesBuildings
+	Inherits@EconomyDamage: ^MobileConstructionYard
 	Selectable:
 		Bounds: 3072, 3072
 	Building:
@@ -3308,6 +3309,7 @@ AFAC:
 	Inherits@SHAPE: ^3x2Shape
 	Inherits@BOTI: ^BotFallbackInsurance
 	Inherits@BLD: ^ProducesBuildings
+	Inherits@EconomyDamage: ^MobileConstructionYard
 	RenderSprites:
 		FactionImages:
 			nod: nodfact

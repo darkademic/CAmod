@@ -3043,6 +3043,7 @@ SMCV:
 	Inherits@EconomyPolicyMcvSpeedBonus: ^EconomyPolicyMcvSpeedBonus
 	Inherits@HeavyArmor: ^HeavyArmor
 	Inherits@NodCovenantTarget: ^NodCovenantTarget
+	Inherits@EconomyDamage: ^MobileConstructionYard
 	Buildable:
 		Queue: VehicleSQ, VehicleMQ
 		BuildPaletteOrder: 602
@@ -4591,6 +4592,7 @@ SFAC:
 	Inherits@SHAPE: ^3x2Shape
 	Inherits@BOTI: ^BotFallbackInsurance
 	Inherits@BLD: ^ProducesBuildings
+	Inherits@EconomyDamage: ^MobileConstructionYard
 	Building:
 		Footprint: xxx xxx ===
 		Dimensions: 3,3

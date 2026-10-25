@@ -607,9 +607,10 @@ OILB:
 	CapturableProgressBar:
 	CapturableProgressBlink:
 	InstantlyRepairable:
-	CashTrickler:
+	CashTricklerCA:
 		Interval: 375
 		Amount: 125
+		Type: Oil
 		RequiresCondition: enabled
 	GrantPeriodicCondition@Tick:
 		ActiveDuration: 1
@@ -639,6 +640,13 @@ OILB:
 		Actor: OILB.Husk
 		OwnerType: InternalName
 	UpdatesDerrickCount:
+	UpdatesCount@OilsCaptured:
+		Type: OilCaptured
+		UpdateOn: Captured
+		ValidRelationships: Neutral, Enemy
+	UpdatesCount@OilsLost:
+		LossType: OilLost
+		UpdateOn: Killed, Captured
 	AppearsOnMapPreview:
 	GrantConditionOnCombatantOwner:
 		Condition: enabled
@@ -656,11 +664,13 @@ OILB:
 		RequiresCondition: damaged
 	GrantConditionIfOwnerIsNeutral:
 		Condition: is-neutral
-	GivesCashOnCapture@defloration:
+	GivesCashOnCaptureCA@defloration:
 		Amount: 400
+		Type: Oil
 		RequiresCondition: !has-been-captured
-	GivesCashOnCapture@subsequent:
+	GivesCashOnCaptureCA@subsequent:
 		Amount: 125
+		Type: Oil
 		RequiresCondition: has-been-captured
 	GrantDelayedCondition:
 		Delay: 1

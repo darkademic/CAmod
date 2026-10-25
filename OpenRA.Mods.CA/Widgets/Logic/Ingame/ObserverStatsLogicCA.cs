@@ -562,6 +562,10 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 
 			SetupPlayerColor(player, template, playerColor, playerGradient);
 
+			var income = player.PlayerActor.Trait<PlayerIncome>();
+			var oilText = new CachedTransform<int, string>(i => "$" + i.ToString(NumberFormatInfo.CurrentInfo));
+			template.Get<LabelWidget>("OIL").GetText = () => oilText.Update(income.GetIncome(PlayerIncomeType.Oil));
+
 			var stats = player.PlayerActor.TraitOrDefault<PlayerStatistics>();
 			if (stats == null)
 				return template;
@@ -623,6 +627,12 @@ namespace OpenRA.Mods.CA.Widgets.Logic
 			template.Get<LabelWidget>("HARVESTERS_LOST").GetText = () => Count("HarvesterLost");
 			template.Get<LabelWidget>("REFINERIES_KILLED").GetText = () => Count("RefineryKilled");
 			template.Get<LabelWidget>("REFINERIES_LOST").GetText = () => Count("RefineryLost");
+			template.Get<LabelWidget>("MCV_KILLED").GetText = () => Count("MCVKilled");
+			template.Get<LabelWidget>("MCV_LOST").GetText = () => Count("MCVLost");
+			template.Get<LabelWidget>("OILS_CAPTURED").GetText = () => Count("OilCaptured");
+			template.Get<LabelWidget>("OILS_LOST").GetText = () => Count("OilLost");
+			template.Get<LabelWidget>("ENGI_KILLED").GetText = () => Count("EngineerKilled");
+			template.Get<LabelWidget>("ENGI_LOST").GetText = () => Count("EngineerLost");
 
 			return template;
 		}

@@ -29,6 +29,9 @@ namespace OpenRA.Mods.CA.Traits
 		[Desc("Award cash only if the capturer's CaptureTypes overlap with these types. Leave empty to allow all types.")]
 		public readonly BitSet<CaptureType> CaptureTypes = default;
 
+		[Desc("Optional income category credited to the capturing player.")]
+		public readonly PlayerIncomeType? Type = null;
+
 		[Desc("If set, to get the value remove this suffix and use the actor with the name that remains.")]
 		public readonly string SuffixToRemoveForValueActor = null;
 
@@ -73,6 +76,9 @@ namespace OpenRA.Mods.CA.Traits
 
 			var resources = newOwner.PlayerActor.Trait<PlayerResources>();
 			var amount = resources.ChangeCash(cashAmount);
+			if (info.Type.HasValue)
+				newOwner.PlayerActor.Trait<PlayerIncome>().AddIncome(info.Type.Value, amount);
+
 			if (!info.ShowTicks && amount != 0)
 				return;
 

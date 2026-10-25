@@ -27,13 +27,12 @@ namespace OpenRA.Mods.CA.Traits
 	}
 
 	[Desc("Updates a counter when the actor is created/disposed or changes owner.")]
-	public class UpdatesCountInfo : ConditionalTraitInfo
+	public class UpdatesCountInfo : ConditionalTraitInfo, IRulesetLoaded
 	{
-		[FieldLoader.Require]
-		[Desc("Name of the counter to update.")]
+		[Desc("Optional name of the counter to update.")]
 		public readonly string Type = null;
 
-		[Desc("Name of the owner counter to increment for the victim player when the actor is killed (requires UpdateOnType to include Killed).")]
+		[Desc("Name of the owner counter to increment for the victim player when the actor is killed or captured (requires UpdateOnType to include Killed or Captured).")]
 		public readonly string LossType = null;
 
 		[Desc("What triggers an update.")]
@@ -44,6 +43,12 @@ namespace OpenRA.Mods.CA.Traits
 
 		[Desc("Relationships that a killing/capturing/damaging/infiltrating player must have to update the count. No effect on Owned.")]
 		public readonly PlayerRelationship ValidRelationships = PlayerRelationship.Enemy;
+
+		void IRulesetLoaded<ActorInfo>.RulesetLoaded(Ruleset rules, ActorInfo info)
+		{
+			if (string.IsNullOrEmpty(Type) && string.IsNullOrEmpty(LossType))
+				throw new YamlException($"UpdatesCount is defined on actor '{info.Name}' without a Type or LossType.");
+		}
 
 		public override object Create(ActorInitializer init) { return new UpdatesCount(this); }
 	}
@@ -71,7 +76,7 @@ namespace OpenRA.Mods.CA.Traits
 		{
 			UpdateCounter(self.Owner);
 
-			if (!info.UpdateOn.HasFlag(UpdateOnType.Owned))
+			if (!info.UpdateOn.HasFlag(UpdateOnType.Owned) || string.IsNullOrEmpty(info.Type))
 				return;
 
 			if (IsTraitDisabled)
@@ -82,13 +87,13 @@ namespace OpenRA.Mods.CA.Traits
 
 		protected override void TraitEnabled(Actor self)
 		{
-			if (info.UpdateOn.HasFlag(UpdateOnType.Owned))
+			if (info.UpdateOn.HasFlag(UpdateOnType.Owned) && !string.IsNullOrEmpty(info.Type))
 				countManager.Increment(info.Type);
 		}
 
 		protected override void TraitDisabled(Actor self)
 		{
-			if (info.UpdateOn.HasFlag(UpdateOnType.Owned))
+			if (info.UpdateOn.HasFlag(UpdateOnType.Owned) && !string.IsNullOrEmpty(info.Type))
 				countManager.Decrement(info.Type);
 		}
 
@@ -96,7 +101,7 @@ namespace OpenRA.Mods.CA.Traits
 		{
 			UpdateCounter(newOwner);
 
-			if (info.UpdateOn.HasFlag(UpdateOnType.Owned))
+			if (info.UpdateOn.HasFlag(UpdateOnType.Owned) && !string.IsNullOrEmpty(info.Type))
 			{
 				oldOwner.PlayerActor.Trait<CountManager>().Decrement(info.Type);
 
@@ -107,7 +112,7 @@ namespace OpenRA.Mods.CA.Traits
 
 		void INotifyActorDisposing.Disposing(Actor self)
 		{
-			if (info.UpdateOn.HasFlag(UpdateOnType.Owned))
+			if (info.UpdateOn.HasFlag(UpdateOnType.Owned) && !string.IsNullOrEmpty(info.Type))
 				countManager.Decrement(info.Type);
 		}
 
@@ -125,9 +130,10 @@ namespace OpenRA.Mods.CA.Traits
 				return;
 
 			var attackerCounter = attackingPlayer.PlayerActor.Trait<CountManager>();
-			attackerCounter.Increment(info.Type);
+			if (!string.IsNullOrEmpty(info.Type))
+				attackerCounter.Increment(info.Type);
 
-			if (info.LossType != null)
+			if (!string.IsNullOrEmpty(info.LossType))
 				self.Owner.PlayerActor.Trait<CountManager>().Increment(info.LossType);
 		}
 
@@ -135,7 +141,7 @@ namespace OpenRA.Mods.CA.Traits
 
 		void INotifySold.Sold(Actor self)
 		{
-			if (!info.UpdateOn.HasFlag(UpdateOnType.SoldAfterDamage))
+			if (!info.UpdateOn.HasFlag(UpdateOnType.SoldAfterDamage) || string.IsNullOrEmpty(info.Type))
 				return;
 
 			var currentTick = self.World.WorldTick;
@@ -168,12 +174,16 @@ namespace OpenRA.Mods.CA.Traits
 			if (!Info.ValidRelationships.HasRelationship(newOwner.RelationshipWith(oldOwner)))
 				return;
 
-			newOwner.PlayerActor.Trait<CountManager>().Increment(info.Type);
+			if (!string.IsNullOrEmpty(info.Type))
+				newOwner.PlayerActor.Trait<CountManager>().Increment(info.Type);
+
+			if (!string.IsNullOrEmpty(info.LossType))
+				oldOwner.PlayerActor.Trait<CountManager>().Increment(info.LossType);
 		}
 
 		void INotifyInfiltrated.Infiltrated(Actor self, Actor infiltrator, BitSet<TargetableType> types)
 		{
-			if (!info.UpdateOn.HasFlag(UpdateOnType.Infiltrated))
+			if (!info.UpdateOn.HasFlag(UpdateOnType.Infiltrated) || string.IsNullOrEmpty(info.Type))
 				return;
 
 			if (playersInfiltratedBy.Contains(infiltrator.Owner))

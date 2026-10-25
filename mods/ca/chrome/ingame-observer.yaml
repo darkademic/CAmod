@@ -270,7 +270,7 @@ Container@OBSERVER_WIDGETS:
 				StatisticsArmyGraphKey: StatisticsArmyGraph
 			X: 5
 			Y: 5
-			Width: 760
+			Width: 960
 			Height: 250
 			Children:
 				DropDownButton@STATS_DROPDOWN:
@@ -390,7 +390,7 @@ Container@OBSERVER_WIDGETS:
 						Container@ECONOMY_STATS_HEADERS:
 							X: 0
 							Y: 0
-							Width: 700
+							Width: 760
 							Height: PARENT_HEIGHT
 							Children:
 								ColorBlock@HEADER_COLOR:
@@ -469,6 +469,14 @@ Container@OBSERVER_WIDGETS:
 									Text: Bounty
 									Align: Right
 									Shadow: True
+								Label@OIL_HEADER:
+									X: 695
+									Width: 60
+									Height: PARENT_HEIGHT
+									Font: Bold
+									Text: Oil
+									Align: Right
+									Shadow: True
 						Container@PRODUCTION_STATS_HEADERS:
 							X: 0
 							Y: 0
@@ -508,7 +516,7 @@ Container@OBSERVER_WIDGETS:
 						Container@ECONOMY_DAMAGE_HEADERS:
 							X: 0
 							Y: 0
-							Width: 480
+							Width: 960
 							Height: PARENT_HEIGHT
 							Children:
 								ColorBlock@HEADER_COLOR:
@@ -561,6 +569,54 @@ Container@OBSERVER_WIDGETS:
 									Height: PARENT_HEIGHT
 									Font: Bold
 									Text: Ref Lost
+									Align: Right
+									Shadow: True
+								Label@MCV_KILLED_HEADER:
+									X: 475
+									Width: 80
+									Height: PARENT_HEIGHT
+									Font: Bold
+									Text: MCV Killed
+									Align: Right
+									Shadow: True
+								Label@MCV_LOST_HEADER:
+									X: 555
+									Width: 80
+									Height: PARENT_HEIGHT
+									Font: Bold
+									Text: MCV Lost
+									Align: Right
+									Shadow: True
+								Label@OILS_CAPTURED_HEADER:
+									X: 635
+									Width: 80
+									Height: PARENT_HEIGHT
+									Font: Bold
+									Text: Oil Cap
+									Align: Right
+									Shadow: True
+								Label@OILS_LOST_HEADER:
+									X: 715
+									Width: 80
+									Height: PARENT_HEIGHT
+									Font: Bold
+									Text: Oil Lost
+									Align: Right
+									Shadow: True
+								Label@ENGI_KILLED_HEADER:
+									X: 795
+									Width: 80
+									Height: PARENT_HEIGHT
+									Font: Bold
+									Text: Engi Killed
+									Align: Right
+									Shadow: True
+								Label@ENGI_LOST_HEADER:
+									X: 875
+									Width: 80
+									Height: PARENT_HEIGHT
+									Font: Bold
+									Text: Engi Lost
 									Align: Right
 									Shadow: True
 						Container@SUPPORT_POWERS_HEADERS:
@@ -968,7 +1024,7 @@ Container@OBSERVER_WIDGETS:
 						ScrollItem@ECONOMY_PLAYER_TEMPLATE:
 							X: 0
 							Y: 0
-							Width: 700
+							Width: 760
 							Height: 25
 							Background: scrollitem-nohover
 							Children:
@@ -1038,6 +1094,13 @@ Container@OBSERVER_WIDGETS:
 									Shadow: True
 								Label@BOUNTY:
 									X: 635
+									Y: 0
+									Width: 60
+									Height: PARENT_HEIGHT
+									Align: Right
+									Shadow: True
+								Label@OIL:
+									X: 695
 									Y: 0
 									Width: 60
 									Height: PARENT_HEIGHT
@@ -1116,7 +1179,7 @@ Container@OBSERVER_WIDGETS:
 						ScrollItem@ECONOMY_DAMAGE_PLAYER_TEMPLATE:
 							X: 0
 							Y: 0
-							Width: 480
+							Width: 960
 							Height: 25
 							Background: scrollitem-nohover
 							Children:
@@ -1164,6 +1227,42 @@ Container@OBSERVER_WIDGETS:
 									Shadow: True
 								Label@REFINERIES_LOST:
 									X: 395
+									Width: 80
+									Height: PARENT_HEIGHT
+									Align: Right
+									Shadow: True
+								Label@MCV_KILLED:
+									X: 475
+									Width: 80
+									Height: PARENT_HEIGHT
+									Align: Right
+									Shadow: True
+								Label@MCV_LOST:
+									X: 555
+									Width: 80
+									Height: PARENT_HEIGHT
+									Align: Right
+									Shadow: True
+								Label@OILS_CAPTURED:
+									X: 635
+									Width: 80
+									Height: PARENT_HEIGHT
+									Align: Right
+									Shadow: True
+								Label@OILS_LOST:
+									X: 715
+									Width: 80
+									Height: PARENT_HEIGHT
+									Align: Right
+									Shadow: True
+								Label@ENGI_KILLED:
+									X: 795
+									Width: 80
+									Height: PARENT_HEIGHT
+									Align: Right
+									Shadow: True
+								Label@ENGI_LOST:
+									X: 875
 									Width: 80
 									Height: PARENT_HEIGHT
 									Align: Right

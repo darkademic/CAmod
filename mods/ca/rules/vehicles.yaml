@@ -2164,6 +2164,7 @@ MCV:
 	Inherits@EconomyPolicyMcvSpeedBonus: ^EconomyPolicyMcvSpeedBonus
 	Inherits@HeavyArmor: ^HeavyArmor
 	Inherits@NodCovenantTarget: ^NodCovenantTarget
+	Inherits@EconomyDamage: ^MobileConstructionYard
 	Buildable:
 		Queue: VehicleSQ, VehicleMQ
 		BuildPaletteOrder: 600
@@ -3191,6 +3192,7 @@ AMCV:
 	Inherits@EconomyPolicyMcvSpeedBonus: ^EconomyPolicyMcvSpeedBonus
 	Inherits@HeavyArmor: ^HeavyArmor
 	Inherits@NodCovenantTarget: ^NodCovenantTarget
+	Inherits@EconomyDamage: ^MobileConstructionYard
 	Buildable:
 		Queue: VehicleSQ, VehicleMQ
 		BuildPaletteOrder: 601

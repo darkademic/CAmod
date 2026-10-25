@@ -168,6 +168,12 @@
 		Multiplier: 115
 		Prerequisites: is-easy-ai
 
+^MobileConstructionYard:
+	UpdatesCount@EconomyDamage:
+		Type: MCVKilled
+		LossType: MCVLost
+		UpdateOn: Killed
+
 ^BotGroundProductionBonus:
 	ProductionCostMultiplier@brutalbonus:
 		Multiplier: 60
@@ -4830,6 +4836,10 @@
 		Range: 6c0
 		DetectionTypes: Mine
 	MineImmune:
+	UpdatesCount@EconomyDamage:
+		Type: EngineerKilled
+		LossType: EngineerLost
+		UpdateOn: Killed
 
 ^Viceroid:
 	Inherits@1: ^ExistsInWorld

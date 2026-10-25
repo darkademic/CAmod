@@ -392,6 +392,7 @@ Player:
 		ActorToProduce: n1c
 		ProductionTypes: InfantrySQ, InfantryMQ, CyborgMQ
 	PlayerBountyPool:
+	PlayerIncome:
 	PlayerExperience:
 	PlayerExperienceLevels:
 		Factions: soviet, russia, ukraine, iraq, yuri

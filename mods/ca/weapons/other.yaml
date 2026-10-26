@@ -89,7 +89,7 @@ ChemballLauncher:
 
 FireballGun:
 	Inherits: FireballLauncher
-	Range: 4c275
+	Range: 4c256
 	ReloadDelay: 40
 	Projectile: BulletCA
 		Speed: 140

@@ -825,14 +825,14 @@
 		Icon: heroes
 		ChargeInterval: 6000
 		Name: Heroes of the Union
-		Condition: herooftheunion
+		Condition: herooftheunioninit
 		Range: 3c512
 		MaxTargets: 5
 		ShowTargetCount: true
 		ValidTargets: HeroOfUnionTargetable
-		Duration: 0
+		Duration: 1
 		AllowMultiple: false
-		Description: Targeted basic infantry units become Heroes of the Union, granting one level's worth of experience, and significantly increasing the bonuses they gain from veterancy.\n\nCan affect Rifle Infantry, Rocket Soldiers, Grenadiers and Flamethrowers.
+		Description: Targeted basic infantry units become Heroes of the Union, significantly increasing combat effectiveness for 1 minute after attacking.\n\nRemaining duration extended by 1 second on dealing damage (up to 15 seconds).\n\nCan affect Rifle Infantry, Rocket Soldiers, Grenadiers and Flamethrowers.
 		Prerequisites: ~infantry.doctrine, playerxp.level2
 		OnFireSound: heroes.aud
 		SelectTargetSpeechNotification: SelectTarget

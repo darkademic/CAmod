@@ -743,7 +743,7 @@ JuggernautGunTargeting:
 
 Grenade:
 	Inherits: ^Artillery
-	Range: 4c725
+	Range: 4c768
 	Report: grenade1.aud
 	Projectile: Bullet
 		Speed: 136

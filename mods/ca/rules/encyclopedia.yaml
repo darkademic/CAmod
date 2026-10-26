@@ -346,7 +346,7 @@ encyclopedia.power.heroes:
 	Encyclopedia:
 		Category: Soviets/Support Powers
 	EncyclopediaExtras:
-		Description: Targeted basic infantry units become Heroes of the Union, significantly increasing their damage, speed, range and resilience.\n\nCan affect Rifle Infantry, Rocket Soldiers, Grenadiers and Flamethrowers.
+		Description: Targeted basic infantry units become Heroes of the Union, significantly increasing combat effectiveness for 1 minute after attacking.\n\nRemaining duration extended by 1 second on dealing damage (up to 15 seconds).\n\nCan affect Rifle Infantry, Rocket Soldiers, Grenadiers and Flamethrowers.
 		AdditionalInfo: Requires Infantry Doctrine.
 
 encyclopedia.power.tankdrop:
@@ -2374,9 +2374,9 @@ encyclopedia.buffs.hotu:
 	Encyclopedia:
 		Category: Other/Buffs
 	EncyclopediaExtras:
-		Description: Granted by the Heroes of the Union support power available to the Soviets after adopting the Infantry Doctrine. Increases effective health, speed, rate of fire and range.
+		Description: Granted by the Heroes of the Union support power available to the Soviets after adopting the Infantry Doctrine. Increases effective health, speed, damage and range.
 	TooltipExtras:
-		Strengths: Effective health boosted to 28k\n+20% movement speed\n+50% range\n+50% rate of fire
+		Strengths: Effective health boosted by 20k (by 6k for Grenadiers/Flamethrowers)\n+20% movement speed (+40% for Grenadiers/Flamethrowers)\n+40% range\n+100% damage
 	WithIdleOverlay@HeroOfTheUnionCrest:
 		Sequence: star3
 		Image: hero-overlay

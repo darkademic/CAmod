@@ -1835,8 +1835,6 @@ POWR:
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
-	UpdatesBuildOrder:
-		Limit: 2
 	Encyclopedia:
 		Category: Allies/Buildings; Soviets/Buildings
 
@@ -1883,8 +1881,6 @@ APWR:
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
-	UpdatesBuildOrder:
-		Limit: 1
 	Encyclopedia:
 		Category: Allies/Buildings; Soviets/Buildings
 
@@ -2009,8 +2005,6 @@ TPWR:
 		Type: TeslaBoost
 		Color: FFFF00AA
 		Range: 6c0
-	UpdatesBuildOrder:
-		Limit: 1
 	Encyclopedia:
 		Category: Soviets/Buildings
 	EncyclopediaExtras:
@@ -3246,8 +3240,6 @@ NUKE:
 	ProvidesPrerequisite@buildingname:
 	ProvidesPrerequisite@anypower:
 		Prerequisite: anypower
-	UpdatesBuildOrder:
-		Limit: 2
 	Encyclopedia:
 		Category: GDI/Buildings; Nod/Buildings
 
@@ -3299,8 +3291,6 @@ NUK2:
 	ScalePowerWithHealth:
 	Sellable:
 		RequiresCondition: !build-incomplete && !c4 && !being-captured && !being-warped && !hacked && !discpowerdrain
-	UpdatesBuildOrder:
-		Limit: 1
 	Encyclopedia:
 		Category: GDI/Buildings; Nod/Buildings
 

@@ -4731,8 +4731,6 @@ REAC:
 	Sellable:
 		RequiresCondition: !build-incomplete && !c4 && !being-captured && !being-warped && !hacked && !discpowerdrain
 	ProvidesPrerequisite@buildingname:
-	UpdatesBuildOrder:
-		Limit: 2
 
 REA2:
 	Inherits: ^ScrinBuilding
@@ -4775,8 +4773,6 @@ REA2:
 	ScalePowerWithHealth:
 	Sellable:
 		RequiresCondition: !build-incomplete && !c4 && !being-captured && !being-warped && !hacked && !discpowerdrain
-	UpdatesBuildOrder:
-		Limit: 1
 
 PROC.SCRIN:
 	Inherits: ^ScrinBuilding

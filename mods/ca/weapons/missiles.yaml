@@ -2108,8 +2108,13 @@ ScrinTorp.UPG:
 	Projectile: MissileCA
 		Image: scrintorpred
 		Palette: caneon
-		TrailImage: smokey
-		TrailPalette: scrinplasma
+		TrailImage: atmzbolttrail
+		TrailPalette: scrin
+		TrailSpacing: 192
+		ContrailLength: 3
+		ContrailStartWidth: 0c64
+		ContrailStartColor: ff0000
+		ContrailStartColorAlpha: 128
 	Warhead@Flash: FlashTarget
 		Color: ff4444
 
@@ -2142,8 +2147,13 @@ ScrinTorpAA.UPG:
 	Projectile: MissileCA
 		Image: scrintorpred
 		Palette: caneon
-		TrailImage: smokey
-		TrailPalette: scrinplasma
+		TrailImage: atmzbolttrail
+		TrailPalette: scrin
+		TrailSpacing: 192
+		ContrailLength: 3
+		ContrailStartWidth: 0c64
+		ContrailStartColor: ff0000
+		ContrailStartColorAlpha: 128
 	Warhead@Flash: FlashTarget
 		Color: 7766ff
 

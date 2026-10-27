@@ -3435,22 +3435,22 @@ Actors:
 	NodWaypoint2: waypoint
 		Owner: Neutral
 		Location: 128,67
-	Actor1023: waypoint
+	WestWolvSpawn1: waypoint
 		Owner: Neutral
 		Location: 12,1
-	Actor1024: waypoint
+	WestWolvSpawn2: waypoint
 		Owner: Neutral
 		Location: 14,1
-	Actor1025: waypoint
+	WestWolvSpawn3: waypoint
 		Owner: Neutral
 		Location: 16,1
-	WestWolvSpawn1: brik
+	Actor1023: brik
 		Owner: HawthorneGDI
 		Location: 12,1
-	WestWolvSpawn2: brik
+	Actor1024: brik
 		Owner: HawthorneGDI
 		Location: 14,1
-	WestWolvSpawn3: brik
+	Actor1025: brik
 		Owner: HawthorneGDI
 		Location: 16,1
 	WestWolvDest1: waypoint
@@ -3480,10 +3480,10 @@ Actors:
 	EastWolvDest3: waypoint
 		Owner: Neutral
 		Location: 73,156
-	Actor1014: waypoint
+	CommandoDropSpawn: waypoint
 		Owner: Neutral
 		Location: 160,112
-	CommandoDropSpawn: brik
+	Actor1014: brik
 		Owner: HawthorneGDI
 		Location: 160,112
 	CommandoDropDest: waypoint

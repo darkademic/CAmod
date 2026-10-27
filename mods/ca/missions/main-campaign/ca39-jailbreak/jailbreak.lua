@@ -213,7 +213,7 @@ OncePerFiveSecondChecks = function()
 			if IsHardOrAbove() then
 				Squads.Main.InitTimeAdjustment = -DateTime.Minutes(7)
 			elseif Difficulty == "normal" then
-				Squads.Main.InitTimeAdjustment =-DateTime.Minutes(4)
+				Squads.Main.InitTimeAdjustment = -DateTime.Minutes(4)
 			else
 				Squads.Main.InitTimeAdjustment = -DateTime.Minutes(1)
 			end

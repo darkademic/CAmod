@@ -1252,15 +1252,15 @@ DOMI:
 		Range: 6c0
 		EnemyCount: 3
 		TickInterval: 15
-		TargetTypes: Infantry, Vehicle
+		TargetTypes: Infantry, Vehicle, Structure
 	GrantTimedCondition@Triggered:
 		Condition: charging
-		Duration: 150
+		Duration: 151
 		ForceFullDuration: true
 		RequiresCondition: enemies-nearby && !wave-reloading
 	GrantChargingCondition@DominationWaveCharge:
 		Condition: charged
-		RequiresCondition: enemies-nearby && !wave-reloading
+		RequiresCondition: charging
 		MaxCharge: 150
 		MinChargeForCondition: 150
 		ChargingColor: ff00ff

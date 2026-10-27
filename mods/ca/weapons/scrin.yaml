@@ -1448,6 +1448,18 @@ ShardWalkerShards:
 			Heavy: 10
 			Concrete: 10
 
+BlueShardWalkerShards:
+	Inherits: ShardWalkerShards
+	StartBurstReport: bshw-fire1.aud
+	Projectile: MissileCA
+		Image: cryomiss
+		ContrailStartColor: 463aff
+		ContrailStartColorAlpha: 128
+	Warhead@1Dam:
+		Damage: 3100
+	Warhead@3Eff: CreateEffect
+		Image: bshardhit
+
 ShardWalkerShardsAA:
 	Inherits: ShardLauncher
 	ReloadDelay: 35
@@ -1465,6 +1477,20 @@ ShardWalkerShardsAA:
 		-Range:
 		Spread: 128
 		Falloff: 100, 50, 14, 0
+
+BlueShardWalkerShardsAA:
+	Inherits: ShardWalkerShardsAA
+	StartBurstReport: bshw-fire1.aud
+	Projectile: MissileCA
+		Image: cryomiss
+		ContrailStartColor: 463aff
+		ContrailStartColorAlpha: 128
+	Warhead@1Dam:
+		Damage: 2100
+	Warhead@smallDamage: SpreadDamage
+		Damage: 2100
+	Warhead@3Eff: CreateEffect
+		Image: bshardhit
 
 LaceratorShards:
 	Inherits: RavagerShards

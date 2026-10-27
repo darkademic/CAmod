@@ -1519,7 +1519,7 @@ GUNW:
 	Buildable:
 		Queue: VehicleSQ, VehicleMQ
 		BuildPaletteOrder: 60
-		Prerequisites: ~vehicles.scrin, ~!shrw.upgrade, ~techlevel.low
+		Prerequisites: ~vehicles.scrin, ~!shrw.upgrade, ~!bshw.upgrade, ~techlevel.low
 		Description: Durable light assault walker.
 		IconPalette: chrome
 	TooltipExtras:
@@ -1602,7 +1602,7 @@ SHRW:
 	Armor:
 		Type: Light
 	Health:
-		HP: 36000
+		HP: 34000
 	Mobile:
 		Speed: 92
 		TurnSpeed: 36
@@ -1615,10 +1615,23 @@ SHRW:
 		LocalOffset: 690,92,0, 690,-92,0
 	Selectable:
 		Class: gunw
-	-GrantConditionOnFaction@TRAVELERSPEED:
-	-SpeedMultiplier@TRAVELERSPEED:
 	-ReplacedInQueue:
 	-Upgradeable@SHRW:
+
+BSHW:
+	Inherits: SHRW
+	Tooltip:
+		Name: Shard Walker
+	Buildable:
+		Prerequisites: ~vehicles.scrin, ~bshw.upgrade, ~techlevel.medium
+	Valued:
+		Cost: 700
+	Health:
+		HP: 42000
+	Armament@PRIMARY:
+		Weapon: BlueShardWalkerShards
+	Armament@SECONDARY:
+		Weapon: BlueShardWalkerShardsAA
 	EncyclopediaExtras:
 		Subfaction: reaper
 

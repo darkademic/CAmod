@@ -1641,6 +1641,36 @@ shrw.destroyed:
 		UseClassicFacings: True
 		ZOffset: -512
 
+bshw:
+	Inherits: ^VehicleOverlays
+	idle:
+		Filename: bshw.shp
+		Facings: 32
+		UseClassicFacings: True
+	move:
+		Filename: bshw.shp
+		Start: 32
+		Facings: 32
+		Length: 2
+		Tick: 80
+		UseClassicFacings: True
+	muzzle:
+		Filename: scrinmuzz8.shp
+		BlendMode: Additive
+		IgnoreWorldTint: true
+		Length: 6
+		Facings: 16
+	icon:
+		Filename: bshwicon.shp
+
+bshw.destroyed:
+	Inherits: ^VehicleOverlays
+	idle:
+		Filename: bshw.shp
+		Facings: 32
+		UseClassicFacings: True
+		ZOffset: -512
+
 seek:
 	Inherits: ^VehicleOverlays
 	idle:

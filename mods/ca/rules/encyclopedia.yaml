@@ -770,7 +770,6 @@ encyclopedia.power.chemmissile:
 
 # Scrin Support Powers
 
-
 encyclopedia.power.resourcescan:
 	Inherits: ^SupportPowerPreview
 	Buildable:

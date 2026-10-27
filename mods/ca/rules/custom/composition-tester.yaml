@@ -980,6 +980,10 @@ SHRW:
 	Buildable:
 		Prerequisites: ~player.scrin
 
+BSHW:
+	Buildable:
+		Prerequisites: ~player.scrin
+
 SEEK:
 	Buildable:
 		Prerequisites: ~player.scrin

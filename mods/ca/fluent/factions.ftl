@@ -319,6 +319,7 @@ faction-reaper =
       • Ion Conduits
 
     Bonuses:
+      • Shard Walker enhanced with blue shards
       • Resource Conversion also applies to Corrupters
       • Ichor Seed (-20% cooldown)
 

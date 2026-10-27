@@ -246,6 +246,10 @@ shrw.upgrade:
 	icon:
 		Filename: upg-shrwicon.shp
 
+bshw.upgrade:
+	icon:
+		Filename: upg-bshwicon.shp
+
 advart.upgrade:
 	icon:
 		Filename: upg-advarticon.shp

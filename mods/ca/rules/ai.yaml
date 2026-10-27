@@ -1109,6 +1109,7 @@ Player:
 			carapace.upgrade: 1
 			advart.upgrade: 1
 			shrw.upgrade: 1
+			bshw.upgrade: 1
 			loyalist.allegiance: 1
 			rebel.allegiance: 1
 			malefic.allegiance: 1
@@ -1380,6 +1381,7 @@ Player:
 			carapace.upgrade: 1
 			advart.upgrade: 1
 			shrw.upgrade: 1
+			bshw.upgrade: 1
 			loyalist.allegiance: 1
 			rebel.allegiance: 1
 			malefic.allegiance: 1
@@ -1650,6 +1652,7 @@ Player:
 			carapace.upgrade: 1
 			advart.upgrade: 1
 			shrw.upgrade: 1
+			bshw.upgrade: 1
 			loyalist.allegiance: 1
 			rebel.allegiance: 1
 			malefic.allegiance: 1
@@ -1920,6 +1923,7 @@ Player:
 			carapace.upgrade: 1
 			advart.upgrade: 1
 			shrw.upgrade: 1
+			bshw.upgrade: 1
 			loyalist.allegiance: 1
 			rebel.allegiance: 1
 			malefic.allegiance: 1
@@ -2154,6 +2158,7 @@ Player:
 			carapace.upgrade: 1
 			advart.upgrade: 1
 			shrw.upgrade: 1
+			bshw.upgrade: 1
 			loyalist.allegiance: 1
 			rebel.allegiance: 1
 			malefic.allegiance: 1
@@ -2808,6 +2813,7 @@ World:
 				trpc: 10
 				gunw: 20
 				shrw: 20
+				bshw: 20
 				bggy: 30
 				rbug: 30
 				arty: 20

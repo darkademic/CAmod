@@ -2106,7 +2106,7 @@ shrw.upgrade:
 		Name: Research: Shard Walker
 	Buildable:
 		BuildPaletteOrder: 20
-		Prerequisites: ~player.scrin, anyradar, ~techlevel.medium
+		Prerequisites: ~player.scrin, ~!player.reaper, anyradar, ~techlevel.medium
 		Description: Allows production of Shard Walkers, a heavier and more powerful variant of the Gun Walker.\n\nReplaces: Gun Walker
 		IconPalette: chromes
 	TooltipExtras:
@@ -2118,6 +2118,25 @@ shrw.upgrade:
 		Image: shrw.upgrade
 	WithProductionIconOverlay:
 		Prerequisites: shrw.upgrade
+
+bshw.upgrade:
+	Inherits: ^ScrinUpgrade
+	Tooltip:
+		Name: Research: Shard Walker (Blue Shards)
+	Buildable:
+		BuildPaletteOrder: 20
+		Prerequisites: ~player.reaper, anyradar, ~techlevel.medium
+		Description: Allows production of Shard Walkers, a heavier and more powerful variant of the Gun Walker.\n\nReplaces: Gun Walker
+		IconPalette: chromes
+	TooltipExtras:
+		Strengths: + Increased durability\n+ Increased damage
+		Weaknesses: – Slower movement\n– Slower projectiles– Increased cost
+	Valued:
+		Cost: 1000
+	RenderSprites:
+		Image: bshw.upgrade
+	WithProductionIconOverlay:
+		Prerequisites: bshw.upgrade
 
 advart.upgrade:
 	Inherits: ^ScrinUpgrade

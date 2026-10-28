@@ -1172,14 +1172,14 @@ DOMI:
 		Strengths: • Unknown
 		Weaknesses: • Unknown
 	Valued:
-		Cost: 7500
+		Cost: 8000
 	Tooltip:
 		Name: Dominator
 		GenericName: Tank
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 600000
+		HP: 650000
 	Mobile:
 		Speed: 40
 		TurnSpeed: 8
@@ -1219,6 +1219,7 @@ DOMI:
 		Offset: 0,0,511
 		Angle: 32
 		Width: 116
+		ValidRelationships: Ally, Enemy, Neutral
 	AttackTurreted:
 		Armaments: primary, secondary
 		PauseOnCondition: empdisable || charging

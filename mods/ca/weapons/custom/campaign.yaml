@@ -186,7 +186,13 @@ VoidCannonRift:
 Dominate:
 	Range: 7c0
 	ReloadDelay: 50
-	Projectile: InstantHit
+	Projectile: ArcLaserZap
+		Color: FF00FF60
+		Angle: 60
+		Width: 86
+		Duration: 20
+		HitAnim: empty
+		GlowScale: 0
 	ValidTargets: MindControllable
 	InvalidTargets: MindControlImmune
 	Warhead@2Eff: CreateEffect

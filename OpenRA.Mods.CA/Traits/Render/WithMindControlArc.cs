@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using OpenRA.Graphics;
 using OpenRA.Mods.CA.Traits;
+using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -56,11 +57,17 @@ namespace OpenRA.Mods.CA.Graphics
 		[Desc("Brightness-only multiplier for the glow halo, independent of GlowScale (does not grow the radius).")]
 		public readonly float GlowIntensity = 1.65f;
 
+		[Desc("Player relationships which will be able to see the arc.",
+			"Valid values are combinations of `None`, `Ally`, `Enemy` and `Neutral`.")]
+		public readonly PlayerRelationship ValidRelationships = PlayerRelationship.Ally;
+
+		[Desc("When to show the arc. Valid values are `Always`, and `WhenSelected`")]
+		public readonly RangeCircleVisibility Visible = RangeCircleVisibility.WhenSelected;
 
 		public override object Create(ActorInitializer init) { return new WithMindControlArc(init.Self, this); }
 	}
 
-	public class WithMindControlArc : IRenderAboveShroudWhenSelected, INotifySelected, INotifyCreated
+	public class WithMindControlArc : IRenderAboveShroud, IRenderAboveShroudWhenSelected, INotifySelected, INotifyCreated
 	{
 		readonly WithMindControlArcInfo info;
 		MindController mindController;
@@ -79,8 +86,18 @@ namespace OpenRA.Mods.CA.Graphics
 
 		void INotifySelected.Selected(Actor a) { }
 
-		IEnumerable<IRenderable> IRenderAboveShroudWhenSelected.RenderAboveShroud(Actor self, WorldRenderer wr)
+		bool VisibleToRenderPlayer(Actor self)
 		{
+			var player = self.World.RenderPlayer;
+			return player == null || info.ValidRelationships.HasRelationship(self.Owner.RelationshipWith(player))
+				|| (player.Spectating && !player.NonCombatant);
+		}
+
+		IEnumerable<IRenderable> RenderArc(Actor self)
+		{
+			if (!VisibleToRenderPlayer(self))
+				yield break;
+
 			var color = Color.FromArgb(info.Transparency, info.UsePlayerColor ? self.OwnerColor() : info.Color);
 
 			if (mindController != null)
@@ -104,6 +121,17 @@ namespace OpenRA.Mods.CA.Graphics
 				info.GlowColor, info.GlowScale, info.GlowIntensity);
 		}
 
+		IEnumerable<IRenderable> IRenderAboveShroud.RenderAboveShroud(Actor self, WorldRenderer wr)
+		{
+			return info.Visible == RangeCircleVisibility.Always ? RenderArc(self) : Enumerable.Empty<IRenderable>();
+		}
+
+		IEnumerable<IRenderable> IRenderAboveShroudWhenSelected.RenderAboveShroud(Actor self, WorldRenderer wr)
+		{
+			return info.Visible == RangeCircleVisibility.WhenSelected ? RenderArc(self) : Enumerable.Empty<IRenderable>();
+		}
+
+		bool IRenderAboveShroud.SpatiallyPartitionable { get { return false; } }
 		bool IRenderAboveShroudWhenSelected.SpatiallyPartitionable { get { return false; } }
 	}
 }

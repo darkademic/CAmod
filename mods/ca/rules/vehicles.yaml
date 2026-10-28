@@ -7153,6 +7153,7 @@ IFV:
 		Offset: 0,0,300
 		Angle: 32
 		Width: 116
+		ValidRelationships: Ally, Enemy, Neutral
 	Armament@Hack:
 		Weapon: Hack
 		TargetRelationships: Enemy, Neutral
@@ -7178,6 +7179,7 @@ IFV:
 		Angle: 60
 		Width: 86
 		Offset: 0,0,300
+		ValidRelationships: Ally, Enemy, Neutral
 	MindControllerCapacityModifier@RANK-1:
 		Amount: 1
 		RequiresCondition: rank-veteran == 1

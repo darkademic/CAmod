@@ -136,6 +136,8 @@ CashRewardOnCaptureTypes = { "proc", "proc.td", "proc.scrin", "silo", "silo.td",
 
 WallTypes = { "sbag", "fenc", "brik", "cycl", "barb" }
 
+ExcludedTargetTypes = { "inva", "invb" }
+
 ProductionTypes = Utils.Concat(ConyardTypes, Utils.Concat(BarracksTypes, Utils.Concat(FactoryTypes, AirProductionTypes)))
 
 KeyStructures = { "fact", "afac", "sfac", "proc", "proc.td", "proc.scrin", "weap", "weap.td", "airs", "wsph", "dome", "hq", "nerv", "atek", "stek", "gtek", "tmpl", "scrt", "mcv", "amcv", "smcv" }
@@ -360,8 +362,11 @@ end
 
 ChooseRandomTarget = function(unit, targetPlayer)
 	local target = nil
-	local enemies = Utils.Where(targetPlayer.GetActors(), function(self)
-		return self.HasProperty("Health") and unit.CanTarget(self) and not Utils.Any(WallTypes, function(type) return self.Type == type end)
+	local enemies = Utils.Where(targetPlayer.GetActors(), function(e)
+		return e.HasProperty("Health")
+			and unit.CanTarget(e)
+			and (e.HasProperty("Move") or e.HasProperty("StartBuildingRepairs"))
+			and not Utils.Any(ExcludedTargetTypes, function(t) return e.Type == t end)
 	end)
 	if #enemies > 0 then
 		target = Utils.Random(enemies)
@@ -383,7 +388,10 @@ ChooseRandomTargetOfTypes = function(unit, targetPlayer, targetList, targetType)
 		end
 
 		local enemies = Utils.Where(enemies, function(e)
-			return e.HasProperty("Health") and (e.HasProperty("Move") or e.HasProperty("StartBuildingRepairs")) and unit.CanTarget(e)
+			return e.HasProperty("Health")
+				and unit.CanTarget(e)
+				and (e.HasProperty("Move") or e.HasProperty("StartBuildingRepairs"))
+				and not Utils.Any(ExcludedTargetTypes, function(t) return e.Type == t end)
 		end)
 
 		if #enemies > 0 then
@@ -397,7 +405,7 @@ end
 ChooseRandomBuildingTarget = function(unit, targetPlayer)
 	local target = nil
 	local enemies = Utils.Where(targetPlayer.GetActors(), function(e)
-		return e.HasProperty("Health") and e.HasProperty("StartBuildingRepairs") and unit.CanTarget(e) and not Utils.Any(WallTypes, function(t) return e.Type == t end)
+		return e.HasProperty("Health") and e.HasProperty("StartBuildingRepairs") and unit.CanTarget(e)
 	end)
 	if #enemies > 0 then
 		target = Utils.Random(enemies)
@@ -985,7 +993,11 @@ TargetSwapChance = function(unit, chance, isMissionPlayerFunc, afterAttackFunc)
 		end
 		local rand = Utils.RandomInteger(1,100)
 		if rand > 100 - chance then
-			if not unit.IsDead and not attacker.IsDead and unit.HasProperty("Attack") and unit.CanTarget(attacker) then
+			if not unit.IsDead
+				and not attacker.IsDead
+				and unit.HasProperty("Attack")
+				and unit.CanTarget(attacker)
+			then
 				unit.Stop()
 				unit.Attack(attacker)
 				if afterAttackFunc ~= nil then
@@ -1408,8 +1420,9 @@ HandleProducedSquadUnit = function(produced, producerId, squad)
 	InitSquadAssignmentQueueForProducer(producerId, squad.Player)
 
 	-- assign unit to IdleUnits of the next squad in the assignment queue of the producer
-	if SquadAssignmentQueue[squad.Player.InternalName][producerId][1] ~= nil then
-		local assignedSquad = SquadAssignmentQueue[squad.Player.InternalName][producerId][1]
+	local assignedSquad = SquadAssignmentQueue[squad.Player.InternalName][producerId][1]
+
+	if assignedSquad ~= nil then
 		assignedSquad.IdleUnits[#assignedSquad.IdleUnits + 1] = produced
 		table.remove(SquadAssignmentQueue[squad.Player.InternalName][producerId], 1)
 
@@ -1427,7 +1440,9 @@ HandleProducedSquadUnit = function(produced, producerId, squad)
 		produced.Hunt()
 	end
 
-	TargetSwapChance(produced, 10)
+	if assignedSquad == nil or not assignedSquad.IsAirSquad then
+		TargetSwapChance(produced, 10)
+	end
 end
 
 -- used to make sure multiple squads being produced from the same structure don't get mixed up

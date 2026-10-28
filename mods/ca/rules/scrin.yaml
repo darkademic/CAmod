@@ -1335,6 +1335,7 @@ MAST:
 		Offset: 0,0,511
 		Angle: 32
 		Width: 116
+		ValidRelationships: Ally, Enemy, Neutral
 	AttackFrontal:
 		PauseOnCondition: being-warped || blinded || reapersnare || parachute || !ammo
 		FacingTolerance: 0

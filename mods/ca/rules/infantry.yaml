@@ -1309,6 +1309,7 @@ HACK:
 		Angle: 60
 		Width: 86
 		Offset: 0,0,50
+		ValidRelationships: Ally, Enemy, Neutral
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: AttackAnything
@@ -4132,6 +4133,7 @@ YURI:
 		Offset: 0,0,511
 		Angle: 32
 		Width: 116
+		ValidRelationships: Ally, Enemy, Neutral
 	WithIdleOverlay@mindcontrolling:
 		Sequence: mc
 		Palette: scrin

@@ -83,14 +83,7 @@ SpireSummonsUsed = {}
 VanquisherDefendingSpire = false
 VanquisherAttacking = false
 VanquisherFinalAttack = false
-
-VanquisherAttacksDelay = {
-	easy = DateTime.Minutes(28),
-	normal = DateTime.Minutes(24),
-	hard = DateTime.Minutes(20),
-	vhard = DateTime.Minutes(16),
-	brutal = DateTime.Minutes(12),
-}
+VanquisherAttacksStarted = false
 
 VanquisherAttacksInterval = {
 	easy = DateTime.Minutes(7),
@@ -426,12 +419,6 @@ InitScrin = function()
 		Actor.Create("ai.superweapons.enabled", true, { Owner = Scrin })
 	end)
 
-	if IsHardOrAbove() then
-		Trigger.AfterDelay(VanquisherAttacksDelay[Difficulty], function()
-			VanquisherAttack()
-		end)
-	end
-
 	Utils.Do(Spires, function(spire, attacker, damage)
 		Trigger.OnDamaged(spire, function(self, attacker, damage)
 			if NextSpireSummonAvailable < DateTime.GameTime and IsMissionPlayer(attacker.Owner) and not SpireSummonsUsed[tostring(spire)] then
@@ -530,6 +517,10 @@ RecallVanquisher = function()
 			Vanquisher.FullyRestoreShields()
 			VanquisherDefendingSpire = false
 			VanquisherAttacking = false
+			if IsHardOrAbove() and not VanquisherAttacksStarted then
+				VanquisherAttacksStarted = true
+				VanquisherAttack()
+			end
 			return
 		end
 	end

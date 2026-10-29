@@ -277,6 +277,7 @@ SCRT:
 ^OverlordsWrathPower:
 	MeteorPower@OverlordsWrath:
 		ChargeInterval: 1
+		FlightDelay: 50
 		OneShot: true
 		AllowMultiple: true
 		PauseOnCondition: disabled
@@ -291,7 +292,7 @@ Player:
 	SupportPowerBotModule:
 		Decisions:
 			owrath:
-				MinimumAttractiveness: 2000
+				MinimumAttractiveness: 1000
 				Consideration@1:
 					Types: Structure, Vehicle, Infantry
 

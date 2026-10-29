@@ -10,28 +10,12 @@ SuperweaponsEnabledTime = {
 
 MeteorStartTime = DateTime.Minutes(4)
 
-MeteorInitialInterval = {
-	easy = DateTime.Minutes(9),
-	normal = DateTime.Minutes(8),
-	hard = DateTime.Minutes(7),
-	vhard = DateTime.Minutes(6),
-	brutal = DateTime.Minutes(5),
-}
-
-MeteorIntervalDecrement = {
-	easy = DateTime.Seconds(15),
-	normal = DateTime.Seconds(15),
-	hard = DateTime.Seconds(15),
-	vhard = DateTime.Seconds(20),
-	brutal = DateTime.Seconds(20),
-}
-
-MeteorMinInterval = {
-	easy = DateTime.Minutes(6),
-	normal = DateTime.Minutes(5),
-	hard = DateTime.Minutes(4),
-	vhard = DateTime.Minutes(3),
-	brutal = DateTime.Minutes(2),
+MeteorInterval = {
+	easy = DateTime.Minutes(6) + DateTime.Seconds(40),
+	normal = DateTime.Minutes(6),
+	hard = DateTime.Minutes(5) + DateTime.Seconds(20),
+	vhard = DateTime.Minutes(4) + DateTime.Seconds(40),
+	brutal = DateTime.Minutes(4),
 }
 
 AirFleetKillersThreshold = {
@@ -48,10 +32,15 @@ MaxFleetKillers = {
 	brutal = 16
 }
 
-ScrinNorthAttackPaths = {
+ScrinNorthWestAttackPaths = {
 	{ ScrinWaypoint1.Location, ScrinWaypoint3.Location, ScrinWaypoint5.Location, ScrinWaypoint8.Location },
 	{ ScrinWaypoint2.Location, ScrinWaypoint4.Location, ScrinWaypoint6.Location, ScrinWaypoint9.Location },
 	{ ScrinWaypoint2.Location, ScrinWaypoint4.Location, ScrinWaypoint7.Location, ScrinWaypoint11.Location },
+}
+
+ScrinNorthEastAttackPaths = {
+	{ ScrinWaypoint12.Location, ScrinWaypoint6.Location, ScrinWaypoint9.Location },
+	{ ScrinWaypoint12.Location, ScrinWaypoint7.Location, ScrinWaypoint10.Location },
 }
 
 ScrinWestAttackPaths = {
@@ -92,6 +81,57 @@ VanquisherAttacksInterval = {
 	vhard = DateTime.Minutes(4),
 	brutal = DateTime.Minutes(3),
 }
+
+RecalculateAlphaSquad = function(squad)
+	local activeBases = {}
+
+	local northWestFactories = Map.ActorsInBox(NorthWestProdTopLeft.CenterPosition, NorthWestProdBottomRight.CenterPosition, function(a)
+		return a.Owner == Scrin and a.Type == "wsph"
+	end)
+
+	local northWestPortals = Map.ActorsInBox(NorthWestProdTopLeft.CenterPosition, NorthWestProdBottomRight.CenterPosition, function(a)
+		return a.Owner == Scrin and a.Type == "port"
+	end)
+
+	local northWestGravs = Map.ActorsInBox(NorthWestProdTopLeft.CenterPosition, NorthWestProdBottomRight.CenterPosition, function(a)
+		return a.Owner == Scrin and a.Type == "grav"
+	end)
+
+	local northEastFactories = Map.ActorsInBox(NorthEastProdTopLeft.CenterPosition, NorthEastProdBottomRight.CenterPosition, function(a)
+		return a.Owner == Scrin and a.Type == "wsph"
+	end)
+
+	local northEastPortals = Map.ActorsInBox(NorthEastProdTopLeft.CenterPosition, NorthEastProdBottomRight.CenterPosition, function(a)
+		return a.Owner == Scrin and a.Type == "port"
+	end)
+
+	local northEastGravs = Map.ActorsInBox(NorthEastProdTopLeft.CenterPosition, NorthEastProdBottomRight.CenterPosition, function(a)
+		return a.Owner == Scrin and a.Type == "grav"
+	end)
+
+	if #northWestFactories > 0 and #northWestPortals > 0 and #northWestGravs > 0 then
+		table.insert(activeBases, "NorthWest")
+	end
+
+	if #northEastFactories > 0 and #northEastPortals > 0 and #northEastGravs > 0 then
+		table.insert(activeBases, "NorthEast")
+	end
+
+	if #activeBases > 0 then
+		local selectedBase = Utils.Random(activeBases)
+
+		if selectedBase == "NorthWest" then
+			squad.ProducerActors = { Infantry = northWestPortals, Vehicles = northWestFactories, Aircraft = northWestGravs }
+			squad.AttackPaths = ScrinNorthWestAttackPaths
+		elseif selectedBase == "NorthEast" then
+			squad.ProducerActors = { Infantry = northEastPortals, Vehicles = northEastFactories, Aircraft = northEastGravs }
+			squad.AttackPaths = ScrinNorthEastAttackPaths
+		end
+	else
+		squad.ProducerActors = nil
+		squad.AttackPaths = nil
+	end
+end
 
 RecalculateBetaSquad = function(squad)
 	local activeBases = {}
@@ -135,7 +175,7 @@ RecalculateBetaSquad = function(squad)
 	if #centralFactories == 1 and #centralPortals == 1 and #centralGravs == 1 then
 		table.insert(activeBases, "Central")
 	end
-	if #eastFactories == 1 and #eastPortals == 1 and #eastGravs == 1 then
+	if #eastFactories > 0 and #eastPortals > 0 and #eastGravs > 0 then
 		table.insert(activeBases, "East")
 	end
 	if #westFactories == 1 and #westPortals == 1 and #westGravs == 1 then
@@ -146,13 +186,13 @@ RecalculateBetaSquad = function(squad)
 		local selectedBase = Utils.Random(activeBases)
 
 		if selectedBase == "Central" then
-			squad.ProducerActors = { Infantry = { centralPortals[1] }, Vehicles = { centralFactories[1] }, Aircraft = { centralGravs[1] } }
+			squad.ProducerActors = { Infantry = centralPortals, Vehicles = centralFactories, Aircraft = centralGravs }
 			squad.AttackPaths = ScrinCentralAttackPaths
 		elseif selectedBase == "East" then
-			squad.ProducerActors = { Infantry = { eastPortals[1] }, Vehicles = { eastFactories[1] }, Aircraft = { eastGravs[1] } }
+			squad.ProducerActors = { Infantry = eastPortals, Vehicles = eastFactories, Aircraft = eastGravs }
 			squad.AttackPaths = ScrinEastAttackPaths
 		elseif selectedBase == "West" then
-			squad.ProducerActors = { Infantry = { westPortals[1] }, Vehicles = { westFactories[1] }, Aircraft = { westGravs[1] } }
+			squad.ProducerActors = { Infantry = westPortals, Vehicles = westFactories, Aircraft = westGravs }
 			squad.AttackPaths = ScrinWestAttackPaths
 		end
 	else
@@ -197,7 +237,8 @@ Squads = {
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40 }),
 		FollowLeader = true,
 		Compositions = AdjustedScrinCompositions,
-		AttackPaths = ScrinNorthAttackPaths,
+		AttackPaths = ScrinNorthWestAttackPaths,
+		AfterSendSquad = RecalculateAlphaSquad,
 		ProducerActors = { Infantry = { NorthPortal1, NorthPortal2 }, Vehicles = { NorthSphere1, NorthSphere2 }, Aircraft = { NorthGrav } }
 	},
 	ScrinBeta = {
@@ -295,13 +336,29 @@ WorldLoaded = function()
         end
     end)
 
-	NextMeteorInterval = MeteorInitialInterval[Difficulty]
+	MeteorStrikeIntensity = 1
+	MeteorStrikeCount = 0
 	ObjectiveDestroySpires = ScrinRebels.AddObjective("Destroy all Overlord spires.")
+	UpdateObjectiveMessage()
 
 	Utils.Do(Spires, function(spire)
 		spire.GrantCondition("is-objective")
 		Trigger.OnKilled(spire, function(self, killer)
-			NextMeteorInterval = NextMeteorInterval + DateTime.Seconds(60)
+			Trigger.AfterDelay(1, function()
+				UpdateObjectiveMessage()
+			end)
+			ReduceMeteorIntensity()
+			VanquisherDefendingSpire = false
+
+			if spire == Spire1 then
+				table.insert(ScrinNorthEastAttackPaths, { ScrinWaypoint2.Location, ScrinWaypoint4.Location, ScrinWaypoint6.Location, ScrinWaypoint9.Location })
+				table.insert(ScrinNorthEastAttackPaths, { ScrinWaypoint2.Location, ScrinWaypoint4.Location, ScrinWaypoint7.Location, ScrinWaypoint11.Location })
+			elseif spire == Spire2 then
+				table.insert(ScrinNorthWestAttackPaths, { ScrinWaypoint14.Location, ScrinWaypoint12.Location, ScrinWaypoint6.Location, ScrinWaypoint9.Location })
+				table.insert(ScrinNorthWestAttackPaths, { ScrinWaypoint14.Location, ScrinWaypoint12.Location, ScrinWaypoint7.Location, ScrinWaypoint10.Location })
+			elseif spire == Spire5 then
+				table.insert(ScrinNorthEastAttackPaths, { ScrinWaypoint12.Location, ScrinWaypoint13.Location })
+			end
 		end)
 	end)
 
@@ -421,20 +478,25 @@ InitScrin = function()
 
 	Utils.Do(Spires, function(spire, attacker, damage)
 		Trigger.OnDamaged(spire, function(self, attacker, damage)
-			if NextSpireSummonAvailable < DateTime.GameTime and IsMissionPlayer(attacker.Owner) and not SpireSummonsUsed[tostring(spire)] then
-				SpireSummonsUsed[tostring(spire)] = true
+			if not spire.IsDead and NextSpireSummonAvailable < DateTime.GameTime and IsMissionPlayer(attacker.Owner) and not SpireSummonsUsed[tostring(spire)] then
 				local maxHp = self.MaxHealth
 				local currentHp = self.Health
 				local healthPercentage = (currentHp / maxHp) * 100
 				if healthPercentage < 50 then
-					local destinationLoc = CPos.New(spire.Location.X + 1, spire.Location.Y)
-					TeleportVanquisher(destinationLoc)
+					SpireSummonsUsed[tostring(spire)] = true
+					local vanquishersNearby = Utils.Where(Map.ActorsInCircle(spire.CenterPosition, WDist.New(8192)), function(a)
+						return a.Type == "vanq"
+					end)
+					local vanquisherAlreadyNearby = #vanquishersNearby > 0
+					if not vanquisherAlreadyNearby then
+						local destinationLoc = CPos.New(spire.Location.X + 1, spire.Location.Y)
+						TeleportVanquisher(destinationLoc)
+						MediaCA.PlaySound(MissionDir .. "/vanquisher.aud", 1)
+					end
 					NextSpireSummonAvailable = DateTime.GameTime + DateTime.Seconds(60)
 					Vanquisher.Hunt()
-					MediaCA.PlaySound(MissionDir .. "/vanquisher.aud", 1)
 					VanquisherAttacking = false
 					VanquisherDefendingSpire = true
-
 					Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(3)), function()
 						if not FirstTauntUsed then
 							FirstTauntUsed = true
@@ -466,6 +528,7 @@ InitScrin = function()
 	Actor.Create("loyalist.allegiance", true, { Owner = Scrin })
 
 	Trigger.AfterDelay(MeteorStartTime, function()
+		MeteorsStarted = true
 		Actor.Create("owrath.provider", true, { Owner = Scrin })
 
 		Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(8)), function()
@@ -473,7 +536,8 @@ InitScrin = function()
 			MediaCA.PlaySound(MissionDir .. "/s_meteors.aud", 2)
 		end)
 
-		QueueNextMeteor()
+		QueueNextMeteorStrike()
+		UpdateObjectiveMessage()
 	end)
 end
 
@@ -495,8 +559,8 @@ InitNod = function()
 	InitAttackSquad(Squads.Nod2, Nod2, Scrin)
 end
 
-VanquisherAttack = function()
-	if not VanquisherDefending and not VanquisherAttacking and not VanquisherFinalAttack then
+VanquisherAttack = function(scheduleNext)
+	if not VanquisherDefendingSpire and not VanquisherAttacking and not VanquisherFinalAttack then
 		local possibleTargets = GetMissionPlayersActorsByTypes({ "afac", "fact", "sfac", "proc", "proc.td", "proc.scrin" })
 		if #possibleTargets > 0 then
 			VanquisherAttacking = true
@@ -505,9 +569,11 @@ VanquisherAttack = function()
 			Vanquisher.Hunt()
 		end
 	end
-	Trigger.AfterDelay(VanquisherAttacksInterval[Difficulty], function()
-		VanquisherAttack()
-	end)
+	if scheduleNext then
+		Trigger.AfterDelay(VanquisherAttacksInterval[Difficulty], function()
+			VanquisherAttack(scheduleNext)
+		end)
+	end
 end
 
 RecallVanquisher = function()
@@ -519,7 +585,7 @@ RecallVanquisher = function()
 			VanquisherAttacking = false
 			if IsHardOrAbove() and not VanquisherAttacksStarted then
 				VanquisherAttacksStarted = true
-				VanquisherAttack()
+				VanquisherAttack(true)
 			end
 			return
 		end
@@ -541,14 +607,42 @@ TeleportVanquisher = function(destinationLoc)
 	end
 end
 
-QueueNextMeteor = function()
-	Trigger.AfterDelay(NextMeteorInterval, function()
+QueueNextMeteorStrike = function()
+	Trigger.AfterDelay(MeteorInterval[Difficulty], function()
 		if ObjectiveDestroySpires ~= nil and not ScrinRebels.IsObjectiveCompleted(ObjectiveDestroySpires) then
-			Actor.Create("owrath.provider", true, { Owner = Scrin })
-			NextMeteorInterval = math.max(NextMeteorInterval - MeteorIntervalDecrement[Difficulty], MeteorMinInterval[Difficulty])
-			QueueNextMeteor()
+			MeteorStrikeCount = MeteorStrikeCount + 1
+			if MeteorStrikeCount % 2 == 0 then
+				IncreaseMeteorIntensity()
+			end
+			local delay = 1
+			for i = 0, MeteorStrikeIntensity - 1 do
+				delay = delay + Utils.RandomInteger(DateTime.Seconds(3), DateTime.Seconds(6))
+				Trigger.AfterDelay(delay, function()
+					if not ScrinRebels.IsObjectiveCompleted(ObjectiveDestroySpires) then
+						Actor.Create("owrath.provider", true, { Owner = Scrin })
+					end
+				end)
+			end
+			QueueNextMeteorStrike()
 		end
 	end)
+end
+
+IncreaseMeteorIntensity = function()
+	MeteorStrikeIntensity = math.min(MeteorStrikeIntensity + 1, 5)
+	UpdateObjectiveMessage()
+	UpdateMeteorLighting()
+end
+
+ReduceMeteorIntensity = function()
+	MeteorStrikeIntensity = math.max(MeteorStrikeIntensity - 1, 0)
+	UpdateObjectiveMessage()
+	UpdateMeteorLighting()
+end
+
+UpdateMeteorLighting = function()
+	Lighting.Ambient = 1 - (MeteorStrikeIntensity * 0.08)
+	Lighting.Green = 1 + (MeteorStrikeIntensity * 0.08)
 end
 
 SetupLightning = function()
@@ -573,4 +667,19 @@ LightningStrike = function()
 	Trigger.AfterDelay(thunderDelay, function()
 		Media.PlaySound("thunder" .. soundNumber .. ".aud")
 	end)
+end
+
+UpdateObjectiveMessage = function()
+	local missionText
+
+	if ScrinRebels.IsObjectiveCompleted(ObjectiveDestroySpires) then
+		missionText = "Destroy the Overlord's flagship"
+	else
+		missionText = "Spires remaining: " .. #Utils.Where(Spires, function(spire) return not spire.IsDead end)
+		if MeteorsStarted then
+			missionText = missionText .. " -- Meteor intensity level: " .. MeteorStrikeIntensity
+		end
+	end
+
+	UserInterface.SetMissionText(missionText, HSLColor.Yellow)
 end

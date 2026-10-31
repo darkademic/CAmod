@@ -23,12 +23,12 @@ namespace OpenRA.Mods.CA.Activities
 		readonly IEnumerable<Actor> targets;
 		readonly IMove move;
 		int ticks;
-		int scanInterval;
+		int ticksUntilScan;
 
 		public HuntCA(Actor self)
 		{
 			ticks = 0;
-			scanInterval = self.World.SharedRandom.Next(20, 40);
+			ticksUntilScan = self.World.SharedRandom.Next(20, 40);
 			move = self.Trait<IMove>();
 			var attack = self.TraitsImplementing<AttackBase>().FirstOrDefault(ab => !ab.IsTraitDisabled);
 
@@ -47,18 +47,21 @@ namespace OpenRA.Mods.CA.Activities
 
 			ticks++;
 
-			var targetActor = ticks % scanInterval == 0 ? targets.ClosestToWithPathFrom(self) : null;
+			if (--ticksUntilScan > 0)
+				return false;
+
+			var targetActor = targets.ClosestToWithPathFrom(self);
 
 			if (targetActor != null)
 			{
-				scanInterval = self.World.SharedRandom.Next(20, 40);
+				ticksUntilScan = self.World.SharedRandom.Next(20, 40);
 
 				// We want to keep 2 cells of distance from the target to prevent the pathfinder from thinking the target position is blocked.
 				QueueChild(new AttackMoveActivity(self, () => move.MoveWithinRange(Target.FromCell(self.World, targetActor.Location), WDist.FromCells(2))));
 				QueueChild(new Wait(25));
 			}
-			else if (ticks > 375)
-				scanInterval = self.World.SharedRandom.Next(250, 500);
+			else
+				ticksUntilScan = ticks > 375 ? self.World.SharedRandom.Next(250, 500) : self.World.SharedRandom.Next(20, 40);
 
 			return false;
 		}

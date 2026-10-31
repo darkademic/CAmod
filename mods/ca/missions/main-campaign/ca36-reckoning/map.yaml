@@ -51,7 +51,7 @@ Players:
 	PlayerReference@ScrinRebels:
 		Name: ScrinRebels
 		Faction: scrin
-		Color: 55E1AE
+		Color: 39C5B7
 		Allies: Nod, GDI
 		Enemies: Scrin, Creeps
 	PlayerReference@GDI:

@@ -93,7 +93,7 @@ Players:
 		LockTeam: True
 		Team: 1
 		Faction: gdi
-		Color: 0077D6
+		Color: 17549C
 		LockColor: True
 		Allies: GDI, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: Nod, Creeps
@@ -105,7 +105,7 @@ Players:
 		LockTeam: True
 		Team: 1
 		Faction: gdi
-		Color: 82C900
+		Color: 78E530
 		LockColor: True
 		Allies: GDI, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: Nod, Creeps
@@ -117,7 +117,7 @@ Players:
 		LockTeam: True
 		Team: 1
 		Faction: gdi
-		Color: 775A12
+		Color: 00EEFF
 		LockColor: True
 		Allies: GDI, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: Nod, Creeps

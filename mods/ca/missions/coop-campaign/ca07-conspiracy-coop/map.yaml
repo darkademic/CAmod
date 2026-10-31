@@ -92,7 +92,7 @@ Players:
 		LockTeam: True
 		Team: 1
 		Faction: nod
-		Color: 134691
+		Color: 17549C
 		LockColor: True
 		Allies: Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5, Evac
 		Enemies: Greece, GDI, Creeps
@@ -104,7 +104,7 @@ Players:
 		LockTeam: True
 		Team: 1
 		Faction: nod
-		Color: 775A12
+		Color: 00EEFF
 		LockColor: True
 		Allies: Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5, Evac
 		Enemies: Greece, GDI, Creeps
@@ -116,7 +116,7 @@ Players:
 		LockTeam: True
 		Team: 1
 		Faction: nod
-		Color: 82C900
+		Color: 78E530
 		LockColor: True
 		Allies: Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5, Evac
 		Enemies: Greece, GDI, Creeps

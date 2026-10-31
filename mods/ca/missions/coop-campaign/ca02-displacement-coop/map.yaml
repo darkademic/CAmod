@@ -83,7 +83,7 @@ Players:
 		Playable: True
 		LockFaction: True
 		Faction: allies
-		Color: 134691
+		Color: 17549C
 		LockColor: True
 		LockSpawn: True
 		LockTeam: True
@@ -95,7 +95,7 @@ Players:
 		Playable: True
 		LockFaction: True
 		Faction: allies
-		Color: 775A12
+		Color: 00EEFF
 		LockColor: True
 		LockSpawn: True
 		LockTeam: True

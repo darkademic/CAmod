@@ -9,9 +9,6 @@ World:
 	AllyProxyFromSelection:
 	MapBuildRadius:
 		AllyBuildRadiusCheckboxEnabled: True
-		BuildRadiusCheckboxVisible: True
-		BuildRadiusCheckboxLocked: False
-		BuildRadiusCheckboxEnabled: False
 
 	ScriptLobbyDropdown@basesharing:
 		ID: basesharing
@@ -43,27 +40,27 @@ World:
 			40: 40% Shared
 			45: 45% Shared
 			50: 50% Shared
-		Default: 100
+		Default: 125
 		DisplayOrder: 999
 
 	ScriptLobbyDropdown@enattackstr:
 		ID: enattackstr
-		Label: Enemy Attack Modifier
+		Label: Enemy Attack Strength
 		Description: Increases AI attack wave frequency and size (applied after any difficulty modifiers).
 		Values:
-			0: +0%
-			20: +20%
-			40: +40%
-			60: +60%
-			80: +80%
-			100: +100%
-			120: +120%
-			140: +140%
-			160: +160%
-			180: +180%
-			200: +200%
-			250: +250%
-			300: +300%
+			0: 100%
+			25: 125%
+			50: 150%
+			75: 175%
+			100: 200%
+			125: 225%
+			150: 250%
+			175: 275%
+			200: 300%
+			225: 325%
+			250: 350%
+			275: 375%
+			300: 400%
 		Default: 0
 		DisplayOrder: 999
 
@@ -77,19 +74,6 @@ World:
 			2: 2
 			3: 3
 		Default: 0
-		DisplayOrder: 999
-
-	ScriptLobbyDropdown@oremines:
-		ID: oremines
-		Label: Resource Spawners
-		Description: Adjustements to resource spawners on the map.\n\n- No change: Resource spawners are unchanged\n- Additional: Adds a mine or blossom tree to every field that has none. Amount varies from map to map.\n- Upgrade: All ore mines become gem mines, all green blossom trees become blue blossom trees.\n- Add & Upgrade: Adds spawners and upgrades all of them\n- Delete All: Remove all spawners. Warning: All resources are finite now. This can make some missions\n     extremely difficult or impossible without near-perfect execution.
-		Values:
-			oreoff: No Change
-			oreon: Additional
-			oreupgrade: Upgrade
-			oreonupgrade: Add & Upgrade
-			orefinite: Delete All (Hardcore)
-		Default: oreoff
 		DisplayOrder: 999
 
 	ScriptLobbyDropdown@enmp:
@@ -258,6 +242,19 @@ World:
 			domulti: On (Multiply)
 			dontmulti: Off (Don't multiply)
 		Default: dontmulti
+		DisplayOrder: 1000
+
+	ScriptLobbyDropdown@oremines:
+		ID: oremines
+		Label: Resource Spawners
+		Description: Adjustements to resource spawners on the map.\n\n- No change: Resource spawners are unchanged\n- Additional: Adds a mine or blossom tree to every field that has none. Amount varies from map to map.\n- Upgrade: All ore mines become gem mines, all green blossom trees become blue blossom trees.\n- Add & Upgrade: Adds spawners and upgrades all of them\n- Delete All: Remove all spawners. Warning: All resources are finite now. This can make some missions\n     extremely difficult or impossible without near-perfect execution.
+		Values:
+			oreoff: No Change
+			oreon: Additional
+			oreupgrade: Upgrade
+			oreonupgrade: Add & Upgrade
+			orefinite: Delete All (Hardcore)
+		Default: oreoff
 		DisplayOrder: 1000
 
 Player:

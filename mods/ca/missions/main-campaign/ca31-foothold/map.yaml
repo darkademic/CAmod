@@ -60,7 +60,7 @@ Players:
 		Name: ScrinRebels
 		NonCombatant: True
 		Faction: scrin
-		Color: 55E1AE
+		Color: 39C5B7
 		Enemies: Scrin, Creeps
 	PlayerReference@GatewayOwner:
 		Name: GatewayOwner

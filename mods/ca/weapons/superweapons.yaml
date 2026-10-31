@@ -521,7 +521,7 @@ EMPMissileLauncher:
 		ContrailStartColorAlpha: 128
 		ContrailLength: 25
 		ContrailDelay: 3
-		Speed: 300
+		Speed: 500
 		LaunchAngle: 55
 	Warhead@2Dam_impact: SpreadDamage
 		Range: 1c0

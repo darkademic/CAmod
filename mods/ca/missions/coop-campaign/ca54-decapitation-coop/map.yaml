@@ -131,7 +131,7 @@ Players:
 		LockTeam: True
 		Team: 1
 		Faction: nod
-		Color: 134691
+		Color: 17549C
 		LockColor: True
 		Allies: ScrinRebels, Nod1, Nod2, Nod3, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: Scrin, Creeps
@@ -2904,10 +2904,10 @@ Actors:
 	Actor1066: rep
 		Owner: Nod1
 		Location: 17,135
-	Actor1067: hpad
+	Actor1067: hpad.td
 		Location: 15,140
 		Owner: Nod1
-	Actor1068: hpad
+	Actor1068: hpad.td
 		Location: 14,135
 		Owner: Nod1
 	Actor1071: afac

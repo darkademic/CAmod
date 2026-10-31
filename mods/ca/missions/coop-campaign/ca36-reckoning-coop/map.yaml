@@ -44,7 +44,7 @@ Players:
 	PlayerReference@ScrinRebels:
 		Name: ScrinRebels
 		Faction: scrin
-		Color: 55E1AE
+		Color: 39C5B7
 		Allies: Nod, GDI, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: Scrin, Creeps
 	PlayerReference@GDI:
@@ -92,7 +92,7 @@ Players:
 		LockTeam: True
 		Team: 1
 		Faction: scrin
-		Color: 55E1AE
+		Color: 39C5B7
 		LockColor: True
 		Allies: Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5, ScrinRebels, GDI
 		Enemies: Scrin, GDIHostile, Creeps

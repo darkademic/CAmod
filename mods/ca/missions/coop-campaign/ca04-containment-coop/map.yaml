@@ -78,7 +78,7 @@ Players:
 		LockTeam: True
 		Team: 1
 		Faction: allies
-		Color: 134691
+		Color: 17549C
 		LockColor: True
 		Allies: Greece, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: USSR, Creeps
@@ -90,7 +90,7 @@ Players:
 		LockTeam: True
 		Team: 1
 		Faction: allies
-		Color: 775A12
+		Color: 00EEFF
 		LockColor: True
 		Allies: Greece, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
 		Enemies: USSR, Creeps

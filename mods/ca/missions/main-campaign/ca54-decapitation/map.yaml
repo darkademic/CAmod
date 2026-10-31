@@ -2838,10 +2838,10 @@ Actors:
 	Actor1066: rep
 		Owner: Nod1
 		Location: 17,135
-	Actor1067: hpad
+	Actor1067: hpad.td
 		Location: 15,140
 		Owner: Nod1
-	Actor1068: hpad
+	Actor1068: hpad.td
 		Location: 14,135
 		Owner: Nod1
 	Actor1071: afac

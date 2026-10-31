@@ -29,11 +29,10 @@ namespace OpenRA.Mods.CA
 			var cells = world.ActorsHavingTrait<T>().Where(a => a.Owner == player);
 
 			// TODO: Properly check building foundation rather than 3x3 area.
-			return cells.Select(a => map.FindTilesInCircle(a.Location, radius)
-				.Count(c => map.Contains(c) && terrainTypes.Contains(map.GetTerrainInfo(c).Type) &&
+			return cells.Any(a => map.FindTilesInCircle(a.Location, radius)
+				.Any(c => map.Contains(c) && terrainTypes.Contains(map.GetTerrainInfo(c).Type) &&
 					Util.AdjacentCells(world, Target.FromCell(world, c))
-						.All(ac => terrainTypes.Contains(map.GetTerrainInfo(ac).Type))))
-							.Any(availableCells => availableCells > 0);
+						.All(ac => terrainTypes.Contains(map.GetTerrainInfo(ac).Type))));
 		}
 
 		public static IEnumerable<ProductionQueue> FindQueues(Player player, string category)
@@ -214,6 +213,8 @@ namespace OpenRA.Mods.CA
 		{
 			var openSet = new Dictionary<CPos, PathNode>();
 			var closedSet = new HashSet<CPos>();
+			var queue = new OpenRA.Primitives.PriorityQueue<PathQueueEntry, PathQueueEntryComparer>(new PathQueueEntryComparer());
+			long nextSequence = 0;
 
 			// Initialize the starting node
 			var startNode = new PathNode
@@ -221,17 +222,20 @@ namespace OpenRA.Mods.CA
 				Position = source,
 				CostFromStart = 0,
 				EstimatedTotalCost = Heuristic(source, target),
+				Sequence = nextSequence++,
 				Parent = null
 			};
 
 			openSet[source] = startNode;
+			queue.Add(new PathQueueEntry(startNode));
 
-			while (openSet.Count > 0)
+			while (!queue.Empty)
 			{
-				// Find the node in openSet with the lowest estimated total cost
-				var current = openSet.Values.MinBy(n => n.EstimatedTotalCost);
-				if (current == null)
-					break;
+				var entry = queue.Pop();
+				var current = entry.Node;
+				if (entry.EstimatedTotalCost != current.EstimatedTotalCost ||
+					!openSet.TryGetValue(current.Position, out var activeNode) || activeNode != current)
+					continue;
 
 				// Check if we've reached the target
 				if (current.Position == target)
@@ -262,15 +266,18 @@ namespace OpenRA.Mods.CA
 							Position = neighbor,
 							CostFromStart = newCost,
 							EstimatedTotalCost = newCost + Heuristic(neighbor, target),
+							Sequence = nextSequence++,
 							Parent = current
 						};
 						openSet[neighbor] = neighborNode;
+						queue.Add(new PathQueueEntry(neighborNode));
 					}
 					else if (newCost < neighborNode.CostFromStart)
 					{
 						neighborNode.CostFromStart = newCost;
 						neighborNode.EstimatedTotalCost = newCost + Heuristic(neighbor, target);
 						neighborNode.Parent = current;
+						queue.Add(new PathQueueEntry(neighborNode));
 					}
 				}
 			}
@@ -308,7 +315,29 @@ namespace OpenRA.Mods.CA
 			public CPos Position;
 			public int CostFromStart;
 			public int EstimatedTotalCost;
+			public long Sequence;
 			public PathNode Parent;
+		}
+
+		readonly struct PathQueueEntry
+		{
+			public readonly PathNode Node;
+			public readonly int EstimatedTotalCost;
+
+			public PathQueueEntry(PathNode node)
+			{
+				Node = node;
+				EstimatedTotalCost = node.EstimatedTotalCost;
+			}
+		}
+
+		readonly struct PathQueueEntryComparer : IComparer<PathQueueEntry>
+		{
+			public int Compare(PathQueueEntry x, PathQueueEntry y)
+			{
+				var result = x.EstimatedTotalCost.CompareTo(y.EstimatedTotalCost);
+				return result != 0 ? result : x.Node.Sequence.CompareTo(y.Node.Sequence);
+			}
 		}
 
 		public static bool PathExistsForLocomotor(

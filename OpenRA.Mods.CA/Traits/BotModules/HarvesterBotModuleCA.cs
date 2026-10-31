@@ -151,7 +151,7 @@ namespace OpenRA.Mods.CA.Traits
 			// Find idle harvesters and give them orders:
 			// PERF: FindNextResource is expensive, so only perform one search per tick.
 			var searchedForResources = false;
-			while (harvestersNeedingOrders.TryPop(out var hno) && !searchedForResources)
+			while (!searchedForResources && harvestersNeedingOrders.TryPop(out var hno))
 				searchedForResources = HarvestIfAble(bot, hno);
 
 			if (--scanForIdleHarvestersTicks > 0)

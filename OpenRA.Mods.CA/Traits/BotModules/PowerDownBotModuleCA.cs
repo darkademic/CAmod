@@ -132,6 +132,7 @@ namespace OpenRA.Mods.CA.Traits
 					togglingBuildings.Add(bpw.Actor);
 					power += bpw.ExpectedPowerChanging;
 					toggledBuildings.RemoveAt(i);
+					i--;
 				}
 			}
 

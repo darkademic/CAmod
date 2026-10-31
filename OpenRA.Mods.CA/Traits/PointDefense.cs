@@ -79,9 +79,6 @@ namespace OpenRA.Mods.CA.Traits
 			if (armament.IsReloading)
 				return false;
 
-			if (!info.PointDefenseTypes.Contains(type))
-				return false;
-
 			if ((self.CenterPosition - position).HorizontalLengthSquared > armament.MaxRange().LengthSquared)
 				return false;
 

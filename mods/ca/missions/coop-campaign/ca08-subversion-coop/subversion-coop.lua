@@ -13,16 +13,35 @@ SetupPlayers = function()
 	MissionPlayers = GetActiveCoopPlayers({ Multi0, Multi1, Multi2, Multi3, Multi4, Multi5 })
 	MissionEnemies = { GDI, Greece }
 	SinglePlayerPlayer = Nod
+	StopSpread = true
 	CoopInit()
 end
 
 AfterWorldLoaded = function()
-	if CoopPlayers[6] ~= nil then
-		local ExtraStealthTank = Actor.Create(StealthTank1.Type, true, { Owner = Nod, Location = StealthTank1.Location })
-		ExtraStealthTank.GrantCondition("difficulty-" .. Difficulty)
-		StealthTankDeathTrigger(ExtraStealthTank)
-		ExtraStealthTank.Scatter()
+	if #MissionPlayers > 1 then
+		Commando.Owner = MissionPlayers[1]
+
+		local firstUnitPlayer = #MissionPlayers == 2 and MissionPlayers[1] or MissionPlayers[2]
+		local secondUnitPlayer = #MissionPlayers == 2 and MissionPlayers[2] or MissionPlayers[3]
+		Hacker1.Owner = firstUnitPlayer
+		StealthTank1.Owner = firstUnitPlayer
+		Hacker2.Owner = secondUnitPlayer
+		StealthTank2.Owner = secondUnitPlayer
 	end
+
+	for i = 4, #MissionPlayers do
+		local extraHacker = Actor.Create(Hacker1.Type, true, { Owner = MissionPlayers[i], Location = Hacker1.Location })
+		extraHacker.GrantCondition("difficulty-" .. Difficulty)
+		HackerDeathTrigger(extraHacker)
+		extraHacker.Scatter()
+
+		local extraStealthTank = Actor.Create(StealthTank1.Type, true, { Owner = MissionPlayers[i], Location = StealthTank1.Location })
+		extraStealthTank.GrantCondition("difficulty-" .. Difficulty)
+		StealthTankDeathTrigger(extraStealthTank)
+		extraStealthTank.Scatter()
+	end
+
+	StopSpread = false
 end
 
 AfterTick = function()

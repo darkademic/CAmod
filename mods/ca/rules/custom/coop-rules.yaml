@@ -1885,3 +1885,28 @@ COOPCSPK:
 		Prerequisite: structures.collector
 	Production@SQBLD:
 		Produces: BuildingSQ
+
+COOPPDOX:
+	Inherits: ^InvisibleDummy
+	ProvidesPrerequisite@buildingname:
+		Prerequisite: pdox
+
+COOPIRON:
+	Inherits: ^InvisibleDummy
+	ProvidesPrerequisite@buildingname:
+		Prerequisite: iron
+
+COOPPATR:
+	Inherits: ^InvisibleDummy
+	ProvidesPrerequisite@buildingname:
+		Prerequisite: patr
+
+COOPSGEN:
+	Inherits: ^InvisibleDummy
+	ProvidesPrerequisite@buildingname:
+		Prerequisite: sgen
+
+COOPMANI:
+	Inherits: ^InvisibleDummy
+	ProvidesPrerequisite@buildingname:
+		Prerequisite: mani

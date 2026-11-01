@@ -6015,7 +6015,7 @@ SSPK:
 	Armor:
 		Type: Concrete
 	Building:
-		TerrainTypes: Clear,Road,Ore,Gems,Tiberium,BlueTiberium,BlackTiberium
+		TerrainTypes: Clear,Road,Ore,Gems,Tiberium,BlueTiberium,WhiteTiberium,BlackTiberium
 		AllowPlacementOnResources: true
 		-BuildSounds:
 	SoundOnDamageTransition:
@@ -6062,7 +6062,7 @@ VSPK:
 		PlayerColorAlpha: 160
 	ConvertsResources:
 		Range: 8c0
-		ConvertFrom: Tiberium, BlueTiberium, Ore, Gems
+		ConvertFrom: Tiberium, BlueTiberium, WhiteTiberium, Ore, Gems
 		ConvertTo: BlackTiberium
 		Interval: 10
 		Amount: 1
@@ -6256,7 +6256,7 @@ BUZZ:
 		CanHover: True
 		Speed: 33
 		CruiseAltitude: 1
-		LandableTerrainTypes: Clear,Road,Rough,Ore,Gems,Tiberium,BlueTiberium,BlackTiberium,Water,Tree,River,Rock,Beach,Bridge,Tunnel,Wall,Ford
+		LandableTerrainTypes: Clear,Road,Rough,Ore,Gems,Tiberium,BlueTiberium,WhiteTiberium,BlackTiberium,Water,Tree,River,Rock,Beach,Bridge,Tunnel,Wall,Ford
 	AmbientSound:
 		SoundFiles: buzzers-idle1.aud, buzzers-idle2.aud, buzzers-idle3.aud
 		Interval: 10
@@ -6328,7 +6328,7 @@ MSPK:
 		CanHover: True
 		Speed: 46
 		CruiseAltitude: 1
-		LandableTerrainTypes: Clear,Road,Rough,Ore,Gems,Tiberium,BlueTiberium,BlackTiberium,Water,Tree,River,Rock,Beach,Bridge,Tunnel,Wall,Ford
+		LandableTerrainTypes: Clear,Road,Rough,Ore,Gems,Tiberium,BlueTiberium,WhiteTiberium,BlackTiberium,Water,Tree,River,Rock,Beach,Bridge,Tunnel,Wall,Ford
 	KillsSelf:
 		Delay: 325
 	WithDeathAnimation:
@@ -6386,7 +6386,7 @@ GRCL:
 		CanHover: True
 		Speed: 33
 		CruiseAltitude: 1
-		LandableTerrainTypes: Clear,Road,Rough,Ore,Gems,Tiberium,BlueTiberium,BlackTiberium,Water,Tree,River,Rock,Beach,Bridge,Tunnel,Wall,Ford
+		LandableTerrainTypes: Clear,Road,Rough,Ore,Gems,Tiberium,BlueTiberium,WhiteTiberium,BlackTiberium,Water,Tree,River,Rock,Beach,Bridge,Tunnel,Wall,Ford
 	Voiced:
 		VoiceSet: GiantScrinVoice
 	WithColoredSelectionBox@PLAYERBOX:

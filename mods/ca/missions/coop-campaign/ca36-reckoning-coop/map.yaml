@@ -64,72 +64,72 @@ Players:
 		Name: Multi0
 		Playable: True
 		LockFaction: True
+		Faction: nod
+		LockColor: True
+		Color: FE1100
 		LockSpawn: True
 		LockTeam: True
 		Team: 1
-		Faction: nod
-		Color: FE1100
-		LockColor: True
 		Allies: Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5, ScrinRebels, GDI
 		Enemies: Scrin, GDIHostile, Creeps
 	PlayerReference@Multi1:
 		Name: Multi1
 		Playable: True
 		LockFaction: True
+		Faction: gdi
+		LockColor: True
+		Color: F2CF74
 		LockSpawn: True
 		LockTeam: True
 		Team: 1
-		Faction: gdi
-		Color: F2CF74
-		LockColor: True
 		Allies: Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5, ScrinRebels, GDI
 		Enemies: Scrin, GDIHostile, Creeps
 	PlayerReference@Multi2:
 		Name: Multi2
 		Playable: True
 		LockFaction: True
+		Faction: scrin
+		LockColor: True
+		Color: 39C5B7
 		LockSpawn: True
 		LockTeam: True
 		Team: 1
-		Faction: scrin
-		Color: 39C5B7
-		LockColor: True
 		Allies: Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5, ScrinRebels, GDI
 		Enemies: Scrin, GDIHostile, Creeps
 	PlayerReference@Multi3:
 		Name: Multi3
 		Playable: True
 		LockFaction: True
+		Faction: nod
+		LockColor: True
+		Color: 0B7310
 		LockSpawn: True
 		LockTeam: True
 		Team: 1
-		Faction: nod
-		Color: 0B7310
-		LockColor: True
 		Allies: Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5, ScrinRebels, GDI
 		Enemies: Scrin, GDIHostile, Creeps
 	PlayerReference@Multi4:
 		Name: Multi4
 		Playable: True
 		LockFaction: True
+		Faction: gdi
+		LockColor: True
+		Color: EA7816
 		LockSpawn: True
 		LockTeam: True
 		Team: 1
-		Faction: gdi
-		Color: EA7816
-		LockColor: True
 		Allies: Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5, ScrinRebels, GDI
 		Enemies: Scrin, GDIHostile, Creeps
 	PlayerReference@Multi5:
 		Name: Multi5
 		Playable: True
 		LockFaction: True
+		Faction: scrin
+		LockColor: True
+		Color: D83CE5
 		LockSpawn: True
 		LockTeam: True
 		Team: 1
-		Faction: scrin
-		Color: D83CE5
-		LockColor: True
 		Allies: Nod, Multi0, Multi1, Multi2, Multi3, Multi4, Multi5, ScrinRebels, GDI
 		Enemies: Scrin, GDIHostile, Creeps
 
@@ -227,10 +227,10 @@ Actors:
 		SubCell: 3
 		Location: 27,9
 		Facing: 512
-	Actor21: splitblue
+	Actor21: splitwhite
 		Owner: Neutral
 		Location: 11,14
-	Actor22: splitblue
+	Actor22: splitwhite
 		Owner: Neutral
 		Location: 13,22
 	Actor23: swal
@@ -544,16 +544,16 @@ Actors:
 	Actor149: sign
 		Owner: ScrinRebels
 		Location: 86,6
-	Actor151: splitblue
+	Actor151: splitwhite
 		Owner: Neutral
 		Location: 66,6
-	Actor164: splitblue
+	Actor164: splitwhite
 		Owner: Neutral
 		Location: 65,10
-	Actor165: splitblue
+	Actor165: splitwhite
 		Owner: Neutral
 		Location: 93,14
-	Actor166: splitblue
+	Actor166: splitwhite
 		Owner: Neutral
 		Location: 94,7
 	Actor167: ptur
@@ -2050,10 +2050,10 @@ Actors:
 	Actor654: split2
 		Owner: Neutral
 		Location: 40,107
-	Actor655: splitblue
+	Actor655: splitwhite
 		Owner: Neutral
 		Location: 57,52
-	Actor656: splitblue
+	Actor656: splitwhite
 		Owner: Neutral
 		Location: 54,54
 	Actor657: split2
@@ -2988,22 +2988,22 @@ Actors:
 		Location: 37,130
 		SubCell: 3
 		Facing: 761
-	Actor887: splitblue
+	Actor887: splitwhite
 		Owner: Neutral
 		Location: 51,7
-	Actor885: splitblue
+	Actor885: splitwhite
 		Owner: Neutral
 		Location: 45,4
-	Actor901: splitblue
+	Actor901: splitwhite
 		Owner: Neutral
 		Location: 15,45
-	Actor902: splitblue
+	Actor902: splitwhite
 		Owner: Neutral
 		Location: 12,48
-	Actor903: splitblue
+	Actor903: splitwhite
 		Owner: Neutral
 		Location: 16,51
-	Actor904: splitblue
+	Actor904: splitwhite
 		Owner: Neutral
 		Location: 53,43
 	Actor905: camera
@@ -4011,13 +4011,13 @@ Actors:
 		Owner: Neutral
 		Location: 137,79
 		Health: 24
-	Actor1222: splitblue
+	Actor1222: splitwhite
 		Owner: Neutral
 		Location: 106,46
-	Actor1238: splitblue
+	Actor1238: splitwhite
 		Owner: Neutral
 		Location: 106,42
-	Actor1239: splitblue
+	Actor1239: splitwhite
 		Owner: Neutral
 		Location: 113,40
 	Actor1240: swal
@@ -4064,16 +4064,16 @@ Actors:
 		Owner: Neutral
 		Health: 17
 		Location: 143,46
-	Actor1251: splitblue
+	Actor1251: splitwhite
 		Owner: Neutral
 		Location: 137,11
-	Actor1252: splitblue
+	Actor1252: splitwhite
 		Owner: Neutral
 		Location: 136,18
-	Actor1253: splitblue
+	Actor1253: splitwhite
 		Owner: Neutral
 		Location: 109,12
-	Actor1254: splitblue
+	Actor1254: splitwhite
 		Owner: Neutral
 		Location: 106,16
 	Actor1255: scrinflora1

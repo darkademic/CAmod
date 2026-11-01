@@ -1055,7 +1055,7 @@ VoidCannonRift:
 		Weapon: VoidCannonRift
 	ConvertsResources:
 		Range: 8c0
-		ConvertFrom: Tiberium, BlueTiberium, Ore, Gems
+		ConvertFrom: Tiberium, BlueTiberium, WhiteTiberium, Ore, Gems
 		ConvertTo: BlackTiberium
 		Interval: 10
 		Amount: 2

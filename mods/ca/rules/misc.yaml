@@ -477,7 +477,7 @@ ToxicCloud:
 		CanHover: True
 		Speed: 20
 		CruiseAltitude: 1
-		LandableTerrainTypes: Clear,Road,Rough,Ore,Gems,Tiberium,BlueTiberium,BlackTiberium,Water,Tree,River,Rock,Beach,Bridge,Tunnel,Wall,Ford
+		LandableTerrainTypes: Clear,Road,Rough,Ore,Gems,Tiberium,BlueTiberium,WhiteTiberium,BlackTiberium,Water,Tree,River,Rock,Beach,Bridge,Tunnel,Wall,Ford
 	Wanders:
 		WanderMoveRadius: 5
 		ReduceMoveRadiusDelay: 3
@@ -1166,6 +1166,19 @@ SPLITBLUE:
 		Terrain: BlueTiberium
 	ProximityExternalCondition@ONTIB:
 		Condition: on-bluetib
+
+SPLITWHITE:
+	Inherits: SPLIT2
+	RenderSprites:
+		Image: split3
+	SeedsResourceCA:
+		ResourceType: WhiteTiberium
+	AppearsOnMapPreview:
+		Terrain: WhiteTiberium
+	Tooltip:
+		Name: Blossom Tree (purified)
+	RadarColorFromTerrain:
+		Terrain: WhiteTiberium
 
 ^Veil:
 	Inherits@DUMMY: ^InvisibleDummy

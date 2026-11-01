@@ -1077,7 +1077,7 @@
 		BlinkPatterns:
 			bino: Off, On
 	GrantConditionOnTerrain@HAZMATSOVIET:
-		TerrainTypes: Rough, Beach, Ford, Ore, Gems, Tiberium, BlueTiberium, BlackTiberium
+		TerrainTypes: Rough, Beach, Ford, Ore, Gems, Tiberium, BlueTiberium, WhiteTiberium, BlackTiberium
 		Condition: onrough
 	SpeedMultiplier@HAZMATSOVIET:
 		RequiresCondition: hazmatsuits-soviet && onrough
@@ -1781,7 +1781,7 @@
 	DamageTypeDamageMultiplier@A2GPROTECTION:
 		Modifier: 60
 	Harvester:
-		Resources: Tiberium, BlueTiberium, BlackTiberium, Ore, Gems
+		Resources: Tiberium, BlueTiberium, WhiteTiberium, BlackTiberium, Ore, Gems
 		BaleUnloadDelay: 1
 		BaleLoadDelay: 4
 		SearchFromProcRadius: 15
@@ -1800,9 +1800,10 @@
 			Tiberium: pip-green
 			BlueTiberium: pip-blue
 			BlackTiberium: pip-green
+			WhiteTiberium: pip-green
 	StoresResources:
 		Capacity: 26
-		Resources: Tiberium, BlueTiberium, BlackTiberium, Ore, Gems
+		Resources: Tiberium, BlueTiberium, WhiteTiberium, BlackTiberium, Ore, Gems
 	TransferResourcesOnTransform:
 	GrantConditionOnPrerequisite@HARVBALANCE:
 		Condition: global-balancedharvesting
@@ -2753,7 +2754,7 @@
 		ResponsiveBetweenCells: true
 	GrantConditionOnTerrain@ONTIB:
 		Condition: on-tib
-		TerrainTypes: Tiberium, BlueTiberium, BlackTiberium
+		TerrainTypes: Tiberium, BlueTiberium, WhiteTiberium, BlackTiberium
 	GrantStackingCondition@TIBEXPOSED:
 		Condition: tibexposed
 		RequiresCondition: on-tib
@@ -3131,7 +3132,7 @@
 	Wanders:
 		MinMoveDelay: 150
 		MaxMoveDelay: 750
-		AvoidTerrainTypes: Tiberium, BlueTiberium, BlackTiberium
+		AvoidTerrainTypes: Tiberium, BlueTiberium, WhiteTiberium, BlackTiberium
 	MapEditorData:
 		Categories: Civilian infantry
 
@@ -3544,7 +3545,7 @@
 		VTOL: true
 		InitialFacing: 896
 		CanSlide: True
-		LandableTerrainTypes: Clear,Road,Rough,Ore,Gems,Tiberium,BlueTiberium,BlackTiberium,Beach,Bridge,Tunnel,Ford
+		LandableTerrainTypes: Clear,Road,Rough,Ore,Gems,Tiberium,BlueTiberium,WhiteTiberium,BlackTiberium,Beach,Bridge,Tunnel,Ford
 		Crushes: crate, mine, infantry, husk
 	Repairable:
 		RepairActors: fix, rep, srep, hpad, hpad.td, afld, afld.gdi, grav
@@ -4288,7 +4289,7 @@
 	Inherits: ^BasicHusk
 	Inherits@chrono: ^Chronoshiftable
 	Husk:
-		AllowedTerrain: Clear,Road,Rough,Ore,Gems,Tiberium,BlueTiberium,BlackTiberium,Beach,Bridge,Tunnel,Ford
+		AllowedTerrain: Clear,Road,Rough,Ore,Gems,Tiberium,BlueTiberium,WhiteTiberium,BlackTiberium,Beach,Bridge,Tunnel,Ford
 	WithIdleOverlay@Burns:
 		Image: fire
 		Sequence: 1
@@ -4505,7 +4506,7 @@
 		ShowOwnerRow: false
 	CrateCA:
 		Duration: 4500
-		TerrainTypes: Clear, Rough, Road, Ore, Beach, Tiberium, BlueTiberium, BlackTiberium, Water
+		TerrainTypes: Clear, Rough, Road, Ore, Beach, Tiberium, BlueTiberium, WhiteTiberium, BlackTiberium, Water
 	RenderSprites:
 		Palette: effect
 		Image: scrate

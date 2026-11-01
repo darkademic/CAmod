@@ -58,6 +58,12 @@ Terrain:
 		AcceptsSmudgeType: Crater, Scorch, Scorch-NoFlame, Scorch-Black
 		Color: A1E21C
 		RestrictPlayerColor: true
+	TerrainType@WhiteTiberium:
+		Type: WhiteTiberium
+		TargetTypes: Ground
+		AcceptsSmudgeType: Crater, Scorch, Scorch-NoFlame, Scorch-Black
+		Color: EEEEEE
+		RestrictPlayerColor: true
 	TerrainType@BlackTiberium:
 		Type: BlackTiberium
 		TargetTypes: Ground

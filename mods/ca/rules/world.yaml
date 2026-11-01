@@ -24,6 +24,7 @@
 			Gems: 80
 			Tiberium: 70
 			BlueTiberium: 70
+			WhiteTiberium: 70
 			BlackTiberium: 70
 			Beach: 80
 	Locomotor@JUMPJET:
@@ -40,6 +41,7 @@
 			Gems: 100
 			Tiberium: 100
 			BlueTiberium: 100
+			WhiteTiberium: 100
 			BlackTiberium: 100
 			Beach: 100
 			Water: 100
@@ -61,6 +63,7 @@
 			Gems: 88
 			Tiberium: 88
 			BlueTiberium: 88
+			WhiteTiberium: 88
 			BlackTiberium: 88
 			Beach: 50
 	Locomotor@HEAVYWHEELED:
@@ -76,6 +79,7 @@
 			Gems: 88
 			Tiberium: 88
 			BlueTiberium: 88
+			WhiteTiberium: 88
 			BlackTiberium: 88
 			Beach: 45
 	Locomotor@LIGHTTRACKED:
@@ -91,6 +95,7 @@
 			Gems: 88
 			Tiberium: 88
 			BlueTiberium: 88
+			WhiteTiberium: 88
 			BlackTiberium: 88
 			Beach: 88
 	Locomotor@TRACKED:
@@ -106,6 +111,7 @@
 			Gems: 88
 			Tiberium: 88
 			BlueTiberium: 88
+			WhiteTiberium: 88
 			BlackTiberium: 88
 			Beach: 88
 	Locomotor@HEAVYTRACKED:
@@ -121,6 +127,7 @@
 			Gems: 88
 			Tiberium: 88
 			BlueTiberium: 88
+			WhiteTiberium: 88
 			BlackTiberium: 88
 			Beach: 88
 	Locomotor@SHEAVYTRACKED:
@@ -136,6 +143,7 @@
 			Gems: 88
 			Tiberium: 88
 			BlueTiberium: 88
+			WhiteTiberium: 88
 			BlackTiberium: 88
 			Beach: 88
 	Locomotor@NAVAL:
@@ -168,6 +176,7 @@
 			Gems: 88
 			Tiberium: 88
 			BlueTiberium: 88
+			WhiteTiberium: 88
 			BlackTiberium: 88
 			Beach: 88
 			Water: 100
@@ -185,6 +194,7 @@
 			Gems: 88
 			Tiberium: 88
 			BlueTiberium: 88
+			WhiteTiberium: 88
 			BlackTiberium: 88
 			Beach: 88
 			Water: 70
@@ -202,6 +212,7 @@
 			Gems: 88
 			Tiberium: 88
 			BlueTiberium: 88
+			WhiteTiberium: 88
 			BlackTiberium: 88
 			Beach: 88
 			Water: 35
@@ -219,6 +230,7 @@
 			Gems: 100
 			Tiberium: 100
 			BlueTiberium: 100
+			WhiteTiberium: 100
 			BlackTiberium: 100
 			Beach: 100
 			Tunnel: 100
@@ -244,6 +256,7 @@
 			Gems: 80
 			Tiberium: 70
 			BlueTiberium: 70
+			WhiteTiberium: 70
 			BlackTiberium: 70
 			Beach: 80
 			Water: 50
@@ -431,6 +444,10 @@
 				Sequences: bti1,bti2,bti3,bti4,bti5,bti6,bti7,bti8,bti9,bti10,bti11,bti12
 				Palette: bluetiberium
 				Name: Azure Tiberium
+			WhiteTiberium:
+				Sequences: bti1,bti2,bti3,bti4,bti5,bti6,bti7,bti8,bti9,bti10,bti11,bti12
+				Palette: whitetiberium
+				Name: Purified Tiberium
 			BlackTiberium:
 				Sequences: bti1,bti2,bti3,bti4,bti5,bti6,bti7,bti8,bti9,bti10,bti11,bti12
 				Palette: blacktiberium
@@ -515,6 +532,11 @@ World:
 				TerrainType: BlueTiberium
 				AllowedTerrainTypes: Clear, Road
 				MaxDensity: 8
+			WhiteTiberium:
+				ResourceIndex: 6
+				TerrainType: WhiteTiberium
+				AllowedTerrainTypes: Clear, Road
+				MaxDensity: 12
 			BlackTiberium:
 				ResourceIndex: 5
 				TerrainType: BlackTiberium
@@ -740,6 +762,11 @@ EditorWorld:
 			BlueTiberium:
 				ResourceIndex: 4
 				TerrainType: BlueTiberium
+				AllowedTerrainTypes: Clear, Road
+				MaxDensity: 8
+			WhiteTiberium:
+				ResourceIndex: 6
+				TerrainType: WhiteTiberium
 				AllowedTerrainTypes: Clear, Road
 				MaxDensity: 8
 			BlackTiberium:

@@ -8,6 +8,7 @@
 			Tiberium: 25
 			BlueTiberium: 38
 			BlackTiberium: 8
+			WhiteTiberium: 25
 
 EditorPlayer:
 	Inherits: ^BasePlayer

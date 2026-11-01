@@ -6,20 +6,6 @@
 		Green: 1
 		Blue: 1.5
 		Ambient: 0.5
-	FixedColorPalette@BlueTiberium:
-		Color: ffffff
-
-^BaseWorld:
-	TerrainLighting:
-	ResourceRenderer:
-		ResourceTypes:
-			BlueTiberium:
-				Name: Purified Tiberium
-
-^BasePlayer:
-	PlayerResources:
-		ResourceValues:
-			BlueTiberium: 25
 
 World:
 	LuaScript:

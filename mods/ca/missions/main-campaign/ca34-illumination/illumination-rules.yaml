@@ -6,15 +6,6 @@
 		Green: 1
 		Blue: 1.5
 		Ambient: 0.4
-	FixedColorPalette@BlueTiberium:
-		Color: ffffff
-
-^BaseWorld:
-	TerrainLighting:
-	ResourceRenderer:
-		ResourceTypes:
-			BlueTiberium:
-				Name: Purified Tiberium
 
 World:
 	LuaScript:
@@ -229,7 +220,7 @@ SCRINPURIFIER:
 	Tooltip:
 		Name: Ancient Device
 	SeedsResource:
-		ResourceType: BlueTiberium
+		ResourceType: WhiteTiberium
 		Interval: 2
 		RequiresCondition: !is-neutral
 	WithIdleOverlay@ACTIVE:

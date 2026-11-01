@@ -1455,7 +1455,7 @@ BlueShardWalkerShards:
 		Image: cryomiss
 		ContrailStartColor: 463aff
 		ContrailStartColorAlpha: 128
-	Warhead@1Dam:
+	Warhead@1Dam: SpreadDamage
 		Damage: 3100
 	Warhead@3Eff: CreateEffect
 		Image: bshardhit
@@ -1485,7 +1485,7 @@ BlueShardWalkerShardsAA:
 		Image: cryomiss
 		ContrailStartColor: 463aff
 		ContrailStartColorAlpha: 128
-	Warhead@1Dam:
+	Warhead@1Dam: SpreadDamage
 		Damage: 2100
 	Warhead@smallDamage: SpreadDamage
 		Damage: 2100

@@ -91,10 +91,7 @@ WorldLoaded = function()
 		end
 	end)
 
-	Trigger.OnKilled(Church, function(self, killer)
-		Actor.Create("moneycrate", true, { Owner = USSR, Location = Church.Location })
-	end)
-
+	SetupChurchMoneyCrates()
 	AfterWorldLoaded()
 end
 

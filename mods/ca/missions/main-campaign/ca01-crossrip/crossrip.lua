@@ -204,10 +204,6 @@ WorldLoaded = function()
 		UserInterface.SetMissionText("Establish a base.", HSLColor.Yellow)
 	end)
 
-	Trigger.OnKilled(Church, function(self, killer)
-		Actor.Create("moneycrate", true, { Owner = Greece, Location = Church.Location })
-	end)
-
 	Trigger.OnEnteredProximityTrigger(SovietChronosphere.CenterPosition, WDist.New(7 * 1024), function(a, id)
 		if IsMissionPlayer(a.Owner) then
 			Trigger.RemoveProximityTrigger(id)
@@ -233,6 +229,7 @@ WorldLoaded = function()
 		end)
 	end)
 
+	SetupChurchMoneyCrates()
 	SetupReveals({ EntranceReveal1, EntranceReveal2 })
 	AfterWorldLoaded()
 end

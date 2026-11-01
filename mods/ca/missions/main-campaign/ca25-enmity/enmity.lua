@@ -187,14 +187,6 @@ WorldLoaded = function()
 		DoReinforcements()
 	end)
 
-	Trigger.OnKilled(Church1, function(self, killer)
-		Actor.Create("moneycrate", true, { Owner = GDI, Location = Church1.Location })
-	end)
-
-	Trigger.OnKilled(Church2, function(self, killer)
-		Actor.Create("moneycrate", true, { Owner = GDI, Location = Church2.Location })
-	end)
-
 	Utils.Do(PowerGrids, function(grid)
 		Trigger.OnAllKilledOrCaptured(grid.Providers, function()
 			Utils.Do(grid.Consumers, function(consumer)
@@ -213,6 +205,7 @@ WorldLoaded = function()
 		MediaCA.PlaySound("c_recondrones", 2)
 	end)
 
+	SetupChurchMoneyCrates()
 	AfterWorldLoaded()
 end
 

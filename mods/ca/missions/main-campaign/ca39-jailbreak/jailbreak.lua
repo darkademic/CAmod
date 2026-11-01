@@ -169,6 +169,7 @@ WorldLoaded = function()
 		Actor.Create("ai.superweapons.enabled", true, { Owner = Greece })
 	end)
 
+	SetupChurchMoneyCrates()
 	AfterWorldLoaded()
 end
 

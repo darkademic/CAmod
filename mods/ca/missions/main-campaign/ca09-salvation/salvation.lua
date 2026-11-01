@@ -153,6 +153,7 @@ WorldLoaded = function()
 		end
 	end)
 
+	SetupChurchMoneyCrates()
 	UpdateScrinCounter()
 	AfterWorldLoaded()
 end

@@ -213,6 +213,7 @@ WorldLoaded = function()
 		TraitorHQKilledOrCaptured()
 	end)
 
+	SetupChurchMoneyCrates()
 	AfterWorldLoaded()
 end
 

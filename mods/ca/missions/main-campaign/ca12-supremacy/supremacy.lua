@@ -121,6 +121,7 @@ WorldLoaded = function()
 	Banshee1.ReturnToBase(Helipad1)
 	Banshee2.ReturnToBase(Helipad2)
 
+	SetupChurchMoneyCrates()
 	AfterWorldLoaded()
 end
 

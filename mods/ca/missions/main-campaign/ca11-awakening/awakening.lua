@@ -212,6 +212,7 @@ WorldLoaded = function()
 	CyborgFactory3.RallyPoint = CyborgRally1.Location
 	CyborgFactory4.RallyPoint = CyborgRally2.Location
 
+	SetupChurchMoneyCrates()
 	AfterWorldLoaded()
 end
 

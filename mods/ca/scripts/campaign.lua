@@ -1686,7 +1686,7 @@ SetupChurchMoneyCrates = function(churchOwner)
 	local churches = churchOwner.GetActorsByTypes({ "v01", "v25" })
 	Utils.Do(churches, function(a)
 		Trigger.OnKilled(a, function(self, killer)
-			Actor.Create("moneycrate", true, { Owner = churchOwner, Location = a.Location })
+			Actor.Create("moneycrate", true, { Owner = killer.Owner, Location = a.Location })
 		end)
 	end)
 end

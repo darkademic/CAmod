@@ -288,6 +288,7 @@ WorldLoaded = function()
 		end
 	end)
 
+	SetupChurchMoneyCrates()
 	SetupReveals({ EntranceReveal1, EntranceReveal2, EntranceReveal3, EntranceReveal4 })
 	AfterWorldLoaded()
 end

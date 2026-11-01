@@ -93,7 +93,7 @@ WorldLoaded = function()
 	AdjustPlayerStartingCashForDifficulty()
 	RemoveActorsBasedOnDifficultyTags()
 	InitUSSR()
-	SetupChurchMoneyCrates(Neutral)
+	SetupChurchMoneyCrates()
 
 	ObjectiveEliminateSoviets = Greece.AddObjective("Eliminate the Soviet presence.")
 	ObjectiveNeutralizeDomes = Greece.AddSecondaryObjective("Neutralize Soviet Radar Domes.")

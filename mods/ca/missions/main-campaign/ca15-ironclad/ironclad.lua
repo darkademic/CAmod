@@ -116,6 +116,7 @@ WorldLoaded = function()
 		USSR.MarkFailedObjective(ObjectiveProtectIronCurtain)
 	end)
 
+	SetupChurchMoneyCrates()
 	AfterWorldLoaded()
 end
 

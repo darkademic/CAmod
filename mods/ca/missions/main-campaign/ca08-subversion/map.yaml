@@ -2629,7 +2629,7 @@ Actors:
 	Actor909: t06
 		Owner: Neutral
 		Location: 22,15
-	Actor910: v01
+	Church: v01
 		Owner: Neutral
 		Location: 9,15
 	Actor911: t05

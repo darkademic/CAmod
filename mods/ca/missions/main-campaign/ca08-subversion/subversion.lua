@@ -179,6 +179,10 @@ WorldLoaded = function()
 		end
 	end)
 
+	Trigger.OnKilled(Church, function(self, killer)
+		Actor.Create("healcrate", true, { Owner = Nod, Location = Church.Location })
+	end)
+
 	AfterWorldLoaded()
 end
 

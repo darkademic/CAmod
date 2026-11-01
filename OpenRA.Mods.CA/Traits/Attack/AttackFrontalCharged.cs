@@ -142,11 +142,12 @@ namespace OpenRA.Mods.CA.Traits
 			// Stop charging when we lose our target
 			bool isTurning = IsTurning;
 
-			charging =
-				(self.CurrentActivity is AttackCharged || self.CurrentActivity is AttackMoveActivity || self.CurrentActivity is Hunt || self.CurrentActivity is HuntCA)
+			charging = IsAiming
 				&& !reloading
-				&& IsAiming
-				&& (!isTurning || (isTurning && ChargeLevel > 0 && !Info.LosesChargeWhileTurning));
+				&& (self.CurrentActivity is AttackCharged or AttackMoveActivity or Hunt or HuntCA
+					|| self.CurrentActivity?.ActivitiesImplementing<AttackCharged>()
+						.Any(a => a.State == ActivityState.Active) == true)
+				&& (!IsTurning || (ChargeLevel > 0 && !Info.LosesChargeWhileTurning));
 
 			var delta = charging ? Info.ChargeRate : -Info.DischargeRate;
 			ChargeLevel = (ChargeLevel + delta).Clamp(0, requiredChargeLevel);

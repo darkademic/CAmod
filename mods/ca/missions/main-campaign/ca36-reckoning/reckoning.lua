@@ -187,7 +187,7 @@ WorldLoaded = function()
 
 		Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(14)), function()
 			Media.DisplayMessage("Foolish humans! Your armies will be crushed, the rebellion will fall, and you will die here!", "Scrin Overlord", HSLColor.FromHex("7700FF"))
-			MediaCA.PlaySound(MissionDir .. "/overlordwarning.aud", 2)
+			MediaCA.PlaySound(MissionDir .. "/ovld_warning.aud", 2)
 
 			Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(60)), function()
 				InitGDI()

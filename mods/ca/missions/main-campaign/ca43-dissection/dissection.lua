@@ -58,11 +58,11 @@ end
 
 Squads = {
 	Main = {
-		Compositions = AdjustCompositionsForDifficulty(UnitCompositions.Soviet),
+		Delay = AdjustDelayForDifficulty(DateTime.Minutes(2)),
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 40, Max = 80 }),
+		Compositions = AdjustCompositionsForDifficulty(UnitCompositions.Soviet),
 		FollowLeader = true,
 		AttackPaths = SovietAttackPaths,
-		Delay = AdjustDelayForDifficulty(DateTime.Minutes(1)),
 		ProducerActors = { Infantry = { SouthBarracks, NorthBarracks }, Vehicle = { SouthFactory, NorthFactory } },
 	},
 	Air = {

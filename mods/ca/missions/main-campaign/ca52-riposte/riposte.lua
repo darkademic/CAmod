@@ -33,7 +33,7 @@ AdjustedNodCompositions = AdjustCompositionsForDifficulty(UnitCompositions.Nod)
 
 Squads = {
 	GDIMain1 = {
-		Delay = AdjustDelayForDifficulty(DateTime.Minutes(4)),
+		Delay = AdjustDelayForDifficulty(DateTime.Minutes(5)),
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40 }),
 		FollowLeader = true,
 		Compositions = AdjustedGDICompositions,
@@ -55,7 +55,7 @@ Squads = {
 		},
 	},
 	GDIVsNod1 = {
-		Delay = AdjustDelayForDifficulty(DateTime.Minutes(1)),
+		Delay = AdjustDelayForDifficulty(DateTime.Minutes(2)),
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 10, Max = 20 }),
 		FollowLeader = true,
 		Compositions = AdjustedGDICompositions,
@@ -66,7 +66,7 @@ Squads = {
 		},
 	},
 	GDIVsNod2 = {
-		Delay = AdjustDelayForDifficulty(DateTime.Minutes(1)),
+		Delay = AdjustDelayForDifficulty(DateTime.Minutes(2)),
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 10, Max = 20 }),
 		FollowLeader = true,
 		Compositions = AdjustedGDICompositions,

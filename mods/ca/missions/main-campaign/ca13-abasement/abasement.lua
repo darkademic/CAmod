@@ -19,14 +19,14 @@ end
 
 Squads = {
 	ScrinMain = {
-		Delay = AdjustDelayForDifficulty(DateTime.Seconds(150)),
+		Delay = AdjustDelayForDifficulty(DateTime.Minutes(2) + DateTime.Seconds(30)),
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 28, Max = 55 }),
 		FollowLeader = true,
 		Compositions = AdjustCompositionsForDifficulty(UnitCompositions.Scrin),
 		AttackPaths = ScrinGroundAttackPaths,
 	},
 	ScrinWater = {
-		Delay = AdjustDelayForDifficulty(DateTime.Seconds(180)),
+		Delay = AdjustDelayForDifficulty(DateTime.Minutes(3)),
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 12, Max = 25 }),
 		Compositions = ScrinWaterCompositions,
 		AttackPaths = ScrinWaterAttackPaths,

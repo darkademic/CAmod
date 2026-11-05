@@ -193,13 +193,13 @@ Player:
 		-EndChargeSpeechNotification:
 		DisplayTimerRelationships: None
 		ChargeInterval: 1
-	GrantExternalConditionPowerCA@SUPPRESSION:
+	SpawnActorPowerCA@SUPPRESSION:
 		-Prerequisites:
 		-BeginChargeSpeechNotification:
 		-EndChargeSpeechNotification:
 		DisplayTimerRelationships: None
 		ChargeInterval: 1
-	GrantExternalConditionPowerCA@SUPPRESSIONSIPHON:
+	SpawnActorPowerCA@SUPPRESSIONSIPHON:
 		-Prerequisites:
 		-BeginChargeSpeechNotification:
 		-EndChargeSpeechNotification:

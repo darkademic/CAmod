@@ -340,7 +340,7 @@ OverlordSpireZap:
 	ReloadDelay: 50
 	Burst: 11
 	Range: 12c0
-	ValidTargets: Ground, Air, AirSmall, ICBM
+	ValidTargets: Ground, Air, AirSmall
 	Projectile: ElectricBolt
 		Colors: 00FF00E6, 5eff5eE6, 3bc350E6, 7ead85E6, 67be74E6, 009e18E6
 		Duration: 6

@@ -1672,13 +1672,6 @@ Rift:
 SuppressionField:
 	Projectile: InstantExplode
 	ReloadDelay: 999
-	ValidTargets: Ground, Air, AirSmall, Ship
-	# extra suppression range vs aircraft
-	Warhead@Suppression: GrantExternalConditionCA
-		Range: 4c512
-		Duration: 600
-		Condition: suppression
-		ValidTargets: Air, AirSmall
 	Warhead@Distort: HeatDistortion
 		Scale: 0.5
 		FadeFrames: 280
@@ -1686,7 +1679,7 @@ SuppressionField:
 	Warhead@GlowImpact: GlowImpact
 		Color: f454d0
 		Scale: 1.5
-		FadeFrames: 180
+		FadeFrames: 100
 		FadeInFrames: 5
 
 BuzzerSpawner:

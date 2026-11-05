@@ -6664,6 +6664,52 @@ IonSurgeFade:
 	-AmbientSound:
 	-WithRangeCircleCA@IonSurge:
 
+SuppressionField:
+	Inherits@DUMMY: ^InvisibleDummy
+	Immobile:
+		OccupiesSpace: false
+	BodyOrientation:
+		QuantizedFacings: 1
+	RenderSprites:
+		Image: empty
+	WithSpriteBody:
+	Interactable:
+		Bounds: 64, 64
+	WithOscillatingCircle@1:
+		Width: 2
+		StartRadius: 4c960
+		EndRadius: 5c64
+		Color: ff00ff60
+		Duration: 5
+		Visible: Always
+		FillColor: ff00ff10
+	WithOscillatingCircle@2:
+		Width: 2
+		StartRadius: 5c64
+		EndRadius: 4c960
+		Color: ff00ff40
+		Duration: 5
+		Visible: Always
+	WithOscillatingCircle@3:
+		Width: 2
+		StartRadius: 5c128
+		EndRadius: 4c896
+		Color: bb00ff60
+		Duration: 3
+		Visible: Always
+	WithRangeCircle:
+		Type: SuppressionField
+		Range: 5c0
+		Visible: Always
+		UsePlayerColor: true
+		PlayerColorAlpha: 224
+	ProximityExternalCondition@Suppression:
+		Range: 5c0
+		Condition: suppression
+		ValidRelationships: Ally, Enemy, Neutral
+	PeriodicExplosion:
+		Weapon: SuppressionField
+
 ^WormholeBase:
 	Inherits@1: ^ExistsInWorld
 	Inherits@2: ^SpriteActor

@@ -2233,42 +2233,13 @@
 		TargetTintColor: 7e00f140
 
 ^SuppressionPower:
-	GrantExternalConditionPowerCA@SUPPRESSION:
-		PauseOnCondition: disabled || empdisable || being-warped
+	SpawnActorPowerCA@SUPPRESSION:
+		Actor: suppressionfield
 		OrderName: suppression
 		Icon: spresspower
-		ChargeInterval: 4500
-		Name: Suppression Field
-		Description: Applies a suppression field to the target area, slowing unit movement and rate of fire.
-		SelectTargetSpeechNotification: SelectTarget
-		SelectTargetTextNotification: Select target.
-		InsufficientPowerSpeechNotification: InsufficientPower
-		BeginChargeSpeechNotification: SuppressionCharging
-		EndChargeSpeechNotification: SuppressionReady
-		EndChargeTextNotification: Suppression Field ready.
-		DisplayRadarPing: True
-		Range: 3c0
-		ShowTargetCircle: true
-		TargetTintColor: ff55ff33
-		TargetCircleColor: ff55ffcc
-		OnFireSound: suppression.aud
-		DisplayTimerRelationships: Ally, Neutral, Enemy
 		Prerequisites: ~!player.collector
-		SupportPowerPaletteOrder: 20
-		Condition: suppression
-		MaxAltitude: 4096
-		MinTargets: 1
-		ValidTargets: Ground, Air, AirSmall, Ship
-		ValidRelationships: Ally, Enemy, Neutral
-		Duration: 600
-		AllowMultiple: false
-		Cursor: ability
-		ExplosionWeapon: SuppressionField
-	GrantExternalConditionPowerCA@SUPPRESSIONSIPHON:
-		PauseOnCondition: disabled || empdisable || being-warped
-		OrderName: suppressionsiphon
-		Icon: spresspower
-		ChargeInterval: 3750
+		ChargeInterval: 4500
+		LifeTime: 600
 		Name: Suppression Field
 		Description: Applies a suppression field to the target area, slowing unit movement and rate of fire.
 		SelectTargetSpeechNotification: SelectTarget
@@ -2277,24 +2248,47 @@
 		BeginChargeSpeechNotification: SuppressionCharging
 		EndChargeSpeechNotification: SuppressionReady
 		EndChargeTextNotification: Suppression Field ready.
+		PauseOnCondition: disabled || empdisable || being-warped
 		DisplayRadarPing: True
-		Range: 3c0
-		ShowTargetCircle: true
-		TargetTintColor: ff55ff33
-		TargetCircleColor: ff55ffcc
-		OnFireSound: suppression.aud
-		DisplayTimerRelationships: Ally, Neutral, Enemy
-		Prerequisites: ~player.collector
-		SupportPowerPaletteOrder: 20
-		Condition: suppression
-		MaxAltitude: 4096
-		MinTargets: 1
-		ValidTargets: Ground, Air, AirSmall, Ship
-		ValidRelationships: Ally, Enemy, Neutral
-		Duration: 660
-		AllowMultiple: false
 		Cursor: ability
-		ExplosionWeapon: SuppressionField
+		AllowMultiple: false
+		ShowTargetCircle: true
+		TargetCircleRange: 5c0
+		TargetCircleColor: ff55ffcc
+		SupportPowerPaletteOrder: 20
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		LaunchSound: suppression.aud
+		DisplayTimerRelationships: Ally, Neutral, Enemy
+	SpawnActorPowerCA@SUPPRESSIONSIPHON:
+		Actor: suppressionfield
+		OrderName: suppression
+		Icon: spresspower
+		Prerequisites: ~player.collector
+		ChargeInterval: 3750
+		LifeTime: 600
+		Name: Suppression Field
+		Description: Applies a suppression field to the target area, slowing unit movement and rate of fire.
+		SelectTargetSpeechNotification: SelectTarget
+		SelectTargetTextNotification: Select target.
+		InsufficientPowerSpeechNotification: InsufficientPower
+		BeginChargeSpeechNotification: SuppressionCharging
+		EndChargeSpeechNotification: SuppressionReady
+		EndChargeTextNotification: Suppression Field ready.
+		PauseOnCondition: disabled || empdisable || being-warped
+		DisplayRadarPing: True
+		Cursor: ability
+		AllowMultiple: false
+		ShowTargetCircle: true
+		TargetCircleRange: 5c0
+		TargetCircleColor: ff55ffcc
+		SupportPowerPaletteOrder: 20
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		LaunchSound: suppression.aud
+		DisplayTimerRelationships: Ally, Neutral, Enemy
 
 ^RiftPower:
 	DetonateWeaponPower@RiftGenerator:

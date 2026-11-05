@@ -122,6 +122,9 @@ MSPK:
 	KillsSelf:
 		Delay: 250
 
+WORMHOLE:
+	-Targetable:
+
 SEEK:
 	RevealsShroud:
 		Range: 8c512

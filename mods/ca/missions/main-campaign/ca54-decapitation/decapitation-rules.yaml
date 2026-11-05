@@ -292,9 +292,9 @@ Player:
 	SupportPowerBotModule:
 		Decisions:
 			owrath:
-				MinimumAttractiveness: 1000
+				MinimumAttractiveness: 1500
 				Consideration@1:
-					Types: Structure, Vehicle, Infantry
+					Types: Defense, Vehicle, Infantry
 
 # Difficulty modifiers
 

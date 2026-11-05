@@ -151,16 +151,6 @@ VEHICLES.SCRIN:
 		Sequence: shield
 		Palette: scrinshield-ignore-lighting-alpha50
 		RequiresCondition: shields-upgrade && shields-up
-	SpeedMultiplier@SHIELDWARP:
-		Modifier: 25
-		RequiresCondition: shield-warped
-	ExternalCondition@SHIELDWARP:
-		Condition: shield-warped
-	WithColoredOverlay@SHIELDWARP:
-		RequiresCondition: shield-warped
-		Color: 51aeda38
-	WithIdleOverlay@TEMPORAL:
-		RequiresCondition: being-warped || shield-warped
 
 ^MothershipRearmable:
 	Targetable@MothershipRearmable:

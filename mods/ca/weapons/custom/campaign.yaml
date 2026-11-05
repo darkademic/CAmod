@@ -271,11 +271,11 @@ VanquisherBolts:
 		Shadow: true
 		ShadowColor: 00000033
 	Warhead@1Dam: SpreadDamage
-		Spread: 341
+		Spread: 448
 		Falloff: 500, 368, 135, 50, 18, 7, 0
 		Damage: 1400
 		Versus:
-			None: 100
+			None: 80
 			Wood: 45
 			Concrete: 55
 			Light: 80
@@ -310,11 +310,37 @@ VanquisherAA:
 		ImpactSounds: gshardhit1.aud, gshardhit2.aud
 		ImpactSoundChance: 100
 
+VanquisherTurretGun:
+	Inherits: StormriderZap
+	Range: 9c0
+	ReloadDelay: 25
+	Burst: 10
+	BurstDelays: 8
+
+VanquisherTurretGunAA:
+	Inherits: ShardLauncher
+	Range: 9c0
+	ValidTargets: Air, AirSmall
+	Projectile: MissileCA
+		Image: pshard
+		ContrailStartColor: FF00FF
+		ContrailStartColorAlpha: 170
+		RangeLimit: 14c0
+		ContrailZOffset: 3584
+	Warhead@1Dam: SpreadDamage
+		Damage: 1500
+	Warhead@smallDamage: SpreadDamage
+		Range: 0, 0c64, 0c256, 2c768
+	Warhead@3Eff: CreateEffect
+		Explosions: idle
+		Image: enrvbolthit
+
 OverlordSpireZap:
 	Inherits: StormColumnZap
+	ReloadDelay: 50
 	Burst: 11
 	Range: 12c0
-	ValidTargets: Ground, Air
+	ValidTargets: Ground, Air, AirSmall, ICBM
 	Projectile: ElectricBolt
 		Colors: 00FF00E6, 5eff5eE6, 3bc350E6, 7ead85E6, 67be74E6, 009e18E6
 		Duration: 6
@@ -323,9 +349,11 @@ OverlordSpireZap:
 		Distortion: 96
 		DistortionAnimation: 96
 		ZOffset: 512
+	Warhead@1Dam: SpreadDamage
+		Damage: 2000
 	Warhead@2Dam: SpreadDamage
-		Damage: 1000
-		ValidTargets: Air
+		Damage: 1500
+		ValidTargets: Air, AirSmall, ICBM
 		ValidRelationships: Enemy, Neutral
 		Range: 0, 0c64, 0c256, 3c0
 		Falloff: 100, 100, 30, 15
@@ -333,7 +361,39 @@ OverlordSpireZap:
 		Spread: 0c511
 		Color: 00ff00
 		Duration: 3
-		ValidTargets: Vehicle, Air
+		ValidTargets: Vehicle, Air, AirSmall
+
+OverlordSpireShieldRegen:
+	ReloadDelay: 10
+	Warhead@Zaps: FireShrapnel
+		ValidTargets: Ground, Water, Air
+		Weapon: OverlordSpireShieldRegenZap
+		Amount: 1
+		AimChance: 100
+		AllowDirectHit: true
+		ThrowWithoutTarget: false
+		AimTargetStances: Ally
+		ImpactSounds: mshp-stmrcharge.aud
+
+OverlordSpireShieldRegenZap:
+	Inherits: GravityStabilizerZap
+	ReloadDelay: 50
+	Range: 7c0
+	ValidTargets: Vanquisher
+	InvalidTargets: FullShields
+	Projectile: ElectricBolt
+		TrackTarget: true
+		Colors: FFFFFF66, FFFFFF33
+		Duration: 3
+		Distortion: 160
+		DistortionAnimation: 160
+	Warhead@Flash: FlashTarget
+		ValidTargets: Vanquisher
+	Warhead@Recharge: GrantExternalConditionCA
+		Range: 0c511
+		Duration: 60
+		Condition: spire-recharge
+		ValidTargets: Vanquisher
 
 # Super unit modifiers
 

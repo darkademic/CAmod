@@ -84,11 +84,23 @@ namespace OpenRA.Mods.CA.Traits
 		[Desc("The range at which the actor can attach.")]
 		public readonly WDist MinAttachDistance = WDist.Zero;
 
+		[Desc("Attached position relative to parent body (forward, right, up).")]
+		public readonly WVec Offset = WVec.Zero;
+
+		[Desc("Whether the actor is linked to the parent for targeting purposes.")]
+		public readonly bool InheritsTarget = false;
+
+		[Desc("Whether the actor inherits the facing of the host.")]
+		public readonly bool InheritsFacing = false;
+
+		[Desc("Offset to apply to the facing of the actor when attached.")]
+		public readonly WAngle FacingOffset = WAngle.Zero;
+
 		public override object Create(ActorInitializer init) { return new Attachable(init, this); }
 	}
 
 	public class Attachable : INotifyCreated, INotifyKilled, INotifyActorDisposing, INotifyOwnerChanged, INotifyAiming,
-		IIssueOrder, IResolveOrder, IOrderVoice
+		IIssueOrder, IResolveOrder, IOrderVoice, ITick
 	{
 		public readonly AttachableInfo Info;
 		AttachableTo attachedTo;
@@ -98,8 +110,11 @@ namespace OpenRA.Mods.CA.Traits
 		int detachedConditionToken;
 		Target lastTarget;
 		readonly IPositionable positionable;
+		readonly IFacing facing;
 		readonly Actor self;
 		public int CopiedExperience { get; private set; }
+		bool isMoving;
+		bool isTurning;
 
 		public Actor AttachedToActor => attachedTo?.Actor;
 
@@ -108,6 +123,7 @@ namespace OpenRA.Mods.CA.Traits
 			self = init.Self;
 			Info = info;
 			positionable = self.Trait<IPositionable>();
+			facing = self.TraitOrDefault<IFacing>();
 			attachedConditionToken = Actor.InvalidConditionToken;
 			detachedConditionToken = Actor.InvalidConditionToken;
 		}
@@ -119,6 +135,23 @@ namespace OpenRA.Mods.CA.Traits
 		}
 
 		public bool IsValid { get { return self != null && !self.IsDead; } }
+
+		void ITick.Tick(Actor self)
+		{
+			if (!isMoving && !isTurning)
+				return;
+
+			HostPositionChanged();
+
+			if (Info.InheritsFacing && isTurning)
+				HostFacingChanged();
+		}
+
+		public void HostMovementTypesChanged(MovementType type)
+		{
+			isMoving = type.HasMovementType(MovementType.Horizontal) || type.HasMovementType(MovementType.Vertical);
+			isTurning = type.HasMovementType(MovementType.Turn);
+		}
 
 		/** Called from AttachableTo.Attach() */
 		public void AttachTo(AttachableTo attachableTo, WPos pos)
@@ -182,12 +215,44 @@ namespace OpenRA.Mods.CA.Traits
 			SetPosition(attachedTo.CenterPosition);
 		}
 
-		void SetPosition(WPos pos)
+		public void HostFacingChanged()
 		{
-			if (attachedTo.CenterPosition.X == self.CenterPosition.X && attachedTo.CenterPosition.Y == self.CenterPosition.Y)
+			if (!Info.InheritsFacing || facing == null)
 				return;
 
-			var newPosition = new WPos(pos.X, pos.Y, self.CenterPosition.Z);
+			if (!IsValid || attachedTo == null)
+				return;
+
+			if (!self.IsInWorld)
+				return;
+
+			facing.Facing = attachedTo.Facing.Facing + Info.FacingOffset;
+		}
+
+		WVec WorldOffset()
+		{
+			if (Info.Offset == WVec.Zero)
+				return WVec.Zero;
+
+			var host = attachedTo.Actor;
+			var body = host.TraitOrDefault<BodyOrientation>();
+			var offset = body != null
+				? Info.Offset.Rotate(body.QuantizeOrientation(host.Orientation))
+				: Info.Offset.Rotate(host.Orientation);
+
+			return body != null ? body.LocalToWorld(offset) : offset;
+		}
+
+		void SetPosition(WPos pos)
+		{
+			var newPosWithOffset = pos + WorldOffset();
+
+			if (newPosWithOffset.X == self.CenterPosition.X
+				&& newPosWithOffset.Y == self.CenterPosition.Y
+				&& newPosWithOffset.Z == self.CenterPosition.Z)
+				return;
+
+			var newPosition = new WPos(newPosWithOffset.X, newPosWithOffset.Y, newPosWithOffset.Z);
 			positionable.SetPosition(self, newPosition);
 			positionable.SetCenterPosition(self, newPosition);
 		}
@@ -275,7 +340,7 @@ namespace OpenRA.Mods.CA.Traits
 
 		public void Stop()
 		{
-			if (attackBases.Count() == 0)
+			if (!Info.InheritsTarget || attackBases.Count() == 0)
 				return;
 
 			self.CancelActivity();
@@ -284,7 +349,7 @@ namespace OpenRA.Mods.CA.Traits
 
 		public void Attack(Target target, bool force)
 		{
-			if (attackBases.Count() == 0)
+			if (!Info.InheritsTarget || attackBases.Count() == 0)
 				return;
 
 			if (!TargetSwitched(lastTarget, target))

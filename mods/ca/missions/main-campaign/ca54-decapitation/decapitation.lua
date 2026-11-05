@@ -69,12 +69,13 @@ NextSpireSummonAvailable = 0
 
 SpireSummonsUsed = {}
 
+VanquisherIdleTicks = 0
 VanquisherDefendingSpire = false
 VanquisherAttacking = false
 VanquisherFinalAttack = false
 VanquisherAttacksStarted = false
 
-VanquisherAttacksInterval = {
+VanquisherMaxIdleTicks = {
 	easy = DateTime.Minutes(7),
 	normal = DateTime.Minutes(6),
 	hard = DateTime.Minutes(5),
@@ -172,13 +173,13 @@ RecalculateBetaSquad = function(squad)
 		return a.Owner == Scrin and a.Type == "grav"
 	end)
 
-	if #centralFactories == 1 and #centralPortals == 1 and #centralGravs == 1 then
+	if #centralFactories > 0 and #centralPortals > 0 and #centralGravs > 0 then
 		table.insert(activeBases, "Central")
 	end
 	if #eastFactories > 0 and #eastPortals > 0 and #eastGravs > 0 then
 		table.insert(activeBases, "East")
 	end
-	if #westFactories == 1 and #westPortals == 1 and #westGravs == 1 then
+	if #westFactories > 0 and #westPortals > 0 and #westGravs > 0 then
 		table.insert(activeBases, "West")
 	end
 
@@ -409,6 +410,13 @@ OncePerSecondChecks = function()
 		Nod2.Resources = Nod2.ResourceCapacity - 500
 		Nod3.Resources = Nod3.ResourceCapacity - 500
 
+		if VanquisherAttacksStarted and not VanquisherAttacking and not VanquisherDefendingSpire then
+			VanquisherIdleTicks = VanquisherIdleTicks + DateTime.Seconds(1)
+			if VanquisherIdleTicks >= VanquisherMaxIdleTicks[Difficulty] then
+				VanquisherAttack()
+			end
+		end
+
 		if MissionPlayersHaveNoRequiredUnits() then
 			if not ScrinRebels.IsObjectiveCompleted(ObjectiveDestroySpires) then
 				ScrinRebels.MarkFailedObjective(ObjectiveDestroySpires)
@@ -464,10 +472,8 @@ InitScrin = function()
 	end)
 
 	Trigger.OnDamaged(Vanquisher, function(self, attacker, damage)
-		if IsMissionPlayer(attacker.Owner) then
-			if Vanquisher.ShieldStrengthPercent == 0 then
-				RecallVanquisher()
-			end
+		if Vanquisher.ShieldStrengthPercent == 0 then
+			RecallVanquisher()
 		end
 	end)
 
@@ -476,7 +482,7 @@ InitScrin = function()
 		Actor.Create("ai.superweapons.enabled", true, { Owner = Scrin })
 	end)
 
-	Utils.Do(Spires, function(spire, attacker, damage)
+	Utils.Do(Spires, function(spire)
 		Trigger.OnDamaged(spire, function(self, attacker, damage)
 			if not spire.IsDead and NextSpireSummonAvailable < DateTime.GameTime and IsMissionPlayer(attacker.Owner) and not SpireSummonsUsed[tostring(spire)] then
 				local maxHp = self.MaxHealth
@@ -495,6 +501,7 @@ InitScrin = function()
 					end
 					NextSpireSummonAvailable = DateTime.GameTime + DateTime.Seconds(60)
 					Vanquisher.Hunt()
+					VanquisherIdleTicks = 0
 					VanquisherAttacking = false
 					VanquisherDefendingSpire = true
 					Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(3)), function()
@@ -559,20 +566,22 @@ InitNod = function()
 	InitAttackSquad(Squads.Nod2, Nod2, Scrin)
 end
 
-VanquisherAttack = function(scheduleNext)
+VanquisherAttack = function()
 	if not VanquisherDefendingSpire and not VanquisherAttacking and not VanquisherFinalAttack then
-		local possibleTargets = GetMissionPlayersActorsByTypes({ "afac", "fact", "sfac", "proc", "proc.td", "proc.scrin" })
-		if #possibleTargets > 0 then
-			VanquisherAttacking = true
-			local target = Utils.Random(possibleTargets)
+		VanquisherIdleTicks = 0
+		VanquisherAttacking = true
+		local possibleSuperweaponTargets = GetMissionPlayersActorsByTypes({ "rfgn", "mslo.nod", "weat", "eye" })
+		if #possibleSuperweaponTargets > 0 then
+			local target = Utils.Random(possibleSuperweaponTargets)
 			Vanquisher.Attack(target)
-			Vanquisher.Hunt()
+		else
+			local possibleTargets = GetMissionPlayersActorsByTypes({ "afac", "fact", "sfac", "proc", "proc.td", "proc.scrin", "sign" })
+			if #possibleTargets > 0 then
+				local target = Utils.Random(possibleTargets)
+				Vanquisher.Attack(target)
+			end
 		end
-	end
-	if scheduleNext then
-		Trigger.AfterDelay(VanquisherAttacksInterval[Difficulty], function()
-			VanquisherAttack(scheduleNext)
-		end)
+		Vanquisher.Hunt()
 	end
 end
 
@@ -585,7 +594,6 @@ RecallVanquisher = function()
 			VanquisherAttacking = false
 			if IsHardOrAbove() and not VanquisherAttacksStarted then
 				VanquisherAttacksStarted = true
-				VanquisherAttack(true)
 			end
 			return
 		end
@@ -600,8 +608,8 @@ end
 
 TeleportVanquisher = function(destinationLoc)
 	if not Vanquisher.IsDead then
-		local effect = Actor.Create("recall.effect", true, { Owner = Scrin, Location = Vanquisher.Location })
-		local effect = Actor.Create("recall.effect", true, { Owner = Scrin, Location = destinationLoc })
+		Actor.Create("recall.effect", true, { Owner = Scrin, Location = Vanquisher.Location })
+		Actor.Create("recall.effect", true, { Owner = Scrin, Location = destinationLoc })
 		Vanquisher.Stop()
 		Vanquisher.Teleport(destinationLoc)
 	end

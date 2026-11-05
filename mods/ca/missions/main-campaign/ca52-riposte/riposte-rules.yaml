@@ -21,6 +21,8 @@ INTL.Loaded:
 		Image: intl
 	Cargo:
 		InitialUnits: s1,s1,s1,s1,s3
+	WithCargoSounds:
+		-EnterSounds:
 	-Buildable:
 	Selectable:
 		Class: intl
@@ -31,6 +33,8 @@ INTL.Loaded.IMPL:
 		Image: intl
 	Cargo:
 		InitialUnits: impl,impl,impl,impl,impl
+	WithCargoSounds:
+		-EnterSounds:
 	-Buildable:
 	Selectable:
 		Class: intl

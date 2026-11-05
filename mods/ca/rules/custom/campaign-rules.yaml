@@ -1110,50 +1110,6 @@ WORMHOLEUNSTABLE:
 	MapEditorData:
 		Categories: System
 
-OSPI:
-	Inherits: ^Defense
-	Inherits@AUTOTARGET: ^AutoTargetAll
-	Inherits@ActorDifficultyConditions: ^ActorDifficultyConditions
-	Inherits@A2GPROTECTION: ^AirToGroundProtection
-	Targetable@CampaignBoss:
-		TargetTypes: CampaignBoss
-	Targetable@OverlordSpire:
-		TargetTypes: OverlordSpire
-	-Targetable@HACKABLE:
-	RenderSprites:
-		PlayerPalette: playerscrin
-	Valued:
-		Cost: 15000
-	Tooltip:
-		Name: Overlord's Spire
-	Selectable:
-		Bounds: 3072, 4608, 0, -1024
-		DecorationBounds: 3114, 4608, 0, -1024
-	Building:
-		Footprint: xxx xxx ===
-		Dimensions: 3,3
-		LocalCenterOffset: 0,-512,0
-	Health:
-		HP: 1500000
-	Armor:
-		Type: Concrete
-	HitShape:
-		UseTargetableCellsOffsets: true
-		TargetableOffsets: 0,0,768
-	Armament:
-		Weapon: OverlordSpireZap
-		LocalOffset: 0,300,1800, 0,0,2200, 0,-300,1400, 0,0,2600, 0,300,1000
-	AttackOmni:
-		PauseOnCondition: empdisable || being-warped
-	DetectCloaked:
-		RequiresCondition: !(empdisable || being-warped)
-	SpawnActorOnDeath:
-		Actor: evis
-	WithBuildingBib:
-	WithMuzzleOverlay:
-	-WithMakeAnimation:
-	-Sellable:
-
 DOMI:
 	Inherits: ^Tank
 	Inherits@ActorDifficultyConditions: ^ActorDifficultyConditions
@@ -1300,10 +1256,57 @@ DOMI.Husk:
 	RenderSprites:
 		Image: domi.destroyed
 
+OSPI:
+	Inherits: ^Defense
+	Inherits@AUTOTARGET: ^AutoTargetAll
+	Inherits@ActorDifficultyConditions: ^ActorDifficultyConditions
+	Inherits@A2GPROTECTION: ^AirToGroundProtection
+	Targetable@CampaignBoss:
+		TargetTypes: CampaignBoss
+	Targetable@OverlordSpire:
+		TargetTypes: OverlordSpire
+	-Targetable@HACKABLE:
+	RenderSprites:
+		PlayerPalette: playerscrin
+	Valued:
+		Cost: 15000
+	Tooltip:
+		Name: Overlord's Spire
+	Selectable:
+		Bounds: 3072, 4608, 0, -1024
+		DecorationBounds: 3114, 4608, 0, -1024
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+		LocalCenterOffset: 0,-512,0
+	Health:
+		HP: 1500000
+	Armor:
+		Type: Concrete
+	HitShape:
+		UseTargetableCellsOffsets: true
+		TargetableOffsets: 0,0,768
+	Armament:
+		Weapon: OverlordSpireZap
+		LocalOffset: 0,300,1800, 0,0,2200, 0,-300,1400, 0,0,2600, 0,300,1000
+	AttackOmni:
+		PauseOnCondition: empdisable || being-warped
+	DetectCloaked:
+		RequiresCondition: !(empdisable || being-warped)
+	SpawnActorOnDeath:
+		Actor: evis
+	PeriodicExplosion:
+		Weapon: OverlordSpireShieldRegen
+		LocalOffset: 0,0,2600
+	WithBuildingBib:
+	WithMuzzleOverlay:
+	-WithMakeAnimation:
+	-Sellable:
+
 VANQ:
 	Inherits: ^Helicopter
 	Inherits@ActorDifficultyConditions: ^ActorDifficultyConditions
-	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Inherits@HULLREGEN: ^HullRegen
 	Inherits@SHIELDS: ^ScrinShields
 	Inherits@FleetRecallable: ^FleetRecallable
@@ -1327,6 +1330,8 @@ VANQ:
 	Shielded:
 		MaxStrength: 600000
 		RegenAmount: 1000
+		RegenDelay: 350
+		ShieldsMaxCondition: full-shields
 	Armor:
 		Type: Aircraft
 	HitShape:
@@ -1344,15 +1349,8 @@ VANQ:
 		LocalOffset: 780,400,100, 780,-400,100
 		MuzzleSequence: muzzle
 		MuzzlePalette: scrin
-	Armament@SECONDARY:
-		Name: secondary
-		Weapon: VanquisherAA
-		LocalOffset: -600,100,1100,-600,-100,1100
-		MuzzleSequence: muzzle2
-		MuzzlePalette: scrin
 	WithMuzzleOverlay:
 	AttackFrontal:
-		Armaments: primary, secondary
 		FacingTolerance: 8
 		TargetFrozenActors: True
 		PauseOnCondition: empdisable
@@ -1376,6 +1374,83 @@ VANQ:
 	GpsRadarDot:
 		Sequence: Plane
 	-SoundOnDamageTransitionCA:
+	Targetable@Vanquisher:
+		TargetTypes: Vanquisher
+	Targetable@FullShields:
+		TargetTypes: FullShields
+		RequiresCondition: full-shields
+	ExternalCondition@SpireRecharge:
+		Condition: spire-recharge
+	ChangesShieldStrength@SpireRecharge:
+		PercentageStep: 3
+		Delay: 30
+		StartIfBelow: 100
+		RequiresCondition: spire-recharge
+	AttachableTo:
+		Type: VanquisherTurret
+	AttachOnCreation@1:
+		Actors: VANQ.Turret.FrontLeft, VANQ.Turret.FrontRight, VANQ.Turret.MiddleLeft, VANQ.Turret.MiddleRight, VANQ.Turret.RearLeft, VANQ.Turret.RearRight
+
+^VanquisherTurret:
+	Inherits@DUMMY: ^InvisibleDummy
+	Inherits@AUTOTARGET: ^AutoTargetAll
+	BodyOrientation:
+		QuantizedFacings: 32
+	ImmobilePositionable:
+	Attachable:
+		Type: VanquisherTurret
+		TargetTypes: Vanquisher
+		InheritsFacing: true
+	AttackFrontal:
+		FacingTolerance: 192
+	Armament@PRIMARY:
+		Weapon: VanquisherTurretGun
+		MuzzleSequence: muzzle
+		MuzzlePalette: scrin
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: VanquisherTurretGunAA
+		MuzzleSequence: muzzle
+		MuzzlePalette: scrin
+
+VANQ.Turret.FrontLeft:
+	Inherits: ^VanquisherTurret
+	Attachable:
+		FacingOffset: 128
+		Offset: 2048,-768,64
+
+VANQ.Turret.FrontRight:
+	Inherits: ^VanquisherTurret
+	Attachable:
+		FacingOffset: -128
+		Offset: 2048,768,64
+
+VANQ.Turret.MiddleLeft:
+	Inherits: ^VanquisherTurret
+	Attachable:
+		FacingOffset: 256
+		Offset: 128,-1536,64
+
+VANQ.Turret.MiddleRight:
+	Inherits: ^VanquisherTurret
+	Attachable:
+		FacingOffset: -256
+		Offset: 128,1536,64
+
+VANQ.Turret.RearLeft:
+	Inherits: ^VanquisherTurret
+	Attachable:
+		FacingOffset: 384
+		Offset: -1792,-1536,64
+
+VANQ.Turret.RearRight:
+	Inherits: ^VanquisherTurret
+	Attachable:
+		FacingOffset: -384
+		Offset: -1792,1536,64
+
+VANQ.Turret.AA:
+	Inherits@DUMMY: ^InvisibleDummy
 
 VANQ.Husk:
 	Inherits: ^Husk

@@ -4527,6 +4527,7 @@ MDRN:
 		OnAttachTransformInto: mdrn.attached
 		OnAttachCopyExperience: true
 		AttachSound: mdrn-attach.aud
+		InheritsTarget: true
 	-Carryable:
 	-GrantCondition@CarriedImmobile:
 	WithIdleOverlay@NSHIELD:

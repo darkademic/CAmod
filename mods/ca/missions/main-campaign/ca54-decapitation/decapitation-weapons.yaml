@@ -1,0 +1,3 @@
+OrcaBomb:
+	Warhead@bossEmp: GrantExternalConditionCA
+		Duration: 10

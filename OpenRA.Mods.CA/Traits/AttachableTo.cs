@@ -47,10 +47,11 @@ namespace OpenRA.Mods.CA.Traits
 
 	public class AttachableTo : INotifyKilled, INotifyOwnerChanged, IResolveOrder, INotifyStanceChanged,
 		INotifyExitedCargo, INotifyEnteredCargo, INotifyCreated, INotifyTransform, INotifyRemovedFromWorld, INotifyAddedToWorld,
-		INotifyCenterPositionChanged, INotifySold
+		INotifySold, INotifyMoving
 	{
 		public readonly AttachableToInfo Info;
 		INotifyAttachedTo[] notifyAttached;
+		IFacing facing;
 		public Carryable Carryable { get; private set; }
 		readonly Actor self;
 		readonly HashSet<Attachable> attached = new HashSet<Attachable>();
@@ -69,6 +70,7 @@ namespace OpenRA.Mods.CA.Traits
 		}
 
 		public WPos CenterPosition { get { return self.CenterPosition; } }
+		public IFacing Facing { get { return facing; } }
 		public bool IsInWorld { get { return self.IsInWorld; } }
 
 		public bool Reserve()
@@ -83,6 +85,7 @@ namespace OpenRA.Mods.CA.Traits
 		void INotifyCreated.Created(Actor self)
 		{
 			Carryable = self.TraitOrDefault<Carryable>();
+			facing = self.TraitOrDefault<IFacing>();
 			notifyAttached = self.TraitsImplementing<INotifyAttachedTo>().ToArray();
 		}
 
@@ -154,15 +157,6 @@ namespace OpenRA.Mods.CA.Traits
 			{
 				if (attachable.IsValid)
 					attachable.HostTransformed(toActor);
-			}
-		}
-
-		void INotifyCenterPositionChanged.CenterPositionChanged(Actor self, byte oldLayer, byte newLayer)
-		{
-			foreach (var attachable in attached)
-			{
-				if (attachable.IsValid)
-					attachable.HostPositionChanged();
 			}
 		}
 
@@ -262,6 +256,12 @@ namespace OpenRA.Mods.CA.Traits
 			if (carryable != null && carryable.Carrier != null)
 				foreach (var attachable in attached)
 					attachable.HostExitedCargo();
+		}
+
+		void INotifyMoving.MovementTypeChanged(Actor self, MovementType type)
+		{
+			foreach (var attachable in attached)
+				attachable.HostMovementTypesChanged(type);
 		}
 	}
 }

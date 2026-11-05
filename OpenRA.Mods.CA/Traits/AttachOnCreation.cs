@@ -21,8 +21,8 @@ namespace OpenRA.Mods.CA.Traits
 	{
 		[ActorReference(typeof(AttachableInfo))]
 		[FieldLoader.Require]
-		[Desc("Actor to attach.")]
-		public readonly string Actor = null;
+		[Desc("Actors to attach.")]
+		public readonly string[] Actors = default;
 
 		public override object Create(ActorInitializer init) { return new AttachOnCreation(init, this); }
 	}
@@ -39,10 +39,10 @@ namespace OpenRA.Mods.CA.Traits
 
 		protected override void Created(Actor self)
 		{
-			Attach(self);
+			AttachActors(self);
 		}
 
-		void Attach(Actor self)
+		void AttachActors(Actor self)
 		{
 			var map = self.World.Map;
 			var targetCell = map.CellContaining(self.CenterPosition);
@@ -57,29 +57,37 @@ namespace OpenRA.Mods.CA.Traits
 				if (IsTraitDisabled)
 					return;
 
-				var actorToAttach = self.World.CreateActor(Info.Actor.ToLowerInvariant(), new TypeDictionary
+				foreach (var actor in Info.Actors)
 				{
-					new LocationInit(targetCell),
-					new OwnerInit(self.Owner),
-					new FacingInit(attachedFacing)
-				});
-
-				var attachable = actorToAttach.TraitOrDefault<Attachable>();
-				if (attachable == null)
-					return;
-
-				var attachableToTrait = self.TraitsImplementing<AttachableTo>().FirstOrDefault(a => a.CanAttach(attachable));
-				if (attachableToTrait == null)
-				{
-					actorToAttach.Dispose();
-					return;
+					AttachActor(self, actor, targetCell, attachedFacing);
 				}
-
-				var attached = attachableToTrait.Attach(actorToAttach, attachable);
-
-				if (!attached)
-					actorToAttach.Dispose();
 			});
+		}
+
+		void AttachActor (Actor self, string type, CPos targetCell, WAngle attachedFacing)
+		{
+			var actorToAttach = self.World.CreateActor(type.ToLowerInvariant(), new TypeDictionary
+			{
+				new LocationInit(targetCell),
+				new OwnerInit(self.Owner),
+				new FacingInit(attachedFacing)
+			});
+
+			var attachable = actorToAttach.TraitOrDefault<Attachable>();
+			if (attachable == null)
+				return;
+
+			var attachableToTrait = self.TraitsImplementing<AttachableTo>().FirstOrDefault(a => a.CanAttach(attachable));
+			if (attachableToTrait == null)
+			{
+				actorToAttach.Dispose();
+				return;
+			}
+
+			var attached = attachableToTrait.Attach(actorToAttach, attachable);
+
+			if (!attached)
+				actorToAttach.Dispose();
 		}
 	}
 }

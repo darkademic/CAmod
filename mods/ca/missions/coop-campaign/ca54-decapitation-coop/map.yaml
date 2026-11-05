@@ -6714,4 +6714,4 @@ Actors:
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, ca|missions/main-campaign/ca54-decapitation/decapitation-rules.yaml, ca|rules/custom/coop-rules.yaml, decapitation-coop-rules.yaml
 
-Weapons: ca|weapons/custom/campaign.yaml
+Weapons: ca|weapons/custom/campaign.yaml, ca|missions/main-campaign/ca54-decapitation/decapitation-weapons.yaml

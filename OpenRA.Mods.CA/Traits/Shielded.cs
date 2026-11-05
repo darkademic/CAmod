@@ -34,6 +34,10 @@ namespace OpenRA.Mods.CA.Traits
 		[Desc("Condition to grant when shields are active.")]
 		public readonly string ShieldsUpCondition = null;
 
+		[GrantedConditionReference]
+		[Desc("Condition to grant when shields are at full strength.")]
+		public readonly string ShieldsMaxCondition = null;
+
 		[Desc("Hides selection bar when shield is at max strength.")]
 		public readonly bool HideBarWhenFull = false;
 
@@ -46,6 +50,7 @@ namespace OpenRA.Mods.CA.Traits
 	public class Shielded : ConditionalTrait<ShieldedInfo>, ITick, ISync, ISelectionBar, IDamageModifier, INotifyDamage
 	{
 		int conditionToken = Actor.InvalidConditionToken;
+		int maxConditionToken = Actor.InvalidConditionToken;
 		Actor self;
 		IHealth health;
 
@@ -94,16 +99,50 @@ namespace OpenRA.Mods.CA.Traits
 			if (strength > Info.MaxStrength)
 				strength = Info.MaxStrength;
 
-			if (strength > 0 && conditionToken == Actor.InvalidConditionToken)
-				conditionToken = self.GrantCondition(Info.ShieldsUpCondition);
-
+			UpdateConditions();
 			intervalTicks = Info.RegenInterval;
+		}
+
+		public void RechargeByAmount(int amount)
+		{
+			strength += amount;
+
+			if (strength > Info.MaxStrength)
+				strength = Info.MaxStrength;
+
+			UpdateConditions();
+		}
+
+		public void RechargeByPercent(int percent)
+		{
+			var amountToRecharge = Info.MaxStrength * percent / 100;
+			strength += amountToRecharge;
+
+			if (strength > Info.MaxStrength)
+				strength = Info.MaxStrength;
+
+			UpdateConditions();
+		}
+
+		public void RechargeToPercent(int percent)
+		{
+			strength = Info.MaxStrength * percent / 100;
+			ResetRegen();
+			UpdateConditions();
 		}
 
 		public void RechargeToMaximum()
 		{
-			strength = Info.MaxStrength;
-			ResetRegen();
+			RechargeToPercent(100);
+		}
+
+		void UpdateConditions()
+		{
+			if (Info.ShieldsUpCondition != null && strength > 0 && conditionToken == Actor.InvalidConditionToken)
+				conditionToken = self.GrantCondition(Info.ShieldsUpCondition);
+
+			if (Info.ShieldsMaxCondition != null && strength == Info.MaxStrength && maxConditionToken == Actor.InvalidConditionToken)
+				maxConditionToken = self.GrantCondition(Info.ShieldsMaxCondition);
 		}
 
 		void INotifyDamage.Damaged(Actor self, AttackInfo e)
@@ -132,6 +171,9 @@ namespace OpenRA.Mods.CA.Traits
 
 			if (strength == 0 && conditionToken != Actor.InvalidConditionToken)
 				conditionToken = self.RevokeCondition(conditionToken);
+
+			if (strength < Info.MaxStrength && maxConditionToken != Actor.InvalidConditionToken)
+				maxConditionToken = self.RevokeCondition(maxConditionToken);
 
 			if (excessDamage > 0)
 			{
@@ -179,17 +221,16 @@ namespace OpenRA.Mods.CA.Traits
 		protected override void TraitEnabled(Actor self)
 		{
 			ResetRegen();
-
-			if (conditionToken == Actor.InvalidConditionToken && strength > 0)
-				conditionToken = self.GrantCondition(Info.ShieldsUpCondition);
+			UpdateConditions();
 		}
 
 		protected override void TraitDisabled(Actor self)
 		{
-			if (conditionToken == Actor.InvalidConditionToken)
-				return;
+			if (conditionToken != Actor.InvalidConditionToken)
+				conditionToken = self.RevokeCondition(conditionToken);
 
-			conditionToken = self.RevokeCondition(conditionToken);
+			if (maxConditionToken != Actor.InvalidConditionToken)
+				maxConditionToken = self.RevokeCondition(maxConditionToken);
 		}
 	}
 }

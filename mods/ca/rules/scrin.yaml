@@ -6697,7 +6697,7 @@ SuppressionField:
 		Color: bb00ff60
 		Duration: 3
 		Visible: Always
-	WithRangeCircle:
+	WithRangeCircleCA:
 		Type: SuppressionField
 		Range: 5c0
 		Visible: Always

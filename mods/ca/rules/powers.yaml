@@ -2252,10 +2252,11 @@
 		DisplayRadarPing: True
 		Cursor: ability
 		AllowMultiple: false
-		ShowTargetCircle: true
 		TargetCircleRange: 5c0
 		TargetCircleColor: ff55ffcc
 		SupportPowerPaletteOrder: 20
+		EffectImage: empty
+		EffectSequence: idle
 		ArrowSequence: arrow
 		ClockSequence: clock
 		CircleSequence: circles
@@ -2280,10 +2281,11 @@
 		DisplayRadarPing: True
 		Cursor: ability
 		AllowMultiple: false
-		ShowTargetCircle: true
 		TargetCircleRange: 5c0
 		TargetCircleColor: ff55ffcc
 		SupportPowerPaletteOrder: 20
+		EffectImage: empty
+		EffectSequence: idle
 		ArrowSequence: arrow
 		ClockSequence: clock
 		CircleSequence: circles

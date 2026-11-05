@@ -1302,34 +1302,6 @@ OSPI:
 	WithMuzzleOverlay:
 	-WithMakeAnimation:
 	-Sellable:
-	WithOscillatingCircle@1:
-		Width: 2
-		StartRadius: 4c960
-		EndRadius: 5c64
-		Color: ff00ff60
-		Duration: 5
-		Visible: Always
-		FillColor: ff00ff10
-	WithOscillatingCircle@2:
-		Width: 2
-		StartRadius: 5c64
-		EndRadius: 4c960
-		Color: ff00ff40
-		Duration: 5
-		Visible: Always
-	WithOscillatingCircle@3:
-		Width: 2
-		StartRadius: 5c128
-		EndRadius: 4c896
-		Color: bb00ff60
-		Duration: 3
-		Visible: Always
-	WithRangeCircle@VeilMaxRange:
-		Type: Spire
-		Range: 5c0
-		Visible: Always
-		UsePlayerColor: true
-		PlayerColorAlpha: 224
 
 VANQ:
 	Inherits: ^Helicopter

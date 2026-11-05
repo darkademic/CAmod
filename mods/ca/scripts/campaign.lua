@@ -1327,7 +1327,7 @@ ProduceNextAttackSquadUnit = function(squad, queue, unitIndex)
 			end
 
 			Trigger.AfterDelay(ticksUntilNext, function()
-				InitAttackSquad(squad, squad.Player, squad.TargetPlayers)
+				InitAttackWave(squad)
 			end)
 		end
 	-- if more units to build, set them to produce after delay equal to their build time (with difficulty multiplier applied)

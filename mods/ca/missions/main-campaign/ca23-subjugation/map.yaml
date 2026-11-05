@@ -3617,3 +3617,5 @@ Actors:
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, ca|rules/custom/commando-mission.yaml, subjugation-rules.yaml
 
 Weapons: ca|weapons/custom/campaign.yaml, subjugation-weapons.yaml
+
+Voices: subjugation-voices.yaml

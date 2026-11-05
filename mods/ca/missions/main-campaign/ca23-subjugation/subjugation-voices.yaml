@@ -1,0 +1,7 @@
+GenericVoice:
+	Variants:
+		scrin: .r01,.r03
+
+VehicleVoice:
+	Variants:
+		scrin: .r00,.r02

@@ -70,7 +70,7 @@
 		ChargeInterval: 7500
 		LifeTime: -1
 		Name: Veil of War
-		Description: Creates an expanding area of shroud, reducing the vision and weapon range of enemy units and defenses.
+		Description: Creates an expanding area of shroud, reducing the vision and weapon range of units and defenses.
 		LaunchSound: sscrambl.aud
 		SelectTargetSpeechNotification: SelectTarget
 		SelectTargetTextNotification: Select target.

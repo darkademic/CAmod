@@ -1209,14 +1209,14 @@ SPLITWHITE:
 	ProximityExternalCondition@Veiled:
 		Range: 2c512
 		Condition: veiled
-		ValidRelationships: Enemy, Neutral
+		ValidRelationships: Enemy, Neutral, Ally
 
 veilofwar1:
 	Inherits: ^Veil
 	CreatesShroud:
 		Range: 3c0
 	KillsSelf:
-		Delay: 60
+		Delay: 30
 	WithMakeAnimation:
 	SpawnActorOnDeath:
 		Actor: veilofwar2
@@ -1235,7 +1235,7 @@ veilofwar2:
 	PeriodicExplosion:
 		Weapon: VeilMedium
 	KillsSelf:
-		Delay: 60
+		Delay: 30
 	SpawnActorOnDeath:
 		Actor: veilofwar3
 	WithRangeCircle@VeilMaxRange:

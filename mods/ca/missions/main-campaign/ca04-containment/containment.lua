@@ -486,8 +486,8 @@ RespawnTrigger = function(a, loc)
 			else
 				name = "SEAL"
 			end
-			Notification(name .. " respawns in 20 seconds.")
-			Trigger.AfterDelay(DateTime.Seconds(20), function()
+			Notification(name .. " respawns in 15 seconds.")
+			Trigger.AfterDelay(DateTime.Seconds(15), function()
 				local respawnedActor = Actor.Create(a.Type, true, { Owner = a.Owner, Location = loc })
 				Beacon.New(a.Owner, PlayerStart.CenterPosition)
 				Media.PlaySpeechNotification(a.Owner, "ReinforcementsArrived")

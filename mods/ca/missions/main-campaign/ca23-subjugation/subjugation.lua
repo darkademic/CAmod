@@ -361,11 +361,11 @@ RespawnMastermind = function()
 		mastermindName = "Prodigy"
 	end
 
-	Notification("The " .. mastermindName .. " used its considerable psionic powers to cheat death. It will return in 20 seconds.")
+	Notification("The " .. mastermindName .. " used its considerable psionic powers to cheat death. It will return in 15 seconds.")
 
-	Trigger.AfterDelay(DateTime.Seconds(20), function()
+	Trigger.AfterDelay(DateTime.Seconds(15), function()
 		local wormhole = Actor.Create("wormhole", true, { Owner = Scrin, Location = PlayerStart.Location })
-		Beacon.New(Scrin, PlayerStart.CenterPosition, DateTime.Seconds(20))
+		Beacon.New(Scrin, PlayerStart.CenterPosition, DateTime.Seconds(15))
 
 		Trigger.AfterDelay(DateTime.Seconds(2), function()
 			PlaySpeechNotificationToMissionPlayers("ReinforcementsArrived")

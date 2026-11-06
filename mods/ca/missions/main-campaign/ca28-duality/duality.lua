@@ -199,8 +199,8 @@ CommandoDeathTrigger = function(commando)
 	Trigger.OnKilled(commando, function(self, killer)
 		GDI.MarkFailedObjective(ObjectiveCommandoSurvive)
 		if RespawnEnabled then
-			Notification("Commando respawns in 20 seconds.")
-			Trigger.AfterDelay(DateTime.Seconds(20), function()
+			Notification("Commando respawns in 15 seconds.")
+			Trigger.AfterDelay(DateTime.Seconds(15), function()
 				local respawnWaypoint = Exit
 				if NumSilosRemaining == 0 then
 					respawnWaypoint = EscapeRespawn
@@ -219,8 +219,8 @@ TanyaDeathTrigger = function(tanya)
 	Trigger.OnKilled(tanya, function(self, killer)
 		GDI.MarkFailedObjective(ObjectiveTanyaSurvive)
 		if RespawnEnabled then
-			Notification("Tanya respawns in 20 seconds.")
-			Trigger.AfterDelay(DateTime.Seconds(20), function()
+			Notification("Tanya respawns in 15 seconds.")
+			Trigger.AfterDelay(DateTime.Seconds(15), function()
 				local respawnWaypoint = Exit
 				if NumSilosRemaining == 0 then
 					respawnWaypoint = EscapeRespawn

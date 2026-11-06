@@ -109,6 +109,10 @@ WorldLoaded = function()
 			if a == Spy then
 				Trigger.RemoveProximityTrigger(id)
 				InitHuntSpy()
+				ExitFlare = Actor.Create("flare", true, { Owner = Greece, Location = McvDest.Location })
+				PlaySpeechNotificationToMissionPlayers("SignalFlare")
+				Notification("Signal flare detected. Press [" .. UtilsCA.Hotkey("ToLastEvent") .. "] to view location.")
+				Beacon.New(Greece, McvDest.CenterPosition)
 			end
 		end)
 
@@ -225,6 +229,7 @@ end
 
 SpyDeparture = function()
 	Trigger.AfterDelay(1, function()
+		ExitFlare.Destroy()
 		Spy.Stop()
 		Spy.Move(McvDest.Location)
 		Spy.Move(McvSpawn.Location)

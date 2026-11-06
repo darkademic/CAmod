@@ -294,8 +294,8 @@ end
 CommandoDeathTrigger = function(commando)
 	Trigger.OnKilled(commando, function(self, killer)
 		if RespawnEnabled then
-			Notification("Commando arriving in 20 seconds.")
-			Trigger.AfterDelay(DateTime.Seconds(20), function()
+			Notification("Commando arriving in 15 seconds.")
+			Trigger.AfterDelay(DateTime.Seconds(15), function()
 				local respawnedCommando = Reinforcements.Reinforce(self.Owner, { "rmbo" }, { Respawn.Location, RespawnRally.Location })[1]
 				Beacon.New(self.Owner, RespawnRally.CenterPosition)
 				Media.PlaySpeechNotification(self.Owner, "ReinforcementsArrived")
@@ -312,8 +312,8 @@ HackerDeathTrigger = function(hacker)
 	Trigger.OnKilled(hacker, function(self, killer)
 		if #self.Owner.GetActorsByType("hack") == 0 and not Nod.IsObjectiveCompleted(ObjectiveHackIonControl) then
 			if RespawnEnabled then
-				Notification("Hacker arriving in 20 seconds.")
-				Trigger.AfterDelay(DateTime.Seconds(20), function()
+				Notification("Hacker arriving in 15 seconds.")
+				Trigger.AfterDelay(DateTime.Seconds(15), function()
 					local respawnedHacker = Reinforcements.Reinforce(self.Owner, { "hack" }, { Respawn.Location, RespawnRally.Location })[1]
 					Beacon.New(self.Owner, RespawnRally.CenterPosition)
 					Media.PlaySpeechNotification(self.Owner, "ReinforcementsArrived")
@@ -333,8 +333,8 @@ StealthTankDeathTrigger = function(stealthTank)
 	Trigger.OnKilled(stealthTank, function(self, killer)
 		if #self.Owner.GetActorsByType("stnk.nod") == 0 then
 			if RespawnEnabled then
-				Notification("Stealth Tank arriving in 20 seconds.")
-				Trigger.AfterDelay(DateTime.Seconds(20), function()
+				Notification("Stealth Tank arriving in 15 seconds.")
+				Trigger.AfterDelay(DateTime.Seconds(15), function()
 					local respawnedStealthTank = Reinforcements.Reinforce(self.Owner, { "stnk.nod" }, { Respawn.Location, RespawnRally.Location })[1]
 					Beacon.New(self.Owner, RespawnRally.CenterPosition)
 					Media.PlaySpeechNotification(self.Owner, "ReinforcementsArrived")

@@ -448,12 +448,12 @@ LeecherRespawnCheck = function()
 end
 
 RespawnLeecher = function(status)
-	Notification("Leecher arriving in 20 seconds.")
+	Notification("Leecher arriving in 15 seconds.")
 
 	local player = status.Owner
 	local spawnCell = CPos.New(LeecherSpawn.Location.X + Utils.RandomInteger(-1, 1), LeecherSpawn.Location.Y + Utils.RandomInteger(-1, 1))
 
-	Trigger.AfterDelay(DateTime.Seconds(20), function()
+	Trigger.AfterDelay(DateTime.Seconds(15), function()
 		local wormhole = Actor.Create("wormhole", true, { Owner = player, Location = spawnCell })
 
 		Trigger.AfterDelay(DateTime.Seconds(1), function()
@@ -475,9 +475,9 @@ IntruderDeathTrigger = function(a)
 	if RespawnEnabled then
 		Trigger.OnKilled(a, function(self, killer)
 			local spawnCell = CPos.New(IntruderSpawn.Location.X + Utils.RandomInteger(-2, 2), IntruderSpawn.Location.Y + Utils.RandomInteger(-2, 2))
-			Notification("Intruder arriving in 20 seconds.")
+			Notification("Intruder arriving in 15 seconds.")
 
-			Trigger.AfterDelay(DateTime.Seconds(20), function()
+			Trigger.AfterDelay(DateTime.Seconds(15), function()
 				local wormhole = Actor.Create("wormhole", true, { Owner = Scrin, Location = spawnCell })
 
 				Trigger.AfterDelay(DateTime.Seconds(1), function()

@@ -26,7 +26,8 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.CA.Traits
 {
-	[Desc("Implements the charge-then-burst attack logic specific to the RA tesla coil.")]
+	[Desc("Implements a charge-then-burst attack supported by linked prism towers.",
+		"Only idle, charged towers are recruited, and buffs require a complete chain of successful support shots.")]
 	public class AttackPrismSupportedInfo : AttackPrismInfo
 	{
 		// These props are inherited automatically:
@@ -128,19 +129,16 @@ namespace OpenRA.Mods.CA.Traits
 			return new ChargeSupportedAttack(this, newTarget, forceAttack, info, targetLineColor);
 		}
 
-		public virtual void FireSupportArmament(Actor self, in Target target, Actor buffReceiver)
+		public virtual bool FireSupportArmament(Actor self, in Target target, Actor relay)
 		{
 			if (!CanAttack(self, target))
-				return;
+				return false;
 
-			var receiverTrait = buffReceiver.Trait<AttackPrismSupported>();
+			var receiverTrait = relay.Trait<AttackPrismSupported>();
 			var offsetedTarget = Target.FromPos(target.CenterPosition + receiverTrait.info.ReceiverOffset);
 
 			var supportArmament = self.TraitsImplementing<Armament>().First(a => a.Info.Name == info.SupportArmament);
-			supportArmament.CheckFire(self, facing, offsetedTarget);
-
-			// Grant the buff condition
-			receiverTrait.AddBuffStack(buffReceiver);
+			return supportArmament.CheckFire(self, facing, offsetedTarget);
 		}
 
 		// Check if self can reach target with the support armament.
@@ -167,6 +165,68 @@ namespace OpenRA.Mods.CA.Traits
 			ClearBuffStack(self);
 		}
 
+		class SupportCycle
+		{
+			readonly Actor receiver;
+			readonly AttackPrismSupported attack;
+			readonly ChargeSupportedAttack activity;
+			readonly Target target;
+			readonly Dictionary<Actor, Actor> relays = new Dictionary<Actor, Actor>();
+			readonly Dictionary<Actor, FireSupportingWeapon> supporters = new Dictionary<Actor, FireSupportingWeapon>();
+			readonly HashSet<Actor> fired = new HashSet<Actor>();
+			bool active = true;
+
+			public SupportCycle(Actor receiver, AttackPrismSupported attack, ChargeSupportedAttack activity, in Target target)
+			{
+				this.receiver = receiver;
+				this.attack = attack;
+				this.activity = activity;
+				this.target = target;
+			}
+
+			public bool IsValid()
+			{
+				return active && activity.State == ActivityState.Active && !receiver.IsDead
+					&& attack.charges > 0 && attack.CanAttack(receiver, target);
+			}
+
+			public void AddSupporter(Actor supporter, Actor relay, FireSupportingWeapon supportActivity)
+			{
+				relays.Add(supporter, relay);
+				supporters.Add(supporter, supportActivity);
+			}
+
+			public void RecordShot(Actor supporter)
+			{
+				fired.Add(supporter);
+			}
+
+			public void ApplyBuffs()
+			{
+				foreach (var supporter in fired)
+				{
+					var node = supporter;
+					// A shot contributes only if every relay between it and the attacker also fired.
+					while (node != receiver && fired.Contains(node))
+						node = relays[node];
+
+					if (node == receiver)
+						attack.AddBuffStack(receiver);
+				}
+			}
+
+			public void End()
+			{
+				if (!active)
+					return;
+
+				active = false;
+				foreach (var pair in supporters)
+					if (pair.Value.State != ActivityState.Done)
+						pair.Value.Cancel(pair.Key);
+			}
+		}
+
 		class ChargeSupportedAttack : Activity
 		{
 			readonly AttackPrismSupported attack;
@@ -174,6 +234,7 @@ namespace OpenRA.Mods.CA.Traits
 			readonly bool forceAttack;
 			readonly Color? targetLineColor;
 			readonly AttackPrismSupportedInfo supportInfo;
+			SupportCycle cycle;
 
 			public ChargeSupportedAttack(
 				AttackPrismSupported attack,
@@ -198,8 +259,6 @@ namespace OpenRA.Mods.CA.Traits
 				var hops = new Dictionary<Actor, int>() { { self, 0 } };
 				var parent = new Dictionary<Actor, Actor>() { { self, null } };
 				var queue = new Queue<Actor>();
-				var maxHops = 0;
-
 				queue.Enqueue(self);
 				while (queue.Count() > 0)
 				{
@@ -212,9 +271,6 @@ namespace OpenRA.Mods.CA.Traits
 						isVisited.Add(adjacent);
 						hops[adjacent] = hops[node] + 1;
 						parent[adjacent] = node;
-
-						if (maxHops < hops[adjacent])
-							maxHops = hops[adjacent];
 
 						if (isVisited.Count() > supportInfo.MaxSupportersPerAttacker)
 						{
@@ -247,7 +303,8 @@ namespace OpenRA.Mods.CA.Traits
 
 					var candAttack = cand.Trait<AttackPrismSupported>();
 
-					if (!candAttack.MaySupport(cand, self, true))
+					if (!candAttack.MaySupport(cand, self, true) || candAttack.charges <= 0
+						|| !candAttack.CanAttack(cand, Target.FromActor(self)))
 						continue;
 
 					// Implemented this way as the support may have different armament than self.
@@ -270,24 +327,32 @@ namespace OpenRA.Mods.CA.Traits
 				if (!string.IsNullOrEmpty(attack.info.ChargeAudio))
 					Game.Sound.Play(SoundType.World, attack.info.ChargeAudio, self.CenterPosition);
 
-				var relays = RecruitSupporters(self); // You need to recruit every time you fire as the battlefield is a very dynamic place.
-				var maxHops = relays.Any() ? relays.MaxBy(x => x.Item3).Item3 : 0;
+				var relays = RecruitSupporters(self).ToArray();
+				var maxHops = relays.Length > 0 ? relays.Max(x => x.Item3) : 0;
+				cycle = new SupportCycle(self, attack, this, target);
 
-				if (relays.Any())
+				foreach ((var supporter, var relay, var hop) in relays)
 				{
-					foreach ((var supporter, var relay, var hop) in relays)
-					{
-						var attack = supporter.Trait<AttackPrismSupported>();
-						if (!attack.MaySupport(supporter, relay, true))
-							continue;
-
-						supporter.QueueActivity(new FireSupportingWeapon(attack, Target.FromActor(relay), self, (maxHops - hop) * attack.info.TicksPerHop, Color.OrangeRed));
-					}
+					var supporterAttack = supporter.Trait<AttackPrismSupported>();
+					var supportActivity = new FireSupportingWeapon(supporterAttack, Target.FromActor(relay),
+						relay, self, cycle, (maxHops - hop) * supporterAttack.info.TicksPerHop, Color.OrangeRed);
+					cycle.AddSupporter(supporter, relay, supportActivity);
+					supporter.QueueActivity(supportActivity);
 				}
 
-				QueueChild(new Wait(attack.info.InitialChargeDelay + maxHops * attack.info.TicksPerHop));
-				QueueChild(new ChargeFireBuffed(attack, target));
+				QueueChild(new WaitForSupportCycle(cycle, attack.info.InitialChargeDelay + maxHops * attack.info.TicksPerHop));
+				QueueChild(new ChargeFireBuffed(attack, target, cycle));
 				return false;
+			}
+
+			protected override void OnLastRun(Actor self)
+			{
+				cycle?.End();
+			}
+
+			protected override void OnActorDispose(Actor self)
+			{
+				cycle?.End();
 			}
 
 			public override IEnumerable<TargetLineNode> TargetLineNodes(Actor self)
@@ -297,35 +362,47 @@ namespace OpenRA.Mods.CA.Traits
 			}
 		}
 
-		class ChargeAndFireSupportWeapon : Activity
+		class WaitForSupportCycle : Wait
 		{
-			readonly AttackPrismSupported attack;
-			readonly Target target;
-			readonly Actor buffReceiver;
+			readonly SupportCycle cycle;
 
-			public ChargeAndFireSupportWeapon(AttackPrismSupported attack, in Target target, Actor buffReceiver)
+			public WaitForSupportCycle(SupportCycle cycle, int ticks)
+				: base(ticks)
 			{
-				this.attack = attack;
-				this.target = target;
-				this.buffReceiver = buffReceiver;
+				this.cycle = cycle;
 			}
 
 			public override bool Tick(Actor self)
 			{
-				if (IsCanceling || !attack.CanAttack(self, target))
-					return true;
+				return !cycle.IsValid() || base.Tick(self);
+			}
+		}
 
-				if (attack.charges == 0)
-					return true;
+		class ChargeAndFireSupportWeapon : Activity
+		{
+			readonly AttackPrismSupported attack;
+			readonly Target target;
+			readonly Actor relay;
+			readonly Actor buffReceiver;
+			readonly SupportCycle cycle;
 
-				if (!attack.MaySupport(self, buffReceiver, false))
-					return true;
+			public ChargeAndFireSupportWeapon(AttackPrismSupported attack, in Target target, Actor relay, Actor buffReceiver, SupportCycle cycle)
+			{
+				this.attack = attack;
+				this.target = target;
+				this.relay = relay;
+				this.buffReceiver = buffReceiver;
+				this.cycle = cycle;
+			}
 
-				if (buffReceiver.IsIdle)
-					return true;
+			public override bool Tick(Actor self)
+			{
+				if (!IsCanceling && cycle.IsValid() && attack.charges > 0
+					&& attack.MaySupport(self, relay, false) && attack.MaySupport(self, buffReceiver, false)
+					&& attack.FireSupportArmament(self, target, relay))
+					cycle.RecordShot(self);
 
-				attack.FireSupportArmament(self, target, buffReceiver);
-				return false;
+				return true;
 			}
 		}
 
@@ -333,29 +410,30 @@ namespace OpenRA.Mods.CA.Traits
 		{
 			readonly AttackPrismSupported attack;
 			readonly Target target;
-			readonly Actor buffReceiver; // buff receiver is NOT target, as the buff may travel multiple hops.
+			readonly Actor relay;
+			readonly Actor buffReceiver;
+			readonly SupportCycle cycle;
 			readonly int hopDelay;
 			readonly Color? targetLineColor;
 
-			public FireSupportingWeapon(AttackPrismSupported attack, Target target, Actor buffReceiver, int hopDelay, Color? targetLineColor = null)
+			public FireSupportingWeapon(AttackPrismSupported attack, Target target, Actor relay, Actor buffReceiver,
+				SupportCycle cycle, int hopDelay, Color? targetLineColor = null)
 			{
 				this.attack = attack;
 				this.target = target;
+				this.relay = relay;
 				this.buffReceiver = buffReceiver;
+				this.cycle = cycle;
 				this.hopDelay = hopDelay;
 				this.targetLineColor = targetLineColor;
 			}
 
 			public override bool Tick(Actor self)
 			{
-				if (IsCanceling || !attack.CanAttack(self, target))
+				if (IsCanceling || !cycle.IsValid() || attack.charges <= 0
+					|| !attack.MaySupport(self, relay, false) || !attack.MaySupport(self, buffReceiver, false)
+					|| !attack.CanAttack(self, target))
 					return true;
-
-				if (buffReceiver.IsIdle)
-					return true;
-
-				if (attack.charges == 0)
-					return false;
 
 				foreach (var notify in self.TraitsImplementing<INotifyPrismCharging>())
 					notify.Charging(self, target);
@@ -363,8 +441,8 @@ namespace OpenRA.Mods.CA.Traits
 				if (!string.IsNullOrEmpty(attack.info.ChargeAudio))
 					Game.Sound.Play(SoundType.World, attack.info.ChargeAudio, self.CenterPosition);
 
-				QueueChild(new Wait(attack.info.InitialChargeDelay + hopDelay));
-				QueueChild(new ChargeAndFireSupportWeapon(attack, target, buffReceiver));
+				QueueChild(new WaitForSupportCycle(cycle, attack.info.InitialChargeDelay + hopDelay));
+				QueueChild(new ChargeAndFireSupportWeapon(attack, target, relay, buffReceiver, cycle));
 				return true; // Works only once
 			}
 
@@ -375,25 +453,39 @@ namespace OpenRA.Mods.CA.Traits
 			}
 		}
 
-		protected class ChargeFireBuffed : Activity
+		class ChargeFireBuffed : Activity
 		{
 			readonly AttackPrismSupported attack;
 			readonly Target target;
+			readonly SupportCycle cycle;
+			bool firstShot = true;
 
-			public ChargeFireBuffed(AttackPrismSupported attack, in Target target)
+			public ChargeFireBuffed(AttackPrismSupported attack, in Target target, SupportCycle cycle)
 			{
 				this.attack = attack;
 				this.target = target;
+				this.cycle = cycle;
 			}
 
 			public override bool Tick(Actor self)
 			{
-				if (IsCanceling || !attack.CanAttack(self, target))
+				if (IsCanceling || !attack.CanAttack(self, target) || (firstShot && !cycle.IsValid()))
+				{
+					cycle.End();
 					return true;
+				}
 
 				if (attack.charges == 0)
 				{
+					cycle.End();
 					return true;
+				}
+
+				if (firstShot)
+				{
+					cycle.ApplyBuffs();
+					cycle.End();
+					firstShot = false;
 				}
 
 				attack.DoAttack(self, target);

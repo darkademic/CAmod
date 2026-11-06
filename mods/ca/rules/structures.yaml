@@ -4775,7 +4775,7 @@ PRIS:
 		RequiresCondition: prism-stack == 3
 		Modifier: 250
 	FirepowerMultiplier@STACK-4:
-		RequiresCondition: prism-stack == 4
+		RequiresCondition: prism-stack >= 4
 		Modifier: 300
 	Armament:
 		Weapon: PrisLaser

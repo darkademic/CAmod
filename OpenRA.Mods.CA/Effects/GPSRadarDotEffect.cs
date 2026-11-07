@@ -66,7 +66,7 @@ namespace OpenRA.Mods.CA.Effects
 				return false;
 
 			// Hide the indicator if no watchers are available and no applicable ranged GPS observers
-			if (!state.Watcher.Granted && !state.Watcher.GrantedAllies && !trait.HasRangedObserver(toPlayer))
+			if (!state.Watcher.Granted && !state.Watcher.GrantedAllies && !trait.HasRangedObserver(actor, toPlayer))
 				return false;
 
 			// Hide the indicator if a frozen actor portrait is visible

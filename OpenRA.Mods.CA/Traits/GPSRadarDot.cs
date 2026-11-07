@@ -37,7 +37,7 @@ namespace OpenRA.Mods.CA.Traits
 	{
 		GpsRadarDotEffect effect;
 
-		HashSet<Actor> rangedObservers = new HashSet<Actor>();
+		readonly HashSet<RangedGpsRadarProvider> rangedObservers = new HashSet<RangedGpsRadarProvider>();
 
 		public GpsRadarDot(GpsRadarDotInfo info)
 			: base(info) { }
@@ -59,29 +59,23 @@ namespace OpenRA.Mods.CA.Traits
 			self.World.AddFrameEndTask(w => w.Remove(effect));
 		}
 
-		public void AddRangedObserver(Actor a)
+		public void AddRangedObserver(RangedGpsRadarProvider provider)
 		{
-			if (rangedObservers.Contains(a))
-				return;
-
-			rangedObservers.Add(a);
+			rangedObservers.Add(provider);
 		}
 
-		public void RemoveRangedObserver(Actor a)
+		public void RemoveRangedObserver(RangedGpsRadarProvider provider)
 		{
-			if (!rangedObservers.Contains(a))
-				return;
-
-			rangedObservers.Remove(a);
+			rangedObservers.Remove(provider);
 		}
 
 		void CleanRangedObservers()
 		{
-			var rangedObserversToRemove = new List<Actor>();
+			var rangedObserversToRemove = new List<RangedGpsRadarProvider>();
 
 			foreach (var rangedObserver in rangedObservers)
 			{
-				if (rangedObserver.Disposed || rangedObserver.IsDead)
+				if (rangedObserver.Actor.Disposed || rangedObserver.Actor.IsDead)
 					rangedObserversToRemove.Add(rangedObserver);
 			}
 
@@ -89,13 +83,14 @@ namespace OpenRA.Mods.CA.Traits
 				rangedObservers.Remove(rangedObserver);
 		}
 
-		public bool HasRangedObserver(Player p)
+		public bool HasRangedObserver(Actor self, Player p)
 		{
 			CleanRangedObservers();
 
 			foreach (var rangedObserver in rangedObservers)
 			{
-				if (rangedObserver.Owner == p || p.IsAlliedWith(rangedObserver.Owner))
+				if ((rangedObserver.Actor.Owner == p || p.IsAlliedWith(rangedObserver.Actor.Owner))
+					&& rangedObserver.CanObserve(self))
 					return true;
 			}
 

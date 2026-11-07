@@ -8,6 +8,7 @@
  */
 #endregion
 
+using System.Collections.Generic;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 using OpenRA.Traits;
@@ -20,7 +21,7 @@ namespace OpenRA.Mods.CA.Traits
 		[Desc("Target types that can be detected. Leave empty to accept all types.")]
 		public readonly BitSet<TargetableType> TargetTypes = default(BitSet<TargetableType>);
 
-		[Desc("Reveals within this range. Use zero for whole map.")]
+		[Desc("Reveals within this range.")]
 		public readonly WDist Range = WDist.Zero;
 
 		[Desc("The maximum vertical range above terrain to search for actors.",
@@ -34,6 +35,9 @@ namespace OpenRA.Mods.CA.Traits
 		INotifyAddedToWorld, INotifyRemovedFromWorld, INotifyOtherProduction
 	{
 		readonly Actor self;
+		readonly HashSet<Actor> observedActors = new HashSet<Actor>();
+
+		public Actor Actor => self;
 
 		int proximityTrigger;
 		WPos cachedPosition;
@@ -61,6 +65,13 @@ namespace OpenRA.Mods.CA.Traits
 		void INotifyRemovedFromWorld.RemovedFromWorld(Actor self)
 		{
 			self.World.ActorMap.RemoveProximityTrigger(proximityTrigger);
+			proximityTrigger = -1;
+
+			foreach (var actor in observedActors)
+				if (!actor.Disposed)
+					actor.TraitOrDefault<GpsRadarDot>()?.RemoveRangedObserver(this);
+
+			observedActors.Clear();
 		}
 
 		protected override void TraitEnabled(Actor self)
@@ -109,7 +120,7 @@ namespace OpenRA.Mods.CA.Traits
 				return;
 
 			// Work around for actors produced within the region not triggering until the second tick
-			if ((produced.CenterPosition - self.CenterPosition).HorizontalLengthSquared <= Info.Range.LengthSquared)
+			if (IsInRange(produced))
 				AddRangedObserver(produced);
 		}
 
@@ -123,25 +134,36 @@ namespace OpenRA.Mods.CA.Traits
 			if (IsTraitDisabled || a.Disposed || self.Disposed)
 				return;
 
-			if (self.Owner.IsAlliedWith(a.Owner))
-				return;
-
 			var dotTrait = a.TraitOrDefault<GpsRadarDot>();
 			if (dotTrait != null && (Info.TargetTypes.IsEmpty || a.GetEnabledTargetTypes().Overlaps(Info.TargetTypes)))
-				dotTrait.AddRangedObserver(self);
+			{
+				observedActors.Add(a);
+				dotTrait.AddRangedObserver(this);
+			}
 		}
 
 		void RemoveRangedObserver(Actor a)
 		{
+			observedActors.Remove(a);
 			if (a.Disposed)
-				return;
-
-			if (self.Owner.IsAlliedWith(a.Owner))
 				return;
 
 			var dotTrait = a.TraitOrDefault<GpsRadarDot>();
 			if (dotTrait != null)
-				dotTrait.RemoveRangedObserver(self);
+				dotTrait.RemoveRangedObserver(this);
+		}
+
+		bool IsInRange(Actor a)
+		{
+			return (a.CenterPosition - self.CenterPosition).HorizontalLengthSquared < Info.Range.LengthSquared
+				&& (Info.MaximumVerticalOffset.Length == 0
+					|| a.World.Map.DistanceAboveTerrain(a.CenterPosition).LengthSquared <= Info.MaximumVerticalOffset.LengthSquared);
+		}
+
+		public bool CanObserve(Actor a)
+		{
+			return self.IsInWorld && !self.IsDead && !self.Disposed && !IsTraitDisabled
+				&& !self.Owner.IsAlliedWith(a.Owner) && IsInRange(a);
 		}
 	}
 }

@@ -6235,6 +6235,10 @@ BUZZ:
 		Type: CenterPosition
 	PeriodicExplosion:
 		Weapon: BuzzerVortex
+		RequiresCondition: !spawning
+	PeriodicExplosion@Burst:
+		Weapon: BuzzerVortexBurst
+		RequiresCondition: !spawning
 	WithSpriteBody:
 	HitShape:
 	KillsSelf:
@@ -6261,6 +6265,7 @@ BUZZ:
 		ColorSource: Player
 		ValidRelationships: Ally, Enemy
 	WithMakeAnimation:
+		Condition: spawning
 	WithDeathAnimation:
 		UseDeathTypeSuffix: false
 		CrushedSequence: die
@@ -6278,8 +6283,12 @@ BUZZ:
 		Range: 1c256
 		Condition: blinded
 		ValidRelationships: Enemy, Neutral
+		RequiresCondition: !spawning
 	Targetable:
 		TargetTypes: BuzzerSwarm
+	SpeedMultiplier@Spawning:
+		RequiresCondition: spawning
+		Modifier: 0
 
 BUZZ.AI:
 	Inherits: BUZZ

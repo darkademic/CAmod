@@ -1685,18 +1685,6 @@ SuppressionField:
 BuzzerSpawner:
 	ReloadDelay: 999
 	Projectile: InstantExplode
-	Warhead@1Dam: HealthPercentageDamage
-		Spread: 341
-		Damage: 75
-		Versus:
-			None: 100
-			Wood: 1
-			Light: 30
-			Heavy: 1
-			Concrete: 1
-			Brick: 0
-		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
-		ValidRelationships: Enemy, Neutral
 	Warhead@Spawn: SpawnActor
 		Actors: buzz
 		Range: 1
@@ -1738,6 +1726,24 @@ BuzzerVortex:
 			Concrete: 3
 			Brick: 0
 		DamageTypes: BulletDeath
+		ValidRelationships: Enemy, Neutral
+
+BuzzerVortexBurst:
+	ReloadDelay: 999
+	Range: 1c0
+	ValidTargets: Ground, Water
+	Projectile: InstantHit
+	Warhead@1Dam: HealthPercentageDamage
+		Spread: 341
+		Damage: 75
+		Versus:
+			None: 100
+			Wood: 1
+			Light: 30
+			Heavy: 1
+			Concrete: 1
+			Brick: 0
+		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
 		ValidRelationships: Enemy, Neutral
 
 BuzzerTargeting:

@@ -71,7 +71,7 @@ ConvoyUnits = {
 
 Squads = {
 	MaleficMain = {
-		Delay = AdjustDelayForDifficulty(DateTime.Minutes(2)),
+		Delay = AdjustDelayForDifficulty(DateTime.Minutes(3)),
 		Compositions = AdjustCompositionsForDifficulty(UnitCompositions.Scrin),
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 40, Max = 80 }),
 		FollowLeader = true,

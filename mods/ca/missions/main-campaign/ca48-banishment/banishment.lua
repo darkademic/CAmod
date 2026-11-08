@@ -74,7 +74,7 @@ Squads = {
 		Compositions = AdjustCompositionsForDifficulty({
 			{ Infantry = { "s1", "s1", "s1", "s1", "s3", { "mrdr", "s4" }, "stlk" }, Vehicles = { { "lace", "seek" }, { "lace", "seek" } } },
 		}),
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 10, Max = 20 }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 5, Max = 15 }),
 		FollowLeader = false,
 		Delay = AdjustDelayForDifficulty(DateTime.Minutes(4)),
 	},

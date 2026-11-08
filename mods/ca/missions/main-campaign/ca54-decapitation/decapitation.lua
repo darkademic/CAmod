@@ -19,10 +19,10 @@ MeteorInterval = {
 }
 
 AirFleetKillersThreshold = {
-	normal = 6,
-	hard = 4,
-	vhard = 3,
-	brutal = 2
+	normal = 7,
+	hard = 6,
+	vhard = 5,
+	brutal = 4
 }
 
 MaxFleetKillers = {

@@ -105,7 +105,7 @@ Squads = {
 				return LeftAttackPaths
 			end
 		end,
-		Delay = AdjustDelayForDifficulty(DateTime.Minutes(2)),
+		Delay = AdjustDelayForDifficulty(DateTime.Minutes(3)),
 		ProducerActors = { Infantry = { LeftPortal }, Vehicles = { LeftWarpSphere }, Aircraft = { LeftGrav } }
 	},
 	Right = {

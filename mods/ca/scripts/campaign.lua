@@ -43,7 +43,7 @@ AttackValueMultipliers = {
 	normal = 1, -- standard min 40/s, max 80/s
 	hard = 1.5, -- standard min 60/s, max 120/s
 	vhard = 2, -- standard min 80/s, max 160/s
-	brutal = 2.5 -- standard min 100/s, max 200/s
+	brutal = 2.25 -- standard min 90/s, max 180/s
 }
 
 NormalRampDuration = DateTime.Minutes(17)
@@ -1571,6 +1571,18 @@ SendAttackSquad = function(squad)
 			if not a.IsDead and a.IsInWorld then
 				if squad.FollowLeader ~= nil and squad.FollowLeader == true and squadLeader == nil then
 					squadLeader = a
+					local squadLeaderStartLocation = a.Location
+
+					-- if squad leader hasn't moved more than 10 cells after 30 seconds, clear the leader
+					Trigger.AfterDelay(DateTime.Seconds(30), function()
+						if squadLeader ~= nil and squadLeaderStartLocation ~= nil and not squadLeader.IsDead then
+							local xDiff = math.abs(squadLeader.Location.X - squadLeaderStartLocation.X)
+							local yDiff = math.abs(squadLeader.Location.Y - squadLeaderStartLocation.Y)
+							if xDiff <= 10 and yDiff <= 10 then
+								ClearSquadLeader(squadLeader)
+							end
+						end
+					end)
 				end
 
 				-- if squad leader, queue attack move to each attack path waypoint

@@ -70,15 +70,15 @@ DominatorStartTime = {
 	normal = DateTime.Minutes(11),
 	hard = DateTime.Minutes(9),
 	vhard = DateTime.Minutes(7),
-	brutal = DateTime.Minutes(5)
+	brutal = DateTime.Minutes(6)
 }
 
 DominatorInterval = {
-	easy = DateTime.Minutes(7),
-	normal = DateTime.Minutes(6),
-	hard = DateTime.Minutes(5),
-	vhard = DateTime.Minutes(4),
-	brutal = DateTime.Minutes(3) + DateTime.Seconds(20)
+	easy = DateTime.Minutes(8),
+	normal = DateTime.Minutes(7),
+	hard = DateTime.Minutes(6),
+	vhard = DateTime.Minutes(5),
+	brutal = DateTime.Minutes(4)
 }
 
 DominatorRevealDelay = {
@@ -167,7 +167,7 @@ Squads = {
 		AfterSendSquad = RecalculateSquad
 	},
 	Nod = {
-		Delay = AdjustDelayForDifficulty(DateTime.Minutes(4)),
+		Delay = AdjustDelayForDifficulty(DateTime.Minutes(5)),
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 10, Max = 20 }),
 		DispatchDelay = DateTime.Seconds(15),
 		FollowLeader = true,

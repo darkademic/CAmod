@@ -5076,8 +5076,8 @@ Actors:
 		Location: 93,78
 	Actor54: gun.nod
 		Owner: NodInactive
-		TurretFacing: 192
 		Location: 70,78
+		TurretFacing: 192
 	RebelStructures1: waypoint
 		Owner: Neutral
 		Location: 4,25
@@ -5648,14 +5648,14 @@ Actors:
 		Health: 33
 		TurretFacing: 395
 	Actor1503: nsam
-		Owner: Nod
 		Location: 73,84
+		Owner: NodInactive
 	Actor1502: nsam
-		Owner: Nod
 		Location: 89,86
+		Owner: NodInactive
 	Actor1501: nuk2
-		Owner: Nod
 		Location: 87,72
+		Owner: NodInactive
 	Actor53: reap
 		Owner: NodInactive
 		Facing: 620

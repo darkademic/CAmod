@@ -796,10 +796,16 @@ Player:
 				FineScanRadius: 2
 				Consideration@3:
 					Against: Enemy
-					Types: Vehicle, Infantry
+					Types: Vehicle, Infantry, Air
 					Attractiveness: 1
 					TargetMetric: Value
-					CheckRadius: 3c0
+					CheckRadius: 4c0
+				Consideration@2:
+					Against: Ally
+					Types: Vehicle, Infantry, Air
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 4c0
 			suppressionsiphonpower:
 				OrderName: suppressionsiphon
 				MinimumAttractiveness: 3000
@@ -809,7 +815,13 @@ Player:
 					Types: Vehicle, Infantry
 					Attractiveness: 2
 					TargetMetric: Value
-					CheckRadius: 3c0
+					CheckRadius: 4c0
+				Consideration@2:
+					Against: Ally
+					Types: Vehicle, Infantry, Air
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 4c0
 			riftpower:
 				OrderName: rift
 				MinimumAttractiveness: 3000

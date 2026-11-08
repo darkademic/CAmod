@@ -2264,7 +2264,7 @@
 		DisplayTimerRelationships: Ally, Neutral, Enemy
 	SpawnActorPowerCA@SUPPRESSIONSIPHON:
 		Actor: suppressionfield
-		OrderName: suppression
+		OrderName: suppressionsiphon
 		Icon: spresspower
 		Prerequisites: ~player.collector
 		ChargeInterval: 3750

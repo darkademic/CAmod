@@ -6692,6 +6692,7 @@ SuppressionField:
 		Duration: 5
 		Visible: Always
 		FillColor: ff00ff10
+		ValidRelationships: Ally, Enemy, Neutral
 	WithOscillatingCircle@2:
 		Width: 2
 		StartRadius: 5c64
@@ -6699,6 +6700,7 @@ SuppressionField:
 		Color: ff00ff40
 		Duration: 5
 		Visible: Always
+		ValidRelationships: Ally, Enemy, Neutral
 	WithOscillatingCircle@3:
 		Width: 2
 		StartRadius: 5c128
@@ -6706,12 +6708,14 @@ SuppressionField:
 		Color: bb00ff60
 		Duration: 3
 		Visible: Always
+		ValidRelationships: Ally, Enemy, Neutral
 	WithRangeCircleCA:
 		Type: SuppressionField
 		Range: 5c0
 		Visible: Always
 		UsePlayerColor: true
 		PlayerColorAlpha: 224
+		ValidRelationships: Ally, Enemy, Neutral
 	ProximityExternalCondition@Suppression:
 		Range: 5c0
 		Condition: suppression

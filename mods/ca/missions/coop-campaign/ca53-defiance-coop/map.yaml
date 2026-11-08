@@ -3616,6 +3616,21 @@ Actors:
 		Owner: USSR
 		Location: 28,26
 		Facing: 512
+	Actor1019: split2
+		Owner: Neutral
+		Location: 185,81
+	Actor1020: wchr
+		Owner: ScrinRebels
+		Stance: HoldFire
+		Facing: 600
+		Location: 105,136
+		SubCell: 3
+	Actor1021: wchr
+		Owner: ScrinRebels
+		Location: 135,106
+		SubCell: 3
+		Facing: 627
+		Stance: HoldFire
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, ca|missions/main-campaign/ca53-defiance/defiance-rules.yaml, ca|rules/custom/coop-rules.yaml, defiance-coop-rules.yaml
 

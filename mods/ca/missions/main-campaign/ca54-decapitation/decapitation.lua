@@ -18,6 +18,14 @@ MeteorInterval = {
 	brutal = DateTime.Minutes(4),
 }
 
+MaxMeteorIntensity = {
+	easy = 3,
+	normal = 4,
+	hard = 5,
+	vhard = 6,
+	brutal = 7
+}
+
 AirFleetKillersThreshold = {
 	normal = 7,
 	hard = 6,
@@ -536,13 +544,14 @@ InitScrin = function()
 
 	Trigger.AfterDelay(MeteorStartTime, function()
 		MeteorsStarted = true
-		Actor.Create("owrath.provider", true, { Owner = Scrin })
+		MeteorProvider = Actor.Create("owrath.provider", true, { Owner = Scrin })
 
 		Trigger.AfterDelay(AdjustTimeForGameSpeed(DateTime.Seconds(8)), function()
 			Notification("The Overlord's spires are pulling down Tiberium meteors with increasing frequency. We must destroy the spires before we are overwhelmed.")
 			MediaCA.PlaySound(MissionDir .. "/s_meteors.aud", 2)
 		end)
 
+		DoMeteorStrike()
 		QueueNextMeteorStrike()
 		UpdateObjectiveMessage()
 	end)
@@ -617,27 +626,37 @@ end
 
 QueueNextMeteorStrike = function()
 	Trigger.AfterDelay(MeteorInterval[Difficulty], function()
-		if ObjectiveDestroySpires ~= nil and not ScrinRebels.IsObjectiveCompleted(ObjectiveDestroySpires) then
-			MeteorStrikeCount = MeteorStrikeCount + 1
-			if MeteorStrikeCount % 2 == 0 then
-				IncreaseMeteorIntensity()
-			end
-			local delay = 1
-			for i = 0, MeteorStrikeIntensity - 1 do
-				delay = delay + Utils.RandomInteger(DateTime.Seconds(3), DateTime.Seconds(6))
-				Trigger.AfterDelay(delay, function()
-					if not ScrinRebels.IsObjectiveCompleted(ObjectiveDestroySpires) then
-						Actor.Create("owrath.provider", true, { Owner = Scrin })
-					end
-				end)
-			end
+		if MeteorProvider ~= nil and ObjectiveDestroySpires ~= nil and not ScrinRebels.IsObjectiveCompleted(ObjectiveDestroySpires) then
+			DoMeteorStrike()
 			QueueNextMeteorStrike()
 		end
 	end)
 end
 
+DoMeteorStrike = function()
+	-- increase intensity every second meteor strike after the first one
+	if MeteorStrikeCount > 0 and MeteorStrikeCount % 2 == 0 then
+		IncreaseMeteorIntensity()
+	end
+	MeteorStrikeCount = MeteorStrikeCount + 1
+	local delay = 1
+	for i = 0, MeteorStrikeIntensity - 1 do
+		Trigger.AfterDelay(delay, function()
+			if not ScrinRebels.IsObjectiveCompleted(ObjectiveDestroySpires) then
+				local targetLocation = AIUtils.FindTargetLocation(Scrin, { "Vehicle", "Defense", "Infantry" }, 1500, 4)
+				if targetLocation then
+					MeteorProvider.ActivateMeteorPower(targetLocation)
+					BeaconCA.New(ScrinRebels, Map.CenterOfCell(targetLocation), 225, true, "owrath")
+					PlaySpeechNotificationToMissionPlayers("OverlordsWrathWarning")
+				end
+			end
+		end)
+		delay = delay + Utils.RandomInteger(DateTime.Seconds(10), DateTime.Seconds(20))
+	end
+end
+
 IncreaseMeteorIntensity = function()
-	MeteorStrikeIntensity = math.min(MeteorStrikeIntensity + 1, 5)
+	MeteorStrikeIntensity = math.min(MeteorStrikeIntensity + 1, MaxMeteorIntensity[Difficulty])
 	UpdateObjectiveMessage()
 	UpdateMeteorLighting()
 end

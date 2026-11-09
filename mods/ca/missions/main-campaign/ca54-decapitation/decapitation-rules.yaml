@@ -276,25 +276,11 @@ SCRT:
 
 ^OverlordsWrathPower:
 	MeteorPower@OverlordsWrath:
-		ChargeInterval: 1
-		FlightDelay: 50
-		OneShot: true
-		AllowMultiple: true
-		PauseOnCondition: disabled
-	DummyConditionGranter@OverlordsWrath:
-		Condition: disabled
+		Prerequisites: ~disabled
 
 owrath.provider:
 	Inherits@DUMMY: ^InvisibleDummy
 	Inherits@OverlordsWrathPower: ^OverlordsWrathPower
-
-Player:
-	SupportPowerBotModule:
-		Decisions:
-			owrath:
-				MinimumAttractiveness: 1500
-				Consideration@1:
-					Types: Defense, Vehicle, Infantry
 
 # Difficulty modifiers
 

@@ -351,6 +351,8 @@ OverlordSpireZap:
 		ZOffset: 512
 	Warhead@1Dam: SpreadDamage
 		Damage: 2000
+		Versus:
+			None: 40
 	Warhead@2Dam: SpreadDamage
 		Damage: 1500
 		ValidTargets: Air, AirSmall, ICBM

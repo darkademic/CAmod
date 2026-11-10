@@ -79,7 +79,7 @@ namespace OpenRA.Mods.CA.Scripting
 				return null;
 
 			var averageValue = totalValue / suitableLocations.Count;
-			var coarseLocation = suitableLocations.Shuffle(world.LocalRandom)
+			var coarseLocation = suitableLocations.Shuffle(world.SharedRandom)
 				.First(location => location.Value >= averageValue)
 				.UV.ToCPos(map);
 

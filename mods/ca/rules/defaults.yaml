@@ -1788,6 +1788,9 @@
 		SearchFromHarvesterRadius: 8
 		HarvestFacings: 8
 		EmptyCondition: no-ore
+	HarvestsNode:
+		TargetTypes: ResourceNode
+		RangeCircleColor: 00cc00cc
 	DockClientManager:
 	WithStoresResourcesPipsDecoration:
 		Position: BottomLeft
@@ -4128,6 +4131,9 @@
 	Interactable:
 
 ^ResourceNode:
+	Targetable@ResourceNode:
+		TargetTypes: ResourceNode
+	FrozenUnderFog:
 	SeedsResourceCA:
 		RequiresCondition: !voidspike
 	GrantConditionOnPrerequisite@FastRegrowth:
@@ -4176,7 +4182,6 @@
 	AppearsOnRadar:
 	RadarColorFromTerrain:
 		Terrain: Tiberium
-	HiddenUnderShroud:
 	WithMakeAnimation:
 	MapEditorData:
 		Categories: Resource spawn

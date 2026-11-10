@@ -116,6 +116,14 @@ namespace OpenRA.Mods.CA.Traits
 			var pos = self.Trait<IPositionable>();
 			if (pos.CanEnterCell(destination.Value))
 			{
+				if (self.CurrentActivity is FindAndDeliverResourcesAtNode nodeActivity)
+				{
+					if (nodeActivity.TryTeleportToRefinery(self, destination.Value, Info, destRefinery))
+						Reset();
+
+					return;
+				}
+
 				self.QueueActivity(false, new ChronoResourceTeleport(destination.Value, Info, harvestedField, destRefinery));
 				Reset();
 			}

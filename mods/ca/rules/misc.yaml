@@ -590,7 +590,6 @@ MINE:
 	Inherits@1: ^SpriteActor
 	Inherits@ResourceNode: ^ResourceNode
 	Interactable:
-	HiddenUnderShroud:
 	Tooltip:
 		Name: Ore Mine
 	RenderSprites:
@@ -619,7 +618,6 @@ GMINE:
 	Inherits@1: ^SpriteActor
 	Inherits@ResourceNode: ^ResourceNode
 	Interactable:
-	HiddenUnderShroud:
 	Tooltip:
 		Name: Gem Mine
 	RenderSprites:

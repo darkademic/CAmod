@@ -24,13 +24,15 @@ namespace OpenRA.Mods.CA.Activities
 		readonly ChronoResourceDeliveryInfo info;
 		readonly CPos harvestedField;
 		readonly WAngle dockAngle;
+		readonly bool resumeHarvesting;
 
-		public ChronoResourceTeleport(CPos destination, ChronoResourceDeliveryInfo info, CPos harvestedField, Actor refinery)
+		public ChronoResourceTeleport(CPos destination, ChronoResourceDeliveryInfo info, CPos harvestedField, Actor refinery, bool resumeHarvesting = true)
 		{
 			this.destination = destination;
 			this.info = info;
 			this.harvestedField = harvestedField;
 			this.refinery = refinery;
+			this.resumeHarvesting = resumeHarvesting;
 
 			var refInfo = refinery.Info.TraitInfoOrDefault<DockHostInfo>();
 			if (refInfo != null)
@@ -64,8 +66,11 @@ namespace OpenRA.Mods.CA.Activities
 			if (info.WarpOutSound != null && (info.AudibleThroughFog || !self.World.FogObscures(sourcepos)))
 				Game.Sound.Play(SoundType.World, info.WarpOutSound, self.CenterPosition, info.SoundVolume);
 
-			self.QueueActivity(new MoveToDock(self, refinery));
-			self.QueueActivity(new FindAndDeliverResources(self, harvestedField));
+			if (resumeHarvesting)
+			{
+				self.QueueActivity(new MoveToDock(self, refinery));
+				self.QueueActivity(new FindAndDeliverResources(self, harvestedField));
+			}
 
 			return true;
 		}

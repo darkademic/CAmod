@@ -2373,9 +2373,6 @@ DEVO:
 		PauseOnCondition: empdisable || being-warped || blinded
 		Armaments: primary, primary-charged
 	WithSpriteTurret:
-	ProductionCostMultiplier@REAPBONUS:
-		Multiplier: 90
-		Prerequisites: player.reaper
 	GrantConditionOnTerrain@ONWATER:
 		TerrainTypes: Water
 		Condition: onwater

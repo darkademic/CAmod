@@ -2419,8 +2419,11 @@ CalculatePlayerCharacteristics = function()
 		end)
 
 		local heavyUnits = p.GetActorsByArmorTypes({ "Heavy" })
+		local filteredHeavyUnits = Utils.Where(heavyUnits, function(u) return
+			not IsHarvester(u) and not IsMcv(u)
+		end)
 
-		Utils.Do(heavyUnits, function(u)
+		Utils.Do(filteredHeavyUnits, function(u)
 			if UnitCosts[u.Type] == nil then
 				UnitCosts[u.Type] = ActorCA.CostOrDefault(u.Type)
 			end

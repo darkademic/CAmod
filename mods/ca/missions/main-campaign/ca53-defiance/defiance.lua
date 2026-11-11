@@ -68,9 +68,9 @@ IronCurtainEnabledDelay = {
 DominatorStartTime = {
 	easy = DateTime.Minutes(13),
 	normal = DateTime.Minutes(11),
-	hard = DateTime.Minutes(9),
-	vhard = DateTime.Minutes(7),
-	brutal = DateTime.Minutes(6)
+	hard = DateTime.Minutes(10),
+	vhard = DateTime.Minutes(9),
+	brutal = DateTime.Minutes(8)
 }
 
 DominatorInterval = {
@@ -119,21 +119,30 @@ RecalculateSquad = function(squad)
 		return a.Owner == USSR and (a.Type == "weap" or a.Type == "barr")
 	end)
 
+	local northFactories = Utils.Where(northProducers, function(a) return a.Type == "weap" end)
+	local northBarracks = Utils.Where(northProducers, function(a) return a.Type == "barr"end)
+
 	local eastProducers = Map.ActorsInBox(EastProdTopLeft.CenterPosition, EastProdBottomRight.CenterPosition, function(a)
 		return a.Owner == USSR and (a.Type == "weap" or a.Type == "barr")
 	end)
+
+	local eastFactories = Utils.Where(eastProducers, function(a) return a.Type == "weap" end)
+	local eastBarracks = Utils.Where(eastProducers, function(a) return a.Type == "barr" end)
 
 	local westProducers = Map.ActorsInBox(WestProdTopLeft.CenterPosition, WestProdBottomRight.CenterPosition, function(a)
 		return a.Owner == USSR and (a.Type == "weap" or a.Type == "barr")
 	end)
 
-	if #northProducers > 0 then
+	local westFactories = Utils.Where(westProducers, function(a) return a.Type == "weap" end)
+	local westBarracks = Utils.Where(westProducers, function(a) return a.Type == "barr" end)
+
+	if #northFactories > 0 and #northBarracks > 0 then
 		table.insert(activeBases, "North")
 	end
-	if #eastProducers > 0 then
+	if #eastFactories > 0 and #eastBarracks > 0 then
 		table.insert(activeBases, "East")
 	end
-	if #westProducers > 0 then
+	if #westFactories > 0 and #westBarracks > 0 then
 		table.insert(activeBases, "West")
 	end
 
@@ -141,13 +150,13 @@ RecalculateSquad = function(squad)
 		local selectedBase = Utils.Random(activeBases)
 
 		if selectedBase == "North" then
-			squad.ProducerActors = { Infantry = { SovietNorthBarracks1, SovietNorthBarracks2 }, Vehicles = { SovietNorthFactory1, SovietNorthFactory2 } }
+			squad.ProducerActors = { Infantry = northBarracks, Vehicles = northFactories }
 			squad.AttackPaths = NorthAttackPaths
 		elseif selectedBase == "East" then
-			squad.ProducerActors = { Infantry = { SovietEastBarracks1, SovietEastBarracks2 }, Vehicles = { SovietEastFactory1, SovietEastFactory2 } }
+			squad.ProducerActors = { Infantry = eastBarracks, Vehicles = eastFactories }
 			squad.AttackPaths = EastAttackPaths
 		elseif selectedBase == "West" then
-			squad.ProducerActors = { Infantry = { SovietWestBarracks1 }, Vehicles = { SovietWestFactory1 } }
+			squad.ProducerActors = { Infantry = westBarracks, Vehicles = westFactories }
 			squad.AttackPaths = WestAttackPaths
 		end
 	else

@@ -55,8 +55,8 @@ Squads = {
 		},
 	},
 	GDIVsNod1 = {
-		Delay = AdjustDelayForDifficulty(DateTime.Minutes(2)),
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 10, Max = 20 }),
+		Delay = AdjustDelayForDifficulty(DateTime.Minutes(3)),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 10, Max = 15 }),
 		FollowLeader = true,
 		Compositions = AdjustedGDICompositions,
 		ProducerActors = { Infantry = { HawthorneWestBarracks1, HawthorneWestBarracks2 }, Vehicles = { HawthorneWestFactory1, HawthorneWestFactory2 } },
@@ -66,8 +66,8 @@ Squads = {
 		},
 	},
 	GDIVsNod2 = {
-		Delay = AdjustDelayForDifficulty(DateTime.Minutes(2)),
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 10, Max = 20 }),
+		Delay = AdjustDelayForDifficulty(DateTime.Minutes(3)),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 10, Max = 15 }),
 		FollowLeader = true,
 		Compositions = AdjustedGDICompositions,
 		ProducerActors = { Infantry = { HawthorneEastBarracks1, HawthorneEastBarracks2 }, Vehicles = { HawthorneEastFactory1, HawthorneEastFactory2 } },
@@ -96,11 +96,11 @@ Squads = {
 			return { { Aircraft = orcas } }
 		end
 	},
-	AntiHeavyAir = AntiHeavyAirSquad({ "orcb" }, AdjustAirDelayForDifficulty(DateTime.Minutes(10))),
-	AirToAir = AirToAirSquad({ "orca" }, AdjustAirDelayForDifficulty(DateTime.Minutes(10))),
+	AntiHeavyAir = AntiHeavyAirSquad({ "orca", "orcb" }, AdjustAirDelayForDifficulty(DateTime.Minutes(15))),
+	AirToAir = AirToAirSquad({ "orca" }, AdjustAirDelayForDifficulty(DateTime.Minutes(15))),
 	Nod = {
-		Delay = DateTime.Minutes(2),
-		AttackValuePerSecond = { Min = 15, Max = 30 },
+		Delay = DateTime.Minutes(3),
+		AttackValuePerSecond = { Min = 15, Max = 15 },
 		DispatchDelay = DateTime.Seconds(15),
 		FollowLeader = true,
 		Compositions = AdjustedNodCompositions,
@@ -231,7 +231,6 @@ InitHawthorneGDI = function()
 	if IsHardOrAbove() then
 		Trigger.AfterDelay(DateTime.Minutes(20), DoCommandoDrop)
 		Trigger.AfterDelay(WolverineDropInterval[Difficulty], DoWolverineDrop)
-		InitAirAttackSquad(Squads.GDIFleetKillers, HawthorneGDI, MissionPlayers, { "pac", "deva", "mshp" })
 	end
 
 	InitHawthorneGDIAttacks()
@@ -296,5 +295,6 @@ InitHawthorneGDIAttacks = function()
 	if IsHardOrAbove() then
 		InitAirAttackSquad(Squads.AntiHeavyAir, HawthorneGDI, MissionPlayers, { "Heavy" }, "ArmorType")
 		InitAirAttackSquad(Squads.AirToAir, HawthorneGDI, MissionPlayers, { "Aircraft" }, "ArmorType")
+		InitAirAttackSquad(Squads.GDIFleetKillers, HawthorneGDI, MissionPlayers, { "pac", "deva", "mshp" })
 	end
 end

@@ -276,6 +276,7 @@
 		InternalName: allies
 		Side: Allies
 		Selectable: False
+		Description: faction-allies.description
 	Faction@1:
 		Name: faction-england.name
 		InternalName: england
@@ -301,6 +302,7 @@
 		InternalName: soviet
 		Side: Soviet
 		Selectable: False
+		Description: faction-soviet.description
 	Faction@5:
 		Name: faction-russia.name
 		InternalName: russia
@@ -326,6 +328,7 @@
 		InternalName: gdi
 		Side: GDI
 		Selectable: False
+		Description: faction-gdi.description
 	Faction@9:
 		Name: faction-talon.name
 		InternalName: talon
@@ -351,6 +354,7 @@
 		InternalName: nod
 		Side: Nod
 		Selectable: False
+		Description: faction-nod.description
 	Faction@13:
 		Name: faction-blackh.name
 		InternalName: blackh
@@ -376,6 +380,7 @@
 		InternalName: scrin
 		Side: Scrin
 		Selectable: False
+		Description: faction-scrin.description
 	Faction@17:
 		Name: faction-reaper.name
 		InternalName: reaper

@@ -92,8 +92,8 @@ DominatorRevealDelay = {
 UnitCompositions.Soviet = Utils.Concat(UnitCompositions.Soviet, {
 	{
 		Infantry = { "brut", "brut", "brut", "brut", "brut", "brut", "brut", "brut", "brut" },
-		Vehicles = { "btr.yuri.ai", "btr.yuri.ai", "3tnk.yuri", "3tnk.yuri", "3tnk.yuri", "3tnk.yuri", "3tnk.yuri", "v2rl" },
-		MinTime = DateTime.Minutes(10),
+		Vehicles = { "btr.yuri.ai", "btr.yuri.ai", "3tnk.yuri", "3tnk.yuri", "3tnk.yuri", "3tnk.yuri", "v2rl" },
+		MinTime = DateTime.Minutes(15),
 	},
 	{
 		Infantry = { },
@@ -104,7 +104,7 @@ UnitCompositions.Soviet = Utils.Concat(UnitCompositions.Soviet, {
 	{
 		Infantry = { "brut", "brut", "brut", "yuri", "e1", "e1", "e1", "e1", "e1", "e1", "e1", "e3", "e3", "e3" },
 		Vehicles = { "3tnk.yuri", "3tnk.yuri", "3tnk.yuri", "btr.yuri.ai", "btr.yuri.ai" },
-		MinTime = DateTime.Minutes(16),
+		MinTime = DateTime.Minutes(17),
 		IsSpecial = true,
 	}
 })
@@ -219,7 +219,7 @@ Squads = {
 		end
 	},
 	Discs = {
-		Delay = AdjustAirDelayForDifficulty(DateTime.Minutes(13)),
+		Delay = AdjustAirDelayForDifficulty(DateTime.Minutes(16)),
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 7, Max = 20 }),
 		Compositions = {
 			easy = {

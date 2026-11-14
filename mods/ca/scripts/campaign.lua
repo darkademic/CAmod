@@ -114,7 +114,7 @@ MaxSpecialistAir = {
 
 CapturedCreditsAmount = 1250
 
-EnforceAiBuildRadius = false
+AiBuildRadii = { }
 
 ConyardTypes = { "fact", "afac", "sfac" }
 
@@ -163,6 +163,10 @@ RebuildFunctions = {
 	-- 	-- do something
 	-- end
 }
+
+-- defines the behaviour for AI units when they call for help (keyed by InternalName)
+AiCallForHelpBehaviour = { }
+AiCallForHelpResetTime = { }
 
 -- should be populated with the human players in the mission
 MissionPlayers = { }
@@ -745,9 +749,9 @@ CanRebuild = function(queueItem)
 	local pos = queueItem.CenterPosition
 
 	-- require being in conyard build radius
-	if EnforceAiBuildRadius then
-		local nearbyConyards = Map.ActorsInCircle(pos, WDist.New(20480), function(a)
-			return a.Owner == queueItem.Player
+	if AiBuildRadii[queueItem.Player.InternalName] ~= nil then
+		local nearbyConyards = Map.ActorsInCircle(pos, AiBuildRadii[queueItem.Player.InternalName], function(a)
+			return a.Owner == queueItem.Player and IsConyard(a)
 		end)
 
 		if #nearbyConyards == 0 then
@@ -1022,17 +1026,17 @@ CallForHelpOnDamagedOrKilled = function(actor, range, filter, validAttackingPlay
 	end
 	Trigger.OnDamaged(actor, function(self, attacker, damage)
 		if validAttackingPlayerFunc(attacker.Owner) then
-			CallForHelp(self, range, filter)
+			CallForHelp(self, attacker, range, filter, validAttackingPlayerFunc)
 		end
 	end)
 	Trigger.OnKilled(actor, function(self, killer)
 		if validAttackingPlayerFunc(killer.Owner) then
-			CallForHelp(self, range, filter)
+			CallForHelp(self, killer, range, filter, validAttackingPlayerFunc)
 		end
 	end)
 end
 
-CallForHelp = function(self, range, filter)
+CallForHelp = function(self, attacker, range, filter, validAttackingPlayerFunc)
 	if IsMissionPlayer(self.Owner) then
 		return
 	end
@@ -1040,10 +1044,24 @@ CallForHelp = function(self, range, filter)
 	local selfId = tostring(self)
 	if not AlertedUnits[selfId] then
 		if not self.IsDead then
-			AlertedUnits[selfId] = true
 			if not filter or filter(self) then
+				AlertedUnits[selfId] = true
+				local startLoc = self.Location
 				self.Stop()
-				IdleHunt(self)
+
+				if AiCallForHelpBehaviour[self.Owner.InternalName] == "AttackMove" then
+					if not attacker.IsDead and self.HasProperty("AttackMove") then
+						self.AttackMove(attacker.Location)
+					end
+				else
+					IdleHunt(self)
+				end
+
+				if AiCallForHelpResetTime[self.Owner.InternalName] then
+					Trigger.AfterDelay(AiCallForHelpResetTime[self.Owner.InternalName], function()
+						ResetCallForHelp(self, range, filter, validAttackingPlayerFunc, startLoc)
+					end)
+				end
 			end
 		end
 
@@ -1055,8 +1073,39 @@ CallForHelp = function(self, range, filter)
 			local nearbyUnitId = tostring(nearbyUnit)
 			if not nearbyUnit.IsDead and not AlertedUnits[nearbyUnitId] then
 				AlertedUnits[nearbyUnitId] = true
+				local nearbyUnitStartLoc = nearbyUnit.Location
 				nearbyUnit.Stop()
-				IdleHunt(nearbyUnit)
+
+				if AiCallForHelpBehaviour[nearbyUnit.Owner.InternalName] == "AttackMove" then
+					if not attacker.IsDead and nearbyUnit.HasProperty("AttackMove") then
+						nearbyUnit.AttackMove(attacker.Location)
+					end
+				else
+					IdleHunt(nearbyUnit)
+				end
+
+				if AiCallForHelpResetTime[nearbyUnit.Owner.InternalName] then
+					Trigger.AfterDelay(AiCallForHelpResetTime[nearbyUnit.Owner.InternalName], function()
+						ResetCallForHelp(nearbyUnit, range, filter, validAttackingPlayerFunc, nearbyUnitStartLoc)
+					end)
+				end
+			end
+		end)
+	end
+end
+
+ResetCallForHelp = function(self, range, filter, validAttackingPlayerFunc, startLoc)
+	if not self.IsDead then
+		local selfId = tostring(self)
+		AlertedUnits[selfId] = false
+		Trigger.ClearAll(self)
+		Trigger.AfterDelay(1, function()
+			if not self.IsDead and not AlertedUnits[selfId] and not IsMissionPlayer(self.Owner) then
+				self.Stop()
+				if self.HasProperty("AttackMove") then
+					self.AttackMove(startLoc)
+				end
+				CallForHelpOnDamagedOrKilled(self, range, filter, validAttackingPlayerFunc)
 			end
 		end)
 	end
@@ -2610,7 +2659,7 @@ UnitCompositions = {
 	GDI = {
 		-- 0 to 10 minutes
 		{ Infantry = {}, Vehicles = { HumveeOrGuardianDrone, HumveeOrGuardianDrone, HumveeOrGuardianDrone, HumveeOrGuardianDrone, HumveeOrGuardianDrone }, MaxTime = DateTime.Minutes(10) },
-		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n2", "n2" }, Vehicles = { "mtnk", "mtnk", "msam", "vulc", "vulc.ai"  }, MaxTime = DateTime.Minutes(10) },
+		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n2", "n2", "n1" }, Vehicles = { "mtnk", "mtnk", "vulc.ai"  }, MaxTime = DateTime.Minutes(10) },
 		{ Infantry = { "n3", "n1", "n1", "n1", "n3", "n1", "n2", "n2", "n1", "n1", "n1", "n3" }, Vehicles = { "mtnk", "mtnk", HumveeOrGuardianDrone, HumveeOrGuardianDrone }, MaxTime = DateTime.Minutes(10) },
 
 		-- 10 minutes onwards

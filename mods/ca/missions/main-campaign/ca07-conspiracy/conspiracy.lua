@@ -4,8 +4,6 @@ SleeperAwakenTrigger = { LeftBaseTrigger1.Location, LeftBaseTrigger2.Location, L
 
 Researchers = { Researcher1, Researcher2 }
 
-GDIDefenders = { GDIDefender1, GDIDefender2, GDIDefender3, GDIDefender4, GDIDefender5, GDIDefender6 }
-
 ChinookDropPaths = {
 	{ ChinookDrop1Spawn.Location, ChinookDrop1Landing.Location },
 	{ ChinookDrop2Spawn.Location, ChinookDrop2Mid.Location, ChinookDrop2Landing.Location },
@@ -344,10 +342,10 @@ AwakenSleeperCell = function()
 			end
 
 			Trigger.AfterDelay(DateTime.Seconds(60), function()
-				Utils.Do(GDIDefenders, function(self)
-					if not self.IsDead then
+				local gdiForces = GDI.GetGroundAttackers()
+				Utils.Do(gdiForces, function(self)
+					if not self.IsDead and self.HasProperty("AttackMove") then
 						self.AttackMove(GDIBaseCenter.Location)
-						CallForHelp(self, WDist.New(10240), IsGDIGroundHunterUnit)
 					end
 				end)
 			end)

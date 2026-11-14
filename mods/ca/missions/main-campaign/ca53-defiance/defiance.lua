@@ -74,11 +74,11 @@ DominatorStartTime = {
 }
 
 DominatorInterval = {
-	easy = DateTime.Minutes(8),
-	normal = DateTime.Minutes(7),
-	hard = DateTime.Minutes(6),
-	vhard = DateTime.Minutes(5),
-	brutal = DateTime.Minutes(4)
+	easy = DateTime.Minutes(9),
+	normal = DateTime.Minutes(8),
+	hard = DateTime.Minutes(7),
+	vhard = DateTime.Minutes(6),
+	brutal = DateTime.Minutes(5)
 }
 
 DominatorRevealDelay = {

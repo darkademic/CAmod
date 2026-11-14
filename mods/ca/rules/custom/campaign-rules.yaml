@@ -1280,7 +1280,7 @@ OSPI:
 		Dimensions: 3,3
 		LocalCenterOffset: 0,-512,0
 	Health:
-		HP: 1500000
+		HP: 1200000
 	Armor:
 		Type: Concrete
 	HitShape:

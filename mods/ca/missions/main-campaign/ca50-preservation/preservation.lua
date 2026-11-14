@@ -89,6 +89,9 @@ MaleficFleetCompositions = {
 	brutal = { "pac", "deva", "pac", "deva", "pac" },
 }
 
+SharedTempleDamageNotificationTicks = 0
+TempleDamageNotificationTicks = {}
+
 if IsHardOrAbove() then
 	table.insert(UnitCompositions.Scrin, {
 		Infantry = { "s3", "s4", "evis", "evis", "evis", "evis", "s1", "s1", "s4", "s1", "s4", "s1", "s4", "s1", "mast" },
@@ -240,9 +243,13 @@ WorldLoaded = function()
         end
     end)
 
-	WestTemple.GrantCondition("is-objective")
-	MiddleTemple.GrantCondition("is-objective")
-	EastTemple.GrantCondition("is-objective")
+	Utils.Do({ WestTemple, MiddleTemple, EastTemple }, function(t)
+		t.GrantCondition("is-objective")
+		TempleDamageNotificationTicks[tostring(t)] = 0
+		Trigger.OnDamaged(t, function(self, attacker, damage)
+			TempleDamaged(self, attacker, damage)
+		end)
+	end)
 
     local initialAttackWaves = Utils.Shuffle({ SovietInitialAttack1, SovietInitialAttack2, SovietInitialAttack3, ScrinInitialAttack1, ScrinInitialAttack2, ScrinInitialAttack3 })
     local initialAttackDelay = 0
@@ -300,6 +307,15 @@ OncePerSecondChecks = function()
             if not ScrinRebels.IsObjectiveCompleted(ObjectiveProtectTemples) then
                 ScrinRebels.MarkFailedObjective(ObjectiveProtectTemples)
             end
+		end
+
+		if SharedTempleDamageNotificationTicks > 0 then
+			SharedTempleDamageNotificationTicks = SharedTempleDamageNotificationTicks - DateTime.Seconds(1)
+		end
+		for k, v in pairs(TempleDamageNotificationTicks) do
+			if v > 0 then
+				TempleDamageNotificationTicks[k] = v - DateTime.Seconds(1)
+			end
 		end
 	end
 end
@@ -422,6 +438,19 @@ SpawnNextMaleficFleetWave = function()
 	end
 
 	Trigger.AfterDelay(MaleficFleetSpawnInterval[Difficulty], SpawnNextMaleficFleetWave)
+end
+
+TempleDamaged = function(temple, attacker, damage)
+	local templeKey = tostring(temple)
+	if SharedTempleDamageNotificationTicks > 0 or TempleDamageNotificationTicks[templeKey] > 0 or temple.IsDead or damage < 0 or IsMissionPlayer(attacker.Owner) then
+		return
+	end
+
+	Notification("A temple is under attack.")
+	MediaCA.PlaySound("s_templeatk.aud", 2)
+	Beacon.New(ScrinRebels, temple.CenterPosition)
+	SharedTempleDamageNotificationTicks = DateTime.Seconds(5)
+	TempleDamageNotificationTicks[templeKey] = DateTime.Seconds(30)
 end
 
 -- overridden in co-op version

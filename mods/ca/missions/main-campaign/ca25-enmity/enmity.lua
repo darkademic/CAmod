@@ -138,7 +138,7 @@ end
 WorldLoaded = function()
 	SetupPlayers()
 
-	EnforceAiBuildRadius = true
+	AiBuildRadii[Nod.InternalName] = WDist.FromCells(20)
 	Camera.Position = PlayerStart.CenterPosition
 
 	InitObjectives(GDI)

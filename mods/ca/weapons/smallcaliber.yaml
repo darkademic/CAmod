@@ -891,7 +891,7 @@ SniperIFVGun:
 
 CommandoIFVGun:
 	Inherits: SMG
-	ReloadDelay: 12
+	ReloadDelay: 15
 	Burst: 3
 	BurstDelays: 2
 	Projectile: InstantHit

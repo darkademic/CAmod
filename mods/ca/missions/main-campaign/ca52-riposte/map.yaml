@@ -1918,9 +1918,6 @@ Actors:
 	Actor693: split2
 		Owner: Neutral
 		Location: 87,32
-	Actor694: split2
-		Owner: Neutral
-		Location: 69,100
 	Actor695: split2
 		Owner: Neutral
 		Location: 54,64
@@ -3709,6 +3706,21 @@ Actors:
 		Owner: ScrinRebels
 		Facing: 384
 		Location: 21,156
+	Actor1072: split2
+		Owner: Neutral
+		Location: 67,99
+	Actor1073: split2
+		Owner: Neutral
+		Location: 71,101
+	Actor1074: split2
+		Owner: Neutral
+		Location: 86,77
+	SEBase: waypoint
+		Owner: Neutral
+		Location: 143,118
+	NWBase: waypoint
+		Owner: Neutral
+		Location: 22,13
 
 Rules: ca|rules/custom/campaign-rules.yaml, ca|rules/custom/campaign-tooltips.yaml, ca|rules/custom/two-tone-nod.yaml, ca|rules/custom/disable-allegiances.yaml, riposte-rules.yaml
 

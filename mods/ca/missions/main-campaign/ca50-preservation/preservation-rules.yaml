@@ -81,6 +81,9 @@ WORMHOLE:
 
 TMPL:
 	Inherits@Objective: ^ObjectiveDecorations
+	DamageMultiplier@Objective:
+		Modifier: 50
+		RequiresCondition: is-objective
 	Sellable:
 		RequiresCondition: !build-incomplete && !c4 && !being-captured && !being-warped && !hacked && !is-objective
 

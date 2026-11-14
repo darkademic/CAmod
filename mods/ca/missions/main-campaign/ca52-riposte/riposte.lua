@@ -29,11 +29,11 @@ MaxFleetKillers = {
 }
 
 AdjustedGDICompositions = AdjustCompositionsForDifficulty(UnitCompositions.GDI)
-AdjustedNodCompositions = AdjustCompositionsForDifficulty(UnitCompositions.Nod)
+AdjustedNodCompositions = AdjustCompositionsForDifficulty(UnitCompositions.Nod, "hard")
 
 Squads = {
 	GDIMain1 = {
-		Delay = AdjustDelayForDifficulty(DateTime.Minutes(5)),
+		Delay = AdjustDelayForDifficulty(DateTime.Minutes(6)),
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40 }),
 		FollowLeader = true,
 		Compositions = AdjustedGDICompositions,
@@ -98,15 +98,24 @@ Squads = {
 	},
 	AntiHeavyAir = AntiHeavyAirSquad({ "orca", "orcb" }, AdjustAirDelayForDifficulty(DateTime.Minutes(15))),
 	AirToAir = AirToAirSquad({ "orca" }, AdjustAirDelayForDifficulty(DateTime.Minutes(15))),
-	Nod = {
+	Nod1 = {
 		Delay = DateTime.Minutes(3),
-		AttackValuePerSecond = { Min = 15, Max = 15 },
+		AttackValuePerSecond = { Min = 10, Max = 15 },
 		DispatchDelay = DateTime.Seconds(15),
 		FollowLeader = true,
 		Compositions = AdjustedNodCompositions,
 		AttackPaths = {
-			{ NodWaypoint1.Location },
-			{ NodWaypoint2.Location },
+			{ NodWaypoint1.Location, NWBase.Location },
+		},
+	},
+	Nod2 = {
+		Delay = DateTime.Minutes(3),
+		AttackValuePerSecond = { Min = 10, Max = 15 },
+		DispatchDelay = DateTime.Seconds(15),
+		FollowLeader = true,
+		Compositions = AdjustedNodCompositions,
+		AttackPaths = {
+			{ NodWaypoint2.Location, SEBase.Location },
 		},
 	},
 	NodAir = {
@@ -131,6 +140,7 @@ WorldLoaded = function()
 	SetupPlayers()
 
     Camera.Position = PlayerStart.CenterPosition
+	AiBuildRadii[HawthorneGDI.InternalName] = WDist.FromCells(32)
 
 	InitObjectives(ScrinRebels)
 	AdjustPlayerStartingCashForDifficulty()
@@ -207,11 +217,15 @@ OncePerThirtySecondChecks = function()
 end
 
 InitNod = function()
+	AiCallForHelpResetTime[Nod.InternalName] = DateTime.Seconds(10)
 	AutoRepairAndRebuildBuildings(Nod, 15)
 	SetupRefAndSilosCaptureCredits(Nod)
 	AutoReplaceHarvesters(Nod)
+	SetupUnitDefenders(Nod, nil, nil, function(p) return p == HawthorneGDI end)
+	SetupBuildingDefenders(Nod, nil, WDist.FromCells(5), function(p) return p == HawthorneGDI end)
 
-	InitAttackSquad(Squads.Nod, Nod, HawthorneGDI)
+	InitAttackSquad(Squads.Nod1, Nod, HawthorneGDI)
+	InitAttackSquad(Squads.Nod2, Nod, HawthorneGDI)
 	InitAirAttackSquad(Squads.NodAir, Nod, HawthorneGDI)
 end
 

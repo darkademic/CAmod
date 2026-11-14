@@ -612,6 +612,12 @@ OILB:
 		Amount: 125
 		Type: Oil
 		RequiresCondition: enabled
+	CashTricklerCAMultiplier@EconomyPolicy2:
+		Modifier: 120
+		RequiresCondition: economy-policy2
+	GrantConditionOnPrerequisite@EconomyPolicy2:
+		Condition: economy-policy2
+		Prerequisites: economy.policy, influence.level2
 	GrantPeriodicCondition@Tick:
 		ActiveDuration: 1
 		CooldownDuration: 374

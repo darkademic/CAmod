@@ -563,6 +563,7 @@ InitNod = function()
 	end)
 
 	Utils.Do({ Nod1, Nod2 }, function(p)
+		AiCallForHelpResetTime[p.InternalName] = DateTime.Seconds(10)
 		AutoRepairAndRebuildBuildings(p)
 		SetupRefAndSilosCaptureCredits(p)
 		AutoReplaceHarvesters(p)

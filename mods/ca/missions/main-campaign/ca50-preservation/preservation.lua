@@ -1,26 +1,14 @@
 MissionDir = "ca|missions/main-campaign/ca50-preservation"
 
 ScrinAttackPaths = {
-	{ ScrinWaypoint1.Location, ScrinWaypoint2.Location },
-    { ScrinWaypoint3.Location, ScrinWaypoint4.Location },
-	{ ScrinWaypoint3.Location, ScrinWaypoint4.Location, ScrinWaypoint13.Location },
-    { ScrinWaypoint5.Location, ScrinWaypoint6.Location },
-    { ScrinWaypoint5.Location, ScrinWaypoint6.Location, ScrinWaypoint7.Location },
-    { ScrinWaypoint5.Location, ScrinWaypoint8.Location },
-	{ ScrinWaypoint1.Location, ScrinWaypoint9.Location },
-	{ ScrinWaypoint5.Location, ScrinWaypoint8.Location, ScrinWaypoint10.Location },
-	{ ScrinWaypoint5.Location, ScrinWaypoint8.Location, ScrinWaypoint10.Location, ScrinWaypoint11.Location },
-	{ ScrinWaypoint5.Location, ScrinWaypoint6.Location, ScrinWaypoint7.Location, ScrinWaypoint12.Location },
+	{ ScrinWaypoint1.Location, ScrinWaypoint2.Location, MiddleGateway.Location },
+    { ScrinWaypoint5.Location, ScrinWaypoint6.Location, WestGateway.Location },
+	-- more added after 10 mins
 }
 
 SovietAttackPaths = {
-	{ SovietWaypoint1.Location, SovietWaypoint2.Location },
-    { SovietWaypoint1.Location, SovietWaypoint2.Location },
-    { SovietWaypoint4.Location, SovietWaypoint5.Location },
-	{ SovietWaypoint6.Location, SovietWaypoint7.Location },
-	{ SovietWaypoint1.Location, SovietWaypoint3.Location, SovietWaypoint8.Location },
-	{ SovietWaypoint6.Location, SovietWaypoint7.Location, SovietWaypoint9.Location },
-	{ SovietWaypoint6.Location, SovietWaypoint7.Location, SovietWaypoint9.Location, SovietWaypoint10.Location },
+	{ SovietWaypoint1.Location, SovietWaypoint2.Location, EastGateway.Location },
+	-- more added after 10 mins
 }
 
 SuperweaponsEnabledTime = {
@@ -122,23 +110,23 @@ NextMaleficFleetSpawnIndex = 1
 
 Squads = {
 	ScrinMain = {
-		InitTimeAdjustment = -DateTime.Minutes(4),
+		InitTimeAdjustment = -DateTime.Minutes(3),
 		Compositions = AdjustCompositionsForDifficulty(UnitCompositions.Scrin),
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 35 }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40 }),
 		FollowLeader = true,
 		AttackPaths = ScrinAttackPaths,
-		Delay = AdjustDelayForDifficulty(DateTime.Minutes(2)),
+		Delay = AdjustDelayForDifficulty(DateTime.Minutes(3)),
 	},
 	SovietMain = {
-		InitTimeAdjustment = -DateTime.Minutes(4),
+		InitTimeAdjustment = -DateTime.Minutes(3),
 		Compositions = AdjustCompositionsForDifficulty(UnitCompositions.Soviet),
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 35 }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 40 }),
 		FollowLeader = true,
 		AttackPaths = SovietAttackPaths,
 		Delay = AdjustDelayForDifficulty(DateTime.Minutes(3)),
 	},
 	ScrinMeatWaves = {
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 10, Max = 30, RampDuration = DateTime.Minutes(20) }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 5, Max = 30, RampDuration = DateTime.Minutes(25) }),
 		Compositions = {
 			{ Infantry = { "s3", "s1", "s1", "s1", "s1", "s1", "s1", "s3" } },
 			{ Infantry = { "s3", "s1", "s1", "s1", "s1", "s1", "s1", "s3", "s1", "s1", "s1", "s3" } },
@@ -148,7 +136,7 @@ Squads = {
 		AttackPaths = ScrinAttackPaths,
 	},
 	SovietMeatWaves = {
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 10, Max = 30, RampDuration = DateTime.Minutes(20) }),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 5, Max = 30, RampDuration = DateTime.Minutes(25) }),
 		Compositions = {
 			{ Infantry = { "e3", "e1", "e1", "e1", "e1", "e1", "e1", "e3" } },
 			{ Infantry = { "e3", "e1", "e1", "e1", "e1", "e1", "e1", "e3", "e1", "e1", "e1", "e3" } },
@@ -232,6 +220,7 @@ WorldLoaded = function()
 	RemoveActorsBasedOnDifficultyTags()
 	InitUSSR()
 	InitScrin()
+	InitNod()
 
     ObjectiveProtectTemples = ScrinRebels.AddObjective("Protect the Nod Temples until gateways are operational.")
 
@@ -280,6 +269,35 @@ WorldLoaded = function()
 	MiddleToWestWormhole.RallyPoint = CPos.New(MiddleToWestWormhole.Location.X + 2, MiddleToWestWormhole.Location.Y - 2)
 	MiddleToEastWormhole.RallyPoint = CPos.New(MiddleToEastWormhole.Location.X - 3, MiddleToEastWormhole.Location.Y + 2)
 	EastToMiddleWormhole.RallyPoint = CPos.New(EastToMiddleWormhole.Location.X, EastToMiddleWormhole.Location.Y + 3)
+
+	Trigger.AfterDelay(DateTime.Minutes(10), function()
+		local newScrinAttackPaths = {
+			{ ScrinWaypoint3.Location, ScrinWaypoint4.Location, MiddleGateway.Location },
+			{ ScrinWaypoint3.Location, ScrinWaypoint4.Location, ScrinWaypoint13.Location, MiddleGateway.Location },
+			{ ScrinWaypoint5.Location, ScrinWaypoint6.Location, ScrinWaypoint7.Location, WestGateway.Location },
+			{ ScrinWaypoint5.Location, ScrinWaypoint8.Location, WestGateway.Location },
+			{ ScrinWaypoint1.Location, ScrinWaypoint9.Location, MiddleGateway.Location },
+			{ ScrinWaypoint5.Location, ScrinWaypoint8.Location, ScrinWaypoint10.Location, WestGateway.Location },
+			{ ScrinWaypoint5.Location, ScrinWaypoint8.Location, ScrinWaypoint10.Location, ScrinWaypoint11.Location, WestGateway.Location },
+			{ ScrinWaypoint5.Location, ScrinWaypoint6.Location, ScrinWaypoint7.Location, ScrinWaypoint12.Location, WestGateway.Location },
+		}
+
+		local newSovietAttackPaths = {
+			{ SovietWaypoint1.Location, SovietWaypoint2.Location, EastGateway.Location },
+			{ SovietWaypoint4.Location, SovietWaypoint5.Location, MiddleGateway.Location },
+			{ SovietWaypoint6.Location, SovietWaypoint7.Location, EastGateway.Location },
+			{ SovietWaypoint1.Location, SovietWaypoint3.Location, SovietWaypoint8.Location, MiddleGateway.Location },
+			{ SovietWaypoint6.Location, SovietWaypoint7.Location, SovietWaypoint9.Location, EastGateway.Location },
+			{ SovietWaypoint6.Location, SovietWaypoint7.Location, SovietWaypoint9.Location, SovietWaypoint10.Location, EastGateway.Location },
+		}
+
+		for _, path in pairs(newScrinAttackPaths) do
+			table.insert(ScrinAttackPaths, path)
+		end
+		for _, path in pairs(newSovietAttackPaths) do
+			table.insert(SovietAttackPaths, path)
+		end
+	end)
 
     AfterWorldLoaded()
 end
@@ -402,6 +420,14 @@ InitUSSRAttacks = function()
 			InitAirAttackSquad(Squads.SovietCommandoKillers, USSR, MissionPlayers, { "mast", "rmbo" })
 		end
 	end
+end
+
+InitNod = function()
+	AiCallForHelpResetTime[Nod.InternalName] = DateTime.Seconds(10)
+	AutoRepairAndRebuildBuildings(Nod)
+	AutoReplaceHarvesters(Nod)
+	AutoRebuildConyards(Nod)
+	SetupUnitDefenders(Nod)
 end
 
 UpdateGatewayStatus = function()

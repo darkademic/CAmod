@@ -121,7 +121,7 @@ Squads = {
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 24, Max = 24 }),
 		Compositions = {
 			brutal = {
-				Aircraft = { "rah", "rah", "rah", "rah", "rah" }
+				{ Aircraft = { "rah", "rah", "rah", "rah", "rah" } },
 			}
 		}
 	}

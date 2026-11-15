@@ -2442,6 +2442,7 @@ CalculatePlayerCharacteristics = function()
 		InfantryValue = 0,
 		HeavyValue = 0,
 		AirValue = 0,
+		ArmyValue = 0
 	}
 
 	Utils.Do(MissionPlayers, function(p)
@@ -2452,6 +2453,7 @@ CalculatePlayerCharacteristics = function()
 			InfantryValue = 0,
 			HeavyValue = 0,
 			AirValue = 0,
+			ArmyValue = p.ArmyValue
 		}
 
 		local infantryValue = 0
@@ -2515,6 +2517,7 @@ CalculatePlayerCharacteristics = function()
 		PlayerCharacteristics["MissionPlayers"].InfantryValue = PlayerCharacteristics["MissionPlayers"].InfantryValue + PlayerCharacteristics[p.InternalName].InfantryValue
 		PlayerCharacteristics["MissionPlayers"].HeavyValue = PlayerCharacteristics["MissionPlayers"].HeavyValue + PlayerCharacteristics[p.InternalName].HeavyValue
 		PlayerCharacteristics["MissionPlayers"].AirValue = PlayerCharacteristics["MissionPlayers"].AirValue + PlayerCharacteristics[p.InternalName].AirValue
+		PlayerCharacteristics["MissionPlayers"].ArmyValue = PlayerCharacteristics["MissionPlayers"].ArmyValue + PlayerCharacteristics[p.InternalName].ArmyValue
 	end)
 
 	if PlayerCharacteristics["MissionPlayers"].InfantryValue > 20000 then

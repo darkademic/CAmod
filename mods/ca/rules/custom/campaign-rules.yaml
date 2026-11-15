@@ -1135,12 +1135,12 @@ DOMI:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 650000
+		HP: 700000
 	Mobile:
 		Speed: 40
 		TurnSpeed: 8
 		Locomotor: sheavytracked
-		PauseOnCondition: empdisable || notmobile || charging
+		PauseOnCondition: empdisable || notmobile || charging || discharged
 		ImmovableCondition: alive
 	GrantCondition@ALIVE:
 		Condition: alive
@@ -1178,7 +1178,7 @@ DOMI:
 		ValidRelationships: Ally, Enemy, Neutral
 	AttackTurreted:
 		Armaments: primary, secondary
-		PauseOnCondition: empdisable || charging
+		PauseOnCondition: empdisable || charging || discharged
 	Turreted:
 	Selectable:
 		DecorationBounds: 2048, 2048, 0, -170
@@ -1207,7 +1207,7 @@ DOMI:
 	GrantConditionOnEnemiesNearby@DominationWaveInit:
 		Condition: enemies-nearby
 		Range: 6c0
-		EnemyCount: 3
+		EnemyCount: 5
 		TickInterval: 15
 		TargetTypes: Infantry, Vehicle, Structure
 	GrantTimedCondition@Triggered:
@@ -1225,6 +1225,11 @@ DOMI:
 	GrantTimedCondition@WaveReloading:
 		Condition: wave-reloading
 		Duration: 750
+		ForceFullDuration: true
+		RequiresCondition: charged
+	GrantTimedCondition@Discharged:
+		Condition: discharged
+		Duration: 375
 		ForceFullDuration: true
 		RequiresCondition: charged
 	WithDistortionHalo@DominationWave:
@@ -1247,6 +1252,16 @@ DOMI:
 	PeriodicExplosion@DominationWave:
 		Weapon: DominationWave
 		RequiresCondition: charged
+	WithIdleOverlay@Reloading:
+		Sequence: vehicle
+		Image: frenzy-overlay
+		Palette: frenzyoverlay
+		RequiresCondition: discharged
+		IsDecoration: True
+		Offset: 0,0,448
+	WithColoredOverlay@Discharged:
+		RequiresCondition: discharged
+		Color: 00000080
 
 DOMI.Husk:
 	Inherits: ^Husk

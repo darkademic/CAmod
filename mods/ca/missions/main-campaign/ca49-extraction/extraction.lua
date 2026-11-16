@@ -158,6 +158,11 @@ WorldLoaded = function()
     ObjectivePrepare = ScrinRebels.AddObjective("Gather forces and rendezvous with Kane before deadline.")
     ObjectiveDestroyEitherBase = ScrinRebels.AddObjective("Eliminate either Scrin or Soviet base.")
     ObjectiveProtectTemple = ScrinRebels.AddObjective("Kane's Temple must survive.")
+	ObjectiveFindAllBases = ScrinRebels.AddSecondaryObjective("Reclaim all rebel infrastructure.")
+	ObjectiveFindAllNodForces = ScrinRebels.AddSecondaryObjective("Find all scattered Nod forces.")
+
+	BasesReclaimed = 0
+	NodGroupsFound = 0
 
     TimerTicks = DeadlineTime[Difficulty]
     UpdateDeadlineCountdown()
@@ -179,6 +184,11 @@ WorldLoaded = function()
 				Notification("Nod units located.")
 				MediaCA.PlaySound(MissionDir .. "/s_nodunitslocated.aud", 2)
                 TransferStrandedNodUnits(nodUnits)
+				NodGroupsFound = NodGroupsFound + 1
+
+				if NodGroupsFound == #NodStrandedUnits then
+					ScrinRebels.MarkCompletedObjective(ObjectiveFindAllNodForces)
+				end
             end
         end)
     end)
@@ -193,6 +203,11 @@ WorldLoaded = function()
 				Notification("Rebel structures reclaimed.")
 				MediaCA.PlaySound(MissionDir .. "/s_rebstrucreclaimed.aud", 2)
                 TransferRebelStructures(rebelStructures)
+				BasesReclaimed = BasesReclaimed + 1
+
+				if BasesReclaimed == #RebelStructures then
+					ScrinRebels.MarkCompletedObjective(ObjectiveFindAllBases)
+				end
             end
         end)
     end)

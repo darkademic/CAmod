@@ -972,7 +972,7 @@ RestoreSquadProduction = function(oldBuilding, newBuilding)
 	end
 
 	for squadName,squad in pairs(Squads) do
-		if squad.ProducerActors ~= nil then
+		if squad.ProducerActors ~= nil and type(squad.ProducerActors) == "table" then
 			for queue,actors in pairs(squad.ProducerActors) do
 				if actors ~= nil then
 					for idx, a in pairs(actors) do
@@ -1393,10 +1393,18 @@ ProduceNextAttackSquadUnit = function(squad, queue, unitIndex)
 		-- after the build time has elapsed
 		Trigger.AfterDelay(buildTime, function()
 			local producer = nil
+			local producerActors = nil
+
+			if squad.ProducerActors ~= nil then
+				if type(squad.ProducerActors) == "function" then
+					producerActors = squad.ProducerActors(queue)
+				elseif squad.ProducerActors[queue] ~= nil then
+					producerActors = squad.ProducerActors[queue]
+				end
+			end
 
 			-- find appropriate producer actor (either the first/random specific actor, or if not found, randomly selected of from specified types)
-			if squad.ProducerActors ~= nil and squad.ProducerActors[queue] ~= nil then
-				local producerActors = squad.ProducerActors[queue]
+			if producerActors ~= nil then
 				if squad.RandomProducerActor then
 					producerActors = Utils.Shuffle(producerActors)
 				end

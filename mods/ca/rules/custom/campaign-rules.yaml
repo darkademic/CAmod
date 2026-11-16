@@ -1135,7 +1135,7 @@ DOMI:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 700000
+		HP: 725000
 	Mobile:
 		Speed: 40
 		TurnSpeed: 8
@@ -1207,7 +1207,7 @@ DOMI:
 	GrantConditionOnEnemiesNearby@DominationWaveInit:
 		Condition: enemies-nearby
 		Range: 6c0
-		EnemyCount: 5
+		EnemyCount: 6
 		TickInterval: 15
 		TargetTypes: Infantry, Vehicle, Structure
 	GrantTimedCondition@Triggered:

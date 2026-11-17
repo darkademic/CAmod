@@ -96,12 +96,12 @@ HardAndAboveMainCompositions = {
 }
 
 if Difficulty == "brutal" then
-	HardAndAboveMainCompositions[2].MaxTime = DateTime.Minutes(16)
+	HardAndAboveMainCompositions[2].MaxTime = DateTime.Minutes(20)
 
 	table.insert(HardAndAboveMainCompositions, {
-		Infantry = { "e3", "e1", "e1", "e3", "shok", "e1", { "ttrp", "deso" }, "e1", "e2", "e3", "e4", "e1", "e1", "e1", "e1", "e3", "e1", { "ttrp", "deso" } },
+		Infantry = { "e3", "e1", "e1", "e3", "shok", "e1", "ttrp", "e1", "e2", "e3", "e4", "e1", "e1", "e1", "e1", "e3", "e1", "ttrp" },
 		Vehicles = { { "3tnk", "3tnk.atomic" }, "4tnk", "btr.ai", "v2rl", "v2rl", "grad", "ttra" },
-		MinTime = DateTime.Minutes(16)
+		MinTime = DateTime.Minutes(20)
 	})
 end
 

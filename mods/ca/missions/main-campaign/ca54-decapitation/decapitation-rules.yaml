@@ -281,6 +281,8 @@ SCRT:
 owrath.provider:
 	Inherits@DUMMY: ^InvisibleDummy
 	Inherits@OverlordsWrathPower: ^OverlordsWrathPower
+	MeteorPower@OverlordsWrath:
+		-PauseOnCondition:
 
 # Difficulty modifiers
 

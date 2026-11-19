@@ -2705,7 +2705,7 @@ ACOL:
 	Health:
 		HP: 9000
 	Mobile:
-		Speed: 60
+		Speed: 66
 		Voice: Move
 	RevealsShroud:
 		Range: 5c0
@@ -4450,7 +4450,7 @@ ENLI:
 	Health:
 		HP: 30000
 	Mobile:
-		Speed: 54
+		Speed: 66
 		Voice: Move
 		PauseOnCondition: being-warped || empdisable
 	AttackFrontal:

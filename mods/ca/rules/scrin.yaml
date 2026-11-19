@@ -546,7 +546,7 @@ S3:
 	Inherits@SCRININFANTRY: ^ScrinInfantry
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMovePrioritizeAir
 	Inherits@BERSERK: ^Berserk
-	Inherits@HeroOfTheUnionTargetable: ^HeroOfTheUnionTargetable
+	Inherits@HeroOfTheUnionTargetableRocket: ^HeroOfTheUnionTargetableRocket
 	Inherits@Inspirable: ^Inspirable
 	Buildable:
 		Queue: InfantrySQ, InfantryMQ
@@ -578,12 +578,14 @@ S3:
 		LocalOffset: 150,0,400
 		PauseOnCondition: !ammo
 	Armament@Targeter:
+		Name: targeter
 		Weapon: DisintegratorBeamTargeter
 		LocalOffset: 150,0,400
 	Armament@BATF:
 		Name: batf
 		Weapon: DisintegratorBeamBATF
 	AttackFrontal:
+		Armaments: primary, secondary, targeter
 		PauseOnCondition: being-warped || blinded || reapersnare
 		FacingTolerance: 0
 	ProducibleWithLevel:
@@ -600,7 +602,9 @@ S3:
 		Delay: 30
 		Count: 1
 	WithInfantryBody:
-		DefaultAttackSequence: shoot
+		AttackSequences:
+			primary: shoot
+			secondary: shoot
 
 S4:
 	Inherits@SCRININFANTRY: ^ScrinInfantry

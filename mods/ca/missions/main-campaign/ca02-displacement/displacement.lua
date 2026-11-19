@@ -59,7 +59,7 @@ NavalReinforcementsDelay = {
 
 TimeBetweenConvoys = {
 	easy = { DateTime.Minutes(3), DateTime.Minutes(8), DateTime.Minutes(4), DateTime.Minutes(5)  },
-	normal = { DateTime.Minutes(2), DateTime.Minutes(7), DateTime.Minutes(3), DateTime.Minutes(4) + DateTime.Seconds(30) },
+	normal = { DateTime.Minutes(2), DateTime.Minutes(7), DateTime.Minutes(3), MinutesAndSeconds(4, 30) },
 	hard = { DateTime.Minutes(1), DateTime.Minutes(6), DateTime.Minutes(2), DateTime.Minutes(4) },
 	vhard = { DateTime.Minutes(1), DateTime.Minutes(6), DateTime.Minutes(2), DateTime.Minutes(4) },
 	brutal = { DateTime.Minutes(1), DateTime.Minutes(6), DateTime.Minutes(2), DateTime.Minutes(4) }
@@ -69,7 +69,7 @@ TimeBetweenConvoys = {
 
 Squads = {
 	Main = {
-		Delay = AdjustDelayForDifficulty(DateTime.Seconds(160)),
+		Delay = AdjustDelayForDifficulty(MinutesAndSeconds(2, 40)),
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 28, Max = 36, RampDuration = DateTime.Minutes(13) }),
 		Compositions = AdjustCompositionsForDifficulty({
 			{
@@ -86,7 +86,7 @@ Squads = {
 		AttackPaths = ScrinAttackPaths,
 	},
 	Stormriders = {
-		Delay = AdjustAirDelayForDifficulty(DateTime.Seconds(270)),
+		Delay = AdjustAirDelayForDifficulty(MinutesAndSeconds(4, 30)),
 		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 12, Max = 12 }),
 		Compositions = AdjustCompositionsForDifficulty({
 			{ Aircraft = { "stmr", "stmr", "stmr", "stmr" } }

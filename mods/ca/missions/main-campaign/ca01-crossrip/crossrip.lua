@@ -61,11 +61,11 @@ ScrinVehiclesIntervalMultiplier = {
 }
 
 EvacuationTime = {
-	easy = DateTime.Minutes(4) + DateTime.Seconds(30),
-	normal = DateTime.Minutes(5),
-	hard = DateTime.Minutes(5) + DateTime.Seconds(30),
-	vhard = DateTime.Minutes(5) + DateTime.Seconds(30),
-	brutal = DateTime.Minutes(5) + DateTime.Seconds(30),
+	easy = MinutesAndSeconds(4, 30),
+	normal = MinutesAndSeconds(5, 0),
+	hard = MinutesAndSeconds(5, 30),
+	vhard = MinutesAndSeconds(5, 30),
+	brutal = MinutesAndSeconds(5, 30),
 }
 
 HaloDropEntryPaths = {

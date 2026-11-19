@@ -65,16 +65,16 @@ HoldOutTime = {
 
 Squads = {
 	Main = {
-		Delay = AdjustDelayForDifficulty(DateTime.Seconds(80)),
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 26, Max = 32, RampDuration = DateTime.Minutes(14) }),
+		Delay = AdjustDelayForDifficulty(MinutesAndSeconds(1, 30)),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 26, Max = 32 }),
 		FollowLeader = true,
 		ProducerActors = { Infantry = { SovietMainBarracks1, SovietMainBarracks2 }, Vehicles = { SovietMainFactory1, SovietMainFactory2 } },
 		Compositions = AdjustCompositionsForDifficulty(UnitCompositions.Soviet),
 		AttackPaths = SovietMainAttackPaths,
 	},
 	Northern = {
-		Delay = AdjustDelayForDifficulty(DateTime.Seconds(60)),
-		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 24, RampDuration = DateTime.Minutes(14) }),
+		Delay = AdjustDelayForDifficulty(DateTime.Minutes(1)),
+		AttackValuePerSecond = AdjustAttackValuesForDifficulty({ Min = 20, Max = 24 }),
 		FollowLeader = true,
 		ProducerActors = { Infantry = { SovietNorthBarracks1, SovietNorthBarracks2 }, Vehicles = { SovietNorthFactory } },
 		Compositions = {

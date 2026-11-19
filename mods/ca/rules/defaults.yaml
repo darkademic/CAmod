@@ -297,6 +297,15 @@
 	ReloadDelayMultiplier@RANK-ELITE:
 		RequiresCondition: rank-elite && !development-policy3
 		Modifier: 80
+	ReloadAmmoDelayMultiplier@RANK-1:
+		RequiresCondition: rank-veteran == 1
+		Modifier: 95
+	ReloadAmmoDelayMultiplier@RANK-2:
+		RequiresCondition: rank-veteran == 2
+		Modifier: 90
+	ReloadAmmoDelayMultiplier@RANK-ELITE:
+		RequiresCondition: rank-elite && !development-policy3
+		Modifier: 80
 	ChangesHealth@ELITE:
 		PercentageStep: 5
 		Delay: 100
@@ -393,12 +402,18 @@
 	ReloadDelayMultiplier@EliteDevelopmentPolicy3:
 		RequiresCondition: rank-elite && development-policy3
 		Modifier: 75
+	ReloadAmmoDelayMultiplier@EliteDevelopmentPolicy3:
+		RequiresCondition: rank-elite && development-policy3
+		Modifier: 60
 
 ^Berserk:
 	SpeedMultiplier@BERSERK:
 		RequiresCondition: berserkactive
 		Modifier: 125
 	ReloadDelayMultiplier@BERSERK:
+		RequiresCondition: berserkactive
+		Modifier: 50
+	ReloadAmmoDelayMultiplier@BERSERK:
 		RequiresCondition: berserkactive
 		Modifier: 50
 	ExternalCondition@BERSERK:
@@ -425,6 +440,9 @@
 	ReloadDelayMultiplier@FRENZY:
 		RequiresCondition: frenzy
 		Modifier: 75
+	ReloadAmmoDelayMultiplier@FRENZY:
+		RequiresCondition: frenzy
+		Modifier: 75
 	ExternalCondition@FRENZY:
 		Condition: frenzyinit
 	WithPalettedOverlay@FRENZY:
@@ -444,6 +462,9 @@
 		RequiresCondition: frenzyinit
 		Duration: 500
 	ReloadDelayMultiplier@FRENZYDEBUFF:
+		RequiresCondition: !frenzy && frenzyinit
+		Modifier: 115
+	ReloadAmmoDelayMultiplier@FRENZYDEBUFF:
 		RequiresCondition: !frenzy && frenzyinit
 		Modifier: 115
 	SpeedMultiplier@FRENZYDEBUFF:
@@ -486,9 +507,9 @@
 	ReloadAmmoDelayMultiplier@Inspiration2:
 		RequiresCondition: inspiration >= 2
 		Modifier: 84
-	SpeedMultiplier@Inspiration2:
+	RangeMultiplier@Inspiration2:
 		RequiresCondition: inspiration >= 2
-		Modifier: 130
+		Modifier: 120
 	WithIdleOverlay@Inspiration1:
 		Image: ussrstar
 		Sequence: idle-overlay1
@@ -507,33 +528,22 @@
 		TargetTypes: HeroOfUnionTargetable
 		RequiresCondition: !herooftheunion
 	ExternalCondition@HeroOfTheUnion:
-		Condition: herooftheunioninit
-	TimedConditionBarCA@HeroOfTheUnion:
-		Color: dd0000
 		Condition: herooftheunion
-		ValidRelationships: Ally, Enemy, Neutral
-	GrantExtendableTimedCondition@HeroOfTheUnion:
-		Condition: herooftheunion
-		Duration: 1500
-		ExtensionTypes: DamageDealt
-		MinDamage: 500
-		ExtensionTicks: 25
-		MaxExtensionTicks: 375
-		ForceFullDuration: true
-		DischargeOnAttack: true
-		RequiresCondition: herooftheunioninit
+	FlatHealthDamageMultiplier@HeroOfTheUnion:
+		HP: 16000
+		RequiresCondition: herooftheunion
 	SpeedMultiplier@HeroOfTheUnion:
 		Modifier: 120
 		RequiresCondition: herooftheunion
+	ReloadDelayMultiplier@HeroOfTheUnion:
+		Modifier: 66
+		RequiresCondition: herooftheunion
+	ReloadAmmoDelayMultiplier@HeroOfTheUnion:
+		Modifier: 66
+		RequiresCondition: herooftheunion
 	RangeMultiplier@HeroOfTheUnion:
-		Modifier: 140
+		Modifier: 120
 		RequiresCondition: herooftheunion
-	FlatHealthDamageMultiplier@HeroOfTheUnion:
-		HP: 20000
-		RequiresCondition: herooftheunion
-	FirepowerMultiplier@HeroOfTheUnion:
-		RequiresCondition: herooftheunion
-		Modifier: 200
 	WithIdleOverlay@HeroOfTheUnionLight:
 		Sequence: light
 		Image: hero-overlay
@@ -548,13 +558,25 @@
 		IsDecoration: True
 	TakeCover:
 		RequiresCondition: !herooftheunion && !reapersnare
+	GrantCondition@HeroElite:
+		RequiresCondition: herooftheunion
+		Condition: rank-elite
+
+^HeroOfTheUnionTargetableRocket:
+	Inherits: ^HeroOfTheUnionTargetable
+	ReloadDelayMultiplier@HeroOfTheUnion:
+		Modifier: 75
+	ReloadAmmoDelayMultiplier@HeroOfTheUnion:
+		Modifier: 75
 
 ^HeroOfTheUnionTargetableGrenFlamer:
 	Inherits: ^HeroOfTheUnionTargetable
 	FlatHealthDamageMultiplier@HeroOfTheUnion:
-		HP: 6000
-	SpeedMultiplier@HeroOfTheUnion:
-		Modifier: 140
+		HP: 5000
+	ReloadDelayMultiplier@HeroOfTheUnion:
+		Modifier: 90
+	ReloadAmmoDelayMultiplier@HeroOfTheUnion:
+		Modifier: 90
 
 ^IdolOfKane:
 	ExternalCondition@IdolOfKaneBuff1:

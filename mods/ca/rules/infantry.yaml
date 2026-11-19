@@ -257,7 +257,7 @@ E3:
 	Inherits: ^Soldier
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMovePrioritizeAir
 	Inherits@Inspirable: ^Inspirable
-	Inherits@HeroOfTheUnionTargetable: ^HeroOfTheUnionTargetable
+	Inherits@HeroOfTheUnionTargetableRocket: ^HeroOfTheUnionTargetableRocket
 	Buildable:
 		Queue: InfantrySQ, InfantryMQ
 		BuildAtProductionType: Soldier
@@ -301,6 +301,7 @@ E3:
 		RequiresCondition: cryw-upgrade
 	# Prevents attack moving forwards when main weapon is paused for reload
 	Armament@Targeter:
+		Name: targeter
 		Weapon: DragonTargeter
 		LocalOffset: 0,0,500
 	Armament@BATF:
@@ -320,6 +321,7 @@ E3:
 	TakeCover:
 		ProneOffset: 384,0,-395
 	AttackFrontal:
+		Armaments: primary, secondary, targeter
 		PauseOnCondition: being-warped || blinded || reapersnare
 		FacingTolerance: 0
 	ProducibleWithLevel:
@@ -338,8 +340,9 @@ E3:
 	WithInfantryBody@CRYO:
 		IdleSequences: idle-cryo1, idle-cryo2
 		StandSequences: stand-cryo, stand-cryo2
-		AttackSequences: shoot-cryo
-		DefaultAttackSequence: shoot-cryo
+		AttackSequences:
+			primary: shoot-cryo
+			secondary: shoot-cryo
 		MoveSequence: run-cryo
 		RequiresCondition: cryw-upgrade && !parachute && !being-warped && !reapersnare
 	WithDeathAnimation:
@@ -1746,7 +1749,7 @@ N3:
 	Inherits: ^Soldier
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMovePrioritizeAir
 	Inherits@Inspirable: ^Inspirable
-	Inherits@HeroOfTheUnionTargetable: ^HeroOfTheUnionTargetable
+	Inherits@HeroOfTheUnionTargetableRocket: ^HeroOfTheUnionTargetableRocket
 	Buildable:
 		Queue: InfantrySQ, InfantryMQ
 		BuildAtProductionType: Soldier
@@ -1791,6 +1794,7 @@ N3:
 		RequiresCondition: tibcore-upgrade
 	# Prevents attack moving forwards when main weapon is paused for reload
 	Armament@Targeter:
+		Name: targeter
 		Weapon: DragonTargeter
 		LocalOffset: 0,0,500
 	Armament@BATF:
@@ -1813,10 +1817,13 @@ N3:
 	TakeCover:
 		ProneOffset: 384,0,-395
 	AttackFrontal:
+		Armaments: primary, secondary, targeter
 		PauseOnCondition: being-warped || blinded || reapersnare
 		FacingTolerance: 0
 	WithInfantryBody:
-		DefaultAttackSequence: shoot
+		AttackSequences:
+			primary: shoot
+			secondary: shoot
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
 	WithProductionIconOverlay:
@@ -3315,6 +3322,7 @@ N3C:
 		Speed: 46
 		Voice: Move
 	AttackFrontal:
+		Armaments: primary, secondary, targeter
 		Voice: Attack
 		PauseOnCondition: being-warped || blinded || reapersnare
 		FacingTolerance: 0
@@ -3327,7 +3335,9 @@ N3C:
 	Voiced:
 		VoiceSet: CyborgVoice
 	WithInfantryBody:
-		DefaultAttackSequence: shoot
+		AttackSequences:
+			primary: shoot
+			secondary: shoot
 	Armament@PRIMARY:
 		Weapon: RedEye.CYB
 		LocalOffset: 0,0,500
@@ -3352,6 +3362,7 @@ N3C:
 		RequiresCondition: tibcore-upgrade
 	# Prevents attack moving forwards when main weapon is paused for reload
 	Armament@Targeter:
+		Name: targeter
 		Weapon: DragonTargeter
 		LocalOffset: 0,0,500
 	Armament@BATF:
@@ -4715,6 +4726,7 @@ CMSR:
 	Inherits: ^Soldier
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Inherits@Inspirable: ^Inspirable
+	Inherits@HeroOfTheUnionTargetable: ^HeroOfTheUnionTargetable
 	Buildable:
 		Queue: InfantrySQ, InfantryMQ
 		BuildAtProductionType: Soldier
@@ -4768,19 +4780,33 @@ CMSR:
 		Condition: cmsr-inspiration
 		ValidRelationships: Ally
 		AffectsParent: true
-		RequiresCondition: !passenger
+		RequiresCondition: !passenger && !herooftheunion
+	ProximityExternalCondition@HeroInspiration:
+		Range: 9c0
+		Condition: cmsr-inspiration
+		ValidRelationships: Ally
+		AffectsParent: true
+		RequiresCondition: !passenger && herooftheunion
 	WithDecoration@CMSRPIP:
 		Image: pips
 		Sequence: pip-cmsr
 		Palette: effect
 		Position: TopLeft
 		ValidRelationships: Ally, Enemy, Neutral
-	WithRadiatingCircle:
+	WithRadiatingCircle@Inspiration:
 		EndRadius: 7c0
 		Interval: 75
 		Duration: 50
 		ValidRelationships: Ally
 		AlwaysShowMaxRange: true
+		RequiresCondition: !herooftheunion
+	WithRadiatingCircle@HeroInspiration:
+		EndRadius: 9c0
+		Interval: 75
+		Duration: 50
+		ValidRelationships: Ally
+		AlwaysShowMaxRange: true
+		RequiresCondition: herooftheunion
 	IgnoresDisguise:
 	DetectCloaked:
 		DetectionTypes: Cloak, AirCloak

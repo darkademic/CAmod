@@ -4369,6 +4369,7 @@ MTNK.Drone:
 	-Capturable:
 	-SpeedMultiplier@BERSERK:
 	-ReloadDelayMultiplier@BERSERK:
+	-ReloadAmmoDelayMultiplier@BERSERK:
 	-ExternalCondition@BERSERK:
 	-Berserkable@BERSERK:
 	-WithPalettedOverlay@BERSERK:
@@ -4905,6 +4906,7 @@ HTNK.Drone:
 	-Capturable:
 	-SpeedMultiplier@BERSERK:
 	-ReloadDelayMultiplier@BERSERK:
+	-ReloadAmmoDelayMultiplier@BERSERK:
 	-ExternalCondition@BERSERK:
 	-Berserkable@BERSERK:
 	-WithPalettedOverlay@BERSERK:

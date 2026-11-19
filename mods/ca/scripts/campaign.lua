@@ -2061,6 +2061,10 @@ AdjustTimeForGameSpeed = function(ticks)
 	return ticks
 end
 
+MinutesAndSeconds = function(minutes, seconds)
+	return DateTime.Minutes(minutes) + DateTime.Seconds(seconds)
+end
+
 PanToPos = function(targetPos, speed)
 	local cameraPos = Camera.Position
 	local newX = cameraPos.X

@@ -271,7 +271,7 @@ Squads = {
 			local factories = USSR.GetActorsByTypes({ "weap" })
 			local safeFactories = {}
 			for _, factory in pairs(factories) do
-				local enemiesNearFactory = Map.ActorsInCircle(factory.CenterPosition, WDist.FromCells(8), function(a)
+				local enemiesNearFactory = Map.ActorsInCircle(factory.CenterPosition, WDist.FromCells(12), function(a)
 					return IsGroundHunterUnit(a) and IsMissionPlayer(a.Owner)
 				end)
 				if #enemiesNearFactory == 0 then

@@ -92,6 +92,11 @@
 		Sequence: tag-primary
 
 ^BotBuilding:
+	GrantConditionOnBotOwner@OwnedByAi:
+		Condition: owned-by-ai
+		Bots: brutal, vhard, hard, normal, easy, naval, campaign, dormant
+	DummyConditionConsumer@OwnedByAi:
+		Condition: owned-by-ai
 	GrantConditionOnBotOwner@BrutalAI:
 		Condition: owned-by-brutal-ai
 		Bots: brutal
@@ -175,6 +180,11 @@
 		UpdateOn: Killed
 
 ^BotGroundProductionBonus:
+	GrantConditionOnBotOwner@OwnedByAi:
+		Condition: owned-by-ai
+		Bots: brutal, vhard, hard, normal, easy, naval, campaign, dormant
+	DummyConditionConsumer@OwnedByAi:
+		Condition: owned-by-ai
 	ProductionCostMultiplier@brutalbonus:
 		Multiplier: 60
 		Prerequisites: is-brutal-ai
@@ -189,6 +199,11 @@
 		Prerequisites: is-easy-ai
 
 ^BotAirProductionBonus:
+	GrantConditionOnBotOwner@OwnedByAi:
+		Condition: owned-by-ai
+		Bots: brutal, vhard, hard, normal, easy, naval, campaign, dormant
+	DummyConditionConsumer@OwnedByAi:
+		Condition: owned-by-ai
 	ProductionCostMultiplier@brutalbonus:
 		Multiplier: 95
 		Prerequisites: is-brutal-ai
@@ -231,20 +246,20 @@
 		Weapon: commandeer
 		Name: commandeer
 		TargetRelationships: Neutral
-		RequiresCondition: botowner
-	GrantConditionOnBotOwner@AIHELPER:
-		Condition: botowner
-		Bots: brutal, vhard, hard, normal, easy, naval, campaign
+		RequiresCondition: owned-by-ai
+	GrantConditionOnBotOwner@OwnedByAi:
+		Condition: owned-by-ai
+		Bots: brutal, vhard, hard, normal, easy, naval, campaign, dormant
 	GrantConditionOnAttack@AIHELPER:
 		Condition: removeunit
 		ArmamentNames: commandeer
-		RequiresCondition: botowner
+		RequiresCondition: owned-by-ai
 	KillsSelf@AIHELPER:
 		RemoveInstead: true
 		RequiresCondition: removeunit
 	AutoTargetPriority@AIHELPER:
 		ValidTargets: NoCrew
-		RequiresCondition: botowner
+		RequiresCondition: owned-by-ai
 		Priority: 1
 	WithInfantryBody:
 		AttackSequences:
@@ -509,7 +524,7 @@
 		Modifier: 84
 	RangeMultiplier@Inspiration2:
 		RequiresCondition: inspiration >= 2
-		Modifier: 120
+		Modifier: 115
 	WithIdleOverlay@Inspiration1:
 		Image: ussrstar
 		Sequence: idle-overlay1
@@ -542,7 +557,7 @@
 		Modifier: 66
 		RequiresCondition: herooftheunion
 	RangeMultiplier@HeroOfTheUnion:
-		Modifier: 120
+		Modifier: 115
 		RequiresCondition: herooftheunion
 	WithIdleOverlay@HeroOfTheUnionLight:
 		Sequence: light
@@ -577,6 +592,11 @@
 		Modifier: 90
 	ReloadAmmoDelayMultiplier@HeroOfTheUnion:
 		Modifier: 90
+
+^HeroOfTheUnionTargetableCommissar:
+	Inherits: ^HeroOfTheUnionTargetable
+	FlatHealthDamageMultiplier@HeroOfTheUnion:
+		HP: 12000
 
 ^IdolOfKane:
 	ExternalCondition@IdolOfKaneBuff1:
@@ -3328,12 +3348,9 @@
 	DetectCloaked@UNDERBRIDGE:
 		DetectionTypes: Underbridge
 		Range: 5c0
-	GrantConditionOnBotOwner@IAMBOT:
-		Condition: botowner
-		Bots: brutal, vhard, hard, normal, easy, naval
 	Wanders@NOIDLENAVY:
 		WanderMoveRadius: 3
-		RequiresCondition: (botowner && under-bridge)
+		RequiresCondition: (owned-by-ai && under-bridge)
 	GpsRadarDot:
 		Sequence: Ship
 	Encyclopedia:
@@ -3371,7 +3388,7 @@
 		RequiresCondition: !under-bridge && !being-warped
 	-MustBeDestroyed:
 	Wanders@NOIDLENAVY:
-		RequiresCondition: (botowner && crossing-ford) ||  (botowner && under-bridge)
+		RequiresCondition: (owned-by-ai && crossing-ford) || (owned-by-ai && under-bridge)
 	-Targetable@MINIDRONE:
 	-ChangesHealth@MINIDRONE:
 	WithColoredSelectionBox@INVIS:

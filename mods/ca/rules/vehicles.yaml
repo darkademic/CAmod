@@ -333,14 +333,11 @@ NUKC:
 	SpawnActorOnDeath:
 		Actor: NUKC.Husk
 		RequiresCondition: !being-warped
-	GrantConditionOnBotOwner@BotOwner:
-		Condition: botowner
-		Bots: brutal, vhard, hard, normal, easy, naval
 	DeployOnAttack:
 		RequiresCondition: undeployed && !moving && !deploying && !undeploying
 		ArmamentNames: deployer
 	AutoTarget:
-		RequiresCondition: (botowner || deployed || attack-move || assault-move) && !undeploying && !deploying
+		RequiresCondition: (owned-by-ai || deployed || attack-move || assault-move) && !undeploying && !deploying
 	AttackMove:
 		AttackMoveCondition: attack-move
 	WithRangeCircle:
@@ -6407,7 +6404,12 @@ IFV:
 		Strengths: • Strong vs Infantry, Light Armor
 		Weaknesses: • Weak vs Heavy Armor, Defenses, Buildings\n• Cannot attack Aircraft
 		IsStandard: false
-		RequiresCondition: desoturr || acolturr || sharturr || implturr || stlkturr
+		RequiresCondition: desoturr || acolturr || implturr || stlkturr
+	TooltipExtras@sharturr:
+		Strengths: • Strong vs Aircraft, Infantry, Light Armor
+		Weaknesses: • Weak vs Heavy Armor, Buildings, Defenses
+		IsStandard: false
+		RequiresCondition: sharturr
 	TooltipExtras@testurr:
 		Strengths: • Strong vs Infantry, Heavy Armor, Light Armor
 		Weaknesses: • Cannot attack Aircraft
@@ -6622,6 +6624,10 @@ IFV:
 		RequiresCondition: discturr
 	Armament@Shard:
 		Weapon: ShardWalkerShards
+		LocalOffset: 300,0,300
+		RequiresCondition: sharturr
+	Armament@ShardAA:
+		Weapon: ShardWalkerShardsAA
 		LocalOffset: 300,0,300
 		RequiresCondition: sharturr
 	Armament@ChemMortar:
@@ -6948,13 +6954,13 @@ IFV:
 		Range: 3c512
 		RequiresCondition: medturr
 	ProximityExternalCondition@Inspiration:
-		Range: 5c0
+		Range: 6c0
 		Condition: cmsr-inspiration
 		ValidRelationships: Ally
 		AffectsParent: true
 		RequiresCondition: cmsrturr && !passenger
 	WithRadiatingCircle:
-		EndRadius: 5c0
+		EndRadius: 6c0
 		Interval: 75
 		Duration: 50
 		ValidRelationships: Ally
@@ -6975,7 +6981,7 @@ IFV:
 		RequiresCondition: commturr || psyturr
 	GrantCondition@IsAA:
 		Condition: is-aa
-		RequiresCondition: !full || samturr || ggiturr || disinturr || tigrturr || reapturr || nochange
+		RequiresCondition: !full || samturr || ggiturr || disinturr || tigrturr || reapturr || sharturr || nochange
 	AutoTarget:
 		AttackAnythingCondition: stance-attackanything
 	AutoTargetPriority@DEFAULTAA:
@@ -9248,10 +9254,7 @@ CHPR:
 		Condition: botwarping
 		ArmamentNames: primary
 		RevokeDelay: 75
-		RequiresCondition: botowner
-	GrantConditionOnBotOwner@AICHPR:
-		Condition: botowner
-		Bots: brutal, vhard, hard, normal, easy, naval
+		RequiresCondition: owned-by-ai
 	WithIdleOverlay@MINDCONTROL:
 		Offset: -200,0,768
 	Encyclopedia:

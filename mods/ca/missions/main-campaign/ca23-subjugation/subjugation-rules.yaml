@@ -259,10 +259,7 @@ HALO:
 	Health:
 		HP: 17000
 	KillsSelf@YURIMC:
-		RequiresCondition: yurimc
-	GrantConditionOnBotOwner@YURIMC:
-		Bots: campaign
-		Condition: yurimc
+		RequiresCondition: owned-by-ai
 	-EjectOnDeath:
 
 HIND:

@@ -436,7 +436,7 @@ U3:
 		RequiresCondition: cryw-upgrade
 	Armament@AIDummyAiming: ## Hack: Make AI deploy to attack air
 		PauseOnCondition: being-warped
-		RequiresCondition: botowner && !deployed
+		RequiresCondition: owned-by-ai && !deployed
 		Weapon: AirDummyAim
 	AmmoPool:
 		Ammo: 1
@@ -528,7 +528,7 @@ U3:
 		ArmamentNames: deployed
 	RejectsOrders@deployment:
 		Reject: AttackMove, AssaultMove
-		RequiresCondition: !botowner && deployed && !berserk
+		RequiresCondition: !owned-by-ai && deployed && !berserk
 	Convertible:
 		SpawnActors: N3C
 	AttackMove:
@@ -542,7 +542,7 @@ U3:
 	Crushable:
 		RequiresCondition: !invulnerability && !being-warped && undeployed
 	AutoDeployer@AI:
-		RequiresCondition: botowner && !deployed && !parachute
+		RequiresCondition: owned-by-ai && !deployed && !parachute
 		DeployChance: 100
 		DeployTrigger: Attack
 		DeployTicks: 5
@@ -1323,10 +1323,7 @@ HACK:
 		RequiresCondition: bothacking
 	GrantCondition@AIHACKER:
 		Condition: bothacking
-		RequiresCondition: botowner && is-hacking
-	GrantConditionOnBotOwner@AIHACKER:
-		Condition: botowner
-		Bots: brutal, vhard, hard, normal, easy, naval
+		RequiresCondition: owned-by-ai && is-hacking
 	Encyclopedia:
 		Category: Nod/Infantry
 		HideBuildable: True
@@ -2804,6 +2801,7 @@ JJET:
 	Inherits@atomize: ^Atomizable
 	Inherits@Blindable: ^Blindable
 	Inherits@BERSERK: ^Berserk
+	Inherits@BotGroundProductionBonus: ^BotGroundProductionBonus
 	Huntable:
 	ClassicFacingBodyOrientation:
 		QuantizedFacings: 8
@@ -3219,14 +3217,11 @@ DESO:
 		BodyNames: deployed
 	-ReplacedInQueue:
 	AutoDeployer@AI:
-		RequiresCondition: botowner && !deployed && !parachute
+		RequiresCondition: owned-by-ai && !deployed && !parachute
 		DeployChance: 20
 		DeployTrigger: Attack
 		DeployTicks: 5
 		UndeployTicks: 50
-	GrantConditionOnBotOwner@IAMBOT:
-		Condition: botowner
-		Bots: brutal, vhard, hard, normal, easy, naval, campaign
 	EncyclopediaExtras:
 		RenderPreviewActor: deso.preview
 
@@ -4117,7 +4112,7 @@ YURI:
 	Armament@AIDummyAiming: ## Hack: Make AI deploy to attack structures
 		PauseOnCondition: being-warped
 		Name: aidummy
-		RequiresCondition: botowner && !deployed
+		RequiresCondition: owned-by-ai && !deployed
 		Weapon: YuriDummyAim
 	Armament@BATF:
 		Name: batf
@@ -4220,17 +4215,14 @@ YURI:
 		TargetTypes: ChaosImmune
 	GrantConditionOnAttack@AI:
 		Condition: aiattack
-		RequiresCondition: botowner
+		RequiresCondition: owned-by-ai
 		ArmamentNames: aidummy
 		RevokeDelay: 60
 	AutoDeployer@AI:
-		RequiresCondition: aiattack && botowner && !deployed && !parachute
+		RequiresCondition: aiattack && owned-by-ai && !deployed && !parachute
 		DeployChance: 100
 		DeployTrigger: Attack
 		DeployTicks: 100
-	GrantConditionOnBotOwner@IAMBOT:
-		Condition: botowner
-		Bots: brutal, vhard, hard, normal, easy, naval, campaign
 	AutoTargetPriority@VEHCOOLDOWN:
 		ValidTargets: Infantry
 		InvalidTargets: NoAutoTarget
@@ -4776,13 +4768,13 @@ CMSR:
 		Types: Veterancy
 		Prerequisites: barracks.upgraded
 	ProximityExternalCondition@Inspiration:
-		Range: 7c0
+		Range: 6c0
 		Condition: cmsr-inspiration
 		ValidRelationships: Ally
 		AffectsParent: true
 		RequiresCondition: !passenger && !herooftheunion
 	ProximityExternalCondition@HeroInspiration:
-		Range: 9c0
+		Range: 8c0
 		Condition: cmsr-inspiration
 		ValidRelationships: Ally
 		AffectsParent: true
@@ -4794,14 +4786,14 @@ CMSR:
 		Position: TopLeft
 		ValidRelationships: Ally, Enemy, Neutral
 	WithRadiatingCircle@Inspiration:
-		EndRadius: 7c0
+		EndRadius: 6c0
 		Interval: 75
 		Duration: 50
 		ValidRelationships: Ally
 		AlwaysShowMaxRange: true
 		RequiresCondition: !herooftheunion
 	WithRadiatingCircle@HeroInspiration:
-		EndRadius: 9c0
+		EndRadius: 8c0
 		Interval: 75
 		Duration: 50
 		ValidRelationships: Ally

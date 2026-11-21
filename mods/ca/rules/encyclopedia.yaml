@@ -1551,8 +1551,8 @@ encyclopedia.ifv.shard:
 		VariantGroup: Other Factions
 		Description: IFV loaded with a Ravager or Eviscerator. Fires Tiberium shards.
 	TooltipExtras:
-		Strengths: • Strong vs Infantry, Light Armor
-		Weaknesses: • Weak vs Heavy Armor, Defenses, Buildings\n• Cannot attack Aircraft
+		Strengths: • Strong vs Aircraft, Infantry, Light Armor
+		Weaknesses: • Weak vs Heavy Armor, Defenses, Buildings
 		Attributes: • Passenger: Ravager, Eviscerator
 
 encyclopedia.ifv.pdisc:

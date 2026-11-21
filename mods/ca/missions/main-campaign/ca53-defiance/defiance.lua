@@ -165,6 +165,17 @@ RecalculateSquad = function(squad)
 	end
 end
 
+DominatorRefresh = function(a)
+	Trigger.AfterDelay(DateTime.Seconds(30), function()
+		if not a.IsDead then
+			a.Stop()
+			Trigger.ClearAll(a)
+			AssaultPlayerBaseOrHunt(a)
+			DominatorRefresh(a)
+		end
+	end)
+end
+
 Squads = {
 	Yuri = {
 		Delay = AdjustDelayForDifficulty(DateTime.Minutes(4)),
@@ -271,6 +282,11 @@ Squads = {
 				return nil
 			end
 			return safeFactories
+		end,
+		AfterSendSquad = function(squad)
+			Utils.Do(squad.SentUnits, function(a)
+				DominatorRefresh(a)
+			end)
 		end
 	}
 }

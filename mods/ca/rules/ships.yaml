@@ -55,7 +55,7 @@ SS:
 		RevokeDelay: 110
 		RevokeOnNewTarget: true
 		RevokeAll: true
-		RequiresCondition: botowner
+		RequiresCondition: owned-by-ai
 	RangeMultiplier@STOPSHOOTINGROCKS1:
 		Modifier: 50
 		RequiresCondition: im-dumb == 1
@@ -638,7 +638,7 @@ SS2:
 		RevokeDelay: 110
 		RevokeOnNewTarget: true
 		RevokeAll: true
-		RequiresCondition: botowner
+		RequiresCondition: owned-by-ai
 	RangeMultiplier@STOPSHOOTINGROCKS1:
 		Modifier: 50
 		RequiresCondition: im-dumb == 1

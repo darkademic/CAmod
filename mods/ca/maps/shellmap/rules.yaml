@@ -97,10 +97,6 @@ SUK:
 	Aircraft:
 		Speed: 250
 
-NUKC:
-	GrantCondition@BotOwner:
-		Condition: botowner
-
 # attack everything
 
 ^AutoTargetGround:

@@ -199,6 +199,65 @@ World:
 	DummyConditionConsumer@BRUTAL:
 		Condition: difficulty-brutal
 
+# Make AI units attack walls
+
+^AttacksWalls:
+	GrantConditionOnBotOwner@OwnedByAi:
+		Condition: owned-by-ai
+		Bots: brutal, vhard, hard, normal, easy, naval, campaign, dormant
+	AutoTargetPriority@Walls:
+		ValidTargets: Wall
+		Priority: 0
+		RequiresCondition: owned-by-ai
+
+ARTY:
+	Inherits@AttacksWalls: ^AttacksWalls
+
+V2RL:
+	Inherits@AttacksWalls: ^AttacksWalls
+
+V3RL:
+	Inherits@AttacksWalls: ^AttacksWalls
+
+PTNK:
+	Inherits@AttacksWalls: ^AttacksWalls
+
+ISU:
+	Inherits@AttacksWalls: ^AttacksWalls
+
+E3:
+	Inherits@AttacksWalls: ^AttacksWalls
+
+N3:
+	Inherits@AttacksWalls: ^AttacksWalls
+
+S3:
+	Inherits@AttacksWalls: ^AttacksWalls
+
+S4:
+	Inherits@AttacksWalls: ^AttacksWalls
+
+MRDR:
+	Inherits@AttacksWalls: ^AttacksWalls
+
+BJET:
+	Inherits@AttacksWalls: ^AttacksWalls
+
+DISR:
+	Inherits@AttacksWalls: ^AttacksWalls
+
+JUGG:
+	Inherits@AttacksWalls: ^AttacksWalls
+
+MSAM:
+	Inherits@AttacksWalls: ^AttacksWalls
+
+HSAM:
+	Inherits@AttacksWalls: ^AttacksWalls
+
+MLRS:
+	Inherits@AttacksWalls: ^AttacksWalls
+
 # Prevent neutralised units decaying
 
 ^AffectedByDriverKill:
@@ -1229,7 +1288,7 @@ DOMI:
 		RequiresCondition: charged
 	GrantTimedCondition@Discharged:
 		Condition: discharged
-		Duration: 375
+		Duration: 200
 		ForceFullDuration: true
 		RequiresCondition: charged
 	WithDistortionHalo@DominationWave:

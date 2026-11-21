@@ -1156,6 +1156,10 @@ InitAttackSquad = function(squad, player, targetPlayers)
 		squad.IdleUnits = { }
 	end
 
+	if squad.SentUnits == nil then
+		squad.SentUnits = { }
+	end
+
 	if squad.Delay ~= nil then
 		local delay
 		if type(squad.Delay) == "table" and squad.Delay[Difficulty] ~= nil then
@@ -1675,6 +1679,8 @@ SendAttackSquad = function(squad)
 						ClearSquadLeader(SquadLeaders[actorId])
 					end)
 				end
+
+				table.insert(squad.SentUnits, a)
 			end
 		end)
 	end

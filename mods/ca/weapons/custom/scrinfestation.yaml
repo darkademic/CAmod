@@ -54,6 +54,10 @@ BursterTargeting:
 BursterBeam:
 	Range: 3c512
 
+BursterExplode:
+	Warhead@1Dam: SpreadDamage
+		Falloff: 1000, 368, 135, 50, 0
+
 RuinerCannon:
 	Projectile: Bullet
 		Speed: 150

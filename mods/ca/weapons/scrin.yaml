@@ -2065,8 +2065,9 @@ TiberiumCoalescenceZap:
 	Range: 4c512
 	ValidTargets: Infantry, Vehicle, Structure, Ship, Air, AirSmall
 	Projectile: PlasmaBeam
-		Colors: 00660006
+		Colors: 00880006
 		Duration: 9
+		GlowColor: 006600
 	Warhead@1Dam: SpreadDamage
 		Damage: 800
 		Versus:

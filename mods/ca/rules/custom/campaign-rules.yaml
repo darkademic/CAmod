@@ -1346,6 +1346,8 @@ OSPI:
 		Cost: 15000
 	Tooltip:
 		Name: Overlord's Spire
+	TooltipExtras:
+		Description: A towering structure with powerful defensive capabilities. Primary purpose not known.
 	Selectable:
 		Bounds: 3072, 4608, 0, -1024
 		DecorationBounds: 3114, 4608, 0, -1024

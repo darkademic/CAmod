@@ -2632,7 +2632,7 @@
 		RevealGeneratedShroud: True
 		RequiresCondition: revealonfire
 	RevealOnDeath:
-		Duration: 100
+		Duration: 5
 		Radius: 2c512
 	Carryable:
 		CarriedCondition: passenger
@@ -2931,7 +2931,7 @@
 		RevealGeneratedShroud: True
 		RequiresCondition: revealonfire
 	RevealOnDeath:
-		Duration: 100
+		Duration: 5
 	DetectCloaked:
 		DetectionTypes: Cloak
 		Range: 1c512
@@ -3308,7 +3308,7 @@
 		RevealGeneratedShroud: True
 		RequiresCondition: revealonfire
 	RevealOnDeath:
-		Duration: 100
+		Duration: 5
 		Radius: 2c512
 	DamagedByTintedCells@RADSTRONG:
 		Damage: 100
@@ -3460,7 +3460,7 @@
 		Radius: 2c0
 		GroundPosition: true
 	RevealOnDeath:
-		Duration: 100
+		Duration: 5
 		Radius: 2c512
 	Contrail@1:
 		StartColorUsePlayerColor: false
@@ -3881,6 +3881,7 @@
 		Categories: Defense
 	-CommandBarBlacklist:
 	RevealOnDeath:
+		Duration: 5
 		Radius: 2c768
 	GrantConditionOnPrerequisite@ROF:
 		Condition: revealonfire
@@ -4406,7 +4407,7 @@
 		Explosion: UnitExplodePlane
 	-MapEditorData:
 	RevealOnDeath:
-		Duration: 60
+		Duration: 5
 		Radius: 4c0
 	Contrail@1:
 		StartColorUsePlayerColor: false
@@ -4443,7 +4444,7 @@
 		MaximumSpinSpeed: 40
 	-MapEditorData:
 	RevealOnDeath:
-		Duration: 60
+		Duration: 5
 		Radius: 4c0
 
 ^HelicopterHuskTD:

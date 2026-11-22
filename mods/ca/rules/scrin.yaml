@@ -2414,7 +2414,7 @@ DARK:
 	TooltipExtras:
 		Strengths: • Strong vs Heavy Armor, Light Armor, Defenses
 		Weaknesses: • Weak vs Buildings, Infantry\n• Cannot attack Aircraft
-		Attributes: • Can traverse water\n• Damage scales with the max health of the target
+		Attributes: • Can traverse water\n• Damage scales with target's max health
 	Valued:
 		Cost: 1350
 	Tooltip:

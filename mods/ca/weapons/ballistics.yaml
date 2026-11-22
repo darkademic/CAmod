@@ -698,6 +698,7 @@ JuggernautGun:
 	TargetActorCenter: true
 	Projectile: Bullet
 		Inaccuracy: 1c138
+		Speed: 341
 	Warhead@1Dam: SpreadDamage
 		Spread: 348
 		Damage: 1125

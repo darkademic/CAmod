@@ -4423,7 +4423,7 @@ ENLI:
 	TooltipExtras:
 		Strengths: • Strong vs Heavy Armor, Light Armor
 		Weaknesses: • Weak vs Infantry\n• Cannot attack Aircraft
-		Attributes: • Heals on Tiberium\n• Damage scales with the max health of the target\n• Special Ability: EMP Blast
+		Attributes: • Heals on Tiberium\n• Damage scales with target's max health\n• Special Ability: EMP Blast
 	Valued:
 		Cost: 1000
 	Tooltip:

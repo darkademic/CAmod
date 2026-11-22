@@ -1689,6 +1689,8 @@ A10.SW:
 		Prerequisites: afld.gdi, ~aircraft.gdi, ~sidewinders.upgrade, ~techlevel.medium
 		Description: Attack aircraft armed with incendiary bombs and air-to-air missiles.
 		BuildPaletteOrder: 42
+	Tooltip:
+		Name: Sidewinder Warthog
 	TooltipExtras:
 		Strengths: • Strong vs Buildings, Infantry, Light Armor, Aircraft
 		Weaknesses: • Weak vs Heavy Armor, Defenses
@@ -1756,6 +1758,8 @@ A10.GAU:
 		Prerequisites: afld.gdi, ~aircraft.gdi, ~avenger.upgrade, ~techlevel.medium
 		Description: Attack aircraft armed with a rotary cannon and rockets.
 		BuildPaletteOrder: 42
+	Tooltip:
+		Name: Avenger Warthog
 	TooltipExtras:
 		Strengths: • Strong vs Buildings, Infantry, Light Armor
 		Weaknesses: • Cannot attack Aircraft

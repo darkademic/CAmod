@@ -257,11 +257,21 @@ GAU8:
 		Spread: 341
 		Damage: 1900
 		Versus:
-			None: 200
+			None: 130
 			Wood: 0
 			Light: 100
 			Heavy: 85
 			Concrete: 30
+		DamageTypes: Prone50Percent, TriggerProne, BulletDeath, AirToGround
+	Warhead@2Dam: HealthPercentageSpreadDamage
+		Damage: 25
+		Spread: 341
+		Versus:
+			None: 100
+			Wood: 0
+			Concrete: 0
+			Light: 0
+			Heavy: 0
 		DamageTypes: Prone50Percent, TriggerProne, BulletDeath, AirToGround
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
@@ -273,6 +283,7 @@ GAU8.Building:
 	-Projectile:
 	-FirstBurstTargetOffset:
 	-FollowingBurstTargetOffset:
+	-Warhead@2Dam:
 	-Warhead@2Smu:
 	-Warhead@2Eff:
 	-Warhead@3EffWater:

@@ -1198,7 +1198,7 @@ THWeapon:
 KatyushaRockets:
 	Inherits: ^AntiGroundMissile
 	ReloadDelay: 180
-	Range: 8c768
+	Range: 9c512
 	MinRange: 3c0
 	Report: katyrocket1.aud, katyrocket2.aud, katyrocket3.aud
 	Burst: 3
@@ -2480,7 +2480,7 @@ RocketShells:
 	-Projectile:
 	Report: rocketshell1.aud, rocketshell2.aud, rocketshell3.aud
 	Projectile: MissileCA
-		Speed: 255
+		Speed: 341
 		Blockable: false
 		Image: 120MM
 		TrailImage: smokey
@@ -2502,6 +2502,7 @@ RocketShells:
 		CruiseAltitude: 2c0
 		Inaccuracy: 128
 		AllowSnapping: true
+		RangeLimit: 11c0
 
 CyborgReaperMissiles:
 	Inherits: ^AntiGroundMissile

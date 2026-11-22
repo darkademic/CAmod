@@ -364,7 +364,7 @@ avenger.upgrade:
 		IconPalette: chrome
 		Description: Replaces Warthog's incendiary bombs with GAU-8 Avenger rotary cannon and Hydra rockets.\n\nUpgrades: Warthog
 	TooltipExtras:
-		Strengths: + Increased damage\n+ Increased range
+		Strengths: + Increased damage\n+ Increased range\n+ Damage vs infantry scales with target max health
 		Weaknesses: – Requires two passes
 	Valued:
 		Cost: 1000

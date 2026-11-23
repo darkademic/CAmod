@@ -786,7 +786,7 @@
 		ShowTargetCircle: true
 		TargetCircleColor: ffee00
 		TargetTintColor: ffee0033
-		PrioritizeByValue: true
+		PrioritizeBy: Value
 	GrantExternalConditionPowerCA@ATOMICAMMOIRAQ:
 		Prerequisites: ~player.iraq
 		OrderName: atomicammoiraq
@@ -817,7 +817,7 @@
 		ShowTargetCircle: true
 		TargetCircleColor: ffee00
 		TargetTintColor: ffee0033
-		PrioritizeByValue: true
+		PrioritizeBy: Value
 
 ^HeroesOfTheUnionPower:
 	GrantExternalConditionPowerCA@HEROESOFUNION:
@@ -849,6 +849,9 @@
 		TargetTintColor: ff000040
 		ShowTargetCircle: true
 		TargetCircleColor: cc0000cc
+		PrioritizeBy: TargetTypes
+		TargetTypePriorityList: Commissar
+		TargetTypePriorityLimit: 1
 
 ^TankDropPower:
 	ParatroopersPowerCA@TankDrop:

@@ -4803,6 +4803,8 @@ CMSR:
 	DetectCloaked:
 		DetectionTypes: Cloak, AirCloak
 		Range: 5c0
+	Targetable@Commissar:
+		TargetTypes: Commissar
 	Encyclopedia:
 		Category: Soviets/Infantry
 

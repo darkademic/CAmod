@@ -23,6 +23,13 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.CA.Traits
 {
+	public enum GrantExternalConditionPrioritizeBy
+	{
+		Value,
+		Distance,
+		TargetTypes
+	}
+
 	public class GrantExternalConditionPowerCAInfo : SupportPowerInfo
 	{
 		[FieldLoader.Require]
@@ -101,8 +108,16 @@ namespace OpenRA.Mods.CA.Traits
 		[Desc("Range in which to apply condition.")]
 		public readonly WDist Range = WDist.Zero;
 
-		[Desc("If true, order by value, otherwise order by distance.")]
-		public readonly bool PrioritizeByValue = false;
+		[Desc("How to prioritize targets. Distance is used as a fallback and to break ties.")]
+		public readonly GrantExternalConditionPrioritizeBy PrioritizeBy = GrantExternalConditionPrioritizeBy.Distance;
+
+		[Desc("Target types in priority order when PrioritizeBy is TargetTypes.",
+			"Actors matching multiple types are assigned to the first matching type.")]
+		public readonly string[] TargetTypePriorityList = Array.Empty<string>();
+
+		[Desc("Maximum number of targets prioritized per target type. Zero or less means no limit.",
+			"Remaining targets are prioritized by distance.")]
+		public readonly int TargetTypePriorityLimit = 0;
 
 		// Footprint mode only
 
@@ -224,10 +239,36 @@ namespace OpenRA.Mods.CA.Traits
 		{
 			var centerPos = Self.World.Map.CenterOfCell(xy);
 
-			var actorsInRange = Self.World.FindActorsInCircle(centerPos, info.Range)
-				.Where(a => IsValidTarget(a))
-				.OrderByDescending(a => info.PrioritizeByValue ? a.Info.TraitInfoOrDefault<ValuedInfo>()?.Cost ?? 0 : 0)
-				.ThenBy(a => (a.CenterPosition - centerPos).LengthSquared);
+			var validActors = Self.World.FindActorsInCircle(centerPos, info.Range)
+				.Where(a => IsValidTarget(a));
+
+			IEnumerable<Actor> actorsInRange;
+
+			if (info.PrioritizeBy == GrantExternalConditionPrioritizeBy.Value)
+			{
+				actorsInRange = validActors
+					.OrderByDescending(a => a.Info.TraitInfoOrDefault<ValuedInfo>()?.Cost ?? 0)
+					.ThenBy(a => (a.CenterPosition - centerPos).LengthSquared);
+			}
+			else if (info.PrioritizeBy == GrantExternalConditionPrioritizeBy.TargetTypes)
+			{
+				var groups = Enumerable.Range(0, info.TargetTypePriorityList.Length + 1)
+					.Select(_ => new List<Actor>()).ToArray();
+
+				foreach (var actor in validActors.OrderBy(a => (a.CenterPosition - centerPos).LengthSquared))
+				{
+					var targetTypes = actor.GetEnabledTargetTypes();
+					var priority = Array.FindIndex(info.TargetTypePriorityList, targetTypes.Contains);
+					if (priority < 0 || (info.TargetTypePriorityLimit > 0 && groups[priority].Count >= info.TargetTypePriorityLimit))
+						priority = info.TargetTypePriorityList.Length;
+
+					groups[priority].Add(actor);
+				}
+
+				actorsInRange = groups.SelectMany(group => group);
+			}
+			else
+				actorsInRange = validActors.OrderBy(a => (a.CenterPosition - centerPos).LengthSquared);
 
 			if (info.MaxTargets > 0)
 				return actorsInRange.Take(info.MaxTargets);
